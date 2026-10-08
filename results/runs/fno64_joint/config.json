@@ -1,0 +1,253 @@
+{
+  "arguments": {
+    "grid": "data/grids/506_533_ver_r64_joint.npz",
+    "output": "runs/slides_reproduction/fno64_joint",
+    "outputs": "both",
+    "modes": 12,
+    "steps": 500,
+    "learning_rate": 0.003,
+    "weight_decay": 0,
+    "eval_every": 100,
+    "status_every": 10,
+    "seed": 2026,
+    "device": "cuda",
+    "resume": null,
+    "assumptions": [
+      "18_grid_feature_definitions_unavailable_using_occupancy_16_basic_channels_length",
+      "projection_padding_LR_not_given_using_official_FNO_projection128_padding0_LR0.003"
+    ]
+  },
+  "method": "FNO3d",
+  "grid_size": 64,
+  "channels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "model": {
+    "width": 16,
+    "modes": 12,
+    "layers": 4,
+    "in_channels": 18,
+    "out_channels": 4
+  },
+  "model_details": {
+    "in_channels": 18,
+    "out_channels": 4,
+    "width": 16,
+    "modes": 12,
+    "layers": 4,
+    "head_width": 128,
+    "padding": 0,
+    "checkpoint_blocks": false,
+    "layout": "B,C,X,Y,Z",
+    "xyz_channels": false,
+    "fft_norm": "backward",
+    "sources": {
+      "paper": "https://arxiv.org/abs/2010.08895v3",
+      "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+      "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+      "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+    },
+    "unknown_reference_details": [
+      "18 input channel definitions",
+      "padding",
+      "projection width",
+      "optimizer/scaling schedule"
+    ]
+  },
+  "parameter_count": 14159860,
+  "grid_source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/grids/506_533_ver_r64_joint.npz",
+  "grid_metadata": {
+    "sample_key": "506_533/ver",
+    "dataset": "DeepJEB original v1.0",
+    "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+    "source_prepared": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_exact_multifield/506_533_ver.npz",
+    "source_H5_geometry": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw_exact/FieldMesh/506_533.h5",
+    "geometry_cache": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/grid_cache/506_533_r64_quadratic_d182p396596000_centered.npz",
+    "geometry_cache_hit": false,
+    "geometry": {
+      "resolution": 64,
+      "source_tetrahedra": 73771,
+      "candidate_pairs": 39327,
+      "occupied_grid_points": 5001,
+      "spacing_mm": 2.895184063492063,
+      "grid_normalization": "isotropic cube: xyz_mm=domain_lower_mm+domain_length_mm*[ix,iy,iz]/(R-1), endpoints included",
+      "domain_lower_mm": [
+        -77.0233483540039,
+        -162.780892871521,
+        -58.42128407975244
+      ],
+      "domain_length_mm": 182.396596,
+      "unpadded_source_max_extent_mm": 176.66681098937988,
+      "domain_origin_assumption": "centered padded cube; original experiment origin is unavailable",
+      "geometry": "original curved quadratic isoparametric TETRA10; Newton inverse, not linear corner tetrahedra",
+      "broad_phase": "conservative degree-2 Bezier convex-hull AABBs rasterized to candidate grid/tetra pairs",
+      "shared_face_tie_break": "smallest original tetrahedron row index",
+      "newton_dtype": "float64",
+      "cache_dtype": "float32 barycentric and shape weights",
+      "newton_iterations": 10,
+      "normalized_tolerance": 2e-07,
+      "maximum_reconstructed_coordinate_error_normalized": 1.8724336359188243e-07,
+      "corner_singular_tetrahedra": 0,
+      "point_location_seconds": 0.5016221310000049,
+      "device": "cuda",
+      "VTK_source": "https://github.com/Kitware/VTK/blob/517e98882892a079f639d40fb70cb76a6cf95a0e/Common/DataModel/vtkQuadraticTetra.cxx",
+      "midpoint_order": {
+        "tetra10_edge_order": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "midside_midpoint_deviation_mm_p50": 4.973756717836494e-05,
+        "midside_midpoint_deviation_mm_p95": 0.03368563602883488,
+        "midside_midpoint_deviation_mm_max": 0.4301022335624459,
+        "midside_deviation_over_edge_p50": 1.7128121706400813e-05,
+        "midside_deviation_over_edge_p95": 0.019496288120206855,
+        "note": "Curved quadratic surfaces may have nonzero midpoint deviation; no nodes are moved."
+      },
+      "geometry_sha256": "468a74843d863f2aabb5fdfb5bc025835ff15222a7ab2e99a0068ee01987712d"
+    },
+    "grid_domain": {
+      "lower_mm": [
+        -77.0233483540039,
+        -162.780892871521,
+        -58.42128407975244
+      ],
+      "length_mm": 182.396596,
+      "spacing_mm": 2.895184063492063,
+      "resolution": 64,
+      "normalization": "Both occupied_xyz and node_xyz use (xyz_mm-lower_mm)/length_mm"
+    },
+    "schema": {
+      "inputs": "float32 [18,R,R,R], channel-first; zero outside mask; no xyz channels",
+      "targets": "float32 [C,R,R,R], physical; C=4 uXYZ(mm),signedstress(MPa), or C=1 signedstress(MPa)",
+      "mask": "bool [R,R,R], inverse quadratic isoparametric FEM occupancy",
+      "occupied_flat_index": "int32 [Q], C-order flat index: (ix*R+iy)*R+iz",
+      "occupied_xyz": "float32 [Q,3], normalized physical coordinates",
+      "tetra_index": "int32 [Q], original H5 cell row",
+      "barycentric": "float32 [Q,4], quadratic reference coordinates L0,L1,L2,L3",
+      "shape_weights": "float32 [Q,10], N_i=L_i(2L_i-1), N_ij=4L_iL_j in VTK edge order",
+      "node_xyz": "float32 [N,3], normalized original H5 coordinates",
+      "node_xyz_mm": "float32 [N,3], source coordinates in mm",
+      "node_targets": "float32 [N,C], original coordinate-aligned physical CSV labels",
+      "grid_node_ids": "int64 [N], original CSV GRID IDs matching H5 vertex rows",
+      "query_indices": "int32 [N,8], regular grid corners for every original FEM node",
+      "query_weights": "float32 [N,8], trilinear weights times corner occupancy, renormalized",
+      "query_coverage": "bool [N], at least one nonzero occupied corner weight",
+      "target_mean": "float64 [C], population mean of selected occupied physical grid labels",
+      "target_std": "float64 [C], population standard deviation, floor 1e-8",
+      "bbox_min_mm": "float64 [3], unpadded source bbox minimum",
+      "characteristic_length_mm": "float64 scalar, largest unpadded source bbox extent",
+      "domain_lower_mm": "float64 [3], physical lower cube corner; centered padding is an explicit origin assumption",
+      "domain_length_mm": "float64 scalar, physical cube length used by BOTH occupied_xyz and node_xyz",
+      "grid_spacing_mm": "float64 scalar, domain_length_mm/(R-1)",
+      "field_names": "unicode [C], displacement_x/y/z then signed_stress, or signed_stress",
+      "field_units": "unicode [C], mm/mm/mm/MPa or MPa",
+      "sample_key": "unicode scalar, CAD/load",
+      "metadata_json": "unicode scalar, provenance, actual algorithm, schema caveat, roundtrip metrics"
+    },
+    "feature_names": [
+      "quadratic_FEM_occupancy",
+      "support_reference_constrained_dof_1",
+      "support_reference_constrained_dof_2",
+      "support_reference_constrained_dof_3",
+      "support_reference_constrained_dof_4",
+      "support_reference_constrained_dof_5",
+      "support_reference_constrained_dof_6",
+      "loaded_interface_mask",
+      "total_force_x_over_42300N",
+      "total_force_y_over_42300N",
+      "total_force_z_over_42300N",
+      "total_moment_x_over_565000Nmm",
+      "total_moment_y_over_565000Nmm",
+      "total_moment_z_over_565000Nmm",
+      "E_over_113800MPa",
+      "poisson_ratio",
+      "density_over_4.47e-9_t_per_mm3",
+      "characteristic_length_over_200mm"
+    ],
+    "input_schema_note": "Explicit replacement; original 18-channel definitions unavailable. No xyz channels. support/load indicators are quadratic nodal interpolation clipped to [0,1]; labels are never clipped.",
+    "target_scaling": "Physical labels unchanged; per-case occupied-grid population mean/std stored as statistics. Common trainer must fit/record its selected training-case scaler.",
+    "field_names": [
+      "displacement_x",
+      "displacement_y",
+      "displacement_z",
+      "signed_stress"
+    ],
+    "field_units": [
+      "mm",
+      "mm",
+      "mm",
+      "MPa"
+    ],
+    "query": "Masked trilinear weights normalized over occupied corners. No occupied support returns zero, included in all-node metrics; no nearest fallback.",
+    "query_covered_nodes": 120774,
+    "query_uncovered_nodes": 3,
+    "source_nodes": 120777,
+    "truth_roundtrip_relative_l2": {
+      "displacement_x": 0.030678061569042618,
+      "displacement_y": 0.06889998778850843,
+      "displacement_z": 0.01593244053629342,
+      "signed_stress": 0.30365025948802926
+    },
+    "truth_roundtrip_note": "Observed representation/interpolation loss, not a mathematical lower bound on model error.",
+    "FNO_sources": {
+      "paper": "https://arxiv.org/abs/2010.08895v3",
+      "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+      "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+      "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+    },
+    "preparation_seconds_before_serialization": 0.8440452600000015,
+    "truth_roundtrip_displacement_vector_relative_l2": 0.022213814335059003
+  },
+  "scaler": {
+    "mean": [
+      0.10414310139471665,
+      -0.0018515817200114853,
+      0.1763563697573591,
+      60.716368636866136
+    ],
+    "std": [
+      0.11717459120206057,
+      0.02577200244905129,
+      0.17266368113196048,
+      109.86804985256134
+    ],
+    "fit": "occupied grid labels, linear per-channel"
+  },
+  "loss": "mean encoded squared error at actual occupied grid points only",
+  "selection": "physical normalized MSE on occupied grid, never original nodes",
+  "node_query": "mask-normalized trilinear interpolation, uncovered nodes return zero and remain in metrics",
+  "uncovered_nodes": 3,
+  "case": "506_533/ver",
+  "torch_version": "2.14.1+cu130",
+  "assumptions": [
+    "18_grid_feature_definitions_unavailable_using_occupancy_16_basic_channels_length",
+    "projection_padding_LR_not_given_using_official_FNO_projection128_padding0_LR0.003"
+  ],
+  "total_steps": 500,
+  "precision": "float32 tensors/FFT; matmul precision high, TF32 allowed for CUDA matmul/cuDNN"
+}

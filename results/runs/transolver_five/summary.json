@@ -1,0 +1,439 @@
+{
+  "status": "completed",
+  "step": 2500,
+  "best_step": 2500,
+  "best_score": 0.7551125473337124,
+  "elapsed_seconds": 297.51730722600007,
+  "best_metrics": {
+    "step": 2500,
+    "epoch": 500.0,
+    "elapsed_seconds": 297.0560842020001,
+    "training_loss": 0.11663538217544556,
+    "selection_score": 0.7551125473337124,
+    "physical_normalized_mse": 0.7551125473337124,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.9098055942178723,
+          "rmse": 138.30371049683973,
+          "mae": 102.09388945637782,
+          "max_abs_error": 1854.247205116939,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.9533242734180117,
+          "hotspot_mae": 650.8987209490716,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 151.16688055304974,
+          "peak_abs_error": 1744.0579729625751
+        },
+        "displacement": {
+          "relative_l2": 0.4969663845976826,
+          "rmse_mm": 0.084617038286678,
+          "max_vector_error_mm": 0.44970790578510117
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 1.0238314902005168,
+          "rmse": 68.73953724884751,
+          "mae": 51.44695841800858,
+          "max_abs_error": 401.01028071285225,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 1.0036996145371682,
+          "hotspot_mae": 233.8779660574422,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 39.428546601339704,
+          "peak_abs_error": 311.73069412131656
+        },
+        "displacement": {
+          "relative_l2": 1.1614048938472672,
+          "rmse_mm": 0.037512135871108986,
+          "max_vector_error_mm": 0.2578654907752535
+        }
+      },
+      "10_30/ver": {
+        "stress": {
+          "nodes": 158221,
+          "relative_l2": 0.8711214324361195,
+          "rmse": 110.752744193383,
+          "mae": 81.33467054829757,
+          "max_abs_error": 1526.3145538151277,
+          "hotspot_nodes": 1583,
+          "hotspot_relative_l2": 0.9391783300010836,
+          "hotspot_mae": 519.9131927998745,
+          "true_peak": 1566.6309814453125,
+          "predicted_peak": 150.97591487936694,
+          "peak_abs_error": 1415.6550665659456
+        },
+        "displacement": {
+          "relative_l2": 0.4299216413376454,
+          "rmse_mm": 0.0541181501203881,
+          "max_vector_error_mm": 0.3024534790844891
+        }
+      },
+      "10_421/hor": {
+        "stress": {
+          "nodes": 189704,
+          "relative_l2": 0.9782726437793143,
+          "rmse": 61.00054258493747,
+          "mae": 49.71668050730458,
+          "max_abs_error": 565.49409379605,
+          "hotspot_nodes": 1898,
+          "hotspot_relative_l2": 0.9918362737747813,
+          "hotspot_mae": 236.90860230070646,
+          "true_peak": 510.0827331542969,
+          "predicted_peak": 34.099750841805196,
+          "peak_abs_error": 475.9829823124917
+        },
+        "displacement": {
+          "relative_l2": 1.011198947027157,
+          "rmse_mm": 0.05001697166641894,
+          "max_vector_error_mm": 0.3271592784053735
+        }
+      },
+      "10_460/dia": {
+        "stress": {
+          "nodes": 200331,
+          "relative_l2": 0.8054678164187944,
+          "rmse": 33.37513062081572,
+          "mae": 22.785417073501595,
+          "max_abs_error": 456.75810564195956,
+          "hotspot_nodes": 2004,
+          "hotspot_relative_l2": 0.9043844597568989,
+          "hotspot_mae": 152.7122353989896,
+          "true_peak": 492.80859375,
+          "predicted_peak": 73.63760927512807,
+          "peak_abs_error": 419.17098447487194
+        },
+        "displacement": {
+          "relative_l2": 0.8063544258207924,
+          "rmse_mm": 0.024347814344691986,
+          "max_vector_error_mm": 0.18702754650318254
+        }
+      }
+    },
+    "worst_case_key": "506_25/tor",
+    "pooled": {
+      "stress": {
+        "nodes": 791820,
+        "relative_l2": 0.9082015501896582,
+        "rmse": 85.29154572656043,
+        "mae": 57.47839512222034,
+        "max_abs_error": 1854.247205116939,
+        "hotspot_nodes": 7919,
+        "hotspot_relative_l2": 0.9267375316695986,
+        "hotspot_mae": 392.87197993670816,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 151.16688055304974,
+        "peak_abs_error": 1744.0579729625751
+      },
+      "displacement": {
+        "relative_l2": 0.5556531004881129,
+        "rmse_mm": 0.0514285892954497,
+        "max_vector_error_mm": 0.44970790578510117
+      }
+    },
+    "case_mean_relative_l2": 0.9176997954105234,
+    "worst_case_relative_l2": 1.0238314902005168
+  },
+  "final_metrics": {
+    "step": 2500,
+    "epoch": 500.0,
+    "elapsed_seconds": 297.0560842020001,
+    "training_loss": 0.11663538217544556,
+    "selection_score": 0.7551125473337124,
+    "physical_normalized_mse": 0.7551125473337124,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.9098055942178723,
+          "rmse": 138.30371049683973,
+          "mae": 102.09388945637782,
+          "max_abs_error": 1854.247205116939,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.9533242734180117,
+          "hotspot_mae": 650.8987209490716,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 151.16688055304974,
+          "peak_abs_error": 1744.0579729625751
+        },
+        "displacement": {
+          "relative_l2": 0.4969663845976826,
+          "rmse_mm": 0.084617038286678,
+          "max_vector_error_mm": 0.44970790578510117
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 1.0238314902005168,
+          "rmse": 68.73953724884751,
+          "mae": 51.44695841800858,
+          "max_abs_error": 401.01028071285225,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 1.0036996145371682,
+          "hotspot_mae": 233.8779660574422,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 39.428546601339704,
+          "peak_abs_error": 311.73069412131656
+        },
+        "displacement": {
+          "relative_l2": 1.1614048938472672,
+          "rmse_mm": 0.037512135871108986,
+          "max_vector_error_mm": 0.2578654907752535
+        }
+      },
+      "10_30/ver": {
+        "stress": {
+          "nodes": 158221,
+          "relative_l2": 0.8711214324361195,
+          "rmse": 110.752744193383,
+          "mae": 81.33467054829757,
+          "max_abs_error": 1526.3145538151277,
+          "hotspot_nodes": 1583,
+          "hotspot_relative_l2": 0.9391783300010836,
+          "hotspot_mae": 519.9131927998745,
+          "true_peak": 1566.6309814453125,
+          "predicted_peak": 150.97591487936694,
+          "peak_abs_error": 1415.6550665659456
+        },
+        "displacement": {
+          "relative_l2": 0.4299216413376454,
+          "rmse_mm": 0.0541181501203881,
+          "max_vector_error_mm": 0.3024534790844891
+        }
+      },
+      "10_421/hor": {
+        "stress": {
+          "nodes": 189704,
+          "relative_l2": 0.9782726437793143,
+          "rmse": 61.00054258493747,
+          "mae": 49.71668050730458,
+          "max_abs_error": 565.49409379605,
+          "hotspot_nodes": 1898,
+          "hotspot_relative_l2": 0.9918362737747813,
+          "hotspot_mae": 236.90860230070646,
+          "true_peak": 510.0827331542969,
+          "predicted_peak": 34.099750841805196,
+          "peak_abs_error": 475.9829823124917
+        },
+        "displacement": {
+          "relative_l2": 1.011198947027157,
+          "rmse_mm": 0.05001697166641894,
+          "max_vector_error_mm": 0.3271592784053735
+        }
+      },
+      "10_460/dia": {
+        "stress": {
+          "nodes": 200331,
+          "relative_l2": 0.8054678164187944,
+          "rmse": 33.37513062081572,
+          "mae": 22.785417073501595,
+          "max_abs_error": 456.75810564195956,
+          "hotspot_nodes": 2004,
+          "hotspot_relative_l2": 0.9043844597568989,
+          "hotspot_mae": 152.7122353989896,
+          "true_peak": 492.80859375,
+          "predicted_peak": 73.63760927512807,
+          "peak_abs_error": 419.17098447487194
+        },
+        "displacement": {
+          "relative_l2": 0.8063544258207924,
+          "rmse_mm": 0.024347814344691986,
+          "max_vector_error_mm": 0.18702754650318254
+        }
+      }
+    },
+    "worst_case_key": "506_25/tor",
+    "pooled": {
+      "stress": {
+        "nodes": 791820,
+        "relative_l2": 0.9082015501896582,
+        "rmse": 85.29154572656043,
+        "mae": 57.47839512222034,
+        "max_abs_error": 1854.247205116939,
+        "hotspot_nodes": 7919,
+        "hotspot_relative_l2": 0.9267375316695986,
+        "hotspot_mae": 392.87197993670816,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 151.16688055304974,
+        "peak_abs_error": 1744.0579729625751
+      },
+      "displacement": {
+        "relative_l2": 0.5556531004881129,
+        "rmse_mm": 0.0514285892954497,
+        "max_vector_error_mm": 0.44970790578510117
+      }
+    },
+    "case_mean_relative_l2": 0.9176997954105234,
+    "worst_case_relative_l2": 1.0238314902005168
+  },
+  "config": {
+    "arguments": {
+      "method": "transolver",
+      "data": [
+        "data/prepared_benchmark5"
+      ],
+      "case_keys": [
+        "506_533/ver",
+        "506_25/tor",
+        "10_30/ver",
+        "10_421/hor",
+        "10_460/dia"
+      ],
+      "num_cases": 1,
+      "outputs": "both",
+      "input_mode": "both",
+      "stress_transform": "linear",
+      "protocol": "full-case",
+      "steps": null,
+      "epochs": 500,
+      "nodes_per_case": 16384,
+      "learning_rate": 0.003,
+      "weight_decay": 0,
+      "selection": "physical-mse",
+      "eval_every": 100,
+      "status_every": 10,
+      "eval_batch_size": 65536,
+      "backend": "triton",
+      "device": "cuda",
+      "seed": 2026,
+      "checkpoint_blocks": true,
+      "small_hash_log2": 14,
+      "small_base": 8,
+      "small_growth": 2,
+      "small_width": 32,
+      "reference_runs": null,
+      "assumptions": [
+        "five_case_extension_per_case_500_complete_passes",
+        "unpublished_reference_details_use_official_preset_and_recorded_defaults"
+      ],
+      "output": "runs/slides_reproduction/transolver_five",
+      "resume": null,
+      "override_resume_lr": false,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "method": "transolver",
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "scaler": {
+      "mean": [
+        0.013936179548470918,
+        -0.00026188860421307925,
+        0.055941114264032525,
+        29.79513086684256
+      ],
+      "std": [
+        0.08380320052454175,
+        0.020315366342265825,
+        0.12223450927226952,
+        89.06077600382882
+      ],
+      "stress_scale": null,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "parameter_count": 1818572,
+    "model": {
+      "method": "transolver",
+      "repository": "https://github.com/thuml/Transolver",
+      "commit": "75e0f67643806a81cd1d3f6adc88dd8c02416fe7",
+      "model_file": "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py",
+      "file_sha256": {
+        "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py": "d1420f8176c73fac024d1f57cb816653e0ffb41580c954c1497d2ba914e71943",
+        "PDE-Solving-StandardBenchmark/model/Embedding.py": "e3a4f71c4378b7cce09a43b8c306d6d8a17edb4cd69db5eb069e55a57d2affe2",
+        "PDE-Solving-StandardBenchmark/model/Physics_Attention.py": "d746cd641f9c81313e205126bac6e0a9bb5bdbe5a9ef107e093a4fe065dbe0f5"
+      },
+      "license": "MIT; upstream LICENSE retained",
+      "constructor_kwargs": {
+        "n_layers": 5,
+        "n_hidden": 256,
+        "n_head": 8,
+        "slice_num": 32,
+        "mlp_ratio": 1,
+        "dropout": 0.0,
+        "space_dim": 3,
+        "fun_dim": 25,
+        "out_dim": 4,
+        "act": "gelu",
+        "unified_pos": false,
+        "ref": 8
+      },
+      "preset_source": "Model constructor defaults in the pinned irregular-mesh model: 5 layers, width 256, 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+      "slide_explicit": {},
+      "reference_gaps": [
+        "Original Transolver baseline was newly requested; the slides do not provide its run configuration.",
+        "The source-server commit and exact 25-feature schema are unavailable."
+      ],
+      "architecture_overrides": {},
+      "input": "xyz[3] + BC/material[25]; no sample ID",
+      "output": "uXYZ + source signed stress",
+      "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+      "checkpoint_blocks": true,
+      "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+      "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+      "chunk_size": null,
+      "eval_stochastic": false,
+      "gumbel_note": null,
+      "distributed": null,
+      "parameter_count": 1818572
+    },
+    "dataset": "original DeepJEB v1.0",
+    "cases": [
+      {
+        "sample_key": "506_533/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/506_533_ver.npz",
+        "nodes": 120777
+      },
+      {
+        "sample_key": "506_25/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/506_25_tor.npz",
+        "nodes": 122787
+      },
+      {
+        "sample_key": "10_30/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_30_ver.npz",
+        "nodes": 158221
+      },
+      {
+        "sample_key": "10_421/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_421_hor.npz",
+        "nodes": 189704
+      },
+      {
+        "sample_key": "10_460/dia",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_460_dia.npz",
+        "nodes": 200331
+      }
+    ],
+    "training_protocol": "one complete FEM case per update, cycling cases",
+    "evaluation": "every original node; contextual methods always use complete case context",
+    "checkpoint_selection": "physical-mse",
+    "physical_mse_definition": "case-balanced mean of per-case MSE after dividing each physical output channel by its pooled population std; historical case aggregation unavailable",
+    "reference_usage": null,
+    "assumptions": [
+      "five_case_extension_per_case_500_complete_passes",
+      "unpublished_reference_details_use_official_preset_and_recorded_defaults"
+    ],
+    "total_steps": 2500,
+    "torch_version": "2.14.1+cu130",
+    "precision": "float32 tensors; matmul precision high, TF32 allowed for CUDA matmul/cuDNN",
+    "started_at_utc": "2026-10-08T10:31:19.750777+00:00"
+  },
+  "completed_at_utc": "2026-10-08T10:36:45.734988+00:00"
+}

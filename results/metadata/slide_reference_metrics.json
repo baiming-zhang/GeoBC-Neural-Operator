@@ -1,0 +1,511 @@
+{
+  "presentation_url": "https://docs.google.com/presentation/d/1g5S0QCZSDR_igYFWFe20SQ3nw2yvgYbXk_t4QSmKpBU/edit",
+  "slides_inspected": [
+    4,
+    5,
+    6,
+    17
+  ],
+  "thumbnail_size": [
+    1600,
+    900
+  ],
+  "reading_method": "Fresh google_drive_get_slide_thumbnail LARGE; returned native image pointers plus documented direct-fetch contentUrl fallback; viewed the actual PNG pixels.",
+  "evidence_images": {
+    "4": "references/thumbnail_reading/p4.png",
+    "5": "references/thumbnail_reading/p5.png",
+    "6": "references/thumbnail_reading/p6.png",
+    "17": "references/thumbnail_reading/p17.png"
+  },
+  "scope": "Reference result transcription only. Every value is a slide-chart/manual reading or a notes claim, not an available original numerical source artifact.",
+  "metrics": [
+    {
+      "slide": 4,
+      "slide_object_id": "p4",
+      "case": "506_533/ver",
+      "method": "TS3 short diagnostic",
+      "budget": {
+        "evaluation_update": 800,
+        "stopped_update_from_notes": 897
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 45.0,
+      "value_relative_l2": 0.45,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 4,
+      "slide_object_id": "p4",
+      "case": "506_25/tor",
+      "method": "TS3 short diagnostic",
+      "budget": {
+        "evaluation_update": 800,
+        "stopped_update_from_notes": 897
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 78.4,
+      "value_relative_l2": 0.784,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 4,
+      "slide_object_id": "p4",
+      "case": "506_533/ver",
+      "method": "TS3 long",
+      "budget": {
+        "epochs": 5000,
+        "updates": 10000,
+        "best_update_from_notes": 9900
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 5.5,
+      "value_relative_l2": 0.055,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 4,
+      "slide_object_id": "p4",
+      "case": "506_25/tor",
+      "method": "TS3 long",
+      "budget": {
+        "epochs": 5000,
+        "updates": 10000,
+        "best_update_from_notes": 9900
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 11.5,
+      "value_relative_l2": 0.115,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 5,
+      "slide_object_id": "p5",
+      "case": "506_533/ver",
+      "method": "Transolver++ direct linear",
+      "budget": {
+        "epochs": 500,
+        "updates": 1000,
+        "learning_rate": 0.003,
+        "checkpoint_selection_from_notes": "decoded physical normalized MSE"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 90.3,
+      "value_relative_l2": 0.903,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 5,
+      "slide_object_id": "p5",
+      "case": "506_25/tor",
+      "method": "Transolver++ direct linear",
+      "budget": {
+        "epochs": 500,
+        "updates": 1000,
+        "learning_rate": 0.003,
+        "checkpoint_selection_from_notes": "decoded physical normalized MSE"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 99.0,
+      "value_relative_l2": 0.99,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 5,
+      "slide_object_id": "p5",
+      "case": "506_533/ver",
+      "method": "Transolver++ direct asinh",
+      "budget": {
+        "epochs": 500,
+        "updates": 1000,
+        "learning_rate": 0.003,
+        "checkpoint_selection_from_notes": "decoded physical normalized MSE"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 70.3,
+      "value_relative_l2": 0.703,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 5,
+      "slide_object_id": "p5",
+      "case": "506_25/tor",
+      "method": "Transolver++ direct asinh",
+      "budget": {
+        "epochs": 500,
+        "updates": 1000,
+        "learning_rate": 0.003,
+        "checkpoint_selection_from_notes": "decoded physical normalized MSE"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 100.0,
+      "value_relative_l2": 1.0,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 6,
+      "slide_object_id": "p6",
+      "case": "506_533/ver",
+      "method": "Small NGP reference",
+      "budget": {
+        "updates": 1000,
+        "budget_source": "slide 9 notes for the same ngp_stress reference"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 8.5,
+      "value_relative_l2": 0.085,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false,
+      "limitation": "Frozen NGP field was added only at output and was not an input to the correction network.",
+      "comparison_precision": "Identical rounded labels do not establish identical underlying errors."
+    },
+    {
+      "slide": 6,
+      "slide_object_id": "p6",
+      "case": "506_25/tor",
+      "method": "Small NGP reference",
+      "budget": {
+        "updates": 1000,
+        "budget_source": "slide 9 notes for the same ngp_stress reference"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 12.9,
+      "value_relative_l2": 0.129,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false,
+      "limitation": "Frozen NGP field was added only at output and was not an input to the correction network.",
+      "comparison_precision": "Identical rounded labels do not establish identical underlying errors."
+    },
+    {
+      "slide": 6,
+      "slide_object_id": "p6",
+      "case": "506_533/ver",
+      "method": "NGP + TS3 correction",
+      "budget": {
+        "epochs": 500,
+        "learning_rate": 0.003,
+        "budget_source": "slide 6 notes; correction budget only"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 8.5,
+      "value_relative_l2": 0.085,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false,
+      "limitation": "Frozen NGP field was added only at output and was not an input to the correction network.",
+      "comparison_precision": "Identical rounded labels do not establish identical underlying errors."
+    },
+    {
+      "slide": 6,
+      "slide_object_id": "p6",
+      "case": "506_25/tor",
+      "method": "NGP + TS3 correction",
+      "budget": {
+        "epochs": 500,
+        "learning_rate": 0.003,
+        "budget_source": "slide 6 notes; correction budget only"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 12.9,
+      "value_relative_l2": 0.129,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false,
+      "limitation": "Frozen NGP field was added only at output and was not an input to the correction network.",
+      "comparison_precision": "Identical rounded labels do not establish identical underlying errors."
+    },
+    {
+      "slide": 6,
+      "slide_object_id": "p6",
+      "case": "506_533/ver",
+      "method": "NGP + Transolver++ correction",
+      "budget": {
+        "epochs": 500,
+        "learning_rate": 0.003,
+        "budget_source": "slide 6 notes; correction budget only"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 8.5,
+      "value_relative_l2": 0.085,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false,
+      "limitation": "Frozen NGP field was added only at output and was not an input to the correction network.",
+      "comparison_precision": "Identical rounded labels do not establish identical underlying errors."
+    },
+    {
+      "slide": 6,
+      "slide_object_id": "p6",
+      "case": "506_25/tor",
+      "method": "NGP + Transolver++ correction",
+      "budget": {
+        "epochs": 500,
+        "learning_rate": 0.003,
+        "budget_source": "slide 6 notes; correction budget only"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 12.9,
+      "value_relative_l2": 0.129,
+      "source_kind": "printed_chart_label",
+      "read_precision_percent_decimal_places": 1,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false,
+      "limitation": "Frozen NGP field was added only at output and was not an input to the correction network.",
+      "comparison_precision": "Identical rounded labels do not establish identical underlying errors."
+    },
+    {
+      "slide": 17,
+      "slide_object_id": "p17",
+      "case": "50 training CADs / mean per case",
+      "method": "Shared large hash grid before continuation",
+      "budget": {
+        "sampled_updates": 10000,
+        "global_batch_nodes": 51200,
+        "equivalent_full_passes_from_notes": 45.97
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 23.7,
+      "value_relative_l2": 0.237,
+      "source_kind": "printed_slide_footer",
+      "read_precision_percent_decimal_places": 2,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 17,
+      "slide_object_id": "p17",
+      "case": "50 training CADs / mean per case",
+      "method": "Shared large hash grid after continuation",
+      "budget": {
+        "true_epochs": 1000,
+        "updates": 218000,
+        "global_batch_nodes": 51200,
+        "best_epoch_from_notes": 990,
+        "best_update_from_notes": 215820,
+        "optimizer_from_notes": "fresh Adam from the parent's best model weights"
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent": 15.11,
+      "value_relative_l2": 0.15109999999999998,
+      "source_kind": "printed_slide_footer",
+      "read_precision_percent_decimal_places": 2,
+      "read_precision_status": "Manual reading of visible rounded slide label; not a source run artifact.",
+      "source_artifact_available": false,
+      "checkpoint_note": "Footer says after 1000 epochs. Notes select epoch990 by worst-case L2; do not silently call this the epoch1000 checkpoint."
+    }
+  ],
+  "approximate_curve_points": [
+    {
+      "slide": 17,
+      "case": "50 training CADs / mean per case",
+      "method": "Shared large hash grid continuation",
+      "budget": {
+        "true_epoch": 1
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent_approximate": 27.0,
+      "read_precision_status": "Approximate visual read from an unlabeled curve; about 0.5 percentage-point precision. Not a source run artifact.",
+      "source_kind": "unlabeled_curve_visual_read",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 17,
+      "case": "50 training CADs / worst case",
+      "method": "Shared large hash grid continuation",
+      "budget": {
+        "true_epoch": 1
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent_approximate": 39.0,
+      "read_precision_status": "Approximate visual read from an unlabeled curve; about 0.5 percentage-point precision. Not a source run artifact.",
+      "source_kind": "unlabeled_curve_visual_read",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 17,
+      "case": "50 training CADs / mean per case",
+      "method": "Shared large hash grid continuation",
+      "budget": {
+        "true_epoch": 50
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent_approximate": 23.0,
+      "read_precision_status": "Approximate visual read from an unlabeled curve; about 0.5 percentage-point precision. Not a source run artifact.",
+      "source_kind": "unlabeled_curve_visual_read",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 17,
+      "case": "50 training CADs / worst case",
+      "method": "Shared large hash grid continuation",
+      "budget": {
+        "true_epoch": 50
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent_approximate": 35.5,
+      "read_precision_status": "Approximate visual read from an unlabeled curve; about 0.5 percentage-point precision. Not a source run artifact.",
+      "source_kind": "unlabeled_curve_visual_read",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 17,
+      "case": "50 training CADs / mean per case",
+      "method": "Shared large hash grid continuation",
+      "budget": {
+        "true_epoch": 1000
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent_approximate": 15.0,
+      "read_precision_status": "Approximate visual read from an unlabeled curve; about 0.5 percentage-point precision. Not a source run artifact.",
+      "source_kind": "unlabeled_curve_visual_read",
+      "source_artifact_available": false
+    },
+    {
+      "slide": 17,
+      "case": "50 training CADs / worst case",
+      "method": "Shared large hash grid continuation",
+      "budget": {
+        "true_epoch": 1000
+      },
+      "metric": "decoded source signed stress relative L2",
+      "value_percent_approximate": 28.5,
+      "read_precision_status": "Approximate visual read from an unlabeled curve; about 0.5 percentage-point precision. Not a source run artifact.",
+      "source_kind": "unlabeled_curve_visual_read",
+      "source_artifact_available": false
+    }
+  ],
+  "note_metrics": [
+    {
+      "slide": 4,
+      "case": "506_533/ver",
+      "method": "TS3 long",
+      "budget": {
+        "epochs": 5000,
+        "updates": 10000,
+        "best_update": 9900
+      },
+      "metric": "displacement vector relative L2",
+      "value_percent": 0.5768,
+      "source_kind": "speaker_notes_claim",
+      "source_artifact_available": false,
+      "read_precision_status": "Literal number in speaker notes; not independently recovered from the missing summary.json."
+    },
+    {
+      "slide": 4,
+      "case": "506_533/ver",
+      "method": "TS3 long",
+      "budget": {
+        "epochs": 5000,
+        "updates": 10000,
+        "best_update": 9900
+      },
+      "metric": "source signed stress relative L2",
+      "value_percent": 5.5437,
+      "source_kind": "speaker_notes_claim",
+      "source_artifact_available": false,
+      "read_precision_status": "Literal number in speaker notes; not independently recovered from the missing summary.json."
+    },
+    {
+      "slide": 4,
+      "case": "506_25/tor",
+      "method": "TS3 long",
+      "budget": {
+        "epochs": 5000,
+        "updates": 10000,
+        "best_update": 9900
+      },
+      "metric": "displacement vector relative L2",
+      "value_percent": 2.2882,
+      "source_kind": "speaker_notes_claim",
+      "source_artifact_available": false,
+      "read_precision_status": "Literal number in speaker notes; not independently recovered from the missing summary.json."
+    },
+    {
+      "slide": 4,
+      "case": "506_25/tor",
+      "method": "TS3 long",
+      "budget": {
+        "epochs": 5000,
+        "updates": 10000,
+        "best_update": 9900
+      },
+      "metric": "source signed stress relative L2",
+      "value_percent": 11.5111,
+      "source_kind": "speaker_notes_claim",
+      "source_artifact_available": false,
+      "read_precision_status": "Literal number in speaker notes; not independently recovered from the missing summary.json."
+    },
+    {
+      "slide": 6,
+      "case": "506_533/ver",
+      "method": "NGP displacement-only reference",
+      "budget": {
+        "updates": null,
+        "epochs": null,
+        "combined_elapsed_seconds_approximate": 10.2
+      },
+      "metric": "displacement vector relative L2",
+      "value_percent": 0.39,
+      "source_kind": "speaker_notes_claim",
+      "source_artifact_available": false,
+      "read_precision_status": "Literal number in speaker notes; u-only training budget is not specified."
+    },
+    {
+      "slide": 6,
+      "case": "506_25/tor",
+      "method": "NGP displacement-only reference",
+      "budget": {
+        "updates": null,
+        "epochs": null,
+        "combined_elapsed_seconds_approximate": 10.2
+      },
+      "metric": "displacement vector relative L2",
+      "value_percent": 1.037,
+      "source_kind": "speaker_notes_claim",
+      "source_artifact_available": false,
+      "read_precision_status": "Literal number in speaker notes; u-only training budget is not specified."
+    }
+  ],
+  "architecture_parameters": {
+    "extra_parameters_visible_in_four_images": null,
+    "Transolver++_from_slide5_notes": {
+      "layers": 16,
+      "width": 256,
+      "official_backbone_unchanged": true
+    },
+    "TS3": "No depth/width/slice parameter is printed in these four charts.",
+    "NGP": "No grid table/resolution/MLP parameters are printed in these four charts.",
+    "pooled50_hashgrid": "No architecture parameters are printed in slide17's curve image; use the other slide notes, without claiming a source artifact."
+  },
+  "reference_50_case_gap": "The plotted 50 are selected from the unavailable bespoke 270-CAD train pool. Our official archive-prefix 50 is a documented substitute, so these are separate data populations."
+}

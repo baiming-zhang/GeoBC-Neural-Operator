@@ -1,0 +1,365 @@
+{
+  "arguments": {
+    "data": [
+      "data/prepared50_multifield"
+    ],
+    "num_cases": 50,
+    "steps": 10000,
+    "epochs": null,
+    "batch_size": 51200,
+    "learning_rate": 0.003,
+    "eval_every": 1000,
+    "eval_every_epochs": 10,
+    "eval_batch_size": 65536,
+    "backend": "tcnn-fused",
+    "seed": 2026,
+    "device": "cuda",
+    "initialize_weights": null,
+    "fresh_adam": false,
+    "output": "runs/slides_reproduction/hash50_sampled",
+    "assumptions": [
+      "original270_train_pool_missing_using_official_first50_CADs_13ver13hor12dia12tor"
+    ]
+  },
+  "method": "shared50 hashgrid",
+  "dataset": "original DeepJEB v1.0",
+  "total_nodes": 10684820,
+  "cases": [
+    {
+      "sample_key": "101_428/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/101_428_dia.npz",
+      "nodes": 270276
+    },
+    {
+      "sample_key": "101_479/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/101_479_tor.npz",
+      "nodes": 179316
+    },
+    {
+      "sample_key": "101_56/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/101_56_ver.npz",
+      "nodes": 221213
+    },
+    {
+      "sample_key": "101_78/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/101_78_hor.npz",
+      "nodes": 192353
+    },
+    {
+      "sample_key": "101_86/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/101_86_dia.npz",
+      "nodes": 219150
+    },
+    {
+      "sample_key": "102_240/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/102_240_tor.npz",
+      "nodes": 204361
+    },
+    {
+      "sample_key": "102_249/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/102_249_ver.npz",
+      "nodes": 211173
+    },
+    {
+      "sample_key": "102_38/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/102_38_hor.npz",
+      "nodes": 197514
+    },
+    {
+      "sample_key": "102_79/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/102_79_dia.npz",
+      "nodes": 221650
+    },
+    {
+      "sample_key": "107_113/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_113_tor.npz",
+      "nodes": 229808
+    },
+    {
+      "sample_key": "107_147/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_147_ver.npz",
+      "nodes": 199727
+    },
+    {
+      "sample_key": "107_150/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_150_hor.npz",
+      "nodes": 325387
+    },
+    {
+      "sample_key": "107_186/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_186_dia.npz",
+      "nodes": 273651
+    },
+    {
+      "sample_key": "107_233/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_233_tor.npz",
+      "nodes": 236609
+    },
+    {
+      "sample_key": "107_240/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_240_ver.npz",
+      "nodes": 208405
+    },
+    {
+      "sample_key": "107_248/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_248_hor.npz",
+      "nodes": 206054
+    },
+    {
+      "sample_key": "107_291/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_291_dia.npz",
+      "nodes": 211839
+    },
+    {
+      "sample_key": "107_320/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_320_tor.npz",
+      "nodes": 210675
+    },
+    {
+      "sample_key": "107_342/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_342_ver.npz",
+      "nodes": 205599
+    },
+    {
+      "sample_key": "107_459/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_459_hor.npz",
+      "nodes": 206544
+    },
+    {
+      "sample_key": "107_91/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_91_dia.npz",
+      "nodes": 190331
+    },
+    {
+      "sample_key": "107_95/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/107_95_tor.npz",
+      "nodes": 190619
+    },
+    {
+      "sample_key": "10_30/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/10_30_ver.npz",
+      "nodes": 158221
+    },
+    {
+      "sample_key": "10_421/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/10_421_hor.npz",
+      "nodes": 189704
+    },
+    {
+      "sample_key": "10_460/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/10_460_dia.npz",
+      "nodes": 200331
+    },
+    {
+      "sample_key": "10_492/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/10_492_tor.npz",
+      "nodes": 213235
+    },
+    {
+      "sample_key": "10_58/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/10_58_ver.npz",
+      "nodes": 254645
+    },
+    {
+      "sample_key": "10_80/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/10_80_hor.npz",
+      "nodes": 162082
+    },
+    {
+      "sample_key": "113_129/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/113_129_ver.npz",
+      "nodes": 236193
+    },
+    {
+      "sample_key": "113_170/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/113_170_hor.npz",
+      "nodes": 254021
+    },
+    {
+      "sample_key": "113_345/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/113_345_dia.npz",
+      "nodes": 234149
+    },
+    {
+      "sample_key": "113_390/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/113_390_tor.npz",
+      "nodes": 198740
+    },
+    {
+      "sample_key": "113_472/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/113_472_ver.npz",
+      "nodes": 207375
+    },
+    {
+      "sample_key": "113_86/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/113_86_hor.npz",
+      "nodes": 249986
+    },
+    {
+      "sample_key": "113_95/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/113_95_dia.npz",
+      "nodes": 212909
+    },
+    {
+      "sample_key": "114_202/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/114_202_tor.npz",
+      "nodes": 158356
+    },
+    {
+      "sample_key": "114_28/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/114_28_ver.npz",
+      "nodes": 184824
+    },
+    {
+      "sample_key": "114_319/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/114_319_hor.npz",
+      "nodes": 211623
+    },
+    {
+      "sample_key": "114_456/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/114_456_dia.npz",
+      "nodes": 190969
+    },
+    {
+      "sample_key": "114_525/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/114_525_tor.npz",
+      "nodes": 266509
+    },
+    {
+      "sample_key": "114_91/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/114_91_ver.npz",
+      "nodes": 175194
+    },
+    {
+      "sample_key": "116_102/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/116_102_hor.npz",
+      "nodes": 225262
+    },
+    {
+      "sample_key": "116_113/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/116_113_dia.npz",
+      "nodes": 224078
+    },
+    {
+      "sample_key": "116_30/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/116_30_tor.npz",
+      "nodes": 152853
+    },
+    {
+      "sample_key": "116_348/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/116_348_ver.npz",
+      "nodes": 193268
+    },
+    {
+      "sample_key": "116_440/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/116_440_hor.npz",
+      "nodes": 176577
+    },
+    {
+      "sample_key": "116_61/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/116_61_dia.npz",
+      "nodes": 213808
+    },
+    {
+      "sample_key": "119_221/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/119_221_tor.npz",
+      "nodes": 260275
+    },
+    {
+      "sample_key": "119_322/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/119_322_ver.npz",
+      "nodes": 223170
+    },
+    {
+      "sample_key": "119_559/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared50_multifield/119_559_hor.npz",
+      "nodes": 244209
+    }
+  ],
+  "scaler": {
+    "scale": 90.27829055786133,
+    "center": 0.13382602627395151,
+    "spread": 0.5184988712962671,
+    "definition": {
+      "fit_data": "all labels of the selected training cases; no validation/test labels",
+      "scale": "90th percentile of abs(stress), or RMS if that percentile is zero; floor 1e-12",
+      "center": "pooled mean of asinh(stress / scale)",
+      "spread": "pooled population standard deviation of asinh(stress / scale); floor 1e-8",
+      "encode": "(asinh(stress / scale) - center) / spread",
+      "decode": "scale * sinh(center + spread * prediction)"
+    }
+  },
+  "model": {
+    "levels": 12,
+    "features_per_level": 2,
+    "log2_cap": 19,
+    "base": 8,
+    "growth": 1.6,
+    "MLP_width": 64,
+    "hidden_layers": 2,
+    "conditions": 25,
+    "sample_ID": false
+  },
+  "protocol": "uniform pooled random nodes with replacement",
+  "batch_size_total": 51200,
+  "batches_per_epoch": 209,
+  "total_steps": 10000,
+  "checkpoint_selection": "minimum worst-case all-original-node decoded stress relative L2",
+  "assumptions": [
+    "original270_train_pool_missing_using_official_first50_CADs_13ver13hor12dia12tor"
+  ],
+  "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+  "parameter_count": 7742848,
+  "actual_backend": "tcnn_fully_fused",
+  "implementation_details": {
+    "out_channels": 1,
+    "input_mode": "both",
+    "condition_dim": 25,
+    "n_levels": 12,
+    "n_features_per_level": 2,
+    "log2_hashmap_size": 19,
+    "base_resolution": 8,
+    "per_level_scale": 1.6,
+    "hidden_dim": 64,
+    "hidden_layers": 2,
+    "seed": 2026,
+    "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+    "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+    "encoding": {
+      "otype": "Composite",
+      "nested": [
+        {
+          "otype": "HashGrid",
+          "n_levels": 12,
+          "n_features_per_level": 2,
+          "log2_hashmap_size": 19,
+          "base_resolution": 8,
+          "per_level_scale": 1.6,
+          "interpolation": "Linear",
+          "hash": "CoherentPrime",
+          "n_dims_to_encode": 3
+        },
+        {
+          "otype": "Identity",
+          "n_dims_to_encode": 25,
+          "scale": 1.0,
+          "offset": 0.0
+        }
+      ]
+    },
+    "network": {
+      "otype": "FullyFusedMLP",
+      "activation": "ReLU",
+      "output_activation": "None",
+      "n_neurons": 64,
+      "n_hidden_layers": 2
+    },
+    "sample_id": false,
+    "raw_xyz_after_encoding": false,
+    "bias_parameters": false,
+    "jit_fusion": false,
+    "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+    "alignment": "native TCNN channel/batch padding retained",
+    "layout": "xyz[N,3], features[N,condition_dim] -> prediction[N,out_channels]"
+  }
+}

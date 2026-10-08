@@ -1,0 +1,304 @@
+{
+  "dataset": "DeepJEB original v1.0",
+  "source_revision": "160424ca2a5095315ff9ead8a5fc36d2667fd3c6",
+  "selection": [
+    "506_533/ver",
+    "506_25/tor"
+  ],
+  "feature_names": [
+    "support_reference_constrained_dof_1",
+    "support_reference_constrained_dof_2",
+    "support_reference_constrained_dof_3",
+    "support_reference_constrained_dof_4",
+    "support_reference_constrained_dof_5",
+    "support_reference_constrained_dof_6",
+    "loaded_interface_mask",
+    "total_force_x_over_42300N",
+    "total_force_y_over_42300N",
+    "total_force_z_over_42300N",
+    "total_moment_x_over_565000Nmm",
+    "total_moment_y_over_565000Nmm",
+    "total_moment_z_over_565000Nmm",
+    "E_over_113800MPa",
+    "poisson_ratio",
+    "density_over_4.47e-9_t_per_mm3",
+    "offset_from_load_reference_x_over_length",
+    "offset_from_load_reference_y_over_length",
+    "offset_from_load_reference_z_over_length",
+    "distance_to_support_reference_1_over_length",
+    "distance_to_support_reference_2_over_length",
+    "distance_to_support_reference_3_over_length",
+    "distance_to_support_reference_4_over_length",
+    "distance_to_loaded_interface_over_length",
+    "characteristic_length_over_200mm"
+  ],
+  "feature_schema_note": "New explicit deck-derived schema; the original 25-feature schema is absent from the slides.",
+  "normalization": "xyz=(xyz_mm-min_xyz_mm)/max_bbox_extent_mm; isotropic, preserving aspect ratio",
+  "cases": [
+    {
+      "sample_key": "506_533/ver",
+      "npz": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\prepared_exact_multifield\\506_533_ver.npz",
+      "nodes": 120777,
+      "surface_triangles": 86648,
+      "signed_stress_min_MPa": -1136.33154296875,
+      "signed_stress_max_MPa": 1895.224853515625,
+      "signed_stress_RMS_MPa": 152.01457473531428,
+      "support_interface_nodes": 1672,
+      "loaded_interface_nodes": 790,
+      "deck_field_max_coordinate_error_mm": 7.457679333654797e-06,
+      "force_N": [
+        0.0,
+        0.0,
+        35585.77
+      ],
+      "moment_Nmm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "material": {
+        "material_id": 926,
+        "E": 113800.0,
+        "nu": 0.342,
+        "rho": 4.47e-09,
+        "E_units": "MPa",
+        "rho_units": "t/mm3",
+        "E_MPa": 113800.0,
+        "rho_kg_per_mm3": 4.4699999999999996e-06
+      },
+      "bbox_min_mm": [
+        -38.786399841308594,
+        -159.91600036621094,
+        0.23676709830760956
+      ],
+      "bbox_max_mm": [
+        67.13629913330078,
+        16.750810623168945,
+        65.3172607421875
+      ],
+      "source_h5_sha256": "9f8c1131d19ae80500f320787f2e244317e049c0af95afecf6d3e731ea6685a2",
+      "source_deck_sha256": "6afe3b2d7249f490772ac2ffc845d495c1dfb29a9341f4d6df2fb3624c6255d0",
+      "boundary_mesh": {
+        "surface_triangles": 86648,
+        "quadratic_boundary_facets": 21662,
+        "surface_FEM_nodes": 43314,
+        "triangle_edge_mm_p50": 0.9004571800335344,
+        "triangle_edge_mm_p90": 1.2305119214087055,
+        "triangle_edge_mm_p99": 1.3953679087083186,
+        "triangle_edge_mm_max": 1.666644305398584,
+        "surface_connectivity": "Boundary of original TETRA10 volume; original midside nodes retained; four triangles per six-node facet.",
+        "tetra10_edge_order": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "midside_midpoint_deviation_mm_p50": 4.973756717836494e-05,
+        "midside_midpoint_deviation_mm_p95": 0.03368563602883488,
+        "midside_midpoint_deviation_mm_max": 0.4301022335624459,
+        "midside_deviation_over_edge_p50": 1.7128121706400813e-05,
+        "midside_deviation_over_edge_p95": 0.019496288120206855,
+        "note": "Curved quadratic surfaces may have nonzero midpoint deviation; no nodes are moved."
+      },
+      "surface_indexing": "global boundary triangles reconstructed from source TETRA10 cells; H5 faces use surface-local numbering",
+      "source_csv": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\raw_exact\\Field\\506_533.csv",
+      "source_csv_sha256": "2ea7fee71e4fe530788d87fbd7e0bf48e13631a79e095a59534f3e46b41fb117",
+      "u_component_source_columns": [
+        "ver_x_disp(mm)",
+        "ver_y_disp(mm)",
+        "ver_z_disp(mm)"
+      ],
+      "u_shape": [
+        120777,
+        3
+      ],
+      "u_units": "mm",
+      "u_min_mm": [
+        -0.024519000202417374,
+        -0.12295299768447876,
+        -0.06367199867963791
+      ],
+      "u_max_mm": [
+        0.5583590269088745,
+        0.1009259968996048,
+        0.7080960273742676
+      ],
+      "u_RMS_mm": [
+        0.15922863206727997,
+        0.027564335165030707,
+        0.2466971319886667
+      ],
+      "csv_to_prepared_max_coordinate_error_mm": 7.81731706449775e-06,
+      "old_prepared_wrong_alignment_stress_max_difference_MPa": 2056.635696411133,
+      "h5_raw_field_vs_csv_GRID_row_stress_max_difference_MPa": 5.000000555810402e-07,
+      "CSV_to_H5_index_permutation_identity_fraction": 2.4839166397575698e-05,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+      "csv_vs_available_h5_displacement_max_difference_mm": {
+        "y": 3.725051878067376e-09,
+        "z": 2.9796600298226394e-08
+      },
+      "missing_source_h5_displacement_fields": [
+        "nodal_variables/ver_x_disp(mm)"
+      ],
+      "geometry_input_builder": "tools.prepare_deepjeb.prepare; isolated fresh deck-derived geometry/BC/material inputs"
+    },
+    {
+      "sample_key": "506_25/tor",
+      "npz": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\prepared_exact_multifield\\506_25_tor.npz",
+      "nodes": 122787,
+      "surface_triangles": 90984,
+      "signed_stress_min_MPa": -366.8279724121094,
+      "signed_stress_max_MPa": 351.15924072265625,
+      "signed_stress_RMS_MPa": 67.13950284473563,
+      "support_interface_nodes": 1760,
+      "loaded_interface_nodes": 817,
+      "deck_field_max_coordinate_error_mm": 7.457679333654797e-06,
+      "force_N": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "moment_Nmm": [
+        0.0,
+        0.0,
+        564924.2
+      ],
+      "material": {
+        "material_id": 926,
+        "E": 113800.0,
+        "nu": 0.342,
+        "rho": 4.47e-09,
+        "E_units": "MPa",
+        "rho_units": "t/mm3",
+        "E_MPa": 113800.0,
+        "rho_kg_per_mm3": 4.4699999999999996e-06
+      },
+      "bbox_min_mm": [
+        -38.787601470947266,
+        -161.62100219726562,
+        0.2255495935678482
+      ],
+      "bbox_max_mm": [
+        68.6294937133789,
+        18.498249053955078,
+        65.26448059082031
+      ],
+      "source_h5_sha256": "f9c4d7108dc2bee4f4f106c2493a3fa99f8396fbaed9a9ffdd1c47e7f5bccd43",
+      "source_deck_sha256": "a43e2f466e3efb296051a6005610e09795f80c0d073440ab5b61c21e269ca0eb",
+      "boundary_mesh": {
+        "surface_triangles": 90984,
+        "quadratic_boundary_facets": 22746,
+        "surface_FEM_nodes": 45482,
+        "triangle_edge_mm_p50": 0.8876798874980965,
+        "triangle_edge_mm_p90": 1.2165235842831095,
+        "triangle_edge_mm_p99": 1.3920082768418436,
+        "triangle_edge_mm_max": 1.6190079899184942,
+        "surface_connectivity": "Boundary of original TETRA10 volume; original midside nodes retained; four triangles per six-node facet.",
+        "tetra10_edge_order": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "midside_midpoint_deviation_mm_p50": 4.9746709273319155e-05,
+        "midside_midpoint_deviation_mm_p95": 0.03555440721169315,
+        "midside_midpoint_deviation_mm_max": 0.35042099563849377,
+        "midside_deviation_over_edge_p50": 1.739430880125981e-05,
+        "midside_deviation_over_edge_p95": 0.02004473470077794,
+        "note": "Curved quadratic surfaces may have nonzero midpoint deviation; no nodes are moved."
+      },
+      "surface_indexing": "global boundary triangles reconstructed from source TETRA10 cells; H5 faces use surface-local numbering",
+      "source_csv": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\raw_exact\\Field\\506_25.csv",
+      "source_csv_sha256": "4f07bbec1d08a178707276a9f111ceb198f2a97272ea5b627bd199c97fb615c1",
+      "u_component_source_columns": [
+        "tor_x_disp(mm)",
+        "tor_y_disp(mm)",
+        "tor_z_disp(mm)"
+      ],
+      "u_shape": [
+        122787,
+        3
+      ],
+      "u_units": "mm",
+      "u_min_mm": [
+        -0.15597599744796753,
+        -0.13732700049877167,
+        -0.11473800241947174
+      ],
+      "u_max_mm": [
+        0.16262300312519073,
+        0.05013599991798401,
+        0.11892099678516388
+      ],
+      "u_RMS_mm": [
+        0.041772446143895456,
+        0.02615241652596025,
+        0.0264725309497504
+      ],
+      "csv_to_prepared_max_coordinate_error_mm": 7.800938075936811e-06,
+      "old_prepared_wrong_alignment_stress_max_difference_MPa": 515.2232055664062,
+      "h5_raw_field_vs_csv_GRID_row_stress_max_difference_MPa": 4.999999987376214e-07,
+      "CSV_to_H5_index_permutation_identity_fraction": 1.6288369289908542e-05,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+      "csv_vs_available_h5_displacement_max_difference_mm": {
+        "x": 7.449150074556599e-09,
+        "y": 7.390975942378475e-09,
+        "z": 3.7245750372782993e-09
+      },
+      "missing_source_h5_displacement_fields": [],
+      "geometry_input_builder": "tools.prepare_deepjeb.prepare; isolated fresh deck-derived geometry/BC/material inputs"
+    }
+  ],
+  "shared_input_contract": {
+    "xyz": "float32[N,3], normalized isotropic coordinates in [0,1]",
+    "xyz_mm": "float32[N,3], original FEM node coordinates in mm",
+    "features": "float32[N,25], existing exact deck/geometry/material schema",
+    "u": "float32[N,3], original signed (ux,uy,uz) displacement components, mm",
+    "stress": "float32[N], original source signed stress, MPa",
+    "faces": "int32[M,3], global boundary connectivity from original TETRA10 nodes"
+  },
+  "target_policy": "Raw signed displacement components and raw source signed stress; no abs, no reconstructed VM, no interpolation/resampling of labels.",
+  "source_h5_gap": "H5 vertices are reordered but nodal variables retain CSV GRID ordering; H5 may omit ver_x_disp(mm). Coordinate-align all raw CSV fields.",
+  "preservation": "New aligned CSV fields; older prepared inputs/results untouched. Training directories contain only aligned NPZs.",
+  "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+}

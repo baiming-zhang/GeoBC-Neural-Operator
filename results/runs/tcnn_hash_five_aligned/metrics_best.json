@@ -1,0 +1,103 @@
+{
+  "step": 900,
+  "epoch": null,
+  "elapsed_seconds": 46.45775865299993,
+  "training_loss": 6.170028063934296e-05,
+  "selection_score": 0.02112256948226242,
+  "physical_normalized_mse": 0.00019629580312661884,
+  "per_case": {
+    "506_533/ver": {
+      "stress": {
+        "nodes": 120777,
+        "relative_l2": 0.009437915577306735,
+        "rmse": 1.434700722872081,
+        "mae": 0.3401199570285908,
+        "max_abs_error": 174.47101617320385,
+        "hotspot_nodes": 1208,
+        "hotspot_relative_l2": 0.015332977658775625,
+        "hotspot_mae": 3.7593166969384355,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 1901.079951014521,
+        "peak_abs_error": 5.85509749889593
+      }
+    },
+    "506_25/tor": {
+      "stress": {
+        "nodes": 122787,
+        "relative_l2": 0.008814526725033762,
+        "rmse": 0.5918029421304023,
+        "mae": 0.23335905897035952,
+        "max_abs_error": 55.54603099956017,
+        "hotspot_nodes": 1228,
+        "hotspot_relative_l2": 0.009161047440275634,
+        "hotspot_mae": 0.4593543118107455,
+        "true_peak": 351.15924072265625,
+        "predicted_peak": 351.1743779487686,
+        "peak_abs_error": 0.015137226112358348
+      }
+    },
+    "10_30/ver": {
+      "stress": {
+        "nodes": 158221,
+        "relative_l2": 0.013597263371958754,
+        "rmse": 1.728730548797554,
+        "mae": 0.349469565591925,
+        "max_abs_error": 366.6239012572174,
+        "hotspot_nodes": 1583,
+        "hotspot_relative_l2": 0.02690797098217443,
+        "hotspot_mae": 3.88621437214979,
+        "true_peak": 1566.6309814453125,
+        "predicted_peak": 1567.8189407920702,
+        "peak_abs_error": 1.1879593467576797
+      }
+    },
+    "10_421/hor": {
+      "stress": {
+        "nodes": 189704,
+        "relative_l2": 0.02112256948226242,
+        "rmse": 1.3171054177987576,
+        "mae": 0.23981756016860659,
+        "max_abs_error": 277.3761094756504,
+        "hotspot_nodes": 1898,
+        "hotspot_relative_l2": 0.04906554838623233,
+        "hotspot_mae": 2.552401226506864,
+        "true_peak": 510.0827331542969,
+        "predicted_peak": 515.5415055693284,
+        "peak_abs_error": 5.45877241503149
+      }
+    },
+    "10_460/dia": {
+      "stress": {
+        "nodes": 200331,
+        "relative_l2": 0.019502773281843428,
+        "rmse": 0.8081112522207181,
+        "mae": 0.1921142396395808,
+        "max_abs_error": 156.98428234890113,
+        "hotspot_nodes": 2004,
+        "hotspot_relative_l2": 0.034292636022670145,
+        "hotspot_mae": 1.3380608773572664,
+        "true_peak": 492.80859375,
+        "predicted_peak": 492.9458371286858,
+        "peak_abs_error": 0.1372433786858096
+      }
+    }
+  },
+  "worst_case_key": "10_421/hor",
+  "pooled": {
+    "stress": {
+      "nodes": 791820,
+      "relative_l2": 0.013240951654994578,
+      "rmse": 1.243491858507957,
+      "mae": 0.2639568830502107,
+      "max_abs_error": 366.6239012572174,
+      "hotspot_nodes": 7919,
+      "hotspot_relative_l2": 0.021754697565132607,
+      "hotspot_mae": 2.1916129026085023,
+      "true_peak": 1895.224853515625,
+      "predicted_peak": 1901.079951014521,
+      "peak_abs_error": 5.85509749889593
+    }
+  },
+  "case_mean_relative_l2": 0.014495009687681018,
+  "worst_case_relative_l2": 0.02112256948226242
+}

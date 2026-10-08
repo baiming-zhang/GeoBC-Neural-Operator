@@ -1,0 +1,382 @@
+{
+  "status": "completed",
+  "step": 1000,
+  "best_step": 900,
+  "best_score": 0.02112256948226242,
+  "elapsed_seconds": 52.07625463399995,
+  "best_metrics": {
+    "step": 900,
+    "epoch": null,
+    "elapsed_seconds": 46.45775865299993,
+    "training_loss": 6.170028063934296e-05,
+    "selection_score": 0.02112256948226242,
+    "physical_normalized_mse": 0.00019629580312661884,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.009437915577306735,
+          "rmse": 1.434700722872081,
+          "mae": 0.3401199570285908,
+          "max_abs_error": 174.47101617320385,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.015332977658775625,
+          "hotspot_mae": 3.7593166969384355,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 1901.079951014521,
+          "peak_abs_error": 5.85509749889593
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 0.008814526725033762,
+          "rmse": 0.5918029421304023,
+          "mae": 0.23335905897035952,
+          "max_abs_error": 55.54603099956017,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 0.009161047440275634,
+          "hotspot_mae": 0.4593543118107455,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 351.1743779487686,
+          "peak_abs_error": 0.015137226112358348
+        }
+      },
+      "10_30/ver": {
+        "stress": {
+          "nodes": 158221,
+          "relative_l2": 0.013597263371958754,
+          "rmse": 1.728730548797554,
+          "mae": 0.349469565591925,
+          "max_abs_error": 366.6239012572174,
+          "hotspot_nodes": 1583,
+          "hotspot_relative_l2": 0.02690797098217443,
+          "hotspot_mae": 3.88621437214979,
+          "true_peak": 1566.6309814453125,
+          "predicted_peak": 1567.8189407920702,
+          "peak_abs_error": 1.1879593467576797
+        }
+      },
+      "10_421/hor": {
+        "stress": {
+          "nodes": 189704,
+          "relative_l2": 0.02112256948226242,
+          "rmse": 1.3171054177987576,
+          "mae": 0.23981756016860659,
+          "max_abs_error": 277.3761094756504,
+          "hotspot_nodes": 1898,
+          "hotspot_relative_l2": 0.04906554838623233,
+          "hotspot_mae": 2.552401226506864,
+          "true_peak": 510.0827331542969,
+          "predicted_peak": 515.5415055693284,
+          "peak_abs_error": 5.45877241503149
+        }
+      },
+      "10_460/dia": {
+        "stress": {
+          "nodes": 200331,
+          "relative_l2": 0.019502773281843428,
+          "rmse": 0.8081112522207181,
+          "mae": 0.1921142396395808,
+          "max_abs_error": 156.98428234890113,
+          "hotspot_nodes": 2004,
+          "hotspot_relative_l2": 0.034292636022670145,
+          "hotspot_mae": 1.3380608773572664,
+          "true_peak": 492.80859375,
+          "predicted_peak": 492.9458371286858,
+          "peak_abs_error": 0.1372433786858096
+        }
+      }
+    },
+    "worst_case_key": "10_421/hor",
+    "pooled": {
+      "stress": {
+        "nodes": 791820,
+        "relative_l2": 0.013240951654994578,
+        "rmse": 1.243491858507957,
+        "mae": 0.2639568830502107,
+        "max_abs_error": 366.6239012572174,
+        "hotspot_nodes": 7919,
+        "hotspot_relative_l2": 0.021754697565132607,
+        "hotspot_mae": 2.1916129026085023,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 1901.079951014521,
+        "peak_abs_error": 5.85509749889593
+      }
+    },
+    "case_mean_relative_l2": 0.014495009687681018,
+    "worst_case_relative_l2": 0.02112256948226242
+  },
+  "final_metrics": {
+    "step": 1000,
+    "epoch": null,
+    "elapsed_seconds": 51.83369055000003,
+    "training_loss": 0.002764893462881446,
+    "selection_score": 0.07762127440682931,
+    "physical_normalized_mse": 0.0026310035133623624,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.03623537493568208,
+          "rmse": 5.508305111222376,
+          "mae": 3.668718041308658,
+          "max_abs_error": 177.2295603298786,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.025261648624390346,
+          "hotspot_mae": 11.66008142594784,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 1889.90310941037,
+          "peak_abs_error": 5.321744105254993
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 0.058601778850391834,
+          "rmse": 3.9344942978324493,
+          "mae": 2.7183259928860664,
+          "max_abs_error": 90.18264886575598,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 0.025460194922794502,
+          "hotspot_mae": 4.271334187250392,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 351.9181444609067,
+          "peak_abs_error": 0.7589037382504671
+        }
+      },
+      "10_30/ver": {
+        "stress": {
+          "nodes": 158221,
+          "relative_l2": 0.04439095594725814,
+          "rmse": 5.643782836082319,
+          "mae": 3.7720980126988315,
+          "max_abs_error": 337.7343927776053,
+          "hotspot_nodes": 1583,
+          "hotspot_relative_l2": 0.03373342803163442,
+          "hotspot_mae": 9.762386247549932,
+          "true_peak": 1566.6309814453125,
+          "predicted_peak": 1546.3666522962542,
+          "peak_abs_error": 20.264329149058312
+        }
+      },
+      "10_421/hor": {
+        "stress": {
+          "nodes": 189704,
+          "relative_l2": 0.06479621555776405,
+          "rmse": 4.040391328131454,
+          "mae": 2.6639017705877888,
+          "max_abs_error": 230.07099895634147,
+          "hotspot_nodes": 1898,
+          "hotspot_relative_l2": 0.062052329783683836,
+          "hotspot_mae": 8.559755757466423,
+          "true_peak": 510.0827331542969,
+          "predicted_peak": 481.0098980101515,
+          "peak_abs_error": 29.07283514414536
+        }
+      },
+      "10_460/dia": {
+        "stress": {
+          "nodes": 200331,
+          "relative_l2": 0.07762127440682931,
+          "rmse": 3.216292593539384,
+          "mae": 2.198052522149377,
+          "max_abs_error": 138.20437852652083,
+          "hotspot_nodes": 2004,
+          "hotspot_relative_l2": 0.06271441295361992,
+          "hotspot_mae": 6.656138118788349,
+          "true_peak": 492.80859375,
+          "predicted_peak": 487.93977164320506,
+          "peak_abs_error": 4.868822106794937
+        }
+      }
+    },
+    "worst_case_key": "10_460/dia",
+    "pooled": {
+      "stress": {
+        "nodes": 791820,
+        "relative_l2": 0.04752662993833169,
+        "rmse": 4.463348173946656,
+        "mae": 2.929185741119386,
+        "max_abs_error": 337.7343927776053,
+        "hotspot_nodes": 7919,
+        "hotspot_relative_l2": 0.0319040647376741,
+        "hotspot_mae": 8.40235347439779,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 1889.90310941037,
+        "peak_abs_error": 5.321744105254993
+      }
+    },
+    "case_mean_relative_l2": 0.05632911993958508,
+    "worst_case_relative_l2": 0.07762127440682931
+  },
+  "config": {
+    "arguments": {
+      "method": "hashgrid",
+      "data": [
+        "data/prepared_benchmark5"
+      ],
+      "case_keys": [
+        "506_533/ver",
+        "506_25/tor",
+        "10_30/ver",
+        "10_421/hor",
+        "10_460/dia"
+      ],
+      "num_cases": 1,
+      "outputs": "stress",
+      "input_mode": "both",
+      "stress_transform": "asinh",
+      "protocol": "sampled",
+      "steps": 1000,
+      "epochs": null,
+      "nodes_per_case": 16384,
+      "learning_rate": 0.003,
+      "weight_decay": 0,
+      "selection": "worst-stress",
+      "eval_every": 100,
+      "status_every": 10,
+      "eval_batch_size": 65536,
+      "backend": "tcnn-fused",
+      "device": "cuda",
+      "seed": 2026,
+      "checkpoint_blocks": false,
+      "small_hash_log2": 14,
+      "small_base": 8,
+      "small_growth": 2,
+      "small_width": 32,
+      "reference_runs": null,
+      "assumptions": [
+        "five_case_extension_historical_asinh_constants_LR_seed_not_published_explicit_P90_0.003_2026"
+      ],
+      "output": "runs/slides_reproduction/tcnn_hash_five_aligned",
+      "resume": null,
+      "override_resume_lr": false,
+      "channels": [
+        3
+      ]
+    },
+    "method": "hashgrid",
+    "channels": [
+      3
+    ],
+    "scaler": {
+      "mean": [
+        0.17799869085721032
+      ],
+      "std": [
+        0.5017489553970146
+      ],
+      "stress_scale": 142.90268096923828,
+      "channels": [
+        3
+      ]
+    },
+    "parameter_count": 7742848,
+    "model": {
+      "out_channels": 1,
+      "input_mode": "both",
+      "condition_dim": 25,
+      "n_levels": 12,
+      "n_features_per_level": 2,
+      "log2_hashmap_size": 19,
+      "base_resolution": 8,
+      "per_level_scale": 1.6,
+      "hidden_dim": 64,
+      "hidden_layers": 2,
+      "seed": 2026
+    },
+    "implementation_details": {
+      "out_channels": 1,
+      "input_mode": "both",
+      "condition_dim": 25,
+      "n_levels": 12,
+      "n_features_per_level": 2,
+      "log2_hashmap_size": 19,
+      "base_resolution": 8,
+      "per_level_scale": 1.6,
+      "hidden_dim": 64,
+      "hidden_layers": 2,
+      "seed": 2026,
+      "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "encoding": {
+        "otype": "Composite",
+        "nested": [
+          {
+            "otype": "HashGrid",
+            "n_levels": 12,
+            "n_features_per_level": 2,
+            "log2_hashmap_size": 19,
+            "base_resolution": 8,
+            "per_level_scale": 1.6,
+            "interpolation": "Linear",
+            "hash": "CoherentPrime",
+            "n_dims_to_encode": 3
+          },
+          {
+            "otype": "Identity",
+            "n_dims_to_encode": 25,
+            "scale": 1.0,
+            "offset": 0.0
+          }
+        ]
+      },
+      "network": {
+        "otype": "FullyFusedMLP",
+        "activation": "ReLU",
+        "output_activation": "None",
+        "n_neurons": 64,
+        "n_hidden_layers": 2
+      },
+      "sample_id": false,
+      "raw_xyz_after_encoding": false,
+      "bias_parameters": false,
+      "jit_fusion": false,
+      "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+      "alignment": "native TCNN channel/batch padding retained",
+      "layout": "xyz[N,3], features[N,condition_dim] -> prediction[N,out_channels]"
+    },
+    "dataset": "original DeepJEB v1.0",
+    "cases": [
+      {
+        "sample_key": "506_533/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/506_533_ver.npz",
+        "nodes": 120777
+      },
+      {
+        "sample_key": "506_25/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/506_25_tor.npz",
+        "nodes": 122787
+      },
+      {
+        "sample_key": "10_30/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_30_ver.npz",
+        "nodes": 158221
+      },
+      {
+        "sample_key": "10_421/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_421_hor.npz",
+        "nodes": 189704
+      },
+      {
+        "sample_key": "10_460/dia",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_460_dia.npz",
+        "nodes": 200331
+      }
+    ],
+    "training_protocol": "one case-balanced random batch per update",
+    "evaluation": "every original node; contextual methods always use complete case context",
+    "checkpoint_selection": "worst-stress",
+    "physical_mse_definition": "case-balanced mean of per-case MSE after dividing each physical output channel by its pooled population std; historical case aggregation unavailable",
+    "reference_usage": null,
+    "assumptions": [
+      "five_case_extension_historical_asinh_constants_LR_seed_not_published_explicit_P90_0.003_2026"
+    ],
+    "total_steps": 1000,
+    "torch_version": "2.14.1+cu130",
+    "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+    "started_at_utc": "2026-10-08T10:48:59.836510+00:00"
+  },
+  "completed_at_utc": "2026-10-08T10:49:56.457148+00:00"
+}

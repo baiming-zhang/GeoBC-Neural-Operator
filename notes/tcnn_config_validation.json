@@ -1,0 +1,100 @@
+{
+  "CPU_config_validation": "passed",
+  "GPU_smoke_executed": false,
+  "CUDA_context_initialized": false,
+  "torch_version": "2.14.1+cu130",
+  "torch_CUDA_version": "13.0",
+  "nvidia_cuda_runtime_version": "13.0.96",
+  "configs": [
+    {
+      "out_channels": 4,
+      "input_mode": "xyz",
+      "condition_dim": 25,
+      "n_levels": 12,
+      "n_features_per_level": 2,
+      "log2_hashmap_size": 19,
+      "base_resolution": 8,
+      "per_level_scale": 1.6,
+      "hidden_dim": 64,
+      "hidden_layers": 2,
+      "seed": 2026,
+      "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "encoding": {
+        "otype": "HashGrid",
+        "n_levels": 12,
+        "n_features_per_level": 2,
+        "log2_hashmap_size": 19,
+        "base_resolution": 8,
+        "per_level_scale": 1.6,
+        "interpolation": "Linear",
+        "hash": "CoherentPrime"
+      },
+      "network": {
+        "otype": "FullyFusedMLP",
+        "activation": "ReLU",
+        "output_activation": "None",
+        "n_neurons": 64,
+        "n_hidden_layers": 2
+      },
+      "sample_id": false,
+      "raw_xyz_after_encoding": false,
+      "bias_parameters": false,
+      "jit_fusion": false,
+      "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+      "alignment": "native TCNN channel/batch padding retained",
+      "layout": "xyz[N,3], features[N,condition_dim] -> prediction[N,out_channels]"
+    },
+    {
+      "out_channels": 1,
+      "input_mode": "both",
+      "condition_dim": 25,
+      "n_levels": 12,
+      "n_features_per_level": 2,
+      "log2_hashmap_size": 19,
+      "base_resolution": 8,
+      "per_level_scale": 1.6,
+      "hidden_dim": 64,
+      "hidden_layers": 2,
+      "seed": 2026,
+      "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "encoding": {
+        "otype": "Composite",
+        "nested": [
+          {
+            "otype": "HashGrid",
+            "n_levels": 12,
+            "n_features_per_level": 2,
+            "log2_hashmap_size": 19,
+            "base_resolution": 8,
+            "per_level_scale": 1.6,
+            "interpolation": "Linear",
+            "hash": "CoherentPrime",
+            "n_dims_to_encode": 3
+          },
+          {
+            "otype": "Identity",
+            "n_dims_to_encode": 25,
+            "scale": 1.0,
+            "offset": 0.0
+          }
+        ]
+      },
+      "network": {
+        "otype": "FullyFusedMLP",
+        "activation": "ReLU",
+        "output_activation": "None",
+        "n_neurons": 64,
+        "n_hidden_layers": 2
+      },
+      "sample_id": false,
+      "raw_xyz_after_encoding": false,
+      "bias_parameters": false,
+      "jit_fusion": false,
+      "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+      "alignment": "native TCNN channel/batch padding retained",
+      "layout": "xyz[N,3], features[N,condition_dim] -> prediction[N,out_channels]"
+    }
+  ]
+}

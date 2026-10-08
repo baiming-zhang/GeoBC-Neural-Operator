@@ -1,0 +1,357 @@
+{
+  "status": "completed",
+  "step": 800,
+  "best_step": 500,
+  "best_score": 0.8354785175484027,
+  "elapsed_seconds": 355.28886919000024,
+  "best_metrics": {
+    "step": 500,
+    "epoch": 250.0,
+    "elapsed_seconds": 222.5750231119996,
+    "training_loss": 0.38737452030181885,
+    "selection_score": 0.8354785175484027,
+    "physical_normalized_mse": 0.8354785175484027,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.915302831618357,
+          "rmse": 139.13937070249347,
+          "mae": 103.2632621967336,
+          "max_abs_error": 1848.7059983763593,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.9264168216603499,
+          "hotspot_mae": 629.6216333243866,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 79.30151399695433,
+          "peak_abs_error": 1815.9233395186707
+        },
+        "displacement": {
+          "relative_l2": 0.7284597534687052,
+          "rmse_mm": 0.12403274901473665,
+          "max_vector_error_mm": 0.587464619197437
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 1.0078255637684306,
+          "rmse": 67.6649073056278,
+          "mae": 51.51913280785183,
+          "max_abs_error": 362.0198556881245,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 0.9949107747787924,
+          "hotspot_mae": 232.75610108975997,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 8.488890902575264,
+          "peak_abs_error": 342.670349820081
+        },
+        "displacement": {
+          "relative_l2": 1.1677583573790904,
+          "rmse_mm": 0.03771734594773299,
+          "max_vector_error_mm": 0.24862875190188727
+        }
+      }
+    },
+    "worst_case_key": "506_25/tor",
+    "pooled": {
+      "stress": {
+        "nodes": 243564,
+        "relative_l2": 0.9312498041604901,
+        "rmse": 109.12452250822882,
+        "mae": 77.1776895535161,
+        "max_abs_error": 1848.7059983763593,
+        "hotspot_nodes": 2436,
+        "hotspot_relative_l2": 0.9140741490869507,
+        "hotspot_mae": 476.89333599309373,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 79.30151399695433,
+        "peak_abs_error": 1815.9233395186707
+      },
+      "displacement": {
+        "relative_l2": 0.7483699295812352,
+        "rmse_mm": 0.09135508801944572,
+        "max_vector_error_mm": 0.587464619197437
+      }
+    },
+    "case_mean_relative_l2": 0.9615641976933937,
+    "worst_case_relative_l2": 1.0078255637684306
+  },
+  "final_metrics": {
+    "step": 800,
+    "epoch": 400.0,
+    "elapsed_seconds": 354.88917855499994,
+    "training_loss": 0.45476266741752625,
+    "selection_score": 0.9999249987476062,
+    "physical_normalized_mse": 0.9999249987476062,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.9328392547498282,
+          "rmse": 141.8051626072026,
+          "mae": 108.22475603746112,
+          "max_abs_error": 1847.1302126437129,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.9543063583132368,
+          "hotspot_mae": 652.0127889529311,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 50.467653434571034,
+          "peak_abs_error": 1844.757200081054
+        },
+        "displacement": {
+          "relative_l2": 0.8466571959838338,
+          "rmse_mm": 0.14415788791479883,
+          "max_vector_error_mm": 0.7417863877581002
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 1.1578801023602356,
+          "rmse": 77.73949442627779,
+          "mae": 60.78998072418683,
+          "max_abs_error": 404.16930559016635,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 1.009202191066348,
+          "hotspot_mae": 233.1697291391896,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 50.801622198945935,
+          "peak_abs_error": 300.3576185237103
+        },
+        "displacement": {
+          "relative_l2": 1.7142947069169463,
+          "rmse_mm": 0.05536988548065153,
+          "max_vector_error_mm": 0.27039905534681724
+        }
+      }
+    },
+    "worst_case_key": "506_25/tor",
+    "pooled": {
+      "stress": {
+        "nodes": 243564,
+        "relative_l2": 0.9736805017672662,
+        "rmse": 114.09658220192678,
+        "mae": 84.31164179894061,
+        "max_abs_error": 1847.1302126437129,
+        "hotspot_nodes": 2436,
+        "hotspot_relative_l2": 0.9474662462164632,
+        "hotspot_mae": 499.3412650483191,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 50.801622198945935,
+        "peak_abs_error": 1844.423231316679
+      },
+      "displacement": {
+        "relative_l2": 0.8917704018436748,
+        "rmse_mm": 0.10886028464445684,
+        "max_vector_error_mm": 0.7417863877581002
+      }
+    },
+    "case_mean_relative_l2": 1.0453596785550319,
+    "worst_case_relative_l2": 1.1578801023602356
+  },
+  "config": {
+    "arguments": {
+      "method": "ts3",
+      "data": [
+        "data/prepared_exact_multifield"
+      ],
+      "case_keys": [
+        "506_533/ver",
+        "506_25/tor"
+      ],
+      "num_cases": 1,
+      "outputs": "both",
+      "input_mode": "both",
+      "stress_transform": "linear",
+      "protocol": "full-case",
+      "steps": 800,
+      "epochs": null,
+      "nodes_per_case": 16384,
+      "learning_rate": 0.003,
+      "weight_decay": 0,
+      "selection": "physical-mse",
+      "eval_every": 100,
+      "status_every": 10,
+      "eval_batch_size": 65536,
+      "backend": "triton",
+      "device": "cuda",
+      "seed": 2026,
+      "checkpoint_blocks": true,
+      "small_hash_log2": 14,
+      "small_base": 8,
+      "small_growth": 2,
+      "small_width": 32,
+      "reference_runs": null,
+      "assumptions": [
+        "TS3_architecture_not_in_slide_using_official_volume_preset"
+      ],
+      "output": "runs/slides_reproduction/ts3_two_short",
+      "resume": null,
+      "override_resume_lr": false,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "method": "ts3",
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "scaler": {
+      "mean": [
+        0.04685223155667294,
+        -0.001230349362456991,
+        0.07969236844814638,
+        29.348632093523346
+      ],
+      "std": [
+        0.10609806946986748,
+        0.02683363605482126,
+        0.1555025177983523,
+        113.4459295131233
+      ],
+      "stress_scale": null,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "parameter_count": 7612036,
+    "model": {
+      "method": "ts3",
+      "repository": "https://github.com/thuml/Transolver-3",
+      "commit": "ef4fee9fa08dbfc5af13f9d9b42202dfb34dba37",
+      "model_file": "models/Transolver_chunk_opt_matrix_mul.py",
+      "file_sha256": {
+        "models/Transolver_chunk_opt_matrix_mul.py": "49292aa1ee7be2e143db5b9c75d0128f8767f8a2ae74479cdc06aeb9d41fb71a"
+      },
+      "license": "No LICENSE file present at pinned upstream commit; no license inferred",
+      "constructor_kwargs": {
+        "n_layers": 16,
+        "n_hidden": 256,
+        "n_head": 8,
+        "slice_num": 64,
+        "mlp_ratio": 2,
+        "dropout": 0.0,
+        "space_dim": 3,
+        "fun_dim": 25,
+        "out_dim": 4,
+        "act": "gelu",
+        "unified_pos": false,
+        "ref": 8
+      },
+      "preset_source": "Official main_drivaerml_volume.py MODEL_KWARGS: 16 layers, width 256, 8 heads, 64 slices, MLP ratio 2, dropout 0, GELU, unified_pos false",
+      "slide_explicit": {
+        "long_epochs": 5000,
+        "short_stopped_update": 897,
+        "short_reported_update": 800,
+        "input_channels": 28,
+        "long_updates": 10000,
+        "output_channels": 4
+      },
+      "reference_gaps": [
+        "TS3 is identified as the official Transolver-3 family, but the exact server model file/commit cannot be verified.",
+        "Slide 4 does not specify depth, heads, slices, width, MLP ratio or optimizer settings; the official volume preset is a stated substitute.",
+        "Model constructor defaults are 5 layers / 32 slices / MLP ratio 1; official surface preset uses 24 layers. The chosen volume preset is explicit rather than silently treating either as slide settings.",
+        "The exact 25-feature schema and long-run target scaling constants are unavailable."
+      ],
+      "architecture_overrides": {},
+      "input": "xyz[3] + BC/material[25]; no sample ID",
+      "output": "uXYZ + source signed stress",
+      "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+      "checkpoint_blocks": true,
+      "checkpoint_strategy": "official global chunk stats and chunk deslice/MLP",
+      "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+      "chunk_size": 32768,
+      "eval_stochastic": false,
+      "gumbel_note": null,
+      "distributed": null,
+      "parameter_count": 7612036
+    },
+    "implementation_details": {
+      "method": "ts3",
+      "repository": "https://github.com/thuml/Transolver-3",
+      "commit": "ef4fee9fa08dbfc5af13f9d9b42202dfb34dba37",
+      "model_file": "models/Transolver_chunk_opt_matrix_mul.py",
+      "file_sha256": {
+        "models/Transolver_chunk_opt_matrix_mul.py": "49292aa1ee7be2e143db5b9c75d0128f8767f8a2ae74479cdc06aeb9d41fb71a"
+      },
+      "license": "No LICENSE file present at pinned upstream commit; no license inferred",
+      "constructor_kwargs": {
+        "n_layers": 16,
+        "n_hidden": 256,
+        "n_head": 8,
+        "slice_num": 64,
+        "mlp_ratio": 2,
+        "dropout": 0.0,
+        "space_dim": 3,
+        "fun_dim": 25,
+        "out_dim": 4,
+        "act": "gelu",
+        "unified_pos": false,
+        "ref": 8
+      },
+      "preset_source": "Official main_drivaerml_volume.py MODEL_KWARGS: 16 layers, width 256, 8 heads, 64 slices, MLP ratio 2, dropout 0, GELU, unified_pos false",
+      "slide_explicit": {
+        "long_epochs": 5000,
+        "short_stopped_update": 897,
+        "short_reported_update": 800,
+        "input_channels": 28,
+        "long_updates": 10000,
+        "output_channels": 4
+      },
+      "reference_gaps": [
+        "TS3 is identified as the official Transolver-3 family, but the exact server model file/commit cannot be verified.",
+        "Slide 4 does not specify depth, heads, slices, width, MLP ratio or optimizer settings; the official volume preset is a stated substitute.",
+        "Model constructor defaults are 5 layers / 32 slices / MLP ratio 1; official surface preset uses 24 layers. The chosen volume preset is explicit rather than silently treating either as slide settings.",
+        "The exact 25-feature schema and long-run target scaling constants are unavailable."
+      ],
+      "architecture_overrides": {},
+      "input": "xyz[3] + BC/material[25]; no sample ID",
+      "output": "uXYZ + source signed stress",
+      "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+      "checkpoint_blocks": true,
+      "checkpoint_strategy": "official global chunk stats and chunk deslice/MLP",
+      "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+      "chunk_size": 32768,
+      "eval_stochastic": false,
+      "gumbel_note": null,
+      "distributed": null,
+      "parameter_count": 7612036
+    },
+    "dataset": "original DeepJEB v1.0",
+    "cases": [
+      {
+        "sample_key": "506_533/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_exact_multifield/506_533_ver.npz",
+        "nodes": 120777
+      },
+      {
+        "sample_key": "506_25/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_exact_multifield/506_25_tor.npz",
+        "nodes": 122787
+      }
+    ],
+    "training_protocol": "one complete FEM case per update, cycling cases",
+    "evaluation": "every original node; contextual methods always use complete case context",
+    "checkpoint_selection": "physical-mse",
+    "physical_mse_definition": "case-balanced mean of per-case MSE after dividing each physical output channel by its pooled population std; historical case aggregation unavailable",
+    "reference_usage": null,
+    "assumptions": [
+      "TS3_architecture_not_in_slide_using_official_volume_preset"
+    ],
+    "total_steps": 800,
+    "torch_version": "2.14.1+cu130",
+    "precision": "float32 tensors; matmul precision high, TF32 allowed for CUDA matmul/cuDNN",
+    "started_at_utc": "2026-10-08T11:27:14.671114+00:00"
+  },
+  "completed_at_utc": "2026-10-08T11:33:36.410396+00:00"
+}

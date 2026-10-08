@@ -1,0 +1,192 @@
+{
+  "torch": "2.14.1+cu130",
+  "numpy": "2.5.3",
+  "sources": {
+    "paper": "https://arxiv.org/abs/2010.08895v3",
+    "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+    "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+    "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+  },
+  "correctness": {
+    "status": "passed",
+    "device": "cuda",
+    "kronecker_shape_error": 0.0,
+    "curved_isoparametric_geometry": {
+      "resolution": 16,
+      "source_tetrahedra": 1,
+      "candidate_pairs": 4096,
+      "occupied_grid_points": 711,
+      "spacing_mm": 0.06666666666666667,
+      "grid_normalization": "isotropic cube: xyz_mm=bbox_min_mm+length*[ix,iy,iz]/(R-1), endpoints included",
+      "geometry": "original curved quadratic isoparametric TETRA10; Newton inverse, not linear corner tetrahedra",
+      "broad_phase": "conservative degree-2 Bezier convex-hull AABBs rasterized to candidate grid/tetra pairs",
+      "shared_face_tie_break": "smallest original tetrahedron row index",
+      "newton_dtype": "float64",
+      "cache_dtype": "float32 barycentric and shape weights",
+      "newton_iterations": 10,
+      "normalized_tolerance": 2e-07,
+      "maximum_reconstructed_coordinate_error_normalized": 1.151114702446776e-07,
+      "corner_singular_tetrahedra": 0,
+      "point_location_seconds": 0.39400533999997833,
+      "device": "cuda",
+      "VTK_source": "https://github.com/Kitware/VTK/blob/517e98882892a079f639d40fb70cb76a6cf95a0e/Common/DataModel/vtkQuadraticTetra.cxx",
+      "midpoint_order": {
+        "tetra10_edge_order": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "midside_midpoint_deviation_mm_p50": 0.0,
+        "midside_midpoint_deviation_mm_p95": 0.037500000000000006,
+        "midside_midpoint_deviation_mm_max": 0.05,
+        "midside_deviation_over_edge_p50": 0.0,
+        "midside_deviation_over_edge_p95": 0.037500000000000006,
+        "note": "Curved quadratic surfaces may have nonzero midpoint deviation; no nodes are moved."
+      }
+    },
+    "quadratic_reference_field_max_error": 1.0815091933125132e-07,
+    "masked_trilinear_linear_field_max_error": 0.0,
+    "query_tail_and_zero_support": "passed",
+    "truncated_vs_full_spectrum_max_error": 0.0,
+    "four_block_forward_backward": "passed"
+  },
+  "profiles": [
+    {
+      "resolution": 64,
+      "out_channels": 4,
+      "modes": 12,
+      "configuration": {
+        "in_channels": 18,
+        "out_channels": 4,
+        "width": 16,
+        "modes": 12,
+        "layers": 4,
+        "head_width": 128,
+        "padding": 0,
+        "checkpoint_blocks": false,
+        "layout": "B,C,X,Y,Z",
+        "xyz_channels": false,
+        "fft_norm": "backward",
+        "sources": {
+          "paper": "https://arxiv.org/abs/2010.08895v3",
+          "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+          "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+          "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+        },
+        "unknown_reference_details": [
+          "18 input channel definitions",
+          "padding",
+          "projection width",
+          "optimizer/scaling schedule"
+        ]
+      },
+      "real_parameter_count": 14159860,
+      "synthetic_optimizer_steps": 1,
+      "forward_backward_fused_Adam_seconds": 0.09122045199998752,
+      "peak_allocated_GiB": 0.7734589576721191,
+      "peak_reserved_GiB": 0.875,
+      "input_and_model_dtype": "float32",
+      "includes_optimizer_state": true,
+      "timing_note": "One cold synthetic step, including cuFFT/pointwise initial plans; not steady-state training throughput or an overfit result."
+    },
+    {
+      "resolution": 64,
+      "out_channels": 1,
+      "modes": 12,
+      "configuration": {
+        "in_channels": 18,
+        "out_channels": 1,
+        "width": 16,
+        "modes": 12,
+        "layers": 4,
+        "head_width": 128,
+        "padding": 0,
+        "checkpoint_blocks": false,
+        "layout": "B,C,X,Y,Z",
+        "xyz_channels": false,
+        "fft_norm": "backward",
+        "sources": {
+          "paper": "https://arxiv.org/abs/2010.08895v3",
+          "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+          "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+          "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+        },
+        "unknown_reference_details": [
+          "18 input channel definitions",
+          "padding",
+          "projection width",
+          "optimizer/scaling schedule"
+        ]
+      },
+      "real_parameter_count": 14159473,
+      "synthetic_optimizer_steps": 1,
+      "forward_backward_fused_Adam_seconds": 0.03414947900000698,
+      "peak_allocated_GiB": 0.6396660804748535,
+      "peak_reserved_GiB": 0.74609375,
+      "input_and_model_dtype": "float32",
+      "includes_optimizer_state": true,
+      "timing_note": "One cold synthetic step, including cuFFT/pointwise initial plans; not steady-state training throughput or an overfit result."
+    },
+    {
+      "resolution": 192,
+      "out_channels": 1,
+      "modes": 16,
+      "configuration": {
+        "in_channels": 18,
+        "out_channels": 1,
+        "width": 16,
+        "modes": 16,
+        "layers": 4,
+        "head_width": 128,
+        "padding": 0,
+        "checkpoint_blocks": false,
+        "layout": "B,C,X,Y,Z",
+        "xyz_channels": false,
+        "fft_norm": "backward",
+        "sources": {
+          "paper": "https://arxiv.org/abs/2010.08895v3",
+          "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+          "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+          "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+        },
+        "unknown_reference_details": [
+          "18 input channel definitions",
+          "padding",
+          "projection width",
+          "optimizer/scaling schedule"
+        ]
+      },
+      "real_parameter_count": 33558129,
+      "synthetic_optimizer_steps": 1,
+      "forward_backward_fused_Adam_seconds": 0.3563609690000078,
+      "peak_allocated_GiB": 14.249041080474854,
+      "peak_reserved_GiB": 19.814453125,
+      "input_and_model_dtype": "float32",
+      "includes_optimizer_state": true,
+      "timing_note": "One cold synthetic step, including cuFFT/pointwise initial plans; not steady-state training throughput or an overfit result."
+    }
+  ],
+  "GPU": "NVIDIA GeForce RTX 5090",
+  "GPU_total_GiB": 31.84234619140625
+}

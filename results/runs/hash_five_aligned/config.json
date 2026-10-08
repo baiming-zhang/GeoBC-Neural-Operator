@@ -1,0 +1,120 @@
+{
+  "arguments": {
+    "method": "hashgrid",
+    "data": [
+      "data/prepared_benchmark5"
+    ],
+    "case_keys": [
+      "506_533/ver",
+      "506_25/tor",
+      "10_30/ver",
+      "10_421/hor",
+      "10_460/dia"
+    ],
+    "num_cases": 1,
+    "outputs": "stress",
+    "input_mode": "both",
+    "stress_transform": "asinh",
+    "protocol": "sampled",
+    "steps": 1000,
+    "epochs": null,
+    "nodes_per_case": 16384,
+    "learning_rate": 0.003,
+    "weight_decay": 0,
+    "selection": "worst-stress",
+    "eval_every": 100,
+    "status_every": 10,
+    "eval_batch_size": 65536,
+    "backend": "triton",
+    "device": "cuda",
+    "seed": 2026,
+    "checkpoint_blocks": false,
+    "small_hash_log2": 14,
+    "small_base": 8,
+    "small_growth": 2,
+    "small_width": 32,
+    "reference_runs": null,
+    "assumptions": [
+      "asinh_constants_and_LR_absent_using_P90_scaled_centered_asinh_and_0.003",
+      "torch_MLP_instead_of_tiny_cuda_nn_fused_MLP"
+    ],
+    "output": "runs/slides_reproduction/hash_five_aligned",
+    "resume": null,
+    "override_resume_lr": false,
+    "channels": [
+      3
+    ]
+  },
+  "method": "hashgrid",
+  "channels": [
+    3
+  ],
+  "scaler": {
+    "mean": [
+      0.17799869085721032
+    ],
+    "std": [
+      0.5017489553970146
+    ],
+    "stress_scale": 142.90268096923828,
+    "channels": [
+      3
+    ]
+  },
+  "parameter_count": 7741057,
+  "model": {
+    "encoder": "hashgrid",
+    "input_mode": "both",
+    "condition_dim": 25,
+    "hidden_dim": 64,
+    "hidden_layers": 2,
+    "hash_grid": {
+      "n_levels": 12,
+      "n_features_per_level": 2,
+      "log2_hashmap_size": 19,
+      "base_resolution": 8,
+      "per_level_scale": 1.6
+    }
+  },
+  "dataset": "original DeepJEB v1.0",
+  "cases": [
+    {
+      "sample_key": "506_533/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/506_533_ver.npz",
+      "nodes": 120777
+    },
+    {
+      "sample_key": "506_25/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/506_25_tor.npz",
+      "nodes": 122787
+    },
+    {
+      "sample_key": "10_30/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_30_ver.npz",
+      "nodes": 158221
+    },
+    {
+      "sample_key": "10_421/hor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_421_hor.npz",
+      "nodes": 189704
+    },
+    {
+      "sample_key": "10_460/dia",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_460_dia.npz",
+      "nodes": 200331
+    }
+  ],
+  "training_protocol": "one case-balanced random batch per update",
+  "evaluation": "every original node; contextual methods always use complete case context",
+  "checkpoint_selection": "worst-stress",
+  "physical_mse_definition": "case-balanced mean of per-case MSE after dividing each physical output channel by its pooled population std; historical case aggregation unavailable",
+  "reference_usage": null,
+  "assumptions": [
+    "asinh_constants_and_LR_absent_using_P90_scaled_centered_asinh_and_0.003",
+    "torch_MLP_instead_of_tiny_cuda_nn_fused_MLP"
+  ],
+  "total_steps": 1000,
+  "torch_version": "2.14.1+cu130",
+  "precision": "float32 tensors; matmul precision high, TF32 allowed for CUDA matmul/cuDNN",
+  "started_at_utc": "2026-10-08T10:22:29.883094+00:00"
+}

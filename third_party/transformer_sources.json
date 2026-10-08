@@ -1,0 +1,73 @@
+{
+  "transolver": {
+    "repository": "https://github.com/thuml/Transolver",
+    "commit": "75e0f67643806a81cd1d3f6adc88dd8c02416fe7",
+    "directory": "third_party/Transolver",
+    "model_file": "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py",
+    "license": "MIT; upstream LICENSE retained",
+    "preset_source": "Model constructor defaults in the pinned irregular-mesh model: 5 layers, width 256, 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+    "slide_explicit": {},
+    "reference_gaps": [
+      "Original Transolver baseline was newly requested; the slides do not provide its run configuration.",
+      "The source-server commit and exact 25-feature schema are unavailable."
+    ],
+    "file_sha256": {
+      "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py": "d1420f8176c73fac024d1f57cb816653e0ffb41580c954c1497d2ba914e71943",
+      "PDE-Solving-StandardBenchmark/model/Embedding.py": "e3a4f71c4378b7cce09a43b8c306d6d8a17edb4cd69db5eb069e55a57d2affe2",
+      "PDE-Solving-StandardBenchmark/model/Physics_Attention.py": "d746cd641f9c81313e205126bac6e0a9bb5bdbe5a9ef107e093a4fe065dbe0f5"
+    }
+  },
+  "transolver_pp": {
+    "repository": "https://github.com/thuml/Transolver_plus",
+    "commit": "d5a23bc734a0ebac56384cf72049a26af9673452",
+    "directory": "third_party/Transolver_plus",
+    "model_file": "models/Transolver_plus.py",
+    "license": "MIT; upstream LICENSE retained",
+    "preset_source": "Slide 5 fixes 16 layers / width 256; other settings are official Model constructor defaults: 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+    "slide_explicit": {
+      "output_scaling": [
+        "linear",
+        "invertible asinh stress"
+      ],
+      "updates": 1000,
+      "n_layers": 16,
+      "epochs": 500,
+      "n_hidden": 256,
+      "selection": "decoded physical normalized MSE",
+      "learning_rate": 0.003
+    },
+    "reference_gaps": [
+      "Head count, slice count, MLP ratio and dropout are not present in slide notes; official constructor defaults are used and are not claimed as exact reference settings.",
+      "Official Airplane launcher instead uses 4 layers, MLP ratio 2 and dropout 0.1; those task-specific settings are not substituted.",
+      "The source-server commit and exact target normalization constants are unavailable."
+    ],
+    "file_sha256": {
+      "models/Transolver_plus.py": "7104ad5b90294d1d97b1e7e86b3eeb2ccbe11eec93d2e7bf566bcb3a8ab6e858"
+    }
+  },
+  "ts3": {
+    "repository": "https://github.com/thuml/Transolver-3",
+    "commit": "ef4fee9fa08dbfc5af13f9d9b42202dfb34dba37",
+    "directory": "third_party/Transolver-3",
+    "model_file": "models/Transolver_chunk_opt_matrix_mul.py",
+    "license": "No LICENSE file present at pinned upstream commit; no license inferred",
+    "preset_source": "Official main_drivaerml_volume.py MODEL_KWARGS: 16 layers, width 256, 8 heads, 64 slices, MLP ratio 2, dropout 0, GELU, unified_pos false",
+    "slide_explicit": {
+      "long_epochs": 5000,
+      "short_stopped_update": 897,
+      "short_reported_update": 800,
+      "input_channels": 28,
+      "long_updates": 10000,
+      "output_channels": 4
+    },
+    "reference_gaps": [
+      "TS3 is identified as the official Transolver-3 family, but the exact server model file/commit cannot be verified.",
+      "Slide 4 does not specify depth, heads, slices, width, MLP ratio or optimizer settings; the official volume preset is a stated substitute.",
+      "Model constructor defaults are 5 layers / 32 slices / MLP ratio 1; official surface preset uses 24 layers. The chosen volume preset is explicit rather than silently treating either as slide settings.",
+      "The exact 25-feature schema and long-run target scaling constants are unavailable."
+    ],
+    "file_sha256": {
+      "models/Transolver_chunk_opt_matrix_mul.py": "49292aa1ee7be2e143db5b9c75d0128f8767f8a2ae74479cdc06aeb9d41fb71a"
+    }
+  }
+}

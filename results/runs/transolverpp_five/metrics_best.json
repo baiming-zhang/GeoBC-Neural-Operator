@@ -1,0 +1,133 @@
+{
+  "step": 2500,
+  "epoch": 500.0,
+  "elapsed_seconds": 1316.95313793,
+  "training_loss": 0.1463346779346466,
+  "selection_score": 0.657322011039654,
+  "physical_normalized_mse": 0.657322011039654,
+  "per_case": {
+    "506_533/ver": {
+      "stress": {
+        "nodes": 120777,
+        "relative_l2": 0.881904581948881,
+        "rmse": 134.0623499820842,
+        "mae": 97.26335103509186,
+        "max_abs_error": 1894.1938865164764,
+        "hotspot_nodes": 1208,
+        "hotspot_relative_l2": 0.9725453851002325,
+        "hotspot_mae": 665.0392634780244,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 107.94329043948585,
+        "peak_abs_error": 1787.2815630761393
+      },
+      "displacement": {
+        "relative_l2": 0.36182516373788065,
+        "rmse_mm": 0.061606930935333454,
+        "max_vector_error_mm": 0.349927549125714
+      }
+    },
+    "506_25/tor": {
+      "stress": {
+        "nodes": 122787,
+        "relative_l2": 1.0237348115988771,
+        "rmse": 68.73304629559767,
+        "mae": 51.17191539965279,
+        "max_abs_error": 400.0303052283143,
+        "hotspot_nodes": 1228,
+        "hotspot_relative_l2": 1.0066882990032897,
+        "hotspot_mae": 234.21577660790226,
+        "true_peak": 351.15924072265625,
+        "predicted_peak": 44.39893321516558,
+        "peak_abs_error": 306.76030750749067
+      },
+      "displacement": {
+        "relative_l2": 1.0648474540051567,
+        "rmse_mm": 0.03439343383884425,
+        "max_vector_error_mm": 0.2310024996388762
+      }
+    },
+    "10_30/ver": {
+      "stress": {
+        "nodes": 158221,
+        "relative_l2": 0.8391153301154,
+        "rmse": 106.68354840624589,
+        "mae": 75.72428594528782,
+        "max_abs_error": 1565.1226711652655,
+        "hotspot_nodes": 1583,
+        "hotspot_relative_l2": 0.9586187571035719,
+        "hotspot_mae": 531.2207958492435,
+        "true_peak": 1566.6309814453125,
+        "predicted_peak": 105.50994397774714,
+        "peak_abs_error": 1461.1210374675654
+      },
+      "displacement": {
+        "relative_l2": 0.37262000034114734,
+        "rmse_mm": 0.04690507101149625,
+        "max_vector_error_mm": 0.2833366116928747
+      }
+    },
+    "10_421/hor": {
+      "stress": {
+        "nodes": 189704,
+        "relative_l2": 0.979454088581549,
+        "rmse": 61.074212000543376,
+        "mae": 50.23580865820655,
+        "max_abs_error": 561.7738169103698,
+        "hotspot_nodes": 1898,
+        "hotspot_relative_l2": 0.9959008953434606,
+        "hotspot_mae": 238.51392791202045,
+        "true_peak": 510.0827331542969,
+        "predicted_peak": 14.90481509008862,
+        "peak_abs_error": 495.17791806420826
+      },
+      "displacement": {
+        "relative_l2": 0.7104611586906557,
+        "rmse_mm": 0.035141567095962736,
+        "max_vector_error_mm": 0.22675748478384247
+      }
+    },
+    "10_460/dia": {
+      "stress": {
+        "nodes": 200331,
+        "relative_l2": 0.803948926263432,
+        "rmse": 33.31219432925875,
+        "mae": 24.239890064767163,
+        "max_abs_error": 443.6092767814587,
+        "hotspot_nodes": 2004,
+        "hotspot_relative_l2": 0.9329060323899894,
+        "hotspot_mae": 158.1623469294232,
+        "true_peak": 492.80859375,
+        "predicted_peak": 69.79131831868672,
+        "peak_abs_error": 423.0172754313133
+      },
+      "displacement": {
+        "relative_l2": 0.8194121841420465,
+        "rmse_mm": 0.024742092425376092,
+        "max_vector_error_mm": 0.12010138125167583
+      }
+    }
+  },
+  "worst_case_key": "506_25/tor",
+  "pooled": {
+    "stress": {
+      "nodes": 791820,
+      "relative_l2": 0.8859533658014735,
+      "rmse": 83.20216145312295,
+      "mae": 56.07022963925277,
+      "max_abs_error": 1894.1938865164764,
+      "hotspot_nodes": 7919,
+      "hotspot_relative_l2": 0.9412635432125166,
+      "hotspot_mae": 397.5885977628119,
+      "true_peak": 1895.224853515625,
+      "predicted_peak": 107.94329043948585,
+      "peak_abs_error": 1787.2815630761393
+    },
+    "displacement": {
+      "relative_l2": 0.4392360888008256,
+      "rmse_mm": 0.04065358835365769,
+      "max_vector_error_mm": 0.349927549125714
+    }
+  },
+  "case_mean_relative_l2": 0.9056315477016279,
+  "worst_case_relative_l2": 1.0237348115988771
+}

@@ -1,0 +1,90 @@
+{
+  "torch_version": "2.14.1+cu130",
+  "cuda_version": "13.0",
+  "device": "cuda",
+  "dtype": "float32",
+  "matmul_precision": "high",
+  "checkpoint_blocks": true,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "profiles": [
+    {
+      "method": "ts3",
+      "synthetic_nodes": 158221,
+      "input_shape": [
+        1,
+        158221,
+        28
+      ],
+      "output_shape": [
+        1,
+        158221,
+        4
+      ],
+      "forward_seconds": 0.5904336370000038,
+      "backward_and_adam_seconds": 0.6486502329999979,
+      "one_update_seconds": 1.2390928960000025,
+      "gradient_norm": 54.426334381103516,
+      "synthetic_loss": 0.15758346021175385,
+      "source_config": {
+        "method": "ts3",
+        "repository": "https://github.com/thuml/Transolver-3",
+        "commit": "ef4fee9fa08dbfc5af13f9d9b42202dfb34dba37",
+        "model_file": "models/Transolver_chunk_opt_matrix_mul.py",
+        "file_sha256": {
+          "models/Transolver_chunk_opt_matrix_mul.py": "49292aa1ee7be2e143db5b9c75d0128f8767f8a2ae74479cdc06aeb9d41fb71a"
+        },
+        "license": "No LICENSE file present at pinned upstream commit; no license inferred",
+        "constructor_kwargs": {
+          "n_layers": 16,
+          "n_hidden": 256,
+          "n_head": 8,
+          "slice_num": 64,
+          "mlp_ratio": 2,
+          "dropout": 0.0,
+          "space_dim": 3,
+          "fun_dim": 25,
+          "out_dim": 4,
+          "act": "gelu",
+          "unified_pos": false,
+          "ref": 8
+        },
+        "preset_source": "Official main_drivaerml_volume.py MODEL_KWARGS: 16 layers, width 256, 8 heads, 64 slices, MLP ratio 2, dropout 0, GELU, unified_pos false",
+        "slide_explicit": {
+          "long_epochs": 5000,
+          "short_stopped_update": 897,
+          "short_reported_update": 800,
+          "input_channels": 28,
+          "long_updates": 10000,
+          "output_channels": 4
+        },
+        "reference_gaps": [
+          "TS3 is identified as the official Transolver-3 family, but the exact server model file/commit cannot be verified.",
+          "Slide 4 does not specify depth, heads, slices, width, MLP ratio or optimizer settings; the official volume preset is a stated substitute.",
+          "Model constructor defaults are 5 layers / 32 slices / MLP ratio 1; official surface preset uses 24 layers. The chosen volume preset is explicit rather than silently treating either as slide settings.",
+          "The exact 25-feature schema and long-run target scaling constants are unavailable."
+        ],
+        "architecture_overrides": {},
+        "input": "xyz[3] + BC/material[25]; no sample ID",
+        "output": "uXYZ + source signed stress",
+        "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+        "checkpoint_blocks": true,
+        "checkpoint_strategy": "official global chunk stats and chunk deslice/MLP",
+        "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+        "chunk_size": 32768,
+        "eval_stochastic": false,
+        "gumbel_note": null,
+        "distributed": null,
+        "parameter_count": 7612036
+      },
+      "meaning": "one synthetic forward/backward/Adam update; not a trained result or steady-state timing",
+      "peak_allocated_GiB": 6.197592735290527,
+      "peak_reserved_GiB": 6.8203125,
+      "eval_probe_nodes": 512,
+      "eval_repeat_max_abs_difference": 0.0,
+      "eval_repeat_exactly_equal": true,
+      "global_chunk_vs_full_probe_max_abs_difference": 9.5367431640625e-07,
+      "context_consistency_probe_matmul_precision": "highest",
+      "passed": true
+    }
+  ]
+}

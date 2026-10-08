@@ -1,0 +1,209 @@
+{
+  "arguments": {
+    "method": "transolverpp",
+    "data": [
+      "data/prepared_exact_multifield"
+    ],
+    "case_keys": [
+      "506_533/ver",
+      "506_25/tor"
+    ],
+    "num_cases": 1,
+    "outputs": "both",
+    "input_mode": "both",
+    "stress_transform": "asinh",
+    "protocol": "full-case",
+    "steps": null,
+    "epochs": 500,
+    "nodes_per_case": 16384,
+    "learning_rate": 0.003,
+    "weight_decay": 0,
+    "selection": "physical-mse",
+    "eval_every": 100,
+    "status_every": 10,
+    "eval_batch_size": 65536,
+    "backend": "triton",
+    "device": "cuda",
+    "seed": 2026,
+    "checkpoint_blocks": true,
+    "small_hash_log2": 14,
+    "small_base": 8,
+    "small_growth": 2,
+    "small_width": 32,
+    "reference_runs": null,
+    "assumptions": [
+      "asinh_constants_unavailable_using_pooled_P90_centered_standardized_asinh"
+    ],
+    "output": "runs/slides_reproduction/transolverpp_two_asinh",
+    "resume": null,
+    "override_resume_lr": false,
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "method": "transolverpp",
+  "channels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "scaler": {
+    "mean": [
+      0.04685223155667294,
+      -0.001230349362456991,
+      0.07969236844814638,
+      0.13718357690689545
+    ],
+    "std": [
+      0.10609806946986748,
+      0.02683363605482126,
+      0.1555025177983523,
+      0.5254285698657869
+    ],
+    "stress_scale": 176.44669494628909,
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "parameter_count": 4459668,
+  "model": {
+    "method": "transolver_pp",
+    "repository": "https://github.com/thuml/Transolver_plus",
+    "commit": "d5a23bc734a0ebac56384cf72049a26af9673452",
+    "model_file": "models/Transolver_plus.py",
+    "file_sha256": {
+      "models/Transolver_plus.py": "7104ad5b90294d1d97b1e7e86b3eeb2ccbe11eec93d2e7bf566bcb3a8ab6e858"
+    },
+    "license": "MIT; upstream LICENSE retained",
+    "constructor_kwargs": {
+      "n_layers": 16,
+      "n_hidden": 256,
+      "n_head": 8,
+      "slice_num": 32,
+      "mlp_ratio": 1,
+      "dropout": 0.0,
+      "space_dim": 3,
+      "fun_dim": 25,
+      "out_dim": 4,
+      "act": "gelu",
+      "unified_pos": false,
+      "ref": 8
+    },
+    "preset_source": "Slide 5 fixes 16 layers / width 256; other settings are official Model constructor defaults: 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+    "slide_explicit": {
+      "output_scaling": [
+        "linear",
+        "invertible asinh stress"
+      ],
+      "updates": 1000,
+      "n_layers": 16,
+      "epochs": 500,
+      "n_hidden": 256,
+      "selection": "decoded physical normalized MSE",
+      "learning_rate": 0.003
+    },
+    "reference_gaps": [
+      "Head count, slice count, MLP ratio and dropout are not present in slide notes; official constructor defaults are used and are not claimed as exact reference settings.",
+      "Official Airplane launcher instead uses 4 layers, MLP ratio 2 and dropout 0.1; those task-specific settings are not substituted.",
+      "The source-server commit and exact target normalization constants are unavailable."
+    ],
+    "architecture_overrides": {},
+    "input": "xyz[3] + BC/material[25]; no sample ID",
+    "output": "uXYZ + source signed stress",
+    "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+    "checkpoint_blocks": true,
+    "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+    "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+    "chunk_size": null,
+    "eval_stochastic": true,
+    "gumbel_note": "Upstream ++ draws Gumbel noise during both train and eval; no guard or replacement added.",
+    "distributed": "world_size=1 process group for unchanged official all_reduce calls",
+    "parameter_count": 4459668
+  },
+  "implementation_details": {
+    "method": "transolver_pp",
+    "repository": "https://github.com/thuml/Transolver_plus",
+    "commit": "d5a23bc734a0ebac56384cf72049a26af9673452",
+    "model_file": "models/Transolver_plus.py",
+    "file_sha256": {
+      "models/Transolver_plus.py": "7104ad5b90294d1d97b1e7e86b3eeb2ccbe11eec93d2e7bf566bcb3a8ab6e858"
+    },
+    "license": "MIT; upstream LICENSE retained",
+    "constructor_kwargs": {
+      "n_layers": 16,
+      "n_hidden": 256,
+      "n_head": 8,
+      "slice_num": 32,
+      "mlp_ratio": 1,
+      "dropout": 0.0,
+      "space_dim": 3,
+      "fun_dim": 25,
+      "out_dim": 4,
+      "act": "gelu",
+      "unified_pos": false,
+      "ref": 8
+    },
+    "preset_source": "Slide 5 fixes 16 layers / width 256; other settings are official Model constructor defaults: 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+    "slide_explicit": {
+      "output_scaling": [
+        "linear",
+        "invertible asinh stress"
+      ],
+      "updates": 1000,
+      "n_layers": 16,
+      "epochs": 500,
+      "n_hidden": 256,
+      "selection": "decoded physical normalized MSE",
+      "learning_rate": 0.003
+    },
+    "reference_gaps": [
+      "Head count, slice count, MLP ratio and dropout are not present in slide notes; official constructor defaults are used and are not claimed as exact reference settings.",
+      "Official Airplane launcher instead uses 4 layers, MLP ratio 2 and dropout 0.1; those task-specific settings are not substituted.",
+      "The source-server commit and exact target normalization constants are unavailable."
+    ],
+    "architecture_overrides": {},
+    "input": "xyz[3] + BC/material[25]; no sample ID",
+    "output": "uXYZ + source signed stress",
+    "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+    "checkpoint_blocks": true,
+    "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+    "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+    "chunk_size": null,
+    "eval_stochastic": true,
+    "gumbel_note": "Upstream ++ draws Gumbel noise during both train and eval; no guard or replacement added.",
+    "distributed": "world_size=1 process group for unchanged official all_reduce calls",
+    "parameter_count": 4459668
+  },
+  "dataset": "original DeepJEB v1.0",
+  "cases": [
+    {
+      "sample_key": "506_533/ver",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_exact_multifield/506_533_ver.npz",
+      "nodes": 120777
+    },
+    {
+      "sample_key": "506_25/tor",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_exact_multifield/506_25_tor.npz",
+      "nodes": 122787
+    }
+  ],
+  "training_protocol": "one complete FEM case per update, cycling cases",
+  "evaluation": "every original node; contextual methods always use complete case context",
+  "checkpoint_selection": "physical-mse",
+  "physical_mse_definition": "case-balanced mean of per-case MSE after dividing each physical output channel by its pooled population std; historical case aggregation unavailable",
+  "reference_usage": null,
+  "assumptions": [
+    "asinh_constants_unavailable_using_pooled_P90_centered_standardized_asinh"
+  ],
+  "total_steps": 1000,
+  "torch_version": "2.14.1+cu130",
+  "precision": "float32 tensors; matmul precision high, TF32 allowed for CUDA matmul/cuDNN",
+  "started_at_utc": "2026-10-08T11:43:06.980518+00:00"
+}

@@ -1,0 +1,53 @@
+{
+  "step": 300,
+  "epoch": 300.0,
+  "elapsed_seconds": 126.51100642300003,
+  "training_loss": 0.5496384501457214,
+  "selection_score": 0.5491214012976976,
+  "physical_normalized_mse": 0.5491214012976976,
+  "per_case": {
+    "506_533/ver": {
+      "stress": {
+        "nodes": 120777,
+        "relative_l2": 0.8561803218565759,
+        "rmse": 130.15188752377182,
+        "mae": 94.38346623792022,
+        "max_abs_error": 1811.108661608847,
+        "hotspot_nodes": 1208,
+        "hotspot_relative_l2": 0.9070099177778894,
+        "hotspot_mae": 613.5695026996013,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 108.49718184627653,
+        "peak_abs_error": 1786.7276716693484
+      },
+      "displacement": {
+        "relative_l2": 0.33708224681266485,
+        "rmse_mm": 0.05739402556854489,
+        "max_vector_error_mm": 0.26393881554786497
+      }
+    }
+  },
+  "worst_case_key": "506_533/ver",
+  "pooled": {
+    "stress": {
+      "nodes": 120777,
+      "relative_l2": 0.8561803218565759,
+      "rmse": 130.15188752377182,
+      "mae": 94.38346623792022,
+      "max_abs_error": 1811.108661608847,
+      "hotspot_nodes": 1208,
+      "hotspot_relative_l2": 0.9070099177778894,
+      "hotspot_mae": 613.5695026996013,
+      "true_peak": 1895.224853515625,
+      "predicted_peak": 108.49718184627653,
+      "peak_abs_error": 1786.7276716693484
+    },
+    "displacement": {
+      "relative_l2": 0.33708224681266485,
+      "rmse_mm": 0.05739402556854489,
+      "max_vector_error_mm": 0.26393881554786497
+    }
+  },
+  "case_mean_relative_l2": 0.8561803218565759,
+  "worst_case_relative_l2": 0.8561803218565759
+}

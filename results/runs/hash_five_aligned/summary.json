@@ -1,0 +1,334 @@
+{
+  "status": "completed",
+  "step": 1000,
+  "best_step": 800,
+  "best_score": 0.034031548909539536,
+  "elapsed_seconds": 11.298838687,
+  "best_metrics": {
+    "step": 800,
+    "epoch": null,
+    "elapsed_seconds": 9.150841607000018,
+    "training_loss": 0.0004485332756303251,
+    "selection_score": 0.034031548909539536,
+    "physical_normalized_mse": 0.0004877535001084664,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.013027876856797344,
+          "rmse": 1.9804271600900902,
+          "mae": 1.0731036591735787,
+          "max_abs_error": 115.18620407242167,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.01301751811842863,
+          "hotspot_mae": 4.009090713166042,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 1893.5110423856013,
+          "peak_abs_error": 1.7138111300237142
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 0.028976261499145006,
+          "rmse": 1.945451791351649,
+          "mae": 1.0785488627190765,
+          "max_abs_error": 76.36087160204148,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 0.010930399847162226,
+          "hotspot_mae": 1.1558735540708134,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 350.03095277550176,
+          "peak_abs_error": 1.1282879471544902
+        }
+      },
+      "10_30/ver": {
+        "stress": {
+          "nodes": 158221,
+          "relative_l2": 0.018751165634472256,
+          "rmse": 2.3839880107584777,
+          "mae": 1.1011341794519578,
+          "max_abs_error": 394.9191952485389,
+          "hotspot_nodes": 1583,
+          "hotspot_relative_l2": 0.026683741086910327,
+          "hotspot_mae": 4.82593157106317,
+          "true_peak": 1566.6309814453125,
+          "predicted_peak": 1564.8194362853237,
+          "peak_abs_error": 1.811545159988782
+        }
+      },
+      "10_421/hor": {
+        "stress": {
+          "nodes": 189704,
+          "relative_l2": 0.0319342135959853,
+          "rmse": 1.9912693754296935,
+          "mae": 0.7886342618680526,
+          "max_abs_error": 296.82999606337887,
+          "hotspot_nodes": 1898,
+          "hotspot_relative_l2": 0.060706149702937987,
+          "hotspot_mae": 3.8980111352093587,
+          "true_peak": 510.0827331542969,
+          "predicted_peak": 520.953191899741,
+          "peak_abs_error": 10.870458745444125
+        }
+      },
+      "10_460/dia": {
+        "stress": {
+          "nodes": 200331,
+          "relative_l2": 0.034031548909539536,
+          "rmse": 1.4101213815525189,
+          "mae": 0.5236031053395572,
+          "max_abs_error": 203.47680947693706,
+          "hotspot_nodes": 2004,
+          "hotspot_relative_l2": 0.057287762478084675,
+          "hotspot_mae": 2.715306864034053,
+          "true_peak": 492.80859375,
+          "predicted_peak": 487.93198645710856,
+          "peak_abs_error": 4.8766072928914355
+        }
+      }
+    },
+    "worst_case_key": "10_460/dia",
+    "pooled": {
+      "stress": {
+        "nodes": 791820,
+        "relative_l2": 0.020685607105703673,
+        "rmse": 1.942638618013095,
+        "mae": 0.8723719766701508,
+        "max_abs_error": 394.9191952485389,
+        "hotspot_nodes": 7919,
+        "hotspot_relative_l2": 0.024287196365808016,
+        "hotspot_mae": 3.3411006830293797,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 1893.5110423856013,
+        "peak_abs_error": 1.7138111300237142
+      }
+    },
+    "case_mean_relative_l2": 0.02534421329918789,
+    "worst_case_relative_l2": 0.034031548909539536
+  },
+  "final_metrics": {
+    "step": 1000,
+    "epoch": null,
+    "elapsed_seconds": 11.015246170000012,
+    "training_loss": 0.00048641691682860255,
+    "selection_score": 0.03624381446059881,
+    "physical_normalized_mse": 0.0005820194301077766,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.01709452897082548,
+          "rmse": 2.5986175518005443,
+          "mae": 1.8838216568205421,
+          "max_abs_error": 116.06737078645835,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.016041356213341584,
+          "hotspot_mae": 8.628376190967174,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 1913.7196243754988,
+          "peak_abs_error": 18.494770859873825
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 0.02940526818925737,
+          "rmse": 1.9742550872428584,
+          "mae": 1.4717775716358066,
+          "max_abs_error": 57.22599755817267,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 0.013631823234628635,
+          "hotspot_mae": 2.295576434840004,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 351.753513359989,
+          "peak_abs_error": 0.5942726373327218
+        }
+      },
+      "10_30/ver": {
+        "stress": {
+          "nodes": 158221,
+          "relative_l2": 0.020187136276222765,
+          "rmse": 2.5665546234409917,
+          "mae": 1.794132334161382,
+          "max_abs_error": 264.19028251495763,
+          "hotspot_nodes": 1583,
+          "hotspot_relative_l2": 0.022228191771364928,
+          "hotspot_mae": 8.261764773099797,
+          "true_peak": 1566.6309814453125,
+          "predicted_peak": 1583.7591550101074,
+          "peak_abs_error": 17.128173564794906
+        }
+      },
+      "10_421/hor": {
+        "stress": {
+          "nodes": 189704,
+          "relative_l2": 0.030383053417993553,
+          "rmse": 1.894546224582811,
+          "mae": 1.1889375707726688,
+          "max_abs_error": 245.20716961292646,
+          "hotspot_nodes": 1898,
+          "hotspot_relative_l2": 0.047391627807909995,
+          "hotspot_mae": 4.109928635346272,
+          "true_peak": 510.0827331542969,
+          "predicted_peak": 518.7211536978405,
+          "peak_abs_error": 8.638420543543589
+        }
+      },
+      "10_460/dia": {
+        "stress": {
+          "nodes": 200331,
+          "relative_l2": 0.03624381446059881,
+          "rmse": 1.50178817472473,
+          "mae": 1.0303660872084641,
+          "max_abs_error": 160.2268384912118,
+          "hotspot_nodes": 2004,
+          "hotspot_relative_l2": 0.04733734897273123,
+          "hotspot_mae": 3.4904433506642873,
+          "true_peak": 492.80859375,
+          "predicted_peak": 497.8366996356362,
+          "peak_abs_error": 5.028105885636194
+        }
+      }
+    },
+    "worst_case_key": "10_460/dia",
+    "pooled": {
+      "stress": {
+        "nodes": 791820,
+        "relative_l2": 0.022288109444450734,
+        "rmse": 2.0931337382577393,
+        "mae": 1.4195996243085873,
+        "max_abs_error": 264.19028251495763,
+        "hotspot_nodes": 7919,
+        "hotspot_relative_l2": 0.02173812654995431,
+        "hotspot_mae": 5.820777263157743,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 1913.7196243754988,
+        "peak_abs_error": 18.494770859873825
+      }
+    },
+    "case_mean_relative_l2": 0.02666276026297959,
+    "worst_case_relative_l2": 0.03624381446059881
+  },
+  "config": {
+    "arguments": {
+      "method": "hashgrid",
+      "data": [
+        "data/prepared_benchmark5"
+      ],
+      "case_keys": [
+        "506_533/ver",
+        "506_25/tor",
+        "10_30/ver",
+        "10_421/hor",
+        "10_460/dia"
+      ],
+      "num_cases": 1,
+      "outputs": "stress",
+      "input_mode": "both",
+      "stress_transform": "asinh",
+      "protocol": "sampled",
+      "steps": 1000,
+      "epochs": null,
+      "nodes_per_case": 16384,
+      "learning_rate": 0.003,
+      "weight_decay": 0,
+      "selection": "worst-stress",
+      "eval_every": 100,
+      "status_every": 10,
+      "eval_batch_size": 65536,
+      "backend": "triton",
+      "device": "cuda",
+      "seed": 2026,
+      "checkpoint_blocks": false,
+      "small_hash_log2": 14,
+      "small_base": 8,
+      "small_growth": 2,
+      "small_width": 32,
+      "reference_runs": null,
+      "assumptions": [
+        "asinh_constants_and_LR_absent_using_P90_scaled_centered_asinh_and_0.003",
+        "torch_MLP_instead_of_tiny_cuda_nn_fused_MLP"
+      ],
+      "output": "runs/slides_reproduction/hash_five_aligned",
+      "resume": null,
+      "override_resume_lr": false,
+      "channels": [
+        3
+      ]
+    },
+    "method": "hashgrid",
+    "channels": [
+      3
+    ],
+    "scaler": {
+      "mean": [
+        0.17799869085721032
+      ],
+      "std": [
+        0.5017489553970146
+      ],
+      "stress_scale": 142.90268096923828,
+      "channels": [
+        3
+      ]
+    },
+    "parameter_count": 7741057,
+    "model": {
+      "encoder": "hashgrid",
+      "input_mode": "both",
+      "condition_dim": 25,
+      "hidden_dim": 64,
+      "hidden_layers": 2,
+      "hash_grid": {
+        "n_levels": 12,
+        "n_features_per_level": 2,
+        "log2_hashmap_size": 19,
+        "base_resolution": 8,
+        "per_level_scale": 1.6
+      }
+    },
+    "dataset": "original DeepJEB v1.0",
+    "cases": [
+      {
+        "sample_key": "506_533/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/506_533_ver.npz",
+        "nodes": 120777
+      },
+      {
+        "sample_key": "506_25/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/506_25_tor.npz",
+        "nodes": 122787
+      },
+      {
+        "sample_key": "10_30/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_30_ver.npz",
+        "nodes": 158221
+      },
+      {
+        "sample_key": "10_421/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_421_hor.npz",
+        "nodes": 189704
+      },
+      {
+        "sample_key": "10_460/dia",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_benchmark5/10_460_dia.npz",
+        "nodes": 200331
+      }
+    ],
+    "training_protocol": "one case-balanced random batch per update",
+    "evaluation": "every original node; contextual methods always use complete case context",
+    "checkpoint_selection": "worst-stress",
+    "physical_mse_definition": "case-balanced mean of per-case MSE after dividing each physical output channel by its pooled population std; historical case aggregation unavailable",
+    "reference_usage": null,
+    "assumptions": [
+      "asinh_constants_and_LR_absent_using_P90_scaled_centered_asinh_and_0.003",
+      "torch_MLP_instead_of_tiny_cuda_nn_fused_MLP"
+    ],
+    "total_steps": 1000,
+    "torch_version": "2.14.1+cu130",
+    "precision": "float32 tensors; matmul precision high, TF32 allowed for CUDA matmul/cuDNN",
+    "started_at_utc": "2026-10-08T10:22:29.883094+00:00"
+  },
+  "completed_at_utc": "2026-10-08T10:22:42.998325+00:00"
+}

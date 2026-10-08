@@ -1,0 +1,363 @@
+{
+  "status": "completed",
+  "step": 1000,
+  "best_step": 900,
+  "best_score": 0.4615612888200986,
+  "elapsed_seconds": 409.03005422800015,
+  "best_metrics": {
+    "step": 900,
+    "epoch": 450.0,
+    "elapsed_seconds": 368.0829684219998,
+    "training_loss": 0.17529696226119995,
+    "selection_score": 0.4615612888200986,
+    "physical_normalized_mse": 0.4615612888200986,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.8585553020566938,
+          "rmse": 130.5129191288976,
+          "mae": 94.18556387912284,
+          "max_abs_error": 1906.8348239002344,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.9398271033401545,
+          "hotspot_mae": 637.7359205901314,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 107.75768670251813,
+          "peak_abs_error": 1787.4671668131068
+        },
+        "displacement": {
+          "relative_l2": 0.3303353001713641,
+          "rmse_mm": 0.056245242351089866,
+          "max_vector_error_mm": 0.27293164709555884
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 1.0016094341825716,
+          "rmse": 67.24755945561479,
+          "mae": 50.91631159188388,
+          "max_abs_error": 360.8930565128593,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 1.00059874275747,
+          "hotspot_mae": 233.99067440793976,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 31.543265619960927,
+          "peak_abs_error": 319.6159751026953
+        },
+        "displacement": {
+          "relative_l2": 0.9091587719711515,
+          "rmse_mm": 0.029364855928596938,
+          "max_vector_error_mm": 0.18722483103730525
+        }
+      }
+    },
+    "worst_case_key": "506_25/tor",
+    "pooled": {
+      "stress": {
+        "nodes": 243564,
+        "relative_l2": 0.8838302782211614,
+        "rmse": 103.56786831879715,
+        "mae": 72.37239904116151,
+        "max_abs_error": 1906.8348239002344,
+        "hotspot_nodes": 2436,
+        "hotspot_relative_l2": 0.9257482139726522,
+        "hotspot_mae": 480.55327874291197,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 107.75768670251813,
+        "peak_abs_error": 1787.4671668131068
+      },
+      "displacement": {
+        "relative_l2": 0.3666647127811124,
+        "rmse_mm": 0.04475953106304927,
+        "max_vector_error_mm": 0.27293164709555884
+      }
+    },
+    "case_mean_relative_l2": 0.9300823681196327,
+    "worst_case_relative_l2": 1.0016094341825716
+  },
+  "final_metrics": {
+    "step": 1000,
+    "epoch": 500.0,
+    "elapsed_seconds": 408.69833961600034,
+    "training_loss": 0.18676619231700897,
+    "selection_score": 0.4645432433290667,
+    "physical_normalized_mse": 0.4645432433290667,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.8505185780166111,
+          "rmse": 129.29121994167932,
+          "mae": 93.33574683774303,
+          "max_abs_error": 1859.546790743196,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.9188702860492224,
+          "hotspot_mae": 622.509330797055,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 125.96612915811264,
+          "peak_abs_error": 1769.2587243575124
+        },
+        "displacement": {
+          "relative_l2": 0.33523917881484233,
+          "rmse_mm": 0.05708021167655911,
+          "max_vector_error_mm": 0.27978598883502975
+        }
+      },
+      "506_25/tor": {
+        "stress": {
+          "nodes": 122787,
+          "relative_l2": 1.0012233848129977,
+          "rmse": 67.22164029286807,
+          "mae": 50.94929931347882,
+          "max_abs_error": 357.9986368882783,
+          "hotspot_nodes": 1228,
+          "hotspot_relative_l2": 0.9985375716756731,
+          "hotspot_mae": 233.50407655850577,
+          "true_peak": 351.15924072265625,
+          "predicted_peak": 15.47063065884849,
+          "peak_abs_error": 335.68861006380774
+        },
+        "displacement": {
+          "relative_l2": 0.9705897547361371,
+          "rmse_mm": 0.031349010967364095,
+          "max_vector_error_mm": 0.2528387920506376
+        }
+      }
+    },
+    "worst_case_key": "506_25/tor",
+    "pooled": {
+      "stress": {
+        "nodes": 243564,
+        "relative_l2": 0.8772489785990739,
+        "rmse": 102.7966668908502,
+        "mae": 71.96762703283825,
+        "max_abs_error": 1859.546790743196,
+        "hotspot_nodes": 2436,
+        "hotspot_relative_l2": 0.9028926972678337,
+        "hotspot_mae": 467.7008662830789,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 125.96612915811264,
+        "peak_abs_error": 1769.2587243575124
+      },
+      "displacement": {
+        "relative_l2": 0.3763869623416736,
+        "rmse_mm": 0.04594634647244059,
+        "max_vector_error_mm": 0.27978598883502975
+      }
+    },
+    "case_mean_relative_l2": 0.9258709814148044,
+    "worst_case_relative_l2": 1.0012233848129977
+  },
+  "config": {
+    "arguments": {
+      "method": "transolverpp",
+      "data": [
+        "data/prepared_exact_multifield"
+      ],
+      "case_keys": [
+        "506_533/ver",
+        "506_25/tor"
+      ],
+      "num_cases": 1,
+      "outputs": "both",
+      "input_mode": "both",
+      "stress_transform": "linear",
+      "protocol": "full-case",
+      "steps": null,
+      "epochs": 500,
+      "nodes_per_case": 16384,
+      "learning_rate": 0.003,
+      "weight_decay": 0,
+      "selection": "physical-mse",
+      "eval_every": 100,
+      "status_every": 10,
+      "eval_batch_size": 65536,
+      "backend": "triton",
+      "device": "cuda",
+      "seed": 2026,
+      "checkpoint_blocks": true,
+      "small_hash_log2": 14,
+      "small_base": 8,
+      "small_growth": 2,
+      "small_width": 32,
+      "reference_runs": null,
+      "assumptions": [
+        "25_feature_schema_unavailable_using_explicit_deck_derived_schema"
+      ],
+      "output": "runs/slides_reproduction/transolverpp_two_linear",
+      "resume": null,
+      "override_resume_lr": false,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "method": "transolverpp",
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "scaler": {
+      "mean": [
+        0.04685223155667294,
+        -0.001230349362456991,
+        0.07969236844814638,
+        29.348632093523346
+      ],
+      "std": [
+        0.10609806946986748,
+        0.02683363605482126,
+        0.1555025177983523,
+        113.4459295131233
+      ],
+      "stress_scale": null,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "parameter_count": 4459668,
+    "model": {
+      "method": "transolver_pp",
+      "repository": "https://github.com/thuml/Transolver_plus",
+      "commit": "d5a23bc734a0ebac56384cf72049a26af9673452",
+      "model_file": "models/Transolver_plus.py",
+      "file_sha256": {
+        "models/Transolver_plus.py": "7104ad5b90294d1d97b1e7e86b3eeb2ccbe11eec93d2e7bf566bcb3a8ab6e858"
+      },
+      "license": "MIT; upstream LICENSE retained",
+      "constructor_kwargs": {
+        "n_layers": 16,
+        "n_hidden": 256,
+        "n_head": 8,
+        "slice_num": 32,
+        "mlp_ratio": 1,
+        "dropout": 0.0,
+        "space_dim": 3,
+        "fun_dim": 25,
+        "out_dim": 4,
+        "act": "gelu",
+        "unified_pos": false,
+        "ref": 8
+      },
+      "preset_source": "Slide 5 fixes 16 layers / width 256; other settings are official Model constructor defaults: 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+      "slide_explicit": {
+        "output_scaling": [
+          "linear",
+          "invertible asinh stress"
+        ],
+        "updates": 1000,
+        "n_layers": 16,
+        "epochs": 500,
+        "n_hidden": 256,
+        "selection": "decoded physical normalized MSE",
+        "learning_rate": 0.003
+      },
+      "reference_gaps": [
+        "Head count, slice count, MLP ratio and dropout are not present in slide notes; official constructor defaults are used and are not claimed as exact reference settings.",
+        "Official Airplane launcher instead uses 4 layers, MLP ratio 2 and dropout 0.1; those task-specific settings are not substituted.",
+        "The source-server commit and exact target normalization constants are unavailable."
+      ],
+      "architecture_overrides": {},
+      "input": "xyz[3] + BC/material[25]; no sample ID",
+      "output": "uXYZ + source signed stress",
+      "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+      "checkpoint_blocks": true,
+      "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+      "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+      "chunk_size": null,
+      "eval_stochastic": true,
+      "gumbel_note": "Upstream ++ draws Gumbel noise during both train and eval; no guard or replacement added.",
+      "distributed": "world_size=1 process group for unchanged official all_reduce calls",
+      "parameter_count": 4459668
+    },
+    "implementation_details": {
+      "method": "transolver_pp",
+      "repository": "https://github.com/thuml/Transolver_plus",
+      "commit": "d5a23bc734a0ebac56384cf72049a26af9673452",
+      "model_file": "models/Transolver_plus.py",
+      "file_sha256": {
+        "models/Transolver_plus.py": "7104ad5b90294d1d97b1e7e86b3eeb2ccbe11eec93d2e7bf566bcb3a8ab6e858"
+      },
+      "license": "MIT; upstream LICENSE retained",
+      "constructor_kwargs": {
+        "n_layers": 16,
+        "n_hidden": 256,
+        "n_head": 8,
+        "slice_num": 32,
+        "mlp_ratio": 1,
+        "dropout": 0.0,
+        "space_dim": 3,
+        "fun_dim": 25,
+        "out_dim": 4,
+        "act": "gelu",
+        "unified_pos": false,
+        "ref": 8
+      },
+      "preset_source": "Slide 5 fixes 16 layers / width 256; other settings are official Model constructor defaults: 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+      "slide_explicit": {
+        "output_scaling": [
+          "linear",
+          "invertible asinh stress"
+        ],
+        "updates": 1000,
+        "n_layers": 16,
+        "epochs": 500,
+        "n_hidden": 256,
+        "selection": "decoded physical normalized MSE",
+        "learning_rate": 0.003
+      },
+      "reference_gaps": [
+        "Head count, slice count, MLP ratio and dropout are not present in slide notes; official constructor defaults are used and are not claimed as exact reference settings.",
+        "Official Airplane launcher instead uses 4 layers, MLP ratio 2 and dropout 0.1; those task-specific settings are not substituted.",
+        "The source-server commit and exact target normalization constants are unavailable."
+      ],
+      "architecture_overrides": {},
+      "input": "xyz[3] + BC/material[25]; no sample ID",
+      "output": "uXYZ + source signed stress",
+      "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+      "checkpoint_blocks": true,
+      "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+      "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+      "chunk_size": null,
+      "eval_stochastic": true,
+      "gumbel_note": "Upstream ++ draws Gumbel noise during both train and eval; no guard or replacement added.",
+      "distributed": "world_size=1 process group for unchanged official all_reduce calls",
+      "parameter_count": 4459668
+    },
+    "dataset": "original DeepJEB v1.0",
+    "cases": [
+      {
+        "sample_key": "506_533/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_exact_multifield/506_533_ver.npz",
+        "nodes": 120777
+      },
+      {
+        "sample_key": "506_25/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_exact_multifield/506_25_tor.npz",
+        "nodes": 122787
+      }
+    ],
+    "training_protocol": "one complete FEM case per update, cycling cases",
+    "evaluation": "every original node; contextual methods always use complete case context",
+    "checkpoint_selection": "physical-mse",
+    "physical_mse_definition": "case-balanced mean of per-case MSE after dividing each physical output channel by its pooled population std; historical case aggregation unavailable",
+    "reference_usage": null,
+    "assumptions": [
+      "25_feature_schema_unavailable_using_explicit_deck_derived_schema"
+    ],
+    "total_steps": 1000,
+    "torch_version": "2.14.1+cu130",
+    "precision": "float32 tensors; matmul precision high, TF32 allowed for CUDA matmul/cuDNN",
+    "started_at_utc": "2026-10-08T11:35:36.063355+00:00"
+  },
+  "completed_at_utc": "2026-10-08T11:42:57.468761+00:00"
+}

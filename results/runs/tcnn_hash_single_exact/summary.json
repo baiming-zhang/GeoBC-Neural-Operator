@@ -1,0 +1,226 @@
+{
+  "status": "completed",
+  "step": 1000,
+  "best_step": 500,
+  "best_score": 0.004139400298830824,
+  "elapsed_seconds": 18.369563126000003,
+  "best_metrics": {
+    "step": 500,
+    "epoch": null,
+    "elapsed_seconds": 10.236481858999923,
+    "training_loss": 1.9653547497000545e-05,
+    "selection_score": 0.004139400298830824,
+    "physical_normalized_mse": 2.0147749390896656e-05,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.004139400298830824,
+          "rmse": 0.6292491760860003,
+          "mae": 0.14801004259788544,
+          "max_abs_error": 52.44772619821266,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.0016490209856897151,
+          "hotspot_mae": 0.4917501569939136,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 1888.7377694501754,
+          "peak_abs_error": 6.487084065449608
+        }
+      }
+    },
+    "worst_case_key": "506_533/ver",
+    "pooled": {
+      "stress": {
+        "nodes": 120777,
+        "relative_l2": 0.004139400298830824,
+        "rmse": 0.6292491760860003,
+        "mae": 0.14801004259788544,
+        "max_abs_error": 52.44772619821266,
+        "hotspot_nodes": 1208,
+        "hotspot_relative_l2": 0.0016490209856897151,
+        "hotspot_mae": 0.4917501569939136,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 1888.7377694501754,
+        "peak_abs_error": 6.487084065449608
+      }
+    },
+    "case_mean_relative_l2": 0.004139400298830824,
+    "worst_case_relative_l2": 0.004139400298830824
+  },
+  "final_metrics": {
+    "step": 1000,
+    "epoch": null,
+    "elapsed_seconds": 18.13649734799992,
+    "training_loss": 6.929867959115654e-05,
+    "selection_score": 0.007004389820090371,
+    "physical_normalized_mse": 5.768890600359473e-05,
+    "per_case": {
+      "506_533/ver": {
+        "stress": {
+          "nodes": 120777,
+          "relative_l2": 0.007004389820090371,
+          "rmse": 1.064769339781402,
+          "mae": 0.42544001242433166,
+          "max_abs_error": 36.50999275053718,
+          "hotspot_nodes": 1208,
+          "hotspot_relative_l2": 0.0016109079646565703,
+          "hotspot_mae": 0.6415449715072086,
+          "true_peak": 1895.224853515625,
+          "predicted_peak": 1888.7377694501754,
+          "peak_abs_error": 6.487084065449608
+        }
+      }
+    },
+    "worst_case_key": "506_533/ver",
+    "pooled": {
+      "stress": {
+        "nodes": 120777,
+        "relative_l2": 0.007004389820090371,
+        "rmse": 1.064769339781402,
+        "mae": 0.42544001242433166,
+        "max_abs_error": 36.50999275053718,
+        "hotspot_nodes": 1208,
+        "hotspot_relative_l2": 0.0016109079646565703,
+        "hotspot_mae": 0.6415449715072086,
+        "true_peak": 1895.224853515625,
+        "predicted_peak": 1888.7377694501754,
+        "peak_abs_error": 6.487084065449608
+      }
+    },
+    "case_mean_relative_l2": 0.007004389820090371,
+    "worst_case_relative_l2": 0.007004389820090371
+  },
+  "config": {
+    "arguments": {
+      "method": "hashgrid",
+      "data": [
+        "data/prepared_exact_multifield"
+      ],
+      "case_keys": [
+        "506_533/ver"
+      ],
+      "num_cases": 1,
+      "outputs": "stress",
+      "input_mode": "xyz",
+      "stress_transform": "asinh",
+      "protocol": "sampled",
+      "steps": 1000,
+      "epochs": null,
+      "nodes_per_case": 16384,
+      "learning_rate": 0.003,
+      "weight_decay": 0,
+      "selection": "worst-stress",
+      "eval_every": 100,
+      "status_every": 10,
+      "eval_batch_size": 65536,
+      "backend": "tcnn-fused",
+      "device": "cuda",
+      "seed": 2026,
+      "checkpoint_blocks": false,
+      "small_hash_log2": 14,
+      "small_base": 8,
+      "small_growth": 2,
+      "small_width": 32,
+      "reference_runs": null,
+      "assumptions": [
+        "asinh_constants_and_LR_not_published_using_recorded_P90_and_0.003"
+      ],
+      "output": "runs/slides_reproduction/tcnn_hash_single_exact",
+      "resume": null,
+      "override_resume_lr": false,
+      "channels": [
+        3
+      ]
+    },
+    "method": "hashgrid",
+    "channels": [
+      3
+    ],
+    "scaler": {
+      "mean": [
+        0.23321251445423266
+      ],
+      "std": [
+        0.5324432271079432
+      ],
+      "stress_scale": 217.02764892578128,
+      "channels": [
+        3
+      ]
+    },
+    "parameter_count": 7740800,
+    "model": {
+      "out_channels": 1,
+      "input_mode": "xyz",
+      "condition_dim": 25,
+      "n_levels": 12,
+      "n_features_per_level": 2,
+      "log2_hashmap_size": 19,
+      "base_resolution": 8,
+      "per_level_scale": 1.6,
+      "hidden_dim": 64,
+      "hidden_layers": 2,
+      "seed": 2026
+    },
+    "implementation_details": {
+      "out_channels": 1,
+      "input_mode": "xyz",
+      "condition_dim": 25,
+      "n_levels": 12,
+      "n_features_per_level": 2,
+      "log2_hashmap_size": 19,
+      "base_resolution": 8,
+      "per_level_scale": 1.6,
+      "hidden_dim": 64,
+      "hidden_layers": 2,
+      "seed": 2026,
+      "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "encoding": {
+        "otype": "HashGrid",
+        "n_levels": 12,
+        "n_features_per_level": 2,
+        "log2_hashmap_size": 19,
+        "base_resolution": 8,
+        "per_level_scale": 1.6,
+        "interpolation": "Linear",
+        "hash": "CoherentPrime"
+      },
+      "network": {
+        "otype": "FullyFusedMLP",
+        "activation": "ReLU",
+        "output_activation": "None",
+        "n_neurons": 64,
+        "n_hidden_layers": 2
+      },
+      "sample_id": false,
+      "raw_xyz_after_encoding": false,
+      "bias_parameters": false,
+      "jit_fusion": false,
+      "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+      "alignment": "native TCNN channel/batch padding retained",
+      "layout": "xyz[N,3], features[N,condition_dim] -> prediction[N,out_channels]"
+    },
+    "dataset": "original DeepJEB v1.0",
+    "cases": [
+      {
+        "sample_key": "506_533/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_exact_multifield/506_533_ver.npz",
+        "nodes": 120777
+      }
+    ],
+    "training_protocol": "one case-balanced random batch per update",
+    "evaluation": "every original node; contextual methods always use complete case context",
+    "checkpoint_selection": "worst-stress",
+    "physical_mse_definition": "case-balanced mean of per-case MSE after dividing each physical output channel by its pooled population std; historical case aggregation unavailable",
+    "reference_usage": null,
+    "assumptions": [
+      "asinh_constants_and_LR_not_published_using_recorded_P90_and_0.003"
+    ],
+    "total_steps": 1000,
+    "torch_version": "2.14.1+cu130",
+    "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+    "started_at_utc": "2026-10-08T10:41:12.445066+00:00"
+  },
+  "completed_at_utc": "2026-10-08T10:41:32.445082+00:00"
+}

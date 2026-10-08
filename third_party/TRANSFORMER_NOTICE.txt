@@ -1,0 +1,14 @@
+The official Transolver-family repositories are vendored unchanged for local
+research reproducibility. Commits, source-file SHA256 checksums, constructor
+settings and reference gaps are recorded in transformer_sources.json.
+
+Transolver: thuml/Transolver; upstream MIT license is retained in Transolver/LICENSE.
+Transolver++: thuml/Transolver_plus; upstream MIT license is retained in Transolver_plus/LICENSE.
+Transolver-3: thuml/Transolver-3; the pinned upstream commit does not contain a
+LICENSE file. No MIT or other license is inferred or added for that repository.
+
+The geobc adapter leaves source architecture and attention behavior intact.
+Its only dependency binding maps timm's truncated-normal initializer to the
+equivalent torch.nn.init.trunc_normal_. Official einops is installed separately.
+Activation checkpointing preserves RNG state. TS3 chunks share global states;
+Transolver++ retains its upstream stochastic Gumbel behavior in evaluation.
