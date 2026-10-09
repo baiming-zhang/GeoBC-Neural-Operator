@@ -1,0 +1,41 @@
+{
+  "kind": "fno_response_screen",
+  "response_mode": "load_dependent_basis",
+  "step": 480,
+  "total_steps": 480,
+  "evaluated_steps": [
+    0,
+    120,
+    240,
+    480
+  ],
+  "started_at_utc": "2026-10-09T18:03:40.554421+00:00",
+  "phase": "completed",
+  "updated_at_utc": "2026-10-09T18:06:12.800332+00:00",
+  "elapsed_seconds": 137.46744242000003,
+  "costs": {
+    "train_seconds": 104.17680959400025,
+    "inference_seconds": 1.872052566000093,
+    "evaluation_seconds": 17.437321887999957,
+    "input_guard_build_seconds": 0.0,
+    "input_guard_read_seconds": 4.363568813000086,
+    "train_case_exposures": 480,
+    "train_node_exposures": 104319540,
+    "inference_case_exposures": 72,
+    "inference_node_exposures": 13785956,
+    "input_guard_build_count": 0,
+    "input_guard_reuse_count": 45,
+    "train_seconds_definition": "Begin before normal load_case; current case/target/grid/query-cache read and H2D + complete FNO/all-node loss/backward/Adam/sync; shared lazy input guard separately timed"
+  },
+  "eta_seconds": 0.0,
+  "estimated_completion_utc": "2026-10-09T18:06:12.800340+00:00",
+  "eta_limit": "Observed train/evaluation rates; unseen-CAD lazy guard construction not extrapolated",
+  "best_step": 480,
+  "selection_score": 0.5645991511307225,
+  "memory": {
+    "peak_allocated_bytes": 1240332288,
+    "peak_reserved_bytes": 1566572544
+  },
+  "case": "107_186/ver",
+  "training_loss": 0.13417498767375946
+}

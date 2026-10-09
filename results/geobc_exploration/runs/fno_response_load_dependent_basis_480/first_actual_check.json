@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "step": 1,
+  "case": "107_150/tor",
+  "gradient": {
+    "passed": true,
+    "all_present_gradients_finite": true,
+    "trainable_tensors": 44,
+    "gradient_tensors": 44,
+    "missing_gradient_names": [],
+    "allowed_missing": [],
+    "allowed_missing_reason": null,
+    "L2_gradient_norms": {
+      "total": 0.1317133605480194,
+      "encoder": 0.0013498201733455062,
+      "solver": 0.13170643150806427
+    },
+    "source": "first actual full-case loss backward; no probe or warmup",
+    "head_L2_gradient_norms": {
+      "u_basis_head": 0.10484890456291672,
+      "stress_head": 0.07831432175882737
+    },
+    "u_basis_final_weight_row_norms": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0240796972066164,
+      0.05481874942779541,
+      0.041763272136449814
+    ],
+    "alpha": [
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "zero_row_policy": "One-hot inactive basis output rows may have zero gradients; no requirement that all nine rows be positive"
+  },
+  "units_alpha_query": {
+    "passed": true,
+    "case": "107_150/tor",
+    "full_nodes": 325387,
+    "witness_original_node_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "basis_grid_shape": [
+      1,
+      9,
+      64,
+      64,
+      64
+    ],
+    "stress_grid_shape": [
+      1,
+      1,
+      64,
+      64,
+      64
+    ],
+    "encoded_node_shape": [
+      325387,
+      4
+    ],
+    "alpha": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "expected_alpha": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "force_max_reconstruction_residual_N": 0.0,
+    "moment_max_reconstruction_residual_Nmm": 0.006081294966861606,
+    "force_reconstruction_tolerance_N": 0.01,
+    "moment_reconstruction_tolerance_Nmm": 0.6649241939187049,
+    "query_then_compose_max_abs_error": 7.450580596923828e-09,
+    "all_node_partition_of_unity_max_abs_error": 1.1920928955078125e-07,
+    "physical_affine_max_error_mm": 2.747592422677747e-10,
+    "mean_policy": "B_kj=std_j*V_kj; z=sum(alpha*V)-mean/std once; physical_u=std*sum(alpha*V)",
+    "algebraic_zero_load_physical_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "extra_body_forwards": 0,
+    "scope": "Witnesses reuse components from the first actual full-node training loss; not a toy or superposition GT check"
+  }
+}

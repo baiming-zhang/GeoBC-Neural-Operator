@@ -1,0 +1,65 @@
+{
+  "method": "gino",
+  "step": 480,
+  "total_steps": 480,
+  "started_at_utc": "2026-10-09T17:05:49.828547+00:00",
+  "evaluated_steps": [
+    0,
+    120,
+    240,
+    360,
+    480
+  ],
+  "phase": "completed",
+  "updated_at_utc": "2026-10-09T17:21:22.819665+00:00",
+  "elapsed_seconds": 864.206443614,
+  "costs": {
+    "train_seconds": 740.1197138909995,
+    "gpu_step_seconds": 375.95867788099895,
+    "base_case_load_seconds": 48.34215252900035,
+    "inference_seconds": 35.634605638999815,
+    "evaluation_seconds": 78.22261094799995,
+    "radius_build_seconds": 4.572463518999983,
+    "radius_read_seconds": 345.52316121499985,
+    "radius_save_seconds": 28.91440225499996,
+    "checkpoint_seconds": 10.6677646879998,
+    "train_case_exposures": 480,
+    "train_node_exposures": 104319540,
+    "inference_case_exposures": 90,
+    "inference_node_exposures": 17232445,
+    "radius_build_count": 44,
+    "radius_read_count": 511,
+    "radius_cache_reuse_count": 467,
+    "train_seconds_definition": "Like the existing screen, begin before load_case: case/target read + H2D + cached CSR read/H2D + complete full-node update/Adam/sync; subtract only first-time exact CSR construction and save, reported separately",
+    "gpu_step_seconds_definition": "Synchronized model encode/query-backward/input-backward/Adam spans; excludes data/cache IO and first-update diagnostic bookkeeping"
+  },
+  "eta_seconds": 0.0,
+  "eta_limit": "Observed case/evaluation rates; not a prediction of remaining unseen-CAD CSR build costs",
+  "estimated_completion_utc": "2026-10-09T17:21:22.819674+00:00",
+  "case": "116_440/tor",
+  "active_case_nodes": 176577,
+  "cad": "101_86",
+  "nodes": 219150,
+  "radius_progress": {
+    "phase": "sorting_grid_pairs",
+    "points_processed": 219150,
+    "accepted_pairs": 7992659
+  },
+  "best_step": 480,
+  "selection_score": 0.6343996752330603,
+  "memory": {
+    "peak_allocated_bytes": 2533930496,
+    "peak_reserved_bytes": 4536139776
+  },
+  "training_loss": 0.17502456903457642,
+  "last_case_execution": {
+    "encode_seconds": 0.12777639299997645,
+    "query_forward_backward_seconds": 0.6223170659999369,
+    "encode_backward_seconds": 0.17901807599992026,
+    "output_chunks": 134,
+    "original_nodes": 273651,
+    "input_encode_calls": 1,
+    "input_graph_backward_calls": 1,
+    "optimizer_seconds": 0.0008729780000749088
+  }
+}

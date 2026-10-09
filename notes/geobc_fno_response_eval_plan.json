@@ -1,0 +1,398 @@
+{
+  "schema_version": 1,
+  "status": "frozen",
+  "protocol_frozen": true,
+  "kind": "fno_response_eval",
+  "selection_manifest": "data/geobc_solver_selection/manifest.json",
+  "prepared_manifest": "data/prepared_geobc_multiload/manifest.json",
+  "basis_metadata": "notes/geobc_load_basis_45.json",
+  "output": "runs/geobc_exploration/fno_response_dev5_dia_endpoint480",
+  "protocol": {
+    "CADs": [
+      "102_249",
+      "102_38",
+      "107_91",
+      "114_202",
+      "116_440"
+    ],
+    "load": "dia",
+    "seed": 2026,
+    "checkpoint_step": 480,
+    "train_cases": 120,
+    "passes": 4,
+    "channels": [
+      "ux_mm",
+      "uy_mm",
+      "uz_mm",
+      "signed_stress_MPa"
+    ],
+    "grid_resolution": 64,
+    "load_feature_slots": [
+      7,
+      13
+    ],
+    "normalized_span_tolerance": 1e-07,
+    "all_nodes": true,
+    "precision": {
+      "model_inputs_compute": "float32 with original training TF32 policy",
+      "float32_matmul_precision": "high",
+      "matmul_allow_tf32": true,
+      "cudnn_allow_tf32": true,
+      "physical_decode_and_metrics": "float64",
+      "same_for_all_three_routes": true
+    },
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "known3": "reuse completed endpoint summaries only",
+    "checkpoint_selection": "endpoint480 only; no dia selection of best, seed or budget",
+    "scope": "Previously explored development-validation CAD5; not unseen final generalization"
+  },
+  "routes": [
+    {
+      "route_id": "linear_basis",
+      "run": "runs/geobc_exploration/fno_response_linear_basis_seed2026_480",
+      "checkpoint": "runs/geobc_exploration/fno_response_linear_basis_seed2026_480/last.pt",
+      "step": 480,
+      "seed": 2026
+    },
+    {
+      "route_id": "load_dependent_basis",
+      "run": "runs/geobc_exploration/fno_response_load_dependent_basis_seed2026_480",
+      "checkpoint": "runs/geobc_exploration/fno_response_load_dependent_basis_seed2026_480/last.pt",
+      "step": 480,
+      "seed": 2026
+    },
+    {
+      "route_id": "historical_direct4",
+      "run": "runs/geobc_exploration/solver_screen_fno_480",
+      "checkpoint": "runs/geobc_exploration/solver_screen_fno_480/step480.pt",
+      "step": 480,
+      "seed": 2026,
+      "checkpoint_stat": {
+        "path": "runs/geobc_exploration/solver_screen_fno_480/step480.pt",
+        "bytes": 170259443,
+        "mtime_ns": 1791554997236515000
+      }
+    }
+  ],
+  "checkpoint_identity_rule": "Exactly fixed run/path and endpoint480; both new completed summaries/configs, four exposures of each TRAIN120 case and common ordered witness required before any dia arrays. Actual execution records one streamed checkpoint SHA256 plus before/after stat and exact saved config/step comparison; no author weight read. Optional root-supplied checkpoint stat/SHA pins are enforced. Missing future checkpoints do not require author array access.",
+  "input_policy": {
+    "NPZ_input_member_allowlist": [
+      "sample_key",
+      "label_alignment",
+      "xyz",
+      "features"
+    ],
+    "NPZ_target_member_allowlist_after_all_three_predictions": [
+      "displacement",
+      "stress"
+    ],
+    "target_cases": [
+      "102_249/dia",
+      "102_38/dia",
+      "107_91/dia",
+      "114_202/dia",
+      "116_440/dia"
+    ],
+    "geometry_source": "Existing selection DEV5/ver canonical xyz/cloud/mask/static eight-corner query indices and weights; exact same-node replay and all nonload25 feature equality required",
+    "frontend": "Existing solver_selection_data._splat plus cached query_grid; grid29=occupancy1+xyz3+original25. Build dia grid once per case on GPU; share across three routes. Grid load channels11:17 correspond to prepared feature slots7:13. No cloud/stencil rebuild or new grid/scaler fitting.",
+    "cache_output": "No new NPY cache or prediction arrays; one-case shared grid in memory; five input build receipts/times and small per-route physical metrics only",
+    "loaded_load_check": "All nodes share normalized six slots; loaded physical vector agrees with small source metadata within1e-7; verified feature_to_alpha map/reconstruction residual <=1e-7. Only ver/hor/tor rank3, no arbitrary six-dimensional load claim.",
+    "excluded": [
+      "known3 target arrays",
+      "old final CAD inputs or targets",
+      "new sealed-test inputs or targets",
+      "any other dia target",
+      "raw H5/deck",
+      "training/optimizer/scaler fit"
+    ]
+  },
+  "metrics": {
+    "nodes": "Every original aligned node; signed ux/uy/uz mm and source scalar stress MPa",
+    "relative": "Five-case arithmetic mean/worst displacement-vector relative L2 and signed-stress relative L2; 1% largest-absolute-truth-stress hotspot per case, mean/worst relative L2",
+    "absolute_per_case": [
+      "u_vector_error_RMS_mm",
+      "u_max_vector_error_mm",
+      "stress_RMSE_MPa",
+      "stress_MAE_MPa"
+    ],
+    "known3": "Reuse completed endpoint validation and TRAIN-readout metrics; no repeated inference/GT read",
+    "costs": "Checkpoint load; target-free input read, one shared grid build, encode/forward/query/CPU encoded-output inference separately per route, GT read and physical-metric seconds, total elapsed/peak GPU memory",
+    "interpretation": "No accuracy acceptance gate or winner/seed/best selection. Retain negative combination results. Compare with zero-field relative error1.0 without treating tiny near1 improvement as success. Source scalar stress has no imposed superposition or constitutive relation. Historical direct4 has same updates/frontend/scaler but a different head and is not a matched initialization/capacity control. DEV5 had historical Hash exploration, so this is development diagnosis, not final generalization evidence. No dia-driven rescue tuning or budget extension."
+  },
+  "execution": {
+    "author": "Source/small JSON/metadata and exactly one AST only; no model import, weights, scientific arrays, GT or GPU",
+    "root": "Freeze protocol and final source pins before one sole-queue evaluation after both new arms completed480. Output config.contract matches request_contract(plan_path)->(contract,plan); strict completed reuse only. Partial small metrics preserved on failure but no automatic checkpoint reselection or complex resume.",
+    "CLI_source_check": "python -m geobc.fno_response_eval --plan notes/geobc_fno_response_eval_plan.json --output runs/geobc_exploration/fno_response_dev5_dia_endpoint480 --source-check",
+    "CLI_actual_after_root_release": "python -m geobc.fno_response_eval --plan notes/geobc_fno_response_eval_plan.json --output runs/geobc_exploration/fno_response_dev5_dia_endpoint480"
+  },
+  "source_sha256": {
+    "geobc/fno_response_eval.py": "3b4046963a5ca5d3ee1c3bc9771dbba22e5078ab08d5c935233ac6d0c1ee7156",
+    "geobc/fno_response_field.py": "9e26621699f0ef781e04056f959f98c1b9196d8212226817f4b66ecf8dc5f1e3",
+    "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "geobc/fno_response_train.py": "e7ad1c68f25f8dcb948713bfcf79abddedbc3401eb5d33bbff63b3e5499e7b49"
+  },
+  "metadata_sha256": {
+    "selection_manifest": "76ba5189e0cfb4db226db472ca9cfe019f4d7f81c1eff9d0335726eea73a4ced",
+    "prepared_manifest": "8d9ea79c047977830bf152a0a0b93c64a6e62b5a7ea4941c9f4c2fbff04c1ee0",
+    "basis_metadata": "d2560829a07a20f30071f49f4bb694127b0e8d3ddb4724e3a4b0b795795c4991"
+  },
+  "input_files": {
+    "102_249/dia:known3_ver_features": {
+      "path": "data/geobc_solver_selection/cases/102_249_ver/features.npy",
+      "bytes": 21117428,
+      "mtime_ns": 1791554070672213700
+    },
+    "102_249/dia:known3_hor_features": {
+      "path": "data/geobc_solver_selection/cases/102_249_hor/features.npy",
+      "bytes": 21117428,
+      "mtime_ns": 1791554070846948000
+    },
+    "102_249/dia:known3_tor_features": {
+      "path": "data/geobc_solver_selection/cases/102_249_tor/features.npy",
+      "bytes": 21117428,
+      "mtime_ns": 1791554071005324200
+    },
+    "102_249/dia:npz": {
+      "path": "data/prepared_geobc_multiload/102_249_dia.npz",
+      "bytes": 35482562,
+      "mtime_ns": 1791511983312188900
+    },
+    "102_249/dia:xyz_path": {
+      "path": "data/geobc_solver_selection/geometry/102_249/xyz.npy",
+      "bytes": 2534204,
+      "mtime_ns": 1791554070601708400
+    },
+    "102_249/dia:cloud_path": {
+      "path": "data/geobc_solver_selection/geometry/102_249/cloud.npy",
+      "bytes": 12416,
+      "mtime_ns": 1791554070608214200
+    },
+    "102_249/dia:mask_path": {
+      "path": "data/geobc_solver_selection/geometry/102_249/mask.npy",
+      "bytes": 1152,
+      "mtime_ns": 1791554070613214200
+    },
+    "102_249/dia:query_indices_path": {
+      "path": "data/geobc_solver_selection/geometry/102_249/query_indices.npy",
+      "bytes": 6757664,
+      "mtime_ns": 1791554105499240200
+    },
+    "102_249/dia:query_weights_path": {
+      "path": "data/geobc_solver_selection/geometry/102_249/query_weights.npy",
+      "bytes": 6757664,
+      "mtime_ns": 1791554105523239500
+    },
+    "102_249/dia:reference_features_path": {
+      "path": "data/geobc_solver_selection/cases/102_249_ver/features.npy",
+      "bytes": 21117428,
+      "mtime_ns": 1791554070672213700
+    },
+    "102_38/dia:known3_ver_features": {
+      "path": "data/geobc_solver_selection/cases/102_38_ver/features.npy",
+      "bytes": 19751528,
+      "mtime_ns": 1791554071198841600
+    },
+    "102_38/dia:known3_hor_features": {
+      "path": "data/geobc_solver_selection/cases/102_38_hor/features.npy",
+      "bytes": 19751528,
+      "mtime_ns": 1791554071346842100
+    },
+    "102_38/dia:known3_tor_features": {
+      "path": "data/geobc_solver_selection/cases/102_38_tor/features.npy",
+      "bytes": 19751528,
+      "mtime_ns": 1791554071496842200
+    },
+    "102_38/dia:npz": {
+      "path": "data/prepared_geobc_multiload/102_38_dia.npz",
+      "bytes": 33185758,
+      "mtime_ns": 1791511983942359200
+    },
+    "102_38/dia:xyz_path": {
+      "path": "data/geobc_solver_selection/geometry/102_38/xyz.npy",
+      "bytes": 2370296,
+      "mtime_ns": 1791554071132773300
+    },
+    "102_38/dia:cloud_path": {
+      "path": "data/geobc_solver_selection/geometry/102_38/cloud.npy",
+      "bytes": 12416,
+      "mtime_ns": 1791554071137773600
+    },
+    "102_38/dia:mask_path": {
+      "path": "data/geobc_solver_selection/geometry/102_38/mask.npy",
+      "bytes": 1152,
+      "mtime_ns": 1791554071141773300
+    },
+    "102_38/dia:query_indices_path": {
+      "path": "data/geobc_solver_selection/geometry/102_38/query_indices.npy",
+      "bytes": 6320576,
+      "mtime_ns": 1791554106396059200
+    },
+    "102_38/dia:query_weights_path": {
+      "path": "data/geobc_solver_selection/geometry/102_38/query_weights.npy",
+      "bytes": 6320576,
+      "mtime_ns": 1791554106422058600
+    },
+    "102_38/dia:reference_features_path": {
+      "path": "data/geobc_solver_selection/cases/102_38_ver/features.npy",
+      "bytes": 19751528,
+      "mtime_ns": 1791554071198841600
+    },
+    "107_91/dia:known3_ver_features": {
+      "path": "data/geobc_solver_selection/cases/107_91_ver/features.npy",
+      "bytes": 19033228,
+      "mtime_ns": 1791554071689298800
+    },
+    "107_91/dia:known3_hor_features": {
+      "path": "data/geobc_solver_selection/cases/107_91_hor/features.npy",
+      "bytes": 19033228,
+      "mtime_ns": 1791554071846400300
+    },
+    "107_91/dia:known3_tor_features": {
+      "path": "data/geobc_solver_selection/cases/107_91_tor/features.npy",
+      "bytes": 19033228,
+      "mtime_ns": 1791554071994119800
+    },
+    "107_91/dia:npz": {
+      "path": "data/prepared_geobc_multiload/107_91_dia.npz",
+      "bytes": 31947102,
+      "mtime_ns": 1791454778733814200
+    },
+    "107_91/dia:xyz_path": {
+      "path": "data/geobc_solver_selection/geometry/107_91/xyz.npy",
+      "bytes": 2284100,
+      "mtime_ns": 1791554071625158100
+    },
+    "107_91/dia:cloud_path": {
+      "path": "data/geobc_solver_selection/geometry/107_91/cloud.npy",
+      "bytes": 12416,
+      "mtime_ns": 1791554071629295500
+    },
+    "107_91/dia:mask_path": {
+      "path": "data/geobc_solver_selection/geometry/107_91/mask.npy",
+      "bytes": 1152,
+      "mtime_ns": 1791554071634298600
+    },
+    "107_91/dia:query_indices_path": {
+      "path": "data/geobc_solver_selection/geometry/107_91/query_indices.npy",
+      "bytes": 6090720,
+      "mtime_ns": 1791554107271308600
+    },
+    "107_91/dia:query_weights_path": {
+      "path": "data/geobc_solver_selection/geometry/107_91/query_weights.npy",
+      "bytes": 6090720,
+      "mtime_ns": 1791554107300458600
+    },
+    "107_91/dia:reference_features_path": {
+      "path": "data/geobc_solver_selection/cases/107_91_ver/features.npy",
+      "bytes": 19033228,
+      "mtime_ns": 1791554071689298800
+    },
+    "114_202/dia:known3_ver_features": {
+      "path": "data/geobc_solver_selection/cases/114_202_ver/features.npy",
+      "bytes": 15835728,
+      "mtime_ns": 1791554072176752100
+    },
+    "114_202/dia:known3_hor_features": {
+      "path": "data/geobc_solver_selection/cases/114_202_hor/features.npy",
+      "bytes": 15835728,
+      "mtime_ns": 1791554072305784700
+    },
+    "114_202/dia:known3_tor_features": {
+      "path": "data/geobc_solver_selection/cases/114_202_tor/features.npy",
+      "bytes": 15835728,
+      "mtime_ns": 1791554072434785100
+    },
+    "114_202/dia:npz": {
+      "path": "data/prepared_geobc_multiload/114_202_dia.npz",
+      "bytes": 26618466,
+      "mtime_ns": 1791511975251575700
+    },
+    "114_202/dia:xyz_path": {
+      "path": "data/geobc_solver_selection/geometry/114_202/xyz.npy",
+      "bytes": 1900400,
+      "mtime_ns": 1791554072113123800
+    },
+    "114_202/dia:cloud_path": {
+      "path": "data/geobc_solver_selection/geometry/114_202/cloud.npy",
+      "bytes": 12416,
+      "mtime_ns": 1791554072119073300
+    },
+    "114_202/dia:mask_path": {
+      "path": "data/geobc_solver_selection/geometry/114_202/mask.npy",
+      "bytes": 1152,
+      "mtime_ns": 1791554072124192000
+    },
+    "114_202/dia:query_indices_path": {
+      "path": "data/geobc_solver_selection/geometry/114_202/query_indices.npy",
+      "bytes": 5067520,
+      "mtime_ns": 1791554108102623900
+    },
+    "114_202/dia:query_weights_path": {
+      "path": "data/geobc_solver_selection/geometry/114_202/query_weights.npy",
+      "bytes": 5067520,
+      "mtime_ns": 1791554108121623400
+    },
+    "114_202/dia:reference_features_path": {
+      "path": "data/geobc_solver_selection/cases/114_202_ver/features.npy",
+      "bytes": 15835728,
+      "mtime_ns": 1791554072176752100
+    },
+    "116_440/dia:known3_ver_features": {
+      "path": "data/geobc_solver_selection/cases/116_440_ver/features.npy",
+      "bytes": 17657828,
+      "mtime_ns": 1791554072630956300
+    },
+    "116_440/dia:known3_hor_features": {
+      "path": "data/geobc_solver_selection/cases/116_440_hor/features.npy",
+      "bytes": 17657828,
+      "mtime_ns": 1791554072774334000
+    },
+    "116_440/dia:known3_tor_features": {
+      "path": "data/geobc_solver_selection/cases/116_440_tor/features.npy",
+      "bytes": 17657828,
+      "mtime_ns": 1791554072918819300
+    },
+    "116_440/dia:npz": {
+      "path": "data/prepared_geobc_multiload/116_440_dia.npz",
+      "bytes": 29639234,
+      "mtime_ns": 1791512005370020600
+    },
+    "116_440/dia:xyz_path": {
+      "path": "data/geobc_solver_selection/geometry/116_440/xyz.npy",
+      "bytes": 2119052,
+      "mtime_ns": 1791554072556186600
+    },
+    "116_440/dia:cloud_path": {
+      "path": "data/geobc_solver_selection/geometry/116_440/cloud.npy",
+      "bytes": 12416,
+      "mtime_ns": 1791554072561191100
+    },
+    "116_440/dia:mask_path": {
+      "path": "data/geobc_solver_selection/geometry/116_440/mask.npy",
+      "bytes": 1152,
+      "mtime_ns": 1791554072566191300
+    },
+    "116_440/dia:query_indices_path": {
+      "path": "data/geobc_solver_selection/geometry/116_440/query_indices.npy",
+      "bytes": 5650592,
+      "mtime_ns": 1791554108886920100
+    },
+    "116_440/dia:query_weights_path": {
+      "path": "data/geobc_solver_selection/geometry/116_440/query_weights.npy",
+      "bytes": 5650592,
+      "mtime_ns": 1791554108912094400
+    },
+    "116_440/dia:reference_features_path": {
+      "path": "data/geobc_solver_selection/cases/116_440_ver/features.npy",
+      "bytes": 17657828,
+      "mtime_ns": 1791554072630956300
+    }
+  },
+  "root_frozen_at_utc": "2026-10-09T17:59:59.7195357Z"
+}

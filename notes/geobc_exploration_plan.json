@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_gino_training_screen",
+  "stage": "solver_deeponet_design",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,37 +21,11 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "brief_action": "GINO同数据与同频带480更新筛选，用验证精度和实测成本决定后续；新测试标签继续封存。",
-    "scope": "One matched-frequency full-node GINO candidate, fixed480 updates in the prior six-family common protocol; retain measured accuracy/cost before deciding confirmation. Newtest labels sealed.",
-    "stage": "solver_gino_training_screen"
+    "brief_action": "响应结构DEV组合载荷位移明显改善，应力略退；载荷清零无额外收益。下一步设计几何/BC DeepONet与共享输入MLP，继续跨结构筛选。",
+    "scope": "Completed paired response screen and DEV5 dia; force-free versus load-dependent pair has little difference, both improve dia U versus historical direct4 with stress regression. Prefer an affordable genuinely different geometry/BC factorized-field candidate with a shared-input pointwise control, not Hash/FNO micro-tuning. New test remains sealed.",
+    "stage": "solver_deeponet_design"
   },
-  "jobs": [
-    {
-      "name": "gino_screen_seed2026_480",
-      "kind": "gino_training_screen",
-      "stage": "solver_gino_training_screen",
-      "output": "runs/geobc_exploration/gino_screen_seed2026_480",
-      "method": "gino",
-      "seed": 2026,
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "-m",
-        "geobc.gino_train",
-        "--plan",
-        "notes/geobc_gino_training_screen_plan.json",
-        "--output",
-        "runs/geobc_exploration/gino_screen_seed2026_480"
-      ],
-      "requires": [
-        "geobc/gino_train.py",
-        "geobc/gino_solver.py",
-        "notes/geobc_gino_training_screen_plan.json",
-        "notes/geobc_gino_training_screen_source_ready.json",
-        "runs/geobc_exploration/gino_native_resource_101_479/summary.json",
-        "data/geobc_solver_selection/manifest.json"
-      ]
-    }
-  ],
+  "jobs": [],
   "historical_jobs": [
     {
       "name": "hash50_unseen_geometry_pilot",
@@ -2845,6 +2819,104 @@
         "third_party/neuraloperator_source.json",
         "data/geobc_solver_selection/manifest.json"
       ]
+    },
+    {
+      "name": "gino_screen_seed2026_480",
+      "kind": "gino_training_screen",
+      "stage": "solver_gino_training_screen",
+      "output": "runs/geobc_exploration/gino_screen_seed2026_480",
+      "method": "gino",
+      "seed": 2026,
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.gino_train",
+        "--plan",
+        "notes/geobc_gino_training_screen_plan.json",
+        "--output",
+        "runs/geobc_exploration/gino_screen_seed2026_480"
+      ],
+      "requires": [
+        "geobc/gino_train.py",
+        "geobc/gino_solver.py",
+        "notes/geobc_gino_training_screen_plan.json",
+        "notes/geobc_gino_training_screen_source_ready.json",
+        "runs/geobc_exploration/gino_native_resource_101_479/summary.json",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "fno_response_linear_basis_480",
+      "kind": "fno_response_screen",
+      "stage": "solver_fno_response_screen",
+      "hypothesis": "Compare a force-independent displacement response body against the same stored architecture retaining current load6; independent stress branch and complete-case signed4 loss unchanged.",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.fno_response_train",
+        "--plan",
+        "notes/geobc_fno_response_plan.json",
+        "--mode",
+        "linear_basis",
+        "--output",
+        "runs/geobc_exploration/fno_response_linear_basis_seed2026_480"
+      ],
+      "requires": [
+        "notes/geobc_fno_response_plan.json",
+        "geobc/fno_response_train.py",
+        "geobc/fno_response_field.py",
+        "data/geobc_solver_selection/manifest.json",
+        "notes/geobc_load_basis_45.json"
+      ],
+      "output": "runs/geobc_exploration/fno_response_linear_basis_seed2026_480"
+    },
+    {
+      "name": "fno_response_load_dependent_basis_480",
+      "kind": "fno_response_screen",
+      "stage": "solver_fno_response_screen",
+      "hypothesis": "Compare a force-independent displacement response body against the same stored architecture retaining current load6; independent stress branch and complete-case signed4 loss unchanged.",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.fno_response_train",
+        "--plan",
+        "notes/geobc_fno_response_plan.json",
+        "--mode",
+        "load_dependent_basis",
+        "--output",
+        "runs/geobc_exploration/fno_response_load_dependent_basis_seed2026_480"
+      ],
+      "requires": [
+        "notes/geobc_fno_response_plan.json",
+        "geobc/fno_response_train.py",
+        "geobc/fno_response_field.py",
+        "data/geobc_solver_selection/manifest.json",
+        "notes/geobc_load_basis_45.json"
+      ],
+      "output": "runs/geobc_exploration/fno_response_load_dependent_basis_seed2026_480"
+    },
+    {
+      "name": "fno_response_dev5_dia_endpoint480",
+      "kind": "fno_response_eval",
+      "stage": "solver_fno_response_dev_dia",
+      "hypothesis": "Does the matched force-independent displacement response structure improve existing DEV5 combination-load prediction against force-dependent response and historical direct4 FNO at fixed480?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.fno_response_eval",
+        "--plan",
+        "notes/geobc_fno_response_eval_plan.json",
+        "--output",
+        "runs/geobc_exploration/fno_response_dev5_dia_endpoint480"
+      ],
+      "requires": [
+        "notes/geobc_fno_response_eval_plan.json",
+        "geobc/fno_response_eval.py",
+        "runs/geobc_exploration/fno_response_linear_basis_seed2026_480/summary.json",
+        "runs/geobc_exploration/fno_response_load_dependent_basis_seed2026_480/summary.json",
+        "runs/geobc_exploration/solver_screen_fno_480/step480.pt"
+      ],
+      "output": "runs/geobc_exploration/fno_response_dev5_dia_endpoint480"
     }
   ],
   "phase_history": [
@@ -3075,18 +3147,21 @@
     }
   },
   "active_design_preparation": {
-    "training_plan": "notes/geobc_gino_training_screen_plan.json",
-    "independent_test_acquisition": "data/raw_next_cycle/summary.json",
-    "resource_plan": "notes/geobc_gino_native_resource_plan.json",
-    "labels_sealed": true,
-    "status": "training_source_reviewed_recipe_frozen_released",
-    "resource_summary": "runs/geobc_exploration/gino_native_resource_101_479/summary.json",
-    "training_spectral_modes": [
-      24,
-      24,
-      22
-    ],
-    "decision": "notes/solver_next_cycle_decision_20261010.md"
+    "continue_hash_microoptimization": false,
+    "proposal": "notes/fno_response_basis_candidate_design.md",
+    "newtest_labels_sealed": true,
+    "gino_result": "results/gino_screen/BRIEF.md",
+    "status": "completed_response_suite_next_architecture_design",
+    "field_source": "geobc/fno_response_field.py",
+    "train_source": "geobc/fno_response_train.py",
+    "evaluation_source": "geobc/fno_response_eval.py",
+    "evaluation_scope": "Existing DEV5 dia only, fixed480 endpoints for two fresh matched response arms and historical direct4 FNO. No oldfinal/newsealedtest. Freeze source/checkpoint rules before dia access.",
+    "root_authorized_at_utc": "2026-10-09T17:40:35.4495018Z",
+    "field_accepted_sha256": "9e26621699f0ef781e04056f959f98c1b9196d8212226817f4b66ecf8dc5f1e3",
+    "field_review": "Root read final source once; mask, rank3 physical load mapping, one affine mean offset, independent signed-stress branch and identical paired parameter creation accepted. Actual full-node runtime checks remain in first formal training step.",
+    "trainer_accepted_sha256": "e7ad1c68f25f8dcb948713bfcf79abddedbc3401eb5d33bbff63b3e5499e7b49",
+    "evaluator_accepted_sha256": "3b4046963a5ca5d3ee1c3bc9771dbba22e5078ab08d5c935233ac6d0c1ee7156",
+    "next_proposal": "notes/solver_next_structures.md"
   },
   "stage_transitions": [
     {

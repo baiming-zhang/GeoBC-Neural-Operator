@@ -144,6 +144,21 @@ def gino_resource_text(result):
     return report,brief
 
 
+def gino_training_text(result):
+    exposure=result['case_exposure_counts']; costs=result['costs']
+    if result.get('endpoint_step')!=480 or costs.get('train_case_exposures')!=480 or len(exposure)!=120 or any(v!=4 for v in exposure.values()):
+        raise ValueError('Completed GINO report requires480 updates and120 cases each4 exposures')
+    final=result['final_metrics']; best=result['best_metrics']; v=final['validation']; bv=best['validation']
+    primary=f"U均值／最差={percent(v['case_mean_u_relative_l2'])}/{percent(v['worst_case_u_relative_l2'])}，signed S均值／最差={percent(v['case_mean_stress_relative_l2'])}/{percent(v['worst_case_stress_relative_l2'])}"
+    report=(f"GINO单seed2026 fixed480完整case初筛completed，四次TRAIN120遍历，{primary}；可比train_seconds={costs['train_seconds']:.2f}s，总wall={result['elapsed_seconds']:.2f}s。"
+            f"共同VAL-score best次结果step{best['step']}，同点U/S均值={percent(bv['case_mean_u_relative_l2'])}/{percent(bv['case_mean_stress_relative_l2'])}；主结果仍锁480，step0若为best只标未训练基线。"
+            '共享原25/PointNet32、TRAIN-only scaler与旧480 case顺序；CSR首建/save另报，cached IO/H2D计入可比训练时间。'
+            '官方modes24/24/22与旧FNO保留频带相当，但复杂参数numel/实自由度、lifting/skip/projection及Adam foreach/旧fused不同，不能单GNO归因或凭更新数称成本胜出。'
+            '完整旧六screen同480点和FNO/MLP两seed600秒端点只作真实成本背景，不插值或外推等时精度。见results/gino_screen/BRIEF.md和metrics.json；未读取final/dia/新test，不证明收敛、连续梯度、BC满足或工程精度。')
+    brief=(f"GINO480主端点U/S均值={percent(v['case_mean_u_relative_l2'])}/{percent(v['case_mean_stress_relative_l2'])}，实测train={costs['train_seconds']:.1f}s；四遍历完成，较旧screen及600秒确认的成本背景另报，未凭更多耗时选定solver。")
+    return report,brief
+
+
 def sealed_acquisition_text(result):
     contract=result['config']['contract']; total=len(contract['files']); done=result.get('completed_files',0)
     failed=result.get('failed_files',0); status=result['status']
@@ -190,7 +205,7 @@ def main():
     checkpoints={}
     observed_stages={}
     observed_receipts={}
-    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','sealed_test_input_acquisition'}
+    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','gino_training_screen','sealed_test_input_acquisition','fno_response_screen','fno_response_eval'}
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
@@ -215,6 +230,8 @@ def main():
         filenames=('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json','metrics_step0000.json','metrics_step1000.json','first_backward_check.json')
         if job.get('kind') in ('real_geometry_interface_acceptance','frozen_field_diagnostic','solver_screen','solver_confirmation','solver_final_input_cache','solver_final_evaluation'):filenames+=('status.json',)
         if job.get('kind') in metadata_kinds:filenames=('summary.json','config.json','status.json')
+        if job.get('kind')=='gino_training_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json')
+        if job.get('kind')=='fno_response_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
         if job.get('kind')=='solver_final_input_cache':filenames+=('manifest.json',)
         if job.get('kind') in ('solver_screen','solver_confirmation'):filenames+=('first_update_gradient_check.json',)
         for filename in filenames:
@@ -656,8 +673,9 @@ def main():
     capability_result=latest_observed('solver_continuous_capability')
     gino_radius_result=latest_observed('gino_radius_input_pilot')
     gino_resource_result=latest_observed('gino_native_resource')
+    gino_training_result=latest_observed('gino_training_screen')
     sealed_acquisition_result=latest_observed('sealed_test_input_acquisition')
-    capability_brief=gino_radius_brief=gino_resource_brief=sealed_acquisition_brief=None
+    capability_brief=gino_radius_brief=gino_resource_brief=gino_training_brief=sealed_acquisition_brief=None
     if capability_result:
         capability_report,capability_brief=solver_capability_text(capability_result)
         lines += ['', '## 锁定FNO/MLP端点的局部连续能力','',capability_report]
@@ -667,6 +685,9 @@ def main():
     if gino_resource_result:
         gino_resource_report,gino_resource_brief=gino_resource_text(gino_resource_result)
         lines += ['', '## GINO有界模型资源','',gino_resource_report]
+    if gino_training_result:
+        gino_training_report,gino_training_brief=gino_training_text(gino_training_result)
+        lines += ['', '## GINO固定480更新初筛','',gino_training_report]
     if sealed_acquisition_result:
         sealed_acquisition_report,sealed_acquisition_brief=sealed_acquisition_text(sealed_acquisition_result)
         lines += ['', '## 下一周期独立test5的封存获取','',sealed_acquisition_report]
@@ -757,7 +778,11 @@ def main():
     if capability_brief:brief += ['- **局部连续能力：**'+capability_brief]
     if gino_radius_brief:brief += ['- **新结构输入：**'+gino_radius_brief]
     if gino_resource_brief:brief += ['- **新结构资源：**'+gino_resource_brief]
+    if gino_training_brief:brief += ['- **新结构初筛：**'+gino_training_brief]
     if sealed_acquisition_brief:brief += ['- **新周期test：**'+sealed_acquisition_brief]
+    fno_response_metrics=ROOT/'results/fno_response/metrics.json'
+    if fno_response_metrics.is_file() and json.loads(fno_response_metrics.read_text(encoding='utf8')).get('status')=='completed':
+        brief += ['', '固定480的FNO响应基结构配对与DEV组合载荷结果见[FNO结构简报](../fno_response/BRIEF.md)；历史direct4仅上下文，未据此改旧final或新sealed test。']
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
@@ -787,6 +812,7 @@ def main():
                                    'solver_continuous_capability_receipt':observed_receipts.get('solver_continuous_capability'),
                                    'gino_radius_input_pilot_receipt':observed_receipts.get('gino_radius_input_pilot'),
                                    'gino_native_resource_receipt':observed_receipts.get('gino_native_resource'),
+                                   'gino_training_screen_receipt':observed_receipts.get('gino_training_screen'),
                                    'sealed_test_input_acquisition_receipt':observed_receipts.get('sealed_test_input_acquisition'),
                                    'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
                                    'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',

@@ -269,13 +269,17 @@ GINO候选的固定TRAIN101_479/ver输入邻域准备completed，耗时2.245s，
 
 GINO正式有界模型资源检查completed，通过（8/8 checks），耗时4.985s。固定TRAIN101_479/ver的179,316点全输入encode=2.003s，512原节点query=0.0437s，backward=0.3004s；1次无目标主反向和4次小真实CSR后端autograd核对，labels／optimizer更新=0/0。实际Torch peak allocated/reserved=1,829,223,424/3,812,622,336 B；参数1,433,277（含PointNet，complex tensor按numel计）。这已是模型资源实验，但只覆盖全输入/512输出，首例全N输出训练资源尚未验；无训练或准确度结果。旧FNO约14.18M且频率实现不同，不是容量匹配对照，不能把未来差异归因单GNO组件；不证明BC满足或连续场能力。
 
+## GINO固定480更新初筛
+
+GINO单seed2026 fixed480完整case初筛completed，四次TRAIN120遍历，U均值／最差=54.424%/76.242%，signed S均值／最差=72.456%/84.630%；可比train_seconds=740.12s，总wall=864.19s。共同VAL-score best次结果step480，同点U/S均值=54.424%/72.456%；主结果仍锁480，step0若为best只标未训练基线。共享原25/PointNet32、TRAIN-only scaler与旧480 case顺序；CSR首建/save另报，cached IO/H2D计入可比训练时间。官方modes24/24/22与旧FNO保留频带相当，但复杂参数numel/实自由度、lifting/skip/projection及Adam foreach/旧fused不同，不能单GNO归因或凭更新数称成本胜出。完整旧六screen同480点和FNO/MLP两seed600秒端点只作真实成本背景，不插值或外推等时精度。见results/gino_screen/BRIEF.md和metrics.json；未读取final/dia/新test，不证明收敛、连续梯度、BC满足或工程精度。
+
 ## 下一周期独立test5的封存获取
 
 下一周期独立test5身份已冻结：489_12、616_205、416_282、247_50、142_454。获取状态completed，15/15文件完成、0失败，耗时250.6s。仅下载／收到字节校验完成。字段仍封存，未解析labels，没有替换CAD或修改旧raw来源。身份独立不等于已证明形状族隔离；接收字节SHA没有独立上游checksum。新路线、预算、两seed/checkpoint与指标规则须在Field值解析前锁定，旧final不作开发集。下载失败不是科学模型负结果，也不计为completed阶段。
 
 ## 主计划中的下一阶段
 
-当前主计划：gino_screen_seed2026_480（进行中）。 计划阶段：solver_gino_training_screen。
+当前正在设计下一阶段，尚未放行数据或训练。 计划阶段：solver_deeponet_design。
 
 ## 解释边界
 
@@ -283,4 +287,4 @@ GINO正式有界模型资源检查completed，通过（8/8 checks），耗时4.9
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成67/68项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成71/71项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

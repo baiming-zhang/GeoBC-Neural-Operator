@@ -1303,6 +1303,82 @@
         "geobc/solver_confirmation_train.py": "d8eb5fa0d6c0c30e8ed0fcb3a549be818581b83251af7417e98112ca6e2fb872"
       },
       "selection": "0.5*(validation case-mean displacement vector relative L2 + signed-stress relative L2)"
+    },
+    "gino_screen_seed2026_480": {
+      "best_step": 480,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/gino_screen_seed2026_480/best.pt",
+          "bytes": 175107387,
+          "mtime_ns": 1791566471371320600
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/gino_screen_seed2026_480/last.pt",
+          "bytes": 175107387,
+          "mtime_ns": 1791566471843579100
+        }
+      },
+      "code_sha256": {
+        "geobc/gino_train.py": "2d34ac072a6d7e1cd770c76cfda090ed42787f5f14394cf4720db56e76b2a4ed",
+        "geobc/gino_solver.py": "39d08af2fbcb1a59b407066f45e224e9c3f7e7bca1025ad86463b5567fdf9de1",
+        "geobc/regular_grid_radius.py": "14f0b96b780ea27f668f5c7a98f50c4cabab6f7ec2a47ad060dfef6079d34ef7",
+        "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+        "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+        "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "third_party/neuraloperator_source.json": "342108ac2d250366c8fb913da3d1c6284b989fdf1835dcc2ba13665fd28840c1"
+      },
+      "selection": null
+    },
+    "fno_response_linear_basis_480": {
+      "best_step": 480,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/fno_response_linear_basis_seed2026_480/best.pt",
+          "bytes": 170489105,
+          "mtime_ns": 1791569004001705500
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/fno_response_linear_basis_seed2026_480/last.pt",
+          "bytes": 170489105,
+          "mtime_ns": 1791569004435497300
+        }
+      },
+      "code_sha256": {
+        "geobc/fno_response_train.py": "e7ad1c68f25f8dcb948713bfcf79abddedbc3401eb5d33bbff63b3e5499e7b49",
+        "geobc/fno_response_field.py": "9e26621699f0ef781e04056f959f98c1b9196d8212226817f4b66ecf8dc5f1e3",
+        "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+        "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+        "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f"
+      },
+      "selection": null
+    },
+    "fno_response_load_dependent_basis_480": {
+      "best_step": 480,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/fno_response_load_dependent_basis_seed2026_480/best.pt",
+          "bytes": 170544081,
+          "mtime_ns": 1791569160324898100
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/fno_response_load_dependent_basis_seed2026_480/last.pt",
+          "bytes": 170544081,
+          "mtime_ns": 1791569160770027700
+        }
+      },
+      "code_sha256": {
+        "geobc/fno_response_train.py": "e7ad1c68f25f8dcb948713bfcf79abddedbc3401eb5d33bbff63b3e5499e7b49",
+        "geobc/fno_response_field.py": "9e26621699f0ef781e04056f959f98c1b9196d8212226817f4b66ecf8dc5f1e3",
+        "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+        "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+        "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f"
+      },
+      "selection": null
     }
   }
 }

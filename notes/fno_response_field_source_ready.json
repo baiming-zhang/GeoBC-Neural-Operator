@@ -1,0 +1,111 @@
+{
+  "status": "source_ready_ast_only",
+  "source_path": "geobc/fno_response_field.py",
+  "source_sha256": "9e26621699f0ef781e04056f959f98c1b9196d8212226817f4b66ecf8dc5f1e3",
+  "dependencies_sha256": {
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "notes/geobc_load_basis_45.json": "d2560829a07a20f30071f49f4bb694127b0e8d3ddb4724e3a4b0b795795c4991",
+    "data/geobc_solver_selection/scaler.json": "cc806e85b77ab6e79b0bc0b924bd8c0727d2eddc7cfe0ed4c1129a4cc53a679d"
+  },
+  "scope": "Root-authorized isolated SOURCE implementation; this ready note grants no execution or data access",
+  "api": {
+    "class": "FNOResponseField(mode, scaler:dict, basis_metadata:dict, *, seed=2026, device=\"cuda\")",
+    "factory": "build_fno_response_model(same arguments)",
+    "modes": [
+      "linear_basis",
+      "load_dependent_basis"
+    ],
+    "metadata": "Existing notes/geobc_load_basis_45.json, shared four-channel TRAIN-only scaler; no file/array IO in model",
+    "encode_geometry": "cloud[1,1024,3],mask bool[1,1024] -> live context[1,32]",
+    "forward_grid": "grid[1,29,64,64,64],context[1,32],load6 normalized original features7:13[6] or[1,6] -> encoded grid[1,4,64,64,64]",
+    "load_coefficients": "FP64 feature_to_alpha mapping + normalized load-span residual <=1e-7, output alpha FP32[1,3]; no cad_id/case label",
+    "forward_components": "Same inputs, exactly one body -> basis_grid9,stress_grid1,alpha3",
+    "compose_encoded_grid": "components -> encoded4; alpha constant per case",
+    "compose_encoded_nodes": "queried basis[N,9],queried encoded stress[N,1],load6 -> encoded[N,4]; algebra witness only, no native-continuity claim",
+    "compatibility": [
+      "encoder",
+      "solver",
+      "method=fno",
+      "parameter_counts",
+      "source_config"
+    ]
+  },
+  "mathematics": {
+    "basis_order": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "basis_channels": "ver_xyz,hor_xyz,tor_xyz",
+    "head_value": "V=physical canonical response/std; zero-centered, not mean-centered encoded basis",
+    "physical_u": "std * sum(alpha*V)",
+    "encoded_u": "sum(alpha*V) - mean/std; mean applied once",
+    "zero_load": "Physical zero algebraically; ordinary FP32 scaler/trilinear rounding disclosed",
+    "query_equivalence": "Linear trilinear query commutes with global alpha combination if each row sums to1; first actual-case numerical witness needed, not bitwise equality",
+    "stress": "Separate force-conditioned nonlinear single signed encoded scalar; no superposition or strain-to-source formula",
+    "mask": "Candidate clears only frontend grid11:17 before lifting; control retains; stress head gets same original normalized load6 in both",
+    "matched_initialization": "Identical seed/creation order/trainable layout and all shared metadata buffers by construction; no author model instance or equality claim based on runtime",
+    "effective_capacity_limitation": "Inactive load columns reduce candidate conditioning; same stored tensors is not same effective capacity"
+  },
+  "architecture": {
+    "encoder": "Existing xyz-only PointNet1024/width64/global32",
+    "trunk": "61->16 lifting;4 old geobc.fno.SpectralConv3d m12 + pointwise layers;GELU after first3 only",
+    "heads": {
+      "u_basis": [
+        16,
+        128,
+        9
+      ],
+      "stress": [
+        22,
+        128,
+        1
+      ]
+    },
+    "checkpoint": "Old4-block non-reentrant checkpoint recipe",
+    "extra_encoder_or_loss": false
+  },
+  "parameter_counts_source_derived_not_measured": {
+    "encoder": 16736,
+    "spectral": 14155776,
+    "lift": 992,
+    "pointwise": 1088,
+    "u_basis_head": 3337,
+    "stress_head": 3073,
+    "solver": 14164266,
+    "total": 14181002,
+    "named_trainable_tensors": 44,
+    "policy": "All trainables real; complex spectral compute uses real/imag final axis2 so both components count. Runtime property measures public tensors; no complex-numel ambiguity."
+  },
+  "first_actual_case_checks_pending": [
+    "Output4/grid shapes and shared scaler physical decode",
+    "Full named trainable initialization equality between arms",
+    "One-body query/composition witness with actual static trilinear weights",
+    "Finite positive aggregate encoder/trunk/u-head/stress-head gradients; inactive basis output rows may have zero gradient",
+    "Force-span identity and input-only per-CAD geometry/nonload parity in trainer"
+  ],
+  "author_receipt": {
+    "AST_passed": true,
+    "AST_runs": 1,
+    "module_imported": false,
+    "scientific_imports": [],
+    "scientific_arrays_read": 0,
+    "labels_read": 0,
+    "weights_read": 0,
+    "models_constructed": 0,
+    "toy_runs": 0,
+    "GPU_initialized": false,
+    "training_updates": 0,
+    "elapsed_seconds": 0.0025665999855846167
+  },
+  "limitations": [
+    "Metadata linear-static assumption, not engineering assurance or measured field-superposition guarantee",
+    "Verified3load span only, not arbitrary6load physics",
+    "No stress scalar exporter formula or constitutive equality",
+    "No target/scaler fitting/model IO",
+    "No legacy final/new sealed test/dia target access",
+    "Old direct4/Hash models are not new matched controls"
+  ],
+  "created_at_utc": "2026-10-09T17:42:25.575911+00:00"
+}
