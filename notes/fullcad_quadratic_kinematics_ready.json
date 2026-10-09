@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_source_review",
+  "plan": "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+  "plan_sha256": "40b3b9b30f1de0f4afc1f94788881778af40871e784dd0f1694f86ab66579688",
+  "tool": "tools/diagnose_fullcad_quadratic_kinematics.py",
+  "tool_sha256": "e8a99ae4af871add4786e3a5d3aff01a7b11d53fa4d0055cdc2cfe9ceac619a4",
+  "frozen_source_pins": {
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "tools/diagnose_quadratic_kinematics.py": "b2d5ca8b3a2abbca4818aaa34f845e5034156e80b111d1e7fd3bf8f34e058865"
+  },
+  "API": {
+    "request_contract(planPath)": "purestdlib source/stat/hash/JSON/ZIP headers, inherits frozen bounded contract; no scientific imports",
+    "CLI_actual": "--plan <fixed plan> --output <fixed output>, root sole queue after focused review/release; no toy option"
+  },
+  "static_AST": "passed",
+  "author_scientific_executions": 0,
+  "author_array_reads": 0,
+  "author_GT_reads": 0,
+  "author_GPU_initialized": false,
+  "author_toy_runs": 0,
+  "author_request_contract_runs": 0,
+  "prior_analytic_toy": {
+    "ready": "notes/quadratic_kinematics_ready.json",
+    "ready_sha256": "af7a0571396dd11383350a2dbcc4ca384c19a9eae81cd1de700c920cc3f0b9af",
+    "passed": true,
+    "fixture_runs": 1,
+    "rerun": false
+  },
+  "fixed_runtime_scope": {
+    "cells": 111754,
+    "Gauss_points": 447016,
+    "center_points": 111754,
+    "corner_P1_matrices": 111754,
+    "CUDA_device": "cuda:0",
+    "dtype": "float64",
+    "chunk_cells": 8192,
+    "maximum_ascending_chunks": 14
+  },
+  "geometry_target_access_order": "Verify original vertices/cells10 array identities; allcenter/corner/fourGauss normalized J predicate and center-to-Gauss signs before either saved u_true_mm/u_pred_mm member; any invalid geometry withholds wholejob target metrics and reads zero label/pred members",
+  "integrated_parity": {
+    "execution": "First and only formal GPU runtime; no separate CPU/GPU probe",
+    "reference_result": "notes/geobc_quadratic_kinematics_result.json",
+    "reference_sha256": "adfb64daff4da7e3cb5c41816cf7e4496b9d7811a2ce3fac600c408602469dde",
+    "cells": 32,
+    "Gauss_points": 128,
+    "physical_scalar_relative_tolerance": 1e-10,
+    "physical_scope": "All old32 P1/P2 truth/prediction/error energies/RMS/relative ratios, midside residual RMS, signed E1/Emid/cross/E2, mismatch references, volumes and128 Gauss numerical geometry values",
+    "zero_semantics": "Both0 equal; one0 differs; null/reason/discrete values exact",
+    "cancellation_diagnostics": "Direct decomposition/corner residual and energy closure guarded separately by frozen <=1e-10; their machine-zero residuals are not physical aggregate relative-equality targets",
+    "root_scope_agreement": "Root explicitly confirmed aggregate parity vs cancellation guard distinction before scientific execution"
+  },
+  "receipt_schema": "Root status/scientific_outcome/gate_pass/config/kinematics/receipt/wall/RSS; kinematics.metrics fullCAD, subset32.metrics/parity separately; scalar failures counts+first8, no allcell/raw array JSON",
+  "scientific_negative": "completed/gatefalse, metrics withheld; no skip/substitution/partial target report",
+  "source_operational_failure": "failed, safe persisted failure receipts; existing nonempty mismatched output never overwritten",
+  "GPU_time": "Separate CUDA event geometry/kinematics phase spans summed, excluding intervening CPU saved-field loading; phase host sync costs included; wall and peakGPU bytes separate",
+  "awaiting": "One focused source review followed by root sole CUDA queue release",
+  "created_at_utc": "2026-10-09T13:15:00.180004+00:00"
+}

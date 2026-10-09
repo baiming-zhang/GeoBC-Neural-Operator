@@ -21,13 +21,11 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
-    "design": "notes/geobc_fullcad_quadratic_kinematics_plan.json",
-    "design_sha256": "40b3b9b30f1de0f4afc1f94788881778af40871e784dd0f1694f86ab66579688",
-    "scope": "SameTRAIN/ver existingendpoint10000; all111754cells447016positiveGauss points; batchedGPUfloat64, prior32parityintegrated; no training",
-    "release": "Await new isolatedsource/ready focusedreview and solequeue rootparent",
-    "brief_action": "用同CAD全部单元确认中边梯度误差是否普遍，优先GPU，之后才决定是否改监督。",
-    "after": "Evidence-based rootnexttask only; no automaticstep/loss/width/seed/CAD sweep."
+    "stage": "singleCAD_P1_full10_supervision_pilot_design",
+    "scope": "Oneboundedfreshmatchedpilot only; exactcase/normalizer/recipe remain source-only design untilrootformalplan",
+    "basis": "FullsameCADquadrature confirmsP1/P2error22.39/187.31%; no longer only32sample",
+    "brief_action": "设计P1／完整十节点梯度监督的匹配拟合对照，固定相同前向节点与预算，先冻结损失尺度。",
+    "after": "No automatictraining/GT/caseexpansion; root freezesfinalscope after source feasibility."
   },
   "jobs": [
     {
@@ -2544,14 +2542,22 @@
       "gate_pass": true,
       "new_stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
       "basis": "Same32cellquad P1/P2error15.9/173.1%; confirm sameCADallcells before any objective/training change."
+    },
+    {
+      "at_utc": "2026-10-09T13:27:47.5050680Z",
+      "completed_stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
+      "elapsed_seconds": 3.093471364000038,
+      "gate_pass": true,
+      "next": "singleCAD_P1_full10_supervision_pilot_design",
+      "basis": "All111754cells447016Gauss/FP64GPU/old32parityPASS, P1/P2relative22.39/187.31%; investigategradient-supervisioncoverage withmatchedpilot."
     }
   ],
   "scope_rule": "historical_jobs are immutable completed evidence and are never dispatched; jobs contains only the currently authorized stage. Source SHA and weights remain in each historical run and the frozen Git commit.",
   "active_cpu_diagnostic": {
     "status": "completed",
-    "kind": "bounded_quadratic_kinematic_proxy",
-    "result": "notes/geobc_quadratic_kinematics_result.json",
-    "seconds": 0.42491359999996803,
+    "kind": "fullCAD_GPU_quadratic_kinematic_proxy",
+    "result": "notes/geobc_fullcad_quadratic_kinematics_result.json",
+    "seconds": 3.093471364000038,
     "gate_pass": true
   },
   "input_preparation": {
@@ -2571,11 +2577,12 @@
     }
   },
   "active_design_preparation": {
-    "status": "formal_frozen_source_implementation",
-    "design": "notes/geobc_fullcad_quadratic_kinematics_plan.json",
-    "design_sha256": "40b3b9b30f1de0f4afc1f94788881778af40871e784dd0f1694f86ab66579688",
-    "author": "continuous_query_contract",
-    "reviewer": "deepjeb_research",
-    "source_only_until_root_release": true
+    "status": "selected_next_source_feasibility",
+    "authors": [
+      "continuous_query_contract",
+      "deepjeb_research"
+    ],
+    "design": "singleCAD_P1_full10_supervision_pilot_design",
+    "scientific_arrays_or_training_authorized_in_current_design": false
   }
 }

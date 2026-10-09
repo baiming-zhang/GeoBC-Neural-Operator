@@ -250,9 +250,13 @@
 
 固定TRAIN101_479/ver专用模型10000步保存场，在同一32单元／128个Gauss点上完成源、几何和分解检查，数值gate通过，耗时0.42s。P1／P2代理相对误差为15.891%／173.086%，各用自身真值Frobenius参考分母；真值P2−P1差异相对P2为10.304%。误差能量E1／Emid／有符号cross／E2=7.589e-07／8.786e-05／+1.286e-07／8.875e-05 mm³，恒等式残差1.2e-15；中边项约为E2的99.0%，交叉项单列，不能解释为因果错误占比。真值／预测中边残余位移RMS为5.047e-05／0.0008424 mm。这只描述既定局部子集；P2是位移派生代理，曲单元四点积分不是精确连续积分，不代表全CAD、solver应变GT或泛化，也不替代历史全节点恢复P1。正式结果见notes/geobc_quadratic_kinematics_result.json。
 
+## 同一TRAIN保存场的全CAD确认
+
+GPU FP64确认：同一TRAIN101_479/ver保存的专用模型10000步场，覆盖111,754单元／447,016个Gauss点，中心／四角／Gauss几何检查及原32单元GPU/CPU parity通过，耗时3.09s，数值gate通过。全单元P1／P2代理相对误差22.391%／187.313%（各自真值分母），真值P2−P1相对P2差异23.402%。E1／Emid／有符号cross／E2=0.005672／0.3793／-0.004223／0.3808 mm³，闭合残差3.2e-17；负交叉项保留，中边项占比不能作因果解释。真值／预测中边残余位移RMS为0.0001082／0.0009272 mm。范围仍是单TRAIN/ver与专用模型；四点P2是位移派生代理，不是solver应变GT或曲单元精确积分，不证明全域Jacobian、泛化或因果，也不替代历史全节点恢复P1。正式结果见notes/geobc_fullcad_quadratic_kinematics_result.json。
+
 ## 主计划中的下一阶段
 
-当前主计划：fullcad_quadratic_kinematics_specialist101_479_ver（等待／排队）。 计划阶段：single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation。 设计：notes/geobc_fullcad_quadratic_kinematics_plan.json。 完成后：Evidence-based rootnexttask only; no automaticstep/loss/width/seed/CAD sweep.。
+当前计划阶段已完成，后续决策仍由主计划确定。 计划阶段：singleCAD_P1_full10_supervision_pilot_design。 完成后：No automatictraining/GT/caseexpansion; root freezesfinalscope after source feasibility.。
 
 ## 解释边界
 
@@ -260,4 +264,4 @@
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成47/48项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成48/48项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

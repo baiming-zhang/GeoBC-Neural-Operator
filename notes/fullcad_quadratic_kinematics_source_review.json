@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "review_type": "independent_focused_static_formal_math_scope_source_API_and_receipt_review",
+  "formal_plan": "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+  "formal_plan_sha256": "40b3b9b30f1de0f4afc1f94788881778af40871e784dd0f1694f86ab66579688",
+  "source": "tools/diagnose_fullcad_quadratic_kinematics.py",
+  "source_sha256": "e8a99ae4af871add4786e3a5d3aff01a7b11d53fa4d0055cdc2cfe9ceac619a4",
+  "ready": "notes/fullcad_quadratic_kinematics_ready.json",
+  "ready_sha256": "483cb9a3367fe6421d12ddade2f87ee36d128e44696f693a667a89cac51f20ac",
+  "frozen_source_pins": {
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "tools/diagnose_quadratic_kinematics.py": "b2d5ca8b3a2abbca4818aaa34f845e5034156e80b111d1e7fd3bf8f34e058865"
+  },
+  "blocking_findings": [],
+  "checks": {
+    "formal_scope_and_inheritance": {
+      "passed": true,
+      "evidence": "Same existing TRAIN101_479/ver specialist endpoint10000 and signed physical saved fields as the frozen bounded stage. Every111754 original row is processed in ascending order,4 fixed positive Gauss points each=447016, maximum8192 cells per chunk and14 chunks. No model, checkpoint, inference, optimizer, other case/load/CAD, validation/final/dia or stress source is introduced."
+    },
+    "metadata_only_contract": {
+      "passed": true,
+      "evidence": "The pinned bounded tool is loaded only after its SHA check and its stdlib-only request_contract is reused without monkeypatching. New contract verifies the full plan/parent/bounded result/source/ready identities, fixed full scope and prior32-cell parity reference. No scientific import or scientific array decoding occurs in request_contract. The reviewer did not execute it."
+    },
+    "source_inputs_and_geometry_before_fields": {
+      "passed": true,
+      "evidence": "Runtime opens H5 vertices only and connectivity cells10 only, verifies inherited array hashes and indices, and replays exact sourcefloat32 normalized endpoint xyz. Only endpoint xyz and declared small metadata are accessed before the entire geometry pass. All111754 center and corner matrices and447016 Gauss matrices must pass before u_true_mm/u_pred_mm are opened. Any invalid geometry yields whole-job completednegative, metrics=None and zero label/pred member reads; no cell is skipped or substituted."
+    },
+    "full_geometry_predicate": {
+      "passed": true,
+      "evidence": "J/L finite, absdet>1e-18,sigma_min>1e-12,condition<1e12 are applied to quadratic center/Gauss and physical corner-P1 matrices. Center sign anchors Gauss sign consistency; consistent negative orientation is allowed and corner determinant sign does not replace the quadratic orientation. The nonfinite-matrix SVD safety substitution retains the original finite=False mask and cannot pass geometry. Failure counts and first8 ascending row/pointIDs are retained. No redundant full face scan, Newton inverse or eleven-node Jacobian audit is added."
+    },
+    "FP64_gradient_direction_and_broadcast": {
+      "passed": true,
+      "evidence": "Physical vertices are sourcefloat32 then promoted tofloat64; CUDA D,centerD,u,J,solves,energies and reductions arefloat64. G1 uses transpose solve of physical corner columns. J[batch,point,physical,reference] and U2 are contracted from all10 shape derivatives; G2 and Gmid use the matching transpose solve. eps1[batch,1,3,3] broadcasts across4 points and eps2/epsmid[batch,4,3,3] match weights[batch,4]. Physical-affine delta preserves floating corner residuals and validates them rather than overwriting them."
+    },
+    "energies_and_streamed_aggregation": {
+      "passed": true,
+      "evidence": "Full3x3 Frobenius includes shear weight2. Each chunk produces per-cell volume/reference/error/mismatch/mid-residual contributions, which are reduced by sum and accumulated as CPUdouble scalars in ascending chunks. Global ratios/RMS are formed only after summing energies and volume, never by averaging chunk relative errors. Uniform midside displacement RMS uses6*111754=670524 local incidences with repeated global nodes retained. signed_cross=2sum(w*e1:emid) retains its sign; closure includes it without abs correction."
+    },
+    "null_denominator_and_numerical_guards": {
+      "passed": true,
+      "evidence": "Scientific reference ratios reuse the exactzero->null/reason helper with no artificial floor. Full/sampled direct physical-affine and energy closure guards are fixed at1e-10; allzero energy identity has an explicit zero branch. Finite gradient/energy guard failure withholds all metrics, including any partial target result. Accuracy values themselves are observations rather than an accuracy or utility gate."
+    },
+    "unique_actual_GPU_parity": {
+      "passed": true,
+      "evidence": "The previous32 original rows are gathered from the same actual GPU contributions; aggregate P1/P2/reference/error/mismatch energies,RMS,ratios,midside RMS,signedcross,volumes and128 Gauss geometry records are compared to the frozen bounded result at relative1e-10. Schema, null/reason and discrete values must agree; bothzero equal and onezero differs. Cancellation identity residuals are excluded from physical aggregate relative matching and instead each obey their frozen1e-10 guard, as root clarified before scientific execution. No author GPU/CPU toy or separate probe is run. Runtime parity remains unexecuted at review time."
+    },
+    "metrics_receipt_and_immutable_reuse": {
+      "passed": true,
+      "evidence": "FullCAD metrics and previous32 subset metrics/parity are separately named; neither replaces legacyallnode recoveredP1. Summary stores config.contract, accessed members, source identities, counts, failures, FP64 backend/device, wall/RSS and peak GPU memory. CUDA event phase spans are separately described, exclude intervening CPU saved-field loading and include phase host synchronization overhead; they are not claimed as kernel-only time. No full XYZ/u/GT/allcell arrays are written. Strict completed reuse checks config/status/summary/formal-result identity and cannot silently overwrite mismatched nonempty output. Source/operational failure is distinct from a completed scientificnegative."
+    }
+  },
+  "author_readiness_evidence_not_executed": {
+    "status": "ready_for_source_review",
+    "AST_status": "passed",
+    "author_scientific_executions": 0,
+    "author_array_reads": 0,
+    "author_GPU_initialized": false,
+    "author_request_contract_runs": 0,
+    "author_toy_runs": 0,
+    "prior_analytic_toy_reused_as_evidence_only": true
+  },
+  "review_activity": {
+    "new_tool_source_and_small_plan_ready_JSON_only": true,
+    "scientific_array_or_saved_field_reads": 0,
+    "weights_or_models_read": 0,
+    "tool_import_or_request_contract_calls": 0,
+    "toy_or_probe_executions": 0,
+    "GPU_or_native_calls": 0,
+    "frozen_sources_or_plans_modified": false,
+    "only_created_artifact": "notes/fullcad_quadratic_kinematics_source_review.json"
+  },
+  "limits": [
+    "This is static source review; CUDA runtime correctness and numerical parity are not established until the unique root-run stage.",
+    "Center/corner/fourGauss checks do not certify everywhere-positive curved Jacobians or global injectivity.",
+    "Fixed4-point curved quadrature is a kinematic proxy, not exact curved integration or solver strain/stressGT.",
+    "One observed TRAIN/ver specialist endpoint is not shared-geometry generalization evidence and does not identify a unique frequency/optimizer/error cause."
+  ],
+  "execution_permission_granted_by_review": false,
+  "next_action": "Root alone may release the unique queued full-CAD CUDA FP64 diagnostic. No new training or automatic scope expansion is authorized by this review."
+}

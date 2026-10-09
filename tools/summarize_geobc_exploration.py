@@ -66,6 +66,28 @@ def quadratic_kinematics_text(result):
     brief=(f"冻结专用模型在{scope}的P1／P2派生代理误差{p1}／{p2}（各自真值分母），数值gate{verdict}；这是局部诊断，不代表全CAD或泛化，不与历史全节点P1直接比较。")
     return report,brief
 
+def fullcad_quadratic_kinematics_text(result):
+    kin=result['kinematics']; metrics=kin['metrics']; geometry=kin['geometry']
+    verdict='通过' if result['gate_pass'] else '未通过'
+    scope=f"同一TRAIN101_479/ver保存的专用模型10000步场，覆盖{geometry['centers_checked']:,}单元／{geometry['Gauss_points_checked']:,}个Gauss点"
+    limits='范围仍是单TRAIN/ver与专用模型；四点P2是位移派生代理，不是solver应变GT或曲单元精确积分，不证明全域Jacobian、泛化或因果，也不替代历史全节点恢复P1。'
+    if metrics is None:
+        failed_stage='几何' if not geometry['passed'] else '数值或子集parity'
+        return (f"GPU FP64全CAD诊断已完成：{scope}，耗时{result['elapsed_seconds']:.2f}s，数值gate{verdict}；{failed_stage}检查未通过，全CAD目标指标未发布。"+limits,
+                f"同TRAIN全CAD二次运动学诊断完成，数值gate{verdict}，全量指标未发布；仍不能给出全CAD精度或泛化结论。")
+    def relative(item):
+        return percent(item['value']) if item['value'] is not None else f"未定义（{item['reason']}）"
+    p1=relative(metrics['P1']['relative_L2_to_truth']); p2=relative(metrics['P2']['relative_L2_to_truth'])
+    mismatch=relative(metrics['truth_P2_minus_P1']['relative_L2_to_same_P2'])
+    energy=metrics['error_decomposition']; subset=kin['subset32']
+    report=(f"GPU FP64确认：{scope}，中心／四角／Gauss几何检查及原{subset['cells']}单元GPU/CPU parity{'通过' if subset['parity']['passed'] else '未通过'}，耗时{result['elapsed_seconds']:.2f}s，数值gate{verdict}。"
+            f"全单元P1／P2代理相对误差{p1}／{p2}（各自真值分母），真值P2−P1相对P2差异{mismatch}。"
+            f"E1／Emid／有符号cross／E2={energy['E1']:.4g}／{energy['Emid']:.4g}／{energy['signed_cross']:+.4g}／{energy['E2']:.4g} mm³，闭合残差{energy['identity_relative_residual']:.2g}；负交叉项保留，中边项占比不能作因果解释。"
+            f"真值／预测中边残余位移RMS为{metrics['truth_midside_residual_displacement_vector_RMS_mm']:.4g}／{metrics['prediction_midside_residual_displacement_vector_RMS_mm']:.4g} mm。"+limits+
+            '正式结果见notes/geobc_fullcad_quadratic_kinematics_result.json。')
+    brief=(f"同TRAIN/ver专用模型的全CAD四点积分P1／P2代理误差{p1}／{p2}（各自真值分母），GPU FP64及子集parity通过；中边梯度现象延伸至该CAD全单元，仍非solver应变GT或泛化结论。")
+    return report,brief
+
 def plan_next_text(plan,summaries,*,compact=False):
     current_jobs=plan.get('jobs',[])
     complete=bool(current_jobs) and all(job['name'] in summaries for job in current_jobs)
@@ -525,6 +547,22 @@ def main():
             quadratic_kinematics_receipt={'run':quadratic_job['name'],'exported_files':[str(exported/name).replace('\\','/') for name in ('config.json','status.json','summary.json')],
                                           'receipt_location':'summary.json:receipt','status':quadratic_kinematics['status'],
                                           'scientific_outcome':quadratic_kinematics['scientific_outcome'],'gate_pass':quadratic_kinematics['gate_pass']}
+    fullcad_kinematics_path=ROOT/'notes/geobc_fullcad_quadratic_kinematics_result.json'
+    fullcad_kinematics=json.loads(fullcad_kinematics_path.read_text()) if fullcad_kinematics_path.is_file() else None
+    if fullcad_kinematics and fullcad_kinematics.get('status')!='completed':fullcad_kinematics=None
+    fullcad_kinematics_receipt=None
+    if fullcad_kinematics:
+        fullcad_report,fullcad_brief=fullcad_quadratic_kinematics_text(fullcad_kinematics)
+        lines += ['', '## 同一TRAIN保存场的全CAD确认','',fullcad_report]
+        fullcad_jobs=[job for job in jobs if job['name']=='fullcad_quadratic_kinematics_specialist101_479_ver' and job['name'] in summaries]
+        if fullcad_jobs:
+            fullcad_job=fullcad_jobs[-1]; exported=Path('runs')/fullcad_job['name']; receipt=fullcad_kinematics['receipt']
+            fullcad_kinematics_receipt={'run':fullcad_job['name'],'exported_files':[str(exported/name).replace('\\','/') for name in ('config.json','status.json','summary.json')],
+                                      'receipt_location':'summary.json:receipt','status':fullcad_kinematics['status'],
+                                      'scientific_outcome':fullcad_kinematics['scientific_outcome'],'gate_pass':fullcad_kinematics['gate_pass'],
+                                      'backend':receipt['backend'],'device':receipt['device'],'dtype':receipt['dtype'],
+                                      'GPU_event_elapsed_seconds':receipt['GPU_event_elapsed_seconds'],
+                                      'GPU_peak_allocated_bytes':receipt['GPU_peak_allocated_bytes'],'GPU_peak_reserved_bytes':receipt['GPU_peak_reserved_bytes']}
     lines += ['', '## 主计划中的下一阶段','',next_text]
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
@@ -586,6 +624,7 @@ def main():
         brief[-1]=f"四几何固定预算拟合：自身→邻居消息，位移{100*tm0['train_u_mean_relative_l2']:.2f}%→{100*tm1['train_u_mean_relative_l2']:.2f}%，P1代理{100*tm0['train_P1_mean_relative_l2']:.1f}%→{100*tm1['train_P1_mean_relative_l2']:.1f}%；联合门限{'通过' if topology_message['clear_gain_gate_passed'] else '未通过'}。这是TRAIN拟合，尚无新增泛化结论。"
     if continuous_geometry:brief += [continuous_brief]
     if quadratic_kinematics:brief += [quadratic_brief]
+    if fullcad_kinematics:brief += [fullcad_brief]
     brief += ['',f'下一步（来自主计划）：{brief_next_text} 最终测试继续保留。',
               '',f"科学训练／评估／冻结诊断完成{counts['scientific_completed']}/{counts['scientific_planned']}项，合成验收完成{counts['synthetic_acceptance_completed']}/{counts['synthetic_acceptance_planned']}项；原30项slides复现已完成。自主研究与30分钟监视继续。",'',
               '完整指标、控制变量和解释范围见 [探索报告](REPORT.md)。','']
@@ -613,6 +652,8 @@ def main():
                                    'continuous_query_geometry_cpu_receipt':continuous_geometry_receipt,
                                    'quadratic_kinematics_analysis':str(quadratic_kinematics_path.relative_to(ROOT)) if quadratic_kinematics else None,
                                    'quadratic_kinematics_cpu_receipt':quadratic_kinematics_receipt,
+                                   'fullcad_quadratic_kinematics_analysis':str(fullcad_kinematics_path.relative_to(ROOT)) if fullcad_kinematics else None,
+                                   'fullcad_quadratic_kinematics_gpu_receipt':fullcad_kinematics_receipt,
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',
                                    'updated_at_utc':utc_now()})
     if geo and load and comparisons:
