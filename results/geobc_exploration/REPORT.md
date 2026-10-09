@@ -259,7 +259,7 @@ GPU FP64确认：同一TRAIN101_479/ver保存的专用模型10000步场，覆盖
 
 ## 主计划中的下一阶段
 
-当前主计划：solver_confirm_fno_seed2026_600s（进行中）；solver_confirm_mlp_seed2026_600s（等待／排队）；solver_confirm_transolver_pp_seed2026_600s（等待／排队）；solver_confirm_fno_seed2027_600s（等待／排队）；solver_confirm_mlp_seed2027_600s（等待／排队）；solver_confirm_transolver_pp_seed2027_600s（等待／排队）。 计划阶段：solver_confirmation。 完成后：Analyze seed stability and worst CAD, lock route/protocol before final held-out test and continuous field capability。
+当前主计划：solver_confirm_fno_seed2026_600s（已完成）；solver_confirm_mlp_seed2026_600s（已完成）；solver_confirm_transolver_pp_seed2026_600s（已完成）；solver_confirm_fno_seed2027_600s（进行中）；solver_confirm_mlp_seed2027_600s（等待／排队）；solver_confirm_transolver_pp_seed2027_600s（等待／排队）。 计划阶段：solver_confirmation。 完成后：Analyze seed stability and worst CAD, lock route/protocol before final held-out test and continuous field capability。
 
 ## 解释边界
 
@@ -267,4 +267,4 @@ GPU FP64确认：同一TRAIN101_479/ver保存的专用模型10000步场，覆盖
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成54/60项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成57/60项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

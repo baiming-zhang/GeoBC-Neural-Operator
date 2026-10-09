@@ -1,0 +1,74 @@
+{
+  "kind": "solver_final_evaluation",
+  "status": "source_ready_pending_confirmation_and_route_freeze",
+  "final_rules_frozen": false,
+  "existing_split": "notes/geobc_split.json",
+  "confirmation_plan": "notes/geobc_solver_confirmation_plan.json",
+  "selection_cache": "data/geobc_solver_selection",
+  "prepared_data": "data/prepared_geobc_multiload",
+  "eval_cache": "data/geobc_solver_final_eval",
+  "known_loads": [
+    "ver",
+    "hor",
+    "tor"
+  ],
+  "combination_loads": [
+    "dia"
+  ],
+  "routes": [],
+  "input_recipe": {
+    "cloud_seed": 2026,
+    "cloud_points": 1024,
+    "geometry_dim": 32,
+    "grid_resolution": 64,
+    "features": 25,
+    "device": "cuda",
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "train_scaler_source": "data/geobc_solver_selection/manifest.json",
+    "refit_scaler": false
+  },
+  "rules": {
+    "confirmation_gate": "All six current confirmation summaries completed and consistent before any final input preparation/evaluation",
+    "route_limit": 2,
+    "seeds": [
+      2026,
+      2027
+    ],
+    "checkpoint_roles": [
+      "endpoint_primary",
+      "validation_best_secondary"
+    ],
+    "selection": "Only development validation and measured costs select routes; both seeds are reported, never choose with final test",
+    "known_case_count": 15,
+    "combination_case_count": 5,
+    "maximum_case_inferences": 160,
+    "label_read": "Original aligned displacement/stress are read only after prediction for each case; labels are excluded from model input",
+    "metrics": "All original node physical U-vector relative L2/RMS/max mm and signed stress relative L2/RMSE/MAE MPa/top|stress|1% hotspot, mean/worst/percase",
+    "stop": "One frozen final validation, negative outcomes retained; no final-driven retraining or architecture tuning",
+    "capability": "Continuous query/BC/full10 kinematic proxy checks are separate bounded TRAIN diagnostics, not asserted by nodal prediction"
+  },
+  "source_only_preparation": {
+    "scientific_arrays_read": 0,
+    "weights_read": 0,
+    "CUDA_initialized": false,
+    "actual_evaluation_authorized_after_gate": true,
+    "source_check_receipt": "notes/solver_final_eval_source_check.json",
+    "modules": {
+      "data": "e4d2d1af3c8c37f4913a9ef6de7dd90384014cdec4e2f912048ef98db91e8388",
+      "evaluator": "8f81b8e9fb049d79541dab14328a9a3c30d3b489ad2be66d4c0681def348636b"
+    }
+  },
+  "confirmation_runs": [
+    "runs/geobc_exploration/solver_confirm_fno_seed2026_600s",
+    "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s",
+    "runs/geobc_exploration/solver_confirm_transolver_pp_seed2026_600s",
+    "runs/geobc_exploration/solver_confirm_fno_seed2027_600s",
+    "runs/geobc_exploration/solver_confirm_mlp_seed2027_600s",
+    "runs/geobc_exploration/solver_confirm_transolver_pp_seed2027_600s"
+  ]
+}
