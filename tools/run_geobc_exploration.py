@@ -50,7 +50,7 @@ def read_json_if_exists(path: Path) -> dict[str, Any] | None:
 
 def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
     filename = "manifest.json" if any(module in job["command"] for module in
-        ("geobc.solver_final_eval_data", "geobc.deeponet_data")) else "summary.json"
+        ("geobc.solver_final_eval_data", "geobc.deeponet_data", "geobc.multiscale_mesh_data")) else "summary.json"
     summary = read_json_if_exists(ROOT / job["output"] / filename)
     if not summary or summary.get("status") != "completed":
         return None
@@ -188,6 +188,34 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             actual_stat = target.stat()
             if {"bytes": actual_stat.st_size, "mtime_ns": actual_stat.st_mtime_ns} != record["file_stat"]:
                 raise ValueError(f"Completed sealed source file missing or changed: {job['name']}")
+    elif "geobc.multiscale_mesh_data" in command:
+        from geobc.multiscale_mesh_data import request_contract, read_cache_metadata
+        requested_plan = command[command.index("--plan") + 1]
+        contract, _ = request_contract(requested_plan)
+        if summary != read_cache_metadata(requested_plan, contract=contract):
+            raise ValueError(f"Completed multiscale mesh input cache differs from frozen geometry: {job['name']}")
+    elif "geobc.multiscale_mesh_train" in command and "--evaluate-dia" in command:
+        from geobc.multiscale_mesh_train import request_dia_contract
+        requested_plan = command[command.index("--plan") + 1]
+        contract, _ = request_dia_contract(requested_plan)
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Completed mesh DEV dia differs from its fixed endpoint contract: {job['name']}")
+        if summary.get("training_updates") != 0 or summary.get("scaler_fits") != 0:
+            raise ValueError(f"Mesh DEV dia unexpectedly trained or refit scalers: {job['name']}")
+    elif "geobc.multiscale_mesh_train" in command:
+        from geobc.multiscale_mesh_train import request_contract
+        requested_plan = command[command.index("--plan") + 1]
+        contract, _ = request_contract(requested_plan)
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Completed mesh screen differs from its frozen whole-case recipe: {job['name']}")
+        counts = summary.get("case_exposure_counts", {})
+        if (summary.get("endpoint_step") != 480
+                or summary.get("costs", {}).get("train_case_exposures") != 480
+                or len(counts) != 120 or any(count != 4 for count in counts.values())):
+            raise ValueError(f"Mesh screen lacks four exposures of all TRAIN120 cases: {job['name']}")
+        for filename in ("config.json", "last.pt", "best.pt", "step480.pt", "metrics_latest.json", "metrics_best.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed mesh screen lacks {filename}: {job['name']}")
     elif "geobc.deeponet_data" in command:
         from geobc.deeponet_data import request_contract, read_cache_metadata
         requested_plan = command[command.index("--plan") + 1]
@@ -510,7 +538,8 @@ def stage_command(job: dict[str, Any]) -> list[str]:
          or "geobc.topology_message_train" in command or "geobc.solver_selection_train" in command
          or "geobc.solver_confirmation_train" in command or "geobc.fno_response_train" in command
          or "geobc.gino_train" in command
-         or ("geobc.deeponet_train" in command and "--evaluate-dia" not in command))
+         or ("geobc.deeponet_train" in command and "--evaluate-dia" not in command)
+         or ("geobc.multiscale_mesh_train" in command and "--evaluate-dia" not in command))
             and "--resume" not in command and (output / "last.pt").exists()):
         command.extend(["--resume", str(output / "last.pt")])
     return command

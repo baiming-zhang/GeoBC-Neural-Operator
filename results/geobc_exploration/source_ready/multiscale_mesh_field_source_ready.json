@@ -1,0 +1,223 @@
+{
+  "status": "source_ready_AST_and_small_metadata_only",
+  "created_at_utc": "2026-10-09T18:58:01.067199+00:00",
+  "source": "geobc/multiscale_mesh_field.py",
+  "source_sha256": "5f6b81e972c7945e11a2d0bb4409dddc1aaea9a3489fed392ab49772990802a4",
+  "source_bytes": 19224,
+  "author_check": {
+    "kind": "one_final_AST_plus_supplied_JSON_and_source_arithmetic",
+    "passed": true,
+    "elapsed_seconds": 0.0024248999543488026,
+    "scientific_imports": 0,
+    "scientific_arrays_read": 0,
+    "models_constructed": 0,
+    "weight_files_read": 0,
+    "toy_executions": 0,
+    "GPU_work": false,
+    "training_updates": 0
+  },
+  "supplied_metadata": {
+    "plan": "notes/geobc_multiscale_mesh_plan.json",
+    "plan_sha256_at_source_check": "ead539f994c3a46748e4421f30eef83b382c317af745e8d313d56084a529b1b4",
+    "plan_status_at_source_check": "proposal_unfrozen_source_only",
+    "training_rules_frozen_at_source_check": false,
+    "plan_freeze_owner": "root; source readiness does not freeze or release this protocol",
+    "TRAIN_CADs": 40,
+    "DEV_CADs": 5,
+    "known_loads": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "final_or_sealed_access": false
+  },
+  "API": {
+    "constructor": "MultiscaleMeshField(scaler:dict, seed=2026, device=\"cuda\")",
+    "method": "multiscale_mesh",
+    "methods": {
+      "__init__": [
+        "self",
+        "scaler",
+        "seed",
+        "device"
+      ],
+      "parameter_counts": [
+        "self"
+      ],
+      "gradient_components": [
+        "self"
+      ],
+      "source_config": [
+        "self"
+      ],
+      "_validate_hierarchy": [
+        "self",
+        "xyz",
+        "hierarchy"
+      ],
+      "encode_case": [
+        "self",
+        "xyz",
+        "features25",
+        "cloud_xyz",
+        "mask",
+        "hierarchy"
+      ],
+      "readout": [
+        "self",
+        "H0"
+      ],
+      "forward_case": [
+        "self",
+        "xyz",
+        "features25",
+        "cloud_xyz",
+        "mask",
+        "hierarchy"
+      ],
+      "forward": [
+        "self",
+        "xyz",
+        "features25",
+        "cloud_xyz",
+        "mask",
+        "hierarchy"
+      ]
+    },
+    "encode_case": "xyz[N,3], all original features25[N,25], cloud_xyz[1,1024,3], bool mask[1,1024], hierarchy -> H0[N,32]",
+    "readout": "H0[Nchunk,32] -> shared-scaler encoded signed4[Nchunk,4]",
+    "forward_case": "complete original-node mesh encode plus all-node readout",
+    "parameter_counts": "method returning actual publicnumel dict, deferred until root first formal case",
+    "source_config": "property; includes actual counts, source identity, supplied scaler digest, complete equations and limitations",
+    "gradient_components": "method returning disjoint parameter groups encoder/lift/fineMP/down/up/coarse/readout; each value exposes .parameters()"
+  },
+  "hierarchy_contract": {
+    "xyz": [
+      "xyz0",
+      "xyz1",
+      "xyz2"
+    ],
+    "operators": {
+      "W0": [
+        0,
+        0
+      ],
+      "W1": [
+        1,
+        1
+      ],
+      "W2": [
+        2,
+        2
+      ],
+      "R01": [
+        0,
+        1
+      ],
+      "R12": [
+        1,
+        2
+      ],
+      "P12": [
+        2,
+        1
+      ],
+      "P01": [
+        1,
+        0
+      ]
+    },
+    "operator_keys": [
+      "src",
+      "dst",
+      "weight",
+      "delta_xyz",
+      "length",
+      "indptr",
+      "shape",
+      "csr"
+    ],
+    "src_dst": "int64[E]",
+    "weight": "float32[E]",
+    "delta_xyz": "float32[E,3], receiver_xyz[dst]-sender_xyz[src]",
+    "length": "float32[E,1]",
+    "shape": "(Ndst,Nsrc)",
+    "csr": "float32 sparse CSR, row=dst/col=src, complete saved support",
+    "index_bounds_and_geometry_identity": "immutable producer/loader guards, no repeated field value scan",
+    "W": "cut multiplicity / receiver weighted degree; zero rows still LN(receiver)",
+    "R": "complete hard-mass pooling; fixed differentiable sparse initial seeds",
+    "P": "complete positive two-pass Jacobi smoothed aggregation support"
+  },
+  "mathematics": {
+    "cycles": 4,
+    "nine_blocks": [
+      "fine_before",
+      "down01",
+      "mid_before",
+      "down12",
+      "bottom",
+      "up12",
+      "mid_after",
+      "up01",
+      "fine_after"
+    ],
+    "block_operator": {
+      "fine_before": "W0",
+      "down01": "R01",
+      "mid_before": "W1",
+      "down12": "R12",
+      "bottom": "W2",
+      "up12": "P12",
+      "mid_after": "W1",
+      "up01": "P01",
+      "fine_after": "W0"
+    },
+    "initial_states": [
+      "h0=lift",
+      "h1=R01@h0",
+      "h2=R12@h1"
+    ],
+    "state_update": "affine_LN32(receiver + complete weighted message sum)",
+    "message": "[sender32,receiver32,receiver-minus-sender3,length1] -> Linear68to64/GELU/Linear64to32",
+    "coarse_states": "persist between four cycles; initialized once",
+    "up_skip": "this cycle fine/mid state; just updated coarse sender",
+    "sharing": "nine distinct MLP+affine LN32 blocks, reused across four cycles",
+    "lift_and_readout_hidden_activation": "GELU; no extra LN",
+    "original_force_slots_retained": true,
+    "response_basis": false,
+    "no_additional_loss_or_learned_alpha": true
+  },
+  "source_derived_parameter_counts": {
+    "PointNet": 16736,
+    "lift": 5984,
+    "per_message_block_with_affine_LN": 6560,
+    "nine_message_blocks": 59040,
+    "readout": 4740,
+    "total": 86500
+  },
+  "parameter_count_scope": "Source arithmetic only; no instantiated model/count/resource/gradient claim",
+  "memory_design": {
+    "edge_chunk": 65536,
+    "message_and_cycle_checkpoint": "non-reentrant; no stochastic layers; preserve_rng_state=False",
+    "aggregate": "one receiver Nx32 accumulator per block; chunk index_add_",
+    "no_dense_N2": true,
+    "no_E32x32": true,
+    "no_per_chunk_full_node_accumulator": true,
+    "all_nodes_edges_and_map_support": true,
+    "no_truncation_or_resource_fallback": true,
+    "H0_leaf_chainrule": "only final H0 dependency; complete readout chunk grads then one original H0 backward"
+  },
+  "actual_acceptance_deferred": [
+    "full-case actual parameter counts and gradient groups",
+    "CUDA sparse CSR backward plus checkpoint/index_add autograd",
+    "complete-node inference/training memory/time and finite outputs",
+    "all physical accuracy/BC/continuous-query/PDE claims"
+  ],
+  "limitations": [
+    "New multiscale mesh adaptation, not official MGKN/BSMS reproduction or capacity matched mechanism control",
+    "Geometry mass proxy/cut multiplicities are not FE stiffness or constitutive laws",
+    "Role membership is not nodal Dirichlet; no hard BC enforcement",
+    "native_offnode=False; all-node solver does not define arbitrary off-node original25 extension",
+    "No source readiness constitutes actual training/execution release"
+  ]
+}

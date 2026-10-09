@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_multiscale_mesh_design",
+  "stage": "solver_pointconv_design",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,112 +21,88 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "brief_action": "DeepONet与共享BC输入MLP初筛均未超过FNO响应结构；准备真实多尺度mesh operator，继续跨结构选型，不做Hash局部优化。",
-    "scope": "Completed new4-stage DeepONet pair+DEVdia; lowrank pointwise route has no present screening advantage. Propose a genuine multiscale allnode mesh solver with local interaction and learned coarse-to-fine propagation. Do not infer missing topology is proven cause or open oldfinal/newsealed test.",
-    "stage": "solver_multiscale_mesh_design"
+    "brief_action": "正式唯一队列：全45CAD mesh输入准备→全节点多尺度求解器480次更新→DEV5固定480组合载荷。按平均/最差/热点/实际成本评估，不采样截边、不变损失或打开封存集。",
+    "scope": "One genuinely different mesh solver family; no mechanism pair, no PointConv co-implementation, no Hash/FNO/rank microtuning. Fresh same480 case protocol and immutable targets/scaler; oldfinal and newsealed tests closed. Actual preparation and GPU wait final sources and root freeze.",
+    "stage": "solver_multiscale_mesh_screen"
   },
   "jobs": [
     {
-      "name": "geometry_bc_cloud_cache45",
-      "kind": "deeponet_bc_cloud_input",
-      "stage": "solver_deeponet_screen",
-      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "name": "multiscale_mesh_input45",
+      "kind": "multiscale_mesh_input",
+      "stage": "solver_multiscale_mesh_screen",
+      "hypothesis": "Genuinely different wholemesh local and coarse-to-fine interaction versus completed historical solver screens; no pure topology/capacity causal claim",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.deeponet_data",
+        "geobc.multiscale_mesh_data",
         "--plan",
-        "notes/geobc_deeponet_plan.json"
+        "notes/geobc_multiscale_mesh_plan.json"
       ],
       "requires": [
-        "notes/geobc_deeponet_plan.json",
-        "notes/deeponet_field_source_ready.json",
-        "notes/deeponet_data_source_ready.json",
-        "notes/deeponet_train_source_ready.json",
-        "data/geobc_solver_selection/manifest.json"
+        "notes/geobc_multiscale_mesh_plan.json",
+        "notes/multiscale_mesh_field_source_ready.json",
+        "notes/multiscale_mesh_data_source_ready.json",
+        "notes/multiscale_mesh_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_gradient_supervision/manifest.json",
+        "data/geobc_graph_context/manifest.json"
       ],
-      "output": "data/geobc_geometry_bc_clouds"
+      "output": "data/geobc_multiscale_mesh_inputs45"
     },
     {
-      "name": "deeponet_bc_480",
-      "kind": "deeponet_screen",
-      "stage": "solver_deeponet_screen",
-      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "name": "multiscale_mesh_direct4_480",
+      "kind": "multiscale_mesh_screen",
+      "stage": "solver_multiscale_mesh_screen",
+      "hypothesis": "Genuinely different wholemesh local and coarse-to-fine interaction versus completed historical solver screens; no pure topology/capacity causal claim",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.deeponet_train",
+        "geobc.multiscale_mesh_train",
         "--plan",
-        "notes/geobc_deeponet_plan.json",
-        "--mode",
-        "deeponet",
+        "notes/geobc_multiscale_mesh_plan.json",
         "--output",
-        "runs/geobc_exploration/deeponet_bc_seed2026_480"
+        "runs/geobc_exploration/mesh_multiscale_seed2026_480"
       ],
       "requires": [
-        "notes/geobc_deeponet_plan.json",
-        "notes/deeponet_field_source_ready.json",
-        "notes/deeponet_data_source_ready.json",
-        "notes/deeponet_train_source_ready.json",
+        "notes/geobc_multiscale_mesh_plan.json",
+        "notes/multiscale_mesh_field_source_ready.json",
+        "notes/multiscale_mesh_data_source_ready.json",
+        "notes/multiscale_mesh_train_source_ready.json",
         "data/geobc_solver_selection/manifest.json",
-        "data/geobc_geometry_bc_clouds/manifest.json"
+        "data/geobc_gradient_supervision/manifest.json",
+        "data/geobc_graph_context/manifest.json",
+        "data/geobc_multiscale_mesh_inputs45/manifest.json"
       ],
-      "output": "runs/geobc_exploration/deeponet_bc_seed2026_480"
+      "output": "runs/geobc_exploration/mesh_multiscale_seed2026_480"
     },
     {
-      "name": "concat_mlp_bc_480",
-      "kind": "deeponet_screen",
-      "stage": "solver_deeponet_screen",
-      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "name": "multiscale_mesh_DEVdia480",
+      "kind": "multiscale_mesh_development_dia_eval",
+      "stage": "solver_multiscale_mesh_screen",
+      "hypothesis": "Genuinely different wholemesh local and coarse-to-fine interaction versus completed historical solver screens; no pure topology/capacity causal claim",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.deeponet_train",
+        "geobc.multiscale_mesh_train",
         "--plan",
-        "notes/geobc_deeponet_plan.json",
-        "--mode",
-        "concat_mlp",
+        "notes/geobc_multiscale_mesh_plan.json",
         "--output",
-        "runs/geobc_exploration/concat_mlp_bc_seed2026_480"
+        "runs/geobc_exploration/mesh_multiscale_development_dia480",
+        "--evaluate-dia"
       ],
       "requires": [
-        "notes/geobc_deeponet_plan.json",
-        "notes/deeponet_field_source_ready.json",
-        "notes/deeponet_data_source_ready.json",
-        "notes/deeponet_train_source_ready.json",
+        "notes/geobc_multiscale_mesh_plan.json",
+        "notes/multiscale_mesh_field_source_ready.json",
+        "notes/multiscale_mesh_data_source_ready.json",
+        "notes/multiscale_mesh_train_source_ready.json",
         "data/geobc_solver_selection/manifest.json",
-        "data/geobc_geometry_bc_clouds/manifest.json"
+        "data/geobc_gradient_supervision/manifest.json",
+        "data/geobc_graph_context/manifest.json",
+        "data/geobc_multiscale_mesh_inputs45/manifest.json",
+        "runs/geobc_exploration/mesh_multiscale_seed2026_480/summary.json",
+        "runs/geobc_exploration/mesh_multiscale_seed2026_480/last.pt"
       ],
-      "output": "runs/geobc_exploration/concat_mlp_bc_seed2026_480"
-    },
-    {
-      "name": "deeponet_bc_development_dia480",
-      "kind": "deeponet_development_dia_eval",
-      "stage": "solver_deeponet_screen",
-      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "-m",
-        "geobc.deeponet_train",
-        "--plan",
-        "notes/geobc_deeponet_plan.json",
-        "--evaluate-dia",
-        "--output",
-        "runs/geobc_exploration/deeponet_bc_development_dia480"
-      ],
-      "requires": [
-        "notes/geobc_deeponet_plan.json",
-        "notes/deeponet_field_source_ready.json",
-        "notes/deeponet_data_source_ready.json",
-        "notes/deeponet_train_source_ready.json",
-        "data/geobc_solver_selection/manifest.json",
-        "data/geobc_geometry_bc_clouds/manifest.json",
-        "runs/geobc_exploration/deeponet_bc_seed2026_480/summary.json",
-        "runs/geobc_exploration/deeponet_bc_seed2026_480/last.pt",
-        "runs/geobc_exploration/concat_mlp_bc_seed2026_480/summary.json",
-        "runs/geobc_exploration/concat_mlp_bc_seed2026_480/last.pt"
-      ],
-      "output": "runs/geobc_exploration/deeponet_bc_development_dia480"
+      "output": "runs/geobc_exploration/mesh_multiscale_development_dia480"
     }
   ],
   "historical_jobs": [
@@ -3020,6 +2996,108 @@
         "runs/geobc_exploration/solver_screen_fno_480/step480.pt"
       ],
       "output": "runs/geobc_exploration/fno_response_dev5_dia_endpoint480"
+    },
+    {
+      "name": "geometry_bc_cloud_cache45",
+      "kind": "deeponet_bc_cloud_input",
+      "stage": "solver_deeponet_screen",
+      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.deeponet_data",
+        "--plan",
+        "notes/geobc_deeponet_plan.json"
+      ],
+      "requires": [
+        "notes/geobc_deeponet_plan.json",
+        "notes/deeponet_field_source_ready.json",
+        "notes/deeponet_data_source_ready.json",
+        "notes/deeponet_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json"
+      ],
+      "output": "data/geobc_geometry_bc_clouds"
+    },
+    {
+      "name": "deeponet_bc_480",
+      "kind": "deeponet_screen",
+      "stage": "solver_deeponet_screen",
+      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.deeponet_train",
+        "--plan",
+        "notes/geobc_deeponet_plan.json",
+        "--mode",
+        "deeponet",
+        "--output",
+        "runs/geobc_exploration/deeponet_bc_seed2026_480"
+      ],
+      "requires": [
+        "notes/geobc_deeponet_plan.json",
+        "notes/deeponet_field_source_ready.json",
+        "notes/deeponet_data_source_ready.json",
+        "notes/deeponet_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_geometry_bc_clouds/manifest.json"
+      ],
+      "output": "runs/geobc_exploration/deeponet_bc_seed2026_480"
+    },
+    {
+      "name": "concat_mlp_bc_480",
+      "kind": "deeponet_screen",
+      "stage": "solver_deeponet_screen",
+      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.deeponet_train",
+        "--plan",
+        "notes/geobc_deeponet_plan.json",
+        "--mode",
+        "concat_mlp",
+        "--output",
+        "runs/geobc_exploration/concat_mlp_bc_seed2026_480"
+      ],
+      "requires": [
+        "notes/geobc_deeponet_plan.json",
+        "notes/deeponet_field_source_ready.json",
+        "notes/deeponet_data_source_ready.json",
+        "notes/deeponet_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_geometry_bc_clouds/manifest.json"
+      ],
+      "output": "runs/geobc_exploration/concat_mlp_bc_seed2026_480"
+    },
+    {
+      "name": "deeponet_bc_development_dia480",
+      "kind": "deeponet_development_dia_eval",
+      "stage": "solver_deeponet_screen",
+      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.deeponet_train",
+        "--plan",
+        "notes/geobc_deeponet_plan.json",
+        "--evaluate-dia",
+        "--output",
+        "runs/geobc_exploration/deeponet_bc_development_dia480"
+      ],
+      "requires": [
+        "notes/geobc_deeponet_plan.json",
+        "notes/deeponet_field_source_ready.json",
+        "notes/deeponet_data_source_ready.json",
+        "notes/deeponet_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_geometry_bc_clouds/manifest.json",
+        "runs/geobc_exploration/deeponet_bc_seed2026_480/summary.json",
+        "runs/geobc_exploration/deeponet_bc_seed2026_480/last.pt",
+        "runs/geobc_exploration/concat_mlp_bc_seed2026_480/summary.json",
+        "runs/geobc_exploration/concat_mlp_bc_seed2026_480/last.pt"
+      ],
+      "output": "runs/geobc_exploration/deeponet_bc_development_dia480"
     }
   ],
   "phase_history": [
@@ -3250,29 +3328,23 @@
     }
   },
   "active_design_preparation": {
-    "status": "completed_deeponet_stage_next_multiscale_design",
-    "continue_hash_microoptimization": false,
-    "newtest_labels_sealed": true,
-    "proposal": "notes/solver_next_structures.md",
-    "field_source": "geobc/deeponet_field.py",
-    "data_source": "geobc/deeponet_data.py",
-    "train_source": "geobc/deeponet_train.py",
-    "training_plan": "notes/geobc_deeponet_plan.json",
-    "response_result": "results/fno_response/BRIEF.md",
-    "source_only_until_root_freeze": true,
-    "root_authorized_at_utc": "2026-10-09T18:21:46.2682965Z",
-    "mode_pair": [
-      "deeponet",
-      "concat_mlp"
+    "status": "pointconv_one_family_source_design_in_progress",
+    "started_at_utc": "2026-10-09T19:12:57.1284959Z",
+    "proposal": "notes/geobc_pointconv_candidate_design.md",
+    "source_only_until_root_adoption": true,
+    "arrays_read": 0,
+    "models_constructed": 0,
+    "GPU_runs": 0,
+    "hash_microtuning": false,
+    "oldfinal_closed": true,
+    "sealed_new_test_closed": true,
+    "scientific_question": "Can a genuinely different continuous coordinate point convolution with local density compensation improve whole-node cross-CAD U/S and accuracy-cost compared with spectral and mesh routes?",
+    "decision_source": "User requested broad solver exploration, root adopted next source design after negative whole-mesh result",
+    "estimate_minutes": [
+      10,
+      15
     ],
-    "geometry_cloud": "Same old1024 point identities, exact original node indices then xyz+nonforce19; no nearest copying/resampling",
-    "common_u_structure": "force-independent nine physical basis responses with actual rank3 alpha and affine mean offset once",
-    "common_stress": "Independent normalized actual six-load conditioned signed scalar branch",
-    "architecture": "Fixedrank64 branch-times-trunk versus common-input concatenated point MLP; differing head parameters and initialization explicitly reported",
-    "dataset": "Same TRAIN40/DEV5 known3 and already explored DEV5 dia fixed endpoints; oldfinal and newsealedtest remain closed",
-    "publisher_verified_commit": "a39bf46b8eb97a09b30e1c310256d9d3c6cab01c",
-    "released_at_utc": "2026-10-09T18:30:45.0399862Z",
-    "next_design_note": "notes/geobc_next_solver_decision.md"
+    "publisher_verified_commit": "79a812de6f22dfe7eac6a79e87ef633337b47544"
   },
   "stage_transitions": [
     {
@@ -3327,5 +3399,52 @@
       "new_stage": "solver_next_cycle_sealed_acquisition",
       "basis": "Exact radius GPU pilot completed: 6,547,680 pairs, all179316 nodes covered, .466s build,216MB cache. Coordinator-only metadata check corrected (stat API omits path); recovered queue must reuse completed pilot and download only frozen independent5 CAD source bytes, labels sealed."
     }
-  ]
+  ],
+  "deeponet_completed_readout": {
+    "coordinator_seconds": 180.917282962,
+    "input_preparation_seconds": 11.81277648599999,
+    "deeponet_train_seconds": 52.29256356399969,
+    "concat_mlp_train_seconds": 45.8133752589996,
+    "DEV_dia_evaluation_seconds": 6.425296460000027,
+    "known15_U_percent": [
+      68.8591502441971,
+      68.24470783165876
+    ],
+    "known15_S_percent": [
+      95.35897538432957,
+      97.1828292221361
+    ],
+    "DEV_dia_U_percent": [
+      48.21658033006808,
+      44.87387660691254
+    ],
+    "DEV_dia_S_percent": [
+      87.54592015089536,
+      85.30427423526474
+    ],
+    "judgment": "No current screening advantage; no rank/head micro-tuning; continue different mesh solver family",
+    "old_final_reads": 0,
+    "sealed_new_test_reads": 0,
+    "report": "results/deeponet_screen/BRIEF.md",
+    "private_commit": "79a812de6f22dfe7eac6a79e87ef633337b47544"
+  },
+  "multiscale_mesh_completed_readout": {
+    "completed_jobs": 3,
+    "coordinator_seconds": 367.492550043,
+    "previous_pid": 302,
+    "previous_pid_confirmed_gone": true,
+    "input_job_seconds": 140.629039133,
+    "input_shared_prep_seconds": 136.079589906,
+    "train_seconds": 193.914329018,
+    "known_u_percent": 106.48464590564915,
+    "known_stress_percent": 99.3025371291457,
+    "dia_u_percent": 85.6116923962421,
+    "dia_stress_percent": 92.09956098704227,
+    "actual_gradient_passed": true,
+    "actual_parameters": 86500,
+    "peak_allocated_bytes": 1622670848,
+    "decision": "No precision-cost opportunity at fixed480 and no meaningful train-readout improvement; do not rescue width/cycles/600-second budgets. Not a universal family failure.",
+    "report": "results/multiscale_mesh/BRIEF.md",
+    "oldfinal_or_sealed_reads": 0
+  }
 }

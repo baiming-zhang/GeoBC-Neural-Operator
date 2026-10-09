@@ -205,11 +205,11 @@ def main(*, preserve_existing_plots=False):
     checkpoints={}
     observed_stages={}
     observed_receipts={}
-    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','gino_training_screen','sealed_test_input_acquisition','fno_response_screen','fno_response_eval','deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval'}
+    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','gino_training_screen','sealed_test_input_acquisition','fno_response_screen','fno_response_eval','deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval','multiscale_mesh_input','multiscale_mesh_screen','multiscale_mesh_development_dia_eval'}
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
-        path=source/('manifest.json' if job.get('kind') in ('solver_final_input_cache','deeponet_bc_cloud_input') else 'summary.json')
+        path=source/('manifest.json' if job.get('kind') in ('solver_final_input_cache','deeponet_bc_cloud_input','multiscale_mesh_input') else 'summary.json')
         if not path.exists(): continue
         summary=json.loads(path.read_text())
         completed=summary.get('status')=='completed'
@@ -233,7 +233,9 @@ def main(*, preserve_existing_plots=False):
         if job.get('kind')=='gino_training_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json')
         if job.get('kind')=='fno_response_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
         if job.get('kind')=='deeponet_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
+        if job.get('kind')=='multiscale_mesh_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
         if job.get('kind')=='deeponet_bc_cloud_input':filenames+=('manifest.json',)
+        if job.get('kind')=='multiscale_mesh_input':filenames+=('manifest.json',)
         if job.get('kind')=='solver_final_input_cache':filenames+=('manifest.json',)
         if job.get('kind') in ('solver_screen','solver_confirmation'):filenames+=('first_update_gradient_check.json',)
         for filename in filenames:
@@ -788,6 +790,9 @@ def main(*, preserve_existing_plots=False):
     deeponet_metrics=ROOT/'results/deeponet_screen/metrics.json'
     if deeponet_metrics.is_file() and json.loads(deeponet_metrics.read_text(encoding='utf8')).get('status')=='completed':
         brief += ['', '共同BC22输入、固定480的DeepONet/concat-MLP与DEV组合载荷结果见[结构初筛简报](../deeponet_screen/BRIEF.md)；heads/容量不同，单seed早期结果不是工程资格或full-model初始化匹配。']
+    mesh_metrics=ROOT/'results/multiscale_mesh/metrics.json'
+    if mesh_metrics.is_file() and json.loads(mesh_metrics.read_text(encoding='utf8')).get('status')=='completed':
+        brief += ['', '一个完整节点的多尺度网格求解器固定480结果见[网格结构简报](../multiscale_mesh/BRIEF.md)；参数/拓扑输入不同，仅早期筛选，未据此改旧final或新sealed test。']
     deeponet_ready_exports=[]
     if any(job.get('kind') in ('deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval') for job in jobs):
         for ready_name in ('deeponet_field_source_ready.json','deeponet_data_source_ready.json','deeponet_train_source_ready.json','deeponet_report_source_ready.json'):
@@ -796,6 +801,14 @@ def main(*, preserve_existing_plots=False):
                 ready_target=dest/'source_ready'/ready_name;ready_target.parent.mkdir(parents=True,exist_ok=True)
                 shutil.copyfile(ready_source,ready_target)
                 deeponet_ready_exports.append(str(ready_target.relative_to(dest)).replace('\\','/'))
+    mesh_ready_exports=[]
+    if any(job.get('kind') in ('multiscale_mesh_input','multiscale_mesh_screen','multiscale_mesh_development_dia_eval') for job in jobs):
+        for ready_name in ('multiscale_mesh_field_source_ready.json','multiscale_mesh_data_source_ready.json','multiscale_mesh_train_source_ready.json','multiscale_mesh_report_source_ready.json'):
+            ready_source=ROOT/'notes'/ready_name
+            if ready_source.is_file():
+                ready_target=dest/'source_ready'/ready_name;ready_target.parent.mkdir(parents=True,exist_ok=True)
+                shutil.copyfile(ready_source,ready_target)
+                mesh_ready_exports.append(str(ready_target.relative_to(dest)).replace('\\','/'))
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
@@ -831,6 +844,10 @@ def main(*, preserve_existing_plots=False):
                                    'deeponet_screen_receipt':observed_receipts.get('deeponet_screen'),
                                    'deeponet_development_dia_eval_receipt':observed_receipts.get('deeponet_development_dia_eval'),
                                    'deeponet_source_ready_exports':deeponet_ready_exports,
+                                   'multiscale_mesh_input_receipt':observed_receipts.get('multiscale_mesh_input'),
+                                   'multiscale_mesh_screen_receipt':observed_receipts.get('multiscale_mesh_screen'),
+                                   'multiscale_mesh_development_dia_eval_receipt':observed_receipts.get('multiscale_mesh_development_dia_eval'),
+                                   'multiscale_mesh_source_ready_exports':mesh_ready_exports,
                                    'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
                                    'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',

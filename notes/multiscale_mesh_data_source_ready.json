@@ -1,0 +1,169 @@
+{
+  "status": "source_ready_pending_root_freeze_unique_geometry_preparation",
+  "source_path": "geobc/multiscale_mesh_data.py",
+  "source_sha256": "ca003002df8941da123d828f884e23865d71c2949e87cca3f9243fed9b1ec378",
+  "proposal_plan_path": "notes/geobc_multiscale_mesh_plan.json",
+  "proposal_plan_sha256_at_receipt": "ead539f994c3a46748e4421f30eef83b382c317af745e8d313d56084a529b1b4",
+  "schema": {
+    "kind": "multiscale_mesh_input",
+    "levels": 3,
+    "soft_nodes": [
+      2048,
+      128
+    ],
+    "hard_maximum_policy": "current_level_node_count",
+    "ownership": "balanced_owners; connected exact seven-flag signature; minimum original descendant ordering",
+    "W": "binary original corner-mid subedges; symmetric quotient cut multiplicities; no RBE shortcuts",
+    "R": "hard aggregate mass restriction; original volume/10 proxy; row coarse dst, column fine src",
+    "P": "complete two Jacobi passes J^2G; omega2/3; row fine dst, column coarse src",
+    "P_resource_guard": "Original helper rejects >64 average nnz at either pass; no truncation, topk or support pruning",
+    "CSR": "row=receiver dst, column=sender src; complete support; indices int64",
+    "W_runtime_weight": "cut_W/weighted_degree(dst), float32 after FP64 normalization",
+    "R_P_runtime_weight": "saved original float32 map weights; no extra normalization",
+    "edge_delta": "receiver_xyz[dst]-sender_xyz[src] in existing normalized coordinates",
+    "edge_length": "norm(delta_xyz), same original characteristic_length_mm for all levels",
+    "runtime_keys": [
+      "src",
+      "dst",
+      "weight",
+      "delta_xyz",
+      "length",
+      "indptr",
+      "shape",
+      "csr"
+    ],
+    "runtime_xyz": "xyz0/xyz1/xyz2 float32; coarse mass-weighted centers in same canonical frame",
+    "role_semantics": "support-reference DOF/load-interface membership, not nodal Dirichlet; P may mix signatures as original helper records",
+    "full_support": true,
+    "latent_activations_cached": false,
+    "labels_read": 0
+  },
+  "API": {
+    "request_contract": "request_contract(plan_path=DEFAULT_PLAN)->(contract,plan), stdlib JSON/stat/source SHA only",
+    "prepare_data": "prepare_data(plan_path=DEFAULT_PLAN)->completed manifest; only root after training_rules_frozen and all three source pins",
+    "read_cache_metadata": "read_cache_metadata(plan_path=DEFAULT_PLAN,*,contract=None)->manifest; completed feasibility_pass true and exact contract/files stat required",
+    "load_hierarchy": "load_hierarchy(records[cad],device)->xyz0/xyz1/xyz2 plus W0/W1/W2/R01/R12/P12/P01 maps; sparse CSR receivers rows/senders columns",
+    "CLI": "python -m geobc.multiscale_mesh_data --plan notes/geobc_multiscale_mesh_plan.json [--source-check]"
+  },
+  "field_edge_contract": {
+    "keys": [
+      "src",
+      "dst",
+      "weight",
+      "delta_xyz",
+      "length",
+      "indptr",
+      "shape",
+      "csr"
+    ],
+    "src_dst": "int64[E]",
+    "weight": "float32[E]",
+    "delta_xyz": "float32[E,3] receiver_xyz[dst]-sender_xyz[src]",
+    "length": "float32[E,1] norm(delta), same normalized-L frame all levels",
+    "indptr": "int64[Ndst+1]",
+    "shape": "tuple(Ndst,Nsrc)",
+    "csr": "torch sparse_csr_tensor float32; full original support and same weight",
+    "W_weight": "original cut multiplicity divided by receiver weighted degree, FP64->FP32; isolated rows have no entries and field applies its declared LN(dst), no identity claim",
+    "R_P_weight": "saved complete original float32 map data, no extra normalization",
+    "source_geometry": "all original cells10 nodes, true corner-mid subedges, no RBE shortcut/fullcorner-P1 alias",
+    "activations": "No E32 or latent cache; delta/length computed when hierarchy loaded"
+  },
+  "metadata_receipt": {
+    "CADs": 45,
+    "TRAIN_CADs": 40,
+    "DEV_CADs": 5,
+    "metadata_seconds": 0.360019238,
+    "legacy_4cache_reuse_eligible_CADs": [
+      "101_428",
+      "101_479",
+      "101_56",
+      "101_78"
+    ],
+    "source_sha256": {
+      "geobc/multiscale_mesh_data.py": "ca003002df8941da123d828f884e23865d71c2949e87cca3f9243fed9b1ec378",
+      "tools/prepare_topology_context.py": "9ccffda61a05880401b8da346e77e873893e50c90e64d2ccd264b80bf6d96593",
+      "tools/prepare_topology_context_balanced.py": "c89a1dab4986dbf5cfe90a07e4feab4ff540e775c4e0313d1f2c94fb1d61be07"
+    },
+    "actual_hierarchy_cache_created": false
+  },
+  "source_scope": {
+    "old_4CAD_entrypoints_called": false,
+    "old_globals_modified": false,
+    "pure_numeric_helpers_reused": [
+      "graph_from_cells",
+      "balanced_owners",
+      "aggregate",
+      "graph_facts",
+      "mapping_facts",
+      "prolongation J2G",
+      "pack_csr",
+      "read_inputs input-member allowlists only"
+    ],
+    "hard_maximum": "Current level node count computed separately at each owner call; role component lower bound retained; variable N1/N2",
+    "legacy_reuse": "Only same entire source identity/helper SHA/soft-target metadata; root actual validates legacy NPZ SHA and copies input-only cache bytes. Original unused owner caps do not enter selection; original facts retained/disclosed, no new proof or pre-array review",
+    "P_resource_bound": "Existing helper can return scientific completed-negative if full support exceeds its64*N guard; never cuts or topk supports",
+    "negative_vs_corrupt": "ScientificBlock->completed feasibility_pass=false preserving partial records/evidence; read_cache rejects downstream. Other exception->failed",
+    "input_read_allowlists": {
+      "prepared": [
+        "xyz",
+        "features",
+        "sample_key",
+        "label_alignment",
+        "bbox_min_mm",
+        "characteristic_length_mm"
+      ],
+      "gradient": [
+        "cells10",
+        "volumes_mm3"
+      ],
+      "graph_context": [
+        "euclidean",
+        "cad_id",
+        "xyz_sha256"
+      ]
+    }
+  },
+  "manifest_schema": {
+    "kind": "multiscale_mesh_input",
+    "top": [
+      "status",
+      "feasibility_pass",
+      "contract",
+      "records",
+      "schema",
+      "preparation_seconds",
+      "costs",
+      "peak_RSS",
+      "total_cache_bytes",
+      "reused_CADs",
+      "read_receipt"
+    ],
+    "records": "records[cad]={path,file_identity stat+actualSHA,source,facts N0/N1/N2/graphs/ownership/maps nnz,xyz_sha256,normalization,accessed_members,legacy_reused,labels_read0}",
+    "costs": [
+      "input_seconds",
+      "build_seconds",
+      "write_seconds",
+      "reuse_seconds",
+      "identity_hash_seconds"
+    ]
+  },
+  "author_receipt": {
+    "AST_passed": true,
+    "AST_runs": 1,
+    "AST_seconds": 0.004040269000000318,
+    "scientific_imports": [],
+    "scientific_arrays_read": 0,
+    "models_or_weights_loaded": 0,
+    "GT_arrays_read": 0,
+    "GPU_runs": 0,
+    "numeric_helper_or_graph_execution": false,
+    "preparation_executed": false,
+    "existing_cache_arrays_audited": false
+  },
+  "limitations": [
+    "Input topology and volume/10 mass proxy are not stiffness/solver accuracy evidence",
+    "Roles are reference/interface membership, not nodal Dirichlet; full smoothed P records role mixing",
+    "No reference strain/scaler fit/rawH5/deck/oldfinal/newtest/dia input access",
+    "First actual complete input preparation and first model full-case backward belong only to root sole queue"
+  ]
+}

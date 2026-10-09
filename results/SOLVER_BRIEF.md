@@ -1,6 +1,6 @@
 # GeoBC 求解器：当前判断
 
-**尚未选定求解器。已完成八类结构探索，当前以FNO为主候选、MLP为低成本对照；Hash专项小幅优化已暂停。**
+**尚未选定求解器。已完成九类结构探索，当前以FNO为主候选、MLP为低成本对照；Hash专项小幅优化已暂停。**
 
 目前FNO的应力预测较好且两个seed较稳，MLP保留为低成本位移对照。一次冻结新CAD评估的全节点误差如下（两seed范围）：
 
@@ -19,6 +19,8 @@ MLP一个seed的位移优于FNO；组合载荷dia两者均明显退化。Hash小
 
 几何／BC DeepONet与共享输入MLP已完成（总队列3分钟）：known3位移约68%、应力95–97%；组合载荷位移45–48%、应力85–88%。当前低秩点式结构没有选型优势，四pass结果也不能否定整个家族。
 
-**下一步：**设计真实网格上的多尺度求解器，检验局部交互与远程边界传播是否值得保留。新test5标签继续封存，旧final不用于调参。
+完整节点多尺度网格方法已完成（总队列6.1分钟）：known3位移／应力106.5%／99.3%，组合载荷85.6%／92.1%；训练耗时193.9秒，约为同480 FNO的1.94倍。首真实案例梯度和资源检查通过，但训练读出也没有明显学习进展，当前不追加预算或调宽度／循环数。它不是整个网格方法家族无效的证明。
 
-详细证据：[七类比较](gino_screen/BRIEF.md) · [固定成本确认](solver_confirmation/BRIEF.md) · [冻结评估](solver_final_eval/BRIEF.md) · [连续能力](solver_capability/BRIEF.md) · [响应结构结果](fno_response/BRIEF.md) · [DeepONet结果](deeponet_screen/BRIEF.md) · [后续结构](../notes/solver_next_structures.md)。
+**下一步：**设计一条独立的PointConv局部点卷积路线，检验连续坐标卷积和密度补偿是否带来精度—成本机会。新test5标签继续封存，旧final不用于调参。
+
+详细证据：[七类比较](gino_screen/BRIEF.md) · [固定成本确认](solver_confirmation/BRIEF.md) · [冻结评估](solver_final_eval/BRIEF.md) · [连续能力](solver_capability/BRIEF.md) · [响应结构结果](fno_response/BRIEF.md) · [DeepONet结果](deeponet_screen/BRIEF.md) · [网格初筛](multiscale_mesh/BRIEF.md) · [后续结构](../notes/solver_next_structures.md)。
