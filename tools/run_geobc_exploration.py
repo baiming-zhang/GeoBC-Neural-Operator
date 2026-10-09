@@ -167,6 +167,79 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
         for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
             if not (ROOT / job["output"] / filename).is_file():
                 raise ValueError(f"Completed output for {job['name']} lacks {filename}")
+    elif "tools.fetch_next_cycle_test" in command:
+        from tools.fetch_next_cycle_test import request_contract, host_path
+        requested_plan = command[command.index("--plan") + 1]
+        received_contract = dict(summary.get("config", {}).get("contract", {}))
+        # The CPU transport may use Windows' configured proxy while this
+        # coordinator stays in WSL. Normalize only the three host paths;
+        # source hashes, frozen IDs/URLs and all access rules still match.
+        for path_key in ("plan", "source_index", "output"):
+            if path_key in received_contract:
+                received_contract[path_key] = str(host_path(received_contract[path_key]))
+        if received_contract != request_contract(requested_plan):
+            raise ValueError(f"Completed sealed acquisition differs from frozen source/ID contract: {job['name']}")
+        if (summary.get("completed_files") != 15 or summary.get("scientific_array_reads") != 0
+                or summary.get("Field_CSV_values_parsed") is not False or summary.get("labels_sealed") is not True):
+            raise ValueError(f"Sealed acquisition completeness or label-access contract failed: {job['name']}")
+        for record in summary["files"]:
+            target = host_path(ROOT / job["output"] / record["relative_path"])
+            actual_stat = target.stat()
+            if {"bytes": actual_stat.st_size, "mtime_ns": actual_stat.st_mtime_ns} != record["file_stat"]:
+                raise ValueError(f"Completed sealed source file missing or changed: {job['name']}")
+    elif "geobc.gino_train" in command:
+        from geobc.gino_train import request_contract, _resource_gate
+        requested_plan = command[command.index("--plan") + 1]
+        _resource_gate(read_json_if_exists(ROOT / requested_plan))
+        contract, _ = request_contract(requested_plan)
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Completed GINO screen differs from its frozen common-data contract: {job['name']}")
+        if summary.get("endpoint_step") != 480 or summary.get("costs", {}).get("train_case_exposures") != 480:
+            raise ValueError(f"Completed GINO screen lacks full480 updates: {job['name']}")
+        if any(count != 4 for count in summary.get("case_exposure_counts", {}).values()):
+            raise ValueError(f"GINO screen did not expose every TRAIN case four times: {job['name']}")
+        for filename in ("config.json", "last.pt", "best.pt", "step480.pt", "metrics_latest.json", "first_update_gradient_check.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed GINO screen lacks {filename}: {job['name']}")
+    elif "tools/validate_gino_native_resource.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("gino_native_resource", ROOT / "tools/validate_gino_native_resource.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = command[command.index("--plan") + 1]
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed GINO model resource differs from its input-only contract: {job['name']}")
+        if summary.get("feasible") is not True or not all(summary.get("checks", {}).values()):
+            raise ValueError(f"Completed GINO resource did not pass its bounded resource/backend checks: {job['name']}")
+        receipt = summary.get("receipt", {})
+        if any(receipt.get(key) != 0 for key in ("labels_read", "weights_read", "scaler_fits", "optimizer_steps", "training_updates")):
+            raise ValueError(f"GINO resource unexpectedly trained or accessed forbidden inputs: {job['name']}")
+    elif "tools/prepare_gino_radius_pilot.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("gino_radius_pilot", ROOT / "tools/prepare_gino_radius_pilot.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = command[command.index("--plan") + 1]
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed GINO radius pilot differs from fixed input/radius contract: {job['name']}")
+        for record in summary.get("inventory", {}).values():
+            if module.stat_record(module.host_path(record["path"])) != {key: record[key] for key in ("bytes", "mtime_ns")}:
+                raise ValueError(f"Completed GINO radius input cache is missing or changed: {job['name']}")
+        if summary.get("receipt", {}).get("labels_read") != 0:
+            raise ValueError(f"Input-radius pilot unexpectedly read labels: {job['name']}")
+    elif "tools/diagnose_solver_continuous_capability.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("solver_continuous_capability", ROOT / "tools/diagnose_solver_continuous_capability.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = command[command.index("--plan") + 1]
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed TRAIN capability differs from fixed solver/input contract: {job['name']}")
+        if summary.get("receipt", {}).get("optimizer_updates") != 0:
+            raise ValueError(f"TRAIN capability unexpectedly trained: {job['name']}")
     elif "tools/diagnose_solver_bc_representation.py" in command:
         import importlib.util
         spec = importlib.util.spec_from_file_location("solver_bc_representation", ROOT / "tools/diagnose_solver_bc_representation.py")

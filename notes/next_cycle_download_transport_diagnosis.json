@@ -1,0 +1,108 @@
+{
+  "status": "diagnosed_transport_failure",
+  "scope": "Fixed fifteen official Drive component files; no case substitution or field-value parsing",
+  "actual_failed_acquisition": {
+    "summary": "data/raw_next_cycle/attempts/wsl_network_unreachable_20261009/summary.json",
+    "status": "failed",
+    "completed_files": 0,
+    "failed_files": 15,
+    "elapsed_seconds": 480.63215498299996,
+    "initial_public_source_request_attempts": 15,
+    "network_bytes_received": 0,
+    "completed_file_bytes": 0,
+    "common_error": "URLError: <urlopen error [Errno 101] Network is unreachable>",
+    "response_host_content_type_and_content_length": null,
+    "output_file_inventory_at_diagnosis": {
+      "json_files": 3,
+      "raw_component_files": 0,
+      "completed_file_receipts": 0
+    },
+    "scientific_array_reads": 0,
+    "Field_CSV_values_parsed": false
+  },
+  "bounded_same_file_diagnostic": {
+    "official_source_url": "https://drive.google.com/file/d/1gupfM2ZhQYwKaclgHUzb8MDmfh0z-kcW/view?usp=drive_web",
+    "request_url": "https://drive.google.com/uc?export=download&id=1gupfM2ZhQYwKaclgHUzb8MDmfh0z-kcW",
+    "method": "HEAD",
+    "logical_head_requests": 2,
+    "redirect_hops_not_counted_separately": true,
+    "Windows": {
+      "client": "System.Net.Http.HttpClient; UseCookies=false",
+      "timeout_seconds": 20,
+      "elapsed_seconds": 4.6644147,
+      "HTTP_status": 200,
+      "response_host": "drive.usercontent.google.com",
+      "Content_Length": 30973600,
+      "Content_Type": "application/octet-stream",
+      "body_bytes_read": 0,
+      "system_proxy_enabled": true,
+      "system_proxy": "127.0.0.1:7877"
+    },
+    "WSL": {
+      "distribution": "cold-surge-ubuntu-24.04",
+      "client": "Python urllib.request",
+      "socket_timeout_seconds": 10,
+      "outer_process_time_limit_seconds": 25,
+      "elapsed_seconds": 0.09770106899998154,
+      "error": "URLError(OSError(101, 'Network is unreachable'))",
+      "urllib_proxy_metadata": {},
+      "default_route": {
+        "gateway": "172.18.208.1",
+        "device": "eth0"
+      },
+      "body_bytes_read": 0
+    },
+    "interpretation": "The WSL request fails before receiving HTTP headers. Windows can reach the same public file through its configured network path. No full download or received-file integrity was validated by these HEAD requests. The exact underlying NAT/firewall routing cause was not separately isolated."
+  },
+  "Windows_python_metadata_only": {
+    "executable": "C:/Users/ASUS/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "version": "3.12.14",
+    "urllib_HTTP_proxy": {
+      "hostname": "127.0.0.1",
+      "port": 7877
+    },
+    "urllib_HTTPS_proxy": {
+      "hostname": "127.0.0.1",
+      "port": 7877
+    },
+    "network_requests": 0,
+    "actual_download_not_executed_by_diagnostic": true
+  },
+  "root_selected_minimal_repair": {
+    "fetcher_source_modified": false,
+    "fetcher_source_sha256": "92eba989a7c0b17ab8a5084cf9d761116ab4ace32b01b5b0e70e1375ad3edfae",
+    "failed_metadata_archive": "data/raw_next_cycle/attempts/wsl_network_unreachable_20261009",
+    "archive_then_remove_current_failed_metadata_only": [
+      "config.json",
+      "status.json",
+      "summary.json"
+    ],
+    "download_process": "Windows Python runtime launched by the sole WSL coordinator",
+    "module_and_arguments": "-m tools.fetch_next_cycle_test --plan notes/geobc_next_cycle_test_plan.json --output data/raw_next_cycle",
+    "coordinator_reuse_comparison": "Normalize only contract.plan, contract.source_index and contract.output with host_path to the coordinator host; compare all other IDs, hashes and semantics strictly",
+    "same_fifteen_sources": true,
+    "same_atomic_transfer_source_receipt_hash_and_HTML_rejection": true,
+    "system_proxy_settings_modified": false,
+    "full_download_restart_owned_by_root": true
+  },
+  "diagnostic_limits": {
+    "file_body_bytes_read": 0,
+    "scientific_array_reads": 0,
+    "Field_CSV_values_parsed": false,
+    "label_values_read": false,
+    "GPU_work": false,
+    "whole_download_started": false,
+    "frozen_plan_or_original_data_modified": false,
+    "Windows_full_transfer_success_not_claimed": true
+  },
+  "resolved_acquisition": {
+    "scientific_array_reads": 0,
+    "actual_bytes": 689980329,
+    "labels_sealed": true,
+    "summary": "data/raw_next_cycle/summary.json",
+    "elapsed_seconds": 250.60900000017136,
+    "completed_files": 15,
+    "Field_CSV_values_parsed": false,
+    "status": "completed"
+  }
+}

@@ -1,15 +1,15 @@
 {
   "scope": "GeoBC exploration; independent of the completed slides suite",
-  "completed": 66,
-  "planned": 66,
-  "scientific_completed": 63,
-  "scientific_planned": 63,
+  "completed": 70,
+  "planned": 71,
+  "scientific_completed": 67,
+  "scientific_planned": 68,
   "synthetic_acceptance_completed": 3,
   "synthetic_acceptance_planned": 3,
-  "phase": "stage_completed",
+  "phase": "ongoing",
   "research_status": "ongoing",
-  "current_stage": "solver_final_validation",
-  "current_stage_complete": true,
+  "current_stage": "solver_gino_training_screen",
+  "current_stage_complete": false,
   "original_slides_completed": 30,
   "original_slides_planned": 30,
   "original_slides_status": "completed",
@@ -69,6 +69,64 @@
     "GPU_peak_allocated_bytes": 106187776,
     "GPU_peak_reserved_bytes": 127926272
   },
+  "solver_continuous_capability_receipt": {
+    "run": "solver_continuous_capability_train101_479_ver",
+    "status": "completed",
+    "source_output": "runs/geobc_exploration/solver_continuous_capability_train101_479_ver",
+    "completed_stage": true,
+    "exported_files": [
+      "runs/solver_continuous_capability_train101_479_ver/summary.json",
+      "runs/solver_continuous_capability_train101_479_ver/config.json",
+      "runs/solver_continuous_capability_train101_479_ver/status.json"
+    ],
+    "export_policy": "Small JSON only; no NPY/CSR/raw/weights copied",
+    "cache_payloads_exported": false,
+    "receipt_location": "summary.json:receipt or config.contract"
+  },
+  "gino_radius_input_pilot_receipt": {
+    "run": "gino_radius_input_pilot_101_479",
+    "status": "completed",
+    "source_output": "runs/geobc_exploration/gino_radius_input_pilot_101_479",
+    "completed_stage": true,
+    "exported_files": [
+      "runs/gino_radius_input_pilot_101_479/summary.json",
+      "runs/gino_radius_input_pilot_101_479/config.json",
+      "runs/gino_radius_input_pilot_101_479/status.json"
+    ],
+    "export_policy": "Small JSON only; no NPY/CSR/raw/weights copied",
+    "cache_payloads_exported": false,
+    "receipt_location": "summary.json:receipt or config.contract"
+  },
+  "gino_native_resource_receipt": {
+    "run": "gino_native_resource_101_479",
+    "status": "completed",
+    "source_output": "runs/geobc_exploration/gino_native_resource_101_479",
+    "completed_stage": true,
+    "exported_files": [
+      "runs/gino_native_resource_101_479/summary.json",
+      "runs/gino_native_resource_101_479/config.json",
+      "runs/gino_native_resource_101_479/status.json"
+    ],
+    "export_policy": "Small JSON only; no NPY/CSR/raw/weights copied",
+    "cache_payloads_exported": false,
+    "receipt_location": "summary.json:receipt or config.contract"
+  },
+  "sealed_test_input_acquisition_receipt": {
+    "run": "next_cycle_sealed_test_acquisition",
+    "status": "completed",
+    "source_output": "data/raw_next_cycle",
+    "completed_stage": true,
+    "exported_files": [
+      "runs/next_cycle_sealed_test_acquisition/summary.json",
+      "runs/next_cycle_sealed_test_acquisition/config.json",
+      "runs/next_cycle_sealed_test_acquisition/status.json"
+    ],
+    "export_policy": "Small JSON only; no NPY/CSR/raw/weights copied",
+    "cache_payloads_exported": false,
+    "receipt_location": "summary.json:receipt or config.contract"
+  },
+  "observed_noncompleted_stages": {},
+  "new_stage_export_policy": "config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit",
   "summaries": [
     "hash50_unseen_geometry_pilot",
     "independent_101_479_tor",
@@ -135,8 +193,12 @@
     "solver_confirm_transolver_pp_seed2027_600s",
     "solver_bc_representation_train101_479_ver",
     "solver_final_input_cache",
-    "solver_final_validation"
+    "solver_final_validation",
+    "solver_continuous_capability_train101_479_ver",
+    "gino_radius_input_pilot_101_479",
+    "next_cycle_sealed_test_acquisition",
+    "gino_native_resource_101_479"
   ],
   "raw_data_checkpoints_predictions": "retained locally; not included in Git payload",
-  "updated_at_utc": "2026-10-09T15:56:13.893461+00:00"
+  "updated_at_utc": "2026-10-09T17:08:00.143265+00:00"
 }

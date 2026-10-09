@@ -1,0 +1,158 @@
+{
+  "kind": "gino_training_screen",
+  "status": "recipe_frozen_ready",
+  "training_rules_frozen": true,
+  "purpose": "One bounded GINO screen against the completed six-family 480-update screen; no new Hash refinement and no old solver reruns",
+  "existing_split": "notes/geobc_split.json",
+  "prepared_data": "data/prepared_geobc_multiload",
+  "data_cache": "data/geobc_solver_selection",
+  "radius_cache": "data/geobc_gino_radius_trainval",
+  "radius_pilot_summary": "runs/geobc_exploration/gino_radius_input_pilot_101_479/summary.json",
+  "prerequisites": {
+    "resource_summary": "runs/geobc_exploration/gino_native_resource_101_479/summary.json",
+    "resource_success_key": "feasible",
+    "release": "Root reviews source and freezes training_rules_frozen before the sole actual training job",
+    "resource_limit": "Completed lower-frequency official modes12 full179316 input/512 outputs and target-independent backward; does not certify matched modes24/24/22, full-output2048 chunks or other CADs"
+  },
+  "recipe": {
+    "method": "gino",
+    "seed": 2026,
+    "cloud_seed": 2026,
+    "train_loads": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "steps": 480,
+    "passes": 4,
+    "eval_steps": [
+      0,
+      120,
+      240,
+      360,
+      480
+    ],
+    "optimizer": "Adam",
+    "optimizer_implementation": "Torch Adam foreach=True,fused=False, preserving original complex spectral parameters and its view-as-real Adam update",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "device": "cuda",
+    "cloud_points": 1024,
+    "geometry_dim": 32,
+    "grid_resolution": 64,
+    "fno_n_modes": [
+      24,
+      24,
+      22
+    ],
+    "fno_hidden_channels": 16,
+    "fno_n_layers": 4,
+    "in_radius": 0.033,
+    "out_radius": 0.033,
+    "input_query_chunk": 2048,
+    "output_query_chunk": 2048,
+    "radius_chunk_points": 8192,
+    "stress_transform": "asinh",
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "training_readout_keys": [
+      "101_479/ver",
+      "107_320/hor",
+      "10_58/tor"
+    ],
+    "checkpoint_every_updates": 30,
+    "loss": "Complete-case mean MSE in existing TRAIN-only encoded signed uXYZ/stress4; each original-node query chunk weighted by its count/N before one Adam update",
+    "case_schedule": "Exactly the existing cache's four independently shuffled TRAIN120 passes from Python Random(2026); model RNG does not select cases",
+    "gradient": "Encode full original case once, replace only differentiable latent by an independent leaf, accumulate all query losses/output parameter and latent gradients, then original latent.backward(leaf.grad) once",
+    "selection_score": "0.5*(VAL15 case-mean physical U-vector relative L2 + case-mean signed-stress relative L2)",
+    "primary_readout": "Fixed480 endpoint and observed error-versus-comparable-train-seconds curve; validation-best retained separately, no training-best selection",
+    "output": "Signed displacement XYZ in mm and signed source scalar stress in MPa after unchanged shared FieldScaler.decode",
+    "precision": "float32 with TF32 as existing screen; no autocast; exact stored-coordinate radius distance computed/cached float64"
+  },
+  "model": {
+    "adapter": "geobc/gino_solver.py",
+    "official_commit": "b307030d9b7ee530823d6a05bddb8238ba22a743",
+    "official_version": "2.0.0",
+    "architecture": "Original input/output GNO kernels and half_cos, original lifting/FNO/projection, shared live PointNetglobal32 concatenated to all latent voxels",
+    "FNO_hidden": 16,
+    "FNO_modes": [
+      24,
+      24,
+      22
+    ],
+    "FNO_layers": 4,
+    "frequency_match": "Existing FNO m12 retains x/y24 total and real-FFT z12; official modes24/24/22 resolve to x/y24 and real-FFT z12. This is the sole GINO screen candidate, no low-frequency companion or mode search.",
+    "implementation_scope_note": "notes/gino_vs_fno_implementation_scope.md",
+    "prerequisite_low_frequency_parameter_counts": {
+      "PointNet": 16736,
+      "official_GINO": 1416541,
+      "total": 1433277
+    },
+    "training_parameter_counts": "Measure public actual matched-model counts at its first released construction, complex tensors counted by numel; do not reuse lower-frequency counts",
+    "capacity_limit": "Retained frequency bands, hidden16 and four layers match the old FNO screen, but original lifting/spectral/skip implementations differ. Report actual parameter count and costs; this is not exact capacity matching and any difference cannot be attributed solely to learned GNO kernels."
+  },
+  "radius_cache_policy": {
+    "CADs": 45,
+    "cross_load_reuse": "Every CAD shares canonical xyz/node order across ver/hor/tor; exact geometry CSR constructed at most once per completed CAD cache",
+    "first_CAD_reuse": "Reuse the existing101_479 pilot's complete eight NPY inventory; no repeated construction",
+    "other_CADs": "On-demand regular_grid_radius at R64/radius0.033; persist both complete orientations and grid_axis/grid_xyz, keep only active CAD on device",
+    "exact_neighbors": "No drop/cap/sample/clipping/dense cdist or radius/grid/query chunk fallback",
+    "empty_rows": "Latent empties retained; original point coverage required without invented neighbors",
+    "costs": "Actual build/read-H2D/save seconds, counts and unique cache bytes separate; total wall includes all operations"
+  },
+  "metrics": {
+    "global": "Existing all-original-node physical U/S case means, worst cases and stress hotspots on TRAIN3 and VAL15",
+    "BC_regions": "Seven exact source feature0:7 ==1 regions; each region counts and U-vector RMS mm/stress RMS+MAE MPa/relative errors with explicit zero-reference nulls. Regions may overlap; source support-reference DOFs are not hard node Dirichlet equations.",
+    "pass_costs": "Every120 updates: cumulative/incremental comparable train seconds, mean per-case seconds, separate cumulative CSR build/read/save; all five endpoints retain mean/worst and full-case physical metrics",
+    "timing_fairness": "Primary train_seconds begins before load_case like the old screen and includes case/target H2D and cached CSR IO, excluding only first construction/save; extra gpu_step_seconds reports synchronized model-update spans. Inference timing starts after input/CSR loading like the old screen; evaluation/totalwall retain frontend costs.",
+    "memory": "Observed peak allocated/reserved only; no extrapolated full-dataset or output-training feasibility claim"
+  },
+  "resume": "Atomic last/best and each endpoint checkpoint; last also at first update and every30 updates. Preserve Adam, Python/NumPy/Torch/CUDA RNG, complete ordered schedule, next position, exposures, pass costs/history and geometry contracts. Failed full case preserves last committed checkpoint.",
+  "failure_policy": "A real complete-case OOM/nonfinite fails explicitly; no silent node/radius/neighborhood/query-chunk reduction or repeated probe",
+  "access": {
+    "training": "Existing40TRAIN x ver/hor/tor only",
+    "evaluation": "Existing5developmentVAL x ver/hor/tor and fixedTRAIN3 only",
+    "test_or_dia_arrays": false,
+    "sealed_new_test_values": false,
+    "new_scaler_fit": false,
+    "author_execution": "One AST/stdlib metadata source-check; no arrays, labels, weights, model construction or GPU",
+    "actual_execution": "Sole root queue after source review and recipe freeze; no toy, warmup, install or clone"
+  },
+  "existing_screen_comparisons": [
+    {
+      "method": "mlp",
+      "summary": "runs/geobc_exploration/solver_screen_mlp_480/summary.json"
+    },
+    {
+      "method": "hashgrid",
+      "summary": "runs/geobc_exploration/solver_screen_hashgrid_480/summary.json"
+    },
+    {
+      "method": "transolver",
+      "summary": "runs/geobc_exploration/solver_screen_transolver_480/summary.json"
+    },
+    {
+      "method": "transolver_pp",
+      "summary": "runs/geobc_exploration/solver_screen_transolver_pp_480/summary.json"
+    },
+    {
+      "method": "ts3",
+      "summary": "runs/geobc_exploration/solver_screen_ts3_480/summary.json"
+    },
+    {
+      "method": "fno",
+      "summary": "runs/geobc_exploration/solver_screen_fno_480/summary.json"
+    }
+  ],
+  "suggested_output": "runs/geobc_exploration/gino_screen_seed2026_480",
+  "limitations": [
+    "Early screen at one recipe/seed, not convergence or architecture elimination",
+    "Empirical radius mean/mollified sum is not FEM volume integration, stiffness or exact BC/PDE enforcement",
+    "Already-used final cases do not guide this cycle; newly acquired independent test labels remain sealed",
+    "Resource acceptance covers lower-frequency modes12 one input/512 outputs only; first actual matched-frequency complete case determines larger-model/full-output feasibility"
+  ]
+}

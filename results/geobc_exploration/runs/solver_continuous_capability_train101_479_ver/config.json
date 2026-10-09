@@ -1,0 +1,423 @@
+{
+  "kind": "solver_continuous_capability",
+  "contract": {
+    "schema": "geobc_solver_continuous_capability_v1",
+    "plan_sha256": "77b0a0e8e6dcd3ae93d2ce9cfb2f0bf58f442698c559f35ece2956d2f91745c2",
+    "script_sha256": "1cde1d7ea60f29222b558d4d8bb844cd061e7d4a4d5f834efe9fb0b0cb80a0d6",
+    "source_sha256": {
+      "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+      "tools/diagnose_quadratic_kinematics.py": "b2d5ca8b3a2abbca4818aaa34f845e5034156e80b111d1e7fd3bf8f34e058865",
+      "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+      "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+      "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+      "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f"
+    },
+    "parents": {
+      "final_plan": {
+        "path": "notes/geobc_solver_final_eval_plan.json",
+        "sha256": "d704443c56582ed6debed7b62960a3126b30cc7f89397fcc231074b9a04f6011"
+      },
+      "geometry_result": {
+        "path": "notes/geobc_continuous_geometry_result.json",
+        "sha256": "50309e087014dad6ae29ae347fa1fb1e8bb0a3e76958f803d92dd8caf808b5c2"
+      },
+      "geometry_plan": {
+        "path": "notes/geobc_continuous_geometry_plan.json",
+        "sha256": "16169bbd20fc1d746cc8ccf88fa9d4c287fa410744d4ee8b6f0bb210543bb71f"
+      }
+    },
+    "files": {
+      "xyz": {
+        "path": "data/geobc_solver_selection/geometry/101_479/xyz.npy",
+        "stat": {
+          "bytes": 2151920,
+          "mtime_ns": 1791554049062253300
+        }
+      },
+      "features": {
+        "path": "data/geobc_solver_selection/cases/101_479_ver/features.npy",
+        "stat": {
+          "bytes": 17931728,
+          "mtime_ns": 1791554049122815500
+        }
+      },
+      "cloud": {
+        "path": "data/geobc_solver_selection/geometry/101_479/cloud.npy",
+        "stat": {
+          "bytes": 12416,
+          "mtime_ns": 1791554049066253600
+        }
+      },
+      "mask": {
+        "path": "data/geobc_solver_selection/geometry/101_479/mask.npy",
+        "stat": {
+          "bytes": 1152,
+          "mtime_ns": 1791554049070257200
+        }
+      },
+      "grid": {
+        "path": "data/geobc_solver_selection/cases/101_479_ver/grid.npy",
+        "stat": {
+          "bytes": 30408832,
+          "mtime_ns": 1791554081404186700
+        }
+      },
+      "query_indices": {
+        "path": "data/geobc_solver_selection/geometry/101_479/query_indices.npy",
+        "stat": {
+          "bytes": 5738240,
+          "mtime_ns": 1791554081322185800
+        }
+      },
+      "query_weights": {
+        "path": "data/geobc_solver_selection/geometry/101_479/query_weights.npy",
+        "stat": {
+          "bytes": 5738240,
+          "mtime_ns": 1791554081338186500
+        }
+      },
+      "physical": {
+        "path": "data/geobc_solver_selection/cases/101_479_ver/physical.npy",
+        "stat": {
+          "bytes": 2869184,
+          "mtime_ns": 1791554049136786000
+        }
+      },
+      "vertices": {
+        "path": "data/raw/FieldMesh/101_479.h5",
+        "stat": {
+          "bytes": 33320128,
+          "mtime_ns": 1791453885401115600
+        }
+      },
+      "cells10": {
+        "path": "data/geobc_gradient_supervision/101_479.npz",
+        "stat": {
+          "bytes": 29513502,
+          "mtime_ns": 1791521769276959500
+        }
+      }
+    },
+    "cache_manifest": {
+      "path": "data/geobc_solver_selection/manifest.json",
+      "sha256": "76ba5189e0cfb4db226db472ca9cfe019f4d7f81c1eff9d0335726eea73a4ced"
+    },
+    "routes": [
+      {
+        "route_id": "fno_seed2026_endpoint_primary",
+        "method": "fno",
+        "seed": 2026,
+        "selected_step": 2880,
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+        "checkpoint_stat": {
+          "bytes": 170464827,
+          "mtime_ns": 1791557354819071400
+        },
+        "checkpoint_config_sha256": "1f0a5a765179ceb814159b20491b5d2b9d0ad92a440ef9088ab4e259fd58121a"
+      },
+      {
+        "route_id": "mlp_seed2026_endpoint_primary",
+        "method": "mlp",
+        "seed": 2026,
+        "selected_step": 7080,
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/last.pt",
+        "checkpoint_stat": {
+          "bytes": 3211949,
+          "mtime_ns": 1791558076232772100
+        },
+        "checkpoint_config_sha256": "dcdd66b54138b2ad6999b7f5e5dc15ce5d2f5c9985f976121a8a7a93e14700b5"
+      },
+      {
+        "route_id": "fno_seed2027_endpoint_primary",
+        "method": "fno",
+        "seed": 2027,
+        "selected_step": 2880,
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/last.pt",
+        "checkpoint_stat": {
+          "bytes": 170389755,
+          "mtime_ns": 1791559209160787100
+        },
+        "checkpoint_config_sha256": "232d989da0a5649d5a69ffc619e649216db0df4162f3ca917b78026ceb15c539"
+      },
+      {
+        "route_id": "mlp_seed2027_endpoint_primary",
+        "method": "mlp",
+        "seed": 2027,
+        "selected_step": 7080,
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/last.pt",
+        "checkpoint_stat": {
+          "bytes": 3137517,
+          "mtime_ns": 1791559989776779600
+        },
+        "checkpoint_config_sha256": "6541014f85b067a12d7ead832d334f0136e119d6efd5008fd3b827a1433889e2"
+      }
+    ],
+    "scope": {
+      "case": "101_479/ver",
+      "nodes": 179316,
+      "total_original_cells": 111754,
+      "selected_rows": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        29680,
+        34114,
+        58936,
+        86485,
+        92016,
+        94185
+      ],
+      "shared_faces": [
+        {
+          "corner_ids": [
+            0,
+            1,
+            2
+          ],
+          "cell_rows": [
+            0,
+            34114
+          ],
+          "local_faces": [
+            0,
+            1
+          ]
+        },
+        {
+          "corner_ids": [
+            0,
+            1,
+            3
+          ],
+          "cell_rows": [
+            0,
+            29680
+          ],
+          "local_faces": [
+            1,
+            2
+          ]
+        },
+        {
+          "corner_ids": [
+            0,
+            1,
+            22
+          ],
+          "cell_rows": [
+            34114,
+            58936
+          ],
+          "local_faces": [
+            0,
+            2
+          ]
+        },
+        {
+          "corner_ids": [
+            0,
+            1,
+            31
+          ],
+          "cell_rows": [
+            29680,
+            58936
+          ],
+          "local_faces": [
+            0,
+            1
+          ]
+        },
+        {
+          "corner_ids": [
+            0,
+            2,
+            3
+          ],
+          "cell_rows": [
+            0,
+            92016
+          ],
+          "local_faces": [
+            2,
+            1
+          ]
+        },
+        {
+          "corner_ids": [
+            0,
+            2,
+            10
+          ],
+          "cell_rows": [
+            86485,
+            94185
+          ],
+          "local_faces": [
+            1,
+            0
+          ]
+        },
+        {
+          "corner_ids": [
+            0,
+            2,
+            11
+          ],
+          "cell_rows": [
+            92016,
+            94185
+          ],
+          "local_faces": [
+            0,
+            3
+          ]
+        },
+        {
+          "corner_ids": [
+            0,
+            2,
+            22
+          ],
+          "cell_rows": [
+            34114,
+            86485
+          ],
+          "local_faces": [
+            2,
+            3
+          ]
+        }
+      ],
+      "face_barycentric": [
+        [
+          0.5,
+          0.5,
+          0
+        ],
+        [
+          0.5,
+          0,
+          0.5
+        ],
+        [
+          0,
+          0.5,
+          0.5
+        ],
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ],
+        [
+          0.2,
+          0.3,
+          0.5
+        ],
+        [
+          0.3,
+          0.5,
+          0.2
+        ],
+        [
+          0.5,
+          0.2,
+          0.3
+        ]
+      ],
+      "logical_queries": 504,
+      "schedule": {
+        "local_all10_node_incidences": 320,
+        "four_positive_Gauss": 128,
+        "one_physical_trace_per_shared_face": 56
+      },
+      "two_sided_common_face_trace_incident_evaluations": 112,
+      "maximum_physical_unique_queries": 504,
+      "optimizer_updates": 0,
+      "wholeCAD_geometry_audit": false,
+      "locator_calls": 0,
+      "new_fixtures": 0
+    },
+    "normalization": {
+      "bbox_min_mm": [
+        -38.72420120239258,
+        -163.60699462890625,
+        0.2465403974056244
+      ],
+      "characteristic_length_mm": 184.05270385742188
+    },
+    "scaler": {
+      "mean": [
+        -0.006059544265096125,
+        -0.0005008273527146082,
+        0.015260029003479832,
+        0.09629744183585241
+      ],
+      "std": [
+        0.05393032209940291,
+        0.011291299669602316,
+        0.07619646768716026,
+        0.5232191238243877
+      ],
+      "stress_scale": 90.46589813232424,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "numeric_contract": {
+      "Gauss_barycentric_a": 0.5854101966249685,
+      "Gauss_barycentric_b": 0.1381966011250105,
+      "reference_weight": 0.041666666666666664,
+      "jacobian_abs_det_over_L3_strict_gt": 1e-18,
+      "jacobian_sigma_min_over_L_strict_gt": 1e-12,
+      "jacobian_condition_strict_lt": 1000000000000.0,
+      "prior_orientation_required": true,
+      "consistent_negative_orientation_allowed": true,
+      "math_closure_relative_maximum": 1e-10,
+      "face_trace_normalized_maximum": 1e-12,
+      "native_domain": "exact finite [0,1]^3; no clip/nearest/repair",
+      "native_grid_plane_derivative": "floor/right voxel on interior planes, left voxel at coordinate1; value C0, derivative may jump",
+      "native_model_precision": "same FP32/TF32 high as frozen confirmation; no autocast",
+      "physical_metrics_precision": "FP64",
+      "native_stencil_precision": "FP64, analytic eight-weight derivatives",
+      "common_FNO_original_node_query": "frozen FP32 cached indices/weights via query_grid",
+      "native_physical_chain": "qcan=(X_mm-bbox_min_mm)/L; du/dX=diag(std_u)*(dencoded_u/dqcan)/L",
+      "reference_denominators": "P1 own GT-P1, P2 own GT-P2; native strain common GT-P2. Exact zero -> null, never floor."
+    },
+    "native_physical_coordinates": "(X_mm-bbox_min_mm)/L_mm; derivative std_u/L_mm",
+    "device": "cuda:0",
+    "precision": "inherited model FP32/TF32 high; physical maps/stencils/gradients/metrics FP64; common FNO node-query FP32 cache",
+    "scientific_imports_in_contract": 0,
+    "scientific_array_reads_in_contract": 0,
+    "CUDA_initialized_in_contract": false
+  },
+  "plan": "notes/geobc_solver_continuous_capability_plan.json"
+}

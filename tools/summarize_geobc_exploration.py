@@ -1,13 +1,19 @@
 """A compact, evidence-driven report for the autonomous GeoBC experiments."""
 from pathlib import Path
+from datetime import datetime,timezone
 import json
 import math
 import shutil
-import sys
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT))
-from geobc.train import write_json,utc_now
+
+def utc_now():
+    return datetime.now(timezone.utc).isoformat()
+
+def write_json(path,payload):
+    temporary=path.with_suffix(path.suffix+'.tmp')
+    temporary.write_text(json.dumps(payload,indent=2,ensure_ascii=False,allow_nan=False)+'\n',encoding='utf8')
+    temporary.replace(path)
 
 def percent(value):
     if not math.isfinite(float(value)): raise ValueError('Nonfinite metric')
@@ -88,6 +94,70 @@ def fullcad_quadratic_kinematics_text(result):
     brief=(f"同TRAIN/ver专用模型的全CAD四点积分P1／P2代理误差{p1}／{p2}（各自真值分母），GPU FP64及子集parity通过；中边梯度现象延伸至该CAD全单元，仍非solver应变GT或泛化结论。")
     return report,brief
 
+
+def solver_capability_text(result):
+    counts=result['counts']; reports=[]
+    for route in result.get('results') or []:
+        common=route.get('common_nodal_full10')
+        if common is None:
+            reports.append(f"{route['method']}/{route['seed']}指标未定义")
+            continue
+        kin=common['kinematics_proxy']; p2=kin['P2']['relative_L2_to_truth']['value']
+        native=route.get('native') or {}; item=native.get('P2_reference_strain_proxy',{}).get('relative_L2',{})
+        p2_text=percent(p2) if p2 is not None else '零参考分母未定义'
+        native_text=percent(item['value']) if item.get('value') is not None else native.get('status','未执行')
+        reports.append(f"{route['method']}/{route['seed']}共同P2／原生={p2_text}／{native_text}")
+    checks=result['checks']; verdict='通过' if checks.get('all_routes_numeric_guards_passed') else '未全部通过'
+    scope=f"固定TRAIN101_479/ver的32 cells／8 faces／{counts['logical_queries']} logical queries，{counts.get('unique_original_nodes',0)} unique原节点／128 Gauss"
+    report=(f"四个已锁预算端点完成连续能力诊断，{scope}，耗时{result['elapsed_seconds']:.3f}s；几何与数值guards{verdict}。"+
+            '；'.join(reports)+'。'+
+            '共同full10由物理解码的原节点预测构建；FNO原生为同预测grid上的直接物理坐标三线性查询和解析梯度，另栏使用相同GT-P2分母。MLP原25 offnode输入延拓未定义，native未实现，不虚构BC权重。'+
+            'P1/P2只来自GT节点运动学proxy，非solver应变GT、全CAD或final结果；C0是结构接口性质，不证明学习精度。绝对RMS、有符号cross、最差cell、节点舍入重放和实际成本见results/solver_capability/metrics.json；不按此结果挑seed或重训。')
+    brief=f"固定TRAIN32 cells／504查询连续诊断完成（{result['elapsed_seconds']:.3f}s）：节点精度不代表P2梯度准确，FNO原生查询未消除该局部proxy差距；MLP native未实现。C0通过只表明结构接口，非solver strainGT或全CAD结论。"
+    return report,brief
+
+
+def gino_radius_text(result):
+    stats=result['stats']; point=stats['point_queries']; recipe=result['config']['contract']['recipe']
+    elapsed=result['costs']['elapsed_seconds']; feasible=result.get('feasible') is True
+    coverage=stats.get('point_queries_all_covered') is True
+    report=(f"GINO候选的固定TRAIN{recipe['case_key']}输入邻域准备completed，耗时{elapsed:.3f}s，可行性{'通过' if feasible else '未通过'}。"
+            f"R{recipe['resolution']}、in/out radius={recipe['in_radius']}/{recipe['out_radius']}，{point['edges']:,}个相同pairs形成两种CSR方向，{point['queries']:,}点{'全部covered' if coverage else '未全部covered'}；"
+            f"缓存{result['cache_bytes']:,} B，实测构图peak allocated={result['memory']['peak_allocated_bytes']:,} B。"
+            '仅xyz输入、枚举／排序／CSR／缓存成本，零labels/features/weights/models/backward；不是GINO模型实验或模型前反向显存。未测BC角色保持、核函数、连续query截止行为或精度，不能把现有point-to-grid FNO改名GINO。')
+    brief=(f"GINO单TRAIN radius输入图{'可行' if feasible else '未通过'}（{elapsed:.3f}s，{point['edges']:,} pairs，{point['queries']:,}点{'全覆盖' if coverage else '覆盖不全'}）；仅构图资源，尚无GINO模型／BC／连续场精度证据。")
+    return report,brief
+
+
+def gino_resource_text(result):
+    checks=result['checks']; passed=sum(value is True for value in checks.values())
+    feasible=result.get('feasible') is True and passed==len(checks)
+    costs=result['costs']; memory=result['memory']['main_encode_query_backward']
+    api=result['api']; params=result['parameter_counts']; receipt=result['receipt']
+    report=(f"GINO正式有界模型资源检查completed，{'通过' if feasible else '未通过'}（{passed}/{len(checks)} checks），耗时{costs['elapsed_seconds']:.3f}s。"
+            f"固定TRAIN101_479/ver的{api['input_points']:,}点全输入encode={costs['full_input_encode_seconds']:.3f}s，512原节点query={costs['query512_seconds']:.4f}s，backward={costs['backward_seconds']:.4f}s；"
+            f"{receipt['main_backwards']}次无目标主反向和{receipt['backend_autograd_grad_calls']}次小真实CSR后端autograd核对，labels／optimizer更新={receipt['labels_read']}/{receipt['optimizer_steps']}。"
+            f"实际Torch peak allocated/reserved={memory['peak_allocated_bytes']:,}/{memory['peak_reserved_bytes']:,} B；参数{params['total']:,}（含PointNet，complex tensor按numel计）。"
+            '这已是模型资源实验，但只覆盖全输入/512输出，首例全N输出训练资源尚未验；无训练或准确度结果。旧FNO约14.18M且频率实现不同，不是容量匹配对照，不能把未来差异归因单GNO组件；不证明BC满足或连续场能力。')
+    brief=(f"GINO全输入/512输出模型资源{'通过' if feasible else '未通过'}（{costs['elapsed_seconds']:.3f}s、{passed}/{len(checks)} checks），"
+           f"peak allocated {memory['peak_allocated_bytes']/1e9:.3f} GB；零labels/optimizer更新，训练与首例全N输出仍待验，尚无精度证据。")
+    return report,brief
+
+
+def sealed_acquisition_text(result):
+    contract=result['config']['contract']; total=len(contract['files']); done=result.get('completed_files',0)
+    failed=result.get('failed_files',0); status=result['status']
+    errors=list(dict.fromkeys(item.get('error','') for item in result.get('files',[]) if item.get('error')))
+    reason=errors[0] if errors else '见status.json的当前获取状态'
+    seal=result.get('labels_sealed') is True and result.get('Field_CSV_values_parsed') is False and result.get('scientific_array_reads')==0
+    report=(f"下一周期独立test5身份已冻结：{'、'.join(contract['test_CADs'])}。获取状态{status}，{done}/{total}文件完成、{failed}失败，耗时{result.get('elapsed_seconds',0):.1f}s。"
+            + (f"首个错误：{reason}。" if status!='completed' else '仅下载／收到字节校验完成。')+
+            f"字段{'仍封存，未解析labels' if seal else '封存receipt需核对'}，没有替换CAD或修改旧raw来源。"
+            '身份独立不等于已证明形状族隔离；接收字节SHA没有独立上游checksum。新路线、预算、两seed/checkpoint与指标规则须在Field值解析前锁定，旧final不作开发集。下载失败不是科学模型负结果，也不计为completed阶段。')
+    brief=(f"独立test5身份已冻且字段{'封存' if seal else '状态待核对'}；获取{status}（{done}/{total}文件），"+
+           ('下载路径待修复，不换CAD、不解析labels。' if status!='completed' else '原始字节已获取，尚未评估或用于模型开发。'))
+    return report,brief
+
 def plan_next_text(plan,summaries,*,compact=False):
     current_jobs=plan.get('jobs',[])
     complete=bool(current_jobs) and all(job['name'] in summaries for job in current_jobs)
@@ -118,14 +188,19 @@ def main():
     dest.mkdir(parents=True,exist_ok=True)
     summaries={}
     checkpoints={}
+    observed_stages={}
+    observed_receipts={}
+    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','sealed_test_input_acquisition'}
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
         path=source/('manifest.json' if job.get('kind')=='solver_final_input_cache' else 'summary.json')
         if not path.exists(): continue
         summary=json.loads(path.read_text())
-        if summary.get('status')!='completed': continue
-        summaries[job['name']]=summary
+        completed=summary.get('status')=='completed'
+        if not completed and job.get('kind')!='sealed_test_input_acquisition': continue
+        if completed:summaries[job['name']]=summary
+        if job.get('kind') in metadata_kinds:observed_stages[job['name']]=summary
         checkpoint_files={}
         for filename in ('best.pt','last.pt','endpoint_250.pt','endpoint_10000.pt','endpoint_0000.pt','endpoint_1000.pt'):
             checkpoint=source/filename
@@ -139,10 +214,17 @@ def main():
         target=dest/'runs'/job['name']; target.mkdir(parents=True,exist_ok=True)
         filenames=('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json','metrics_step0000.json','metrics_step1000.json','first_backward_check.json')
         if job.get('kind') in ('real_geometry_interface_acceptance','frozen_field_diagnostic','solver_screen','solver_confirmation','solver_final_input_cache','solver_final_evaluation'):filenames+=('status.json',)
+        if job.get('kind') in metadata_kinds:filenames=('summary.json','config.json','status.json')
         if job.get('kind')=='solver_final_input_cache':filenames+=('manifest.json',)
         if job.get('kind') in ('solver_screen','solver_confirmation'):filenames+=('first_update_gradient_check.json',)
         for filename in filenames:
             if (source/filename).exists(): shutil.copyfile(source/filename,target/filename)
+        if job.get('kind') in metadata_kinds:
+            observed_receipts[job['kind']]={'run':job['name'],'status':summary.get('status'),
+                'source_output':job['output'],'completed_stage':completed,
+                'exported_files':[str(Path('runs')/job['name']/name).replace('\\','/') for name in filenames if (source/name).exists()],
+                'export_policy':'Small JSON only; no NPY/CSR/raw/weights copied',
+                'cache_payloads_exported':False,'receipt_location':'summary.json:receipt or config.contract'}
     counts=stage_counts(jobs,summaries)
     next_text=plan_next_text(plan,summaries)
     brief_next_text=plan_next_text(plan,summaries,compact=True)
@@ -568,6 +650,26 @@ def main():
                                       'backend':receipt['backend'],'device':receipt['device'],'dtype':receipt['dtype'],
                                       'GPU_event_elapsed_seconds':receipt['GPU_event_elapsed_seconds'],
                                       'GPU_peak_allocated_bytes':receipt['GPU_peak_allocated_bytes'],'GPU_peak_reserved_bytes':receipt['GPU_peak_reserved_bytes']}
+    def latest_observed(kind):
+        return next((observed_stages[job['name']] for job in reversed(jobs)
+                     if job.get('kind')==kind and job['name'] in observed_stages),None)
+    capability_result=latest_observed('solver_continuous_capability')
+    gino_radius_result=latest_observed('gino_radius_input_pilot')
+    gino_resource_result=latest_observed('gino_native_resource')
+    sealed_acquisition_result=latest_observed('sealed_test_input_acquisition')
+    capability_brief=gino_radius_brief=gino_resource_brief=sealed_acquisition_brief=None
+    if capability_result:
+        capability_report,capability_brief=solver_capability_text(capability_result)
+        lines += ['', '## 锁定FNO/MLP端点的局部连续能力','',capability_report]
+    if gino_radius_result:
+        gino_radius_report,gino_radius_brief=gino_radius_text(gino_radius_result)
+        lines += ['', '## GINO候选的输入半径图可行性','',gino_radius_report]
+    if gino_resource_result:
+        gino_resource_report,gino_resource_brief=gino_resource_text(gino_resource_result)
+        lines += ['', '## GINO有界模型资源','',gino_resource_report]
+    if sealed_acquisition_result:
+        sealed_acquisition_report,sealed_acquisition_brief=sealed_acquisition_text(sealed_acquisition_result)
+        lines += ['', '## 下一周期独立test5的封存获取','',sealed_acquisition_report]
     lines += ['', '## 主计划中的下一阶段','',next_text]
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
@@ -630,7 +732,7 @@ def main():
     if continuous_geometry:brief += [continuous_brief]
     if quadratic_kinematics:brief += [quadratic_brief]
     if fullcad_kinematics:brief += [fullcad_brief]
-    brief += ['',f'下一步（来自主计划）：{brief_next_text} 最终测试继续保留。',
+    brief += ['',f'下一步（来自主计划）：{brief_next_text} 测试使用状态以冻结评估与新周期封存计划为准。',
               '',f"科学训练／评估／冻结诊断完成{counts['scientific_completed']}/{counts['scientific_planned']}项，合成验收完成{counts['synthetic_acceptance_completed']}/{counts['synthetic_acceptance_planned']}项；原30项slides复现已完成。自主研究与30分钟监视继续。",'',
               '完整指标、控制变量和解释范围见 [探索报告](REPORT.md)。','']
     if plan.get('stage','').startswith('solver_'):
@@ -649,9 +751,13 @@ def main():
                f'- **完成：**原30项slides复现；后续{len(summaries)}个阶段包含训练、诊断、输入准备和最终评估，并非求解器种数。',
                '- **新CAD：**FNO的应力误差较低且两seed稳定；MLP一个seed位移误差更低，另一个明显退化，不能称FNO所有指标都胜出。',
                '- **组合载荷：**两条路线都明显变差，且seed波动较大。节点拟合或known-load结果不足以证明GeoBC泛化。',
-               '- **下一步：**固定TRAIN范围检查原生连续查询和完整十节点运动学代理，节点重建与原生查询分栏；不据最终结果调参、选择seed或重训本轮模型。','',
+               '- **后续规则：**不据旧final调参、选择seed或重训本轮模型；新结构使用另外冻结、仍封存的test5。','',
                '凝练结果见[求解器简报](../SOLVER_BRIEF.md)，完整冻结known3／dia结果见[最终评估](../solver_final_eval/BRIEF.md)。',
                '当前选型限于共同数据、配方与预算；自主研究与30分钟监视继续。','']
+    if capability_brief:brief += ['- **局部连续能力：**'+capability_brief]
+    if gino_radius_brief:brief += ['- **新结构输入：**'+gino_radius_brief]
+    if gino_resource_brief:brief += ['- **新结构资源：**'+gino_resource_brief]
+    if sealed_acquisition_brief:brief += ['- **新周期test：**'+sealed_acquisition_brief]
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
@@ -678,6 +784,12 @@ def main():
                                    'quadratic_kinematics_cpu_receipt':quadratic_kinematics_receipt,
                                    'fullcad_quadratic_kinematics_analysis':str(fullcad_kinematics_path.relative_to(ROOT)) if fullcad_kinematics else None,
                                    'fullcad_quadratic_kinematics_gpu_receipt':fullcad_kinematics_receipt,
+                                   'solver_continuous_capability_receipt':observed_receipts.get('solver_continuous_capability'),
+                                   'gino_radius_input_pilot_receipt':observed_receipts.get('gino_radius_input_pilot'),
+                                   'gino_native_resource_receipt':observed_receipts.get('gino_native_resource'),
+                                   'sealed_test_input_acquisition_receipt':observed_receipts.get('sealed_test_input_acquisition'),
+                                   'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
+                                   'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',
                                    'updated_at_utc':utc_now()})
     if geo and load and comparisons:

@@ -1,10 +1,10 @@
 # GeoBC：原版 DeepJEB 复现与泛化探索
 
-**当前阶段（2026-10-09）：六家族初筛、双种子成本确认及一次冻结最终验证完成；自主研究与30分钟监视继续。** 原30项slides复现已完成并发布；后续探索完成66个阶段（63项真实数据训练／诊断与输入准备、3项合成接口验收）。先读[求解器简报](results/SOLVER_BRIEF.md)。用户尚未选择Hash或其它solver，未启动的Hash梯度监督pilot保持暂缓。
+**当前阶段（2026-10-10）：六家族筛选、双种子成本确认、一次冻结最终验证及固定TRAIN连续能力诊断完成；GINO输入图和有界模型资源检查通过，统一480更新训练中。** 新的独立test5身份已冻结，字段保持封存；15文件已通过Windows现有代理下载完成（250.6秒、约690 MB），此前WSL零字节失败耗时480.6秒已封存。自主研究与30分钟监视继续。先读[求解器简报](results/SOLVER_BRIEF.md)；当前未将任何路线判为工程合格，Hash专属梯度pilot保持暂缓。
 
-**现有证据支持Hash的小样本拟合能力，尚不支持将它选定为GeoBC求解器。** 原实验主要测训练拟合，此前探索集中于Hash；现在已补上共同CAD划分下的六家族初筛，尚需成本确认与最终检验。关闭Hash最后4层曾把旧开发验证位移均值22.23%降至19.97%，但应变代理仍差；它与本轮signed四场预测的配方不同，不能直接拼成跨架构排名。[选型计划](notes/geobc_solver_selection_plan.json)记录初筛范围。
+**现有证据支持Hash的小样本拟合能力，尚不支持将它选定为GeoBC求解器。** 原实验主要测训练拟合，此前探索集中于Hash；现在已补上共同CAD划分下的六家族筛选、成本确认与最终检验。关闭Hash最后4层曾把旧开发验证位移均值22.23%降至19.97%，但应变代理仍差；它与本轮signed四场预测的配方不同，不能直接拼成跨架构排名。[选型计划](notes/geobc_solver_selection_plan.json)记录初筛范围。
 
-首轮各480次完整案例更新，**FNO验证位移／应力47.5%／66.7%，是当前最有潜力的路线**；MLP为71.6%／97.6%，作为低成本对照。Hash为92.5%／92.8%，但最差位移191.4%且后半程位移反升，因此暂缓；三种Transolver仍接近零场基线。完整共同checkpoint与曲线见[六家族简表](results/solver_selection/BRIEF.md)。四次训练遍历不足以证明收敛；各家原生容量差异及FNO point-to-grid插值限制均明示。
+首轮各480次完整案例更新，FNO验证位移／应力47.5%／66.7%；MLP为71.6%／97.6%，作为低成本对照。Hash为92.5%／92.8%，但最差位移191.4%且后半程位移反升，因此暂缓；Transolver、Transolver++、Transolver3仍接近零场基线。六家族的共同checkpoint与曲线见[初筛简表](results/solver_selection/BRIEF.md)。四次训练遍历不足以证明收敛；各家原生容量差异及FNO point-to-grid插值限制均明示。
 
 已完成[固定成本确认](notes/geobc_solver_confirmation_plan.json)：FNO、MLP和一条低优先级慢结构路线Transolver++，各用2026／2027两个种子、每项累计600训练秒，串行队列共62.3分钟。2026从screen最后一步继承模型、Adam与全部RNG，父阶段时间计入600秒；2027重新初始化，复用相同数据、几何云与仅TRAIN拟合的scaler。完整120-case pass末停止并记录超预算时间，固定成本端点为主要比较，共同VAL-best另报；未改损失或家族参数。见[确认报告](results/solver_confirmation/BRIEF.md)。
 
@@ -12,9 +12,15 @@
 
 最终评估的隔离入口已完成[源码检查](notes/solver_final_eval_source_check.json)，[规则](notes/geobc_solver_final_eval_plan.json)已在读取最终数据前冻结：FNO／MLP、两个seed、固定预算端点为主及既有VAL-best为次。输入准备6.1秒，160次全节点case推理及评估51.1秒，零训练、零scaler拟合。[final5结果](results/solver_final_eval/BRIEF.md)按known3与dia分栏：已知载荷FNO U33.09–36.17%／S49.23–50.39%，MLP U26.53–49.40%／S64.20–73.49%。MLP一个seed位移更低，FNO应力及跨seed表现较稳定，不能宣称所有指标都赢。
 
-组合载荷dia的FNO U46.43–76.51%／S68.78–96.31%，MLP U57.71–131.70%／S84.19–98.90%，仍明显不足。最终结果不用于选seed、checkpoint或重训；后续适配研究需要独立未使用的评估集。GINO仅作为[有界候选建议](notes/solver_gino_candidate_design.md)记录，尚未安装或实验。
+组合载荷dia的FNO U46.43–76.51%／S68.78–96.31%，MLP U57.71–131.70%／S84.19–98.90%，仍明显不足。最终结果不用于选seed、checkpoint或重训；后续适配研究使用另外冻结的test5，并在新路线、预算与checkpoint规则锁定前保持字段封存。
 
-固定TRAIN案例的179,316个节点完成网格边界角色回查（1.7秒）：支持／载荷角色正节点重建均值为0.390／0.379，局部标记受到明显稀释。角色是描述符，非精确节点Dirichlet；这项输入诊断不证明预测误差的原因。原生连续查询和完整十节点运动学代理仍需另行验收。
+固定TRAIN案例的179,316个节点完成网格边界角色回查（1.7秒）：支持／载荷角色正节点重建均值为0.390／0.379，局部标记受到明显稀释。角色是描述符，非精确节点Dirichlet；这项输入诊断不证明预测误差的原因。
+
+[连续能力诊断](results/solver_capability/BRIEF.md)已完成（3.718秒）：固定TRAIN101_479/ver的32 cells、8 faces、504查询，四个已锁FNO/MLP端点的几何与数值guards均通过。FNO节点U/S较准，但共同十节点P2代理误差507–610%，原生网格梯度535–640%；MLP共同P2为413–421%，原生offnode因原25输入延拓未定义而未实现。GT-P2 RMS约8.58e−4，FNO2026误差RMS约5.23e−3；梯度差距不能只看节点误差。P1/P2是这一局部的GT节点派生proxy，非solver应变GT；结构性C0通过不等于学习成功，不能外推全CAD。
+
+[GINO候选](notes/solver_gino_candidate_design.md)的单TRAIN输入图可行性已完成（2.245秒）：R64、固定radius0.033，共6,547,680 pairs，全部179,316点有邻居，CSR缓存216,204,464 B，实测构图peak约589 MB。这仅测邻域枚举／排序／CSR，未读取BC或标签、未构造模型，不能当作GINO前反向资源或连续场精度。独立test5见[封存计划](notes/geobc_next_cycle_test_plan.json)；15个文件已下载完成，未解析任何字段，未替换CAD或改变旧数据；旧失败记录保留在独立attempt目录。
+
+[GINO模型资源检查](results/gino_resource/BRIEF.md)另已完成4.985秒，8/8 checks PASS：全部179,316点输入encode 2.003秒、512点query 0.0437秒、一次无目标backward 0.3004秒，peak allocated/reserved为1.829/3.813 GB；另含4次小真实CSR后端autograd核对。零labels、零optimizer更新，没有训练或精度结果，首例全N输出资源仍未验。实际参数1,433,277（含PointNet，complex tensor按numel计），与旧FNO约14.18M的容量及频率实现不匹配，后续差异不能只归因于GNO。
 
 新增拓扑邻居消息的四几何拟合对照用时56.6秒：位移10.59%→12.87%，P1约219%→219%，没有通过联合门限。两组初始化、采样、实际参数与首反向核对通过；这一固定预算结果不代表所有拓扑方法都无效。
 
@@ -107,3 +113,5 @@ python tools/plot_suite_fields.py
 ```
 
 30项 slides 实验及其 GitHub 交付已经完成，原监视已删除。用户进一步授权的 GeoBC 自主研究现由新的30分钟监视持续推进；阶段结束后根据证据安排下一阶段。代码、配置和可移植结果持续更新至私人 GitHub 仓库 `baiming-zhang/GeoBC-Neural-Operator`。导出/发布参数在 `notes/github_publish_plan.json`，发布快照保存在 `publication/GeoBC-Neural-Operator`。旧 `tools/replay_runs.py` 只描述已撤回的历史实验，不作为本次全方法入口。
+
+GINO训练前已按[频带口径](notes/gino_vs_fno_implementation_scope.md)统一为官方(24,24,22)，对应旧FNO的x/y总24、z12；此前资源检查采用较小的默认频带，完整训练配置的首个325387节点case已通过，后续精度与成本待完整480更新。新训练不会重复低频候选或据旧final调参。

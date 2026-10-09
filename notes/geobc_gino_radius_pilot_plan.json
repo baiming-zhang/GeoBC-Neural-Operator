@@ -1,0 +1,68 @@
+{
+  "kind": "gino_radius_input_pilot",
+  "status": "predeclared",
+  "scope": "Independent next research cycle, one input-only TRAIN CAD; root coordinator alone releases actual GPU execution",
+  "selection_manifest": "data/geobc_solver_selection/manifest.json",
+  "existing_split": "notes/geobc_split.json",
+  "recipe": {
+    "case_key": "101_479/ver",
+    "resolution": 64,
+    "in_radius": 0.033,
+    "out_radius": 0.033,
+    "chunk_points": 8192,
+    "device": "cuda",
+    "expected_points": 179316,
+    "coordinate_dtype": "float32",
+    "distance_dtype": "float64",
+    "distance_predicate": "d2 <= radius**2"
+  },
+  "frozen_input_identity": {
+    "manifest_sha256": "76ba5189e0cfb4db226db472ca9cfe019f4d7f81c1eff9d0335726eea73a4ced",
+    "selection_contract_sha256": "68b9990634e9cbd3efbb463e448d2c76c4d6819c21f465be9bf848522f9c3b78",
+    "split_sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859",
+    "producer_sha256": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "xyz_path": "data/geobc_solver_selection/geometry/101_479/xyz.npy",
+    "xyz_stat": {
+      "bytes": 2151920,
+      "mtime_ns": 1791554049062253300
+    }
+  },
+  "access": {
+    "allowed_scientific_members": ["xyz.npy"],
+    "labels_features_weights_models": "forbidden",
+    "allowed_group": "train",
+    "validation_final_dia_arrays": "forbidden",
+    "source_scientific_file_reads": 1,
+    "source_check": "Standard-library AST, small JSON/source identities and xyz file stat only; no scientific array, Torch, model, weights or GPU",
+    "author_execution": "source-check only; no toy or redundant scientific pre-read",
+    "actual_execution": "One root-coordinator GPU job after source review, with no installing/cloning dependencies"
+  },
+  "construction": {
+    "lattice": "torch.linspace(0,1,64,float32) on actual device, x-major z-fastest; retain grid_axis/grid_xyz for exact replay",
+    "bound": "Conservative integer boxes widened by actual float32-lattice roundoff versus i/(R-1) and a fixed FP64 arithmetic pad; widening applies only to enumeration",
+    "predicate": "Float32 stored points and lattice promoted to float64; squared Euclidean distance <= float64(0.033)^2; no distance tolerance",
+    "grid_queries": "262144 rows; neighbor IDs index canonical original points; sort by grid ID then point ID",
+    "point_queries": "179316 rows; neighbor IDs index lattice; natural point-major enumeration, sorted grid neighbors per point",
+    "same_edge_set": "One full enumerated pair set, reindexed without truncation for the reverse CSR orientation",
+    "no_sampling_clipping_cdists": true,
+    "empty_latent_rows": "Legal and retained, report actual empty counts/fraction and row-pointer-defined full inventory",
+    "point_coverage": "Report actual fraction/all-covered flag; zero-neighbor point rows are not filled or dropped",
+    "distance_cache": "Float64 squared normalized-length distances aligned with each CSR; no mollifier/kernel weights are computed"
+  },
+  "outputs": {
+    "suggested_output": "runs/geobc_exploration/gino_radius_input_pilot_101_479",
+    "summary": "summary.json status completed + config.contract + checks/stats/costs/memory/receipt; infeasible coverage remains a completed negative result",
+    "status": "status.json for the single coordinator; partial output immutable, no silent restart or budget/radius change",
+    "input_cache": "Eight NPY arrays: each orientation row_ptr/int64 neighbors_index/float64 squared_distances plus float32 grid_axis/grid_xyz; inventory paths/shapes/dtypes/bytes/stat/in-memory values SHA",
+    "reuse": "Completed contract and inventory stat must match; reuse has no scientific reads or CUDA execution"
+  },
+  "success_for_future_decision_only": "CSR invariants passed and all point queries have neighbors; latent empties are reported but legal. Future all-CAD preparation/model decisions require separate root selection.",
+  "limitations": [
+    "This is radius-neighborhood input feasibility, not GINO training or neuraloperator API acceptance. No direct CSR kwargs are passed to official GINO.",
+    "Empirical point neighborhoods are not FEM volume integration, elasticity/stiffness, boundary-role preservation, or exact geodesics.",
+    "No features or named BC roles are read, so this stage cannot claim interface-role coverage or lack of BC aliasing.",
+    "No kernel weighting or new-query cutoff probe occurs; CSR construction alone does not certify continuous-query behavior.",
+    "Measured memory/time cover this geometry enumerator/sort/cache only; no hypothetical GNO/FNO activations/backward/model memory is reported as measured.",
+    "This new research cycle must not adapt to the already-used final evaluation; no validation/final/dia arrays are opened here."
+  ]
+}

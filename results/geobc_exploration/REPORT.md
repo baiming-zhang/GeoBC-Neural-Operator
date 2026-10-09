@@ -257,9 +257,25 @@
 
 GPU FP64确认：同一TRAIN101_479/ver保存的专用模型10000步场，覆盖111,754单元／447,016个Gauss点，中心／四角／Gauss几何检查及原32单元GPU/CPU parity通过，耗时3.09s，数值gate通过。全单元P1／P2代理相对误差22.391%／187.313%（各自真值分母），真值P2−P1相对P2差异23.402%。E1／Emid／有符号cross／E2=0.005672／0.3793／-0.004223／0.3808 mm³，闭合残差3.2e-17；负交叉项保留，中边项占比不能作因果解释。真值／预测中边残余位移RMS为0.0001082／0.0009272 mm。范围仍是单TRAIN/ver与专用模型；四点P2是位移派生代理，不是solver应变GT或曲单元精确积分，不证明全域Jacobian、泛化或因果，也不替代历史全节点恢复P1。正式结果见notes/geobc_fullcad_quadratic_kinematics_result.json。
 
+## 锁定FNO/MLP端点的局部连续能力
+
+四个已锁预算端点完成连续能力诊断，固定TRAIN101_479/ver的32 cells／8 faces／504 logical queries，248 unique原节点／128 Gauss，耗时3.718s；几何与数值guards通过。fno/2026共同P2／原生=609.688%／640.433%；mlp/2026共同P2／原生=412.646%／notimplemented；fno/2027共同P2／原生=506.976%／534.839%；mlp/2027共同P2／原生=420.844%／notimplemented。共同full10由物理解码的原节点预测构建；FNO原生为同预测grid上的直接物理坐标三线性查询和解析梯度，另栏使用相同GT-P2分母。MLP原25 offnode输入延拓未定义，native未实现，不虚构BC权重。P1/P2只来自GT节点运动学proxy，非solver应变GT、全CAD或final结果；C0是结构接口性质，不证明学习精度。绝对RMS、有符号cross、最差cell、节点舍入重放和实际成本见results/solver_capability/metrics.json；不按此结果挑seed或重训。
+
+## GINO候选的输入半径图可行性
+
+GINO候选的固定TRAIN101_479/ver输入邻域准备completed，耗时2.245s，可行性通过。R64、in/out radius=0.033/0.033，6,547,680个相同pairs形成两种CSR方向，179,316点全部covered；缓存216,204,464 B，实测构图peak allocated=588,992,000 B。仅xyz输入、枚举／排序／CSR／缓存成本，零labels/features/weights/models/backward；不是GINO模型实验或模型前反向显存。未测BC角色保持、核函数、连续query截止行为或精度，不能把现有point-to-grid FNO改名GINO。
+
+## GINO有界模型资源
+
+GINO正式有界模型资源检查completed，通过（8/8 checks），耗时4.985s。固定TRAIN101_479/ver的179,316点全输入encode=2.003s，512原节点query=0.0437s，backward=0.3004s；1次无目标主反向和4次小真实CSR后端autograd核对，labels／optimizer更新=0/0。实际Torch peak allocated/reserved=1,829,223,424/3,812,622,336 B；参数1,433,277（含PointNet，complex tensor按numel计）。这已是模型资源实验，但只覆盖全输入/512输出，首例全N输出训练资源尚未验；无训练或准确度结果。旧FNO约14.18M且频率实现不同，不是容量匹配对照，不能把未来差异归因单GNO组件；不证明BC满足或连续场能力。
+
+## 下一周期独立test5的封存获取
+
+下一周期独立test5身份已冻结：489_12、616_205、416_282、247_50、142_454。获取状态completed，15/15文件完成、0失败，耗时250.6s。仅下载／收到字节校验完成。字段仍封存，未解析labels，没有替换CAD或修改旧raw来源。身份独立不等于已证明形状族隔离；接收字节SHA没有独立上游checksum。新路线、预算、两seed/checkpoint与指标规则须在Field值解析前锁定，旧final不作开发集。下载失败不是科学模型负结果，也不计为completed阶段。
+
 ## 主计划中的下一阶段
 
-当前计划阶段已完成，后续决策仍由主计划确定。 计划阶段：solver_confirmation。 完成后：Analyze seed stability and worst CAD, lock route/protocol before final held-out test and continuous field capability。
+当前主计划：gino_screen_seed2026_480（进行中）。 计划阶段：solver_gino_training_screen。
 
 ## 解释边界
 
@@ -267,4 +283,4 @@ GPU FP64确认：同一TRAIN101_479/ver保存的专用模型10000步场，覆盖
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成63/63项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成67/68项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

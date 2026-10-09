@@ -1,0 +1,1151 @@
+{
+  "status": "completed",
+  "scientific_outcome": "bounded_capability_measurement",
+  "results": [
+    {
+      "route_id": "fno_seed2026_endpoint_primary",
+      "method": "fno",
+      "seed": 2026,
+      "step": 2880,
+      "status": "completed",
+      "common_nodal_full10": {
+        "node_value_errors": {
+          "u": {
+            "relative_L2": 0.07653757158638413,
+            "reason": null,
+            "RMS_error_mm": 0.011244747467827852,
+            "sum_squared_error": 0.031358197712574774,
+            "sum_squared_reference": 5.353055383879409
+          },
+          "stress": {
+            "relative_L2": 0.30479722222587347,
+            "reason": null,
+            "RMS_error_MPa": 24.10766008792042,
+            "sum_squared_error": 144132.46017884836,
+            "sum_squared_reference": 1551457.1675755833
+          }
+        },
+        "all504_GT_node_full10_proxy_value_errors": {
+          "u": {
+            "relative_L2": 0.07535588561816267,
+            "reason": null,
+            "RMS_error_mm": 0.010432511316630488,
+            "sum_squared_error": 0.054853995355298085,
+            "sum_squared_reference": 9.65992843393199
+          },
+          "stress": {
+            "relative_L2": 0.296830048035084,
+            "reason": null,
+            "RMS_error_MPa": 26.769893947878558,
+            "sum_squared_error": 361180.1198782552,
+            "sum_squared_reference": 4099284.997116222
+          }
+        },
+        "kinematics_proxy": {
+          "error_decomposition": {
+            "E1": 0.0009571982006959895,
+            "Emid": 0.00016964071080178558,
+            "signed_cross": -2.5716696192175763e-05,
+            "E2": 0.0011011222153055993,
+            "identity_relative_residual": 1.8040547345922344e-17
+          },
+          "P1": {
+            "truth_reference_energy_mm3": 3.0051132248056453e-05,
+            "prediction_reference_energy_mm3": 0.0010460778094411923,
+            "error_energy_mm3": 0.0009571982006959895,
+            "truth_reference_Frobenius_RMS": 0.0008646814290353492,
+            "prediction_reference_Frobenius_RMS": 0.005101615300536781,
+            "error_Frobenius_RMS": 0.004880076707939152,
+            "relative_L2_to_truth": {
+              "value": 5.643785727401865,
+              "reason": null
+            }
+          },
+          "P2": {
+            "truth_reference_energy_mm3": 2.9622440597087693e-05,
+            "prediction_reference_energy_mm3": 0.001176217708378037,
+            "error_energy_mm3": 0.0011011222153055993,
+            "truth_reference_Frobenius_RMS": 0.000858491758677077,
+            "prediction_reference_Frobenius_RMS": 0.005409654995468309,
+            "error_Frobenius_RMS": 0.005234117575659354,
+            "relative_L2_to_truth": {
+              "value": 6.096875739057823,
+              "reason": null
+            }
+          },
+          "truth_P2_minus_P1": {
+            "energy_mm3": 3.145201076946317e-07,
+            "Frobenius_RMS": 8.84606079223287e-05,
+            "relative_L2_to_same_P2": {
+              "value": 0.10304188366192958,
+              "reason": null
+            }
+          },
+          "truth_midside_residual_displacement_vector_RMS_mm": 5.04692296781177e-05,
+          "prediction_P2_minus_P1": {
+            "energy_mm3": 0.00017058275787014418,
+            "Frobenius_RMS": 0.002060123601288435,
+            "relative_L2_to_same_P2": {
+              "value": 0.380823472664007,
+              "reason": null
+            }
+          },
+          "prediction_midside_residual_displacement_vector_RMS_mm": 0.0013481191620833017,
+          "worst_cell": {
+            "P1": {
+              "relative_L2_to_truth": 40.86699227839228,
+              "original_row": 6,
+              "zero_reference_cells": 0
+            },
+            "P2": {
+              "relative_L2_to_truth": 33.4839515133954,
+              "original_row": 6,
+              "zero_reference_cells": 0
+            }
+          }
+        },
+        "numeric_guards": {
+          "energy_closure_le_1e_10": true,
+          "direct_eps_decomposition_le_1e_10": true,
+          "nodal_replay_le_1e_12": true,
+          "shared_face_C0_le_1e_12": true
+        },
+        "nodal_replay_normalized_max": 0.0,
+        "shared_face_normalized_max_jump": 1.3923563197764475e-16,
+        "reconstruction": "physical decoded nodal all10 signed interpolation; structural C0 is interface sanity"
+      },
+      "native": {
+        "status": "completed",
+        "available": true,
+        "invalid_query_count": 0,
+        "grid_plane_query_count": 0,
+        "grid_plane_axis_incidence_count": 0,
+        "derivative_convention": "floor/right voxel on interior planes; left voxel at coordinate1; piecewise C0 value, derivative may jump",
+        "all504_GT_node_full10_proxy_value_errors": {
+          "u": {
+            "relative_L2": 0.0753988338045794,
+            "reason": null,
+            "RMS_error_mm": 0.010438457201774637,
+            "sum_squared_error": 0.05491653993165352,
+            "sum_squared_reference": 9.65992843393199
+          },
+          "stress": {
+            "relative_L2": 0.29774819889367277,
+            "reason": null,
+            "RMS_error_MPa": 26.852698236983645,
+            "sum_squared_error": 363417.97091367835,
+            "sum_squared_reference": 4099284.997116222
+          }
+        },
+        "node_replay_vs_cached_query": {
+          "u": {
+            "relative_L2": 1.7720595748209326e-07,
+            "reason": null,
+            "RMS_error_mm": 2.6361312710766506e-08,
+            "sum_squared_error": 2.223740185071423e-13,
+            "sum_squared_reference": 7.081535026508034
+          },
+          "stress": {
+            "relative_L2": 4.927894131924422e-07,
+            "reason": null,
+            "RMS_error_MPa": 3.857597022445583e-05,
+            "sum_squared_error": 4.761937532025929e-07,
+            "sum_squared_reference": 1960924.874911567
+          }
+        },
+        "native_vs_common_full10_value": {
+          "u": {
+            "relative_L2": 0.0012647468267942003,
+            "reason": null,
+            "RMS_error_mm": 0.00018328509985551206,
+            "sum_squared_error": 1.693108762583869e-05,
+            "sum_squared_reference": 10.584678237377855
+          },
+          "stress": {
+            "relative_L2": 0.009089445008146868,
+            "reason": null,
+            "RMS_error_MPa": 0.7228807151918647,
+            "sum_squared_error": 263.3684903117361,
+            "sum_squared_reference": 3187785.4300645306
+          }
+        },
+        "P2_reference_strain_proxy": {
+          "truth_reference_energy_mm3": 2.9622440597087693e-05,
+          "error_energy_mm3": 0.0012149793588937387,
+          "relative_L2": {
+            "value": 6.404334856049211,
+            "reason": null
+          },
+          "error_Frobenius_RMS": 0.005498068693726592,
+          "worst_cell": {
+            "relative_L2": 41.87630562846421,
+            "original_row": 6,
+            "zero_reference_cells": 0
+          }
+        },
+        "native_vs_common_P2_strain_proxy_RMS": 0.00136607317117859
+      },
+      "costs": {
+        "checkpoint_model_load_seconds": 0.505226773000004,
+        "encode_forward_query_transfer_seconds": 0.6708212009999954,
+        "queried_unique_original_nodes": 248,
+        "native_logical_queries": 504
+      },
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 14160548,
+        "total": 14177284
+      }
+    },
+    {
+      "route_id": "mlp_seed2026_endpoint_primary",
+      "method": "mlp",
+      "seed": 2026,
+      "step": 7080,
+      "status": "completed",
+      "common_nodal_full10": {
+        "node_value_errors": {
+          "u": {
+            "relative_L2": 0.17432263746884313,
+            "reason": null,
+            "RMS_error_mm": 0.025611134448529638,
+            "sum_squared_error": 0.16267069151968408,
+            "sum_squared_reference": 5.353055383879409
+          },
+          "stress": {
+            "relative_L2": 0.5471036883864917,
+            "reason": null,
+            "RMS_error_MPa": 43.272670453324956,
+            "sum_squared_error": 464385.9540241915,
+            "sum_squared_reference": 1551457.1675755833
+          }
+        },
+        "all504_GT_node_full10_proxy_value_errors": {
+          "u": {
+            "relative_L2": 0.18936288393939968,
+            "reason": null,
+            "RMS_error_mm": 0.026216007063573278,
+            "sum_squared_error": 0.3463886292840913,
+            "sum_squared_reference": 9.65992843393199
+          },
+          "stress": {
+            "relative_L2": 0.4417265971452781,
+            "reason": null,
+            "RMS_error_MPa": 39.83752398995236,
+            "sum_squared_error": 799862.272095615,
+            "sum_squared_reference": 4099284.997116222
+          }
+        },
+        "kinematics_proxy": {
+          "error_decomposition": {
+            "E1": 0.00046871878086384165,
+            "Emid": 2.0096072045710298e-05,
+            "signed_cross": 1.5585481601341517e-05,
+            "E2": 0.0005044003345108944,
+            "identity_relative_residual": 8.866635597772612e-16
+          },
+          "P1": {
+            "truth_reference_energy_mm3": 3.0051132248056453e-05,
+            "prediction_reference_energy_mm3": 0.000502597289204904,
+            "error_energy_mm3": 0.00046871878086384165,
+            "truth_reference_Frobenius_RMS": 0.0008646814290353492,
+            "prediction_reference_Frobenius_RMS": 0.0035361915554153914,
+            "error_Frobenius_RMS": 0.0034149306575676362,
+            "relative_L2_to_truth": {
+              "value": 3.9493512210356836,
+              "reason": null
+            }
+          },
+          "P2": {
+            "truth_reference_energy_mm3": 2.9622440597087693e-05,
+            "prediction_reference_energy_mm3": 0.0005428339506715894,
+            "error_energy_mm3": 0.0005044003345108944,
+            "truth_reference_Frobenius_RMS": 0.000858491758677077,
+            "prediction_reference_Frobenius_RMS": 0.003675015818810732,
+            "error_Frobenius_RMS": 0.003542528841379563,
+            "relative_L2_to_truth": {
+              "value": 4.126456434291864,
+              "reason": null
+            }
+          },
+          "truth_P2_minus_P1": {
+            "energy_mm3": 3.145201076946317e-07,
+            "Frobenius_RMS": 8.84606079223287e-05,
+            "relative_L2_to_same_P2": {
+              "value": 0.10304188366192958,
+              "reason": null
+            }
+          },
+          "truth_midside_residual_displacement_vector_RMS_mm": 5.04692296781177e-05,
+          "prediction_P2_minus_P1": {
+            "energy_mm3": 1.9800850815068538e-05,
+            "Frobenius_RMS": 0.0007018877093525484,
+            "relative_L2_to_same_P2": {
+              "value": 0.19098903078454926,
+              "reason": null
+            }
+          },
+          "prediction_midside_residual_displacement_vector_RMS_mm": 0.0003936038655465584,
+          "worst_cell": {
+            "P1": {
+              "relative_L2_to_truth": 7.136415574093392,
+              "original_row": 6,
+              "zero_reference_cells": 0
+            },
+            "P2": {
+              "relative_L2_to_truth": 6.996311940867946,
+              "original_row": 9,
+              "zero_reference_cells": 0
+            }
+          }
+        },
+        "numeric_guards": {
+          "energy_closure_le_1e_10": true,
+          "direct_eps_decomposition_le_1e_10": true,
+          "nodal_replay_le_1e_12": true,
+          "shared_face_C0_le_1e_12": true
+        },
+        "nodal_replay_normalized_max": 0.0,
+        "shared_face_normalized_max_jump": 3.0742861992872735e-16,
+        "reconstruction": "physical decoded nodal all10 signed interpolation; structural C0 is interface sanity"
+      },
+      "native": {
+        "status": "notimplemented",
+        "reason": "MLP original25 offnode continuation undefined"
+      },
+      "costs": {
+        "checkpoint_model_load_seconds": 0.024812744000001885,
+        "encode_forward_query_transfer_seconds": 0.0010356450000017503,
+        "queried_unique_original_nodes": 248,
+        "native_logical_queries": 0
+      },
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 214020,
+        "total": 230756
+      }
+    },
+    {
+      "route_id": "fno_seed2027_endpoint_primary",
+      "method": "fno",
+      "seed": 2027,
+      "step": 2880,
+      "status": "completed",
+      "common_nodal_full10": {
+        "node_value_errors": {
+          "u": {
+            "relative_L2": 0.11205685456429836,
+            "reason": null,
+            "RMS_error_mm": 0.016463169728248968,
+            "sum_squared_error": 0.06721691746028104,
+            "sum_squared_reference": 5.353055383879409
+          },
+          "stress": {
+            "relative_L2": 0.36492659693636254,
+            "reason": null,
+            "RMS_error_MPa": 28.863538492039996,
+            "sum_squared_error": 206609.7558618057,
+            "sum_squared_reference": 1551457.1675755833
+          }
+        },
+        "all504_GT_node_full10_proxy_value_errors": {
+          "u": {
+            "relative_L2": 0.12407985720199337,
+            "reason": null,
+            "RMS_error_mm": 0.0171780147470484,
+            "sum_squared_error": 0.14872243208750538,
+            "sum_squared_reference": 9.65992843393199
+          },
+          "stress": {
+            "relative_L2": 0.36957051998168733,
+            "reason": null,
+            "RMS_error_MPa": 33.330061062425706,
+            "sum_squared_error": 559890.0570942131,
+            "sum_squared_reference": 4099284.997116222
+          }
+        },
+        "kinematics_proxy": {
+          "error_decomposition": {
+            "E1": 0.000777098648866969,
+            "Emid": 0.00012041154472676635,
+            "signed_cross": -0.00013614054427256843,
+            "E2": 0.0007613696493211663,
+            "identity_relative_residual": 3.4730315801926105e-16
+          },
+          "P1": {
+            "truth_reference_energy_mm3": 3.0051132248056453e-05,
+            "prediction_reference_energy_mm3": 0.0008007626802065219,
+            "error_energy_mm3": 0.000777098648866969,
+            "truth_reference_Frobenius_RMS": 0.0008646814290353492,
+            "prediction_reference_Frobenius_RMS": 0.004463521427953525,
+            "error_Frobenius_RMS": 0.004397074142879455,
+            "relative_L2_to_truth": {
+              "value": 5.08519553586908,
+              "reason": null
+            }
+          },
+          "P2": {
+            "truth_reference_energy_mm3": 2.9622440597087693e-05,
+            "prediction_reference_energy_mm3": 0.000777320073701411,
+            "error_energy_mm3": 0.0007613696493211663,
+            "truth_reference_Frobenius_RMS": 0.000858491758677077,
+            "prediction_reference_Frobenius_RMS": 0.004397700544733333,
+            "error_Frobenius_RMS": 0.004352346788270963,
+            "relative_L2_to_truth": {
+              "value": 5.069759545482259,
+              "reason": null
+            }
+          },
+          "truth_P2_minus_P1": {
+            "energy_mm3": 3.145201076946317e-07,
+            "Frobenius_RMS": 8.84606079223287e-05,
+            "relative_L2_to_same_P2": {
+              "value": 0.10304188366192958,
+              "reason": null
+            }
+          },
+          "truth_midside_residual_displacement_vector_RMS_mm": 5.04692296781177e-05,
+          "prediction_P2_minus_P1": {
+            "energy_mm3": 0.00012098342438383346,
+            "Frobenius_RMS": 0.0017349567311491217,
+            "relative_L2_to_same_P2": {
+              "value": 0.3945145226468178,
+              "reason": null
+            }
+          },
+          "prediction_midside_residual_displacement_vector_RMS_mm": 0.001085124488921095,
+          "worst_cell": {
+            "P1": {
+              "relative_L2_to_truth": 38.49580343255486,
+              "original_row": 6,
+              "zero_reference_cells": 0
+            },
+            "P2": {
+              "relative_L2_to_truth": 28.636357195549078,
+              "original_row": 6,
+              "zero_reference_cells": 0
+            }
+          }
+        },
+        "numeric_guards": {
+          "energy_closure_le_1e_10": true,
+          "direct_eps_decomposition_le_1e_10": true,
+          "nodal_replay_le_1e_12": true,
+          "shared_face_C0_le_1e_12": true
+        },
+        "nodal_replay_normalized_max": 0.0,
+        "shared_face_normalized_max_jump": 1.5158672942673203e-16,
+        "reconstruction": "physical decoded nodal all10 signed interpolation; structural C0 is interface sanity"
+      },
+      "native": {
+        "status": "completed",
+        "available": true,
+        "invalid_query_count": 0,
+        "grid_plane_query_count": 0,
+        "grid_plane_axis_incidence_count": 0,
+        "derivative_convention": "floor/right voxel on interior planes; left voxel at coordinate1; piecewise C0 value, derivative may jump",
+        "all504_GT_node_full10_proxy_value_errors": {
+          "u": {
+            "relative_L2": 0.12399178257750477,
+            "reason": null,
+            "RMS_error_mm": 0.017165821412590872,
+            "sum_squared_error": 0.14851137408355752,
+            "sum_squared_reference": 9.65992843393199
+          },
+          "stress": {
+            "relative_L2": 0.369863901976053,
+            "reason": null,
+            "RMS_error_MPa": 33.35651999044655,
+            "sum_squared_error": 560779.3426400225,
+            "sum_squared_reference": 4099284.997116222
+          }
+        },
+        "node_replay_vs_cached_query": {
+          "u": {
+            "relative_L2": 1.5037921766426742e-07,
+            "reason": null,
+            "RMS_error_mm": 1.969668858150726e-08,
+            "sum_squared_error": 1.241470531446011e-13,
+            "sum_squared_reference": 5.489853725263755
+          },
+          "stress": {
+            "relative_L2": 4.985099921600444e-07,
+            "reason": null,
+            "RMS_error_MPa": 3.4494605163336176e-05,
+            "sum_squared_error": 3.8076089131982686e-07,
+            "sum_squared_reference": 1532161.69065205
+          }
+        },
+        "native_vs_common_full10_value": {
+          "u": {
+            "relative_L2": 0.0011689323670783618,
+            "reason": null,
+            "RMS_error_mm": 0.00014842674144439812,
+            "sum_squared_error": 1.1103370778204313e-05,
+            "sum_squared_reference": 8.125986083934256
+          },
+          "stress": {
+            "relative_L2": 0.0058712480099661155,
+            "reason": null,
+            "RMS_error_MPa": 0.41077238080811435,
+            "sum_squared_error": 85.04191021272233,
+            "sum_squared_reference": 2467017.071520127
+          }
+        },
+        "P2_reference_strain_proxy": {
+          "truth_reference_energy_mm3": 2.9622440597087693e-05,
+          "error_energy_mm3": 0.0008473571090113689,
+          "relative_L2": {
+            "value": 5.348386945134248,
+            "reason": null
+          },
+          "error_Frobenius_RMS": 0.0045915461146138195,
+          "worst_cell": {
+            "relative_L2": 32.884369156473085,
+            "original_row": 6,
+            "zero_reference_cells": 0
+          }
+        },
+        "native_vs_common_P2_strain_proxy_RMS": 0.001123343329897123
+      },
+      "costs": {
+        "checkpoint_model_load_seconds": 0.5061979550000046,
+        "encode_forward_query_transfer_seconds": 0.004321287999999868,
+        "queried_unique_original_nodes": 248,
+        "native_logical_queries": 504
+      },
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 14160548,
+        "total": 14177284
+      }
+    },
+    {
+      "route_id": "mlp_seed2027_endpoint_primary",
+      "method": "mlp",
+      "seed": 2027,
+      "step": 7080,
+      "status": "completed",
+      "common_nodal_full10": {
+        "node_value_errors": {
+          "u": {
+            "relative_L2": 0.22271567633956163,
+            "reason": null,
+            "RMS_error_mm": 0.032720943265599725,
+            "sum_squared_error": 0.26552371179126777,
+            "sum_squared_reference": 5.353055383879409
+          },
+          "stress": {
+            "relative_L2": 0.5545510043335841,
+            "reason": null,
+            "RMS_error_MPa": 43.86170915948089,
+            "sum_squared_error": 477114.6835369406,
+            "sum_squared_reference": 1551457.1675755833
+          }
+        },
+        "all504_GT_node_full10_proxy_value_errors": {
+          "u": {
+            "relative_L2": 0.2329942787269169,
+            "reason": null,
+            "RMS_error_mm": 0.032256477773288286,
+            "sum_squared_error": 0.5244021006026751,
+            "sum_squared_reference": 9.65992843393199
+          },
+          "stress": {
+            "relative_L2": 0.43988122081700903,
+            "reason": null,
+            "RMS_error_MPa": 39.67109700950108,
+            "sum_squared_error": 793193.1527203717,
+            "sum_squared_reference": 4099284.997116222
+          }
+        },
+        "kinematics_proxy": {
+          "error_decomposition": {
+            "E1": 0.0005239038959722444,
+            "Emid": 1.021835568747564e-05,
+            "signed_cross": -9.480178382211623e-06,
+            "E2": 0.0005246420732775092,
+            "identity_relative_residual": 8.167080972201731e-16
+          },
+          "P1": {
+            "truth_reference_energy_mm3": 3.0051132248056453e-05,
+            "prediction_reference_energy_mm3": 0.0005740073651348845,
+            "error_energy_mm3": 0.0005239038959722444,
+            "truth_reference_Frobenius_RMS": 0.0008646814290353492,
+            "prediction_reference_Frobenius_RMS": 0.0037790657166939705,
+            "error_Frobenius_RMS": 0.0036103684537156537,
+            "relative_L2_to_truth": {
+              "value": 4.175374111762099,
+              "reason": null
+            }
+          },
+          "P2": {
+            "truth_reference_energy_mm3": 2.9622440597087693e-05,
+            "prediction_reference_energy_mm3": 0.0005726878675441649,
+            "error_energy_mm3": 0.0005246420732775092,
+            "truth_reference_Frobenius_RMS": 0.000858491758677077,
+            "prediction_reference_Frobenius_RMS": 0.00377471966003447,
+            "error_Frobenius_RMS": 0.0036129110516643814,
+            "relative_L2_to_truth": {
+              "value": 4.208439993916567,
+              "reason": null
+            }
+          },
+          "truth_P2_minus_P1": {
+            "energy_mm3": 3.145201076946317e-07,
+            "Frobenius_RMS": 8.84606079223287e-05,
+            "relative_L2_to_same_P2": {
+              "value": 0.10304188366192958,
+              "reason": null
+            }
+          },
+          "truth_midside_residual_displacement_vector_RMS_mm": 5.04692296781177e-05,
+          "prediction_P2_minus_P1": {
+            "energy_mm3": 9.800087002331769e-06,
+            "Frobenius_RMS": 0.0004937881658436904,
+            "relative_L2_to_same_P2": {
+              "value": 0.13081452672413327,
+              "reason": null
+            }
+          },
+          "prediction_midside_residual_displacement_vector_RMS_mm": 0.00027742094660197965,
+          "worst_cell": {
+            "P1": {
+              "relative_L2_to_truth": 6.41194470163354,
+              "original_row": 8,
+              "zero_reference_cells": 0
+            },
+            "P2": {
+              "relative_L2_to_truth": 6.775031963583258,
+              "original_row": 22,
+              "zero_reference_cells": 0
+            }
+          }
+        },
+        "numeric_guards": {
+          "energy_closure_le_1e_10": true,
+          "direct_eps_decomposition_le_1e_10": true,
+          "nodal_replay_le_1e_12": true,
+          "shared_face_C0_le_1e_12": true
+        },
+        "nodal_replay_normalized_max": 0.0,
+        "shared_face_normalized_max_jump": 1.4424021885234646e-16,
+        "reconstruction": "physical decoded nodal all10 signed interpolation; structural C0 is interface sanity"
+      },
+      "native": {
+        "status": "notimplemented",
+        "reason": "MLP original25 offnode continuation undefined"
+      },
+      "costs": {
+        "checkpoint_model_load_seconds": 0.03391075800000465,
+        "encode_forward_query_transfer_seconds": 0.001396160999988183,
+        "queried_unique_original_nodes": 248,
+        "native_logical_queries": 0
+      },
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 214020,
+        "total": 230756
+      }
+    }
+  ],
+  "checks": {
+    "all128_Gauss_J_valid": true,
+    "Gauss_invalid_count": 0,
+    "first8_Gauss_failures": [],
+    "min_abs_det_over_L3": 3.954243396397576e-07,
+    "min_sigma_min_over_L": 0.0031909303647865692,
+    "max_condition": 4.955050920611127,
+    "all32_corner_P1_matrices_regular": true,
+    "cached_xyz_vs_direct_physical_normalization_max_abs": 6.311472389164408e-08,
+    "all_routes_numeric_guards_passed": true
+  },
+  "counts": {
+    "logical_queries": 504,
+    "node_incidences": 320,
+    "Gauss_points": 128,
+    "shared_face_points": 56,
+    "unique_original_nodes": 248,
+    "unique_physical_queries_exact_float64": 408,
+    "midside_RMS_local_incidences": 192
+  },
+  "receipt": {
+    "input_members": {
+      "H5": [
+        "vertices"
+      ],
+      "connectivity_NPZ": [
+        "cells10"
+      ]
+    },
+    "cache_inputs": [
+      "xyz",
+      "features",
+      "cloud",
+      "mask",
+      "grid",
+      "query_indices",
+      "query_weights"
+    ],
+    "physical_labels": "selected original-node rows of physical.npy only, after all four predictions",
+    "target_npy_read": false,
+    "labels_read": true,
+    "checkpoint_loads": 4,
+    "model_forwards": 4,
+    "optimizer_updates": 0,
+    "array_writes": 0,
+    "geometry_audit_repeated": false,
+    "locator_calls": 0,
+    "fixtures_run": 0,
+    "physical_label_unique_nodes": 248
+  },
+  "native_FNO_stencil": {
+    "available": true,
+    "invalid_query_count": 0,
+    "grid_plane_query_count": 0,
+    "grid_plane_axis_incidence_count": 0,
+    "derivative_convention": "floor/right voxel on interior planes; left voxel at coordinate1; piecewise C0 value, derivative may jump"
+  },
+  "costs": {
+    "shared_input_geometry_stencil_seconds": 1.7563614800000096,
+    "checkpoint_model_load_seconds": 1.0701482300000151,
+    "encode_forward_query_transfer_seconds": 0.6775742949999852
+  },
+  "memory": {
+    "peak_allocated_bytes": 473225728,
+    "peak_reserved_bytes": 717225984
+  },
+  "limits": [
+    "One fixed TRAIN case,32 cells,8 faces; no final/wholeCAD continuous/strain truth claim",
+    "P1/P2/node interpolations are GT-node-derived proxies, not independent offnode or strain GT",
+    "FNO native piecewise trilinear value C0; voxel-face derivative discontinuities allowed",
+    "MLP native offnode original25 feature extension notimplemented;25 roles are not declared Dirichlet",
+    "No solver/checkpoint selection, training, input reencoding, BC repair or causal attribution"
+  ],
+  "kind": "solver_continuous_capability",
+  "config": {
+    "kind": "solver_continuous_capability",
+    "contract": {
+      "schema": "geobc_solver_continuous_capability_v1",
+      "plan_sha256": "77b0a0e8e6dcd3ae93d2ce9cfb2f0bf58f442698c559f35ece2956d2f91745c2",
+      "script_sha256": "1cde1d7ea60f29222b558d4d8bb844cd061e7d4a4d5f834efe9fb0b0cb80a0d6",
+      "source_sha256": {
+        "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+        "tools/diagnose_quadratic_kinematics.py": "b2d5ca8b3a2abbca4818aaa34f845e5034156e80b111d1e7fd3bf8f34e058865",
+        "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+        "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+        "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f"
+      },
+      "parents": {
+        "final_plan": {
+          "path": "notes/geobc_solver_final_eval_plan.json",
+          "sha256": "d704443c56582ed6debed7b62960a3126b30cc7f89397fcc231074b9a04f6011"
+        },
+        "geometry_result": {
+          "path": "notes/geobc_continuous_geometry_result.json",
+          "sha256": "50309e087014dad6ae29ae347fa1fb1e8bb0a3e76958f803d92dd8caf808b5c2"
+        },
+        "geometry_plan": {
+          "path": "notes/geobc_continuous_geometry_plan.json",
+          "sha256": "16169bbd20fc1d746cc8ccf88fa9d4c287fa410744d4ee8b6f0bb210543bb71f"
+        }
+      },
+      "files": {
+        "xyz": {
+          "path": "data/geobc_solver_selection/geometry/101_479/xyz.npy",
+          "stat": {
+            "bytes": 2151920,
+            "mtime_ns": 1791554049062253300
+          }
+        },
+        "features": {
+          "path": "data/geobc_solver_selection/cases/101_479_ver/features.npy",
+          "stat": {
+            "bytes": 17931728,
+            "mtime_ns": 1791554049122815500
+          }
+        },
+        "cloud": {
+          "path": "data/geobc_solver_selection/geometry/101_479/cloud.npy",
+          "stat": {
+            "bytes": 12416,
+            "mtime_ns": 1791554049066253600
+          }
+        },
+        "mask": {
+          "path": "data/geobc_solver_selection/geometry/101_479/mask.npy",
+          "stat": {
+            "bytes": 1152,
+            "mtime_ns": 1791554049070257200
+          }
+        },
+        "grid": {
+          "path": "data/geobc_solver_selection/cases/101_479_ver/grid.npy",
+          "stat": {
+            "bytes": 30408832,
+            "mtime_ns": 1791554081404186700
+          }
+        },
+        "query_indices": {
+          "path": "data/geobc_solver_selection/geometry/101_479/query_indices.npy",
+          "stat": {
+            "bytes": 5738240,
+            "mtime_ns": 1791554081322185800
+          }
+        },
+        "query_weights": {
+          "path": "data/geobc_solver_selection/geometry/101_479/query_weights.npy",
+          "stat": {
+            "bytes": 5738240,
+            "mtime_ns": 1791554081338186500
+          }
+        },
+        "physical": {
+          "path": "data/geobc_solver_selection/cases/101_479_ver/physical.npy",
+          "stat": {
+            "bytes": 2869184,
+            "mtime_ns": 1791554049136786000
+          }
+        },
+        "vertices": {
+          "path": "data/raw/FieldMesh/101_479.h5",
+          "stat": {
+            "bytes": 33320128,
+            "mtime_ns": 1791453885401115600
+          }
+        },
+        "cells10": {
+          "path": "data/geobc_gradient_supervision/101_479.npz",
+          "stat": {
+            "bytes": 29513502,
+            "mtime_ns": 1791521769276959500
+          }
+        }
+      },
+      "cache_manifest": {
+        "path": "data/geobc_solver_selection/manifest.json",
+        "sha256": "76ba5189e0cfb4db226db472ca9cfe019f4d7f81c1eff9d0335726eea73a4ced"
+      },
+      "routes": [
+        {
+          "route_id": "fno_seed2026_endpoint_primary",
+          "method": "fno",
+          "seed": 2026,
+          "selected_step": 2880,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+          "checkpoint_stat": {
+            "bytes": 170464827,
+            "mtime_ns": 1791557354819071400
+          },
+          "checkpoint_config_sha256": "1f0a5a765179ceb814159b20491b5d2b9d0ad92a440ef9088ab4e259fd58121a"
+        },
+        {
+          "route_id": "mlp_seed2026_endpoint_primary",
+          "method": "mlp",
+          "seed": 2026,
+          "selected_step": 7080,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/last.pt",
+          "checkpoint_stat": {
+            "bytes": 3211949,
+            "mtime_ns": 1791558076232772100
+          },
+          "checkpoint_config_sha256": "dcdd66b54138b2ad6999b7f5e5dc15ce5d2f5c9985f976121a8a7a93e14700b5"
+        },
+        {
+          "route_id": "fno_seed2027_endpoint_primary",
+          "method": "fno",
+          "seed": 2027,
+          "selected_step": 2880,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/last.pt",
+          "checkpoint_stat": {
+            "bytes": 170389755,
+            "mtime_ns": 1791559209160787100
+          },
+          "checkpoint_config_sha256": "232d989da0a5649d5a69ffc619e649216db0df4162f3ca917b78026ceb15c539"
+        },
+        {
+          "route_id": "mlp_seed2027_endpoint_primary",
+          "method": "mlp",
+          "seed": 2027,
+          "selected_step": 7080,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/last.pt",
+          "checkpoint_stat": {
+            "bytes": 3137517,
+            "mtime_ns": 1791559989776779600
+          },
+          "checkpoint_config_sha256": "6541014f85b067a12d7ead832d334f0136e119d6efd5008fd3b827a1433889e2"
+        }
+      ],
+      "scope": {
+        "case": "101_479/ver",
+        "nodes": 179316,
+        "total_original_cells": 111754,
+        "selected_rows": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          29680,
+          34114,
+          58936,
+          86485,
+          92016,
+          94185
+        ],
+        "shared_faces": [
+          {
+            "corner_ids": [
+              0,
+              1,
+              2
+            ],
+            "cell_rows": [
+              0,
+              34114
+            ],
+            "local_faces": [
+              0,
+              1
+            ]
+          },
+          {
+            "corner_ids": [
+              0,
+              1,
+              3
+            ],
+            "cell_rows": [
+              0,
+              29680
+            ],
+            "local_faces": [
+              1,
+              2
+            ]
+          },
+          {
+            "corner_ids": [
+              0,
+              1,
+              22
+            ],
+            "cell_rows": [
+              34114,
+              58936
+            ],
+            "local_faces": [
+              0,
+              2
+            ]
+          },
+          {
+            "corner_ids": [
+              0,
+              1,
+              31
+            ],
+            "cell_rows": [
+              29680,
+              58936
+            ],
+            "local_faces": [
+              0,
+              1
+            ]
+          },
+          {
+            "corner_ids": [
+              0,
+              2,
+              3
+            ],
+            "cell_rows": [
+              0,
+              92016
+            ],
+            "local_faces": [
+              2,
+              1
+            ]
+          },
+          {
+            "corner_ids": [
+              0,
+              2,
+              10
+            ],
+            "cell_rows": [
+              86485,
+              94185
+            ],
+            "local_faces": [
+              1,
+              0
+            ]
+          },
+          {
+            "corner_ids": [
+              0,
+              2,
+              11
+            ],
+            "cell_rows": [
+              92016,
+              94185
+            ],
+            "local_faces": [
+              0,
+              3
+            ]
+          },
+          {
+            "corner_ids": [
+              0,
+              2,
+              22
+            ],
+            "cell_rows": [
+              34114,
+              86485
+            ],
+            "local_faces": [
+              2,
+              3
+            ]
+          }
+        ],
+        "face_barycentric": [
+          [
+            0.5,
+            0.5,
+            0
+          ],
+          [
+            0.5,
+            0,
+            0.5
+          ],
+          [
+            0,
+            0.5,
+            0.5
+          ],
+          [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ],
+          [
+            0.2,
+            0.3,
+            0.5
+          ],
+          [
+            0.3,
+            0.5,
+            0.2
+          ],
+          [
+            0.5,
+            0.2,
+            0.3
+          ]
+        ],
+        "logical_queries": 504,
+        "schedule": {
+          "local_all10_node_incidences": 320,
+          "four_positive_Gauss": 128,
+          "one_physical_trace_per_shared_face": 56
+        },
+        "two_sided_common_face_trace_incident_evaluations": 112,
+        "maximum_physical_unique_queries": 504,
+        "optimizer_updates": 0,
+        "wholeCAD_geometry_audit": false,
+        "locator_calls": 0,
+        "new_fixtures": 0
+      },
+      "normalization": {
+        "bbox_min_mm": [
+          -38.72420120239258,
+          -163.60699462890625,
+          0.2465403974056244
+        ],
+        "characteristic_length_mm": 184.05270385742188
+      },
+      "scaler": {
+        "mean": [
+          -0.006059544265096125,
+          -0.0005008273527146082,
+          0.015260029003479832,
+          0.09629744183585241
+        ],
+        "std": [
+          0.05393032209940291,
+          0.011291299669602316,
+          0.07619646768716026,
+          0.5232191238243877
+        ],
+        "stress_scale": 90.46589813232424,
+        "channels": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "numeric_contract": {
+        "Gauss_barycentric_a": 0.5854101966249685,
+        "Gauss_barycentric_b": 0.1381966011250105,
+        "reference_weight": 0.041666666666666664,
+        "jacobian_abs_det_over_L3_strict_gt": 1e-18,
+        "jacobian_sigma_min_over_L_strict_gt": 1e-12,
+        "jacobian_condition_strict_lt": 1000000000000.0,
+        "prior_orientation_required": true,
+        "consistent_negative_orientation_allowed": true,
+        "math_closure_relative_maximum": 1e-10,
+        "face_trace_normalized_maximum": 1e-12,
+        "native_domain": "exact finite [0,1]^3; no clip/nearest/repair",
+        "native_grid_plane_derivative": "floor/right voxel on interior planes, left voxel at coordinate1; value C0, derivative may jump",
+        "native_model_precision": "same FP32/TF32 high as frozen confirmation; no autocast",
+        "physical_metrics_precision": "FP64",
+        "native_stencil_precision": "FP64, analytic eight-weight derivatives",
+        "common_FNO_original_node_query": "frozen FP32 cached indices/weights via query_grid",
+        "native_physical_chain": "qcan=(X_mm-bbox_min_mm)/L; du/dX=diag(std_u)*(dencoded_u/dqcan)/L",
+        "reference_denominators": "P1 own GT-P1, P2 own GT-P2; native strain common GT-P2. Exact zero -> null, never floor."
+      },
+      "native_physical_coordinates": "(X_mm-bbox_min_mm)/L_mm; derivative std_u/L_mm",
+      "device": "cuda:0",
+      "precision": "inherited model FP32/TF32 high; physical maps/stencils/gradients/metrics FP64; common FNO node-query FP32 cache",
+      "scientific_imports_in_contract": 0,
+      "scientific_array_reads_in_contract": 0,
+      "CUDA_initialized_in_contract": false
+    },
+    "plan": "notes/geobc_solver_continuous_capability_plan.json"
+  },
+  "elapsed_seconds": 3.718098291000004,
+  "completed_at_utc": "2026-10-09T16:18:48.706562+00:00"
+}

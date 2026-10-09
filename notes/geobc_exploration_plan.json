@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_final_validation",
+  "stage": "solver_gino_training_screen",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,51 +21,34 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "solver_confirmation",
-    "scope": "FNO/MLP/Transolver++ each seed2026/2027, TOTAL600 measured training seconds including parent screen; same complete-case data/loss, no family-specific tuning",
-    "basis": "FNO: clear joint U/stress learning; MLP: low-cost displacement/control route; Transolver++: one lower-priority slow structural route with declining U. Hash held because worst U191.41% and late U reversal; original/TS3 near zero-field and final score reversal. No route-specific objective or hyperparameter optimization.",
-    "brief_action": "确认FNO与低成本MLP，保留++作为慢结构路线；固定预算端点为主要比较",
-    "after": "Analyze seed stability and worst CAD, lock route/protocol before final held-out test and continuous field capability"
+    "brief_action": "GINO同数据与同频带480更新筛选，用验证精度和实测成本决定后续；新测试标签继续封存。",
+    "scope": "One matched-frequency full-node GINO candidate, fixed480 updates in the prior six-family common protocol; retain measured accuracy/cost before deciding confirmation. Newtest labels sealed.",
+    "stage": "solver_gino_training_screen"
   },
   "jobs": [
     {
-      "name": "solver_final_input_cache",
-      "kind": "solver_final_input_cache",
-      "stage": "solver_final_validation",
-      "output": "data/geobc_solver_final_eval",
+      "name": "gino_screen_seed2026_480",
+      "kind": "gino_training_screen",
+      "stage": "solver_gino_training_screen",
+      "output": "runs/geobc_exploration/gino_screen_seed2026_480",
+      "method": "gino",
+      "seed": 2026,
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.solver_final_eval_data",
+        "geobc.gino_train",
         "--plan",
-        "notes/geobc_solver_final_eval_plan.json",
-        "--prepare"
-      ],
-      "requires": [
-        "geobc/solver_final_eval_data.py",
-        "notes/geobc_solver_final_eval_plan.json",
-        "data/geobc_solver_selection/manifest.json"
-      ]
-    },
-    {
-      "name": "solver_final_validation",
-      "kind": "solver_final_evaluation",
-      "stage": "solver_final_validation",
-      "output": "runs/geobc_exploration/solver_final_validation",
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "-m",
-        "geobc.solver_final_eval",
-        "--plan",
-        "notes/geobc_solver_final_eval_plan.json",
+        "notes/geobc_gino_training_screen_plan.json",
         "--output",
-        "runs/geobc_exploration/solver_final_validation"
+        "runs/geobc_exploration/gino_screen_seed2026_480"
       ],
       "requires": [
-        "geobc/solver_final_eval.py",
-        "geobc/solver_final_eval_data.py",
-        "notes/geobc_solver_final_eval_plan.json",
-        "data/geobc_solver_final_eval/manifest.json"
+        "geobc/gino_train.py",
+        "geobc/gino_solver.py",
+        "notes/geobc_gino_training_screen_plan.json",
+        "notes/geobc_gino_training_screen_source_ready.json",
+        "runs/geobc_exploration/gino_native_resource_101_479/summary.json",
+        "data/geobc_solver_selection/manifest.json"
       ]
     }
   ],
@@ -2739,6 +2722,129 @@
         "tools/diagnose_solver_bc_representation.py",
         "data/geobc_solver_selection/manifest.json"
       ]
+    },
+    {
+      "name": "solver_final_input_cache",
+      "kind": "solver_final_input_cache",
+      "stage": "solver_final_validation",
+      "output": "data/geobc_solver_final_eval",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_final_eval_data",
+        "--plan",
+        "notes/geobc_solver_final_eval_plan.json",
+        "--prepare"
+      ],
+      "requires": [
+        "geobc/solver_final_eval_data.py",
+        "notes/geobc_solver_final_eval_plan.json",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_final_validation",
+      "kind": "solver_final_evaluation",
+      "stage": "solver_final_validation",
+      "output": "runs/geobc_exploration/solver_final_validation",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_final_eval",
+        "--plan",
+        "notes/geobc_solver_final_eval_plan.json",
+        "--output",
+        "runs/geobc_exploration/solver_final_validation"
+      ],
+      "requires": [
+        "geobc/solver_final_eval.py",
+        "geobc/solver_final_eval_data.py",
+        "notes/geobc_solver_final_eval_plan.json",
+        "data/geobc_solver_final_eval/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_continuous_capability_train101_479_ver",
+      "kind": "solver_continuous_capability",
+      "stage": "solver_continuous_capability",
+      "output": "runs/geobc_exploration/solver_continuous_capability_train101_479_ver",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/diagnose_solver_continuous_capability.py",
+        "--plan",
+        "notes/geobc_solver_continuous_capability_plan.json",
+        "--output",
+        "runs/geobc_exploration/solver_continuous_capability_train101_479_ver"
+      ],
+      "requires": [
+        "tools/diagnose_solver_continuous_capability.py",
+        "notes/geobc_solver_continuous_capability_plan.json",
+        "notes/solver_continuous_capability_source_check.json"
+      ]
+    },
+    {
+      "name": "gino_radius_input_pilot_101_479",
+      "kind": "gino_radius_input_pilot",
+      "stage": "solver_gino_radius_feasibility",
+      "output": "runs/geobc_exploration/gino_radius_input_pilot_101_479",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/prepare_gino_radius_pilot.py",
+        "--plan",
+        "notes/geobc_gino_radius_pilot_plan.json",
+        "--output",
+        "runs/geobc_exploration/gino_radius_input_pilot_101_479"
+      ],
+      "requires": [
+        "tools/prepare_gino_radius_pilot.py",
+        "geobc/regular_grid_radius.py",
+        "notes/geobc_gino_radius_pilot_plan.json",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "next_cycle_sealed_test_acquisition",
+      "kind": "sealed_test_input_acquisition",
+      "stage": "solver_next_cycle_sealed_acquisition",
+      "output": "data/raw_next_cycle",
+      "command": [
+        "/mnt/c/Users/ASUS/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+        "-m",
+        "tools.fetch_next_cycle_test",
+        "--plan",
+        "notes/geobc_next_cycle_test_plan.json",
+        "--output",
+        "data/raw_next_cycle"
+      ],
+      "requires": [
+        "tools/fetch_next_cycle_test.py",
+        "notes/geobc_next_cycle_test_plan.json",
+        "notes/original_deepjeb_drive_index.json",
+        "notes/next_cycle_test_fetch_source_ready.json"
+      ],
+      "transport_host": "Windows Python using existing OS proxy; WSL coordinator remains sole queue owner"
+    },
+    {
+      "name": "gino_native_resource_101_479",
+      "kind": "gino_native_resource",
+      "stage": "solver_gino_native_resource",
+      "output": "runs/geobc_exploration/gino_native_resource_101_479",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/validate_gino_native_resource.py",
+        "--plan",
+        "notes/geobc_gino_native_resource_plan.json",
+        "--output",
+        "runs/geobc_exploration/gino_native_resource_101_479"
+      ],
+      "requires": [
+        "geobc/gino_solver.py",
+        "tools/validate_gino_native_resource.py",
+        "notes/geobc_gino_native_resource_plan.json",
+        "notes/geobc_gino_native_resource_source_ready.json",
+        "third_party/neuraloperator_source.json",
+        "data/geobc_solver_selection/manifest.json"
+      ]
     }
   ],
   "phase_history": [
@@ -2969,11 +3075,18 @@
     }
   },
   "active_design_preparation": {
-    "status": "solver_final_rules_frozen",
-    "training_launched": true,
-    "new_plan": "notes/geobc_solver_final_eval_plan.json",
-    "source_sha256": "d8eb5fa0d6c0c30e8ed0fcb3a549be818581b83251af7417e98112ca6e2fb872",
-    "arrays_reprepared": 0
+    "training_plan": "notes/geobc_gino_training_screen_plan.json",
+    "independent_test_acquisition": "data/raw_next_cycle/summary.json",
+    "resource_plan": "notes/geobc_gino_native_resource_plan.json",
+    "labels_sealed": true,
+    "status": "training_source_reviewed_recipe_frozen_released",
+    "resource_summary": "runs/geobc_exploration/gino_native_resource_101_479/summary.json",
+    "training_spectral_modes": [
+      24,
+      24,
+      22
+    ],
+    "decision": "notes/solver_next_cycle_decision_20261010.md"
   },
   "stage_transitions": [
     {
@@ -2992,12 +3105,41 @@
       "basis": "Two seeds under cumulative600s support FNO over MLP/++; one TRAIN input-only BC-role replay before locking final routes."
     },
     {
-      "at_utc": "2026-10-09T15:50:50.5285630Z",
+      "at_utc": "2026-10-09T15:50:50.528563Z",
       "completed_stage": "solver_boundary_representation",
       "completed": 1,
       "elapsed_seconds": 1.693016456,
       "new_stage": "solver_final_validation",
       "basis": "Lock FNO+MLP two seeds endpoint primary and existing VAL-best secondary before any final input access. One final known3/dia validation; no test-driven tuning."
+    },
+    {
+      "at_utc": "2026-10-09T15:59:45.2733009Z",
+      "completed_stage": "solver_final_validation",
+      "completed": 2,
+      "elapsed_seconds": 67.11650241400001,
+      "new_stage": "solver_continuous_capability_design",
+      "basis": "One frozen evaluation complete. Continue preplanned TRAIN capability validation; do not retune or select seed/checkpoint from final result."
+    },
+    {
+      "at_utc": "2026-10-09T16:18:31.3052894Z",
+      "completed_stage": "solver_continuous_capability_design",
+      "new_stage": "solver_continuous_capability",
+      "basis": "Four locked endpoints, existing TRAIN32cells/8faces/504queries, direct frozen physical normalization, zero updates; one author sourcecheck and root API/math review."
+    },
+    {
+      "at_utc": "2026-10-09T16:22:45.3148967Z",
+      "completed_stage": "solver_continuous_capability",
+      "completed": 1,
+      "elapsed_seconds": 3.718098291,
+      "new_stage": "solver_gino_radius_feasibility",
+      "basis": "All guards valid on fixed TRAIN32cells; FNO/MLP P2 proxies >400% despite smaller nodal errors. Continue conditional new structural candidate with one full-node input-only radius feasibility; no retuning old models."
+    },
+    {
+      "at_utc": "2026-10-09T16:28:21.9036763Z",
+      "completed_stage": "solver_gino_radius_feasibility",
+      "elapsed_seconds": 2.244647308,
+      "new_stage": "solver_next_cycle_sealed_acquisition",
+      "basis": "Exact radius GPU pilot completed: 6,547,680 pairs, all179316 nodes covered, .466s build,216MB cache. Coordinator-only metadata check corrected (stat API omits path); recovered queue must reuse completed pilot and download only frozen independent5 CAD source bytes, labels sealed."
     }
   ]
 }
