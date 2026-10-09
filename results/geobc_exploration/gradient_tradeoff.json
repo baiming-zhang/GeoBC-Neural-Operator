@@ -1,0 +1,68 @@
+{
+  "status": "completed",
+  "created_at_utc": "2026-10-09T06:03:21.672001+00:00",
+  "figure": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/results/geobc_exploration/gradient_tradeoff.png",
+  "points": [
+    {
+      "label": "$\\lambda=0$",
+      "group": "Gradient weight pair",
+      "summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_gradient_zero_10k/summary.json",
+      "summary_sha256": "c55ffb5b66c3a6ebd576361efe3d0b2bb39194cfead7c60cd68222aa2ea497d8",
+      "best_step": 10000,
+      "gradient_weight": 0,
+      "validation_displacement_case_mean_relative_L2_percent": 29.991374248323616,
+      "validation_P1_tensor_case_mean_relative_L2_percent": 1319.086033829243
+    },
+    {
+      "label": "$\\lambda=1$",
+      "group": "Gradient weight pair",
+      "summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_gradient_actual_10k/summary.json",
+      "summary_sha256": "d433de3c89f98ab7038d7295ff9f3d302f4314b2cd8c1e809b4a972acd0e0b57",
+      "best_step": 10000,
+      "gradient_weight": 1,
+      "validation_displacement_case_mean_relative_L2_percent": 42.30764214378451,
+      "validation_P1_tensor_case_mean_relative_L2_percent": 58.591492981171164
+    },
+    {
+      "label": "Train-calibrated lambda",
+      "group": "Calibrated weight",
+      "summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_gradient_calibrated_10k/summary.json",
+      "summary_sha256": "f94a7b262e39da2364a4faf05939f9088351ba417bfd192c721b1860c3f2b7d6",
+      "best_step": 8000,
+      "gradient_weight": 0.0004106650618638651,
+      "validation_displacement_case_mean_relative_L2_percent": 27.315987532417434,
+      "validation_P1_tensor_case_mean_relative_L2_percent": 772.2570588971615
+    },
+    {
+      "label": "BC roles: zero",
+      "group": "BC-role pair",
+      "summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_bc_role_zero_10k/summary.json",
+      "summary_sha256": "2f7b89737b3de83ef19dc686626d616644843a3a161b65e7e5f872784919a531",
+      "best_step": 8000,
+      "gradient_weight": 0.0004106650618638651,
+      "validation_displacement_case_mean_relative_L2_percent": 24.110337165342795,
+      "validation_P1_tensor_case_mean_relative_L2_percent": 616.0960582012982
+    },
+    {
+      "label": "BC roles: actual",
+      "group": "BC-role pair",
+      "summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_bc_role_actual_10k/summary.json",
+      "summary_sha256": "1861ffe6fb709948a33ea6ed74121888baafe674ce515d1540b902f783ba897f",
+      "best_step": 9000,
+      "gradient_weight": 0.0004106650618638651,
+      "validation_displacement_case_mean_relative_L2_percent": 24.40259637265572,
+      "validation_P1_tensor_case_mean_relative_L2_percent": 583.8830229485354
+    }
+  ],
+  "skipped": [],
+  "plot_script_sha256": "8a08661c6a3baa3e139b0f01122c9b008d820fcde31cbaa4fe9a543fe411e765",
+  "x": "Known-load development-validation physical displacement vector case-mean relative L2 percent",
+  "y": "Same displacement-selected best checkpoint; all-node incident-volume-averaged corner-P1 symmetric tensor Frobenius case-mean relative L2 percent",
+  "y_scale": "log",
+  "reference_line_percent": 100,
+  "reference_line": "zero predicted strain gives100% relativeL2 for nonzero reference",
+  "source_data": "completed run summary JSON only",
+  "arrays_or_checkpoints_read": false,
+  "GPU_used": false,
+  "limitations": "P1 proxy recovered from known-load displacement, not solver GT tensor; developmentvalidation reused; marker groups distinguish studies and matched controls. BC effects compare only new zero vs actual roles, not the historical xyz3 calibrated-weight point. No final-test inference or generalization conclusion"
+}

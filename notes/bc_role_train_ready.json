@@ -1,0 +1,177 @@
+{
+  "status": "ready",
+  "created_at_utc": "2026-10-09T05:49:47.622049+00:00",
+  "sources_frozen": true,
+  "files": [
+    "geobc/bc_role_train.py"
+  ],
+  "source_parent_commit": "76c86ca0",
+  "source_sha256": {
+    "geobc/bc_role_train.py": "9f7ca1b12c2358be6a936ff1dc0c99eb51a82f550d2d584dd0cbb39b4f2b3186",
+    "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+    "geobc/bc_role_condition.py": "a9adee5a0fcbf7f408a4199ca1b4a87d676a43d56f4b18c1a91ff02cc6a3a232",
+    "geobc/gradient_balance_train.py": "b45b5734c91e5112b83da511d90a2c11b065b5ec2099d24b8a3b432efa25265a",
+    "geobc/gradient_train.py": "a27c3845507b60b86b7792a5f1cdcec184f969b26edc83d454665ce5e54eb393",
+    "geobc/gradient_supervision.py": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389",
+    "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+    "geobc/physics_train.py": "3105cacc364b65950eec2b1901376c8b9f8b1edae1019fbfadcc9662339c8b16",
+    "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "geobc/local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+    "geobc/train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7"
+  },
+  "reference_calibrated_module_sha256": "b45b5734c91e5112b83da511d90a2c11b065b5ec2099d24b8a3b432efa25265a",
+  "changed_functions": [
+    "_scope",
+    "run",
+    "parser"
+  ],
+  "run_changes": "Only compatible model/cloud factory,5-channel shape/provenance/reference acceptance and method descriptions; optimization/selection/recovery math unchanged",
+  "unchanged_function_proof": {
+    "_sha": {
+      "AST_sha256": "c2db75cc5ab3409d2427bff4ef5683cdf1f370a2a5c585fa28c9c735cf650d10",
+      "text_sha256": "3fed474e096474e63e1bb2afdd7455a3c55c31c78b17339beb6d6406221d8b08",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "_json": {
+      "AST_sha256": "51798c5d0f9b34786d1cfadf377fa2b5cb4645e9666c86100a5f06dd6da6acf6",
+      "text_sha256": "424673af3f2e69996c88331e9bbb11b5cb70d7c2a9ee53caa52f8d9b82a05b2f",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "_memory_record": {
+      "AST_sha256": "401ecdce3d59bf5beb99a7020b3e612c550286b20d6b918370dcab0212abc312",
+      "text_sha256": "60767627564d2a58f1a3c6de07882f5ca4203880d588549f432bc9fc5984204d",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "mixed_query_indices": {
+      "AST_sha256": "64a2388a8da0cdae84375e3678d1a18971639e73eb2cbadc8cc64833d2f77a20",
+      "text_sha256": "ece2f21d2f1dcd87640bbc4f41fc15378d432e925ac47f48ce7ccca7739377e7",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "gradient_batch_loss": {
+      "AST_sha256": "2cdecbea49586dbc0c71c0e7527e8cd6ec4ea4ca5068e79c1492c6fd75e7335a",
+      "text_sha256": "d492f789919e275d12ba1ea9d576aba3c8e88f5aea6c6b58ba5b7ba6f2e98762",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "_strain_metrics": {
+      "AST_sha256": "249a952490daaea0c8a21c8514913f276232d3df6ae69c5101e3485c48da22dc",
+      "text_sha256": "3f788406affc7882f9eb02e05f1243167cf10ef8f343b9f2dfa26ed38f49cc57",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "_evaluate_group": {
+      "AST_sha256": "443a66953ea16aed2fd47b9e18af14ec4a121272ba4755e92f962cc5fade43af",
+      "text_sha256": "62a0b756945f3f9cb25ad8fa5ea60e25ba1bc509654e13480ea7e21a18e4d202",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "elapsed": {
+      "AST_sha256": "4ebf4e60b2cabbaf921c21ed1d0e851c27d4b1e3ebc20538c8e5ce21d6a0cad8",
+      "text_sha256": "63a31223ed00a0978f97f2c516bddc3095fefdaaf0ee3697d10d81163b0b45c0",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "update": {
+      "AST_sha256": "c15182e68d7e86a3106ba613cd3ce1f403759435f060f1f4be3397d2a470e3bb",
+      "text_sha256": "f88627e209dcee562e53a866cac733fb94c2a36e055f0c28acad4c6a6812d0ed",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "checkpoint_payload": {
+      "AST_sha256": "8a3d328f1479b9c53c6423822e1fc3da6b8ed12e03b897678fd23b07cb5e08de",
+      "text_sha256": "1a0cc7246d41f8b8697de73458e74850848dd43f129a2c4ffff3acfbc1942110",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "evaluate": {
+      "AST_sha256": "7c97b9e8730172b41305f48cedccc3ba6aa7b6b67002439146114d6f7b466176",
+      "text_sha256": "3ccbd229c72f3cc5e378eb5422cb8dc0df126e8b3daab6fb0f319380fc9fb188",
+      "AST_equal": true,
+      "text_equal": true
+    }
+  },
+  "entire_training_update_loop": {
+    "AST_sha256": "846b590ab3e414c3c29279b433707b6425be0821beb1d7e48fb6727e61676c5a",
+    "AST_equal": true,
+    "text_equal": true
+  },
+  "checks": {
+    "syntax_AST": "passed",
+    "actual_scope": "pure JSON/stat/small SHA; arrays/weights loads blocked",
+    "known_load_cases": 135,
+    "canonical_role_cloud_CADs": 45,
+    "pair_contract_same_except_bc_role_mode": true,
+    "first_native_encoder_context_and_all_decoder_gradient_acceptance": "text-identical inherited first-step checks",
+    "sampling_checkpoint_three_RNG_states_history_best": "unchanged body",
+    "CUDA_used": false,
+    "arrays_or_weights_opened_by_trainer_acceptance": false,
+    "extra_native_or_synthetic_smoke": false
+  },
+  "model": {
+    "global_cloud_channels": 5,
+    "global_descriptor_dim": 32,
+    "query_features": 38,
+    "hidden_dim": 128,
+    "basis_outputs": 9,
+    "encoder_parameters": 16800,
+    "additional_encoder_parameters_vs_xyz": 64,
+    "both_models_new_initialization": true,
+    "old3channel_baseline_is_matched_control": false,
+    "bc_role_mode": [
+      "zero",
+      "actual"
+    ],
+    "gradient_weight": 0.0004106650618638651
+  },
+  "cloud": {
+    "source": "Canonical ver input features0:7 at exact previous selected node indices",
+    "support_union": "any original constraint slots0:6 nonzero",
+    "load_membership": "original input slot6",
+    "raw_cloud_identical_in_pair": true,
+    "padding_roles": 0,
+    "reference": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_gradient_calibrated_10k/geometry_clouds.npz",
+      "bytes": 969950,
+      "mtime_ns": 1791523573534678100,
+      "config_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_gradient_calibrated_10k/config.json",
+      "config_sha256": "8a207ec1bf8b9b8f6405c0518a3799c16d4b3d49271812993d774cc33d06a0ad",
+      "summary_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_gradient_calibrated_10k/summary.json",
+      "summary_sha256": "f94a7b262e39da2364a4faf05939f9088351ba417bfd192c721b1860c3f2b7d6",
+      "seed": 2026,
+      "coordinates_sha256": "8e9391c76707661fd27e95ea16c5b488eaa2452dd77315cc3f7260aacdb50c90",
+      "mask_sha256": "391f0a597f6f0daa5166bf008a62af1133e90eabd1d2470a29c0b61f29e3da82",
+      "acceptance": "Reconstruction exact equality of coordinates, mask, CAD order and original node indices before training"
+    },
+    "reference_cloud_seed": 2026,
+    "training_seed_independent": true,
+    "formal_run_acceptance": "All45 CAD order/xyz/mask/node_indices exactly equal completed calibrated geometry_clouds.npz before optimizer updates",
+    "hashes_saved": [
+      "xyz",
+      "raw point5",
+      "raw roles",
+      "encoder roles",
+      "mask",
+      "node_indices"
+    ],
+    "known_load_static_BC_equality": "Verified by frozen displacement loader full static-input hashes across ver/hor/tor"
+  },
+  "scope": "Strict40train+5validation CAD,ver/hor/tor; no dia/final5. Input BC roles only; no GTu/strain/stress as input",
+  "selection": "Known-load validation mean all-node physical u ONLY; same u-selected P1 proxy diagnostics",
+  "model_helper_ready": {
+    "path": "notes/bc_role_field_ready.json",
+    "sha256": "2e348c97ac45c7d877743312926a8323e7c7686c16619d2319269fff17c225ab"
+  },
+  "jobs": [
+    "displacement_bc_role_zero_10k",
+    "displacement_bc_role_actual_10k"
+  ],
+  "summary_and_resume_API": "Same config/model/scaler/optimizer/state/metrics schema as frozen gradient teacher; strict role mode/code/cloud provenance in contract and config",
+  "matched_postrun_evidence": "Saved all initial parameters SHA, native decoder SHA, complete firstbatch witness and raw geometry hashes enable parent comparison",
+  "no_training_launched": true
+}

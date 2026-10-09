@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "status": "design_only_await_actual_BC_result_and_parent_decision",
+  "created_at_utc": "2026-10-09T05:49:45.327152+00:00",
+  "scope": {
+    "candidate_count": 1,
+    "existing_source_and_metadata_only": true,
+    "new_arrays_targets_weights_read": false,
+    "GPU_or_training_started": false,
+    "current_BC_plan_and_gates_edited": false,
+    "dia_or_finaltest_arrays_read": false,
+    "only_output": "notes/geobc_after_bc_options.json"
+  },
+  "trigger": "Consider only if the current preregistered BC-role matched pair fails its gate. A BC pass does not trigger this diagnostic. No run is authorized by this design note.",
+  "priority_recommendation": {
+    "name": "one fixed TRAIN101_479 specialist PhysicsField, three known loads",
+    "question": "Can the same load-linear native field fit both displacement values and mesh-recovered P1 gradients on an already diagnosed single training geometry once the multi-CAD conditional sharing/optimization competition is removed?",
+    "why_this_first": "It keeps the geometry, target definitions, load basis, calibrated coefficient and existing native architecture in the current DeepJEB problem. The zero-gradient/lambda1 value-versus-gradient tradeoff has already been measured; moving to exact2 or another generic target setup would add data/model/target changes before resolving this narrower question.",
+    "not_a_method": "Extra per-CAD specialist model is a representability/optimization diagnostic, not a deployable new generalization model or evidence of novel architecture."
+  },
+  "one_run_contract": {
+    "cases": [
+      "101_479/ver",
+      "101_479/hor",
+      "101_479/tor"
+    ],
+    "CAD_scope": "one explicit TRAIN CAD chosen before BC result; no new validation, dia or finaltest data",
+    "architecture": "same frozen source PhysicsField linear_basis, original xyz3 PointNet, query original25+local13=38, global32, width128x2, native same TCNN hash configuration; 9 response-basis channels and unchanged alpha combination",
+    "baseline": "completed shared calibrated xyz3 model; use original xyz3 specialist to match that baseline. Do not mix in new role5, capacity increase, size-prefactor or loss changes.",
+    "features": "all current25 remain including absolute size L/200 at slot24; fixed load slots7:13 are masked in response-basis decoder; same local13 and original canonical fixed1024 geometry cloud",
+    "initialization": "fresh model using same original seed2026 and native config; verify initial complete decoder/encoder parameter hashes where reproducible; no loading trained shared weights or optimizer state",
+    "gradient_weight": 0.0004106650618638651,
+    "common_u_scale_mm": 0.05511113670847156,
+    "u_center_mm": 0.0,
+    "target_and_normalizers": "same signed uXYZ mm, existing train-only common RMS, per-case relative-u normalization and full-volume P1 loss normalizers for these three cases; no recalibration/refit",
+    "optimizer": {
+      "name": "Adam",
+      "fused": true,
+      "learning_rate": 0.003,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "epsilon": 1e-08,
+      "weight_decay": 0.0
+    },
+    "updates_max": 10000,
+    "batch_rows_per_update": 51200,
+    "sampling": "4 case slots uniformly sampled WITH replacement from the 3 known loads; each slot6400 uniform original nodes +1600 uniform tets x4 corners; duplicates retained. Within-slot node/tet RNG streams unchanged. This explicit diagnostic sampling differs from shared four-distinct-case sampling because 3<4.",
+    "no_silent_sampler_patch": "Current four-distinct-case trainer cannot accept 3 cases unchanged. If later authorized, use a separate explicit specialist diagnostic path rather than silently changing the frozen shared sampler.",
+    "checkpoint_policy": "fixed diagnostic endpoints250 and10000; no validation or best-by-strain selection, no adaptive early stopping on fit or extension beyond budget. Retain same run histories for interpreting the path.",
+    "evaluation": "all original179316 nodes for each of the3 known loads; signed physical vector U relativeL2 plus same all-node unweighted FrobeniusL2 of incident-volume-averaged cornerP1 symmetric tensor (shear squared weight2). Report per-load, three-case mean/worst at the fixed endpoints.",
+    "minimal_budget_interpretation": "Only one extra model/run and one fixed CAD, not three independent per-load models or a multi-CAD suite. 250-step exposure-matched diagnostic readout and the capped10k representability endpoint belong to the same run.",
+    "historical_elapsed_seconds": 204.09551495600317,
+    "timing_bound": "shared10k previously completed in about204 seconds; isolated compute may differ. No new measured ETA is claimed."
+  },
+  "baseline_metadata": {
+    "source_run": "runs/geobc_exploration/displacement_gradient_calibrated_10k",
+    "primary_fixed_final10k": {
+      "step": 10000,
+      "u_relativeL2_by_load": {
+        "101_479/ver": 0.11976466827531994,
+        "101_479/hor": 0.14715942596907913,
+        "101_479/tor": 0.23844556830910602
+      },
+      "u_case_mean_relativeL2": 0.1684565541845017,
+      "u_worst_relativeL2": 0.23844556830910602,
+      "P1_relativeL2_by_load": {
+        "101_479/ver": 3.3036689844653417,
+        "101_479/hor": 2.7358296356706413,
+        "101_479/tor": 2.757752584252718
+      },
+      "P1_case_mean_relativeL2": 2.932417068129567
+    },
+    "contextual_u_validation_selected": {
+      "step": 8000,
+      "u_relativeL2_by_load": {
+        "101_479/ver": 0.3213644664732466,
+        "101_479/hor": 0.15782977686311125,
+        "101_479/tor": 0.3119419241973704
+      },
+      "u_case_mean_relativeL2": 0.2637120558445761,
+      "u_worst_relativeL2": 0.3213644664732466,
+      "P1_relativeL2_by_load": {
+        "101_479/ver": 3.328555413880881,
+        "101_479/hor": 2.6858969790350784,
+        "101_479/tor": 3.2673756056841974
+      },
+      "P1_case_mean_relativeL2": 3.093942666200052
+    },
+    "selected_checkpoint_rule": "minimum validation15-case mean all-original-node physical displacement vector relativeL2",
+    "comparison_rule": "Use fixed sharedfinal10k as main counterpart. The shared best-val step8000 has worse TRAIN101_479 U than final10k and comparing only against it would overstate specialist benefit."
+  },
+  "exposure_and_capacity_caveats": {
+    "shared_sampling_population_cases": 120,
+    "shared_expected_draws_per_case_at10k": 333.3333333333333,
+    "specialist_expected_draws_per_load_at250": 333.3333333333333,
+    "specialist_expected_draws_per_load_at10k": 13333.333333333334,
+    "per_load_exposure_ratio_at10k": 40.0,
+    "250step_scope": "Matches expected per-load case-slot exposure of shared10k, not exact stochastic sample realization, gradient trajectory, other-case diversity, walltime or optimizer state. It is a bounded early readout, not a second run or a formal matched capacity control.",
+    "parameter_count": "Per specialist model architecture/capacity is unchanged versus shared xyz3. Keeping a separate specialist in addition to the shared model increases total deployed parameters and dedicates all optimization to one CAD.",
+    "representation_claim_limit": "Any10k improvement conflates reduced multi-CAD interference, effective per-CAD parameter allocation and about40x case exposure. It cannot prove insufficient shared model width or missing condition encoding alone."
+  },
+  "decision_readout": {
+    "both_u_and_P1_fit_much_better": "Shows the existing local native field/loss can jointly fit this fixed geometry under dedicated optimization; multi-CAD conditional sharing or optimization competition is a plausible contributor, without proving which mechanism or any unseen-CAD transfer.",
+    "u_fits_P1_does_not": "Leaves spatial-gradient fit/mesh recovery/precision/optimization or fixed coefficient tradeoff as live limitations on this CAD; output rounding oracle alone was previously insufficient to explain941% error, but native arithmetic is not rigorously excluded.",
+    "P1_fits_u_does_not": "Shows the derivative-value compromise persists even without multi-CAD sharing; this alone does not establish a constitutive law or need for more global geometry capacity.",
+    "neither_fits": "No representability proof: finite budget, optimizer and weighting remain alternatives. Do not automatically increase capacity, sweep lambda/seeds or claim impossibility.",
+    "no_followup_suite": "This note offers no second seed, hyperparameter sweep, new encoder, exact2 generic objective experiment, stress branch, new finaltest or dia access. Parent decides any later action from the fixed readout."
+  },
+  "source_proof": {
+    "metadata_files_sha256": {
+      "runs/geobc_exploration/displacement_gradient_calibrated_10k/config.json": "8a207ec1bf8b9b8f6405c0518a3799c16d4b3d49271812993d774cc33d06a0ad",
+      "runs/geobc_exploration/displacement_gradient_calibrated_10k/metrics_best.json": "8b9551de9bee26ae7e17a04bbf0d06d8210d4f805fbad444abdc3cf1f19e543e",
+      "runs/geobc_exploration/displacement_gradient_calibrated_10k/metrics_latest.json": "5e29f4be29ad4866806baf94c4d8bc4b5854af49627d369f5d37386baddde321",
+      "notes/geobc_gradient_calibration.json": "9907b5038dac3a5f910db4ce6c0f4e071fd4773b0fa357ddb8774b279f4aba2c"
+    },
+    "sources": [
+      "geobc/physics_field.py: query38/load-slot mask/load-linear9 output",
+      "geobc/conditioned_field.py: original xyz3 PointNet/global32",
+      "current fixed train-only split and calibrated metadata"
+    ],
+    "new_target_inspection": "none; baseline values are only existing completed JSON scalar metrics"
+  }
+}

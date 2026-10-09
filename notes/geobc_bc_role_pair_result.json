@@ -1,0 +1,50 @@
+{
+  "status": "completed",
+  "stage": "global_BC_role_displacement_control",
+  "seed": 2026,
+  "pair_controls_passed": true,
+  "matched_contract_difference_paths": [
+    "requested.bc_role_mode",
+    "bc_roles.bc_role_mode"
+  ],
+  "validation_u_mean_improvement_percentage_points": -0.29225920731292543,
+  "validation_u_worst_deterioration_percentage_points": -8.364240428549685,
+  "validation_P1_relative_error_reduction": 0.05228573503100997,
+  "train_u_mean_improvement_percentage_points": 1.0361397618086494,
+  "train_P1_relative_error_reduction": 0.1285324435612928,
+  "better_than_zero_strain_baseline": false,
+  "predeclared_gate": {
+    "validation_u_mean_improvement_percentage_points_at_least": 2.0,
+    "validation_u_worst_deterioration_percentage_points_at_most": 2.0,
+    "validation_P1_relative_error_reduction_at_least": 0.3,
+    "validation_P1_case_mean_relative_L2_at_most": 1.0
+  },
+  "clear_gain_gate_passed": false,
+  "next_stage": "one_fitting_vs_shared_conditioning_diagnostic",
+  "sampling_witness_sha256": "e4b3a9059198181c22818f3797c43356ee4b286c56856cbc41c72e2e10c13027",
+  "selection": "Each checkpoint selected only by known-load validation physical displacement mean",
+  "interpretation": "Development validation only; P1 is training-u-derived proxy, not solver strain; role union is coarse and sparse",
+  "final_test_and_dia_opened": false,
+  "runs": {
+    "zero": {
+      "best_step": 8000,
+      "elapsed_seconds": 203.89683626499755,
+      "train_u_mean_relative_l2": 0.13666840531331387,
+      "train_P1_mean_relative_l2": 1.8594097040774462,
+      "validation_u_mean_relative_l2": 0.24110337165342793,
+      "validation_u_worst_relative_l2": 0.5204003312929368,
+      "validation_P1_mean_relative_l2": 6.160960582012982,
+      "validation_P1_worst_relative_l2": 8.702171047067575
+    },
+    "actual": {
+      "best_step": 9000,
+      "elapsed_seconds": 213.54339010200056,
+      "train_u_mean_relative_l2": 0.12630700769522737,
+      "train_P1_mean_relative_l2": 1.6204152312307918,
+      "validation_u_mean_relative_l2": 0.2440259637265572,
+      "validation_u_worst_relative_l2": 0.43675792700744,
+      "validation_P1_mean_relative_l2": 5.838830229485354,
+      "validation_P1_worst_relative_l2": 7.65579156150892
+    }
+  }
+}

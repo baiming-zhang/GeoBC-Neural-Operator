@@ -28,7 +28,7 @@ def main():
         if summary.get('status')!='completed': continue
         summaries[job['name']]=summary
         checkpoint_files={}
-        for filename in ('best.pt','last.pt'):
+        for filename in ('best.pt','last.pt','endpoint_250.pt','endpoint_10000.pt'):
             checkpoint=source/filename
             if checkpoint.is_file():
                 stat=checkpoint.stat()
@@ -38,7 +38,7 @@ def main():
                                       'code_sha256':summary.get('config',{}).get('contract',{}).get('code_sha256',{}),
                                       'selection':summary.get('config',{}).get('checkpoint_selection')}
         target=dest/'runs'/job['name']; target.mkdir(parents=True,exist_ok=True)
-        for filename in ('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json'):
+        for filename in ('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json'):
             if (source/filename).exists(): shutil.copyfile(source/filename,target/filename)
     write_json(dest/'checkpoint_index.json',{'weights_published':False,'weights_location':'local training directories',
                                             'identity_policy':'paths/bytes/mtime plus small config source hashes; no redundant checkpoint scans',
@@ -212,6 +212,32 @@ def main():
             lines += ['', '## 下一阶段：整体边界角色条件','',
                       f"元数据核验确认原25通道已包含L_mm/200；45CAD尺寸仅{lengths['min_mm']:.2f}–{lengths['max_mm']:.2f}mm，暂缓显式尺寸缩放。当前PointNet只汇聚坐标；新对照在相同1024点云附加固定节点并集和加载节点两个输入角色。零角色与真实角色都采用5输入PointNet，新增64参数在两侧相同，不能复用旧3输入模型作控制。",
                       '保持既定位移／梯度损失、采样和预算，以新的零角色模型为基线比较全节点物理位移及P1代理应变。最差案例保护与不超过全零应变100%基准的门槛已预定；未通过时不自动增加种子或扫参数。设计见notes/geobc_bc_role_plan.json。']
+    bz=summaries.get('displacement_bc_role_zero_10k')
+    ba=summaries.get('displacement_bc_role_actual_10k')
+    bc_result_path=ROOT/'notes/geobc_bc_role_pair_result.json'
+    if bz or ba:
+        lines += ['', '| 整体BC角色 | 验证位移均值 | 验证P1应变均值 | 训练耗时 |',
+                  '|---|---:|---:|---:|']
+        for mode,summary in [('零角色',bz),('真实角色',ba)]:
+            if summary:
+                v=summary['best_metrics']['validation']
+                lines += [f"| {mode} | {percent(v['case_mean_relative_l2'])} | {percent(v['strain']['case_mean_relative_l2'])} | {summary['elapsed_seconds']:.1f}s |"]
+            else:
+                lines += [f'| {mode} | 进行中 | — | — |']
+        if bz and ba and bc_result_path.is_file():
+            bc_result=json.loads(bc_result_path.read_text())
+            lines += [f"匹配控制通过。真实角色使验证位移均值改善{bc_result['validation_u_mean_improvement_percentage_points']:.2f}个百分点，最差位移变化{bc_result['validation_u_worst_deterioration_percentage_points']:+.2f}个百分点（正数为退步）；P1误差相对改善{100*bc_result['validation_P1_relative_error_reduction']:.1f}%。预定综合门槛{'通过' if bc_result['clear_gain_gate_passed'] else '未通过'}。",
+                      f"同一u-selected checkpoint的训练位移均值改善{bc_result['train_u_mean_improvement_percentage_points']:.2f}个百分点；训练P1误差相对改善{100*bc_result['train_P1_relative_error_reduction']:.1f}%。该结果限已反复使用的开发验证，不是最终盲测。"]
+    if (ROOT/'results/geobc_exploration/gradient_tradeoff.png').is_file():
+        lines += ['', '![位移与P1梯度精度的取舍](gradient_tradeoff.png)',
+                  '图中每点均取该模型按位移验证均值选择的同一checkpoint；同形状标记区分各组对照。BC增益仅比较两个新方块，不能把旧三输入校准点与新五输入零角色点的差异归于BC信息。']
+    specialist_design_path=ROOT/'notes/geobc_specialist_plan.json'
+    if specialist_design_path.is_file():
+        specialist_design=json.loads(specialist_design_path.read_text())
+        if specialist_design.get('status')=='selected_after_failed_BC_gate':
+            lines += ['', '## 下一阶段：固定训练CAD独立拟合','',
+                      '固定已观察的TRAIN101_479/ver、hor、tor，采用原xyz3模型与同一校准损失，共享模型的scaler和案例权重不重拟合。报告固定250与10000步，不用验证或应变挑选最优checkpoint。主要比较共享模型固定10000步的该CAD：位移16.85%、P1应变293.24%。',
+                      '单CAD每步四个载荷槽有放回抽样，这是显式诊断变化。250步仅匹配共享10000步的期望案例曝光，完整10000步约有40倍曝光；独立模型也增加总参数。即使独立拟合成功，也不能单独证明共享容量不足或获得泛化能力。设计见notes/geobc_specialist_plan.json。']
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
@@ -226,7 +252,11 @@ def main():
         brief += ['  局部几何收益在两个种子上重复，但最差案例变差，不能称为全面改善。']
     if probe:
         brief += ['- 组合载荷诊断：强制位移线性响应优于对照（28.4% vs 33.0%），但应力仍约87%；位移物理结构有用，应力迁移仍未解决。']
-    if gc and gz:
+    if bz and ba and bc_result_path.is_file():
+        bc_result=json.loads(bc_result_path.read_text())
+        z=bz['best_metrics']['validation'];a=ba['best_metrics']['validation']
+        brief += ['', f"**最新对照：**整体点云加入固定／加载角色，位移验证均值{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%，最差{100*z['worst_case_relative_l2']:.1f}% → {100*a['worst_case_relative_l2']:.1f}%，P1应变代理误差仍约{100*a['strain']['case_mean_relative_l2']:.0f}%。综合门槛{'通过' if bc_result['clear_gain_gate_passed'] else '未通过'}。下一步固定一个训练CAD独立拟合位移与应变，定位共享训练的瓶颈；最终测试继续保留。"]
+    elif gc and gz:
         z=gz['best_metrics']['validation'];a=gc['best_metrics']['validation']
         delta=100*(a['worst_case_relative_l2']-z['worst_case_relative_l2'])
         brief += ['', f"**最新对照：**固定训练损失尺度后，位移验证均值{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%，P1应变误差{100*z['strain']['case_mean_relative_l2']:.1f}% → {100*a['strain']['case_mean_relative_l2']:.1f}%。最差位移退步{delta:.1f}个百分点，仍未通过综合标准。下一步检验整体点云中的固定／加载位置条件；最终测试继续保留。"]

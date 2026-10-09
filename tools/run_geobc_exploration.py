@@ -98,6 +98,25 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
         for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
             if not (ROOT / job["output"] / filename).is_file():
                 raise ValueError(f"Completed output for {job['name']} lacks {filename}")
+    elif "geobc.bc_role_train" in command:
+        from geobc.bc_role_train import parser as role_parser, _scope
+        parsed = role_parser().parse_args(command[command.index("geobc.bc_role_train") + 1:])
+        contract = _scope(parsed)[4]
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Completed output for {job['name']} differs from its BC-role displacement contract")
+        for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed output for {job['name']} lacks {filename}")
+    elif "geobc.specialist_train" in command:
+        from geobc.specialist_train import parser as specialist_parser, _scope
+        parsed = specialist_parser().parse_args(command[command.index("geobc.specialist_train") + 1:])
+        contract = _scope(parsed)[4]
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Completed output for {job['name']} differs from its fixed TRAIN-CAD contract")
+        for filename in ("last.pt", "endpoint_250.pt", "endpoint_10000.pt", "metrics_endpoint_250.json",
+                         "metrics_endpoint_10000.json", "config.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed output for {job['name']} lacks {filename}")
     return summary
 
 
@@ -107,7 +126,8 @@ def stage_command(job: dict[str, Any]) -> list[str]:
     fitting = ("geobc.exploration" in command and "--mode" in command
                and command[command.index("--mode") + 1] == "fit")
     if ((fitting or "geobc.conditional_train" in command or "geobc.physics_train" in command
-         or "geobc.gradient_train" in command or "geobc.gradient_balance_train" in command)
+         or "geobc.gradient_train" in command or "geobc.gradient_balance_train" in command
+         or "geobc.bc_role_train" in command or "geobc.specialist_train" in command)
             and "--resume" not in command and (output / "last.pt").exists()):
         command.extend(["--resume", str(output / "last.pt")])
     return command

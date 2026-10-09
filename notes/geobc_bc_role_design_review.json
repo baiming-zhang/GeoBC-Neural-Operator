@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "status": "design_review_complete_implementation_and_results_not_claimed",
+  "created_at_utc": "2026-10-09T05:44:16.876609+00:00",
+  "scope": {
+    "read_only_existing_source_and_metadata": true,
+    "new_array_or_label_access": false,
+    "GPU_or_training": false,
+    "dia_or_final_test_arrays_opened": false,
+    "only_note_written": "notes/geobc_bc_role_design_review.json",
+    "candidate_count": 1
+  },
+  "judgment": "A two-role global-context input ablation is a narrow test of information gain. It preserves the load-linear basis, query38, global32, decoder, fixed calibrated gradient coefficient and sampling budget. It is not a new algorithm, causal diagnosis of previous failures, or demonstrated generalization.",
+  "pair_contract": {
+    "pair": "matched NEW zero-role versus actual-role; no historical three-channel run is a gate comparator",
+    "role_mode": {
+      "zero": "global cloud channels [normalized_x,normalized_y,normalized_z,0,0]",
+      "actual": "same xyz plus support_union and load_member binary channels"
+    },
+    "role_definition": {
+      "support_union": "any(canonical_ver.features[node_indices,0:6] != 0, axis=DOF)",
+      "load_member": "canonical_ver.features[node_indices,6]",
+      "padding": "same original mask; padded roles zero and excluded from max/mean pooling"
+    },
+    "role_source": "only canonical ver aligned input original25 features in unchanged FEM-node order; no target or case ID input",
+    "cloud": "exact same saved 45-CAD seed2026 points/mask/cad_keys/node_indices; 1024 valid points per CAD; no resampling or role-aware sampling",
+    "encoder": {
+      "point_mlp": [
+        5,
+        32,
+        64,
+        64
+      ],
+      "pool": "unchanged masked max plus masked mean",
+      "head": [
+        128,
+        64,
+        32
+      ],
+      "activation": "ReLU",
+      "output": "unchanged non-affine LayerNorm then tanh",
+      "extra_parameters_vs_old_xyz3": 64,
+      "extra_parameters_each_branch": 64,
+      "old_encoder_parameters": 16736,
+      "new_encoder_parameters_expected": 16800,
+      "initialization": "zero and actual must have identical complete 5-input model parameters, including new role-column weights, and identical decoder initialization; old 3-input first layer is not a matched baseline"
+    },
+    "decoder": {
+      "query_conditions": 38,
+      "original25": 25,
+      "local_geometry": 13,
+      "global_context": 32,
+      "decoder_Identity_conditions": 70,
+      "basis_outputs": 9,
+      "basis_layout": "[N,reference_load(ver,hor,tor),component(ux,uy,uz)]",
+      "width": 128,
+      "hidden_layers": 2,
+      "unchanged_hash_grid": "12 levels,2 features,log2_size19,base8,growth1.6"
+    },
+    "load_linearity": "only query feature slots7:13 masked in linear basis; role geometry context remains load-independent for a CAD; external alpha combines response basis",
+    "loss_and_budget": {
+      "gradient_weight_fixed": 0.0004106650618638651,
+      "u_scale_mm": 0.05511113670847156,
+      "u_center_mm": 0.0,
+      "optimizer": {
+        "name": "Adam",
+        "fused": true,
+        "learning_rate": 0.003,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "epsilon": 1e-08,
+        "weight_decay": 0.0
+      },
+      "updates": 10000,
+      "batch_nodes_total": 51200,
+      "distinct_cases_per_update": 4,
+      "per_case_node_rows": "6400 uniformly sampled original nodes +1600 uniform tetrahedra x4 corner rows; duplicated rows retained in both branches",
+      "sampling_rng": {
+        "case": "NumPy default_rng(seed+23)",
+        "node": "torch.Generator(device),seed+17",
+        "tet": "torch.Generator(device),seed+41"
+      },
+      "relative_case_u_and_strain_normalizers": "unchanged existing train-only normalizers; no scaler/cache refit",
+      "same_precision": "existing TCNN/PointNet settings and FP64 physical P1 arithmetic",
+      "seed": 2026
+    },
+    "split": {
+      "train_CADs": 40,
+      "validation_CADs": 5,
+      "train_cases": 120,
+      "validation_cases": 15,
+      "known_loads": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "dia": "disabled",
+      "final_test5": "disabled",
+      "CAD_grouping": "all loads of a CAD stay in its fixed group"
+    },
+    "same_schedule": "same evaluation/checkpoint cadence, optimizer/init streams and sampled cases/nodes/tetrahedra; verify sampling witness equality",
+    "checkpoint_selection": "minimum known-validation15 mean all-original-node physical uXYZ vector relativeL2 only; no P1, dia, stress, finaltest or gate-based checkpoint selection"
+  },
+  "recommended_predeclared_gate": {
+    "comparator": "new matched zero-role branch at its u-only-selected checkpoint; actual branch at its own u-only-selected checkpoint",
+    "metric_scope": "same15 validation CAD/load cases, all original FEM nodes, physical signed uXYZ and same volume-averaged all10-node recovered corner-P1 symmetric Frobenius metric",
+    "conditions_all_required": {
+      "u_mean_improvement_percentage_points_at_least": 2.0,
+      "u_worst_deterioration_percentage_points_at_most": 2.0,
+      "P1_mean_relative_error_reduction_at_least": 0.3,
+      "actual_P1_mean_relativeL2_at_most": 1.0
+    },
+    "formulas": {
+      "u_mean_gain_pp": "100*(new_zero.val_u_mean_L2-actual.val_u_mean_L2)",
+      "u_worst_deterioration_pp": "100*(actual.val_u_worst_L2-new_zero.val_u_worst_L2)",
+      "P1_relative_reduction": "(new_zero.val_P1_mean_L2-actual.val_P1_mean_L2)/new_zero.val_P1_mean_L2"
+    },
+    "zero_strain_baseline": "Separately, predicting zero strain tensor has relativeL2=1 on each nonzero-reference case, hence mean1. This is NOT the zero-role model. Check nonzero reference denominators; do not call training P1 loss or signed scalar stress this diagnostic.",
+    "threshold_policy": "strong preregistered gate; do not relax thresholds or choose alternative best-by-strain snapshots after observing results",
+    "record_train": "at both selected checkpoints record train120 all-original-node u mean/worst and P1 mean, alongside existing training histories; use identical definitions, not best-train values from different checkpoints",
+    "finite_and_matching": "a failed finite metric or mismatched contract is invalid comparison, not gate success"
+  },
+  "input_metadata_proof": {
+    "coordinate_sha256": "8e9391c76707661fd27e95ea16c5b488eaa2452dd77315cc3f7260aacdb50c90",
+    "mask_sha256": "391f0a597f6f0daa5166bf008a62af1133e90eabd1d2470a29c0b61f29e3da82",
+    "matches_current_calibrated_run_config": true,
+    "previous_input_only_coverage_status": "coverage_passed",
+    "all_saved_points_match_indices_exactly": true,
+    "all_role_inputs_binary_finite": true,
+    "all45_have_both_roles": true,
+    "coverage": {
+      "CADs": 45,
+      "valid_cloud_nodes": 46080,
+      "missing_support_CADs": [],
+      "missing_load_CADs": [],
+      "support_union_count": {
+        "sum": 1178,
+        "min": 15,
+        "median": 26.0,
+        "max": 43
+      },
+      "load_member_count": {
+        "sum": 533,
+        "min": 7,
+        "median": 11.0,
+        "max": 21
+      },
+      "support_union_sampled_fraction": 0.02556423611111111,
+      "load_member_sampled_fraction": 0.011566840277777778
+    },
+    "four_load_interfaces_and_materials_metadata_guard": {
+      "compatible_all": true,
+      "same_interface_and_constraints_all45": true
+    },
+    "node_indices_note": "Current metadata confirms exact points/mask hashes and prior coverage confirms point-to-index mapping. This review did not open node_indices arrays or newly prove current-run index equality. Implementation must reuse the SAME saved artifact and log node_indices/cad_keys/role hashes rather than regenerating indices from seed or matching coordinates.",
+    "source_hashes": {
+      "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+      "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+      "tools/prepare_geobc_exploration.py": "8d062bb1d6a3d7a759ab68cf5222f51b3729cc829e75e350d6dd16a8507a8853",
+      "notes/geobc_bc_role_coverage.json": "1d9359949cca784f93dbd2fee6c6009072fbdedf9271a873506bdaaa90a7fa70",
+      "notes/geobc_gradient_calibration.json": "9907b5038dac3a5f910db4ce6c0f4e071fd4773b0fa357ddb8774b279f4aba2c",
+      "runs/geobc_exploration/displacement_gradient_calibrated_10k/config.json": "8a207ec1bf8b9b8f6405c0518a3799c16d4b3d49271812993d774cc33d06a0ad"
+    },
+    "source_lines": [
+      {
+        "path": "geobc/conditioned_field.py",
+        "lines": [
+          68,
+          69,
+          70,
+          92,
+          101,
+          110,
+          112,
+          113,
+          114,
+          133,
+          196,
+          197
+        ],
+        "fact": "existing xyz3 PointNet and unchanged shared condition path; five-input wrapper needs truthful shape/config records"
+      },
+      {
+        "path": "geobc/physics_field.py",
+        "lines": [
+          28,
+          29,
+          30,
+          32,
+          40,
+          47,
+          48,
+          133,
+          139,
+          143,
+          149
+        ],
+        "fact": "query38/global32/width128/load-linear 9-output path"
+      },
+      {
+        "path": "tools/prepare_deepjeb.py",
+        "lines": [
+          95,
+          100,
+          101,
+          104,
+          105,
+          107,
+          108
+        ],
+        "fact": "roles originate from aligned deck interface members and support DOF flags"
+      },
+      {
+        "path": "tools/prepare_geobc_exploration.py",
+        "lines": [
+          151,
+          210,
+          212,
+          213,
+          214
+        ],
+        "fact": "same-CAD nonload features preserved; only force/moment slots replaced"
+      }
+    ]
+  },
+  "limitations": [
+    "support_union collapses DOF identity, master/patch identity and individual four-support membership; binary marked points plus pooled PointNet do not encode explicit patch adjacency/topology.",
+    "Current sampled support15-43 and load7-21 nodes per CAD are sparse; presence of a union/load role does not establish individual support-patch coverage, full interface shape, or adequate mechanics.",
+    "Clouds sample unique original FEM nodes, not uniform surface area. Role point proportions can depend on mesh density; preserve the existing sample to isolate this hypothesis.",
+    "Same CAD roles are load-independent under the existing guard; this cannot introduce arbitrary new interfaces/constraints or claim transfer to new BC layouts.",
+    "Different first-layer fan-in changes parameterization versus old xyz3, so historical comparisons remain contextual. New zero/actual are the causal matched information ablation.",
+    "CAD validation informs selection and stage gate; it is not finaltest, multiple-seed statistical significance, or proof of novel physics."
+  ],
+  "failure_interpretation_and_stop": {
+    "train_and_validation_no_improvement": "no observed gain from these sparse two-role summaries at fixed architecture/budget/seed; representation compression or optimization remain possible. Do not conclude BC information is irrelevant.",
+    "train_improves_validation_does_not": "role-conditioned fit gain does not transfer to held-out CADs under this split; do not claim generalization or remedy via blind second seed/parameter sweep.",
+    "strain_gain_u_gate_fail": "a derivative-quality/point-displacement tradeoff remains; do not count strain-only gain as success.",
+    "if_all_pass": "report only the matched effect on fixed train40/validation5 known loads; further action remains parent decision.",
+    "no_automatic_followup": "No blind second seed, threshold relaxation, sampling/capacity change, coefficient sweep, dia/finaltest opening or stress expansion follows from this note."
+  }
+}
