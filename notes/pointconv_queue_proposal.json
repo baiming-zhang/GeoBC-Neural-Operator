@@ -1,0 +1,70 @@
+{
+  "status": "root_released",
+  "root_release_required": "Final field/data/train ready; necessary root source/API review; frozen training/dia plan; sole coordinator launch, no GPU preflight.",
+  "plan": "notes/geobc_pointconv_plan.json",
+  "master": "notes/geobc_exploration_plan.json",
+  "jobs": [
+    {
+      "name": "pointconv_input45",
+      "kind": "pointconv_input",
+      "stage": "solver_pointconv_screen",
+      "output": "data/geobc_pointconv_inputs45",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.pointconv_data",
+        "--plan",
+        "notes/geobc_pointconv_plan.json"
+      ],
+      "requires": [
+        "notes/geobc_pointconv_plan.json",
+        "geobc/pointconv_data.py"
+      ]
+    },
+    {
+      "name": "pointconv_direct4_480",
+      "kind": "pointconv_screen",
+      "stage": "solver_pointconv_screen",
+      "output": "runs/geobc_exploration/pointconv_seed2026_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.pointconv_train",
+        "--plan",
+        "notes/geobc_pointconv_plan.json",
+        "--output",
+        "runs/geobc_exploration/pointconv_seed2026_480"
+      ],
+      "requires": [
+        "notes/geobc_pointconv_plan.json",
+        "geobc/pointconv_field.py",
+        "geobc/pointconv_data.py",
+        "geobc/pointconv_train.py",
+        "data/geobc_pointconv_inputs45/manifest.json"
+      ]
+    },
+    {
+      "name": "pointconv_DEVdia480",
+      "kind": "pointconv_development_dia_eval",
+      "stage": "solver_pointconv_screen",
+      "output": "runs/geobc_exploration/pointconv_development_dia480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.pointconv_train",
+        "--plan",
+        "notes/geobc_pointconv_plan.json",
+        "--output",
+        "runs/geobc_exploration/pointconv_development_dia480",
+        "--evaluate-dia"
+      ],
+      "requires": [
+        "notes/geobc_pointconv_plan.json",
+        "geobc/pointconv_train.py",
+        "data/geobc_pointconv_inputs45/manifest.json",
+        "runs/geobc_exploration/pointconv_seed2026_480/summary.json",
+        "runs/geobc_exploration/pointconv_seed2026_480/step480.pt"
+      ]
+    }
+  ]
+}

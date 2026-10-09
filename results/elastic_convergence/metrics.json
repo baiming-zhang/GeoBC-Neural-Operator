@@ -1,0 +1,82 @@
+{
+  "status": "completed",
+  "kind": "elastic_residual_continuation",
+  "node_count": 179316,
+  "numerical_state": "converged",
+  "numerically_converged": true,
+  "iteration": 4093,
+  "iterations_executed_total": 4093,
+  "true_relative_residual": 9.9770555571315e-09,
+  "costs": {
+    "parent_cumulative_solve_wall_seconds": 27.976850677,
+    "cumulative_solve_wall_seconds": 57.01116477200001,
+    "continuation_cumulative_solve_wall_seconds": 29.034314095000006,
+    "this_call_solve_wall_seconds": 29.034314095000006,
+    "solve_setup_read_seconds": 1.8094866070000037,
+    "this_call_K_apply_seconds": 10.762089571999972,
+    "preconditioner_seconds": 0.9836316910001699,
+    "checkpoint_seconds": 3.492528231999998,
+    "endpoint_verification_seconds": 0.04439878699999156,
+    "solve_K_count_this_call": 2179,
+    "solve_K_count_cumulative": 4261,
+    "verification_K_count": 1,
+    "total_this_call_wall_seconds": 30.891240396999997,
+    "budget_overshoot_seconds": 0.0
+  },
+  "equilibrium": {
+    "true_free_residual_relative": 9.977055557078453e-09,
+    "true_free_residual_norm_N": 1.2513767741312834e-05,
+    "constraint_reaction_sum_N": [
+      2.339337152079679e-05,
+      1.222935679834336e-06,
+      -35585.76996829627
+    ],
+    "net_force_with_reaction_N": [
+      2.3393373339786194e-05,
+      1.222935679834336e-06,
+      3.170372929162113e-05
+    ],
+    "net_moment_with_reaction_Nmm": [
+      0.0031108479015529156,
+      -0.0021914087992627174,
+      0.002223176241386682
+    ],
+    "fixed_translation_max_abs_mm": 0.0,
+    "reference_xyz_mm": [
+      -19.8824,
+      -73.05,
+      46.72419
+    ],
+    "full_K_verification_calls": 1
+  },
+  "memory": {
+    "peak_allocated_bytes": 245532672,
+    "peak_reserved_bytes": 272629760
+  },
+  "read_receipt": {
+    "label_reads": 0,
+    "labels_read": 0,
+    "displacement_reads": 0,
+    "signed_displacement_member_reads": 0,
+    "stress_reads": 0,
+    "H5_reads": 0,
+    "raw_deck_reads": 0,
+    "model_or_weight_reads": 0,
+    "DEV_dia_reads": 0,
+    "old_final_reads": 0,
+    "sealed_new_test_reads": 0,
+    "optimizer_steps": 0,
+    "scaler_fits": 0,
+    "operator_rebuilds": 0,
+    "repeated_operator_guard_K_applications": 0,
+    "K_guards_repeated": 0,
+    "setup_repeated": 0,
+    "parent_state_reused": true,
+    "input_cache_members_only": true,
+    "stop_uses_true_residual_only": true
+  },
+  "case": "101_479/ver",
+  "source_summary": "runs/geobc_exploration/elastic_convergence101479_ver/summary.json",
+  "original_accuracy_is_not_new_endpoint_accuracy": true,
+  "scope": "Single TRAIN approximate elasticity; no GT or cross-CAD accuracy claim"
+}

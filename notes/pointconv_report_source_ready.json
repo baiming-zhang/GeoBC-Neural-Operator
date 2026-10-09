@@ -1,0 +1,26 @@
+{
+  "status": "source_ready_one_final_AST",
+  "sources": {
+    "tools/summarize_pointconv.py": {
+      "sha256": "81b620a67fb072045ece6dc8ab80cfa442f82fa0dedc44208fc2a49de9360363",
+      "bytes": 11163
+    },
+    "tools/summarize_geobc_exploration.py": {
+      "sha256": "aacd77254672dee38e8dab3ed777d159ea64d8ef6d938aea1e1c280465b14973",
+      "bytes": 104781
+    },
+    "tools/run_geobc_exploration.py": {
+      "sha256": "8016fde43ace5e86204578c5a3675c89ddb872ea906cd632c8742f3d1e47e418",
+      "bytes": 48520
+    }
+  },
+  "AST_seconds": 0.022696680000000136,
+  "arrays_read": 0,
+  "models_constructed": 0,
+  "weights_read": 0,
+  "GPU_runs": 0,
+  "reporter_executed": false,
+  "plots_generated": 0,
+  "scope": "Source-only reporter/coordinator/export integration; actual formal reports wait all3 completed. Whole-node physical known/dia metrics only, no oldfinal/newsealed access.",
+  "API": "python tools/summarize_pointconv.py; then summarize_geobc_exploration.py --preserve-existing-plots"
+}

@@ -1,0 +1,140 @@
+{
+  "status": "source_ready_not_executed",
+  "kind": "pointconv_input",
+  "source": "geobc/pointconv_data.py",
+  "source_sha256": "8fb64d46cb125fd373df2362cec8d67bbc03b70a8601c81560eebaca49cd825d",
+  "design_sha256": "0b01738c44cc3ca3472fc9f36a77300adac0144438ff5509f626cd0be45519e2",
+  "plan_path": "notes/geobc_pointconv_plan.json",
+  "plan_frozen_at_author_check": false,
+  "plan_at_author_check_sha256": "bb41f7aa0a17a070e100a0f0bd9301cac367273f53afcc849eb9becb4c66f544",
+  "cache": "data/geobc_pointconv_inputs45",
+  "API": {
+    "request_contract": "request_contract(plan_path=DEFAULT_PLAN)->(contract,plan); pure stdlib JSON/stat/source SHA",
+    "prepare_data": "prepare_data(plan_path=DEFAULT_PLAN)->manifest; root frozen solequeue only",
+    "read_cache_metadata": "read_cache_metadata(plan_path=DEFAULT_PLAN,*,contract=None)->strict completed feasible manifest; rejects negative before CUDA/model",
+    "load_hierarchy": "load_hierarchy(record,device)->xyz0/1/2,p0/1/2,neighbors00/01/11/12/22,interp21_indices/weights,interp10_indices/weights",
+    "CLI": "python -m geobc.pointconv_data --plan notes/geobc_pointconv_plan.json; no --output"
+  },
+  "runtime_dtypes": {
+    "coordinates_density_weights": "float32",
+    "neighbor_interpolation_indices": "int64"
+  },
+  "cache_members": [
+    "xyz0",
+    "xyz1",
+    "xyz2",
+    "anchors01",
+    "anchors12",
+    "original_ids1",
+    "original_ids2",
+    "neighbors00",
+    "neighbors11",
+    "neighbors22",
+    "p0",
+    "p1",
+    "p2",
+    "interp21_indices",
+    "interp21_weights",
+    "interp10_indices",
+    "interp10_weights"
+  ],
+  "manifest_schema": {
+    "top": [
+      "kind",
+      "status",
+      "feasibility_pass",
+      "contract",
+      "records",
+      "preparation_seconds",
+      "costs",
+      "total_cache_bytes",
+      "resumed_completed_CADs",
+      "read_receipt",
+      "memory"
+    ],
+    "record": [
+      "cad_id",
+      "path",
+      "file_identity",
+      "num_nodes",
+      "node_counts",
+      "facts",
+      "costs",
+      "input_source",
+      "reused_completed_CAD",
+      "elapsed_seconds",
+      "array_bytes",
+      "read_receipt"
+    ],
+    "facts": [
+      "fps",
+      "knn",
+      "kde",
+      "interpolation",
+      "coverage",
+      "coordinate_identity"
+    ],
+    "failure": "completed feasibility_pass=false with CAD/code/evidence; no failed-CAD hierarchy saved; corrupt/exception status failed"
+  },
+  "rules": {
+    "name": "geobc_pointconv_geometry_v1",
+    "kind": "pointconv_input",
+    "scope": "TRAIN40/development-validation5 canonical ver; original full node rows",
+    "fps_nodes": [
+      2048,
+      128
+    ],
+    "neighbors32": 32,
+    "query_block": 2048,
+    "FPS": "pure Torch CUDA FP64 running minimum squared distances; smallest original row first; max-distance ties smallest original row; no loop host scalar synchronization",
+    "FPS_failure": "zero maximum remaining distance before quota: completed scientific negative; no duplicate anchor or alternative quota",
+    "neighbors": "self row then nearest31 different source rows; exact FP64 distance/original-row ordering; exact cutoff ties completed by radius search",
+    "coordinates": "existing canonical FP32 xyz promoted FP64 for searches, FPS and KDE; save FP32; no new normalization",
+    "density": "source-level sigma=median d32; p=mean32 exp(-d2/(2sigma2)); self included; sigma<=0 negative, no floor",
+    "interpolation": "exact nearest3 by distance/original row; zero-distance neighbors alone equal weighted; otherwise normalized1/d without floor",
+    "delta_direction": "source_xyz-query_xyz, existing normalized coordinates, no second /L",
+    "stride": "neighbors01=neighbors00[anchors01]; neighbors12=neighbors11[anchors12]",
+    "runtime": "xyz0/1/2,p0/1/2 float32; neighbors00/01/11/12/22 and interp21/10_indices int64; interp21/10_weights float32",
+    "anchors": "zero-based original row indices, never GRID_ID minus1; coarse rows retain FPS order",
+    "cache_indices": "int32 neighbor/interpolation tables; int64 anchors and original coarse row IDs",
+    "input_array_allowlist": [
+      "canonical xyz.npy"
+    ],
+    "identity_only": [
+      "canonical features.npy",
+      "original cloud.npy",
+      "original mask.npy",
+      "canonical prepared archive stat"
+    ],
+    "coverage": "geometry row/source participation only; BC role coverage unmeasured, no preservation claim",
+    "FP32_interpolation_partition_tolerance": 2e-07,
+    "cost_semantics": "build_seconds includes FPS/knn/KDE/interpolation; elapsed_seconds is measured CAD wall, not sum of overlapping cost fields",
+    "target_independent": true,
+    "labels_read": 0,
+    "scaler_fits": 0,
+    "all_point_KDE": false,
+    "topology_or_Dirichlet_claim": false,
+    "latent_activations_cached": false
+  },
+  "author_check": {
+    "AST_parse_count": 1,
+    "metadata_contract_count": 1,
+    "CADs": 45,
+    "TRAIN": 40,
+    "development_validation": 5,
+    "elapsed_seconds": 2.3113238970000003,
+    "scientific_imports": 0,
+    "scientific_arrays_read": 0,
+    "GT_read": 0,
+    "weights_read": 0,
+    "models_initialized": 0,
+    "GPU_initialized": 0,
+    "geometry_algorithms_executed": 0
+  },
+  "limitations": [
+    "Resource/time/geometry success unknown until root actual preparation",
+    "BC role coverage not measured; no FPS role preservation or mesh topology claim",
+    "Finite32-neighbor KDE is not wholepoint KDE or FEM measure",
+    "No original source/cache modification; original cloud/mask preserved by existing case loader"
+  ]
+}

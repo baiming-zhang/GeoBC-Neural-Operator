@@ -3,8 +3,8 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_pointconv_design",
-  "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
+  "stage": "solver_physical_residual_verification",
+  "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
     "id": "geobc",
@@ -21,88 +21,34 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "brief_action": "正式唯一队列：全45CAD mesh输入准备→全节点多尺度求解器480次更新→DEV5固定480组合载荷。按平均/最差/热点/实际成本评估，不采样截边、不变损失或打开封存集。",
-    "scope": "One genuinely different mesh solver family; no mechanism pair, no PointConv co-implementation, no Hash/FNO/rank microtuning. Fresh same480 case protocol and immutable targets/scaler; oldfinal and newsealed tests closed. Actual preparation and GPU wait final sources and root freeze.",
-    "stage": "solver_multiscale_mesh_screen"
+    "brief_action": "残差-only确认已收敛，累计57秒。下一步固定3TRAIN+升序2DEV几何的物理基线，候选初筛后再决定学习初值与物理校正。",
+    "scope": "Broad solver selection: physics is a candidate; no Hash/width/seed microtuning. Numerical continuation precedes any broad physical or hybrid candidate test; oldfinal/newsealed remain closed.",
+    "stage": "solver_physical_crosscad_design",
+    "proposal": "notes/geobc_physical_solver_candidate_design.md",
+    "mechanics_input_feasibility": "notes/solver_mechanics_input_feasibility.md"
   },
   "jobs": [
     {
-      "name": "multiscale_mesh_input45",
-      "kind": "multiscale_mesh_input",
-      "stage": "solver_multiscale_mesh_screen",
-      "hypothesis": "Genuinely different wholemesh local and coarse-to-fine interaction versus completed historical solver screens; no pure topology/capacity causal claim",
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "-m",
-        "geobc.multiscale_mesh_data",
-        "--plan",
-        "notes/geobc_multiscale_mesh_plan.json"
-      ],
       "requires": [
-        "notes/geobc_multiscale_mesh_plan.json",
-        "notes/multiscale_mesh_field_source_ready.json",
-        "notes/multiscale_mesh_data_source_ready.json",
-        "notes/multiscale_mesh_train_source_ready.json",
-        "data/geobc_solver_selection/manifest.json",
-        "data/geobc_gradient_supervision/manifest.json",
-        "data/geobc_graph_context/manifest.json"
+        "notes/geobc_elastic_convergence_plan.json",
+        "notes/elastic_pilot_convergence_source_ready.json",
+        "notes/elastic_pilot_convergence_root_review.json",
+        "runs/geobc_exploration/elastic_physical101479_ver/checkpoint.json",
+        "data/geobc_elastic_operator101479/summary.json"
       ],
-      "output": "data/geobc_multiscale_mesh_inputs45"
-    },
-    {
-      "name": "multiscale_mesh_direct4_480",
-      "kind": "multiscale_mesh_screen",
-      "stage": "solver_multiscale_mesh_screen",
-      "hypothesis": "Genuinely different wholemesh local and coarse-to-fine interaction versus completed historical solver screens; no pure topology/capacity causal claim",
+      "stage": "solver_physical_residual_verification",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.multiscale_mesh_train",
+        "geobc.elastic_pilot_convergence",
         "--plan",
-        "notes/geobc_multiscale_mesh_plan.json",
+        "notes/geobc_elastic_convergence_plan.json",
         "--output",
-        "runs/geobc_exploration/mesh_multiscale_seed2026_480"
+        "runs/geobc_exploration/elastic_convergence101479_ver"
       ],
-      "requires": [
-        "notes/geobc_multiscale_mesh_plan.json",
-        "notes/multiscale_mesh_field_source_ready.json",
-        "notes/multiscale_mesh_data_source_ready.json",
-        "notes/multiscale_mesh_train_source_ready.json",
-        "data/geobc_solver_selection/manifest.json",
-        "data/geobc_gradient_supervision/manifest.json",
-        "data/geobc_graph_context/manifest.json",
-        "data/geobc_multiscale_mesh_inputs45/manifest.json"
-      ],
-      "output": "runs/geobc_exploration/mesh_multiscale_seed2026_480"
-    },
-    {
-      "name": "multiscale_mesh_DEVdia480",
-      "kind": "multiscale_mesh_development_dia_eval",
-      "stage": "solver_multiscale_mesh_screen",
-      "hypothesis": "Genuinely different wholemesh local and coarse-to-fine interaction versus completed historical solver screens; no pure topology/capacity causal claim",
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "-m",
-        "geobc.multiscale_mesh_train",
-        "--plan",
-        "notes/geobc_multiscale_mesh_plan.json",
-        "--output",
-        "runs/geobc_exploration/mesh_multiscale_development_dia480",
-        "--evaluate-dia"
-      ],
-      "requires": [
-        "notes/geobc_multiscale_mesh_plan.json",
-        "notes/multiscale_mesh_field_source_ready.json",
-        "notes/multiscale_mesh_data_source_ready.json",
-        "notes/multiscale_mesh_train_source_ready.json",
-        "data/geobc_solver_selection/manifest.json",
-        "data/geobc_gradient_supervision/manifest.json",
-        "data/geobc_graph_context/manifest.json",
-        "data/geobc_multiscale_mesh_inputs45/manifest.json",
-        "runs/geobc_exploration/mesh_multiscale_seed2026_480/summary.json",
-        "runs/geobc_exploration/mesh_multiscale_seed2026_480/last.pt"
-      ],
-      "output": "runs/geobc_exploration/mesh_multiscale_development_dia480"
+      "output": "runs/geobc_exploration/elastic_convergence101479_ver",
+      "name": "elastic_convergence101479_ver",
+      "kind": "elastic_residual_continuation"
     }
   ],
   "historical_jobs": [
@@ -3098,6 +3044,212 @@
         "runs/geobc_exploration/concat_mlp_bc_seed2026_480/last.pt"
       ],
       "output": "runs/geobc_exploration/deeponet_bc_development_dia480"
+    },
+    {
+      "name": "multiscale_mesh_input45",
+      "kind": "multiscale_mesh_input",
+      "stage": "solver_multiscale_mesh_screen",
+      "hypothesis": "Genuinely different wholemesh local and coarse-to-fine interaction versus completed historical solver screens; no pure topology/capacity causal claim",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.multiscale_mesh_data",
+        "--plan",
+        "notes/geobc_multiscale_mesh_plan.json"
+      ],
+      "requires": [
+        "notes/geobc_multiscale_mesh_plan.json",
+        "notes/multiscale_mesh_field_source_ready.json",
+        "notes/multiscale_mesh_data_source_ready.json",
+        "notes/multiscale_mesh_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_gradient_supervision/manifest.json",
+        "data/geobc_graph_context/manifest.json"
+      ],
+      "output": "data/geobc_multiscale_mesh_inputs45"
+    },
+    {
+      "name": "multiscale_mesh_direct4_480",
+      "kind": "multiscale_mesh_screen",
+      "stage": "solver_multiscale_mesh_screen",
+      "hypothesis": "Genuinely different wholemesh local and coarse-to-fine interaction versus completed historical solver screens; no pure topology/capacity causal claim",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.multiscale_mesh_train",
+        "--plan",
+        "notes/geobc_multiscale_mesh_plan.json",
+        "--output",
+        "runs/geobc_exploration/mesh_multiscale_seed2026_480"
+      ],
+      "requires": [
+        "notes/geobc_multiscale_mesh_plan.json",
+        "notes/multiscale_mesh_field_source_ready.json",
+        "notes/multiscale_mesh_data_source_ready.json",
+        "notes/multiscale_mesh_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_gradient_supervision/manifest.json",
+        "data/geobc_graph_context/manifest.json",
+        "data/geobc_multiscale_mesh_inputs45/manifest.json"
+      ],
+      "output": "runs/geobc_exploration/mesh_multiscale_seed2026_480"
+    },
+    {
+      "name": "multiscale_mesh_DEVdia480",
+      "kind": "multiscale_mesh_development_dia_eval",
+      "stage": "solver_multiscale_mesh_screen",
+      "hypothesis": "Genuinely different wholemesh local and coarse-to-fine interaction versus completed historical solver screens; no pure topology/capacity causal claim",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.multiscale_mesh_train",
+        "--plan",
+        "notes/geobc_multiscale_mesh_plan.json",
+        "--output",
+        "runs/geobc_exploration/mesh_multiscale_development_dia480",
+        "--evaluate-dia"
+      ],
+      "requires": [
+        "notes/geobc_multiscale_mesh_plan.json",
+        "notes/multiscale_mesh_field_source_ready.json",
+        "notes/multiscale_mesh_data_source_ready.json",
+        "notes/multiscale_mesh_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_gradient_supervision/manifest.json",
+        "data/geobc_graph_context/manifest.json",
+        "data/geobc_multiscale_mesh_inputs45/manifest.json",
+        "runs/geobc_exploration/mesh_multiscale_seed2026_480/summary.json",
+        "runs/geobc_exploration/mesh_multiscale_seed2026_480/last.pt"
+      ],
+      "output": "runs/geobc_exploration/mesh_multiscale_development_dia480"
+    },
+    {
+      "name": "pointconv_input45",
+      "kind": "pointconv_input",
+      "stage": "solver_pointconv_screen",
+      "output": "data/geobc_pointconv_inputs45",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.pointconv_data",
+        "--plan",
+        "notes/geobc_pointconv_plan.json"
+      ],
+      "requires": [
+        "notes/geobc_pointconv_plan.json",
+        "geobc/pointconv_data.py"
+      ]
+    },
+    {
+      "name": "pointconv_direct4_480",
+      "kind": "pointconv_screen",
+      "stage": "solver_pointconv_screen",
+      "output": "runs/geobc_exploration/pointconv_seed2026_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.pointconv_train",
+        "--plan",
+        "notes/geobc_pointconv_plan.json",
+        "--output",
+        "runs/geobc_exploration/pointconv_seed2026_480"
+      ],
+      "requires": [
+        "notes/geobc_pointconv_plan.json",
+        "geobc/pointconv_field.py",
+        "geobc/pointconv_data.py",
+        "geobc/pointconv_train.py",
+        "data/geobc_pointconv_inputs45/manifest.json"
+      ]
+    },
+    {
+      "name": "pointconv_DEVdia480",
+      "kind": "pointconv_development_dia_eval",
+      "stage": "solver_pointconv_screen",
+      "output": "runs/geobc_exploration/pointconv_development_dia480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.pointconv_eval_recovery",
+        "--plan",
+        "notes/geobc_pointconv_plan.json",
+        "--output",
+        "runs/geobc_exploration/pointconv_development_dia480",
+        "--evaluate-dia"
+      ],
+      "requires": [
+        "notes/geobc_pointconv_plan.json",
+        "geobc/pointconv_train.py",
+        "data/geobc_pointconv_inputs45/manifest.json",
+        "runs/geobc_exploration/pointconv_seed2026_480/summary.json",
+        "runs/geobc_exploration/pointconv_seed2026_480/step480.pt",
+        "geobc/pointconv_eval_recovery.py",
+        "notes/pointconv_checkpoint_metadata_diagnosis.json",
+        "notes/pointconv_eval_recovery_source_ready.json"
+      ]
+    },
+    {
+      "name": "elastic_input101479",
+      "kind": "elastic_pilot_input",
+      "stage": "solver_physical_baseline_pilot",
+      "output": "data/geobc_elastic_input101479",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_pilot_data",
+        "--plan",
+        "notes/geobc_elastic_pilot_plan.json"
+      ],
+      "requires": [
+        "notes/geobc_elastic_pilot_plan.json",
+        "geobc/elastic_pilot_data.py",
+        "notes/elastic_pilot_reader_runtime_recovery_source_ready.json",
+        "notes/elastic_pilot_root_source_review.json"
+      ]
+    },
+    {
+      "name": "elastic_operator101479",
+      "kind": "elastic_input_operator",
+      "stage": "solver_physical_baseline_pilot",
+      "output": "data/geobc_elastic_operator101479",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_pilot",
+        "--plan",
+        "notes/geobc_elastic_pilot_plan.json",
+        "--output",
+        "data/geobc_elastic_operator101479",
+        "--prepare-operator"
+      ],
+      "requires": [
+        "notes/geobc_elastic_pilot_plan.json",
+        "geobc/elastic_pilot.py",
+        "notes/elastic_pilot_source_ready.json",
+        "data/geobc_elastic_input101479/manifest.json"
+      ]
+    },
+    {
+      "name": "elastic_solve101479_ver",
+      "kind": "elastic_physical_solve",
+      "stage": "solver_physical_baseline_pilot",
+      "output": "runs/geobc_exploration/elastic_physical101479_ver",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_pilot",
+        "--plan",
+        "notes/geobc_elastic_pilot_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_physical101479_ver"
+      ],
+      "requires": [
+        "notes/geobc_elastic_pilot_plan.json",
+        "geobc/elastic_pilot.py",
+        "data/geobc_elastic_operator101479/summary.json",
+        "data/geobc_elastic_operator101479/physical_gradients.npy",
+        "data/geobc_elastic_operator101479/free_cholesky.npy"
+      ]
     }
   ],
   "phase_history": [
@@ -3328,23 +3480,39 @@
     }
   },
   "active_design_preparation": {
-    "status": "pointconv_one_family_source_design_in_progress",
-    "started_at_utc": "2026-10-09T19:12:57.1284959Z",
+    "status": "pointconv_completed_next_physical_solver_source",
+    "started_at_utc": "2026-10-09T19:25:50.2918683Z",
     "proposal": "notes/geobc_pointconv_candidate_design.md",
-    "source_only_until_root_adoption": true,
+    "proposal_sha256": "0b01738c44cc3ca3472fc9f36a77300adac0144438ff5509f626cd0be45519e2",
+    "root_source_authorization": "User authorized continuous broad solver exploration; root adopted final proposal after necessary mathematical/API review. SOURCE only until final source freeze.",
+    "source_only_until_root_freeze": false,
+    "training_plan": "notes/geobc_pointconv_plan.json",
+    "field_source": "geobc/pointconv_field.py",
+    "data_source": "geobc/pointconv_data.py",
+    "train_source": "geobc/pointconv_train.py",
+    "input_cache": "data/geobc_pointconv_inputs45",
+    "shared_inputs": "old TRAIN40/DEV5/xyz25/cloud1024/scaler",
+    "parameters_source_arithmetic": 712131,
+    "fixed_k": 32,
+    "FPS_targets": [
+      2048,
+      128
+    ],
+    "query_chunk": 2048,
+    "kernel_width": 16,
+    "mode": "one_full_node_pointconv_direct4",
+    "source_eta_minutes": [
+      15,
+      20
+    ],
     "arrays_read": 0,
     "models_constructed": 0,
     "GPU_runs": 0,
-    "hash_microtuning": false,
     "oldfinal_closed": true,
     "sealed_new_test_closed": true,
-    "scientific_question": "Can a genuinely different continuous coordinate point convolution with local density compensation improve whole-node cross-CAD U/S and accuracy-cost compared with spectral and mesh routes?",
-    "decision_source": "User requested broad solver exploration, root adopted next source design after negative whole-mesh result",
-    "estimate_minutes": [
-      10,
-      15
-    ],
-    "publisher_verified_commit": "79a812de6f22dfe7eac6a79e87ef633337b47544"
+    "hash_microtuning": false,
+    "publisher_verified_commit": "7f4e5010648a14ce91deae6d3e02a75aa47c24e1",
+    "released_at_utc": "2026-10-09T19:40:08.7986712Z"
   },
   "stage_transitions": [
     {
@@ -3398,6 +3566,13 @@
       "elapsed_seconds": 2.244647308,
       "new_stage": "solver_next_cycle_sealed_acquisition",
       "basis": "Exact radius GPU pilot completed: 6,547,680 pairs, all179316 nodes covered, .466s build,216MB cache. Coordinator-only metadata check corrected (stat API omits path); recovered queue must reuse completed pilot and download only frozen independent5 CAD source bytes, labels sealed."
+    },
+    {
+      "at_utc": "2026-10-09T20:21:18.996875Z",
+      "completed_stage": "solver_pointconv_screen",
+      "completed": 3,
+      "new_stage": "solver_physical_baseline_pilot",
+      "basis": "Ten families screened; PointConv85/98% at278s has no current opportunity. One explicit approximate physical baseline, no Hash rescue or final-data tuning."
     }
   ],
   "deeponet_completed_readout": {
@@ -3445,6 +3620,107 @@
     "peak_allocated_bytes": 1622670848,
     "decision": "No precision-cost opportunity at fixed480 and no meaningful train-readout improvement; do not rescue width/cycles/600-second budgets. Not a universal family failure.",
     "report": "results/multiscale_mesh/BRIEF.md",
-    "oldfinal_or_sealed_reads": 0
+    "oldfinal_or_sealed_reads": 0,
+    "publisher_verified_commit": "7f4e5010648a14ce91deae6d3e02a75aa47c24e1"
+  },
+  "pointconv_eval_recovery": {
+    "diagnosis": "notes/pointconv_checkpoint_metadata_diagnosis.json",
+    "receipt": "notes/pointconv_eval_runtime_recovery.json",
+    "module": "geobc.pointconv_eval_recovery",
+    "frozen_sources_changed": false,
+    "training_reused": true,
+    "recovery_updates": 0,
+    "reason": "12 tuple/list-only serialization differences, canonical JSON metadata equal"
+  },
+  "pointconv_completed_readout": {
+    "status": "completed",
+    "jobs": 3,
+    "source": "results/pointconv/metrics.json",
+    "known_U_percent": 85.092915167,
+    "known_S_percent": 98.04458729,
+    "DEVdia_U_percent": 73.765236696,
+    "DEVdia_S_percent": 89.659281358,
+    "train_seconds": 277.930625597,
+    "eval_seconds": 6.578724285,
+    "decision": "No current accuracy-cost opportunity; no k/width/seed/budget rescue",
+    "new_figure_QA": "PASS once; actual bars only, labels readable",
+    "total_planned_history": 84,
+    "completed_history": 84
+  },
+  "historical_hash_parent": "runs/slides_reproduction/hash50_full1000ep/best.pt",
+  "physical_solver_source_preparation": {
+    "status": "reader_runtime_source_final_root_released",
+    "started_at_utc": "2026-10-09T20:10:57.9144676Z",
+    "plan": "notes/geobc_elastic_pilot_plan.json",
+    "design": "notes/geobc_physical_solver_candidate_design.md",
+    "data_source": "geobc/elastic_pilot_data.py",
+    "operator_source": "geobc/elastic_pilot.py",
+    "data_ready": "notes/elastic_pilot_reader_runtime_recovery_source_ready.json",
+    "operator_ready": "notes/elastic_pilot_source_ready.json",
+    "source_eta_minutes": [
+      15,
+      20
+    ],
+    "actual_execution_released": true,
+    "scientific_rules_frozen": true,
+    "single_TRAIN_case": "101_479/ver",
+    "input_combined_wall_limit_seconds": 300,
+    "solve_limit_seconds": 600,
+    "solve_max_iterations": 2000,
+    "no_oldfinal_or_newsealed_access": true,
+    "no_stress_scalar_read": true,
+    "root_review": "Necessary math/API source review when final sources ready; no repeated AST/toy/GPU preflight",
+    "publication": "PointConv84 formal report complete; delay next private snapshot until active source writers have frozen files",
+    "released_at_utc": "2026-10-09T20:34:07.6716541Z",
+    "recovery": "notes/elastic_pilot_reader_runtime_recovery.json"
+  },
+  "physical_solver_completed_readout": {
+    "jobs": 3,
+    "coordinator_seconds": 40.361326166,
+    "preparation_seconds": 6.605677864,
+    "solve_seconds": 27.976850677,
+    "nodes": 179316,
+    "iterations": 2000,
+    "true_relative_residual": 0.0019079061411956383,
+    "numerical_state": "iteration_budget_limit",
+    "numerically_converged": false,
+    "one_TRAIN_u_percent": 0.027338035686050283,
+    "RMS_mm": 4.4761446947739514E-05,
+    "max_mm": 0.00036239097534964115,
+    "report": "results/elastic_pilot/BRIEF.md",
+    "figure_QA": "PASS once, actual trace points and frozen tolerance only",
+    "signed_displacement_reads": 1,
+    "stress_reads": 0,
+    "decision": "Clear physical-model opportunity on this single TRAIN case, but numerical convergence and cross-CAD robustness remain unproved. Next independently frozen residual-only continuation; no GT read."
+  },
+  "residual_continuation_source_preparation": {
+    "started_at_utc": "2026-10-09T20:38:37.6489874Z",
+    "source_eta_minutes": [
+      6,
+      8
+    ],
+    "status": "source_final_root_released",
+    "parent_coordinator_completed": true,
+    "source": "geobc/elastic_pilot_convergence.py",
+    "actual_execution_released": true,
+    "plan": "notes/geobc_elastic_convergence_plan.json",
+    "current_history_completed": 87,
+    "released_at_utc": "2026-10-09T20:42:36.539384Z"
+  },
+  "residual_continuation_completed_readout": {
+    "iterations": 4093,
+    "K_guards_repeated": 0,
+    "labels_read": 0,
+    "setup_repeated": 0,
+    "decision": "Numerical feasibility passed; no new label accuracy. Next separately frozen different-CAD physical screen and possible learned warmstart.",
+    "global_completed": 88,
+    "cumulative_solve_seconds": 57.011164772,
+    "coordinator_seconds": 35.152712377,
+    "status": "completed",
+    "numerically_converged": true,
+    "figure_QA": "PASS once, actual residual trace including parent costs only",
+    "new_solve_seconds": 29.034314095,
+    "report": "results/elastic_convergence/BRIEF.md",
+    "true_relative_residual": 9.9770555571315E-09
   }
 }

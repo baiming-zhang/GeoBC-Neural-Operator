@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "kind": "elastic_residual_continuation",
+  "stage": "solver_physical_residual_verification",
+  "status": "frozen_root_released",
+  "case": "101_479/ver",
+  "parent_plan": "notes/geobc_elastic_pilot_plan.json",
+  "parent_solve_output": "runs/geobc_exploration/elastic_physical101479_ver",
+  "output": "runs/geobc_exploration/elastic_convergence101479_ver",
+  "scientific_rules_frozen": true,
+  "actual_execution_released": true,
+  "decision": "The original 2000-step endpoint is numerically unconverged at true relative residual .001907906 after27.97685seconds. A separately frozen, residual-only continuation distinguishes numerical truncation from physical-model limits; no label-based tuning or alteration of the original completed result.",
+  "recipe": {
+    "maximum_iterations": 10000,
+    "maximum_cumulative_solve_wall_seconds": 300,
+    "true_relative_residual_tolerance": 1E-08,
+    "true_residual_interval": 25,
+    "checkpoint_interval": 25,
+    "resume_budget_reset": false
+  },
+  "scope": {
+    "label_reads": 0,
+    "stress_reads": 0,
+    "old_final_reads": 0,
+    "DEV_dia_reads": 0,
+    "sealed_new_test_reads": 0,
+    "models_or_weights_loaded": 0,
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "K_guards_repeated": 0,
+    "setup_repeated": 0,
+    "parent_solution_and_recurrence_retained": true
+  },
+  "limits": [
+    "Single TRAIN case approximate physics, not cross-CAD selection proof",
+    "Original 2000-step/600-second budget result remains frozen and reported unconverged",
+    "New total iterations and cumulative time include parent stage; no reset",
+    "Stop only on true residual or frozen budget/breakdown, no GT criterion",
+    "No new displacement-label error is computed; original once-read error remains original endpoint only",
+    "Material, H, constraints, P2 geometry, quadrature, K and block Jacobi unchanged"
+  ],
+  "source_implementation": "geobc/elastic_pilot_convergence.py",
+  "created_at_utc": "2026-10-09T20:38:37.6489874Z",
+  "source_sha256": {
+    "geobc/elastic_pilot_convergence.py": "e6e1b89b69a21b09950471b4467752ad46a08314a5b66df4da2d0499d7f15fb9",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27"
+  },
+  "source_ready": "notes/elastic_pilot_convergence_source_ready.json",
+  "root_released_at_utc": "2026-10-09T20:42:36.5393840Z"
+}

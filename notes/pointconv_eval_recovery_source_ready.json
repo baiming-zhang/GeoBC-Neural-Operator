@@ -1,0 +1,70 @@
+{
+  "status": "source_ready_AST_and_recorded_metadata_only",
+  "source": "geobc/pointconv_eval_recovery.py",
+  "source_sha256": "10d569877bb85f554380262c9268e59ed52b39e147160fee103ba0e42ef51807",
+  "source_bytes": 13410,
+  "author_check": {
+    "AST_passed": true,
+    "final_AST_invocations": 1,
+    "elapsed_seconds": 0.0,
+    "recorded_diagnosis_checked": true,
+    "checkpoint_rereads": 0,
+    "scientific_imports": 0,
+    "scientific_arrays_read": 0,
+    "ground_truth_read": 0,
+    "model_instances": 0,
+    "GPU_runs": 0,
+    "toys": 0,
+    "training_updates": 0
+  },
+  "diagnosis": {
+    "path": "notes/pointconv_checkpoint_metadata_diagnosis.json",
+    "sha256": "188241d6ccee2710ecfb47d3db152d90fad37572eee4aa6be1a56e06cd7f4c0e",
+    "checkpoint_step": 480,
+    "tuple_list_differences": 12,
+    "canonical_JSON_equal": true,
+    "evidence_scope": "Previously recorded diagnosis only; checkpoint not reopened",
+    "paths": [
+      "config.model.architecture.seven_independent_PC_channels.bottom",
+      "config.model.architecture.seven_independent_PC_channels.down01",
+      "config.model.architecture.seven_independent_PC_channels.down12",
+      "config.model.architecture.seven_independent_PC_channels.fine",
+      "config.model.architecture.seven_independent_PC_channels.mid",
+      "config.model.architecture.seven_independent_PC_channels.up_fine",
+      "config.model.architecture.seven_independent_PC_channels.up_mid",
+      "config.model.point_hierarchy.neighbors_layout.neighbors00",
+      "config.model.point_hierarchy.neighbors_layout.neighbors01",
+      "config.model.point_hierarchy.neighbors_layout.neighbors11",
+      "config.model.point_hierarchy.neighbors_layout.neighbors12",
+      "config.model.point_hierarchy.neighbors_layout.neighbors22"
+    ]
+  },
+  "frozen_sources_unchanged": {
+    "geobc/pointconv_train.py": "e19312c61b34c9f14e91f4c007c40284859dcd49a3a56b2e796c1e984b7ee862",
+    "geobc/pointconv_field.py": "17d9e12592ce7d4e003ab19ae581e6a696505d8c3d30343abcc3ede591d60a20",
+    "geobc/pointconv_data.py": "8fb64d46cb125fd373df2362cec8d67bbc03b70a8601c81560eebaca49cd825d"
+  },
+  "API": {
+    "request_dia_contract": "(plan_path) -> (contract, plan), original contract plus recovery_adapter source/diagnosis identity",
+    "request_contract": "Metadata-only alias for request_dia_contract",
+    "evaluate_dia": "(plan_path, output_path) -> summary; actual execution remains root-released",
+    "CLI": "python -m geobc.pointconv_eval_recovery --plan notes/geobc_pointconv_plan.json --output <run directory> [--evaluate-dia]"
+  },
+  "changed_comparisons": [
+    "checkpoint.config versus run config JSON",
+    "model.source_config versus run config.model JSON"
+  ],
+  "comparison_semantics": "Canonical JSON with sort_keys=True, compact separators, allow_nan=False; tuple/list equivalence only, no numeric/string/tensor coercion",
+  "adapter_identity": "Dynamic source SHA recorded in contract; SHA is not embedded in source, avoiding self-referential hash cycle",
+  "scientific_behavior_unchanged": [
+    "Fixed completed endpoint480 only, same route and strict checkpoint stat",
+    "Original metadata/source/cache/scaler/order/public-parameter-count checks retained",
+    "Original frozen model state strict load, full original node predictions",
+    "Same TF32 policy, input/hierarchy/cloud reuse and signed physical decode",
+    "Complete prediction and physical decode before GT labels opened",
+    "Same physical metrics, DEV5/dia aggregate and known3 reused readout",
+    "No optimizer steps, scaler fits, budget/seed/checkpoint selection or fallback"
+  ],
+  "execution_authorized_by_this_note": false,
+  "actual_evaluation_executed": false
+}

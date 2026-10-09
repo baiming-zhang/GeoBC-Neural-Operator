@@ -50,7 +50,7 @@ def read_json_if_exists(path: Path) -> dict[str, Any] | None:
 
 def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
     filename = "manifest.json" if any(module in job["command"] for module in
-        ("geobc.solver_final_eval_data", "geobc.deeponet_data", "geobc.multiscale_mesh_data")) else "summary.json"
+        ("geobc.solver_final_eval_data", "geobc.deeponet_data", "geobc.multiscale_mesh_data", "geobc.pointconv_data", "geobc.elastic_pilot_data")) else "summary.json"
     summary = read_json_if_exists(ROOT / job["output"] / filename)
     if not summary or summary.get("status") != "completed":
         return None
@@ -188,6 +188,97 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             actual_stat = target.stat()
             if {"bytes": actual_stat.st_size, "mtime_ns": actual_stat.st_mtime_ns} != record["file_stat"]:
                 raise ValueError(f"Completed sealed source file missing or changed: {job['name']}")
+    elif "geobc.elastic_pilot_data" in command:
+        from geobc.elastic_pilot_data import request_contract, read_cache_metadata
+        requested_plan = command[command.index("--plan") + 1]
+        contract, _ = request_contract(requested_plan)
+        if (summary.get("kind") != "elastic_pilot_input"
+                or summary.get("contract") != contract
+                or summary.get("labels_read") != 0 or summary.get("stress_reads") != 0):
+            raise ValueError(f"Physical input metadata or label-access contract differs: {job['name']}")
+        if summary != read_cache_metadata(requested_plan, contract=contract):
+            raise ValueError(f"Physical input cache differs from its frozen source identities: {job['name']}")
+    elif "geobc.elastic_pilot_convergence" in command:
+        from geobc.elastic_pilot_convergence import request_contract
+        requested_plan = command[command.index("--plan") + 1]
+        contract, _ = request_contract(requested_plan)
+        if (summary.get("kind") != "elastic_residual_continuation"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("node_count") != 179316):
+            raise ValueError(f"Residual continuation differs from its frozen input/state/budget: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("displacement_reads", "stress_reads", "old_final_reads", "DEV_dia_reads",
+                    "sealed_new_test_reads", "model_or_weight_reads", "optimizer_steps", "scaler_fits",
+                    "K_guards_repeated", "setup_repeated"):
+            if receipt.get(key) != 0:
+                raise ValueError(f"Residual-only continuation unexpectedly accessed or repeated {key}: {job['name']}")
+        if receipt.get("parent_state_reused") is not True:
+            raise ValueError(f"Residual continuation did not retain its parent recurrence: {job['name']}")
+    elif "geobc.elastic_pilot" in command:
+        from geobc.elastic_pilot import request_contract, _operator_metadata, source_sha, host_path
+        requested_plan = command[command.index("--plan") + 1]
+        contract, requested = request_contract(requested_plan)
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Physical operator/solve differs from its frozen mathematical model: {job['name']}")
+        if "--prepare-operator" in command:
+            if summary.get("kind") != "elastic_input_operator":
+                raise ValueError(f"Physical operator kind differs: {job['name']}")
+            _operator_metadata(contract, requested)
+            receipt = summary.get("read_receipt", {})
+            if receipt.get("displacement_reads") != 0 or receipt.get("stress_reads") != 0:
+                raise ValueError(f"Physical input operator unexpectedly accessed labels: {job['name']}")
+        else:
+            if (summary.get("kind") != "elastic_physical_solve"
+                    or summary["config"].get("operator_summary_sha256")
+                        != source_sha(host_path(requested["operator_output"]) / "summary.json")):
+                raise ValueError(f"Physical solve lacks its fixed input operator identity: {job['name']}")
+            if summary.get("numerical_state") == "breakdown":
+                if summary.get("signed_displacement_reads") != 0 or summary.get("stress_reads") != 0:
+                    raise ValueError(f"Broken physical solve unexpectedly accessed labels: {job['name']}")
+            else:
+                receipt = summary.get("read_receipt", {})
+                if (summary.get("metrics", {}).get("nodes") != 179316
+                        or receipt.get("signed_displacement_member_reads") != 1
+                        or receipt.get("stress_reads") != 0
+                        or receipt.get("prediction_and_equilibrium_persisted_before_GT") is not True
+                        or any(receipt.get(key) != 0 for key in
+                               ("old_final_reads", "DEV_dia_reads", "sealed_new_test_reads", "optimizer_steps", "scaler_fits"))):
+                    raise ValueError(f"Physical solve full-node/deferred-label contract failed: {job['name']}")
+    elif "geobc.pointconv_data" in command:
+        from geobc.pointconv_data import request_contract, read_cache_metadata
+        requested_plan = command[command.index("--plan") + 1]
+        contract, _ = request_contract(requested_plan)
+        if summary != read_cache_metadata(requested_plan, contract=contract):
+            raise ValueError(f"Completed PointConv geometry cache differs from its frozen identities: {job['name']}")
+    elif ("geobc.pointconv_eval_recovery" in command
+          or ("geobc.pointconv_train" in command and "--evaluate-dia" in command)):
+        if "geobc.pointconv_eval_recovery" in command:
+            from geobc.pointconv_eval_recovery import request_dia_contract
+        else:
+            from geobc.pointconv_train import request_dia_contract
+        requested_plan = command[command.index("--plan") + 1]
+        contract, _ = request_dia_contract(requested_plan)
+        if (summary.get("kind") != "pointconv_development_dia_eval"
+                or summary.get("config", {}).get("contract") != contract):
+            raise ValueError(f"Completed PointConv DEV dia differs from its fixed endpoint contract: {job['name']}")
+        if summary.get("training_updates") != 0 or summary.get("scaler_fits") != 0:
+            raise ValueError(f"PointConv DEV dia unexpectedly trained or refit scalers: {job['name']}")
+    elif "geobc.pointconv_train" in command:
+        from geobc.pointconv_train import request_contract
+        requested_plan = command[command.index("--plan") + 1]
+        contract, _ = request_contract(requested_plan)
+        if (summary.get("kind") != "pointconv_screen"
+                or summary.get("config", {}).get("contract") != contract):
+            raise ValueError(f"Completed PointConv screen differs from its frozen whole-case recipe: {job['name']}")
+        counts = summary.get("case_exposure_counts", {})
+        if (summary.get("endpoint_step") != 480
+                or summary.get("costs", {}).get("train_case_exposures") != 480
+                or len(counts) != 120 or any(count != 4 for count in counts.values())
+                or summary.get("first_actual_check", {}).get("passed") is not True):
+            raise ValueError(f"PointConv screen lacks checked complete TRAIN120 four-pass exposure: {job['name']}")
+        for filename in ("config.json", "last.pt", "best.pt", "step480.pt", "metrics_latest.json", "metrics_best.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed PointConv screen lacks {filename}: {job['name']}")
     elif "geobc.multiscale_mesh_data" in command:
         from geobc.multiscale_mesh_data import request_contract, read_cache_metadata
         requested_plan = command[command.index("--plan") + 1]
@@ -539,7 +630,8 @@ def stage_command(job: dict[str, Any]) -> list[str]:
          or "geobc.solver_confirmation_train" in command or "geobc.fno_response_train" in command
          or "geobc.gino_train" in command
          or ("geobc.deeponet_train" in command and "--evaluate-dia" not in command)
-         or ("geobc.multiscale_mesh_train" in command and "--evaluate-dia" not in command))
+         or ("geobc.multiscale_mesh_train" in command and "--evaluate-dia" not in command)
+         or ("geobc.pointconv_train" in command and "--evaluate-dia" not in command))
             and "--resume" not in command and (output / "last.pt").exists()):
         command.extend(["--resume", str(output / "last.pt")])
     return command

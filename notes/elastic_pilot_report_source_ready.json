@@ -1,0 +1,42 @@
+{
+  "status": "source_ready_once_AST_metadata_passed",
+  "source": "tools/summarize_elastic_pilot.py",
+  "source_sha256": "fb5a93f2daa05978f9091a62c125c114b49030e7f114224028defd9c2b41d210",
+  "plan": "notes/geobc_elastic_pilot_plan.json",
+  "plan_template_sha256": "b5736e30a4a608eabded9c67d1cc2581748da237c68543d74afda5301ec84dd5",
+  "AST_checks": 1,
+  "elapsed_seconds": 0.002333299955353141,
+  "input_JSONs": [
+    "data/geobc_elastic_input101479/manifest.json",
+    "data/geobc_elastic_operator101479/summary.json",
+    "runs/geobc_exploration/elastic_physical101479_ver/summary.json"
+  ],
+  "default_output": "results/elastic_pilot",
+  "outputs": [
+    "BRIEF.md",
+    "metrics.json",
+    "residual_cost.png only with at least2 actual positive true-residual observations"
+  ],
+  "CLI": "python -m tools.summarize_elastic_pilot --plan notes/geobc_elastic_pilot_plan.json --output results/elastic_pilot",
+  "API": "build_report(plan_path); brief(report); main()",
+  "kinds": [
+    "elastic_pilot_input",
+    "elastic_input_operator",
+    "elastic_physical_solve"
+  ],
+  "schema_checked_at_source_level": {
+    "case": "101_479/ver",
+    "all_original_nodes": 179316,
+    "operator_K_guards": 8,
+    "true_residual_threshold": 1e-08,
+    "no_convergence_claim_for_budget_or_breakdown": true
+  },
+  "report_executed": false,
+  "plot_executed": false,
+  "science_imports": 0,
+  "scientific_array_reads": 0,
+  "rawdeck_reads": 0,
+  "GT_reads": 0,
+  "weight_reads": 0,
+  "GPU_calls": 0
+}

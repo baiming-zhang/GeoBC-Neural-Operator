@@ -1,0 +1,77 @@
+{
+  "scope": "Direct recovery diagnosis only: card names/counts and controls; no GRID/element array values interpreted or printed",
+  "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw/SolverDeck/101_479.fem",
+  "source_stat": {
+    "bytes": 25331873,
+    "mtime_ns": 1791454662926453500
+  },
+  "card_counts": {
+    "GAPPRM": 1,
+    "PARAM": 4,
+    "GRID": 179321,
+    "CTETRA": 111754,
+    "RBE2": 4,
+    "RBE3": 1,
+    "PSOLID": 1,
+    "MAT1": 1,
+    "FORCE": 3,
+    "MOMENT": 1,
+    "SPC": 4,
+    "EIGRL": 1,
+    "LOAD": 4,
+    "SPCADD": 4,
+    "ENDDATA": 1
+  },
+  "controls": [
+    {
+      "line": 12,
+      "entry": "FORMAT       H3D"
+    },
+    {
+      "line": 13,
+      "entry": "DEBUG,LGSHPSNS,0.0"
+    },
+    {
+      "line": 14,
+      "entry": "ELFORCE = ALL"
+    },
+    {
+      "line": 15,
+      "entry": "ESE(H3D) = ALL"
+    },
+    {
+      "line": 60,
+      "entry": "METHOD(STRUCTURE) = 954"
+    },
+    {
+      "line": 66,
+      "entry": "GAPPRM,GAPCMPL,      NO"
+    },
+    {
+      "line": 67,
+      "entry": "PARAM,CHECKEL,      NO"
+    },
+    {
+      "line": 68,
+      "entry": "PARAM,RENUMOK,     YES"
+    },
+    {
+      "line": 69,
+      "entry": "PARAM,PRINFACC,       1"
+    },
+    {
+      "line": 70,
+      "entry": "PARAM,CONTFEL,    AUTO"
+    },
+    {
+      "line": 403613,
+      "entry": "EIGRL        9541.                     8                            MASS"
+    }
+  ],
+  "elapsed_seconds": 0.485783359,
+  "raw_deck_read": true,
+  "scientific_array_values_interpreted": 0,
+  "labels_read": 0,
+  "GPU_calls": 0,
+  "old_coordinator_live": false
+}

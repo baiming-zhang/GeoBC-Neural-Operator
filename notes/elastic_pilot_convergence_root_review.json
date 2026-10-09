@@ -1,0 +1,36 @@
+{
+  "status": "necessary_source_math_API_review_passed",
+  "source_sha256": {
+    "geobc/elastic_pilot_convergence.py": "e6e1b89b69a21b09950471b4467752ad46a08314a5b66df4da2d0499d7f15fb9",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27"
+  },
+  "source_ready": "notes/elastic_pilot_convergence_source_ready.json",
+  "review": [
+    "Independent new contract includes immutable parent summaries/checkpoint/op/source identities",
+    "Original z/r/p copied once; reconstructed rho uses unchanged Cholesky and retained r,p",
+    "Cumulative max parent receipts and attempt/K counts retained, no budget reset",
+    "10000 total attempted steps /300 total solve seconds, true residual1e-8 only",
+    "No GT/labels/weights/helper-metrics call; original accuracy remains original endpoint",
+    "Original K/geometry/constraints/load/preconditioner reused; no8guard or setup rebuilding",
+    "New endpoint physical field and equilibrium before any possible future label protocol"
+  ],
+  "root_module_AST_repeated": 0,
+  "root_arrays_or_GPU": 0,
+  "integration_AST": {
+    "calls": 1,
+    "seconds": 0.019505782,
+    "paths": [
+      "tools/run_geobc_exploration.py",
+      "tools/summarize_geobc_exploration.py"
+    ],
+    "module_imports": 0
+  },
+  "previous_coordinator": {
+    "phase": "completed",
+    "identity_confirmed_gone": true,
+    "pid": 399
+  },
+  "reviewed_at_utc": "2026-10-09T20:42:36.5393840Z"
+}

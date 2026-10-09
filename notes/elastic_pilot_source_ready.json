@@ -1,0 +1,79 @@
+{
+  "status": "source_ready_AST_metadata_only",
+  "source": "geobc/elastic_pilot.py",
+  "source_sha256": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+  "source_bytes": 41941,
+  "plan_snapshot_sha256": "7b7485bb15e2424f405b11d4e0a59b6b3a67f87bd7ec3ee20122a4753a58e50f",
+  "plan": "notes/geobc_elastic_pilot_plan.json",
+  "source_dependencies": {
+    "geobc/elastic_pilot_data.py": "13b4c1524e57da269d01aeaa7c0d4539af5ad3d987f061df99246120324c0946",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27"
+  },
+  "data_ready_sha256": "e7288c5d2615f585564e468f880bceb56a6c336c5f944cefed3f4cf9286090af",
+  "author_check": {
+    "AST_passed": true,
+    "final_AST_invocations": 1,
+    "stdlib_metadata_seconds": 0.0051522,
+    "scientific_imports": 0,
+    "scientific_arrays_read": 0,
+    "GT_reads": 0,
+    "weight_or_checkpoint_reads": 0,
+    "model_instances": 0,
+    "GPU_runs": 0,
+    "toys": 0,
+    "actual_contract_calls": 0,
+    "training_updates": 0
+  },
+  "API": {
+    "request_contract": "(plan_path) -> (contract, plan); pure stdlib metadata, includes inherited input contract/source/science identity",
+    "prepare_operator": "(plan_path, output_path=None) -> summary; explicit separate input-only cache/8guard stage",
+    "solve": "(plan_path, output_path=None) -> summary; strict reuse of completed operator, no setup/guard rerun",
+    "operator_CLI": "python -m geobc.elastic_pilot --plan notes/geobc_elastic_pilot_plan.json --output data/geobc_elastic_operator101479 --prepare-operator",
+    "solve_CLI": "python -m geobc.elastic_pilot --plan notes/geobc_elastic_pilot_plan.json --output runs/geobc_exploration/elastic_physical101479_ver"
+  },
+  "input_API": {
+    "read_cache_metadata": "(plan_path, contract=inherited_input_contract) -> completed feasible manifest; before CUDA init",
+    "load_input": "(manifest, device) -> vertices_mm/cells10/free_node_ids/fixed_node_ids/force/lame[lambda,mu]/regions/derived CSR blocks/grid_node_ids/reference_xyz_mm",
+    "combined_setup_wall": "manifest.preparation_seconds plus complete operator wall <=300; not300 per job"
+  },
+  "math": {
+    "shape": "FP64 source-equivalent VTK-order full10 dN/dr; J[c,r], physical grad=solve(J.T,dN/dr.T).T",
+    "quadrature": "4 symmetric positive Gauss points; eachreference weight1/24, physical weightabsdetJ/24",
+    "geometry": "all111754 centers+447016Q, normalizedabsdet>1e-14/condition<1e12/same orientation percell; no repair or skippedcell",
+    "K": "matrix-free gather eps=sym(du/dx), sigma=2mu eps+lambda tr(eps)I, complete weight sigma grad scatter",
+    "Jacobi": "sum_q wabsdetJ [mu dot(g,g) I+(lambda+mu) outer(g,g)], exact reducedfree identity3x3 blocks; Cholesky, no shift",
+    "reduction": "actual deck-derived fixedtranslations zero/freeidentity; output-only RBE3 ref restoration does not enterA/CG",
+    "eight_guards": "6physicalrigidnull +seed2026free u/v; symmetry/positiveenergy andfixedrigidrank6; no full-spectrum claim"
+  },
+  "source_derived_sizes_not_measured": {
+    "cached_gradients_shape": [
+      111754,
+      4,
+      10,
+      3
+    ],
+    "cached_gradients_bytes": 107283840,
+    "quadrature_weight_bytes": 3576128,
+    "maximum_cholesky_bytes_beforefreecountknown": 12910752
+  },
+  "PCG": {
+    "initial_guess": "zero",
+    "maximum_actual_iteration_attempts": 2000,
+    "maximum_cumulative_solve_wall_seconds": 600,
+    "true_residual_interval": 25,
+    "true_convergence_tolerance": 1e-08,
+    "extra_true_check": "apparent recursive convergence is verified before accepting; final true residual charged tosamebudget",
+    "resume": "atomic vectorcheckpoint every25/final +livecost/iteration/Kjournal; strict contract/stat; spent recordedcost/attempts carried eveniflastvectorsneedreplay",
+    "breakdown": "nonfinite ornonpositive pTAp/rTMinvr ->completed numericalnegative/noGT, notsolverfallback",
+    "bounded_endpoint": "finiteunconverged budget endpoint separatelymarked; fullphysicalu/reaction/balance persisted before sole signeduGT read"
+  },
+  "scientific_limits": [
+    "4QcurvedP2 andweighted-LS RBE3 explicit approximations, notcommercialsolver exact",
+    "rigid/symmetry/randomenergy andsampledgeometry guards do not proveglobal SPD/full-domainregularity",
+    "fullNphysicalu andfixedregions onlyone TRAIN/ver; nostress scalar reconstruction/generalization/engineering qualification",
+    "small true residual is numericalconvergence for thisoperator, notagreementwithGT",
+    "GTnotusedforstopping/repair/tolerance/preconditioner/budget"
+  ],
+  "actual_execution_released_by_author": false,
+  "source_frozen": true
+}

@@ -1,0 +1,1684 @@
+{
+  "contract": {
+    "kind": "pointconv_input",
+    "schema": {
+      "name": "geobc_pointconv_geometry_v1",
+      "kind": "pointconv_input",
+      "scope": "TRAIN40/development-validation5 canonical ver; original full node rows",
+      "fps_nodes": [
+        2048,
+        128
+      ],
+      "neighbors32": 32,
+      "query_block": 2048,
+      "FPS": "pure Torch CUDA FP64 running minimum squared distances; smallest original row first; max-distance ties smallest original row; no loop host scalar synchronization",
+      "FPS_failure": "zero maximum remaining distance before quota: completed scientific negative; no duplicate anchor or alternative quota",
+      "neighbors": "self row then nearest31 different source rows; exact FP64 distance/original-row ordering; exact cutoff ties completed by radius search",
+      "coordinates": "existing canonical FP32 xyz promoted FP64 for searches, FPS and KDE; save FP32; no new normalization",
+      "density": "source-level sigma=median d32; p=mean32 exp(-d2/(2sigma2)); self included; sigma<=0 negative, no floor",
+      "interpolation": "exact nearest3 by distance/original row; zero-distance neighbors alone equal weighted; otherwise normalized1/d without floor",
+      "delta_direction": "source_xyz-query_xyz, existing normalized coordinates, no second /L",
+      "stride": "neighbors01=neighbors00[anchors01]; neighbors12=neighbors11[anchors12]",
+      "runtime": "xyz0/1/2,p0/1/2 float32; neighbors00/01/11/12/22 and interp21/10_indices int64; interp21/10_weights float32",
+      "anchors": "zero-based original row indices, never GRID_ID minus1; coarse rows retain FPS order",
+      "cache_indices": "int32 neighbor/interpolation tables; int64 anchors and original coarse row IDs",
+      "input_array_allowlist": [
+        "canonical xyz.npy"
+      ],
+      "identity_only": [
+        "canonical features.npy",
+        "original cloud.npy",
+        "original mask.npy",
+        "canonical prepared archive stat"
+      ],
+      "coverage": "geometry row/source participation only; BC role coverage unmeasured, no preservation claim",
+      "FP32_interpolation_partition_tolerance": 2e-07,
+      "cost_semantics": "build_seconds includes FPS/knn/KDE/interpolation; elapsed_seconds is measured CAD wall, not sum of overlapping cost fields",
+      "target_independent": true,
+      "labels_read": 0,
+      "scaler_fits": 0,
+      "all_point_KDE": false,
+      "topology_or_Dirichlet_claim": false,
+      "latent_activations_cached": false
+    },
+    "source_sha256": {
+      "geobc/pointconv_data.py": "8fb64d46cb125fd373df2362cec8d67bbc03b70a8601c81560eebaca49cd825d"
+    },
+    "design_sha256": "0b01738c44cc3ca3472fc9f36a77300adac0144438ff5509f626cd0be45519e2",
+    "split_sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859",
+    "selection_manifest_sha256": "76ba5189e0cfb4db226db472ca9cfe019f4d7f81c1eff9d0335726eea73a4ced",
+    "CAD_order": [
+      "101_428",
+      "101_479",
+      "101_56",
+      "101_78",
+      "101_86",
+      "102_240",
+      "102_79",
+      "107_113",
+      "107_147",
+      "107_150",
+      "107_186",
+      "107_233",
+      "107_240",
+      "107_248",
+      "107_291",
+      "107_320",
+      "107_342",
+      "107_459",
+      "10_30",
+      "10_421",
+      "10_460",
+      "10_492",
+      "10_58",
+      "10_80",
+      "113_129",
+      "113_170",
+      "113_390",
+      "113_86",
+      "113_95",
+      "114_28",
+      "114_456",
+      "114_525",
+      "114_91",
+      "116_102",
+      "116_113",
+      "116_30",
+      "116_348",
+      "119_221",
+      "119_322",
+      "119_559",
+      "102_249",
+      "102_38",
+      "107_91",
+      "114_202",
+      "116_440"
+    ],
+    "train_CADs": [
+      "101_428",
+      "101_479",
+      "101_56",
+      "101_78",
+      "101_86",
+      "102_240",
+      "102_79",
+      "107_113",
+      "107_147",
+      "107_150",
+      "107_186",
+      "107_233",
+      "107_240",
+      "107_248",
+      "107_291",
+      "107_320",
+      "107_342",
+      "107_459",
+      "10_30",
+      "10_421",
+      "10_460",
+      "10_492",
+      "10_58",
+      "10_80",
+      "113_129",
+      "113_170",
+      "113_390",
+      "113_86",
+      "113_95",
+      "114_28",
+      "114_456",
+      "114_525",
+      "114_91",
+      "116_102",
+      "116_113",
+      "116_30",
+      "116_348",
+      "119_221",
+      "119_322",
+      "119_559"
+    ],
+    "validation_CADs": [
+      "102_249",
+      "102_38",
+      "107_91",
+      "114_202",
+      "116_440"
+    ],
+    "inputs": {
+      "101_428": {
+        "cad_id": "101_428",
+        "group": "train",
+        "key": "101_428/ver",
+        "num_nodes": 270276,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+          "bytes": 45320930,
+          "mtime_ns": 1791511980352062400
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/101_428/xyz.npy",
+            "bytes": 3243440,
+            "mtime_ns": 1791554048458419900
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/101_428_ver/features.npy",
+            "bytes": 27027728,
+            "mtime_ns": 1791554048537418700
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/101_428/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554048463418600
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/101_428/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554048467418100
+          }
+        }
+      },
+      "101_479": {
+        "cad_id": "101_479",
+        "group": "train",
+        "key": "101_479/ver",
+        "num_nodes": 179316,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/101_479_ver.npz",
+          "bytes": 30122690,
+          "mtime_ns": 1791511974286089700
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/101_479/xyz.npy",
+            "bytes": 2151920,
+            "mtime_ns": 1791554049062253300
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/101_479_ver/features.npy",
+            "bytes": 17931728,
+            "mtime_ns": 1791554049122815500
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/101_479/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554049066253600
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/101_479/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554049070257200
+          }
+        }
+      },
+      "101_56": {
+        "cad_id": "101_56",
+        "group": "train",
+        "key": "101_56/ver",
+        "num_nodes": 221213,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+          "bytes": 37050462,
+          "mtime_ns": 1791454716033307500
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/101_56/xyz.npy",
+            "bytes": 2654684,
+            "mtime_ns": 1791554049588741400
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/101_56_ver/features.npy",
+            "bytes": 22121428,
+            "mtime_ns": 1791554049672636800
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/101_56/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554049594633700
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/101_56/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554049600637400
+          }
+        }
+      },
+      "101_78": {
+        "cad_id": "101_78",
+        "group": "train",
+        "key": "101_78/ver",
+        "num_nodes": 192353,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+          "bytes": 32255262,
+          "mtime_ns": 1791511981517772800
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/101_78/xyz.npy",
+            "bytes": 2308364,
+            "mtime_ns": 1791554050152143900
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/101_78_ver/features.npy",
+            "bytes": 19235428,
+            "mtime_ns": 1791554050216522700
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/101_78/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554050156491600
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/101_78/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554050160966500
+          }
+        }
+      },
+      "101_86": {
+        "cad_id": "101_86",
+        "group": "train",
+        "key": "101_86/ver",
+        "num_nodes": 219150,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/101_86_ver.npz",
+          "bytes": 36740830,
+          "mtime_ns": 1791511982019725700
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/101_86/xyz.npy",
+            "bytes": 2629928,
+            "mtime_ns": 1791554050649162400
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/101_86_ver/features.npy",
+            "bytes": 21915128,
+            "mtime_ns": 1791554050719920000
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/101_86/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554050654184900
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/101_86/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554050658185900
+          }
+        }
+      },
+      "102_240": {
+        "cad_id": "102_240",
+        "group": "train",
+        "key": "102_240/ver",
+        "num_nodes": 204361,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/102_240_ver.npz",
+          "bytes": 34266882,
+          "mtime_ns": 1791511982745305100
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/102_240/xyz.npy",
+            "bytes": 2452460,
+            "mtime_ns": 1791554051181138400
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/102_240_ver/features.npy",
+            "bytes": 20436228,
+            "mtime_ns": 1791554051245686600
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/102_240/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554051184692300
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/102_240/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554051189691800
+          }
+        }
+      },
+      "102_79": {
+        "cad_id": "102_79",
+        "group": "train",
+        "key": "102_79/ver",
+        "num_nodes": 221650,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/102_79_ver.npz",
+          "bytes": 37152542,
+          "mtime_ns": 1791511984511841700
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/102_79/xyz.npy",
+            "bytes": 2659928,
+            "mtime_ns": 1791554051693491700
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/102_79_ver/features.npy",
+            "bytes": 22165128,
+            "mtime_ns": 1791554051763539600
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/102_79/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554051697491900
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/102_79/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554051702228600
+          }
+        }
+      },
+      "107_113": {
+        "cad_id": "107_113",
+        "group": "train",
+        "key": "107_113/ver",
+        "num_nodes": 229808,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_113_ver.npz",
+          "bytes": 38503042,
+          "mtime_ns": 1791511985189641600
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_113/xyz.npy",
+            "bytes": 2757824,
+            "mtime_ns": 1791554052238321700
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_113_ver/features.npy",
+            "bytes": 22980928,
+            "mtime_ns": 1791554052310323600
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_113/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554052242321500
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_113/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554052247321500
+          }
+        }
+      },
+      "107_147": {
+        "cad_id": "107_147",
+        "group": "train",
+        "key": "107_147/ver",
+        "num_nodes": 199727,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_147_ver.npz",
+          "bytes": 33508354,
+          "mtime_ns": 1791454720137233200
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_147/xyz.npy",
+            "bytes": 2396852,
+            "mtime_ns": 1791554052814361900
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_147_ver/features.npy",
+            "bytes": 19972828,
+            "mtime_ns": 1791554052881362600
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_147/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554052819363200
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_147/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554052824361700
+          }
+        }
+      },
+      "107_150": {
+        "cad_id": "107_150",
+        "group": "train",
+        "key": "107_150/ver",
+        "num_nodes": 325387,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_150_ver.npz",
+          "bytes": 54509634,
+          "mtime_ns": 1791511987034228000
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_150/xyz.npy",
+            "bytes": 3904772,
+            "mtime_ns": 1791554053441948300
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_150_ver/features.npy",
+            "bytes": 32538828,
+            "mtime_ns": 1791554053529947100
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_150/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554053446947700
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_150/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554053450947200
+          }
+        }
+      },
+      "107_186": {
+        "cad_id": "107_186",
+        "group": "train",
+        "key": "107_186/ver",
+        "num_nodes": 273651,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_186_ver.npz",
+          "bytes": 45799970,
+          "mtime_ns": 1791511987253609200
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_186/xyz.npy",
+            "bytes": 3283940,
+            "mtime_ns": 1791554054141430000
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_186_ver/features.npy",
+            "bytes": 27365228,
+            "mtime_ns": 1791554054222481700
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_186/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554054146431300
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_186/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554054151428500
+          }
+        }
+      },
+      "107_233": {
+        "cad_id": "107_233",
+        "group": "train",
+        "key": "107_233/ver",
+        "num_nodes": 236609,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_233_ver.npz",
+          "bytes": 39639586,
+          "mtime_ns": 1791511988594253200
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_233/xyz.npy",
+            "bytes": 2839436,
+            "mtime_ns": 1791554054758758600
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_233_ver/features.npy",
+            "bytes": 23661028,
+            "mtime_ns": 1791554054834757400
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_233/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554054763757600
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_233/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554054768757400
+          }
+        }
+      },
+      "107_240": {
+        "cad_id": "107_240",
+        "group": "train",
+        "key": "107_240/ver",
+        "num_nodes": 208405,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_240_ver.npz",
+          "bytes": 34940130,
+          "mtime_ns": 1791454775603369900
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_240/xyz.npy",
+            "bytes": 2500988,
+            "mtime_ns": 1791554055331087100
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_240_ver/features.npy",
+            "bytes": 20840628,
+            "mtime_ns": 1791554055407175200
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_240/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554055335087400
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_240/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554055340088500
+          }
+        }
+      },
+      "107_248": {
+        "cad_id": "107_248",
+        "group": "train",
+        "key": "107_248/ver",
+        "num_nodes": 206054,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_248_ver.npz",
+          "bytes": 34531330,
+          "mtime_ns": 1791511989802133900
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_248/xyz.npy",
+            "bytes": 2472776,
+            "mtime_ns": 1791554055937795400
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_248_ver/features.npy",
+            "bytes": 20605528,
+            "mtime_ns": 1791554056014794200
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_248/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554055943794400
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_248/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554055948794500
+          }
+        }
+      },
+      "107_291": {
+        "cad_id": "107_291",
+        "group": "train",
+        "key": "107_291/ver",
+        "num_nodes": 211839,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_291_ver.npz",
+          "bytes": 35527394,
+          "mtime_ns": 1791511989875585700
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_291/xyz.npy",
+            "bytes": 2542196,
+            "mtime_ns": 1791554056540861400
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_291_ver/features.npy",
+            "bytes": 21184028,
+            "mtime_ns": 1791554056630861200
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_291/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554056547865200
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_291/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554056553863000
+          }
+        }
+      },
+      "107_320": {
+        "cad_id": "107_320",
+        "group": "train",
+        "key": "107_320/ver",
+        "num_nodes": 210675,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_320_ver.npz",
+          "bytes": 35325602,
+          "mtime_ns": 1791511974458606800
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_320/xyz.npy",
+            "bytes": 2528228,
+            "mtime_ns": 1791554057085132100
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_320_ver/features.npy",
+            "bytes": 21067628,
+            "mtime_ns": 1791554057154132800
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_320/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554057089132200
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_320/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554057094132800
+          }
+        }
+      },
+      "107_342": {
+        "cad_id": "107_342",
+        "group": "train",
+        "key": "107_342/ver",
+        "num_nodes": 205599,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_342_ver.npz",
+          "bytes": 34525826,
+          "mtime_ns": 1791454777219057600
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_342/xyz.npy",
+            "bytes": 2467316,
+            "mtime_ns": 1791554057602947100
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_342_ver/features.npy",
+            "bytes": 20560028,
+            "mtime_ns": 1791554057670247900
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_342/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554057607947300
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_342/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554057611946900
+          }
+        }
+      },
+      "107_459": {
+        "cad_id": "107_459",
+        "group": "train",
+        "key": "107_459/ver",
+        "num_nodes": 206544,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_459_ver.npz",
+          "bytes": 34650530,
+          "mtime_ns": 1791511991593078000
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_459/xyz.npy",
+            "bytes": 2478656,
+            "mtime_ns": 1791554058120131500
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_459_ver/features.npy",
+            "bytes": 20654528,
+            "mtime_ns": 1791554058187852000
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_459/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554058125137600
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_459/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554058129135800
+          }
+        }
+      },
+      "10_30": {
+        "cad_id": "10_30",
+        "group": "train",
+        "key": "10_30/ver",
+        "num_nodes": 158221,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/10_30_ver.npz",
+          "bytes": 26686138,
+          "mtime_ns": 1791454671925247900
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/10_30/xyz.npy",
+            "bytes": 1898780,
+            "mtime_ns": 1791554058608647800
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/10_30_ver/features.npy",
+            "bytes": 15822228,
+            "mtime_ns": 1791554058667705100
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/10_30/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554058613706100
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/10_30/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554058617705500
+          }
+        }
+      },
+      "10_421": {
+        "cad_id": "10_421",
+        "group": "train",
+        "key": "10_421/ver",
+        "num_nodes": 189704,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/10_421_ver.npz",
+          "bytes": 31828254,
+          "mtime_ns": 1791511976448513400
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/10_421/xyz.npy",
+            "bytes": 2276576,
+            "mtime_ns": 1791554059054520200
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/10_421_ver/features.npy",
+            "bytes": 18970528,
+            "mtime_ns": 1791554059116902600
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/10_421/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554059058903500
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/10_421/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554059062902800
+          }
+        }
+      },
+      "10_460": {
+        "cad_id": "10_460",
+        "group": "train",
+        "key": "10_460/ver",
+        "num_nodes": 200331,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/10_460_ver.npz",
+          "bytes": 33593470,
+          "mtime_ns": 1791511977411310500
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/10_460/xyz.npy",
+            "bytes": 2404100,
+            "mtime_ns": 1791554059593853400
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/10_460_ver/features.npy",
+            "bytes": 20033228,
+            "mtime_ns": 1791554059659513700
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/10_460/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554059597853000
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/10_460/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554059602853500
+          }
+        }
+      },
+      "10_492": {
+        "cad_id": "10_492",
+        "group": "train",
+        "key": "10_492/ver",
+        "num_nodes": 213235,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/10_492_ver.npz",
+          "bytes": 35734814,
+          "mtime_ns": 1791511977702753300
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/10_492/xyz.npy",
+            "bytes": 2558948,
+            "mtime_ns": 1791554060146576500
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/10_492_ver/features.npy",
+            "bytes": 21323628,
+            "mtime_ns": 1791554060215629300
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/10_492/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554060151577700
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/10_492/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554060155576300
+          }
+        }
+      },
+      "10_58": {
+        "cad_id": "10_58",
+        "group": "train",
+        "key": "10_58/ver",
+        "num_nodes": 254645,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/10_58_ver.npz",
+          "bytes": 42623162,
+          "mtime_ns": 1791454713397443600
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/10_58/xyz.npy",
+            "bytes": 3055868,
+            "mtime_ns": 1791554060683022800
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/10_58_ver/features.npy",
+            "bytes": 25464628,
+            "mtime_ns": 1791554060758757300
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/10_58/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554060687022300
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/10_58/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554060691022100
+          }
+        }
+      },
+      "10_80": {
+        "cad_id": "10_80",
+        "group": "train",
+        "key": "10_80/ver",
+        "num_nodes": 162082,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/10_80_ver.npz",
+          "bytes": 27260410,
+          "mtime_ns": 1791511978847905300
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/10_80/xyz.npy",
+            "bytes": 1945112,
+            "mtime_ns": 1791554061236800200
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/10_80_ver/features.npy",
+            "bytes": 16208328,
+            "mtime_ns": 1791554061293306700
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/10_80/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554061241307100
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/10_80/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554061245307100
+          }
+        }
+      },
+      "113_129": {
+        "cad_id": "113_129",
+        "group": "train",
+        "key": "113_129/ver",
+        "num_nodes": 236193,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/113_129_ver.npz",
+          "bytes": 39587618,
+          "mtime_ns": 1791454779166665000
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/113_129/xyz.npy",
+            "bytes": 2834444,
+            "mtime_ns": 1791554061690026200
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/113_129_ver/features.npy",
+            "bytes": 23619428,
+            "mtime_ns": 1791554061760756400
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/113_129/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554061694026000
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/113_129/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554061698026100
+          }
+        }
+      },
+      "113_170": {
+        "cad_id": "113_170",
+        "group": "train",
+        "key": "113_170/ver",
+        "num_nodes": 254021,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/113_170_ver.npz",
+          "bytes": 42550786,
+          "mtime_ns": 1791511994288369300
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/113_170/xyz.npy",
+            "bytes": 3048380,
+            "mtime_ns": 1791554062255078000
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/113_170_ver/features.npy",
+            "bytes": 25402228,
+            "mtime_ns": 1791554062328715900
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/113_170/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554062259715300
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/113_170/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554062263715400
+          }
+        }
+      },
+      "113_390": {
+        "cad_id": "113_390",
+        "group": "train",
+        "key": "113_390/ver",
+        "num_nodes": 198740,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/113_390_ver.npz",
+          "bytes": 33348514,
+          "mtime_ns": 1791511995482747200
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/113_390/xyz.npy",
+            "bytes": 2385008,
+            "mtime_ns": 1791554062828365600
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/113_390_ver/features.npy",
+            "bytes": 19874128,
+            "mtime_ns": 1791554062892782100
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/113_390/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554062832782300
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/113_390/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554062836781900
+          }
+        }
+      },
+      "113_86": {
+        "cad_id": "113_86",
+        "group": "train",
+        "key": "113_86/ver",
+        "num_nodes": 249986,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/113_86_ver.npz",
+          "bytes": 41862078,
+          "mtime_ns": 1791511996895554800
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/113_86/xyz.npy",
+            "bytes": 2999960,
+            "mtime_ns": 1791554063373117900
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/113_86_ver/features.npy",
+            "bytes": 24998728,
+            "mtime_ns": 1791554063452005300
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/113_86/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554063378117800
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/113_86/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554063382117800
+          }
+        }
+      },
+      "113_95": {
+        "cad_id": "113_95",
+        "group": "train",
+        "key": "113_95/ver",
+        "num_nodes": 212909,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/113_95_ver.npz",
+          "bytes": 35687838,
+          "mtime_ns": 1791511997799793100
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/113_95/xyz.npy",
+            "bytes": 2555036,
+            "mtime_ns": 1791554064103364000
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/113_95_ver/features.npy",
+            "bytes": 21291028,
+            "mtime_ns": 1791554064172368400
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/113_95/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554064108364100
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/113_95/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554064112363800
+          }
+        }
+      },
+      "114_28": {
+        "cad_id": "114_28",
+        "group": "train",
+        "key": "114_28/ver",
+        "num_nodes": 184824,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/114_28_ver.npz",
+          "bytes": 31001854,
+          "mtime_ns": 1791454783943683300
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/114_28/xyz.npy",
+            "bytes": 2218016,
+            "mtime_ns": 1791554064613570700
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/114_28_ver/features.npy",
+            "bytes": 18482528,
+            "mtime_ns": 1791554064675569900
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/114_28/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554064617570000
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/114_28/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554064622569800
+          }
+        }
+      },
+      "114_456": {
+        "cad_id": "114_456",
+        "group": "train",
+        "key": "114_456/ver",
+        "num_nodes": 190969,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/114_456_ver.npz",
+          "bytes": 32079330,
+          "mtime_ns": 1791512000221657200
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/114_456/xyz.npy",
+            "bytes": 2291756,
+            "mtime_ns": 1791554065086263300
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/114_456_ver/features.npy",
+            "bytes": 19097028,
+            "mtime_ns": 1791554065153263500
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/114_456/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554065091263100
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/114_456/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554065096263600
+          }
+        }
+      },
+      "114_525": {
+        "cad_id": "114_525",
+        "group": "train",
+        "key": "114_525/ver",
+        "num_nodes": 266509,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/114_525_ver.npz",
+          "bytes": 44607714,
+          "mtime_ns": 1791512001172399000
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/114_525/xyz.npy",
+            "bytes": 3198236,
+            "mtime_ns": 1791554065609471500
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/114_525_ver/features.npy",
+            "bytes": 26651028,
+            "mtime_ns": 1791554065689471600
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/114_525/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554065614471500
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/114_525/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554065618471700
+          }
+        }
+      },
+      "114_91": {
+        "cad_id": "114_91",
+        "group": "train",
+        "key": "114_91/ver",
+        "num_nodes": 175194,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/114_91_ver.npz",
+          "bytes": 29408638,
+          "mtime_ns": 1791454785895623500
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/114_91/xyz.npy",
+            "bytes": 2102456,
+            "mtime_ns": 1791554066248696500
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/114_91_ver/features.npy",
+            "bytes": 17519528,
+            "mtime_ns": 1791554066315697200
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/114_91/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554066253697600
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/114_91/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554066257697000
+          }
+        }
+      },
+      "116_102": {
+        "cad_id": "116_102",
+        "group": "train",
+        "key": "116_102/ver",
+        "num_nodes": 225262,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/116_102_ver.npz",
+          "bytes": 37773282,
+          "mtime_ns": 1791512002770767700
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/116_102/xyz.npy",
+            "bytes": 2703272,
+            "mtime_ns": 1791554066788065200
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/116_102_ver/features.npy",
+            "bytes": 22526328,
+            "mtime_ns": 1791554066860065700
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/116_102/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554066793064700
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/116_102/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554066798064700
+          }
+        }
+      },
+      "116_113": {
+        "cad_id": "116_113",
+        "group": "train",
+        "key": "116_113/ver",
+        "num_nodes": 224078,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/116_113_ver.npz",
+          "bytes": 37577794,
+          "mtime_ns": 1791512003024859200
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/116_113/xyz.npy",
+            "bytes": 2689064,
+            "mtime_ns": 1791554067336563300
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/116_113_ver/features.npy",
+            "bytes": 22407928,
+            "mtime_ns": 1791554067409195200
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/116_113/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554067341563300
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/116_113/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554067346609000
+          }
+        }
+      },
+      "116_30": {
+        "cad_id": "116_30",
+        "group": "train",
+        "key": "116_30/ver",
+        "num_nodes": 152853,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/116_30_ver.npz",
+          "bytes": 25715902,
+          "mtime_ns": 1791512004014975700
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/116_30/xyz.npy",
+            "bytes": 1834364,
+            "mtime_ns": 1791554067864454500
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/116_30_ver/features.npy",
+            "bytes": 15285428,
+            "mtime_ns": 1791554067923453500
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/116_30/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554067869455400
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/116_30/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554067873454400
+          }
+        }
+      },
+      "116_348": {
+        "cad_id": "116_348",
+        "group": "train",
+        "key": "116_348/ver",
+        "num_nodes": 193268,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/116_348_ver.npz",
+          "bytes": 32429986,
+          "mtime_ns": 1791454788315856100
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/116_348/xyz.npy",
+            "bytes": 2319344,
+            "mtime_ns": 1791554068310646500
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/116_348_ver/features.npy",
+            "bytes": 19326928,
+            "mtime_ns": 1791554068376645900
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/116_348/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554068315646600
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/116_348/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554068319646700
+          }
+        }
+      },
+      "119_221": {
+        "cad_id": "119_221",
+        "group": "train",
+        "key": "119_221/ver",
+        "num_nodes": 260275,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/119_221_ver.npz",
+          "bytes": 43663074,
+          "mtime_ns": 1791512006907697600
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/119_221/xyz.npy",
+            "bytes": 3123428,
+            "mtime_ns": 1791554068832157400
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/119_221_ver/features.npy",
+            "bytes": 26027628,
+            "mtime_ns": 1791554068920157400
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/119_221/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554068837157100
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/119_221/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554068842157700
+          }
+        }
+      },
+      "119_322": {
+        "cad_id": "119_322",
+        "group": "train",
+        "key": "119_322/ver",
+        "num_nodes": 223170,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/119_322_ver.npz",
+          "bytes": 37397186,
+          "mtime_ns": 1791454790379038000
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/119_322/xyz.npy",
+            "bytes": 2678168,
+            "mtime_ns": 1791554069435111700
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/119_322_ver/features.npy",
+            "bytes": 22317128,
+            "mtime_ns": 1791554069515112800
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/119_322/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554069439112000
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/119_322/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554069444112100
+          }
+        }
+      },
+      "119_559": {
+        "cad_id": "119_559",
+        "group": "train",
+        "key": "119_559/ver",
+        "num_nodes": 244209,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/119_559_ver.npz",
+          "bytes": 40944098,
+          "mtime_ns": 1791512008618912700
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/119_559/xyz.npy",
+            "bytes": 2930636,
+            "mtime_ns": 1791554070007017100
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/119_559_ver/features.npy",
+            "bytes": 24421028,
+            "mtime_ns": 1791554070111014200
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/119_559/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554070014024200
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/119_559/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554070021016000
+          }
+        }
+      },
+      "102_249": {
+        "cad_id": "102_249",
+        "group": "validation",
+        "key": "102_249/ver",
+        "num_nodes": 211173,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+          "bytes": 35482562,
+          "mtime_ns": 1791454718057858700
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/102_249/xyz.npy",
+            "bytes": 2534204,
+            "mtime_ns": 1791554070601708400
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/102_249_ver/features.npy",
+            "bytes": 21117428,
+            "mtime_ns": 1791554070672213700
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/102_249/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554070608214200
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/102_249/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554070613214200
+          }
+        }
+      },
+      "102_38": {
+        "cad_id": "102_38",
+        "group": "validation",
+        "key": "102_38/ver",
+        "num_nodes": 197514,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/102_38_ver.npz",
+          "bytes": 33185758,
+          "mtime_ns": 1791511983883164000
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/102_38/xyz.npy",
+            "bytes": 2370296,
+            "mtime_ns": 1791554071132773300
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/102_38_ver/features.npy",
+            "bytes": 19751528,
+            "mtime_ns": 1791554071198841600
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/102_38/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554071137773600
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/102_38/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554071141773300
+          }
+        }
+      },
+      "107_91": {
+        "cad_id": "107_91",
+        "group": "validation",
+        "key": "107_91/ver",
+        "num_nodes": 190331,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/107_91_ver.npz",
+          "bytes": 31947102,
+          "mtime_ns": 1791511992179346700
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/107_91/xyz.npy",
+            "bytes": 2284100,
+            "mtime_ns": 1791554071625158100
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/107_91_ver/features.npy",
+            "bytes": 19033228,
+            "mtime_ns": 1791554071689298800
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/107_91/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554071629295500
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/107_91/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554071634298600
+          }
+        }
+      },
+      "114_202": {
+        "cad_id": "114_202",
+        "group": "validation",
+        "key": "114_202/ver",
+        "num_nodes": 158356,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/114_202_ver.npz",
+          "bytes": 26618466,
+          "mtime_ns": 1791511975169216600
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/114_202/xyz.npy",
+            "bytes": 1900400,
+            "mtime_ns": 1791554072113123800
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/114_202_ver/features.npy",
+            "bytes": 15835728,
+            "mtime_ns": 1791554072176752100
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/114_202/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554072119073300
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/114_202/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554072124192000
+          }
+        }
+      },
+      "116_440": {
+        "cad_id": "116_440",
+        "group": "validation",
+        "key": "116_440/ver",
+        "num_nodes": 176577,
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+        "prepared_identity_only": {
+          "path": "data/prepared_geobc_multiload/116_440_ver.npz",
+          "bytes": 29639234,
+          "mtime_ns": 1791512005244319900
+        },
+        "canonical": {
+          "xyz": {
+            "path": "data/geobc_solver_selection/geometry/116_440/xyz.npy",
+            "bytes": 2119052,
+            "mtime_ns": 1791554072556186600
+          },
+          "features": {
+            "path": "data/geobc_solver_selection/cases/116_440_ver/features.npy",
+            "bytes": 17657828,
+            "mtime_ns": 1791554072630956300
+          },
+          "cloud": {
+            "path": "data/geobc_solver_selection/geometry/116_440/cloud.npy",
+            "bytes": 12416,
+            "mtime_ns": 1791554072561191100
+          },
+          "mask": {
+            "path": "data/geobc_solver_selection/geometry/116_440/mask.npy",
+            "bytes": 1152,
+            "mtime_ns": 1791554072566191300
+          }
+        }
+      }
+    },
+    "cache": "data/geobc_pointconv_inputs45",
+    "labels_read": 0,
+    "scaler_fits": 0,
+    "old_final_or_sealed_or_dia_inputs": 0,
+    "raw_sources_opened": false
+  }
+}

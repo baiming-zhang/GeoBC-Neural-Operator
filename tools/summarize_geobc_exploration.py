@@ -205,11 +205,11 @@ def main(*, preserve_existing_plots=False):
     checkpoints={}
     observed_stages={}
     observed_receipts={}
-    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','gino_training_screen','sealed_test_input_acquisition','fno_response_screen','fno_response_eval','deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval','multiscale_mesh_input','multiscale_mesh_screen','multiscale_mesh_development_dia_eval'}
+    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','gino_training_screen','sealed_test_input_acquisition','fno_response_screen','fno_response_eval','deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval','multiscale_mesh_input','multiscale_mesh_screen','multiscale_mesh_development_dia_eval','pointconv_input','pointconv_screen','pointconv_development_dia_eval','elastic_pilot_input','elastic_input_operator','elastic_physical_solve','elastic_residual_continuation'}
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
-        path=source/('manifest.json' if job.get('kind') in ('solver_final_input_cache','deeponet_bc_cloud_input','multiscale_mesh_input') else 'summary.json')
+        path=source/('manifest.json' if job.get('kind') in ('solver_final_input_cache','deeponet_bc_cloud_input','multiscale_mesh_input','pointconv_input','elastic_pilot_input') else 'summary.json')
         if not path.exists(): continue
         summary=json.loads(path.read_text())
         completed=summary.get('status')=='completed'
@@ -236,6 +236,11 @@ def main(*, preserve_existing_plots=False):
         if job.get('kind')=='multiscale_mesh_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
         if job.get('kind')=='deeponet_bc_cloud_input':filenames+=('manifest.json',)
         if job.get('kind')=='multiscale_mesh_input':filenames+=('manifest.json',)
+        if job.get('kind')=='pointconv_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
+        if job.get('kind')=='pointconv_input':filenames+=('manifest.json',)
+        if job.get('kind')=='elastic_pilot_input':filenames+=('manifest.json',)
+        if job.get('kind')=='elastic_physical_solve':filenames+=('endpoint_before_GT.json','checkpoint.json')
+        if job.get('kind')=='elastic_residual_continuation':filenames+=('endpoint_no_GT.json','checkpoint.json')
         if job.get('kind')=='solver_final_input_cache':filenames+=('manifest.json',)
         if job.get('kind') in ('solver_screen','solver_confirmation'):filenames+=('first_update_gradient_check.json',)
         for filename in filenames:
@@ -793,6 +798,12 @@ def main(*, preserve_existing_plots=False):
     mesh_metrics=ROOT/'results/multiscale_mesh/metrics.json'
     if mesh_metrics.is_file() and json.loads(mesh_metrics.read_text(encoding='utf8')).get('status')=='completed':
         brief += ['', '一个完整节点的多尺度网格求解器固定480结果见[网格结构简报](../multiscale_mesh/BRIEF.md)；参数/拓扑输入不同，仅早期筛选，未据此改旧final或新sealed test。']
+    pointconv_metrics=ROOT/'results/pointconv/metrics.json'
+    if pointconv_metrics.is_file() and json.loads(pointconv_metrics.read_text(encoding='utf8')).get('status')=='completed':
+        brief += ['', '固定480的完整节点PointConv与开发组合载荷见[点卷积简报](../pointconv/BRIEF.md)；纯几何KDE/FPS和BN适配均公开，非官方分割模型或同容量因果复现。']
+    elastic_metrics=ROOT/'results/elastic_pilot/metrics.json'
+    if elastic_metrics.is_file():
+        brief += ['', '单TRAIN几何的有界近似弹性基线见[物理求解简报](../elastic_pilot/BRIEF.md)；数值收敛、标签误差与实际成本分列，不代表神经跨CAD成绩或原软件精确重放。']
     deeponet_ready_exports=[]
     if any(job.get('kind') in ('deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval') for job in jobs):
         for ready_name in ('deeponet_field_source_ready.json','deeponet_data_source_ready.json','deeponet_train_source_ready.json','deeponet_report_source_ready.json'):
@@ -809,6 +820,14 @@ def main(*, preserve_existing_plots=False):
                 ready_target=dest/'source_ready'/ready_name;ready_target.parent.mkdir(parents=True,exist_ok=True)
                 shutil.copyfile(ready_source,ready_target)
                 mesh_ready_exports.append(str(ready_target.relative_to(dest)).replace('\\','/'))
+    pointconv_ready_exports=[]
+    if any(job.get('kind') in ('pointconv_input','pointconv_screen','pointconv_development_dia_eval') for job in jobs):
+        for ready_name in ('pointconv_field_source_ready.json','pointconv_data_source_ready.json','pointconv_train_source_ready.json','pointconv_report_source_ready.json'):
+            ready_source=ROOT/'notes'/ready_name
+            if ready_source.is_file():
+                ready_target=dest/'source_ready'/ready_name;ready_target.parent.mkdir(parents=True,exist_ok=True)
+                shutil.copyfile(ready_source,ready_target)
+                pointconv_ready_exports.append(str(ready_target.relative_to(dest)).replace('\\','/'))
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
@@ -848,6 +867,14 @@ def main(*, preserve_existing_plots=False):
                                    'multiscale_mesh_screen_receipt':observed_receipts.get('multiscale_mesh_screen'),
                                    'multiscale_mesh_development_dia_eval_receipt':observed_receipts.get('multiscale_mesh_development_dia_eval'),
                                    'multiscale_mesh_source_ready_exports':mesh_ready_exports,
+                                   'pointconv_input_receipt':observed_receipts.get('pointconv_input'),
+                                   'pointconv_screen_receipt':observed_receipts.get('pointconv_screen'),
+                                   'pointconv_development_dia_eval_receipt':observed_receipts.get('pointconv_development_dia_eval'),
+                                   'pointconv_source_ready_exports':pointconv_ready_exports,
+                                   'elastic_pilot_input_receipt':observed_receipts.get('elastic_pilot_input'),
+                                   'elastic_input_operator_receipt':observed_receipts.get('elastic_input_operator'),
+                                   'elastic_physical_solve_receipt':observed_receipts.get('elastic_physical_solve'),
+                                   'elastic_residual_continuation_receipt':observed_receipts.get('elastic_residual_continuation'),
                                    'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
                                    'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',

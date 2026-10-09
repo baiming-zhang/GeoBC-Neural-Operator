@@ -1,0 +1,35 @@
+{
+  "status": "necessary_source_math_API_review_passed",
+  "plan": "notes/geobc_elastic_pilot_plan.json",
+  "sources": {
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27"
+  },
+  "review": [
+    "Full canonical GRID_ID/geometry hashes and CTETRA corner-mid/material coverage",
+    "SPC-RBE2 fixed translations derived from actual equations, free identity DOF reduction",
+    "Explicit approximate weighted-LS H and transpose load transfer with force/moment/work guards",
+    "CurvedTET10 J[c,r], J^-T physical gradients, sigma-grad complete scatter",
+    "Exact3x3 nodal block Jacobi for free identity reduction, no stiffness shift",
+    "8 fullK calls for rigid-null/random algebra; guards not engineering/SPD proof",
+    "PCG true residual, fixed2000/600 cumulative budget and retained state",
+    "AllN field/reaction/balance before the one deferred TRAIN displacement label; stress0",
+    "CUDA initialized before reset; output-only reference restoration does not enter stiffness"
+  ],
+  "root_scientific_arrays_read": 0,
+  "root_GPU_preflight": 0,
+  "root_repeated_AST": 0,
+  "actual_stage": "First real bounded stage performs actual input/geometry/operator acceptance; no separate toy",
+  "reviewed_at_utc": "2026-10-09T20:20:12.8824176Z",
+  "previous_data_sha256": "13b4c1524e57da269d01aeaa7c0d4539af5ad3d987f061df99246120324c0946",
+  "runtime_reader_review": {
+    "scope": "Only exact observed controls accepted with precise exclusions. Selected static METHOD remains unsupported, unknown active cards rejected. DEBUG effect unknown, explicitly not reproduced.",
+    "source_ready": "notes/elastic_pilot_reader_runtime_recovery_source_ready.json",
+    "root_arrays_or_GPU_runs": 0,
+    "mathematical_operator_source_unchanged": true,
+    "reviewed_at_utc": "2026-10-09T20:34:07.6716541Z",
+    "primary": "notes/elastic_deck_controls_primary.md",
+    "root_repeated_AST": 0
+  }
+}
