@@ -209,8 +209,8 @@ def main():
         scale_audit=json.loads(scale_audit_path.read_text())
         if scale_audit.get('status')=='complete':
             lengths=scale_audit['length_statistics']['all45']
-            lines += ['', '## 下一阶段：整体边界角色条件','',
-                      f"元数据核验确认原25通道已包含L_mm/200；45CAD尺寸仅{lengths['min_mm']:.2f}–{lengths['max_mm']:.2f}mm，暂缓显式尺寸缩放。当前PointNet只汇聚坐标；新对照在相同1024点云附加固定节点并集和加载节点两个输入角色。零角色与真实角色都采用5输入PointNet，新增64参数在两侧相同，不能复用旧3输入模型作控制。",
+            lines += ['', '## 整体边界角色条件对照','',
+                      f"元数据核验确认原25通道已包含L_mm/200；45CAD尺寸仅{lengths['min_mm']:.2f}–{lengths['max_mm']:.2f}mm，暂缓显式尺寸缩放。这一对照之前PointNet只汇聚坐标；新对照在相同1024点云附加固定节点并集和加载节点两个输入角色。零角色与真实角色都采用5输入PointNet，新增64参数在两侧相同，不能复用旧3输入模型作控制。",
                       '保持既定位移／梯度损失、采样和预算，以新的零角色模型为基线比较全节点物理位移及P1代理应变。最差案例保护与不超过全零应变100%基准的门槛已预定；未通过时不自动增加种子或扫参数。设计见notes/geobc_bc_role_plan.json。']
     bz=summaries.get('displacement_bc_role_zero_10k')
     ba=summaries.get('displacement_bc_role_actual_10k')
@@ -248,7 +248,36 @@ def main():
                   f"| 独立模型固定250步 | {percent(early['case_mean_relative_l2'])} | {percent(early['strain']['case_mean_relative_l2'])} |",
                   f"| 独立模型固定10000步 | {percent(final['case_mean_relative_l2'])} | {percent(final['strain']['case_mean_relative_l2'])} |",'',
                   f"独立训练耗时{specialist['elapsed_seconds']:.1f}s，最终最差位移{percent(final['worst_case_relative_l2'])}、最差P1{percent(final['strain']['worst_case_relative_l2'])}。同一场与损失在该CAD能联合拟合；250步案例曝光接近共享10000步仍有改善，但优化轨迹与专用容量不同，不能单独证明共享容量或编码是原因。",
-                  '下一阶段回到40/5共享训练，匹配新增查询上下文32的零／真实分支：对同一PointNet几何／BC点token按固定Gaussian距离加权，σ=.15归一化长度。原全局32保留，新增投影和native输入容量在两侧相同；这是整个分支消融，不能称纯信息因果控制。设计见notes/geobc_query_context_plan.json。']
+                  '后续回到40/5共享训练，匹配新增查询上下文32的零／真实分支：对同一PointNet几何／BC点token按固定Gaussian距离加权，σ=.15归一化长度。原全局32保留，新增投影和native输入容量在两侧相同；这是整个分支消融，不能称纯信息因果控制。设计见notes/geobc_query_context_plan.json。']
+    qz=summaries.get('displacement_query_context_zero_10k')
+    qa=summaries.get('displacement_query_context_actual_10k')
+    query_result_path=ROOT/'notes/geobc_query_context_pair_result.json'
+    query_result=json.loads(query_result_path.read_text()) if query_result_path.is_file() else None
+    if qz or qa:
+        lines += ['', '## 查询位置相关几何与BC上下文','',
+                  '同一五通道PointNet的64维点token经共同64→32投影，再按查询点距离以固定σ=.15的Gaussian权重汇聚；保留整体32维描述和原38维查询输入。两侧拥有相同新投影、native条件102、初始化和训练配方，零组在计算后将查询上下文置零。旧BC模型不能充当该分支的匹配控制。',
+                  '', '| 查询上下文 | 验证位移均值 | 最差位移 | 验证P1代理均值 | 训练耗时 |', '|---|---:|---:|---:|---:|']
+        for mode,summary in [('零槽',qz),('距离汇聚的实际点token',qa)]:
+            if summary:
+                v=summary['best_metrics']['validation']
+                lines += [f"| {mode} | {percent(v['case_mean_relative_l2'])} | {percent(v['worst_case_relative_l2'])} | {percent(v['strain']['case_mean_relative_l2'])} | {summary['elapsed_seconds']:.1f}s |"]
+            else:
+                lines += [f'| {mode} | 进行中 | — | — | — |']
+        if qz and qa and query_result:
+            lines += [f"配对控制已核对。实际上下文的位移均值改善{query_result['validation_u_mean_improvement_percentage_points']:.2f}个百分点、最差位移变化{query_result['validation_u_worst_deterioration_percentage_points']:+.2f}个百分点（正数为退步），P1误差相对改善{100*query_result['validation_P1_relative_error_reduction']:.1f}%。预定综合门槛{'通过' if query_result['clear_gain_gate_passed'] else '未通过'}。",
+                      '每模型的位移与P1指标来自同一个按开发验证位移选择的checkpoint。分支激活改变有效容量，结果只检验整个分支，不是缺失局部信息的纯因果证明；空间汇聚也不等于弹性载荷传播。最终测试未用于本轮。']
+        if (dest/'query_context_comparison.png').is_file():
+            lines += ['', '![整体角色与查询上下文的两个匹配对照](query_context_comparison.png)',
+                      '同形状的两个点才是匹配对照；不能把两个组之间的差异归于一种输入。左下方更好，100%虚线为预测全零应变的参考。']
+    learning=summaries.get('query_learning_frozen_10k')
+    if learning:
+        readout=learning['readout'];probe=readout['actual_same_weights_final_query_zero']
+        intact=probe['mean_intact_losses'];masked=probe['mean_masked_losses']
+        lines += ['', '## 固定模型的查询学习与梯度诊断','',
+                  f"固定两个最终10000步checkpoint，在4个已见训练CAD的三种载荷上使用同一12800行查询witness；{learning['case_backwards']}次backward、{learning['optimizer_updates']}次参数更新，计算耗时{learning['elapsed_seconds']:.1f}s。不使用验证、dia或最终测试字段。",
+                  f"实际模型只将最终query32置零，保留权重、整体描述与其他输入：12/12案例的位移损失及P1损失都升高，平均分别为完整输入的{masked['relative_Lu']/intact['relative_Lu']:.2f}倍和{masked['normalized_volume_P1_Frobenius_loss']/intact['normalized_volume_P1_Frobenius_loss']:.2f}倍。该分支在这些训练查询上有实际作用；遮蔽可能离开训练分布，不能据此证明信息充分或泛化。",
+                  f"实际模型的6个CAD梯度对中有{readout['actual']['full_model_negative_CAD_pairs']}对反向，零分支模型有{readout['zero']['full_model_negative_CAD_pairs']}对；双方均没有CAD与四CAD平均梯度点积为负。部分方向竞争存在，但这个探针未显示共同平均方向会立即增大某个CAD损失。它也不是Adam实际更新或泛化失败的因果证明。",
+                  '此处P1损失是原训练配方的体积加权、归一化cell平方损失，不能与前文全节点P1相对L2百分比直接比较。已据此转向一个共享Hash特征调制候选，而不自动做梯度手术或参数扫描。']
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
@@ -256,40 +285,27 @@ def main():
               f"本页随实验更新；累计完成 {len(summaries)}/{len(jobs)} 项，自主研究继续。",'']
     (dest/'REPORT.md').write_text('\n'.join(lines),encoding='utf8')
     brief=['# GeoBC：一分钟结果','',
-           '**目前的主要问题是共享场的泛化，而非单个案例能否拟合。**','',
-           '- 难例单独训练：应力误差约0.1%；原共享Hash换CAD或载荷组合：约92%。',
-           '- 整体几何编码和解码器加宽没有明显收益；局部边界几何仅将应力验证误差从约65%改善到约64%。']
-    if zero and actual:
-        brief += ['  局部几何收益在两个种子上重复，但最差案例变差，不能称为全面改善。']
-    if probe:
-        brief += ['- 组合载荷诊断：强制位移线性响应优于对照（28.4% vs 33.0%），但应力仍约87%；位移物理结构有用，应力迁移仍未解决。']
+           '**Hash能拟合单个几何，当前难点是让一个共享模型可靠地预测新几何。**','']
     if specialist:
-        final=specialist['endpoint_metrics']['10000']['train']
-        brief += ['', f"**关键新发现：**同一场与损失在一个固定训练CAD上，独立拟合达到位移{100*final['case_mean_relative_l2']:.2f}%／P1应变代理{100*final['strain']['case_mean_relative_l2']:.1f}%。两者可以同时拟合；专用模型和40倍曝光使结果不能等同于泛化或容量因果证明。下一步回到共享模型，检验随查询位置变化的几何／BC上下文，最终测试继续保留。"]
-    elif bz and ba and bc_result_path.is_file():
-        bc_result=json.loads(bc_result_path.read_text())
-        z=bz['best_metrics']['validation'];a=ba['best_metrics']['validation']
-        brief += ['', f"**最新对照：**整体点云加入固定／加载角色，位移验证均值{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%，最差{100*z['worst_case_relative_l2']:.1f}% → {100*a['worst_case_relative_l2']:.1f}%，P1应变代理误差仍约{100*a['strain']['case_mean_relative_l2']:.0f}%。综合门槛{'通过' if bc_result['clear_gain_gate_passed'] else '未通过'}。下一步固定一个训练CAD独立拟合位移与应变，定位共享训练的瓶颈；最终测试继续保留。"]
-    elif gc and gz:
-        z=gz['best_metrics']['validation'];a=gc['best_metrics']['validation']
-        delta=100*(a['worst_case_relative_l2']-z['worst_case_relative_l2'])
-        brief += ['', f"**最新对照：**固定训练损失尺度后，位移验证均值{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%，P1应变误差{100*z['strain']['case_mean_relative_l2']:.1f}% → {100*a['strain']['case_mean_relative_l2']:.1f}%。最差位移退步{delta:.1f}个百分点，仍未通过综合标准。下一步检验整体点云中的固定／加载位置条件；最终测试继续保留。"]
-    elif gz and ga:
-        z=gz['best_metrics']['validation'];a=ga['best_metrics']['validation']
-        brief += ['', f"**最新对照：**梯度监督使验证P1应变误差{100*z['strain']['case_mean_relative_l2']:.1f}% → {100*a['strain']['case_mean_relative_l2']:.1f}%，位移误差{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%。导数明显改善，位移变差；支撑均值校正也没恢复验证精度。正在测试一个按训练损失尺度计算的固定系数。应变是位移派生的P1代理，最终测试继续保留。"]
-    elif quality and quality.get('status')=='completed':
-        q=quality['aggregate']
-        brief += ['', f"**关键新发现：**固定训练CAD的位移误差约{100*q['u_mean_vector_relative_l2']:.0f}%，恢复的应变误差却约{100*q['strain_mean_symmetric_Frobenius_relative_l2']:.0f}%。当前Hash教师的局部梯度不可靠，增加应变条件没有整体收益。下一步直接对照梯度监督，检验能否修复这一问题。此应变为训练u派生的P1代理，结论限该CAD。"]
-    elif sz and sa:
-        z=sz['best_metrics']['validation'];a=sa['best_metrics']['validation']
-        brief += ['', f"最新对照：固定预测位移后，增加局部应变条件，应力验证均值{percent(z['case_mean_relative_l2'])} → {percent(a['case_mean_relative_l2'])}，热点{percent(z['case_mean_hotspot_relative_l2'])} → {percent(a['case_mean_hotspot_relative_l2'])}。只是开发验证结果，最终测试继续保留。"]
-    elif uz and ua:
-        z=uz['best_metrics']['validation'];a=ua['best_metrics']['validation']
-        brief += ['', f"最新对照：预测位移条件将应力验证均值{percent(z['case_mean_relative_l2'])} → {percent(a['case_mean_relative_l2'])}，最差也改善；热点{percent(z['case_mean_hotspot_relative_l2'])} → {percent(a['case_mean_hotspot_relative_l2'])}，反而变差。下一步检验局部应变条件，最终测试继续保留。"]
+        f=specialist['endpoint_metrics']['10000']['train']
+        brief += [f"- **已有能力：**一个训练CAD的位移／P1应变代理误差{100*f['case_mean_relative_l2']:.2f}%／{100*f['strain']['case_mean_relative_l2']:.1f}%。这是专用拟合，不能代表泛化。"]
     else:
-        brief += ['', '正在检验：冻结模型预测的位移，能否帮助应力预测；与相同输入布局的零条件做成对比较。']
-    brief += ['', f"完成{len(summaries)}/{len(jobs)}项探索；原30项slides复现已完成。当前研究继续，五个最终测试CAD未参与新模型训练/选择。",'',
-              '数据、控制变量及解释范围见 [完整探索报告](REPORT.md)。','']
+        brief += ['- **已有能力：**难例单独训练的应力误差约0.1%；共享预测新几何仍很差。']
+    if qz and qa and query_result:
+        z=qz['best_metrics']['validation'];a=qa['best_metrics']['validation']
+        brief += [f"- **最新进展：**局部查询上下文将验证位移误差{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%；两组计算合计{(qz['elapsed_seconds']+qa['elapsed_seconds'])/60:.1f}分钟。",
+                  f"- **当前瓶颈：**P1应变代理虽下降{100*query_result['validation_P1_relative_error_reduction']:.0f}%，仍有{100*a['strain']['case_mean_relative_l2']:.0f}%误差。预定综合标准{'通过' if query_result['clear_gain_gate_passed'] else '未通过'}，跨几何可靠性仍未解决。"]
+        next_action='同配置第二种子验证' if query_result['clear_gain_gate_passed'] else '固定已有模型，检查局部上下文的实际作用与训练几何间的梯度冲突'
+        if learning:
+            brief += ['', '诊断确认局部上下文有实际作用；尚不能把泛化问题归因于梯度冲突。下一步检验几何条件直接调制Hash特征，做一个新的匹配对照。最终测试继续保留。']
+        else:
+            brief += ['',f'下一步：{next_action}，再按证据选一项改进。最终测试继续保留。']
+    else:
+        brief += ['- **当前瓶颈：**共享模型的位移验证约24%，P1代理仍约584%。',
+                  '- **正在验证：**局部几何／BC上下文是否有额外收益；与相同参数布局和预算的零上下文对照。','',
+                  '下一步：按位移、P1代理和计算成本判断，继续定位瓶颈。最终测试保留。']
+    brief += ['',f"完成{len(summaries)}/{len(jobs)}项探索；原30项slides复现已完成。自主研究与30分钟监视继续。",'',
+              '完整指标、控制变量和解释范围见 [探索报告](REPORT.md)。','']
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),

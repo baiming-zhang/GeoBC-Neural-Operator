@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "status": "selected_after_failed_query_gate",
+  "stage": "one_frozen_TRAIN_query_learning_and_cross_CAD_gradient_diagnostic",
+  "created_at_utc": "2026-10-09T06:45:43.571779+00:00",
+  "selection_evidence": {
+    "query_gate": "FAIL",
+    "matching": "PASS",
+    "source": "parent confirmed completed query matched-pair analyzer result",
+    "validation_u_mean_gain_pp": 1.50747,
+    "validation_u_worst_improvement_pp": 4.19427,
+    "validation_P1_relative_error_reduction": 0.45242,
+    "validation_P1_mean_still_above_zero_strain_baseline": true,
+    "first_query_actual_gradient_L1_context_only": {
+      "projection": 206.8,
+      "tokens": 85.1,
+      "zero": 0.0
+    },
+    "interpretation": "First-update gradient availability does not prove useful learned dependence. Selection of this diagnostic follows failed gate; validation does not enter its sampling, loss-gradient readout or ablation metrics."
+  },
+  "scope": {
+    "candidate_count": 1,
+    "CPU_design_only_now": true,
+    "models_arrays_targets_or_weights_opened_by_note_author": false,
+    "GPU_or_training_run_by_note_author": false,
+    "implementation_owner": "hashgrid_impl: new tools/diagnose_query_learning.py",
+    "only_note_written": "notes/geobc_query_learning_plan.json",
+    "optimizer_steps_future_diagnostic": 0,
+    "new_fit": false,
+    "val_dia_finaltest_fields": "forbidden",
+    "frozen_sources_mainplan_README": "unchanged"
+  },
+  "questions": [
+    "At fixed final shared-model states, do the joint-objective parameter gradients for predetermined training geometries conflict?",
+    "Does the trained actual query32 vary spatially and affect the learned predictions usefully on those SAME training queries, rather than only having passed first-update backprop checks?"
+  ],
+  "frozen_checkpoints": {
+    "zero": {
+      "run": "runs/geobc_exploration/displacement_query_context_zero_10k",
+      "checkpoint": "runs/geobc_exploration/displacement_query_context_zero_10k/last.pt",
+      "required_checkpoint_step": 10000,
+      "completed_seconds": 261.19605286700244,
+      "selected_best_step_context_only": 8000,
+      "config_sha256": "bcdea7aca76379392816100054b373c810d90cc1aaaff73fd85003d3476ebf74",
+      "summary_sha256": "239dcc9e6d7af6a821f9491727be2fc14615b2a836f42bf51f438d46aa30d6b1"
+    },
+    "actual": {
+      "run": "runs/geobc_exploration/displacement_query_context_actual_10k",
+      "checkpoint": "runs/geobc_exploration/displacement_query_context_actual_10k/last.pt",
+      "required_checkpoint_step": 10000,
+      "completed_seconds": 258.05539635699824,
+      "selected_best_step_context_only": 10000,
+      "config_sha256": "451d419512a6256f0c7dd12d8668c277319e87e8b72f9242b1c40870856c96a9",
+      "summary_sha256": "8603ff844c633db7d938232301a2aefb0a4d331cb4391e7a6764b43448cbc7a3"
+    }
+  },
+  "checkpoint_rule": "Only each branch last.pt at step10000. Verify status/step/config/saved model contract; do not use different best-val checkpoints, choose checkpoint by diagnostic result, load/restart optimizer or update any parameter. Set eval to disable training-only guards while preserving differentiable model forwards for loss gradients.",
+  "data_contract": {
+    "CAD_order": [
+      "101_479",
+      "101_428",
+      "101_56",
+      "101_78"
+    ],
+    "selection": "fixed diagnosed TRAIN101_479 plus lexicographically first3 remaining TRAIN CADs; independent of case errors",
+    "known_load_order": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "cases": [
+      "101_479/ver",
+      "101_479/hor",
+      "101_479/tor",
+      "101_428/ver",
+      "101_428/hor",
+      "101_428/tor",
+      "101_56/ver",
+      "101_56/hor",
+      "101_56/tor",
+      "101_78/ver",
+      "101_78/hor",
+      "101_78/tor"
+    ],
+    "all_from_train40": true,
+    "validation_CADs_used": 0,
+    "finaltest_CADs_used": 0,
+    "dia_cases_used": 0,
+    "geometry": "existing canonicalver normalizedxyz/rolesactual/1024cloud/mask/nodeindices, local13 and existing correct mesh gradient cache; no new resampling, CSV/H5 download or geometry reconstruction",
+    "GT_allowed_later": "only signeduXYZ and derived existing TRAIN P1 references for these12 cases, required to compute this supervised diagnostic; no stress/val/dia/test target field",
+    "normalizers": "reuse original40TRAIN commonu RMS=.05511113670847156mm, per-case relative-u weights and existing full-volume traincase P1 loss reference/floors. Do not refit/recalibrate any scaler or denominator.",
+    "gradient_weight": 0.0004106650618638651,
+    "physics": "same load-linear9-basis/config102/newquery32/global32/query38/nativewidth128/PointNet5 and fixed sigma=.15; no architecture/loss/kernel changes"
+  },
+  "sampling_predeclaration": {
+    "one_witness_per_CAD": true,
+    "shared_across_three_loads_and_both_models_and_ablation": true,
+    "CAD_rank": "position0..3 in fixed CAD_order above",
+    "RNG": "CPU NumPy default_rng(SeedSequence([...])) so source witnesses are portable and independent of device RNG/history",
+    "uniform_node_rng_entropy": [
+      2026,
+      1701,
+      "CAD_rank"
+    ],
+    "uniform_tet_rng_entropy": [
+      2026,
+      1702,
+      "CAD_rank"
+    ],
+    "uniform_node_draw": "integers(0,node_count,size6400,endpoint=False), withreplacement",
+    "uniform_tet_draw": "integers(0,cell_count,size1600,endpoint=False), withreplacement",
+    "node_rows": "concat6400 uniform node indices and existing cache corner_node_indices[selected1600tets].reshape(-1) ->12800 unchanged FEM indices",
+    "duplicates": "retain exactly, including repeat tets/corners; do not unique/sort/resample",
+    "selected_cells": "same1600cell IDs for P1 training-loss diagnostic in everyknownload/model for this CAD",
+    "total_rows_per_model": "4CAD*3loads*12800=153600 case-rows; unique geometry query vectors may be reused across3load conditions without changing rows or backward accounting",
+    "witness_output": "record node_count/cell_count, RNG entropy, selectednode/tet/corner/concatenatedrowindices or small witness NPZ, and canonical C-contiguous integer-byte hashes; same hashes acrossall controls. No gigantic full data hashes."
+  },
+  "gradient_readout": {
+    "loss_per_case": "L_case = unchangedrelativeLu_case + fixedlambda * unchangedvolumeweighted normalizedcornerP1 symmetricFrobenius L_eps_case, using the same sampled12800rows/1600tets",
+    "CAD_loss": "mean of ver/hor/tor L_case; no case-gradient normalization before averaging",
+    "gradient": "g_CAD = (grad L_ver + grad L_hor + grad L_tor)/3 at fixed checkpoint",
+    "backward_cap": 24,
+    "cap_accounting": "2trained models*4CAD*3loads=24 casebackwards max. Clear parametergrad buffers between cases and accumulate detached numeric gradients perCAD; alternatively one differentiable mean-of3load backward perCAD is mathematically equivalent and belowcap. No secondderivatives or optimizer steps.",
+    "parameter_blocks": [
+      "native decoder params (hash+MLP together; no unsupported flat-buffer offset guessing)",
+      "PointNet encoder params (point MLP and global head)",
+      "query_projection params"
+    ],
+    "block_rules": "disjoint parameter ownership, stable named flattening and order recorded; include full concatenated-model gradient as main summary. Verify finite gradients. Do not mix duplicated params or compare vectors across DIFFERENT checkpoint parameter states.",
+    "pair_cosine": "cos(g_A,g_B)=dot/(normA*normB) for the6unordered CAD pairs within EACH trained model, fullmodel and3blocks",
+    "zero_norm": "if normA ornormB=0, cosine null plus explicit zero_norm flag, never silently0; trainedqueryzero projection gradients expectedzero",
+    "joint_direction_readout": "g_mean=(g_1+g_2+g_3+g_4)/4; record dot(g_CAD,g_mean) and dot(g_CAD,mean(other3)) signs/norms. Negative dot with g_mean predicts local increase of that CAD objective under infinitesimal plain gradient descent; negative paircos alone does not guarantee g_mean harms it.",
+    "components": "record Lu andrawnormalizedL_eps scalar percase/CAD andlambda for interpretability; the vector cosine is of the prescribed JOINT objective, not separate losses or a reweighted norm blend.",
+    "Adam_limit": "These are parameter-gradient alignments, not actual native Adam update directions. Momentum/preconditioning and finite precision can change effects; no claim that an optimizer step necessarily harms/improves a case."
+  },
+  "actual_query_intervention_and_variation": {
+    "intervention": "Only trainedactual last10k: keep exactly its learned parameters, canonicalrolesactual, global32, query38, inputs/alphas andsigma; compute currentquery32 then multiply finalquery32slots by0 for alternative forward. Do not substitute the separately trainedzero checkpoint orzero BC roles.",
+    "forwards_only": "intactactual andsame-weights-query-masked forwards in no_grad; no additionalbackwards beyond24, no model/state/optimizer updates. Restore/verify intact mode after intervention.",
+    "output_sensitivity": "percase physical u difference norm ||u_intact-u_masked|| / ||u_true|| on SAME12800training rows, with finite/nonzero denominator check; disclose query-sampled/duplicate row weighting, not allnode validation score",
+    "local_usefulness": "samebatch Lu,rawL_eps andjointloss for intactvsmasked; report sign of delta(masked-intact). Large predictionchange by itself is not useful-information evidence.",
+    "context_variation": "for eachCAD compute q32meanvector andquery-centeredRMS=sqrt(mean((q-mean_queryq)^2)); magnitudeRMS=sqrt(mean(q^2)); retain channelstdvector if cheap. Also4CAD pairwise RMS distances of q32meanvectors andglobal32vectors. These are learned input-context readouts, no GTderived feature.",
+    "known_control": "trainedzero finalquery32 is identically0; report as a structuralcontrol, not an empirical lack of geometryinformation.",
+    "limits": "Actual latent query0 can be offdistribution to its trained decoder, so masking sensitivity is a local input intervention, not mutualinformation or proof of source-feature sufficiency; sampled contextvariation cannot prove complete loadpath representation."
+  },
+  "predeclared_interpretation_branches": {
+    "negative_CAD_gradient_alignment_with_actual_context_useful": "supports local shared-gradient interference as a plausible contribution at the tested fixed states; conditioned information can be locally useful while joint training still compromises cases. Doesnot prove optimization is the only issue.",
+    "actual_query_varies_but_masking_not_beneficial": "the branch is spatially active but not demonstrably helpful on these sampledTRAIN losses; gradient availability was insufficient evidence of useful learnedcontext. Doesnot imply sourceinput lacks all needed information.",
+    "actual_query_small_variation_and_small_sensitivity": "little spatially varying/used querysignal on this probe or redundancy with global/local features; distinguishes this learned path from its potential capability, without automatic sigma/attention retuning.",
+    "mostly_aligned_gradients_with_locally_helpful_query": "doesnot show strong conflict for these4CAD/probes at thesefinal states; representation adequacy, otherCADs, traininghistory and finiteoptimization remain unresolved. Do not conclude shared optimization is solved or missing information is proven.",
+    "state_or_component_dependent_conflict": "report which native/encoder/projection block andCADpair shows it, with norms; a tiny-norm block cosine is not the main full-modelmechanism. Differences between trainedzero/actual histories remain observational.",
+    "scope": "all branches are TRAIN diagnostics, not finaltest, unseenload, unseenCAD validation improvement, statistical significance or newalgorithm. No follow-up experiment is selected from these signs by this plan."
+  },
+  "predeclared_stop": {
+    "one_round_only": true,
+    "max_case_backwards": 24,
+    "optimizer_updates": 0,
+    "repeat_seed_or_sample_families": 0,
+    "stop_after": "exact4CAD*3load*2fixedcheckpoints andactualquerymask/contextvariation readout; one JSONresult thenreturnto parent",
+    "abort_on": "wrong checkpointstep/contract, wrongCAD group/geometryalignment, witness mismatch, nonfinite gradients/loss/context or unsupported parameterblockmapping; recorderror, no silent fallbacks",
+    "forbidden": "no radius/kernel/loss/width/capacity/coefficient/seed sweep, no specialist continuation, no weighttraining, no val/dia/finaltest target read, no mainplan/frozen-source/README edit"
+  },
+  "source_proof": {
+    "design_source": "parent selection after failed matchedquerygate; existing source andcompletedsummarymetadata only",
+    "read_source": [
+      "notes/geobc_query_context_plan.json",
+      "notes/geobc_specialist_result.json",
+      "notes/geobc_split.json",
+      "geobc/query_context_train.py checkpoint_payload saves model+optimizer config atstep; optimizer willnotbe used",
+      "geobc/query_context_field.py fixedpool/queryhead path"
+    ],
+    "plan_writes": "Onlythis newselecteddiagnostic plan; no duplicate draft orsource implementation."
+  }
+}

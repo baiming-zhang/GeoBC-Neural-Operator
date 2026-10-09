@@ -126,6 +126,21 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
         for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
             if not (ROOT / job["output"] / filename).is_file():
                 raise ValueError(f"Completed output for {job['name']} lacks {filename}")
+    elif "tools/diagnose_query_learning.py" in command:
+        # Frozen diagnostics have no optimizer/checkpoint outputs. Compare their
+        # small request/source/last-checkpoint metadata before allowing reuse.
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("query_learning_diagnostic", ROOT / "tools/diagnose_query_learning.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        contract = module.request_contract(requested_plan)
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Completed output for {job['name']} differs from its frozen diagnostic contract")
+        if not (ROOT / job["output"] / "config.json").is_file():
+            raise ValueError(f"Completed output for {job['name']} lacks config.json")
     return summary
 
 

@@ -1,6 +1,6 @@
 # GeoBC：原版 DeepJEB 复现与泛化探索
 
-**当前阶段（2026-10-09）：自主研究进行中，30分钟监视已启用。** 基础复现和28项探索已完成。同一模型与损失对一个训练CAD独立拟合，位移／P1应变代理误差达到0.76%／17.9%，说明两者在该几何上可以同时拟合；专用模型与40倍案例曝光限制了因果解释。共享模型的跨CAD验证仍未解决（位移约24%、P1约584%）。下一项匹配对照让几何／BC上下文随查询位置变化，保留相同划分、损失和预算。最终五个测试CAD继续保留。先读 [一分钟结果](results/geobc_exploration/BRIEF.md)；详细证据见 [探索报告](results/geobc_exploration/REPORT.md)，执行计划见 [notes/geobc_exploration_plan.json](notes/geobc_exploration_plan.json)。
+**当前阶段（2026-10-09）：自主研究进行中，30分钟监视已启用。** 基础复现和31项探索已完成。单CAD位移／P1应变代理可联合拟合到0.76%／17.9%；共享模型加入局部查询上下文后，验证位移为26.0%、P1仍545%，可靠跨几何预测尚未解决。固定模型诊断确认局部上下文有实际作用，但未证明梯度冲突是失败原因。下一步设计一个匹配对照：用几何／BC上下文直接调制共享Hash特征，检验条件信息进入场表示的方式。最终测试继续保留。先读 [一分钟结果](results/geobc_exploration/BRIEF.md)；详细证据见 [探索报告](results/geobc_exploration/REPORT.md)，执行计划见 [notes/geobc_exploration_plan.json](notes/geobc_exploration_plan.json)。
 
 GeoBC Neural Operator 研究根据几何、材料、载荷和约束预测空间坐标处的位移与应力。当前已实现整体点云、局部边界几何及位移载荷响应基；未见 CAD 预测误差仍高，也未验证重网格泛化。研究主线是以几何和边界接口条件化连续场，同时保留应力集中处的局部细节；具体新方法及其有效性需要后续验证。
 
