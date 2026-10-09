@@ -1,0 +1,16 @@
+{
+  "status": "ready",
+  "file": "geobc/conditional_train.py",
+  "source_sha256": "934e5d0ca1953c56626e3db31722d7f02d5cc4148046c331367cf6b8142143bc",
+  "generated_at_utc": "2026-10-09T02:36:12.617229+00:00",
+  "checks": [
+    "AST syntax and CPU CLI passed",
+    "--hidden-dim choices64/128, default64",
+    "Both variants accept128 and strict requested contract records hidden_dim",
+    "ConditionedFieldConfig receives args.hidden_dim; decoder remains two layers with57 condition channels",
+    "No model construction/GPU/training; historical stage1 ready/results unchanged"
+  ],
+  "native_gradient_check": "notes/geometry_candidate_validation.json",
+  "purpose": "Matched128-width geometry_none vs geometry_pointnet decoder-capacity control",
+  "historical_stage1_ready": "notes/conditional_trainer_ready.json"
+}

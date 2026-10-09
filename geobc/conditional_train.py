@@ -108,7 +108,7 @@ def _scope(args):
                                "bytes": stat.st_size, "mtime_ns": stat.st_mtime_ns})
     requested = {name: getattr(args, name) for name in
                  ("variant", "steps", "batch_size", "cases_per_batch", "eval_every",
-                  "eval_batch_size", "learning_rate", "seed", "cloud_points", "geometry_dim", "device")}
+                  "eval_batch_size", "learning_rate", "seed", "cloud_points", "geometry_dim", "hidden_dim", "device")}
     contract = {"version": 1, "requested": requested, "split_sha256": _sha(split_bytes),
                 "selected_sources": identities,
                 "source_identity_policy": "path/size/mtime; no multi-GB label/checkpoint SHA scans",
@@ -241,7 +241,7 @@ def run(args):
         model_config = ConditionedFieldConfig(
             geometry_mode="shape" if args.variant == "geometry_pointnet" else "none",
             descriptor_dim=args.geometry_dim, cloud_points=args.cloud_points,
-            seed=args.seed, out_channels=1)
+            seed=args.seed, out_channels=1, hidden_dim=args.hidden_dim)
         model = ConditionedField(model_config, device)
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate, fused=True)
         case_rng = np.random.default_rng(args.seed + 23)
@@ -454,6 +454,7 @@ def parser():
     p.add_argument("--seed", type=int, default=2026)
     p.add_argument("--cloud-points", type=int, default=1024)
     p.add_argument("--geometry-dim", type=int, choices=(32, 64), default=32)
+    p.add_argument("--hidden-dim", type=int, choices=(64, 128), default=64)
     p.add_argument("--device", default="cuda")
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--resume", nargs="?", const="last", default=None,

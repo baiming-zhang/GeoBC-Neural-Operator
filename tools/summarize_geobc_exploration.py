@@ -53,11 +53,17 @@ def main():
     lines+=['## 正在验证','',
             '同一 40-CAD 训练／5-CAD 验证划分，对比零几何条件与 PointNet 整体几何描述。两者 decoder 布局、随机采样、预算相同；scaler 只拟合训练标签。',
             '训练与选模型只使用 ver/hor/tor；dia 及五个官方测试 CAD 保持隔离。','']
+    conditional=[]
     for name,summary in summaries.items():
         if 'validation' in summary.get('best_metrics',{}):
             metrics=summary.get('best_metrics',{})
             if 'validation' in metrics:
-                lines.append(f"- {name}：验证平均 L2 {percent(metrics['validation']['case_mean_relative_l2'])}；最佳 step {summary['best_step']}。")
+                model=summary['config']['model']
+                conditional.append((summary['config']['variant'],model['hidden_dim'],metrics['train']['case_mean_relative_l2'],metrics['validation']['case_mean_relative_l2']))
+    if conditional:
+        lines+=['| 整体几何编码 | 解码器宽度 | 最佳点训练误差 | 验证误差 |','|---|---:|---:|---:|']
+        lines += [f"| {'PointNet' if variant=='geometry_pointnet' else '无'} | {width} | {percent(train)} | {percent(val)} |" for variant,width,train,val in conditional]
+        lines += ['', '首轮宽度64的最佳验证误差约65.4%，PointNet收益仅0.03个百分点，尚无可靠改进。较宽解码器对照用于检验共享decoder表达能力是否是瓶颈。']
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
