@@ -88,6 +88,14 @@ def main():
     if physics:
         lines += ['', '| 位移响应基 | 最佳点训练误差 | 验证误差 |','|---|---:|---:|']
         lines += [f"| {'载荷无关，强制线性' if mode=='linear_basis' else '载荷依赖控制'} | {percent(train)} | {percent(val)} |" for mode,train,val in physics]
+    probe=summaries.get('frozen_validation_dia_probe')
+    if probe:
+        u=probe['displacement']
+        lines += ['', '冻结后仅评估五个验证CAD的dia组合（933,951个原节点）：',
+                  f"- 位移平均误差：线性响应基{percent(u['linear_basis']['case_mean_relative_l2'])}，载荷依赖对照{percent(u['load_dependent_basis']['case_mean_relative_l2'])}。",
+                  f"- 源FEM位移叠加残差平均{percent(u['oracle']['case_mean_relative_l2'])}，支持近似线性；不能说数值残差为零或已确定其来源。",
+                  f"- 独立应力模型的dia平均误差仍为{percent(probe['stress']['case_mean_relative_l2'])}，组合载荷应力预测仍是主要瓶颈。",
+                  '这是验证集载荷组合诊断，未读取最终测试CAD。线性模型的最大绝对位移误差仍可能高于对照，完整物理指标保留在原始summary。']
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
@@ -104,6 +112,8 @@ def main():
         brief += [f"- 位移{'线性响应基' if mode=='linear_basis' else '同容量载荷依赖对照'}：验证向量误差{percent(val)}。" for mode,train,val in physics]
     else:
         brief += ['- 正在检验位移的线性载荷响应基；应力保留独立监督，不套用位移叠加规律。']
+    if probe:
+        brief += [f"- 冻结的dia组合测试：位移线性模型{percent(probe['displacement']['linear_basis']['case_mean_relative_l2'])}，对照{percent(probe['displacement']['load_dependent_basis']['case_mean_relative_l2'])}；源位移叠加残差约0.31%。应力仍约87%，尚未解决。"]
     brief += ['', f"完成{len(summaries)}/{len(jobs)}项探索；原30项slides复现已完成。当前研究继续，五个最终测试CAD未参与新模型训练/选择。",'',
               '数据、控制变量及解释范围见 [完整探索报告](REPORT.md)。','']
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')

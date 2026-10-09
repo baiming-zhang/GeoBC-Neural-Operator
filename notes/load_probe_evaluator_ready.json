@@ -1,0 +1,31 @@
+{
+  "status": "ready",
+  "file": "tools/evaluate_geobc_load_transfer.py",
+  "source_sha256": "26625fdc263119b297a127e1bb1aa47b2027fd4c86a1cff7fa2bba2e046d4eca",
+  "created_at_utc": "2026-10-09T03:19:30.519396+00:00",
+  "gate": "notes/geobc_frozen_load_probe.json",
+  "cli": "python tools/evaluate_geobc_load_transfer.py --gate notes/geobc_frozen_load_probe.json --output runs/geobc_exploration/frozen_validation_dia_probe",
+  "checks": [
+    "Python AST syntax",
+    "synthetic signed vector L2/component-RMSE/vector-RMSE/max-vector error",
+    "paired case mean/worst/pooled aggregation",
+    "source-mm oracle coefficients/zero-intercept",
+    "nonfinite metric rejection",
+    "planned gate refuses inference before torch/array access",
+    "frozen gate metadata dry-run on Windows and WSL; checkpoint/config/summary/scaler/cache identities matched",
+    "inference API independently reviewed against frozen PhysicsField/ConditionedField/scalers"
+  ],
+  "dry_run": {
+    "gate_status": "frozen",
+    "ready_for_frozen_evaluation": true,
+    "checkpoints_opened": 0,
+    "dia_fields_opened": 0,
+    "final_test_fields_opened": 0
+  },
+  "actual_evaluation_executed": false,
+  "gpu_used": false,
+  "optimizer_updates": 0,
+  "protocol": "Only the predeclared five validation CAD dia loads; fixed best checkpoints/scalers/metadata coefficients; final5 test excluded. Displacement oracle only, scalar signed stress independently predicted. Dia is an existing-rank3-span combination, not an independent BC.",
+  "checkpoint_api": "physics: model/config/step/metrics/scaler; stress: model/config/step/metrics with serialized config.scaler. Dataclass configuration fields filtered from frozen model.source_config.",
+  "activation_requirements": "status=frozen; frozen_at_utc; holdout_opened_at_freeze=false; each source config/summary/checkpoint path +config_sha256/summary_sha256/best_step/selection/checkpoint_identity(bytes,last_write_time_utc)."
+}

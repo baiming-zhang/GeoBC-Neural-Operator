@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "displacement_load_basis",
+  "stage": "case_relative_displacement_loss",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -32,6 +32,12 @@
       "evidence": "Seed2027 repeats local-feature gain: validation64.8557%->64.0434%,0.8124pp; hotspot44.7354%->38.7367%. Worst79.8327%->82.8601% deteriorates, as at seed2026. All45train/validation CAD deck metadata support the same rank3 homogeneous linear-static setup; metadata does not yet validate numerical dia superposition.",
       "conclusion": "Two seeds show small average/hotspot gains, while worst-case error remains high. Freeze local actual as the common input for a distinct displacement-physics test; do not claim solved CAD generalization.",
       "next": "Same9-output displacement basis, force-independent versus force-dependent, PointNet128/local actual/10k/seed2026. Zero-centered train-onlyu RMS; independent frozen signed-stress checkpoint. Only after completed selection, run predeclared validation5 dia probe; final5test remains excluded."
+    },
+    {
+      "evidence": "Frozen validation5CAD dia probe933951nodes: u mean28.4116% linear vs32.9928% dependent, maxvectorerror.1811 vs.1523mm; sourceu oracle mean.305935%/worst.47164%; independentstress87.4260%. Train-only amplitude analysis: TOR1.3175% of equal-relative-error rawMSE weight despite one-third case sampling.",
+      "conclusion": "Approximate displacement load linearity helps this frozen load-span probe, but high prediction error and extreme-node tradeoff remain. Scalar stress transfer is unresolved; no stress linearity assumption is permitted.",
+      "next": "Apply predeclared train-case-normalizedu MSE in matched two physics modes, keepcommonzero-center physicaldecode andknown-loadvalidationselection. Dia probe already observed and remains a diagnostic; do not use it to choose the loss recipe or claim a pristine blind second probe. Final5CAD still excluded.",
+      "immutable_original_source_local_commit": "906ca17d3e056b358676d7b017984703d54ee252"
     }
   ],
   "future_hypotheses_not_launched": [
