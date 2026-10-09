@@ -1,0 +1,74 @@
+{
+  "created_at_utc": "2026-10-09T02:12:53.184340+00:00",
+  "stage": "complete",
+  "workers": 2,
+  "split": "notes/geobc_split.json",
+  "split_counts": {
+    "train": {
+      "CADs": 40,
+      "cases": 160
+    },
+    "validation": {
+      "CADs": 5,
+      "cases": 20
+    },
+    "test": {
+      "CADs": 5,
+      "cases": 20
+    }
+  },
+  "transfer": {
+    "output": "data/prepared_geobc_transfer",
+    "case_keys": [
+      "101_479/ver",
+      "101_479/hor",
+      "101_479/dia",
+      "107_320/ver",
+      "107_320/hor",
+      "107_320/dia",
+      "114_202/ver",
+      "114_202/hor",
+      "114_202/dia"
+    ],
+    "interpretation": "Same CAD, held-out CAD x load combinations; all four load types occurred in original shared50 training. Not globally unseen load types.",
+    "status": "ready",
+    "nodes_total": 1645041,
+    "elapsed_seconds": 2.094000000040978
+  },
+  "all200": {
+    "output": "data/prepared_geobc_multiload",
+    "CADs": 50,
+    "cases": 200,
+    "status": "ready",
+    "nodes_total": 42739280,
+    "elapsed_seconds": 33.51599999994505
+  },
+  "label_scaler_fitted": false,
+  "network_download": false,
+  "source_policy": "Official original DeepJEB raw already local; preserve CSV-aligned signed labels and current explicit25 schema; no resampling",
+  "progress": {
+    "completed_CADs": 50,
+    "total_CADs": 50,
+    "elapsed_seconds": 33.5,
+    "estimated_remaining_seconds": 0.0,
+    "last_CAD": "119_559"
+  },
+  "updated_at_utc": "2026-10-09T02:13:28.818848+00:00",
+  "preparation_complete": true,
+  "prepared_manifests": {
+    "transfer9": "data/prepared_geobc_transfer/manifest.json",
+    "all200": "data/prepared_geobc_multiload/manifest.json"
+  },
+  "training_policy": {
+    "train_loads": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "heldout_load": "dia",
+    "optimization_case_count": 120,
+    "checkpoint_validation_case_count": 15,
+    "no_test_or_dia_in_scaler_fitting_or_checkpoint_selection": true
+  },
+  "identity_feature_schema_unchanged": true
+}

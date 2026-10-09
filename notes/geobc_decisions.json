@@ -1,0 +1,29 @@
+{
+  "project": "GeoBC Neural Operator",
+  "stage": "diagnosis_complete",
+  "decisions": [
+    {
+      "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
+      "conclusion": "Current model transfers poorly; training-set fit does not establish operator generalization.",
+      "next": "Keep final5CAD/dia isolated; compare explicit whole-geometry conditioning on train40CAD known loads and validation5CAD."
+    },
+    {
+      "evidence": "Independent stress fits with identical TCNN architecture/xyz+25/parent scaler: 101_479tor .0668%,107_320tor .1250%,114_202tor .0554%; shared parent28.9671%,28.1263%,25.5181%.",
+      "conclusion": "These fields are representable by the existing per-case architecture; the shared model has a capacity/conditioning/optimization bottleneck. Separate models use more total parameters, so a specific missing module has not been proven.",
+      "next": "Matched decoder zero-geometry versus PointNet global-shape descriptor, matched batch RNG and budget."
+    },
+    {
+      "evidence": "Feature names/order, normalization, CSV coordinate alignment, load/material values and frozen scaler agree. asinh amplifies one unseen-geometry tail, but large transfer error remains outside the single extreme node.",
+      "conclusion": "No basis to clip labels/predictions or claim the error is merely an input schema or single-node problem.",
+      "next": "Report raw physical metrics and encoded loss separately; investigate instability only if the new experiments show it."
+    }
+  ],
+  "future_hypotheses_not_launched": [
+    "If global shape reduces train but not validation error, treat descriptor memorization as a hypothesis and study geometry representation/spatial conditioning rather than declare generalization.",
+    "If both variants remain poorly fitted, consider matched decoder capacity and case-identity diagnostic before adding complexity.",
+    "If geometry gain persists in validation, repeat a second seed or budget-matched refinement before locking final CAD/load evaluation.",
+    "After a viable stress model, jointly model raw uXYZ and stress; use FEM-consistent linear-load structure for displacement only, never linearly reconstruct signed scalar stress without evidence."
+  ],
+  "watchdog": "geobc",
+  "keep_exploring": true
+}

@@ -1,0 +1,20 @@
+{
+  "status": "ready",
+  "file": "geobc/conditional_train.py",
+  "source_sha256": "316470343018b43d80d5904f0d6ee5f8e6ebbb95231f70e2f70bef7bb9f12378",
+  "generated_at_utc": "2026-10-09T02:27:16.221533+00:00",
+  "checks": [
+    "AST syntax and CPU CLI import/help passed",
+    "Explicit split scope:120 train cases+15 validation cases; test/dia NPZ never opened",
+    "Independent paired NumPy case RNG and Torch node RNG verified insensitive to model initialization RNG",
+    "Train-only StressScaler; validation reuses supplied scaler",
+    "Only validation case_mean_relative_l2 selects best",
+    "Read-only peer review confirmed scientific scope and paired RNG",
+    "Atomic last.pt is authoritative for resume metrics/history and best recovery",
+    "CPU partial-history recovery and idempotent replay passed",
+    "No GPU smoke or training executed by implementation agent"
+  ],
+  "native_gradient_check": "notes/geometry_candidate_validation.json",
+  "metrics_schema": "best_metrics/final_metrics contain train and validation groups with per_case,pooled,case_mean_relative_l2,worst_case_relative_l2",
+  "prediction_policy": "At completion export no more than four best train/validation representatives; no test/dia"
+}

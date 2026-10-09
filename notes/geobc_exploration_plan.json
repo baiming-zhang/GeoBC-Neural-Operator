@@ -1,0 +1,308 @@
+{
+  "project": "GeoBC Neural Operator",
+  "objective": "Learn a geometry- and boundary-conditioned continuous field that fits multiple DeepJEB cases and transfers across held-out CAD/load conditions.",
+  "dataset": "original DeepJEB v1.0",
+  "source_alignment": "official CSV GRID coordinates -> H5 vertices",
+  "stage": "diagnosis_then_conditional_field",
+  "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
+  "prior_completed_slides_experiments": 30,
+  "watchdog": {
+    "id": "geobc",
+    "interval_minutes": 30,
+    "scope": "Only this GeoBC project; evidence-driven autonomous next stages."
+  },
+  "boundaries": [
+    "Do not repeat completed slides experiments or create a second GitHub repository.",
+    "Keep signed stress and original displacement labels.",
+    "Use the frozen checkpoint's scaler for transfer and independent diagnostic fits; never fit transfer labels.",
+    "Independent fields and case identity are diagnostics, not novel methods or generalization results.",
+    "The exact two CADs are unseen by this Hash50 checkpoint but have historical experiment use: migration pilot, not pristine final blind test.",
+    "New strict experiments split CAD groups, fit scalers only on train, select model only on validation, and isolate final test.",
+    "Use a single GPU queue, reuse existing data, and avoid redundant audits."
+  ],
+  "next_stages": [
+    {
+      "stage": "conditional_field",
+      "decision_gate": "Use migration and independent-fit results to identify fit/conditioning bottlenecks.",
+      "experiments": [
+        "Fresh same-split shape-free hash versus PointNet global-geometry-conditioned hash; fixed xyz+25 BC inputs and matched decoder/layout/budget.",
+        "If helpful, diagnostic case-identity control to distinguish memorization from transferable conditioning."
+      ],
+      "scheduled_probe": {
+        "train_CADs": 40,
+        "validation_CADs": 5,
+        "train_loads": [
+          "ver",
+          "hor",
+          "tor"
+        ],
+        "test_CADs": 5,
+        "heldout_load": "dia",
+        "test_evaluation": "Locked; not evaluated during this probe.",
+        "updates_per_variant": 10000,
+        "points_per_update": 51200
+      }
+    },
+    {
+      "stage": "strict_generalization",
+      "protocol": "40 train CAD / 5 validation CAD / 5 official test CAD; all loads stay in CAD group, train-only scalers.",
+      "metrics": [
+        "all-original-node physical signed-stress relative L2, mean/worst/pooled",
+        "top-1-percent |truth| hotspot relative L2",
+        "original displacement vector relative L2 in joint-field stage"
+      ],
+      "decision_gate": "A candidate is promising only if validation gains persist on isolated CAD/load evaluation; record negative results and revise the minimal hypothesis."
+    }
+  ],
+  "jobs": [
+    {
+      "name": "hash50_unseen_geometry_pilot",
+      "stage": "diagnosis",
+      "hypothesis": "Does the frozen shared50 field transfer to geometry/load combinations absent from its training?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.exploration",
+        "--mode",
+        "evaluate",
+        "--checkpoint",
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "--data",
+        "data/prepared_exact_multifield",
+        "--case-keys",
+        "506_533/ver",
+        "506_25/tor",
+        "--output",
+        "runs/geobc_exploration/hash50_unseen_geometry_pilot"
+      ],
+      "requires": [
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "data/prepared_exact_multifield/506_533_ver.npz",
+        "data/prepared_exact_multifield/506_25_tor.npz"
+      ],
+      "output": "runs/geobc_exploration/hash50_unseen_geometry_pilot"
+    },
+    {
+      "name": "independent_101_479_tor",
+      "stage": "diagnosis",
+      "hypothesis": "Can a fixed-capacity independent field fit a difficult case under the parent scaler?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.exploration",
+        "--mode",
+        "fit",
+        "--checkpoint",
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "--data",
+        "data/prepared50_multifield",
+        "--case-keys",
+        "101_479/tor",
+        "--steps",
+        "2000",
+        "--batch-size",
+        "51200",
+        "--learning-rate",
+        "0.003",
+        "--eval-every",
+        "200",
+        "--seed",
+        "2026",
+        "--output",
+        "runs/geobc_exploration/independent_101_479_tor"
+      ],
+      "requires": [
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "data/prepared50_multifield/101_479_tor.npz"
+      ],
+      "output": "runs/geobc_exploration/independent_101_479_tor"
+    },
+    {
+      "name": "independent_107_320_tor",
+      "stage": "diagnosis",
+      "hypothesis": "Can a fixed-capacity independent field fit a difficult case under the parent scaler?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.exploration",
+        "--mode",
+        "fit",
+        "--checkpoint",
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "--data",
+        "data/prepared50_multifield",
+        "--case-keys",
+        "107_320/tor",
+        "--steps",
+        "2000",
+        "--batch-size",
+        "51200",
+        "--learning-rate",
+        "0.003",
+        "--eval-every",
+        "200",
+        "--seed",
+        "2026",
+        "--output",
+        "runs/geobc_exploration/independent_107_320_tor"
+      ],
+      "requires": [
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "data/prepared50_multifield/107_320_tor.npz"
+      ],
+      "output": "runs/geobc_exploration/independent_107_320_tor"
+    },
+    {
+      "name": "independent_114_202_tor",
+      "stage": "diagnosis",
+      "hypothesis": "Can a fixed-capacity independent field fit a difficult case under the parent scaler?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.exploration",
+        "--mode",
+        "fit",
+        "--checkpoint",
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "--data",
+        "data/prepared50_multifield",
+        "--case-keys",
+        "114_202/tor",
+        "--steps",
+        "2000",
+        "--batch-size",
+        "51200",
+        "--learning-rate",
+        "0.003",
+        "--eval-every",
+        "200",
+        "--seed",
+        "2026",
+        "--output",
+        "runs/geobc_exploration/independent_114_202_tor"
+      ],
+      "requires": [
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "data/prepared50_multifield/114_202_tor.npz"
+      ],
+      "output": "runs/geobc_exploration/independent_114_202_tor"
+    },
+    {
+      "name": "hash50_unseen_load_combinations",
+      "stage": "diagnosis",
+      "hypothesis": "Does the frozen shared50 field transfer to geometry/load combinations absent from its training?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.exploration",
+        "--mode",
+        "evaluate",
+        "--checkpoint",
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "--data",
+        "data/prepared_geobc_transfer",
+        "--case-keys",
+        "101_479/ver",
+        "101_479/hor",
+        "101_479/dia",
+        "107_320/ver",
+        "107_320/hor",
+        "107_320/dia",
+        "114_202/ver",
+        "114_202/hor",
+        "114_202/dia",
+        "--output",
+        "runs/geobc_exploration/hash50_unseen_load_combinations"
+      ],
+      "requires": [
+        "runs/slides_reproduction/hash50_full1000ep/best.pt",
+        "data/prepared_geobc_transfer/101_479_ver.npz",
+        "data/prepared_geobc_transfer/101_479_hor.npz",
+        "data/prepared_geobc_transfer/101_479_dia.npz",
+        "data/prepared_geobc_transfer/107_320_ver.npz",
+        "data/prepared_geobc_transfer/107_320_hor.npz",
+        "data/prepared_geobc_transfer/107_320_dia.npz",
+        "data/prepared_geobc_transfer/114_202_ver.npz",
+        "data/prepared_geobc_transfer/114_202_hor.npz",
+        "data/prepared_geobc_transfer/114_202_dia.npz"
+      ],
+      "output": "runs/geobc_exploration/hash50_unseen_load_combinations"
+    },
+    {
+      "name": "hash_bc_no_geometry_10k",
+      "stage": "conditional_field",
+      "hypothesis": "Does an explicit global geometry descriptor improve held-out-CAD validation compared with the same decoder's zero geometry slots?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.conditional_train",
+        "--split",
+        "notes/geobc_split.json",
+        "--data",
+        "data/prepared_geobc_multiload",
+        "--variant",
+        "geometry_none",
+        "--steps",
+        "10000",
+        "--batch-size",
+        "51200",
+        "--cases-per-batch",
+        "4",
+        "--eval-every",
+        "1000",
+        "--learning-rate",
+        "0.003",
+        "--seed",
+        "2026",
+        "--output",
+        "runs/geobc_exploration/hash_bc_no_geometry_10k"
+      ],
+      "requires": [
+        "geobc/conditional_train.py",
+        "notes/geobc_split.json",
+        "data/prepared_geobc_multiload/manifest.json",
+        "notes/geometry_candidate_validation.json",
+        "notes/conditional_trainer_ready.json"
+      ],
+      "output": "runs/geobc_exploration/hash_bc_no_geometry_10k"
+    },
+    {
+      "name": "hash_bc_pointnet_10k",
+      "stage": "conditional_field",
+      "hypothesis": "Does an explicit global geometry descriptor improve held-out-CAD validation compared with the same decoder's zero geometry slots?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.conditional_train",
+        "--split",
+        "notes/geobc_split.json",
+        "--data",
+        "data/prepared_geobc_multiload",
+        "--variant",
+        "geometry_pointnet",
+        "--steps",
+        "10000",
+        "--batch-size",
+        "51200",
+        "--cases-per-batch",
+        "4",
+        "--eval-every",
+        "1000",
+        "--learning-rate",
+        "0.003",
+        "--seed",
+        "2026",
+        "--output",
+        "runs/geobc_exploration/hash_bc_pointnet_10k"
+      ],
+      "requires": [
+        "geobc/conditional_train.py",
+        "notes/geobc_split.json",
+        "data/prepared_geobc_multiload/manifest.json",
+        "notes/geometry_candidate_validation.json",
+        "notes/conditional_trainer_ready.json"
+      ],
+      "output": "runs/geobc_exploration/hash_bc_pointnet_10k"
+    }
+  ]
+}

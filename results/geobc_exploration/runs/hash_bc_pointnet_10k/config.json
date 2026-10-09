@@ -1,0 +1,1879 @@
+{
+  "contract": {
+    "version": 1,
+    "requested": {
+      "variant": "geometry_pointnet",
+      "steps": 10000,
+      "batch_size": 51200,
+      "cases_per_batch": 4,
+      "eval_every": 1000,
+      "eval_batch_size": 65536,
+      "learning_rate": 0.003,
+      "seed": 2026,
+      "cloud_points": 1024,
+      "geometry_dim": 32,
+      "device": "cuda"
+    },
+    "split_sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859",
+    "selected_sources": [
+      {
+        "key": "101_428/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_ver.npz",
+        "bytes": 45320930,
+        "mtime_ns": 1791511980352062400
+      },
+      {
+        "key": "101_428/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_hor.npz",
+        "bytes": 45320930,
+        "mtime_ns": 1791511980433203300
+      },
+      {
+        "key": "101_428/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_tor.npz",
+        "bytes": 45320930,
+        "mtime_ns": 1791511980507933000
+      },
+      {
+        "key": "101_479/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_ver.npz",
+        "bytes": 30122690,
+        "mtime_ns": 1791511974286089700
+      },
+      {
+        "key": "101_479/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_hor.npz",
+        "bytes": 30122690,
+        "mtime_ns": 1791511974332227500
+      },
+      {
+        "key": "101_479/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_tor.npz",
+        "bytes": 30122690,
+        "mtime_ns": 1791454714889689800
+      },
+      {
+        "key": "101_56/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_ver.npz",
+        "bytes": 37050462,
+        "mtime_ns": 1791454716033307500
+      },
+      {
+        "key": "101_56/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_hor.npz",
+        "bytes": 37050462,
+        "mtime_ns": 1791511980752979100
+      },
+      {
+        "key": "101_56/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_tor.npz",
+        "bytes": 37050462,
+        "mtime_ns": 1791511980877995700
+      },
+      {
+        "key": "101_78/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_ver.npz",
+        "bytes": 32255262,
+        "mtime_ns": 1791511981517772800
+      },
+      {
+        "key": "101_78/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_hor.npz",
+        "bytes": 32255262,
+        "mtime_ns": 1791454716418884700
+      },
+      {
+        "key": "101_78/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_tor.npz",
+        "bytes": 32255262,
+        "mtime_ns": 1791511981631939300
+      },
+      {
+        "key": "101_86/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_86_ver.npz",
+        "bytes": 36740830,
+        "mtime_ns": 1791511982019725700
+      },
+      {
+        "key": "101_86/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_86_hor.npz",
+        "bytes": 36740830,
+        "mtime_ns": 1791511982081926600
+      },
+      {
+        "key": "101_86/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_86_tor.npz",
+        "bytes": 36740830,
+        "mtime_ns": 1791511982144101700
+      },
+      {
+        "key": "102_240/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_240_ver.npz",
+        "bytes": 34266882,
+        "mtime_ns": 1791511982745305100
+      },
+      {
+        "key": "102_240/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_240_hor.npz",
+        "bytes": 34266882,
+        "mtime_ns": 1791511982807145400
+      },
+      {
+        "key": "102_240/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_240_tor.npz",
+        "bytes": 34266882,
+        "mtime_ns": 1791454717654909000
+      },
+      {
+        "key": "102_79/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_79_ver.npz",
+        "bytes": 37152542,
+        "mtime_ns": 1791511984511841700
+      },
+      {
+        "key": "102_79/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_79_hor.npz",
+        "bytes": 37152542,
+        "mtime_ns": 1791511984575132000
+      },
+      {
+        "key": "102_79/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_79_tor.npz",
+        "bytes": 37152542,
+        "mtime_ns": 1791511984638851800
+      },
+      {
+        "key": "107_113/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_113_ver.npz",
+        "bytes": 38503042,
+        "mtime_ns": 1791511985189641600
+      },
+      {
+        "key": "107_113/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_113_hor.npz",
+        "bytes": 38503042,
+        "mtime_ns": 1791511985259854700
+      },
+      {
+        "key": "107_113/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_113_tor.npz",
+        "bytes": 38503042,
+        "mtime_ns": 1791454719864505700
+      },
+      {
+        "key": "107_147/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_147_ver.npz",
+        "bytes": 33508354,
+        "mtime_ns": 1791454720137233200
+      },
+      {
+        "key": "107_147/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_147_hor.npz",
+        "bytes": 33508354,
+        "mtime_ns": 1791511985669389100
+      },
+      {
+        "key": "107_147/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_147_tor.npz",
+        "bytes": 33508354,
+        "mtime_ns": 1791511985788637800
+      },
+      {
+        "key": "107_150/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_150_ver.npz",
+        "bytes": 54509634,
+        "mtime_ns": 1791511987034228000
+      },
+      {
+        "key": "107_150/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_150_hor.npz",
+        "bytes": 54509634,
+        "mtime_ns": 1791454721985818000
+      },
+      {
+        "key": "107_150/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_150_tor.npz",
+        "bytes": 54509634,
+        "mtime_ns": 1791511987225797700
+      },
+      {
+        "key": "107_186/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_186_ver.npz",
+        "bytes": 45799970,
+        "mtime_ns": 1791511987253609200
+      },
+      {
+        "key": "107_186/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_186_hor.npz",
+        "bytes": 45799970,
+        "mtime_ns": 1791511987339869400
+      },
+      {
+        "key": "107_186/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_186_tor.npz",
+        "bytes": 45799970,
+        "mtime_ns": 1791511987474765900
+      },
+      {
+        "key": "107_233/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_233_ver.npz",
+        "bytes": 39639586,
+        "mtime_ns": 1791511988594253200
+      },
+      {
+        "key": "107_233/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_233_hor.npz",
+        "bytes": 39639586,
+        "mtime_ns": 1791511988664491000
+      },
+      {
+        "key": "107_233/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_233_tor.npz",
+        "bytes": 39639586,
+        "mtime_ns": 1791454722045872900
+      },
+      {
+        "key": "107_240/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_240_ver.npz",
+        "bytes": 34940130,
+        "mtime_ns": 1791454775603369900
+      },
+      {
+        "key": "107_240/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_240_hor.npz",
+        "bytes": 34940130,
+        "mtime_ns": 1791511988668513100
+      },
+      {
+        "key": "107_240/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_240_tor.npz",
+        "bytes": 34940130,
+        "mtime_ns": 1791511988790304300
+      },
+      {
+        "key": "107_248/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_248_ver.npz",
+        "bytes": 34531330,
+        "mtime_ns": 1791511989802133900
+      },
+      {
+        "key": "107_248/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_248_hor.npz",
+        "bytes": 34531330,
+        "mtime_ns": 1791454775577371600
+      },
+      {
+        "key": "107_248/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_248_tor.npz",
+        "bytes": 34531330,
+        "mtime_ns": 1791511989921877500
+      },
+      {
+        "key": "107_291/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_291_ver.npz",
+        "bytes": 35527394,
+        "mtime_ns": 1791511989875585700
+      },
+      {
+        "key": "107_291/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_291_hor.npz",
+        "bytes": 35527394,
+        "mtime_ns": 1791511989937924200
+      },
+      {
+        "key": "107_291/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_291_tor.npz",
+        "bytes": 35527394,
+        "mtime_ns": 1791511989992615400
+      },
+      {
+        "key": "107_320/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_320_ver.npz",
+        "bytes": 35325602,
+        "mtime_ns": 1791511974458606800
+      },
+      {
+        "key": "107_320/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_320_hor.npz",
+        "bytes": 35325602,
+        "mtime_ns": 1791511974512169400
+      },
+      {
+        "key": "107_320/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_320_tor.npz",
+        "bytes": 35325602,
+        "mtime_ns": 1791454777255057100
+      },
+      {
+        "key": "107_342/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_342_ver.npz",
+        "bytes": 34525826,
+        "mtime_ns": 1791454777219057600
+      },
+      {
+        "key": "107_342/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_342_hor.npz",
+        "bytes": 34525826,
+        "mtime_ns": 1791511991048149300
+      },
+      {
+        "key": "107_342/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_342_tor.npz",
+        "bytes": 34525826,
+        "mtime_ns": 1791511991170975100
+      },
+      {
+        "key": "107_459/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_459_ver.npz",
+        "bytes": 34650530,
+        "mtime_ns": 1791511991593078000
+      },
+      {
+        "key": "107_459/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_459_hor.npz",
+        "bytes": 34650530,
+        "mtime_ns": 1791454777316056100
+      },
+      {
+        "key": "107_459/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_459_tor.npz",
+        "bytes": 34650530,
+        "mtime_ns": 1791511991710987600
+      },
+      {
+        "key": "10_30/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_30_ver.npz",
+        "bytes": 26686138,
+        "mtime_ns": 1791454671925247900
+      },
+      {
+        "key": "10_30/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_30_hor.npz",
+        "bytes": 26686138,
+        "mtime_ns": 1791511976265386400
+      },
+      {
+        "key": "10_30/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_30_tor.npz",
+        "bytes": 26686138,
+        "mtime_ns": 1791511976353711600
+      },
+      {
+        "key": "10_421/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_421_ver.npz",
+        "bytes": 31828254,
+        "mtime_ns": 1791511976448513400
+      },
+      {
+        "key": "10_421/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_421_hor.npz",
+        "bytes": 31828254,
+        "mtime_ns": 1791454672189778400
+      },
+      {
+        "key": "10_421/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_421_tor.npz",
+        "bytes": 31828254,
+        "mtime_ns": 1791511976553401100
+      },
+      {
+        "key": "10_460/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_460_ver.npz",
+        "bytes": 33593470,
+        "mtime_ns": 1791511977411310500
+      },
+      {
+        "key": "10_460/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_460_hor.npz",
+        "bytes": 33593470,
+        "mtime_ns": 1791511977468088300
+      },
+      {
+        "key": "10_460/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_460_tor.npz",
+        "bytes": 33593470,
+        "mtime_ns": 1791511977528875200
+      },
+      {
+        "key": "10_492/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_492_ver.npz",
+        "bytes": 35734814,
+        "mtime_ns": 1791511977702753300
+      },
+      {
+        "key": "10_492/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_492_hor.npz",
+        "bytes": 35734814,
+        "mtime_ns": 1791511977808643400
+      },
+      {
+        "key": "10_492/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_492_tor.npz",
+        "bytes": 35734814,
+        "mtime_ns": 1791454713065839200
+      },
+      {
+        "key": "10_58/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_58_ver.npz",
+        "bytes": 42623162,
+        "mtime_ns": 1791454713397443600
+      },
+      {
+        "key": "10_58/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_58_hor.npz",
+        "bytes": 42623162,
+        "mtime_ns": 1791511978943020000
+      },
+      {
+        "key": "10_58/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_58_tor.npz",
+        "bytes": 42623162,
+        "mtime_ns": 1791511979081475300
+      },
+      {
+        "key": "10_80/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_80_ver.npz",
+        "bytes": 27260410,
+        "mtime_ns": 1791511978847905300
+      },
+      {
+        "key": "10_80/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_80_hor.npz",
+        "bytes": 27260410,
+        "mtime_ns": 1791454714280577200
+      },
+      {
+        "key": "10_80/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_80_tor.npz",
+        "bytes": 27260410,
+        "mtime_ns": 1791511978945331600
+      },
+      {
+        "key": "113_129/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_129_ver.npz",
+        "bytes": 39587618,
+        "mtime_ns": 1791454779166665000
+      },
+      {
+        "key": "113_129/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_129_hor.npz",
+        "bytes": 39587618,
+        "mtime_ns": 1791511993772039200
+      },
+      {
+        "key": "113_129/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_129_tor.npz",
+        "bytes": 39587618,
+        "mtime_ns": 1791511993940419500
+      },
+      {
+        "key": "113_170/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_170_ver.npz",
+        "bytes": 42550786,
+        "mtime_ns": 1791511994288369300
+      },
+      {
+        "key": "113_170/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_170_hor.npz",
+        "bytes": 42550786,
+        "mtime_ns": 1791454780764535500
+      },
+      {
+        "key": "113_170/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_170_tor.npz",
+        "bytes": 42550786,
+        "mtime_ns": 1791511994431570400
+      },
+      {
+        "key": "113_390/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_390_ver.npz",
+        "bytes": 33348514,
+        "mtime_ns": 1791511995482747200
+      },
+      {
+        "key": "113_390/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_390_hor.npz",
+        "bytes": 33348514,
+        "mtime_ns": 1791511995539854500
+      },
+      {
+        "key": "113_390/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_390_tor.npz",
+        "bytes": 33348514,
+        "mtime_ns": 1791454780764535500
+      },
+      {
+        "key": "113_86/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_86_ver.npz",
+        "bytes": 41862078,
+        "mtime_ns": 1791511996895554800
+      },
+      {
+        "key": "113_86/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_86_hor.npz",
+        "bytes": 41862078,
+        "mtime_ns": 1791454782769514200
+      },
+      {
+        "key": "113_86/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_86_tor.npz",
+        "bytes": 41862078,
+        "mtime_ns": 1791511997102685800
+      },
+      {
+        "key": "113_95/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_95_ver.npz",
+        "bytes": 35687838,
+        "mtime_ns": 1791511997799793100
+      },
+      {
+        "key": "113_95/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_95_hor.npz",
+        "bytes": 35687838,
+        "mtime_ns": 1791511997861003500
+      },
+      {
+        "key": "113_95/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_95_tor.npz",
+        "bytes": 35687838,
+        "mtime_ns": 1791511997957457900
+      },
+      {
+        "key": "114_28/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_28_ver.npz",
+        "bytes": 31001854,
+        "mtime_ns": 1791454783943683300
+      },
+      {
+        "key": "114_28/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_28_hor.npz",
+        "bytes": 31001854,
+        "mtime_ns": 1791511998829116200
+      },
+      {
+        "key": "114_28/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_28_tor.npz",
+        "bytes": 31001854,
+        "mtime_ns": 1791511999004340700
+      },
+      {
+        "key": "114_456/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_456_ver.npz",
+        "bytes": 32079330,
+        "mtime_ns": 1791512000221657200
+      },
+      {
+        "key": "114_456/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_456_hor.npz",
+        "bytes": 32079330,
+        "mtime_ns": 1791512000345072700
+      },
+      {
+        "key": "114_456/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_456_tor.npz",
+        "bytes": 32079330,
+        "mtime_ns": 1791512000397541000
+      },
+      {
+        "key": "114_525/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_525_ver.npz",
+        "bytes": 44607714,
+        "mtime_ns": 1791512001172399000
+      },
+      {
+        "key": "114_525/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_525_hor.npz",
+        "bytes": 44607714,
+        "mtime_ns": 1791512001252573200
+      },
+      {
+        "key": "114_525/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_525_tor.npz",
+        "bytes": 44607714,
+        "mtime_ns": 1791454786058323800
+      },
+      {
+        "key": "114_91/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_91_ver.npz",
+        "bytes": 29408638,
+        "mtime_ns": 1791454785895623500
+      },
+      {
+        "key": "114_91/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_91_hor.npz",
+        "bytes": 29408638,
+        "mtime_ns": 1791512001457816100
+      },
+      {
+        "key": "114_91/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_91_tor.npz",
+        "bytes": 29408638,
+        "mtime_ns": 1791512001559650100
+      },
+      {
+        "key": "116_102/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_102_ver.npz",
+        "bytes": 37773282,
+        "mtime_ns": 1791512002770767700
+      },
+      {
+        "key": "116_102/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_102_hor.npz",
+        "bytes": 37773282,
+        "mtime_ns": 1791454786808497100
+      },
+      {
+        "key": "116_102/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_102_tor.npz",
+        "bytes": 37773282,
+        "mtime_ns": 1791512002942277200
+      },
+      {
+        "key": "116_113/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_113_ver.npz",
+        "bytes": 37577794,
+        "mtime_ns": 1791512003024859200
+      },
+      {
+        "key": "116_113/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_113_hor.npz",
+        "bytes": 37577794,
+        "mtime_ns": 1791512003091195900
+      },
+      {
+        "key": "116_113/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_113_tor.npz",
+        "bytes": 37577794,
+        "mtime_ns": 1791512003155475100
+      },
+      {
+        "key": "116_30/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_30_ver.npz",
+        "bytes": 25715902,
+        "mtime_ns": 1791512004014975700
+      },
+      {
+        "key": "116_30/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_30_hor.npz",
+        "bytes": 25715902,
+        "mtime_ns": 1791512004059137500
+      },
+      {
+        "key": "116_30/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_30_tor.npz",
+        "bytes": 25715902,
+        "mtime_ns": 1791454787277999400
+      },
+      {
+        "key": "116_348/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_348_ver.npz",
+        "bytes": 32429986,
+        "mtime_ns": 1791454788315856100
+      },
+      {
+        "key": "116_348/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_348_hor.npz",
+        "bytes": 32429986,
+        "mtime_ns": 1791512004544307000
+      },
+      {
+        "key": "116_348/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_348_tor.npz",
+        "bytes": 32429986,
+        "mtime_ns": 1791512004735535000
+      },
+      {
+        "key": "119_221/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_221_ver.npz",
+        "bytes": 43663074,
+        "mtime_ns": 1791512006907697600
+      },
+      {
+        "key": "119_221/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_221_hor.npz",
+        "bytes": 43663074,
+        "mtime_ns": 1791512006985070500
+      },
+      {
+        "key": "119_221/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_221_tor.npz",
+        "bytes": 43663074,
+        "mtime_ns": 1791454790325987500
+      },
+      {
+        "key": "119_322/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_322_ver.npz",
+        "bytes": 37397186,
+        "mtime_ns": 1791454790379038000
+      },
+      {
+        "key": "119_322/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_322_hor.npz",
+        "bytes": 37397186,
+        "mtime_ns": 1791512007457796500
+      },
+      {
+        "key": "119_322/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_322_tor.npz",
+        "bytes": 37397186,
+        "mtime_ns": 1791512007617685200
+      },
+      {
+        "key": "119_559/ver",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_559_ver.npz",
+        "bytes": 40944098,
+        "mtime_ns": 1791512008618912700
+      },
+      {
+        "key": "119_559/hor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_559_hor.npz",
+        "bytes": 40944098,
+        "mtime_ns": 1791454791226860400
+      },
+      {
+        "key": "119_559/tor",
+        "group": "train",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_559_tor.npz",
+        "bytes": 40944098,
+        "mtime_ns": 1791512008759188000
+      },
+      {
+        "key": "102_249/ver",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_249_ver.npz",
+        "bytes": 35482562,
+        "mtime_ns": 1791454718057858700
+      },
+      {
+        "key": "102_249/hor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_249_hor.npz",
+        "bytes": 35482562,
+        "mtime_ns": 1791511983249787000
+      },
+      {
+        "key": "102_249/tor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_249_tor.npz",
+        "bytes": 35482562,
+        "mtime_ns": 1791511983374616200
+      },
+      {
+        "key": "102_38/ver",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_38_ver.npz",
+        "bytes": 33185758,
+        "mtime_ns": 1791511983883164000
+      },
+      {
+        "key": "102_38/hor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_38_hor.npz",
+        "bytes": 33185758,
+        "mtime_ns": 1791454718579773600
+      },
+      {
+        "key": "102_38/tor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_38_tor.npz",
+        "bytes": 33185758,
+        "mtime_ns": 1791511983999082900
+      },
+      {
+        "key": "107_91/ver",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_91_ver.npz",
+        "bytes": 31947102,
+        "mtime_ns": 1791511992179346700
+      },
+      {
+        "key": "107_91/hor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_91_hor.npz",
+        "bytes": 31947102,
+        "mtime_ns": 1791511992235022500
+      },
+      {
+        "key": "107_91/tor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_91_tor.npz",
+        "bytes": 31947102,
+        "mtime_ns": 1791511992290020900
+      },
+      {
+        "key": "114_202/ver",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_202_ver.npz",
+        "bytes": 26618466,
+        "mtime_ns": 1791511975169216600
+      },
+      {
+        "key": "114_202/hor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_202_hor.npz",
+        "bytes": 26618466,
+        "mtime_ns": 1791511975211451800
+      },
+      {
+        "key": "114_202/tor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_202_tor.npz",
+        "bytes": 26618466,
+        "mtime_ns": 1791454783543172900
+      },
+      {
+        "key": "116_440/ver",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_440_ver.npz",
+        "bytes": 29639234,
+        "mtime_ns": 1791512005244319900
+      },
+      {
+        "key": "116_440/hor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_440_hor.npz",
+        "bytes": 29639234,
+        "mtime_ns": 1791454788650743800
+      },
+      {
+        "key": "116_440/tor",
+        "group": "validation",
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_440_tor.npz",
+        "bytes": 29639234,
+        "mtime_ns": 1791512005419644600
+      }
+    ],
+    "source_identity_policy": "path/size/mtime; no multi-GB label/checkpoint SHA scans",
+    "code_sha256": {
+      "conditional_train.py": "316470343018b43d80d5904f0d6ee5f8e6ebbb95231f70e2f70bef7bb9f12378",
+      "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef"
+    }
+  },
+  "method": "GeoBC geometry-conditioned field candidate baseline",
+  "variant": "geometry_pointnet",
+  "split_source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/notes/geobc_split.json",
+  "dataset": "DeepJEB original v1.0",
+  "arguments": {
+    "split": "notes/geobc_split.json",
+    "data": "data/prepared_geobc_multiload",
+    "variant": "geometry_pointnet",
+    "steps": 10000,
+    "batch_size": 51200,
+    "cases_per_batch": 4,
+    "eval_every": 1000,
+    "eval_batch_size": 65536,
+    "learning_rate": 0.003,
+    "seed": 2026,
+    "cloud_points": 1024,
+    "geometry_dim": 32,
+    "device": "cuda",
+    "output": "runs/geobc_exploration/hash_bc_pointnet_10k",
+    "resume": null
+  },
+  "scope": "40 training CADs / 5 validation CADs; ver,hor,tor only; test CADs and dia locked",
+  "groups": {
+    "train": [
+      "101_428",
+      "101_479",
+      "101_56",
+      "101_78",
+      "101_86",
+      "102_240",
+      "102_79",
+      "107_113",
+      "107_147",
+      "107_150",
+      "107_186",
+      "107_233",
+      "107_240",
+      "107_248",
+      "107_291",
+      "107_320",
+      "107_342",
+      "107_459",
+      "10_30",
+      "10_421",
+      "10_460",
+      "10_492",
+      "10_58",
+      "10_80",
+      "113_129",
+      "113_170",
+      "113_390",
+      "113_86",
+      "113_95",
+      "114_28",
+      "114_456",
+      "114_525",
+      "114_91",
+      "116_102",
+      "116_113",
+      "116_30",
+      "116_348",
+      "119_221",
+      "119_322",
+      "119_559"
+    ],
+    "validation": [
+      "102_249",
+      "102_38",
+      "107_91",
+      "114_202",
+      "116_440"
+    ],
+    "test": [
+      "107_95",
+      "113_345",
+      "113_472",
+      "114_319",
+      "116_61"
+    ]
+  },
+  "train_loads": [
+    "ver",
+    "hor",
+    "tor"
+  ],
+  "heldout_load": "dia",
+  "cases": {
+    "train": [
+      {
+        "sample_key": "101_428/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_ver.npz",
+        "nodes": 270276
+      },
+      {
+        "sample_key": "101_428/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_hor.npz",
+        "nodes": 270276
+      },
+      {
+        "sample_key": "101_428/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_tor.npz",
+        "nodes": 270276
+      },
+      {
+        "sample_key": "101_479/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_ver.npz",
+        "nodes": 179316
+      },
+      {
+        "sample_key": "101_479/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_hor.npz",
+        "nodes": 179316
+      },
+      {
+        "sample_key": "101_479/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_tor.npz",
+        "nodes": 179316
+      },
+      {
+        "sample_key": "101_56/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_ver.npz",
+        "nodes": 221213
+      },
+      {
+        "sample_key": "101_56/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_hor.npz",
+        "nodes": 221213
+      },
+      {
+        "sample_key": "101_56/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_tor.npz",
+        "nodes": 221213
+      },
+      {
+        "sample_key": "101_78/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_ver.npz",
+        "nodes": 192353
+      },
+      {
+        "sample_key": "101_78/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_hor.npz",
+        "nodes": 192353
+      },
+      {
+        "sample_key": "101_78/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_tor.npz",
+        "nodes": 192353
+      },
+      {
+        "sample_key": "101_86/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_86_ver.npz",
+        "nodes": 219150
+      },
+      {
+        "sample_key": "101_86/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_86_hor.npz",
+        "nodes": 219150
+      },
+      {
+        "sample_key": "101_86/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_86_tor.npz",
+        "nodes": 219150
+      },
+      {
+        "sample_key": "102_240/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_240_ver.npz",
+        "nodes": 204361
+      },
+      {
+        "sample_key": "102_240/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_240_hor.npz",
+        "nodes": 204361
+      },
+      {
+        "sample_key": "102_240/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_240_tor.npz",
+        "nodes": 204361
+      },
+      {
+        "sample_key": "102_79/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_79_ver.npz",
+        "nodes": 221650
+      },
+      {
+        "sample_key": "102_79/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_79_hor.npz",
+        "nodes": 221650
+      },
+      {
+        "sample_key": "102_79/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_79_tor.npz",
+        "nodes": 221650
+      },
+      {
+        "sample_key": "107_113/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_113_ver.npz",
+        "nodes": 229808
+      },
+      {
+        "sample_key": "107_113/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_113_hor.npz",
+        "nodes": 229808
+      },
+      {
+        "sample_key": "107_113/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_113_tor.npz",
+        "nodes": 229808
+      },
+      {
+        "sample_key": "107_147/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_147_ver.npz",
+        "nodes": 199727
+      },
+      {
+        "sample_key": "107_147/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_147_hor.npz",
+        "nodes": 199727
+      },
+      {
+        "sample_key": "107_147/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_147_tor.npz",
+        "nodes": 199727
+      },
+      {
+        "sample_key": "107_150/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_150_ver.npz",
+        "nodes": 325387
+      },
+      {
+        "sample_key": "107_150/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_150_hor.npz",
+        "nodes": 325387
+      },
+      {
+        "sample_key": "107_150/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_150_tor.npz",
+        "nodes": 325387
+      },
+      {
+        "sample_key": "107_186/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_186_ver.npz",
+        "nodes": 273651
+      },
+      {
+        "sample_key": "107_186/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_186_hor.npz",
+        "nodes": 273651
+      },
+      {
+        "sample_key": "107_186/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_186_tor.npz",
+        "nodes": 273651
+      },
+      {
+        "sample_key": "107_233/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_233_ver.npz",
+        "nodes": 236609
+      },
+      {
+        "sample_key": "107_233/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_233_hor.npz",
+        "nodes": 236609
+      },
+      {
+        "sample_key": "107_233/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_233_tor.npz",
+        "nodes": 236609
+      },
+      {
+        "sample_key": "107_240/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_240_ver.npz",
+        "nodes": 208405
+      },
+      {
+        "sample_key": "107_240/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_240_hor.npz",
+        "nodes": 208405
+      },
+      {
+        "sample_key": "107_240/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_240_tor.npz",
+        "nodes": 208405
+      },
+      {
+        "sample_key": "107_248/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_248_ver.npz",
+        "nodes": 206054
+      },
+      {
+        "sample_key": "107_248/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_248_hor.npz",
+        "nodes": 206054
+      },
+      {
+        "sample_key": "107_248/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_248_tor.npz",
+        "nodes": 206054
+      },
+      {
+        "sample_key": "107_291/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_291_ver.npz",
+        "nodes": 211839
+      },
+      {
+        "sample_key": "107_291/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_291_hor.npz",
+        "nodes": 211839
+      },
+      {
+        "sample_key": "107_291/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_291_tor.npz",
+        "nodes": 211839
+      },
+      {
+        "sample_key": "107_320/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_320_ver.npz",
+        "nodes": 210675
+      },
+      {
+        "sample_key": "107_320/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_320_hor.npz",
+        "nodes": 210675
+      },
+      {
+        "sample_key": "107_320/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_320_tor.npz",
+        "nodes": 210675
+      },
+      {
+        "sample_key": "107_342/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_342_ver.npz",
+        "nodes": 205599
+      },
+      {
+        "sample_key": "107_342/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_342_hor.npz",
+        "nodes": 205599
+      },
+      {
+        "sample_key": "107_342/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_342_tor.npz",
+        "nodes": 205599
+      },
+      {
+        "sample_key": "107_459/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_459_ver.npz",
+        "nodes": 206544
+      },
+      {
+        "sample_key": "107_459/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_459_hor.npz",
+        "nodes": 206544
+      },
+      {
+        "sample_key": "107_459/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_459_tor.npz",
+        "nodes": 206544
+      },
+      {
+        "sample_key": "10_30/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_30_ver.npz",
+        "nodes": 158221
+      },
+      {
+        "sample_key": "10_30/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_30_hor.npz",
+        "nodes": 158221
+      },
+      {
+        "sample_key": "10_30/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_30_tor.npz",
+        "nodes": 158221
+      },
+      {
+        "sample_key": "10_421/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_421_ver.npz",
+        "nodes": 189704
+      },
+      {
+        "sample_key": "10_421/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_421_hor.npz",
+        "nodes": 189704
+      },
+      {
+        "sample_key": "10_421/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_421_tor.npz",
+        "nodes": 189704
+      },
+      {
+        "sample_key": "10_460/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_460_ver.npz",
+        "nodes": 200331
+      },
+      {
+        "sample_key": "10_460/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_460_hor.npz",
+        "nodes": 200331
+      },
+      {
+        "sample_key": "10_460/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_460_tor.npz",
+        "nodes": 200331
+      },
+      {
+        "sample_key": "10_492/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_492_ver.npz",
+        "nodes": 213235
+      },
+      {
+        "sample_key": "10_492/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_492_hor.npz",
+        "nodes": 213235
+      },
+      {
+        "sample_key": "10_492/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_492_tor.npz",
+        "nodes": 213235
+      },
+      {
+        "sample_key": "10_58/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_58_ver.npz",
+        "nodes": 254645
+      },
+      {
+        "sample_key": "10_58/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_58_hor.npz",
+        "nodes": 254645
+      },
+      {
+        "sample_key": "10_58/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_58_tor.npz",
+        "nodes": 254645
+      },
+      {
+        "sample_key": "10_80/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_80_ver.npz",
+        "nodes": 162082
+      },
+      {
+        "sample_key": "10_80/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_80_hor.npz",
+        "nodes": 162082
+      },
+      {
+        "sample_key": "10_80/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/10_80_tor.npz",
+        "nodes": 162082
+      },
+      {
+        "sample_key": "113_129/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_129_ver.npz",
+        "nodes": 236193
+      },
+      {
+        "sample_key": "113_129/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_129_hor.npz",
+        "nodes": 236193
+      },
+      {
+        "sample_key": "113_129/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_129_tor.npz",
+        "nodes": 236193
+      },
+      {
+        "sample_key": "113_170/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_170_ver.npz",
+        "nodes": 254021
+      },
+      {
+        "sample_key": "113_170/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_170_hor.npz",
+        "nodes": 254021
+      },
+      {
+        "sample_key": "113_170/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_170_tor.npz",
+        "nodes": 254021
+      },
+      {
+        "sample_key": "113_390/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_390_ver.npz",
+        "nodes": 198740
+      },
+      {
+        "sample_key": "113_390/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_390_hor.npz",
+        "nodes": 198740
+      },
+      {
+        "sample_key": "113_390/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_390_tor.npz",
+        "nodes": 198740
+      },
+      {
+        "sample_key": "113_86/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_86_ver.npz",
+        "nodes": 249986
+      },
+      {
+        "sample_key": "113_86/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_86_hor.npz",
+        "nodes": 249986
+      },
+      {
+        "sample_key": "113_86/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_86_tor.npz",
+        "nodes": 249986
+      },
+      {
+        "sample_key": "113_95/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_95_ver.npz",
+        "nodes": 212909
+      },
+      {
+        "sample_key": "113_95/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_95_hor.npz",
+        "nodes": 212909
+      },
+      {
+        "sample_key": "113_95/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_95_tor.npz",
+        "nodes": 212909
+      },
+      {
+        "sample_key": "114_28/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_28_ver.npz",
+        "nodes": 184824
+      },
+      {
+        "sample_key": "114_28/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_28_hor.npz",
+        "nodes": 184824
+      },
+      {
+        "sample_key": "114_28/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_28_tor.npz",
+        "nodes": 184824
+      },
+      {
+        "sample_key": "114_456/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_456_ver.npz",
+        "nodes": 190969
+      },
+      {
+        "sample_key": "114_456/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_456_hor.npz",
+        "nodes": 190969
+      },
+      {
+        "sample_key": "114_456/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_456_tor.npz",
+        "nodes": 190969
+      },
+      {
+        "sample_key": "114_525/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_525_ver.npz",
+        "nodes": 266509
+      },
+      {
+        "sample_key": "114_525/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_525_hor.npz",
+        "nodes": 266509
+      },
+      {
+        "sample_key": "114_525/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_525_tor.npz",
+        "nodes": 266509
+      },
+      {
+        "sample_key": "114_91/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_91_ver.npz",
+        "nodes": 175194
+      },
+      {
+        "sample_key": "114_91/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_91_hor.npz",
+        "nodes": 175194
+      },
+      {
+        "sample_key": "114_91/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_91_tor.npz",
+        "nodes": 175194
+      },
+      {
+        "sample_key": "116_102/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_102_ver.npz",
+        "nodes": 225262
+      },
+      {
+        "sample_key": "116_102/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_102_hor.npz",
+        "nodes": 225262
+      },
+      {
+        "sample_key": "116_102/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_102_tor.npz",
+        "nodes": 225262
+      },
+      {
+        "sample_key": "116_113/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_113_ver.npz",
+        "nodes": 224078
+      },
+      {
+        "sample_key": "116_113/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_113_hor.npz",
+        "nodes": 224078
+      },
+      {
+        "sample_key": "116_113/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_113_tor.npz",
+        "nodes": 224078
+      },
+      {
+        "sample_key": "116_30/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_30_ver.npz",
+        "nodes": 152853
+      },
+      {
+        "sample_key": "116_30/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_30_hor.npz",
+        "nodes": 152853
+      },
+      {
+        "sample_key": "116_30/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_30_tor.npz",
+        "nodes": 152853
+      },
+      {
+        "sample_key": "116_348/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_348_ver.npz",
+        "nodes": 193268
+      },
+      {
+        "sample_key": "116_348/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_348_hor.npz",
+        "nodes": 193268
+      },
+      {
+        "sample_key": "116_348/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_348_tor.npz",
+        "nodes": 193268
+      },
+      {
+        "sample_key": "119_221/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_221_ver.npz",
+        "nodes": 260275
+      },
+      {
+        "sample_key": "119_221/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_221_hor.npz",
+        "nodes": 260275
+      },
+      {
+        "sample_key": "119_221/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_221_tor.npz",
+        "nodes": 260275
+      },
+      {
+        "sample_key": "119_322/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_322_ver.npz",
+        "nodes": 223170
+      },
+      {
+        "sample_key": "119_322/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_322_hor.npz",
+        "nodes": 223170
+      },
+      {
+        "sample_key": "119_322/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_322_tor.npz",
+        "nodes": 223170
+      },
+      {
+        "sample_key": "119_559/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_559_ver.npz",
+        "nodes": 244209
+      },
+      {
+        "sample_key": "119_559/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_559_hor.npz",
+        "nodes": 244209
+      },
+      {
+        "sample_key": "119_559/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/119_559_tor.npz",
+        "nodes": 244209
+      }
+    ],
+    "validation": [
+      {
+        "sample_key": "102_249/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_249_ver.npz",
+        "nodes": 211173
+      },
+      {
+        "sample_key": "102_249/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_249_hor.npz",
+        "nodes": 211173
+      },
+      {
+        "sample_key": "102_249/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_249_tor.npz",
+        "nodes": 211173
+      },
+      {
+        "sample_key": "102_38/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_38_ver.npz",
+        "nodes": 197514
+      },
+      {
+        "sample_key": "102_38/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_38_hor.npz",
+        "nodes": 197514
+      },
+      {
+        "sample_key": "102_38/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_38_tor.npz",
+        "nodes": 197514
+      },
+      {
+        "sample_key": "107_91/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_91_ver.npz",
+        "nodes": 190331
+      },
+      {
+        "sample_key": "107_91/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_91_hor.npz",
+        "nodes": 190331
+      },
+      {
+        "sample_key": "107_91/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_91_tor.npz",
+        "nodes": 190331
+      },
+      {
+        "sample_key": "114_202/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_202_ver.npz",
+        "nodes": 158356
+      },
+      {
+        "sample_key": "114_202/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_202_hor.npz",
+        "nodes": 158356
+      },
+      {
+        "sample_key": "114_202/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_202_tor.npz",
+        "nodes": 158356
+      },
+      {
+        "sample_key": "116_440/ver",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_440_ver.npz",
+        "nodes": 176577
+      },
+      {
+        "sample_key": "116_440/hor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_440_hor.npz",
+        "nodes": 176577
+      },
+      {
+        "sample_key": "116_440/tor",
+        "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_440_tor.npz",
+        "nodes": 176577
+      }
+    ]
+  },
+  "scaler": {
+    "scale": 90.46589813232424,
+    "center": 0.09629744183585241,
+    "spread": 0.5232191238243877,
+    "definition": {
+      "fit_data": "all labels of the selected training cases; no validation/test labels",
+      "scale": "90th percentile of abs(stress), or RMS if that percentile is zero; floor 1e-12",
+      "center": "pooled mean of asinh(stress / scale)",
+      "spread": "pooled population standard deviation of asinh(stress / scale); floor 1e-8",
+      "encode": "(asinh(stress / scale) - center) / spread",
+      "decode": "scale * sinh(center + spread * prediction)"
+    }
+  },
+  "scaler_fit_scope": "train 40 CAD x ver/hor/tor, all original labels; validation uses fixed scaler",
+  "model": {
+    "geometry_mode": "shape",
+    "descriptor_dim": 32,
+    "condition_dim": 25,
+    "cloud_points": 1024,
+    "point_width": 64,
+    "out_channels": 1,
+    "seed": 2026,
+    "n_levels": 12,
+    "n_features_per_level": 2,
+    "log2_hashmap_size": 19,
+    "base_resolution": 8,
+    "per_level_scale": 1.6,
+    "hidden_dim": 64,
+    "hidden_layers": 2,
+    "method": "PointNet-conditioned continuous hash field",
+    "claim": "GeoBC candidate baseline; no new-algorithm or generalization claim",
+    "decoder": {
+      "out_channels": 1,
+      "input_mode": "both",
+      "condition_dim": 57,
+      "n_levels": 12,
+      "n_features_per_level": 2,
+      "log2_hashmap_size": 19,
+      "base_resolution": 8,
+      "per_level_scale": 1.6,
+      "hidden_dim": 64,
+      "hidden_layers": 2,
+      "seed": 2026,
+      "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+      "encoding": {
+        "otype": "Composite",
+        "nested": [
+          {
+            "otype": "HashGrid",
+            "n_levels": 12,
+            "n_features_per_level": 2,
+            "log2_hashmap_size": 19,
+            "base_resolution": 8,
+            "per_level_scale": 1.6,
+            "interpolation": "Linear",
+            "hash": "CoherentPrime",
+            "n_dims_to_encode": 3
+          },
+          {
+            "otype": "Identity",
+            "n_dims_to_encode": 57,
+            "scale": 1.0,
+            "offset": 0.0
+          }
+        ]
+      },
+      "network": {
+        "otype": "FullyFusedMLP",
+        "activation": "ReLU",
+        "output_activation": "None",
+        "n_neurons": 64,
+        "n_hidden_layers": 2
+      },
+      "sample_id": false,
+      "raw_xyz_after_encoding": false,
+      "bias_parameters": false,
+      "jit_fusion": false,
+      "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+      "alignment": "native TCNN channel/batch padding retained",
+      "layout": "xyz[N,3], features[N,condition_dim] -> prediction[N,out_channels]"
+    },
+    "encoder": {
+      "point_mlp": [
+        3,
+        32,
+        64,
+        64
+      ],
+      "pooling": "concatenated masked max and masked mean",
+      "head": [
+        128,
+        64,
+        32
+      ],
+      "activation": "ReLU",
+      "output": "non-affine LayerNorm then tanh, bounded [-1,1]",
+      "batch_norm": false,
+      "dropout": false
+    },
+    "conditioning": "existing local BC/material features followed by global geometry descriptor",
+    "geometry_source": "fixed per-CAD normalized xyz only; prefer unique original boundary FEM nodes",
+    "geometry_sampling": "CAD-key/seed-stable sampling without replacement; masked padding for small clouds",
+    "geometry_target_independent": true,
+    "geometry_load_independent": true,
+    "context_gradient": "index_select/concatenate preserve gradients through native TCNN inputs",
+    "context_training_cache": "clouds only; re-encode once per unique CAD each optimizer step",
+    "control": "none/id retain the same decoder condition dimension and width as shape",
+    "id_policy": "fixed case identity codes for a diagnostic only; cannot encode unseen geometry",
+    "actual_decoder_backend": "tcnn_fully_fused",
+    "decoder_parameters": 7744896,
+    "geometry_encoder_parameters": 16736
+  },
+  "total_steps": 10000,
+  "parameter_count": 7761632,
+  "decoder_parameter_count": 7744896,
+  "encoder_parameter_count": 16736,
+  "sampling": "uniform distinct cases per batch; equal nodes per selected case, with replacement",
+  "sampling_rng": {
+    "case": "independent NumPy default_rng(seed+23)",
+    "node": "independent torch.Generator(device), seed+17"
+  },
+  "batch_size": 51200,
+  "cases_per_batch": 4,
+  "geometry": {
+    "cloud_file": "geometry_clouds.npz",
+    "metadata_file": "cloud_metadata.json",
+    "canonical_source": "one ver prepared geometry per train/validation CAD, reused for all loads",
+    "coordinate_sha256": "8e9391c76707661fd27e95ea16c5b488eaa2452dd77315cc3f7260aacdb50c90",
+    "mask_sha256": "391f0a597f6f0daa5166bf008a62af1133e90eabd1d2470a29c0b61f29e3da82",
+    "target_independent": true,
+    "cad_key_is_model_input": false
+  },
+  "training_loss": "case-balanced sampled mean squared error in fixed train-scaled centered asinh stress",
+  "evaluation": "all original nodes; physical signed stress, no clipping; cloud context encoded once per CAD per evaluation",
+  "checkpoint_selection": "minimum validation case_mean_relative_l2; train/test/dia do not select",
+  "precision": "PointNet float32/high TF32; native TCNN FP16 compute, FP32 master, float32 returned output",
+  "torch_version": "2.14.1+cu130",
+  "started_at_utc": "2026-10-09T02:29:00.504538+00:00",
+  "claim": "candidate baseline, not a new algorithm or an already established generalization result"
+}

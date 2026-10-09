@@ -224,7 +224,7 @@ for ($i = 0; $i -lt $files.Count; $i += 50) {
     [void](Git-Run $snapshot (@('add', '--force', '--') + $batch))
 }
 $diff = Git-Run $snapshot @('diff', '--cached', '--quiet') -AcceptedExitCodes @(0, 1)
-if ($diff.ExitCode -eq 1) { [void](Git-Run $snapshot @('commit', '-m', 'Reproduce original DeepJEB fitting experiments and publish completed results')) }
+if ($diff.ExitCode -eq 1) { [void](Git-Run $snapshot @('commit', '-m', (Field $plan 'commit_message' 'Reproduce original DeepJEB fitting experiments and publish completed results'))) }
 $commit = (Git-Run $snapshot @('rev-parse', 'HEAD')).Output.Trim()
 if ((Git-Run $snapshot @('branch', '--show-current')).Output.Trim() -ne 'main') { throw 'Publication checkout must use main.' }
 if ($null -eq $receipt) {

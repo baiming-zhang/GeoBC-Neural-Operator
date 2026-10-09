@@ -139,7 +139,13 @@ def find_case_files(data: list[str], case_keys: list[str] | None, num_cases: int
     return files[:num_cases]
 
 
-def load_cases(files: list[Path], device: torch.device) -> tuple[list[TrainingCase], StressScaler]:
+def load_cases(files: list[Path], device: torch.device,
+               scaler: StressScaler | None = None) -> tuple[list[TrainingCase], StressScaler]:
+    """Load aligned cases, optionally using an already fitted training scaler.
+
+    Supplying a scaler never fits or otherwise inspects evaluation labels to
+    determine transform parameters. Existing training callers fit as before.
+    """
     loaded: list[tuple[str, Path, np.ndarray, np.ndarray, np.ndarray]] = []
     keys: set[str] = set()
     for source in files:
@@ -166,7 +172,11 @@ def load_cases(files: list[Path], device: torch.device) -> tuple[list[TrainingCa
         if xyz.min() < -1e-6 or xyz.max() > 1 + 1e-6:
             raise ValueError(f"{source}: xyz is outside the required normalized [0, 1] range")
         loaded.append((key, source, np.clip(xyz, 0, 1), features, stress))
-    scaler = StressScaler.fit([entry[4] for entry in loaded])
+    if scaler is None:
+        scaler = StressScaler.fit([entry[4] for entry in loaded])
+    elif (not all(math.isfinite(value) for value in (scaler.scale, scaler.center, scaler.spread))
+          or scaler.scale <= 0 or scaler.spread <= 0):
+        raise ValueError("The supplied training scaler must be finite with positive scale/spread")
     cases = [TrainingCase(key, source, torch.as_tensor(xyz, device=device),
                           torch.as_tensor(features, device=device),
                           torch.as_tensor(scaler.encode(stress), device=device), stress)
