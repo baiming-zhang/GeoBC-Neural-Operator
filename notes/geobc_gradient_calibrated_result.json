@@ -1,0 +1,47 @@
+{
+  "status": "completed",
+  "stage": "single_train_calibrated_gradient_weight",
+  "seed": 2026,
+  "pair_controls_passed": true,
+  "contract_difference_paths": [],
+  "validation_strain_relative_error_reduction": 0.4145514097701902,
+  "fixed_train_101_479_strain_relative_error_reduction": 0.5351402585458418,
+  "validation_u_mean_deterioration_percentage_points": -2.6753867159061806,
+  "validation_u_worst_deterioration_percentage_points": 4.946696555414487,
+  "predeclared_gate": {
+    "criterion": "At u-selected checkpoints, actualgradient must reduce validation mean P1 error by >=30% relative to matchedzero, fixedTRAIN101_479 mean P1 error by >=50%, and increase validation u mean and worst by <=2 percentage points each.",
+    "if_pass": "Repeat the same pair at seed2027 before spending another stress-training pair.",
+    "if_fail": "Use the matched loss/physical metrics to diagnose whether derivative optimization fails or CAD transfer remains the bottleneck; choose one smallest next control. No automatic loss/width sweep."
+  },
+  "clear_gain_gate_passed": false,
+  "better_than_zero_strain_baseline": false,
+  "next_stage": "targeted_gradient_optimization_or_transfer_diagnosis",
+  "sampling_witness_sha256": "e4b3a9059198181c22818f3797c43356ee4b286c56856cbc41c72e2e10c13027",
+  "checkpoint_selection": "known-load validation mean physical u only; strain reports same selected checkpoint",
+  "final_test_and_dia_opened": false,
+  "interpretation": "Development validation and training-u-derived P1 tensor proxy; no solver strain label, significance or final generalization claim.",
+  "runs": {
+    "zero": {
+      "best_step": 10000,
+      "elapsed_seconds": 163.5122887529942,
+      "train_u_mean_relative_l2": 0.13914134220418195,
+      "train_strain_mean_relative_l2": 5.048463244698295,
+      "validation_u_mean_relative_l2": 0.29991374248323616,
+      "validation_u_worst_relative_l2": 0.49491641025320066,
+      "validation_strain_mean_relative_l2": 13.19086033829243,
+      "validation_strain_worst_relative_l2": 18.837468139546257,
+      "fixed_train_101_479_strain_mean_relative_l2": 6.6556476939080325
+    },
+    "actual": {
+      "best_step": 8000,
+      "elapsed_seconds": 204.09551495600317,
+      "train_u_mean_relative_l2": 0.18367675682738624,
+      "train_strain_mean_relative_l2": 2.2775385131757075,
+      "validation_u_mean_relative_l2": 0.27315987532417435,
+      "validation_u_worst_relative_l2": 0.5443833758073455,
+      "validation_strain_mean_relative_l2": 7.722570588971615,
+      "validation_strain_worst_relative_l2": 10.277740956071883,
+      "fixed_train_101_479_strain_mean_relative_l2": 3.093942666200052
+    }
+  }
+}

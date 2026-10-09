@@ -1,0 +1,11 @@
+{
+  "status": "predeclared_before_reading_boundary_prediction_values",
+  "trigger": "Matched gradient loss reduces validation recovered strain1319.086% to58.5915%, but worsens physical u29.9914% to42.3076%. This can be a tradeoff between value and derivative optimization, or partly a rigid-mode/boundary bias.",
+  "scope": "Intersection of already exported best-checkpoint representative predictions in both completed runs: TRAIN10_492/tor,validation107_91/hor,validation102_249/tor. These are pre-existing best/worst representatives, not an unbiased validation sample.",
+  "diagnostic": "For each translational component j, compute b_j = mean(predicted_u_j at original inputSPCflag_j==1). Verified homogeneouszero constraints supply the target0. Subtract the single constant vector b from allpredictedu; never calculate b from GTu or GTerror.",
+  "metrics": "Compare original and corrected vector physicalu relativeL2 and supportmean/RMS/max, plus a separately labelled oraclecentroid-error energy for interpretation. Constant subtraction preserves cell and nodal P1strain analytically; check pair differences numerically. No raw label/model/checkpoint/cache mutation.",
+  "interpretation": "Boundary-mean anchoring fixes only the mean constrained response, not every constrained node and not complete Dirichlet enforcement. It tests a specific rigid-mode hypothesis. It is not a fitted validation-label correction.",
+  "cost": "Tiny CPU-only cached-prediction probe; no GPU, new model inference, stress/dia/finaltest sources or downloads.",
+  "next_gate": "If both validation representatives recover >=half of the additional lambda1 uerror relative tolambda0, compare the same input-only boundary-mean anchoring on all45 allowedCAD predictions at frozen selected weights. Otherwise use training-onlyloss-scale evidence to predeclare ONE calibrated gradient weight control. No automatic loss grid or role-feature combination.",
+  "research_status": "ongoing;30minute watchdog remains active"
+}

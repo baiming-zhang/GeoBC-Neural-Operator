@@ -30,7 +30,7 @@ from tools.prepare_frozen_strain_response import read_geometry
 
 CAD = "101_479"
 SYMMETRIC_WEIGHTS = np.asarray([1, 1, 1, 2, 2, 2], np.float64)
-AUTHORIZED_MEMBERS = ("sample_key", "label_alignment", "xyz", "grid_node_ids", "features", "displacement")
+AUTHORIZED_MEMBERS = ("sample_key", "label_alignment", "u_units", "xyz", "grid_node_ids", "features", "displacement")
 
 
 def _json(path):
@@ -104,7 +104,6 @@ def diagnose(args):
         if host_path(saved["path"]) != parent_directory / "manifest.json" or any(saved[k] != expected_parent[k] for k in ("bytes", "mtime_ns", "sha256")):
             raise ValueError("Diagnostic u/strain parent manifest identities differ")
     data = host_path(args.data)
-    source_records = {r["key"]: r for r in parent["teacher"]["source_config"]["contract"]["selected_sources"]} if "source_config" in parent["teacher"] else None
     # The teacher gate locks the completed config; use only source identity JSON.
     teacher_config = _json(host_path(parent["teacher"]["config"]["path"]))
     source_records = {r["key"]: r for r in teacher_config["contract"]["selected_sources"]}
@@ -120,6 +119,8 @@ def diagnose(args):
         with np.load(path, allow_pickle=False) as stored:
             if str(stored["sample_key"].item()) != key or str(stored["label_alignment"].item()) != "official CSV GRID coordinates -> H5 vertices":
                 raise ValueError("Original CSV GRID-aligned signed training displacement is required")
+            if str(stored["u_units"].item()) != "mm":
+                raise ValueError("Reference training u must retain original physical mm units")
             xyz = np.asarray(stored["xyz"], np.float32)
             ids = np.asarray(stored["grid_node_ids"])
             features = np.asarray(stored["features"], np.float32)

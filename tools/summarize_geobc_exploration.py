@@ -44,7 +44,7 @@ def main():
                                             'identity_policy':'paths/bytes/mtime plus small config source hashes; no redundant checkpoint scans',
                                             'runs':checkpoints})
     manifests=dest/'data_manifests'; manifests.mkdir(exist_ok=True)
-    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response','geobc_frozen_strain_response'):
+    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response','geobc_frozen_strain_response','geobc_gradient_supervision'):
         source=ROOT/'data'/directory/'manifest.json'
         if source.is_file():shutil.copyfile(source,manifests/(directory+'.json'))
     lines=['# GeoBC 探索：当前结论与下一步','',
@@ -152,6 +152,66 @@ def main():
                 lines += [f"| {mode} | {percent(v['case_mean_relative_l2'])} | {percent(v['worst_case_relative_l2'])} | {percent(v['case_mean_hotspot_relative_l2'])} | {summary['elapsed_seconds']:.1f}s |"]
             else:
                 lines += [f'| {mode} | 待完成 | — | — | — |']
+    quality_path=ROOT/'notes/geobc_fixed_train_strain_quality.json'
+    quality=json.loads(quality_path.read_text()) if quality_path.is_file() else None
+    if quality and quality.get('status')=='completed':
+        q=quality['aggregate']
+        lines += ['', '## 节点位移准确，不等于局部梯度准确','',
+                  f"固定训练CAD101_479的三载荷平均位移误差为{percent(q['u_mean_vector_relative_l2'])}，由相同corner-P1算子恢复的tensor应变误差为{percent(q['strain_mean_symmetric_Frobenius_relative_l2'])}，约为位移相对误差的{q['mean_error_ratio_strain_to_u']:.1f}倍。预测应变量级为参考的约9–11倍。CPU诊断耗时{quality['cost']['elapsed_seconds']:.2f}s，没有读取应力、验证、dia或最终测试字段。",
+                  '这支持当前冻结教师的导数质量不足，不能把应变条件无整体收益解释成应变信息无用。参考应变由已有训练u派生，是四角点P1代理，不是solver输出的真应变张量。结论目前仅限该固定训练CAD。',
+                  '', '![固定训练CAD的位移与恢复应变误差](strain_quality_diagnosis.png)', '',
+                  '下一组保持原载荷线性位移模型，两侧使用相同的节点/单元角点混合采样与51,200次前向查询，仅比较是否增加训练u派生的体积加权P1梯度监督。选checkpoint仍只看已知载荷验证位移均值；最终测试及dia继续隔离。设计与后续判据提前保存于notes/geobc_gradient_teacher_plan.json。',
+                  '函数值与导数共同监督已有 [Sobolev Training](https://papers.nips.cc/paper_files/paper/2017/hash/758a06618c69880a6cee5314ee42d52f-Abstract.html) 工作。本实验使用位移派生的离散P1应变目标，验证其对GeoBC教师及跨CAD迁移的作用；加入梯度损失本身尚不构成新算法结论。']
+        precision_path=ROOT/'notes/geobc_u_output_precision.json'
+        if precision_path.is_file():
+            precision=json.loads(precision_path.read_text())
+            fp16=precision['methods']['fp16_oracle_roundtrip']
+            lines += [f"同一训练CAD的真实u按冻结教师共同尺度做FP16往返舍入，u误差为{percent(fp16['u_mean_vector_relative_l2'])}、恢复应变误差为{percent(fp16['strain_mean_symmetric_Frobenius_relative_l2'])}。这远不足解释当前约941%的应变误差；这是oracle舍入敏感性诊断，不是严格误差下界或因果分解，也不能排除内部算术等其他因素。"]
+    gz=summaries.get('displacement_gradient_zero_10k')
+    ga=summaries.get('displacement_gradient_actual_10k')
+    if gz or ga:
+        lines += ['', '## 匹配的位移梯度监督','',
+                  '两侧使用同一load-linear模型、训练u共同尺度、相同混合节点/角点查询和初始化。相较历史教师，两侧共同将一半查询改为均匀单元的角点；内部对照仅改变梯度目标的系数0或1。梯度参考来自训练u，按单元体积及完整训练案例Frobenius能量归一化，验证目标不拟合损失权重。各checkpoint仍只由验证位移均值选择。',
+                  '', '| 梯度损失 | 验证位移均值 | 验证位移最差 | 验证P1应变均值 | 训练耗时 |',
+                  '|---|---:|---:|---:|---:|']
+        for mode,summary in [('系数0',gz),('系数1',ga)]:
+            if summary:
+                v=summary['best_metrics']['validation']
+                lines += [f"| {mode} | {percent(v['case_mean_relative_l2'])} | {percent(v['worst_case_relative_l2'])} | {percent(v['strain']['case_mean_relative_l2'])} | {summary['elapsed_seconds']:.1f}s |"]
+            else:
+                lines += [f'| {mode} | 待完成 | — | — | — |']
+        gate_path=ROOT/'notes/geobc_gradient_teacher_pair_result.json'
+        if gz and ga and gate_path.is_file():
+            gate=json.loads(gate_path.read_text())
+            lines += [f"在同一u-selected checkpoint，验证应变误差相对减少{100*gate['validation_strain_relative_error_reduction']:.1f}%，固定训练101_479减少{100*gate['fixed_train_101_479_strain_relative_error_reduction']:.1f}%；验证位移均值变差{gate['validation_u_mean_deterioration_percentage_points']:.2f}个百分点、最差变差{gate['validation_u_worst_deterioration_percentage_points']:.2f}个百分点。预定后续判据{'通过' if gate['clear_gain_gate_passed'] else '未通过'}。"]
+            if not gate['clear_gain_gate_passed']:
+                lines += ['随后检查已导出的匹配代表案例是否有支撑边界整体位移偏移。只用预测u在已知零位移约束处的均值来计算偏移，真实u用于评价；常量平移不改变应变。这是选定代表的CPU诊断，完整验证与后续模型变更另行声明。']
+    boundary_path=ROOT/'notes/geobc_boundary_rigid_offset.json'
+    if boundary_path.is_file():
+        boundary=json.loads(boundary_path.read_text())
+        if boundary.get('status')=='completed':
+            reps=boundary['per_method']['gradient_actual']
+            values=[(key,reps[key]['raw']['vector_relative_l2'],reps[key]['corrected_using_zero_BC']['vector_relative_l2']) for key in ('107_91/hor','102_249/tor')]
+            text='；'.join(f"{key}：{percent(raw)} → {percent(corrected)}" for key,raw,corrected in values)
+            lines += ['', '## 边界均值与刚体偏移的代表诊断','',
+                      f"将预测位移在原SPC节点上的分量均值归零，两个已保存验证代表的位移误差为{text}。训练代表有改善，但验证没有一致收益；未扩为全45CAD校正。CPU耗时{boundary['elapsed_seconds']:.2f}s，常量偏移保持P1梯度不变。GT只用于指标，未用GT误差计算偏移；零均值也不等于逐节点严格满足Dirichlet约束。",
+                      '后续固定一个训练历史校准系数：取零梯度基线step6000–10000五个既定训练minibatch的Lu/裸Lstrain中位数，得到0.000410665；没有验证调权重或额外乘数。独立入口仅改变scope/parser，计算函数与原版本逐函数AST及文本相同，原零控制复用。它是一次loss尺度控制，不是最优权重或参数梯度平衡。']
+    gc=summaries.get('displacement_gradient_calibrated_10k')
+    if gc:
+        v=gc['best_metrics']['validation']
+        lines += ['', f"固定训练系数结果：验证位移均值{percent(v['case_mean_relative_l2'])}，最差{percent(v['worst_case_relative_l2'])}，P1应变均值{percent(v['strain']['case_mean_relative_l2'])}；u-selected step{gc['best_step']}，耗时{gc['elapsed_seconds']:.1f}s。配对控制与预定判据见notes/geobc_gradient_calibrated_result.json。"]
+        calibrated_path=ROOT/'notes/geobc_gradient_calibrated_result.json'
+        if calibrated_path.is_file():
+            calibrated= json.loads(calibrated_path.read_text())
+            lines += [f"均值有改善，但最差位移误差退步{calibrated['validation_u_worst_deterioration_percentage_points']:.2f}个百分点，预定综合标准未通过；P1误差仍高于预测全零应变的100%基准。因此没有进入第二种子或应力教师阶段，也没有继续扫损失权重。"]
+    scale_audit_path=ROOT/'notes/geobc_physical_scale_input_audit.json'
+    if scale_audit_path.is_file():
+        scale_audit=json.loads(scale_audit_path.read_text())
+        if scale_audit.get('status')=='complete':
+            lengths=scale_audit['length_statistics']['all45']
+            lines += ['', '## 下一阶段：整体边界角色条件','',
+                      f"元数据核验确认原25通道已包含L_mm/200；45CAD尺寸仅{lengths['min_mm']:.2f}–{lengths['max_mm']:.2f}mm，暂缓显式尺寸缩放。当前PointNet只汇聚坐标；新对照在相同1024点云附加固定节点并集和加载节点两个输入角色。零角色与真实角色都采用5输入PointNet，新增64参数在两侧相同，不能复用旧3输入模型作控制。",
+                      '保持既定位移／梯度损失、采样和预算，以新的零角色模型为基线比较全节点物理位移及P1代理应变。最差案例保护与不超过全零应变100%基准的门槛已预定；未通过时不自动增加种子或扫参数。设计见notes/geobc_bc_role_plan.json。']
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
@@ -166,7 +226,17 @@ def main():
         brief += ['  局部几何收益在两个种子上重复，但最差案例变差，不能称为全面改善。']
     if probe:
         brief += ['- 组合载荷诊断：强制位移线性响应优于对照（28.4% vs 33.0%），但应力仍约87%；位移物理结构有用，应力迁移仍未解决。']
-    if sz and sa:
+    if gc and gz:
+        z=gz['best_metrics']['validation'];a=gc['best_metrics']['validation']
+        delta=100*(a['worst_case_relative_l2']-z['worst_case_relative_l2'])
+        brief += ['', f"**最新对照：**固定训练损失尺度后，位移验证均值{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%，P1应变误差{100*z['strain']['case_mean_relative_l2']:.1f}% → {100*a['strain']['case_mean_relative_l2']:.1f}%。最差位移退步{delta:.1f}个百分点，仍未通过综合标准。下一步检验整体点云中的固定／加载位置条件；最终测试继续保留。"]
+    elif gz and ga:
+        z=gz['best_metrics']['validation'];a=ga['best_metrics']['validation']
+        brief += ['', f"**最新对照：**梯度监督使验证P1应变误差{100*z['strain']['case_mean_relative_l2']:.1f}% → {100*a['strain']['case_mean_relative_l2']:.1f}%，位移误差{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%。导数明显改善，位移变差；支撑均值校正也没恢复验证精度。正在测试一个按训练损失尺度计算的固定系数。应变是位移派生的P1代理，最终测试继续保留。"]
+    elif quality and quality.get('status')=='completed':
+        q=quality['aggregate']
+        brief += ['', f"**关键新发现：**固定训练CAD的位移误差约{100*q['u_mean_vector_relative_l2']:.0f}%，恢复的应变误差却约{100*q['strain_mean_symmetric_Frobenius_relative_l2']:.0f}%。当前Hash教师的局部梯度不可靠，增加应变条件没有整体收益。下一步直接对照梯度监督，检验能否修复这一问题。此应变为训练u派生的P1代理，结论限该CAD。"]
+    elif sz and sa:
         z=sz['best_metrics']['validation'];a=sa['best_metrics']['validation']
         brief += ['', f"最新对照：固定预测位移后，增加局部应变条件，应力验证均值{percent(z['case_mean_relative_l2'])} → {percent(a['case_mean_relative_l2'])}，热点{percent(z['case_mean_hotspot_relative_l2'])} → {percent(a['case_mean_hotspot_relative_l2'])}。只是开发验证结果，最终测试继续保留。"]
     elif uz and ua:
@@ -180,6 +250,7 @@ def main():
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
                                    'phase':'ongoing' if len(summaries)<len(jobs) else 'stage_completed',
+                                   'research_status':'ongoing','current_stage':plan['stage'],
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',
                                    'updated_at_utc':utc_now()})
     if geo and load and comparisons:

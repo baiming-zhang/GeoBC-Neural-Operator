@@ -1,0 +1,13 @@
+{
+  "scope": "Literature attribution for the already predeclared gradient-quality experiment; no training recipe change.",
+  "primary_source": {
+    "title": "Sobolev Training for Neural Networks",
+    "authors": "Czarnecki et al.",
+    "year": 2017,
+    "url": "https://papers.nips.cc/paper_files/paper/2017/hash/758a06618c69880a6cee5314ee42d52f-Abstract.html",
+    "arxiv": "https://arxiv.org/abs/1706.04859",
+    "verified_claim": "The paper studies training neural approximators with target derivative information in addition to function values."
+  },
+  "inference_for_this_project": "The GeoBC corner-P1 strain objective is in the broader family of value-plus-derivative supervision. Here the auxiliary targets come from signed training displacement and the fixed finite-element geometry, rather than a recovered solver tensor. Whether it improves unseen-CAD displacement/strain/stress requires this project's matched experiments.",
+  "novelty_boundary": "Adding derivative supervision alone does not establish a new algorithm; current GeoBC contributions remain hypotheses about geometric/BC conditioning and reliable load-dependent continuous fields, pending demonstrated transfer benefits."
+}

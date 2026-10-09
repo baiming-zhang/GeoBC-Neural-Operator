@@ -1,0 +1,63 @@
+{
+  "status": "predeclared",
+  "stage": "single_train_calibrated_gradient_weight",
+  "gradient_weight": 0.0004106650618638651,
+  "source_module_sha256": "a27c3845507b60b86b7792a5f1cdcec184f969b26edc83d454665ce5e54eb393",
+  "source_run": "runs/geobc_exploration/displacement_gradient_zero_10k",
+  "steps": [
+    6000,
+    7000,
+    8000,
+    9000,
+    10000
+  ],
+  "history_source": "runs/geobc_exploration/displacement_gradient_zero_10k/metrics.jsonl",
+  "history_sha256": "fb25d95a24fe1731d2fcac2af6467e3f46196013bb1b7b2e4e30b73392142216",
+  "formula": "lambda_cal=median_s(Lu_lambda0,s / rawLstrain_lambda0,s), s exactly[6000,7000,8000,9000,10000]. No validation score, selectedstep, lambda1 history, gradient metric, trimming, clipping or extra multiplier enters the formula.",
+  "training_snapshots": [
+    {
+      "step": 6000,
+      "Lu": 0.012032421305775642,
+      "raw_Lstrain": 39.75664397089575,
+      "ratio": 0.00030265183637190546
+    },
+    {
+      "step": 7000,
+      "Lu": 0.025740982964634895,
+      "raw_Lstrain": 43.990588827780364,
+      "ratio": 0.0005851474974660782
+    },
+    {
+      "step": 8000,
+      "Lu": 0.022878792136907578,
+      "raw_Lstrain": 55.711562198811706,
+      "ratio": 0.0004106650618638651
+    },
+    {
+      "step": 9000,
+      "Lu": 0.025147777050733566,
+      "raw_Lstrain": 37.92517286294243,
+      "ratio": 0.0006630893191077856
+    },
+    {
+      "step": 10000,
+      "Lu": 0.018015215173363686,
+      "raw_Lstrain": 49.14885648664669,
+      "ratio": 0.00036654393329086423
+    }
+  ],
+  "source_parent_stage": "matched_displacement_gradient_supervision",
+  "reason": "BCmean offsetpilotfailedbothknownvalrepresentatives; lambda1 markedlyimprovedgradients butu worsened. Chooseone deterministictraining-onlyloss-magnitude calibration.",
+  "control": "Reuse immutablecompletedlambda0 with exact computing-function AST/code helper/model/sampler/optimizer/init/witness parity, newmodule onlyscope/parsercoefficientpolicy. Ifparityfailsdo notclaimmatchedcontrol.",
+  "model_and_budget": "SamePhysicsFieldlinear,38+32inputs,width128x2,51200queries/fourcases/10k/eval1k/lr.003/seed2026; previousdata/cache/scaler/caseweights",
+  "selection": "Known-load validationu mean ONLY; no strainstepselection",
+  "next_gate": {
+    "validation_u_mean_and_worst_deterioration_pp_max": 2,
+    "validation_P1_relative_improvement_min": 0.3,
+    "fixedtrain101479_P1_relative_improvement_min": 0.5,
+    "if_pass": "Repeatmatchedseed2027. Beforestressconditioning requirevalidationP1mean<=1 (betterthanzerostrainbaseline100%) andstableu preservation.",
+    "if_fail": "Recordonecoefficientcontrolnegative; chooseone next distinct GeoBCrepresentation hypothesis fromevidence, no validation-tunedweightretryorautomaticgrid."
+  },
+  "coefficient_scope": "Onlyfive storedTRAINminibatchscalarLu/rawLeps; no validationmetrics,chosenstep,lambd1history,clippingormultiplier used tocomputevalue. Overallchoiceadaptiveknown-validationfollowup; notblindindependence.",
+  "research_status": "ongoing;30minute watchdogactive"
+}

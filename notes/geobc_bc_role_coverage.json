@@ -1,0 +1,1280 @@
+{
+  "schema_version": 1,
+  "status": "coverage_passed",
+  "created_at_utc": "2026-10-09T04:42:26.031031+00:00",
+  "elapsed_seconds": 2.2030000000959262,
+  "source_run": "runs/geobc_exploration/stress_u_actual_strain_zero_width128_10k",
+  "cloud_source": "runs/geobc_exploration/stress_u_actual_strain_zero_width128_10k/geometry_clouds.npz",
+  "source_run_completed": true,
+  "seed": 2026,
+  "cloud_points": 1024,
+  "split": "notes/geobc_split.json",
+  "scope": "Exactly train40+validation5 canonicalver inputs; reused original45CAD/1024 selected cloud nodes. No resampling, labels/u/stress/displacement/predictions/weights/dia/final-test arrays or GPU.",
+  "prepared_members_read": [
+    "xyz",
+    "features",
+    "sample_key",
+    "label_alignment",
+    "grid_node_ids"
+  ],
+  "cloud_members_read": [
+    "points",
+    "mask",
+    "node_indices",
+    "cad_keys"
+  ],
+  "role_definitions": {
+    "support_union": "any canonical originalfeatures[:,0:6] nonzero",
+    "load_member": "canonical originalfeatures[:,6] nonzero"
+  },
+  "point_coordinate_units": "isotropically normalized xyz, dimensionless",
+  "source_point_array_sha256": "8e9391c76707661fd27e95ea16c5b488eaa2452dd77315cc3f7260aacdb50c90",
+  "source_mask_array_sha256": "391f0a597f6f0daa5166bf008a62af1133e90eabd1d2470a29c0b61f29e3da82",
+  "config_cloud_hashes_match": true,
+  "all_points_match_saved_indices_exactly": true,
+  "all_GRID_ids_unique": true,
+  "all_role_inputs_binary_finite": true,
+  "all_roles_present_on_each_CAD": true,
+  "role_absence": [],
+  "aggregate": {
+    "CADs": 45,
+    "valid_cloud_nodes": 46080,
+    "missing_support_CADs": [],
+    "missing_load_CADs": [],
+    "support_union_count": {
+      "sum": 1178,
+      "min": 15,
+      "median": 26.0,
+      "max": 43
+    },
+    "load_member_count": {
+      "sum": 533,
+      "min": 7,
+      "median": 11.0,
+      "max": 21
+    },
+    "support_union_sampled_fraction": 0.02556423611111111,
+    "load_member_sampled_fraction": 0.011566840277777778
+  },
+  "groups": {
+    "train": {
+      "CADs": 40,
+      "valid_cloud_nodes": 40960,
+      "missing_support_CADs": [],
+      "missing_load_CADs": [],
+      "support_union_count": {
+        "sum": 1036,
+        "min": 15,
+        "median": 25.0,
+        "max": 43
+      },
+      "load_member_count": {
+        "sum": 455,
+        "min": 7,
+        "median": 11.0,
+        "max": 19
+      },
+      "support_union_sampled_fraction": 0.02529296875,
+      "load_member_sampled_fraction": 0.0111083984375
+    },
+    "validation": {
+      "CADs": 5,
+      "valid_cloud_nodes": 5120,
+      "missing_support_CADs": [],
+      "missing_load_CADs": [],
+      "support_union_count": {
+        "sum": 142,
+        "min": 23,
+        "median": 29.0,
+        "max": 34
+      },
+      "load_member_count": {
+        "sum": 78,
+        "min": 13,
+        "median": 14.0,
+        "max": 21
+      },
+      "support_union_sampled_fraction": 0.027734375,
+      "load_member_sampled_fraction": 0.015234375
+    }
+  },
+  "cases": [
+    {
+      "cad_id": "101_428",
+      "group": "train",
+      "canonical_case": "101_428/ver",
+      "source": "data/prepared_geobc_multiload/101_428_ver.npz",
+      "nodes": 270276,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 18,
+        "sampled_fraction": 0.017578125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 9,
+        "sampled_fraction": 0.0087890625,
+        "all_input_member_nodes": 817
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "101_479",
+      "group": "train",
+      "canonical_case": "101_479/ver",
+      "source": "data/prepared_geobc_multiload/101_479_ver.npz",
+      "nodes": 179316,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 28,
+        "sampled_fraction": 0.02734375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 10,
+        "sampled_fraction": 0.009765625,
+        "all_input_member_nodes": 805
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "101_56",
+      "group": "train",
+      "canonical_case": "101_56/ver",
+      "source": "data/prepared_geobc_multiload/101_56_ver.npz",
+      "nodes": 221213,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 25,
+        "sampled_fraction": 0.0244140625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 8,
+        "sampled_fraction": 0.0078125,
+        "all_input_member_nodes": 820
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "101_78",
+      "group": "train",
+      "canonical_case": "101_78/ver",
+      "source": "data/prepared_geobc_multiload/101_78_ver.npz",
+      "nodes": 192353,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 37,
+        "sampled_fraction": 0.0361328125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 9,
+        "sampled_fraction": 0.0087890625,
+        "all_input_member_nodes": 838
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "101_86",
+      "group": "train",
+      "canonical_case": "101_86/ver",
+      "source": "data/prepared_geobc_multiload/101_86_ver.npz",
+      "nodes": 219150,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 17,
+        "sampled_fraction": 0.0166015625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 8,
+        "sampled_fraction": 0.0078125,
+        "all_input_member_nodes": 811
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "102_240",
+      "group": "train",
+      "canonical_case": "102_240/ver",
+      "source": "data/prepared_geobc_multiload/102_240_ver.npz",
+      "nodes": 204361,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 34,
+        "sampled_fraction": 0.033203125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 9,
+        "sampled_fraction": 0.0087890625,
+        "all_input_member_nodes": 808
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "102_79",
+      "group": "train",
+      "canonical_case": "102_79/ver",
+      "source": "data/prepared_geobc_multiload/102_79_ver.npz",
+      "nodes": 221650,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 20,
+        "sampled_fraction": 0.01953125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 14,
+        "sampled_fraction": 0.013671875,
+        "all_input_member_nodes": 811
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_113",
+      "group": "train",
+      "canonical_case": "107_113/ver",
+      "source": "data/prepared_geobc_multiload/107_113_ver.npz",
+      "nodes": 229808,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 27,
+        "sampled_fraction": 0.0263671875,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 16,
+        "sampled_fraction": 0.015625,
+        "all_input_member_nodes": 799
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_147",
+      "group": "train",
+      "canonical_case": "107_147/ver",
+      "source": "data/prepared_geobc_multiload/107_147_ver.npz",
+      "nodes": 199727,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 25,
+        "sampled_fraction": 0.0244140625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 14,
+        "sampled_fraction": 0.013671875,
+        "all_input_member_nodes": 823
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_150",
+      "group": "train",
+      "canonical_case": "107_150/ver",
+      "source": "data/prepared_geobc_multiload/107_150_ver.npz",
+      "nodes": 325387,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 15,
+        "sampled_fraction": 0.0146484375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 7,
+        "sampled_fraction": 0.0068359375,
+        "all_input_member_nodes": 826
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_186",
+      "group": "train",
+      "canonical_case": "107_186/ver",
+      "source": "data/prepared_geobc_multiload/107_186_ver.npz",
+      "nodes": 273651,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 25,
+        "sampled_fraction": 0.0244140625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 11,
+        "sampled_fraction": 0.0107421875,
+        "all_input_member_nodes": 802
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_233",
+      "group": "train",
+      "canonical_case": "107_233/ver",
+      "source": "data/prepared_geobc_multiload/107_233_ver.npz",
+      "nodes": 236609,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 21,
+        "sampled_fraction": 0.0205078125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 9,
+        "sampled_fraction": 0.0087890625,
+        "all_input_member_nodes": 811
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_240",
+      "group": "train",
+      "canonical_case": "107_240/ver",
+      "source": "data/prepared_geobc_multiload/107_240_ver.npz",
+      "nodes": 208405,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 20,
+        "sampled_fraction": 0.01953125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 9,
+        "sampled_fraction": 0.0087890625,
+        "all_input_member_nodes": 796
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_248",
+      "group": "train",
+      "canonical_case": "107_248/ver",
+      "source": "data/prepared_geobc_multiload/107_248_ver.npz",
+      "nodes": 206054,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 35,
+        "sampled_fraction": 0.0341796875,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 12,
+        "sampled_fraction": 0.01171875,
+        "all_input_member_nodes": 802
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_291",
+      "group": "train",
+      "canonical_case": "107_291/ver",
+      "source": "data/prepared_geobc_multiload/107_291_ver.npz",
+      "nodes": 211839,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 25,
+        "sampled_fraction": 0.0244140625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 11,
+        "sampled_fraction": 0.0107421875,
+        "all_input_member_nodes": 811
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_320",
+      "group": "train",
+      "canonical_case": "107_320/ver",
+      "source": "data/prepared_geobc_multiload/107_320_ver.npz",
+      "nodes": 210675,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 27,
+        "sampled_fraction": 0.0263671875,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 19,
+        "sampled_fraction": 0.0185546875,
+        "all_input_member_nodes": 790
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_342",
+      "group": "train",
+      "canonical_case": "107_342/ver",
+      "source": "data/prepared_geobc_multiload/107_342_ver.npz",
+      "nodes": 205599,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 22,
+        "sampled_fraction": 0.021484375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 13,
+        "sampled_fraction": 0.0126953125,
+        "all_input_member_nodes": 793
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_459",
+      "group": "train",
+      "canonical_case": "107_459/ver",
+      "source": "data/prepared_geobc_multiload/107_459_ver.npz",
+      "nodes": 206544,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 15,
+        "sampled_fraction": 0.0146484375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 14,
+        "sampled_fraction": 0.013671875,
+        "all_input_member_nodes": 814
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "10_30",
+      "group": "train",
+      "canonical_case": "10_30/ver",
+      "source": "data/prepared_geobc_multiload/10_30_ver.npz",
+      "nodes": 158221,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 32,
+        "sampled_fraction": 0.03125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 18,
+        "sampled_fraction": 0.017578125,
+        "all_input_member_nodes": 811
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "10_421",
+      "group": "train",
+      "canonical_case": "10_421/ver",
+      "source": "data/prepared_geobc_multiload/10_421_ver.npz",
+      "nodes": 189704,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 41,
+        "sampled_fraction": 0.0400390625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 7,
+        "sampled_fraction": 0.0068359375,
+        "all_input_member_nodes": 814
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "10_460",
+      "group": "train",
+      "canonical_case": "10_460/ver",
+      "source": "data/prepared_geobc_multiload/10_460_ver.npz",
+      "nodes": 200331,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 25,
+        "sampled_fraction": 0.0244140625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 14,
+        "sampled_fraction": 0.013671875,
+        "all_input_member_nodes": 814
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "10_492",
+      "group": "train",
+      "canonical_case": "10_492/ver",
+      "source": "data/prepared_geobc_multiload/10_492_ver.npz",
+      "nodes": 213235,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 28,
+        "sampled_fraction": 0.02734375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 9,
+        "sampled_fraction": 0.0087890625,
+        "all_input_member_nodes": 802
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "10_58",
+      "group": "train",
+      "canonical_case": "10_58/ver",
+      "source": "data/prepared_geobc_multiload/10_58_ver.npz",
+      "nodes": 254645,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 20,
+        "sampled_fraction": 0.01953125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 10,
+        "sampled_fraction": 0.009765625,
+        "all_input_member_nodes": 799
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "10_80",
+      "group": "train",
+      "canonical_case": "10_80/ver",
+      "source": "data/prepared_geobc_multiload/10_80_ver.npz",
+      "nodes": 162082,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 43,
+        "sampled_fraction": 0.0419921875,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 10,
+        "sampled_fraction": 0.009765625,
+        "all_input_member_nodes": 802
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "113_129",
+      "group": "train",
+      "canonical_case": "113_129/ver",
+      "source": "data/prepared_geobc_multiload/113_129_ver.npz",
+      "nodes": 236193,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 18,
+        "sampled_fraction": 0.017578125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 11,
+        "sampled_fraction": 0.0107421875,
+        "all_input_member_nodes": 802
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "113_170",
+      "group": "train",
+      "canonical_case": "113_170/ver",
+      "source": "data/prepared_geobc_multiload/113_170_ver.npz",
+      "nodes": 254021,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 16,
+        "sampled_fraction": 0.015625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 14,
+        "sampled_fraction": 0.013671875,
+        "all_input_member_nodes": 808
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "113_390",
+      "group": "train",
+      "canonical_case": "113_390/ver",
+      "source": "data/prepared_geobc_multiload/113_390_ver.npz",
+      "nodes": 198740,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 33,
+        "sampled_fraction": 0.0322265625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 9,
+        "sampled_fraction": 0.0087890625,
+        "all_input_member_nodes": 817
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "113_86",
+      "group": "train",
+      "canonical_case": "113_86/ver",
+      "source": "data/prepared_geobc_multiload/113_86_ver.npz",
+      "nodes": 249986,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 34,
+        "sampled_fraction": 0.033203125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 11,
+        "sampled_fraction": 0.0107421875,
+        "all_input_member_nodes": 799
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "113_95",
+      "group": "train",
+      "canonical_case": "113_95/ver",
+      "source": "data/prepared_geobc_multiload/113_95_ver.npz",
+      "nodes": 212909,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 34,
+        "sampled_fraction": 0.033203125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 15,
+        "sampled_fraction": 0.0146484375,
+        "all_input_member_nodes": 817
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "114_28",
+      "group": "train",
+      "canonical_case": "114_28/ver",
+      "source": "data/prepared_geobc_multiload/114_28_ver.npz",
+      "nodes": 184824,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 31,
+        "sampled_fraction": 0.0302734375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 11,
+        "sampled_fraction": 0.0107421875,
+        "all_input_member_nodes": 871
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "114_456",
+      "group": "train",
+      "canonical_case": "114_456/ver",
+      "source": "data/prepared_geobc_multiload/114_456_ver.npz",
+      "nodes": 190969,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 28,
+        "sampled_fraction": 0.02734375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 13,
+        "sampled_fraction": 0.0126953125,
+        "all_input_member_nodes": 847
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "114_525",
+      "group": "train",
+      "canonical_case": "114_525/ver",
+      "source": "data/prepared_geobc_multiload/114_525_ver.npz",
+      "nodes": 266509,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 18,
+        "sampled_fraction": 0.017578125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 7,
+        "sampled_fraction": 0.0068359375,
+        "all_input_member_nodes": 826
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "114_91",
+      "group": "train",
+      "canonical_case": "114_91/ver",
+      "source": "data/prepared_geobc_multiload/114_91_ver.npz",
+      "nodes": 175194,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 25,
+        "sampled_fraction": 0.0244140625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 14,
+        "sampled_fraction": 0.013671875,
+        "all_input_member_nodes": 820
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "116_102",
+      "group": "train",
+      "canonical_case": "116_102/ver",
+      "source": "data/prepared_geobc_multiload/116_102_ver.npz",
+      "nodes": 225262,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 22,
+        "sampled_fraction": 0.021484375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 11,
+        "sampled_fraction": 0.0107421875,
+        "all_input_member_nodes": 799
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "116_113",
+      "group": "train",
+      "canonical_case": "116_113/ver",
+      "source": "data/prepared_geobc_multiload/116_113_ver.npz",
+      "nodes": 224078,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 23,
+        "sampled_fraction": 0.0224609375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 8,
+        "sampled_fraction": 0.0078125,
+        "all_input_member_nodes": 808
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "116_30",
+      "group": "train",
+      "canonical_case": "116_30/ver",
+      "source": "data/prepared_geobc_multiload/116_30_ver.npz",
+      "nodes": 152853,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 26,
+        "sampled_fraction": 0.025390625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 10,
+        "sampled_fraction": 0.009765625,
+        "all_input_member_nodes": 832
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "116_348",
+      "group": "train",
+      "canonical_case": "116_348/ver",
+      "source": "data/prepared_geobc_multiload/116_348_ver.npz",
+      "nodes": 193268,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 28,
+        "sampled_fraction": 0.02734375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 12,
+        "sampled_fraction": 0.01171875,
+        "all_input_member_nodes": 799
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "119_221",
+      "group": "train",
+      "canonical_case": "119_221/ver",
+      "source": "data/prepared_geobc_multiload/119_221_ver.npz",
+      "nodes": 260275,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 27,
+        "sampled_fraction": 0.0263671875,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 13,
+        "sampled_fraction": 0.0126953125,
+        "all_input_member_nodes": 817
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "119_322",
+      "group": "train",
+      "canonical_case": "119_322/ver",
+      "source": "data/prepared_geobc_multiload/119_322_ver.npz",
+      "nodes": 223170,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 26,
+        "sampled_fraction": 0.025390625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 14,
+        "sampled_fraction": 0.013671875,
+        "all_input_member_nodes": 829
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "119_559",
+      "group": "train",
+      "canonical_case": "119_559/ver",
+      "source": "data/prepared_geobc_multiload/119_559_ver.npz",
+      "nodes": 244209,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 22,
+        "sampled_fraction": 0.021484375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 12,
+        "sampled_fraction": 0.01171875,
+        "all_input_member_nodes": 802
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "102_249",
+      "group": "validation",
+      "canonical_case": "102_249/ver",
+      "source": "data/prepared_geobc_multiload/102_249_ver.npz",
+      "nodes": 211173,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 29,
+        "sampled_fraction": 0.0283203125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 13,
+        "sampled_fraction": 0.0126953125,
+        "all_input_member_nodes": 805
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "102_38",
+      "group": "validation",
+      "canonical_case": "102_38/ver",
+      "source": "data/prepared_geobc_multiload/102_38_ver.npz",
+      "nodes": 197514,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 26,
+        "sampled_fraction": 0.025390625,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 14,
+        "sampled_fraction": 0.013671875,
+        "all_input_member_nodes": 802
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "107_91",
+      "group": "validation",
+      "canonical_case": "107_91/ver",
+      "source": "data/prepared_geobc_multiload/107_91_ver.npz",
+      "nodes": 190331,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 23,
+        "sampled_fraction": 0.0224609375,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 13,
+        "sampled_fraction": 0.0126953125,
+        "all_input_member_nodes": 814
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "114_202",
+      "group": "validation",
+      "canonical_case": "114_202/ver",
+      "source": "data/prepared_geobc_multiload/114_202_ver.npz",
+      "nodes": 158356,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 34,
+        "sampled_fraction": 0.033203125,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 17,
+        "sampled_fraction": 0.0166015625,
+        "all_input_member_nodes": 805
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    },
+    {
+      "cad_id": "116_440",
+      "group": "validation",
+      "canonical_case": "116_440/ver",
+      "source": "data/prepared_geobc_multiload/116_440_ver.npz",
+      "nodes": 176577,
+      "valid_cloud_nodes": 1024,
+      "padding_nodes": 0,
+      "support_union": {
+        "sampled_nodes": 30,
+        "sampled_fraction": 0.029296875,
+        "all_input_member_nodes": 1760
+      },
+      "load_member": {
+        "sampled_nodes": 21,
+        "sampled_fraction": 0.0205078125,
+        "all_input_member_nodes": 802
+      },
+      "both_roles_sampled_nodes": 0,
+      "roles_missing": [],
+      "points_match_canonical_xyz_exactly": true,
+      "max_point_coordinate_difference": 0.0,
+      "selected_indices_unique_and_in_range": true,
+      "GRID_ids_unique": true,
+      "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+    }
+  ],
+  "interpretation": "Presence is an input-coverage gate only. Counts are sampled original FEM nodes, not uniform surface area or evidence of adequate full-patch geometry/physics, stress benefit, or statistical significance. Support-union presence does not establish coverage of each of the four support patches separately; this gate deliberately checks only the proposed two-role input.",
+  "minimal_remedy_if_absent": "Do not alter this fixed cloud silently. Report absent CAD/role. A separately authorized sampler control must use identical replacement/role-stratified selected indices, total1024,xyz/mask and role5-input encoder in bothzero/actual branches, with zero roles only in the control; one common seed/decoder/globaldim/budget. Declare this as a new sampling design, not the current unchanged-sampling candidate.",
+  "model_implemented": false,
+  "new_sampling_performed": false,
+  "GPU_used": false,
+  "final_test_or_dia_arrays_read": false,
+  "labels_or_weights_read": false
+}

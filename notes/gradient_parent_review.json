@@ -1,0 +1,28 @@
+{
+  "status": "ready",
+  "phase": "matched_displacement_gradient_supervision",
+  "jobs": [
+    "displacement_gradient_zero_10k",
+    "displacement_gradient_actual_10k"
+  ],
+  "source_sha256": {
+    "conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+    "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+    "physics_train.py": "3105cacc364b65950eec2b1901376c8b9f8b1edae1019fbfadcc9662339c8b16",
+    "physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+    "train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7",
+    "gradient_train.py": "a27c3845507b60b86b7792a5f1cdcec184f969b26edc83d454665ce5e54eb393",
+    "gradient_supervision.py": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389"
+  },
+  "cache_manifest_sha256": "052df4057186e37b129f8a44bb2c3e7279b24024a72a8b947d76239a984ac018",
+  "contract_difference_paths": [
+    "requested.gradient_weight",
+    "gradient_supervision.gradient_weight"
+  ],
+  "scope": "metadata/source comparison only; no array/weight/model/CUDA loading or repeated synthetic tests",
+  "field_or_weight_arrays_opened": false,
+  "CUDA_used": false,
+  "acceptance": "Existing bounded helper/trainer checks, frozen original modules, locked units/Frobenius/volume normalization/common mixed-query design accepted. First native parameter-gradient check remains in each training run before optimizer step."
+}

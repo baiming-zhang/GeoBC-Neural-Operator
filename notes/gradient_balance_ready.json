@@ -1,0 +1,135 @@
+{
+  "status": "ready",
+  "created_at_utc": "2026-10-09T05:25:05.933281+00:00",
+  "sources_frozen": true,
+  "files": [
+    "geobc/gradient_balance_train.py"
+  ],
+  "source_sha256": {
+    "geobc/gradient_balance_train.py": "b45b5734c91e5112b83da511d90a2c11b065b5ec2099d24b8a3b432efa25265a",
+    "geobc/gradient_train.py": "a27c3845507b60b86b7792a5f1cdcec184f969b26edc83d454665ce5e54eb393",
+    "geobc/gradient_supervision.py": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389"
+  },
+  "reference_original_module_sha256": "a27c3845507b60b86b7792a5f1cdcec184f969b26edc83d454665ce5e54eb393",
+  "only_modified_functions": [
+    "_scope",
+    "parser"
+  ],
+  "unchanged_function_proof": {
+    "_sha": {
+      "AST_sha256": "c2db75cc5ab3409d2427bff4ef5683cdf1f370a2a5c585fa28c9c735cf650d10",
+      "text_sha256": "3fed474e096474e63e1bb2afdd7455a3c55c31c78b17339beb6d6406221d8b08",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "_json": {
+      "AST_sha256": "51798c5d0f9b34786d1cfadf377fa2b5cb4645e9666c86100a5f06dd6da6acf6",
+      "text_sha256": "424673af3f2e69996c88331e9bbb11b5cb70d7c2a9ee53caa52f8d9b82a05b2f",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "_memory_record": {
+      "AST_sha256": "401ecdce3d59bf5beb99a7020b3e612c550286b20d6b918370dcab0212abc312",
+      "text_sha256": "60767627564d2a58f1a3c6de07882f5ca4203880d588549f432bc9fc5984204d",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "mixed_query_indices": {
+      "AST_sha256": "64a2388a8da0cdae84375e3678d1a18971639e73eb2cbadc8cc64833d2f77a20",
+      "text_sha256": "ece2f21d2f1dcd87640bbc4f41fc15378d432e925ac47f48ce7ccca7739377e7",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "gradient_batch_loss": {
+      "AST_sha256": "2cdecbea49586dbc0c71c0e7527e8cd6ec4ea4ca5068e79c1492c6fd75e7335a",
+      "text_sha256": "d492f789919e275d12ba1ea9d576aba3c8e88f5aea6c6b58ba5b7ba6f2e98762",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "_strain_metrics": {
+      "AST_sha256": "249a952490daaea0c8a21c8514913f276232d3df6ae69c5101e3485c48da22dc",
+      "text_sha256": "3f788406affc7882f9eb02e05f1243167cf10ef8f343b9f2dfa26ed38f49cc57",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "_evaluate_group": {
+      "AST_sha256": "443a66953ea16aed2fd47b9e18af14ec4a121272ba4755e92f962cc5fade43af",
+      "text_sha256": "62a0b756945f3f9cb25ad8fa5ea60e25ba1bc509654e13480ea7e21a18e4d202",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "run": {
+      "AST_sha256": "5d16af5741f7a598f9c4b09d2d91462f3d455b7bdafdf05730bfece1e227eba8",
+      "text_sha256": "63110118d4ad935fd573274d7e3f52cb09bc7f5c0c18f92157a10a273111ee2b",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "elapsed": {
+      "AST_sha256": "4ebf4e60b2cabbaf921c21ed1d0e851c27d4b1e3ebc20538c8e5ce21d6a0cad8",
+      "text_sha256": "63a31223ed00a0978f97f2c516bddc3095fefdaaf0ee3697d10d81163b0b45c0",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "update": {
+      "AST_sha256": "c15182e68d7e86a3106ba613cd3ce1f403759435f060f1f4be3397d2a470e3bb",
+      "text_sha256": "f88627e209dcee562e53a866cac733fb94c2a36e055f0c28acad4c6a6812d0ed",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "checkpoint_payload": {
+      "AST_sha256": "8a3d328f1479b9c53c6423822e1fc3da6b8ed12e03b897678fd23b07cb5e08de",
+      "text_sha256": "1a0cc7246d41f8b8697de73458e74850848dd43f129a2c4ffff3acfbc1942110",
+      "AST_equal": true,
+      "text_equal": true
+    },
+    "evaluate": {
+      "AST_sha256": "7c97b9e8730172b41305f48cedccc3ba6aa7b6b67002439146114d6f7b466176",
+      "text_sha256": "3ccbd229c72f3cc5e378eb5422cb8dc0df126e8b3daab6fb0f319380fc9fb188",
+      "AST_equal": true,
+      "text_equal": true
+    }
+  },
+  "all_other_module_AST_nodes_unchanged": true,
+  "gradient_weight_allowed": [
+    0.0,
+    0.0004106650618638651
+  ],
+  "calibration": {
+    "path": "notes/geobc_gradient_calibration.json",
+    "sha256": "9907b5038dac3a5f910db4ce6c0f4e071fd4773b0fa357ddb8774b279f4aba2c",
+    "source_run": "runs/geobc_exploration/displacement_gradient_zero_10k",
+    "history_sha256": "fb25d95a24fe1731d2fcac2af6467e3f46196013bb1b7b2e4e30b73392142216",
+    "steps": [
+      6000,
+      7000,
+      8000,
+      9000,
+      10000
+    ],
+    "formula": "lambda_cal=median_s(Lu_lambda0,s / rawLstrain_lambda0,s), s exactly[6000,7000,8000,9000,10000]. No validation score, selectedstep, lambda1 history, gradient metric, trimming, clipping or extra multiplier enters the formula."
+  },
+  "control_reuse": {
+    "original_completed_lambda0": "runs/geobc_exploration/displacement_gradient_zero_10k",
+    "repeat_GPU_control": false,
+    "original_zero_contract_equal_after_removing_only_new_calibration_identity_and_module_SHA": true,
+    "common_compute_sampler_optimizer_init_and_all_three_RNG_bodies_text_identical": true,
+    "actual_postrun_init_and_firstbatch_witness_comparison": "Parent analyzer will compare new run with immutable original zero"
+  },
+  "checks": {
+    "syntax_AST": "passed",
+    "real_scope_pure_JSON_stat_SHA": "passed135knownloadcases; np/weight loads blocked",
+    "pair_scope_same_except_gradient_weight": true,
+    "parser_and_scope_reject_arbitrary_weight": true,
+    "seed2027_scope_allowed": true,
+    "old_source_unchanged": true,
+    "CUDA_used": false,
+    "arrays_or_weights_opened": false,
+    "new_synthetic_tests_or_training": false
+  },
+  "native_first_backward": "Same original first-step encoder/context and all decoder gradients present/finite/L1-positive acceptance retained text-identically",
+  "jobs": [
+    "displacement_gradient_calibrated_10k"
+  ],
+  "summary_API": "Unchanged original gradient_train summary and train/validation u/strain metric schema",
+  "scientific_scope": "Only one coefficient calibrated from five stored TRAIN minibatch Lu/raw strain loss values. No validation or dia/final5 enters coefficient; original known-val u-only selection and predeclared gates retained."
+}

@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "created_at_utc": "2026-10-09T05:35:07.025421+00:00",
+  "scope": {
+    "CADs": "exactly frozen train40 plus validation5",
+    "metadata_only": true,
+    "arrays_opened": false,
+    "labels_opened": false,
+    "H5_or_CSV_opened": false,
+    "GPU_used": false,
+    "dia_arrays_opened": false,
+    "final_test_source_metadata_or_arrays_opened": false,
+    "split_group_IDs_read_only": "train/validation allowlist and final-test CAD ID exclusion check; no test source records or arrays"
+  },
+  "finding": {
+    "absolute_physical_length_present": true,
+    "zero_based_feature_slot": 24,
+    "one_based_feature_slot": 25,
+    "feature_name": "characteristic_length_over_200mm",
+    "encoding": "feature[:,24] = characteristic_length_mm / 200",
+    "inverse": "L_mm = 200 * feature[:,24]",
+    "definition": "L_mm = max(max(xyz_mm,axis=0)-min(xyz_mm,axis=0)); maximum physical bounding-box extent",
+    "interpretation": "The numerical channel is dimensionless, but its divisor is a fixed external reference of 200 mm. It carries invertible absolute size, unlike normalization by each CAD own L. The original25 therefore do not omit physical scale."
+  },
+  "length_statistics": {
+    "all45": {
+      "CAD_count": 45,
+      "min_mm": 178.10153198242188,
+      "median_mm": 184.26419067382812,
+      "max_mm": 185.27691650390625,
+      "min_CADs": [
+        "10_80"
+      ],
+      "max_CADs": [
+        "113_170"
+      ]
+    },
+    "train40": {
+      "CAD_count": 40,
+      "min_mm": 178.10153198242188,
+      "median_mm": 184.24219512939453,
+      "max_mm": 185.27691650390625,
+      "min_CADs": [
+        "10_80"
+      ],
+      "max_CADs": [
+        "113_170"
+      ]
+    },
+    "validation5": {
+      "CAD_count": 5,
+      "min_mm": 181.2263946533203,
+      "median_mm": 184.26419067382812,
+      "max_mm": 185.25624084472656,
+      "min_CADs": [
+        "102_38"
+      ],
+      "max_CADs": [
+        "116_440"
+      ]
+    },
+    "per_CAD_mm": {
+      "101_428": 185.13168334960938,
+      "101_479": 184.05270385742188,
+      "101_56": 184.96849060058594,
+      "101_78": 185.1586456298828,
+      "101_86": 184.36648559570312,
+      "102_240": 184.57794189453125,
+      "102_79": 185.0465087890625,
+      "107_113": 184.02224731445312,
+      "107_147": 184.27932739257812,
+      "107_150": 184.78952026367188,
+      "107_186": 184.5429229736328,
+      "107_233": 184.15003967285156,
+      "107_240": 184.1987762451172,
+      "107_248": 184.10931396484375,
+      "107_291": 184.46731567382812,
+      "107_320": 181.50961303710938,
+      "107_342": 182.41636657714844,
+      "107_459": 184.20506286621094,
+      "10_30": 178.57447814941406,
+      "10_421": 182.59202575683594,
+      "10_460": 183.47898864746094,
+      "10_492": 184.14735412597656,
+      "10_58": 184.18731689453125,
+      "10_80": 178.10153198242188,
+      "113_129": 184.07862854003906,
+      "113_170": 185.27691650390625,
+      "113_390": 184.4189910888672,
+      "113_86": 184.1246795654297,
+      "113_95": 184.1202392578125,
+      "114_28": 183.89080810546875,
+      "114_456": 185.23709106445312,
+      "114_525": 185.13204956054688,
+      "114_91": 184.0997772216797,
+      "116_102": 185.10304260253906,
+      "116_113": 185.14694213867188,
+      "116_30": 183.53048706054688,
+      "116_348": 185.1834259033203,
+      "119_221": 185.16537475585938,
+      "119_322": 185.11952209472656,
+      "119_559": 184.32186889648438,
+      "102_249": 184.9840087890625,
+      "102_38": 181.2263946533203,
+      "107_91": 184.26419067382812,
+      "114_202": 183.8123779296875,
+      "116_440": 185.25624084472656
+    },
+    "source": "data/geobc_frozen_u_response/manifest.json: CADs[CAD].normalization.characteristic_length_mm; existing metadata only",
+    "train_median_reference_variation": {
+      "reference_L_mm": 184.24219512939453,
+      "reference_source": "TRAIN40 median only",
+      "r_definition": "reference_L_mm / L_mm",
+      "r_min": 0.9944152709682541,
+      "r_max": 1.034478440913011,
+      "r_squared_min": 0.9888617311348662,
+      "r_squared_max": 1.070145644713814,
+      "scope": "metadata range; no field reading or experimental design"
+    }
+  },
+  "schema": {
+    "original25": [
+      "support_reference_constrained_dof_1",
+      "support_reference_constrained_dof_2",
+      "support_reference_constrained_dof_3",
+      "support_reference_constrained_dof_4",
+      "support_reference_constrained_dof_5",
+      "support_reference_constrained_dof_6",
+      "loaded_interface_mask",
+      "total_force_x_over_42300N",
+      "total_force_y_over_42300N",
+      "total_force_z_over_42300N",
+      "total_moment_x_over_565000Nmm",
+      "total_moment_y_over_565000Nmm",
+      "total_moment_z_over_565000Nmm",
+      "E_over_113800MPa",
+      "poisson_ratio",
+      "density_over_4.47e-9_t_per_mm3",
+      "offset_from_load_reference_x_over_length",
+      "offset_from_load_reference_y_over_length",
+      "offset_from_load_reference_z_over_length",
+      "distance_to_support_reference_1_over_length",
+      "distance_to_support_reference_2_over_length",
+      "distance_to_support_reference_3_over_length",
+      "distance_to_support_reference_4_over_length",
+      "distance_to_loaded_interface_over_length",
+      "characteristic_length_over_200mm"
+    ],
+    "normalized_xyz": "(xyz_mm-bbox_min_mm)/L_mm; global PointNet/hash xyz do not carry absolute size by themselves",
+    "local13": [
+      "nearest_boundary_offset_x_over_0.05",
+      "nearest_boundary_offset_y_over_0.05",
+      "nearest_boundary_offset_z_over_0.05",
+      "nearest_boundary_distance_over_0.05",
+      "neighbor_cov_xx_over_trace",
+      "neighbor_cov_yy_over_trace",
+      "neighbor_cov_zz_over_trace",
+      "neighbor_cov_xy_over_trace",
+      "neighbor_cov_xz_over_trace",
+      "neighbor_cov_yz_over_trace",
+      "neighbor_eigen_min_over_trace",
+      "neighbor_eigen_mid_over_trace",
+      "kth_boundary_distance_over_0.05"
+    ],
+    "local13_units": "Offsets and neighbor distances use normalized xyz divided by fixed normalized 0.05; covariance/eigen channels divide by trace. No independent absolute physical length channel.",
+    "physical_reference_channels": {
+      "7:10": "F_xyz / 42300 N",
+      "10:13": "M_xyz / 565000 N mm",
+      "13": "E / 113800 MPa",
+      "14": "Poisson ratio",
+      "15": "rho / 4.47e-9 t/mm^3",
+      "16:24": "interface offsets/distances divided by own L_mm",
+      "24": "L_mm / fixed 200 mm"
+    }
+  },
+  "model_path": {
+    "PhysicsField": "linear_basis masks only features[:,7:13]; original size slot24 survives. Local13 are appended after original25.",
+    "ConditionedField": "concatenates all query condition features with global descriptor and forwards to decoder",
+    "TCNNField": "Composite HashGrid xyz3 plus Identity condition_dim with scale1 offset0; all supplied conditions preserved. Native FP16 arithmetic can quantize values but does not remove the channel.",
+    "current_gradient_teacher_has_absolute_size": true
+  },
+  "material_load_metadata": {
+    "load_basis_guard_compatible_all": true,
+    "physical_basis": {
+      "reference_CAD": "101_479",
+      "order": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "physical_vector_order": [
+        "Fx",
+        "Fy",
+        "Fz",
+        "Mx",
+        "My",
+        "Mz"
+      ],
+      "component_units": [
+        "N",
+        "N",
+        "N",
+        "N mm",
+        "N mm",
+        "N mm"
+      ],
+      "physical_matrix_6x3": [
+        [
+          0.0,
+          -37809.9,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          35585.77,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          564924.2
+        ]
+      ],
+      "exact_rank": 3
+    },
+    "feature_mapping": {
+      "slots": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "physical_scale": [
+        42300.0,
+        42300.0,
+        42300.0,
+        565000.0,
+        565000.0,
+        565000.0
+      ],
+      "alpha_order": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "normalized_basis_6x3": [
+        [
+          0.0,
+          -0.8938510638297873,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.8412711583924349,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.9998658407079645
+        ]
+      ],
+      "feature_to_alpha_matrix_3x6": [
+        [
+          0.0,
+          0.0,
+          1.1886773842465683,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -1.1187546118873628,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0001341772931662
+        ]
+      ],
+      "formula": "alpha[N,3] = features[N,7:13] @ feature_to_alpha_matrix_3x6.T; actual physical loads = features[:,7:13] * physical_scale",
+      "tolerance_normalized": 1e-07
+    },
+    "material": "existing 45-CAD deck guard reports E=113800 MPa, nu=0.342, rho=4.47e-9 t/mm^3; fixed physical force/moment basis across CADs"
+  },
+  "source_evidence": [
+    {
+      "path": "tools/prepare_deepjeb.py",
+      "lines": [
+        25,
+        33,
+        82,
+        83,
+        84,
+        110,
+        111,
+        113,
+        114,
+        116,
+        117,
+        118
+      ],
+      "fact": "original schema, physical extent and actual feature24 assignment"
+    },
+    {
+      "path": "tools/prepare_geobc_exploration.py",
+      "lines": [
+        210,
+        212,
+        213,
+        214,
+        273
+      ],
+      "fact": "new loads preserve static features and only replace physical force/moment slots7:13"
+    },
+    {
+      "path": "geobc/physics_field.py",
+      "lines": [
+        21,
+        127,
+        133,
+        134
+      ],
+      "fact": "load-only mask leaves size slot24 unchanged"
+    },
+    {
+      "path": "geobc/conditioned_field.py",
+      "lines": [
+        196,
+        197
+      ],
+      "fact": "all feature columns passed into decoder"
+    },
+    {
+      "path": "geobc/tcnn_fields.py",
+      "lines": [
+        63,
+        64,
+        65,
+        66,
+        123,
+        128,
+        129
+      ],
+      "fact": "Identity conditions are concatenated unchanged"
+    },
+    {
+      "path": "tools/prepare_local_geometry.py",
+      "lines": [
+        38,
+        39,
+        114,
+        115,
+        116,
+        118,
+        119,
+        120
+      ],
+      "fact": "local13 are normalized geometry descriptors"
+    }
+  ],
+  "bounded_theoretical_inference": {
+    "assumptions": "Isotropically scaled identical normalized shape and interfaces; homogeneous linear static small-displacement elasticity; fixed E, nu, total F/M; no other dimensional scale.",
+    "scaling": "u_force proportional F/(E L); u_moment proportional M/(E L^2); strain_force proportional F/(E L^2); strain_moment proportional M/(E L^3).",
+    "counterfactual": "If all absolute L information were omitted, normalized identical geometries at different L with fixed F/M would have indistinguishable inputs yet different physical fields. That omission does not apply to this current schema because slot24 carries L.",
+    "dataset_claim": "No claim of actual identical scaled CAD pairs, no evidence that size utilization causes observed transfer errors.",
+    "existing_deck_guard_supports_assumptions": {
+      "STATICS_without_nonlinear_entries_all45": true,
+      "homogeneous_zero_fixed_constraints_all45": true,
+      "shared_physical_force_moment_basis_all45": true,
+      "no_guard_reported_unsupported_entries": true,
+      "limitation": "This metadata supports the idealized scale law for geometrically similar families. Distinct CADs are not proven isotropic copies; solver execution and small-deformation adequacy were not audited."
+    }
+  },
+  "decision_implication": "A proposed raw-size 26th input would duplicate the existing size information; it cannot test the hypothesis that absolute physical scale is absent. No new experiment or implementation is designed here.",
+  "limitations": [
+    "This is construction/model-path plus metadata verification, not a fresh per-node numerical scan.",
+    "Presence of a channel does not prove the learned model uses it correctly.",
+    "Maximum bounding-box extent is a scalar size descriptor; it does not by itself replace geometry shape or boundary roles."
+  ]
+}

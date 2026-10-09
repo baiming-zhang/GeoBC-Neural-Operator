@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "fixed_train_strain_quality_diagnosis",
+  "stage": "global_BC_role_displacement_preparation",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -59,6 +59,42 @@
       "evidence": "MatchedP1strain6: validationmean62.1116%->62.7799%,worst74.8289%->74.8708%,hotspot43.1336%->42.2994%; initialparameters/scaler/sampling/nativegrad controls passed, training89.65+87.15s, cache8.28s.",
       "conclusion": "No overallvalidation gain. Do not infer that exact strain is uninformative from this approximate noisy frozenproxy.",
       "next": "Only fixedTRAIN101_479 ver/hor/tor: comparefrozenpredictedu andcachedP1strain againstsameP1recovery ofpreviouslyused alignedtrainingu. No GTstraininput/targetstress/val/dia/finaltest; CPU diagnostic before next model change."
+    },
+    {
+      "decision_id": "displacement_gradient_supervision",
+      "evidence": "TRAIN101_479 three-load u21.403% vsreference P1Frob940.988%, derivative/error ratio44x; CPU.766s. BC inputcoverage passed45CADs separately2.203s.",
+      "conclusion": "Current teacher values do not ensure accurate local derivatives; failed strain conditioning cannot establish that strain information is unhelpful.",
+      "next": "Matched gradientlambda0/1 with common mixed node/corner sampler and51200forwardqueries, fixedlinearPhysicsField, seed2026/10k; predeclared notes/geobc_gradient_teacher_plan.json. KeepBC-role alternative separate.",
+      "source_local_commit": "dd513a0af74cc2b396c2930db44ae41bb61c7db7",
+      "precision_diagnostic": "SamefixedtrainCAD FP16oracleu roundtrip yieldsu.020814%/P1tensor2.370564% vslearned940.988%; outputrounding alone does not explain this scale. Oracle sensitivity, notlowerbound/causalshare; no recipechange."
+    },
+    {
+      "decision_id": "gradient_value_tradeoff",
+      "evidence": "Matchedgradientlambda0/1:validationP1tensor1319.086%→58.5915%,u29.9914%→42.3076%,worstu+17.2133pp; fixedtrainP1−91.2178%;2runs163.512s+205.690s.",
+      "conclusion": "Derivative supervision repairs most P1 error but increases physical displacement error. The predeclared preservation gate failed; noseedreplicationorstressclaim.",
+      "next": "CPUinputBCmean correction on3existingmatchedrepresentatives; noGT-derived correction,no newinference. Diagnose rigid-offset contribution beforeone calibratedloss control.",
+      "source_local_commit": "pending publication"
+    },
+    {
+      "decision_id": "one_train_calibrated_gradient_weight",
+      "evidence": "BCoffsetpilotCPU.874s:validationbest15.639→16.407%,worst66.705→66.390%,littleornegativegain; trainingrep10.213→6.865%. FrozenzeroTRAINloss snapshot medianratio.0004106650618638651.",
+      "conclusion": "Rigidtranslationalone doesnotexplainvalidationtradeoff. One deterministicscalarcalibration testsobjective-scale imbalance withoutarchitecturechange/weightgrid.",
+      "next": "Separateimmutable-compute clone gradient_balance_train; one10kseed2026fixedweight run, reuseexactzero control; thensameu+P1gate.",
+      "source_local_commit": "pending publication"
+    },
+    {
+      "decision_id": "calibrated_gradient_partial_gain",
+      "evidence": "25th run204.096s:validationu29.991→27.316%,worst+4.947pp;P1tensor1319.086→772.257%(−41.455%),fixedtrain−53.514%. Computingbody/init/sampling checks pass.",
+      "conclusion": "Training-onlyloss-magnitude calibration yieldssmallmeanugain butfailsworst-preservation andproxystrain remainsworsethanzero baseline. No secondseed/stress expansion.",
+      "next": "Input-only dimensional audit: absoluteL alreadyexists slot24. Checkmetadata range andgeometry/load scaling beforeone newphysicsinductive-bias control; no duplicatedsizefeature orweightgrid.",
+      "source_local_commit": "pending publication"
+    },
+    {
+      "decision_id": "global_BC_role_displacement",
+      "evidence": "Original25slot24 alreadyencodes L/200;45CAD L178.10-185.28mm. Roleinput-only coverage all45clouds passed; currentPointNet globalcloudxyzonly whilequeryBCfeatures alreadyavailable.",
+      "conclusion": "Deprioritize sizeprefactors; testwhether globalspatial support/load placement helps response conditioning. Do notattribute previous errors to missingabsolutesize.",
+      "next": "Matched5-inputPointNetzero/actualroles, samecalibratedgradientrecipe/10kseed2026; newzero baseline andu+P1 gate predeclared in notes/geobc_bc_role_plan.json.",
+      "source_local_commit": "pending publication"
     }
   ],
   "future_hypotheses_not_launched": [

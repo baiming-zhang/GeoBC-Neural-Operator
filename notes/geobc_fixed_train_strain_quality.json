@@ -1,0 +1,354 @@
+{
+  "status": "completed",
+  "scope": "predeclared fixed TRAIN101_479 ver/hor/tor diagnostic only",
+  "CAD": "101_479",
+  "loads": [
+    "ver",
+    "hor",
+    "tor"
+  ],
+  "nodes": 179316,
+  "tetrahedra": 111754,
+  "metrics": {
+    "ver": {
+      "u": {
+        "nodes": 179316,
+        "vector_relative_l2": 0.25039874807623524,
+        "reference_component_RMS_mm": 0.09453142040406884,
+        "prediction_component_RMS_mm": 0.11635572185918773,
+        "error_component_RMSE_mm": 0.02367054932304712,
+        "reference_max_vector_norm_mm": 0.45163210595825914,
+        "prediction_max_vector_norm_mm": 0.6227396645221835,
+        "max_error_vector_norm_mm": 0.19353851140211964
+      },
+      "strain_reference_P1_from_training_u": {
+        "nodes": 179316,
+        "plain6_relative_l2": 10.967933629932277,
+        "symmetric_Frobenius_relative_l2": 10.9056681918882,
+        "reference_plain6_component_RMS": 0.0003042323813373,
+        "prediction_plain6_component_RMS": 0.0033581386511611776,
+        "error_plain6_component_RMSE": 0.0033368005665837556,
+        "reference_tensor_Frobenius_RMS": 0.0008666247216256993,
+        "prediction_tensor_Frobenius_RMS": 0.009517215390080873,
+        "error_tensor_Frobenius_RMS": 0.009451121660937355,
+        "reference_max_abs_component": 0.006753113586455584,
+        "prediction_max_abs_component": 0.10302234441041946,
+        "error_max_abs_component": 0.10330734576564282,
+        "max_error_tensor_Frobenius_norm": 0.18346137008061753
+      },
+      "strain_to_u_relative_error_ratio": 43.55320573954272
+    },
+    "hor": {
+      "u": {
+        "nodes": 179316,
+        "vector_relative_l2": 0.13575442632550827,
+        "reference_component_RMS_mm": 0.08457777392303673,
+        "prediction_component_RMS_mm": 0.08595765539361526,
+        "error_component_RMSE_mm": 0.011481807178810382,
+        "reference_max_vector_norm_mm": 0.5051626623945987,
+        "prediction_max_vector_norm_mm": 0.5414072136026673,
+        "max_error_vector_norm_mm": 0.12834169670285475
+      },
+      "strain_reference_P1_from_training_u": {
+        "nodes": 179316,
+        "plain6_relative_l2": 9.65928272963469,
+        "symmetric_Frobenius_relative_l2": 9.092107900612483,
+        "reference_plain6_component_RMS": 0.0002995851969924124,
+        "prediction_plain6_component_RMS": 0.0029048810258968097,
+        "error_plain6_component_RMSE": 0.002893778119363017,
+        "reference_tensor_Frobenius_RMS": 0.000904936506060445,
+        "prediction_tensor_Frobenius_RMS": 0.008270924475318348,
+        "error_tensor_Frobenius_RMS": 0.008227780356304828,
+        "reference_max_abs_component": 0.004508733283728361,
+        "prediction_max_abs_component": 0.2866651117801666,
+        "error_max_abs_component": 0.285933684441261,
+        "max_error_tensor_Frobenius_norm": 0.3383023191389417
+      },
+      "strain_to_u_relative_error_ratio": 66.97466997364545
+    },
+    "tor": {
+      "u": {
+        "nodes": 179316,
+        "vector_relative_l2": 0.2559473186836771,
+        "reference_component_RMS_mm": 0.020626511193000074,
+        "prediction_component_RMS_mm": 0.019179832452487233,
+        "error_component_RMSE_mm": 0.005279300233647222,
+        "reference_max_vector_norm_mm": 0.18134474284485697,
+        "prediction_max_vector_norm_mm": 0.207992106150358,
+        "max_error_vector_norm_mm": 0.07980624031077997
+      },
+      "strain_reference_P1_from_training_u": {
+        "nodes": 179316,
+        "plain6_relative_l2": 8.559268313427383,
+        "symmetric_Frobenius_relative_l2": 8.23186377293376,
+        "reference_plain6_component_RMS": 0.00017061470965605853,
+        "prediction_plain6_component_RMS": 0.0014645378834791123,
+        "error_plain6_component_RMSE": 0.0014603370781637148,
+        "reference_tensor_Frobenius_RMS": 0.0005053978168179697,
+        "prediction_tensor_Frobenius_RMS": 0.004175422897043513,
+        "error_tensor_Frobenius_RMS": 0.004160365979183657,
+        "reference_max_abs_component": 0.0025119108613580465,
+        "prediction_max_abs_component": 0.14390842616558075,
+        "error_max_abs_component": 0.14315323397750035,
+        "max_error_tensor_Frobenius_norm": 0.1724020389266717
+      },
+      "strain_to_u_relative_error_ratio": 32.16233643419193
+    }
+  },
+  "aggregate": {
+    "u_mean_vector_relative_l2": 0.2140334976951402,
+    "strain_mean_plain6_relative_l2": 9.72882822433145,
+    "strain_mean_symmetric_Frobenius_relative_l2": 9.409879955144815,
+    "mean_error_ratio_strain_to_u": 43.964519836739896
+  },
+  "symmetric_tensor_weights": [
+    1.0,
+    1.0,
+    1.0,
+    2.0,
+    2.0,
+    2.0
+  ],
+  "units": {
+    "u": "original signed components mm",
+    "strain": "dimensionless raw physical tensor strain",
+    "relative_l2": "fraction"
+  },
+  "reference_name": "reference P1 from training u",
+  "recovery": "four-corner P1 constant gradient; symmetric tensor; absolute corner-tetra volume average to all original10 nodes",
+  "reference_policy": "Original signed u converted using frozen common RMS and recovered with the exact same P1 geometry/unit rule; no source solver strain/stress tensor is read or inferred.",
+  "source_index": {
+    "training_labels": [
+      {
+        "sample_key": "101_479/ver",
+        "path": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\prepared_geobc_multiload\\101_479_ver.npz",
+        "bytes": 30122690,
+        "mtime_ns": 1791511974286089700,
+        "sha256": null,
+        "members_read": [
+          "sample_key",
+          "label_alignment",
+          "u_units",
+          "xyz",
+          "grid_node_ids",
+          "features",
+          "displacement"
+        ],
+        "alpha": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+      },
+      {
+        "sample_key": "101_479/hor",
+        "path": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\prepared_geobc_multiload\\101_479_hor.npz",
+        "bytes": 30122690,
+        "mtime_ns": 1791511974332227500,
+        "sha256": null,
+        "members_read": [
+          "sample_key",
+          "label_alignment",
+          "u_units",
+          "xyz",
+          "grid_node_ids",
+          "features",
+          "displacement"
+        ],
+        "alpha": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+      },
+      {
+        "sample_key": "101_479/tor",
+        "path": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\prepared_geobc_multiload\\101_479_tor.npz",
+        "bytes": 30122690,
+        "mtime_ns": 1791454714889689800,
+        "sha256": null,
+        "members_read": [
+          "sample_key",
+          "label_alignment",
+          "u_units",
+          "xyz",
+          "grid_node_ids",
+          "features",
+          "displacement"
+        ],
+        "alpha": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+      }
+    ],
+    "raw_geometry": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw/FieldMesh/101_479.h5",
+      "bytes": 33320128,
+      "mtime_ns": 1791453885401115600,
+      "sha256": null
+    },
+    "raw_H5_members_read": [
+      "vertices",
+      "cells"
+    ],
+    "u_cache": {
+      "cad_id": "101_479",
+      "cache": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\geobc_frozen_u_response\\101_479.npz",
+      "bytes": 6461164,
+      "mtime_ns": 1791518619538893300,
+      "sha256": null,
+      "node_count": 179316,
+      "xyz_sha256": "0fa3d59a49993b65a207ec0eafb94f655c6ffd7e75a28e651e6dc1684e929d52",
+      "teacher_fingerprint": "37e9f3493e7eea1be322ae26c82d51c8b049c2ad775a729d31d1a9e0a38d35f8",
+      "gate_sha256": "bd76eb9d22aab3691bf63db99f22ab08de3df8a4e808ee0e3be0ab25cd6e857f",
+      "scale_mm": 0.05511113670847156,
+      "center_mm": 0.0,
+      "basis_order": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "component_order": [
+        "ux",
+        "uy",
+        "uz"
+      ],
+      "feature_names": [
+        "predicted_ux_over_teacher_train_common_u_RMS",
+        "predicted_uy_over_teacher_train_common_u_RMS",
+        "predicted_uz_over_teacher_train_common_u_RMS"
+      ],
+      "feature_dim": 3,
+      "schema_version": 1,
+      "source": "frozen trained u predictor; no GT u/stress cache inputs",
+      "extra_u_supervision": true,
+      "all_loads_share_cache": true,
+      "normalization": {
+        "bbox_min_mm": [
+          -38.72420120239258,
+          -163.60699462890625,
+          0.2465403974056244
+        ],
+        "characteristic_length_mm": 184.05270385742188,
+        "definition": "existing isotropic xyz=(xyz_mm-bbox_min_mm)/characteristic_length_mm",
+        "source": "only existing canonical prepared geometry metadata; no H5/raw geometry scan",
+        "status": "known"
+      }
+    },
+    "strain_cache": {
+      "cad_id": "101_479",
+      "cache": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\geobc_frozen_strain_response\\101_479.npz",
+      "bytes": 12921014,
+      "mtime_ns": 1791520160134055000,
+      "sha256": null,
+      "node_count": 179316,
+      "xyz_sha256": "0fa3d59a49993b65a207ec0eafb94f655c6ffd7e75a28e651e6dc1684e929d52",
+      "scale": 0.0017136823975038712,
+      "center": 0.0,
+      "basis_order": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "component_order": [
+        "xx",
+        "yy",
+        "zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "parent_response_fingerprint": "37e9f3493e7eea1be322ae26c82d51c8b049c2ad775a729d31d1a9e0a38d35f8",
+      "recovery_fingerprint": "c0aa83f5a44eef197a0b77033027c2635b8df4ac6b7982580bd6f15090f75877",
+      "basis_units": "raw physical dimensionless tensor strain",
+      "recovery": "four-corner P1 constant gradient; symmetric tensor; absolute corner-tetra volume average to all original10 nodes",
+      "engineering_shear": false,
+      "feature_names": [
+        "predicted_P1_epsilon_xx_over_train_common_strain_RMS",
+        "predicted_P1_epsilon_yy_over_train_common_strain_RMS",
+        "predicted_P1_epsilon_zz_over_train_common_strain_RMS",
+        "predicted_P1_epsilon_xy_over_train_common_strain_RMS",
+        "predicted_P1_epsilon_xz_over_train_common_strain_RMS",
+        "predicted_P1_epsilon_yz_over_train_common_strain_RMS"
+      ],
+      "feature_dim": 6,
+      "schema_version": 1,
+      "normalization": {
+        "bbox_min_mm": [
+          -38.72420120239258,
+          -163.60699462890625,
+          0.2465403974056244
+        ],
+        "characteristic_length_mm": 184.05270385742188,
+        "definition": "existing isotropic xyz=(xyz_mm-bbox_min_mm)/characteristic_length_mm",
+        "source": "only existing canonical prepared geometry metadata; no H5/raw geometry scan",
+        "status": "known"
+      },
+      "raw_geometry_source": {
+        "bytes": 33320128,
+        "mtime_ns": 1791453885401115600,
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw/FieldMesh/101_479.h5",
+        "sha256": null
+      },
+      "extra_u_supervision": true,
+      "GT_field_inputs": false
+    },
+    "parent_u_manifest": {
+      "path": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\geobc_frozen_u_response\\manifest.json",
+      "bytes": 321785,
+      "mtime_ns": 1791518627697883500,
+      "sha256": "244b91551c1bb6dd819a05ae077986996bcac4e58e381a5fbd318e18a412a8f8"
+    },
+    "strain_manifest": {
+      "path": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\geobc_frozen_strain_response\\manifest.json",
+      "bytes": 350313,
+      "mtime_ns": 1791520168195803100,
+      "sha256": "8ce8e64f02e1754d78008ab34bc511c9b36494a47557c8653b87272c4b8f6b94"
+    }
+  },
+  "alignment_checks": {
+    "sample_and_label_alignment": true,
+    "original_N_xyz_sha": "0fa3d59a49993b65a207ec0eafb94f655c6ffd7e75a28e651e6dc1684e929d52",
+    "GRID_ids_unique_and_same_order_across_loads": true,
+    "same_nonload_features": true,
+    "canonical_unit_alphas": true,
+    "raw_H5_normalized_xyz_matches": true,
+    "no_node_permutation": true
+  },
+  "reference_recovery_diagnostics": {
+    "nodes": 179316,
+    "tetrahedra": 111754,
+    "uncovered_nodes": 0,
+    "minimum_abs_corner_volume_mm3": 0.0055762132398960605,
+    "maximum_abs_corner_volume_mm3": 23.92861305565349,
+    "solve_precision": "float64",
+    "scatter_precision": "float64",
+    "output_precision": "float32",
+    "physical_gradient_factor": 0.0002994312800270726,
+    "engineering_shear": false,
+    "recovery": "four-corner P1 constant gradient; symmetric tensor; absolute corner-tetra volume average to all original10 nodes"
+  },
+  "cost": {
+    "CPU_recovery_seconds": 0.26599999994505197,
+    "elapsed_seconds": 0.7660000000614673,
+    "GPU_used": false,
+    "retraining_updates": 0
+  },
+  "source_sha256": {
+    "diagnose_train_strain_quality.py": "73aea025c5bd53f47d6a5c49d1a05a5e04f5fab26f391eba6367ba1ef57dfd6f",
+    "strain_condition.py": "af8b2db3c068d65d1fa5e7920760b35ffeb6383f0a255a698eae67a9b64fc44e"
+  },
+  "stress_fields_read": 0,
+  "validation_field_sources_opened": [],
+  "dia_field_sources_opened": [],
+  "final_test_field_sources_opened": [],
+  "student_inputs_or_cache_modified": false,
+  "new_scalers_or_corrections_fit": false,
+  "limitations": "One fixed training CAD only; this compares a proxy to reference P1 from training u, not exact quadratic strain or solver GT tensors. Extra derivative error does not identify signed-stress exporter semantics or establish any validation/generalization claim.",
+  "completed_at_utc": "2026-10-09T04:40:22.169785+00:00"
+}
