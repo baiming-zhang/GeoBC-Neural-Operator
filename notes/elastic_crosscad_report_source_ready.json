@@ -1,0 +1,80 @@
+{
+  "status": "source_ready_AST_and_small_metadata_passed",
+  "kind": "elastic_crosscad_report_source_ready",
+  "source": "tools/summarize_elastic_crosscad.py",
+  "source_sha256": "1f9269e27f6c5b77b39278640241fd8daee9488453b4a2d25490b9a8e6fc0438",
+  "source_bytes": 21385,
+  "plan": "notes/geobc_elastic_crosscad_plan.json",
+  "plan_sha256_at_source_review": "dd46504228c39b396d57a6790c52a1c46fd218cc55469758cc35ef05e57f5e24",
+  "default_output": "results/elastic_crosscad",
+  "API": {
+    "CLI": "python tools/summarize_elastic_crosscad.py --plan notes/geobc_elastic_crosscad_plan.json --output results/elastic_crosscad [--no-plot]",
+    "optional_run": "--run overrides plan output directory",
+    "artifacts": [
+      "BRIEF.md",
+      "metrics.json",
+      "comparison.png only actual completed scalar evidence"
+    ]
+  },
+  "schema": {
+    "kind": "elastic_crosscad_screen",
+    "case_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver",
+      "102_249/ver",
+      "102_38/ver"
+    ],
+    "summary": "config.contract; cases[casekey]; costs/counts/read_receipt",
+    "case_cost": "costs.cold_case_accounted_wall_seconds",
+    "metrics": "flat u_vector_relative_l2,vector_RMS_mm,max_nodal_vector_error_mm,zero_reference,regions",
+    "zero_read_keys": [
+      "stress_reads",
+      "old_final_reads",
+      "DEV_dia_reads",
+      "sealed_new_test_reads",
+      "model_or_weight_reads",
+      "optimizer_steps",
+      "scaler_fits"
+    ],
+    "plot": "5 actual JSON scalar points at most; no interpolated or placeholder values"
+  },
+  "checks": {
+    "AST": true,
+    "fixed_case_metadata": true,
+    "scientific_imports_in_source": false,
+    "report_executions": 0,
+    "solver_imports": 0,
+    "raw_array_reads": 0,
+    "GT_reads": 0,
+    "weight_reads": 0,
+    "GPU_runs": 0,
+    "toy_runs": 0,
+    "plots_rendered": 0
+  },
+  "interpretation": [
+    "Inventory denominator fixed five, missing/failed values stay null",
+    "Numerical convergence is distinct from error metrics and cold-start cost",
+    "Only compatible true-converged allN metric-evidenced cases enter validated subset aggregates",
+    "Budget finite endpoints may have metrics, never counted as true convergence",
+    "No neural generalization, engineering qualification, OptiStruct exactness or same-budget FNO ranking",
+    "No next stage is launched by reporter"
+  ],
+  "final_check_elapsed_seconds": 0.0,
+  "created_at_utc": "2026-10-09T20:57:06.423833+00:00",
+  "display_only_revision": {
+    "previous_source_sha256": "9fffc44ace9b3702387f70bc9484f7711d50ee10ff4692b9943fed35857ab28b",
+    "updated_at_utc": "2026-10-09T21:07:35.182108+00:00",
+    "changes": [
+      "BRIEF title is 五CAD物理基线",
+      "BRIEF main table reduced from nine to four columns: CAD, numerical state, U L2 percent, cold-start seconds",
+      "Residual/RMS/max/peak/GT/compatibility details remain in metrics JSON; unchanged statistics, gates and figure source"
+    ],
+    "AST_repeated": false,
+    "report_runs": 0,
+    "scientific_array_reads": 0,
+    "GT_reads": 0,
+    "GPU_runs": 0,
+    "reason": "Root-authorized reversible display-only adjustment; no repeat full AST/preflight"
+  }
+}

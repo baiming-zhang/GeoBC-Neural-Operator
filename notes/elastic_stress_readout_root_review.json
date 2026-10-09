@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "source_sha256": "c040688cb2cced43e57532bd0c2e691ce64e8d8df0c39349ba545a668fb2d386",
+  "stage_decision": "rough_screen_physical_tensor_stress_readout",
+  "all_source_sha256": {
+    "geobc/elastic_stress_readout.py": "c040688cb2cced43e57532bd0c2e691ce64e8d8df0c39349ba545a668fb2d386",
+    "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0"
+  },
+  "review_scope": "Source only, disjoint necessary reviews; no root duplicated AST/contract/preflight or scientific execution",
+  "root_review": [
+    "original physical_u only, canonical GRID row/unit identity",
+    "FP64 sym-gradient/Hooke tensor shear and four-Q physical weighted mean",
+    "full10 V/10 recovery, independent incidence mask and new actual-stage guards",
+    "300 per-arm/900 stage cumulative clocks and persisted model/optimizer/RNG/order recovery",
+    "direct deployment excludes physical solve/tensor, tensor deployment retains GT-free physical cold setup/solve",
+    "component-accounted cold limits explicit; no fresh joint measurement or speed claim"
+  ],
+  "neural_and_GT_review": {
+    "reviewer": "/root/deepjeb_research",
+    "passed": true,
+    "source_sha256": "c040688cb2cced43e57532bd0c2e691ce64e8d8df0c39349ba545a668fb2d386",
+    "findings": "same initialization/PointNet67/fullN context-leaf chain rule/scalersTRAIN-only/signed stress-only/DEV4 prediction barrier/API match",
+    "array_GT_weight_model_GPU_executions": 0
+  },
+  "author_single_AST_seconds": 0.01500000013038516,
+  "root_AST_checks": 0,
+  "root_contract_runs": 0,
+  "root_array_GT_weight_model_GPU_executions": 0,
+  "released_at_utc": "2026-10-09T22:15:25.6269248Z"
+}

@@ -10,6 +10,12 @@ ROOT=Path(__file__).resolve().parents[1]
 def utc_now():
     return datetime.now(timezone.utc).isoformat()
 
+def plan_case_sources(job):
+    command=job['command']
+    path=ROOT/command[command.index('--plan')+1]
+    request=json.loads(path.read_text(encoding='utf-8-sig'))
+    return {key:request['cases'][key] for key in request['case_keys']}
+
 def write_json(path,payload):
     temporary=path.with_suffix(path.suffix+'.tmp')
     temporary.write_text(json.dumps(payload,indent=2,ensure_ascii=False,allow_nan=False)+'\n',encoding='utf8')
@@ -205,7 +211,8 @@ def main(*, preserve_existing_plots=False):
     checkpoints={}
     observed_stages={}
     observed_receipts={}
-    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','gino_training_screen','sealed_test_input_acquisition','fno_response_screen','fno_response_eval','deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval','multiscale_mesh_input','multiscale_mesh_screen','multiscale_mesh_development_dia_eval','pointconv_input','pointconv_screen','pointconv_development_dia_eval','elastic_pilot_input','elastic_input_operator','elastic_physical_solve','elastic_residual_continuation'}
+    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','gino_training_screen','sealed_test_input_acquisition','fno_response_screen','fno_response_eval','deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval','multiscale_mesh_input','multiscale_mesh_screen','multiscale_mesh_development_dia_eval','pointconv_input','pointconv_screen','pointconv_development_dia_eval','elastic_pilot_input','elastic_input_operator','elastic_physical_solve','elastic_residual_continuation','elastic_crosscad_screen','elastic_frozen_fno_warmstart_screen'}
+    metadata_kinds.add('elastic_signed_stress_readout_screen')
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
@@ -245,6 +252,37 @@ def main(*, preserve_existing_plots=False):
         if job.get('kind') in ('solver_screen','solver_confirmation'):filenames+=('first_update_gradient_check.json',)
         for filename in filenames:
             if (source/filename).exists(): shutil.copyfile(source/filename,target/filename)
+        if job.get('kind')=='elastic_crosscad_screen':
+            for case_key, case in plan_case_sources(job).items():
+                case_dest=target/case_key.replace('/','_')
+                case_dest.mkdir(exist_ok=True)
+                locations={'input':ROOT/case['data_output'], 'operator':ROOT/case['operator_output'],
+                           'solve':ROOT/case['solve_output']}
+                for label, location in locations.items():
+                    for filename in ('manifest.json','config.json','status.json','summary.json',
+                                     'checkpoint.json','endpoint_before_GT.json','endpoint_no_GT.json'):
+                        path=location/filename
+                        if path.is_file():
+                            shutil.copyfile(path,case_dest/(label+'_'+filename))
+        if job.get('kind')=='elastic_frozen_fno_warmstart_screen':
+            for case_key in summary.get('case_keys',[]):
+                case_dest=target/case_key.replace('/','_')
+                case_dest.mkdir(exist_ok=True)
+                case_source=source/case_key.replace('/','_')
+                for filename in ('config.json','status.json','summary.json','checkpoint.json',
+                                 'endpoint_no_GT.json','neural_input_manifest.json','initial_prediction_receipt.json'):
+                    path=case_source/filename
+                    if path.is_file():
+                        shutil.copyfile(path,case_dest/filename)
+        if job.get('kind')=='elastic_signed_stress_readout_screen':
+            for case_key in summary.get('train_keys',[])+summary.get('validation_keys',[]):
+                case_dest=target/case_key.replace('/','_')
+                case_source=source/case_key.replace('/','_')
+                for filename in ('feature_manifest.json','feature_receipt.json','prediction_receipt.json'):
+                    path=case_source/filename
+                    if path.is_file():
+                        case_dest.mkdir(exist_ok=True)
+                        shutil.copyfile(path,case_dest/filename)
         if job.get('kind') in metadata_kinds:
             observed_receipts[job['kind']]={'run':job['name'],'status':summary.get('status'),
                 'source_output':job['output'],'completed_stage':completed,
@@ -267,8 +305,8 @@ def main(*, preserve_existing_plots=False):
            '## 当前结论','',
            '**Hash 的单案例表示能力很强；当前共享模型的跨几何、跨载荷组合迁移很差。**','']
     if plan.get('stage','').startswith('solver_'):
-        lines += ['**选型状态：尚未确定求解器，优先六家族跨CAD广筛，暂缓Hash局部优化。**',
-                  '当前共同协议与简洁结果见 [选型计划](../../notes/geobc_solver_selection_plan.json)；下文保留此前Hash探索证据，不代表跨求解器排名。','']
+        lines[-2]='**完整GeoBC的求解器尚未选定；先比较准确率、成本和几何／载荷迁移，停止Hash专项微调。**'
+        lines += ['当前凝练结论见 [一分钟判断](../SOLVER_BRIEF.md)；十类学习结构和物理候选已有阶段结果。下文保留此前Hash探索证据，不代表跨求解器排名。','']
     geo=summaries.get('hash50_unseen_geometry_pilot')
     load=summaries.get('hash50_unseen_load_combinations')
     parent=json.loads((ROOT/'runs/slides_reproduction/hash50_full1000ep/metrics_best.json').read_text())
@@ -875,6 +913,9 @@ def main(*, preserve_existing_plots=False):
                                    'elastic_input_operator_receipt':observed_receipts.get('elastic_input_operator'),
                                    'elastic_physical_solve_receipt':observed_receipts.get('elastic_physical_solve'),
                                    'elastic_residual_continuation_receipt':observed_receipts.get('elastic_residual_continuation'),
+                                   'elastic_crosscad_screen_receipt':observed_receipts.get('elastic_crosscad_screen'),
+                                   'elastic_fno_warmstart_receipt':observed_receipts.get('elastic_frozen_fno_warmstart_screen'),
+                                   'elastic_stress_readout_receipt':observed_receipts.get('elastic_signed_stress_readout_screen'),
                                    'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
                                    'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',

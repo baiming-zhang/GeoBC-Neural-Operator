@@ -1,0 +1,168 @@
+{
+  "status": "source_ready_AST_passed_actual_not_executed",
+  "source": "geobc/elastic_crosscad.py",
+  "source_sha256": "9d03591427c84a276ceefbe2fa6a557e6d17cc0b39f1a66c4c1c97896329db48",
+  "plan": "notes/geobc_elastic_crosscad_plan.json",
+  "design": "notes/geobc_elastic_crosscad_design.md",
+  "API": [
+    "request_contract(plan)->(contract,plan)",
+    "prepare_input(explicit_case_record,output,stage_clock)",
+    "prepare_operator(explicit_case_record,input_manifest,output,stage_clock)",
+    "solve_case(explicit_case_record,input_manifest,operator_summary,output,stage_clock)",
+    "run(plan,output=None)->summary",
+    "CLI --plan --output"
+  ],
+  "command": "python -m geobc.elastic_crosscad --plan notes/geobc_elastic_crosscad_plan.json --output runs/geobc_exploration/elastic_crosscad5_ver",
+  "source_pin_keys": [
+    "geobc/elastic_crosscad.py",
+    "geobc/elastic_pilot.py",
+    "geobc/elastic_pilot_data.py",
+    "geobc/continuous_query_geometry.py"
+  ],
+  "case_keys": [
+    "101_428/ver",
+    "101_56/ver",
+    "101_78/ver",
+    "102_249/ver",
+    "102_38/ver"
+  ],
+  "science": {
+    "initial_guess": "zero",
+    "per_CAD_maximum_iterations": 10000,
+    "per_CAD_maximum_solve_seconds": 300,
+    "true_residual_tolerance": 1e-08,
+    "true_residual_interval": 25,
+    "checkpoint_interval": 25,
+    "K_guards_per_CAD": 8,
+    "whole_stage_maximum_seconds": 900,
+    "cad_replacement": false,
+    "old_101479_request_prepare_or_arrays_reopened": false,
+    "original_sources_plans_caches_modified": false
+  },
+  "input_protocol": {
+    "members": {
+      "geometry_h5": [
+        "vertices"
+      ],
+      "cells_npz": [
+        "cells10"
+      ],
+      "canonical_npz": [
+        "xyz",
+        "grid_node_ids"
+      ]
+    },
+    "deck": "only first formal input stage; frozen parser real SPC/RBE2/RBE3/CD/PS/GRDSET/material/load semantics",
+    "gradient_metadata": "N,T,xyz/grid IDs SHA,normalization,archive SHA/stat and H5 stat only; no reference tensor or nodal variables",
+    "new_array_identity": "vertices/cells10 hashes computed and recorded only after first formal allowed read; no invented metadata hashes"
+  },
+  "reused_frozen_mathematics": [
+    "elastic_pilot_data._parse_deck",
+    "elastic_pilot_data._build",
+    "elastic_pilot_data.load_input",
+    "elastic_pilot.MatrixFreeElastic",
+    "elastic_pilot._build_geometry",
+    "elastic_pilot._algebra_guards",
+    "elastic_pilot._restore_full",
+    "elastic_pilot._metrics"
+  ],
+  "resume": {
+    "automatic": true,
+    "checkpoint_vectors": [
+      "z",
+      "r",
+      "p"
+    ],
+    "scalar_rz_saved": true,
+    "attempted_iterations_and_solve_cost_preserved": true,
+    "stage_wall_persistent": true,
+    "accepted_input_operator_and_guards_reused": true,
+    "immutable_full_stage_config_once": "config.json",
+    "compact_stage_status_identity": "config_sha256",
+    "label_exact_once": "endpoint_no_GT.json before label_read_started.json; committed label_metrics.json reused; interrupted uncommitted label read is failed and not repeated"
+  },
+  "budget_finalization": "At whole-stage expiry freeze finite physical prediction/equilibrium and record overshoot. GT only if remaining stage seconds >0; else metrics=null/displacement_reads0. Later CADs become stage_budget_exhausted_negative/attemptedfalse; no replacement.",
+  "summary_schema": {
+    "kind": "elastic_crosscad_screen",
+    "config_contract": true,
+    "case_keys_fixed_order": true,
+    "cases": "dict keyed by case_key",
+    "counts": [
+      "fixed_cases",
+      "attempted",
+      "input_compatible",
+      "operator_compatible",
+      "numerically_converged",
+      "metrics_available",
+      "displacement_reads"
+    ],
+    "costs": [
+      "cumulative_stage_wall_seconds",
+      "maximum_stage_wall_seconds",
+      "budget_overshoot_seconds",
+      "this_call_stage_wall_seconds"
+    ],
+    "case_fields": [
+      "attempted",
+      "input_compatible",
+      "operator_compatible",
+      "numerical_state",
+      "numerically_converged",
+      "iteration",
+      "iterations_executed_total",
+      "true_relative_residual",
+      "metrics",
+      "costs",
+      "memory",
+      "equilibrium",
+      "prediction",
+      "physical_u_path",
+      "constraint_reaction",
+      "source_grid_node_ids",
+      "read_receipt",
+      "input_manifest",
+      "operator_summary"
+    ],
+    "metric_keys": [
+      "u_vector_relative_l2",
+      "vector_RMS_mm",
+      "max_nodal_vector_error_mm",
+      "zero_reference",
+      "regions"
+    ],
+    "read_receipt_zero_keys": [
+      "stress_reads",
+      "old_final_reads",
+      "DEV_dia_reads",
+      "sealed_new_test_reads",
+      "model_or_weight_reads",
+      "optimizer_steps",
+      "scaler_fits"
+    ],
+    "displacement_reads": "0..1 per case; actual completed sum 0..5",
+    "finite_Gt_proof": "finite_allN_prediction_and_equilibrium_persisted_before_GT",
+    "guard_proof": "operator_K_guards_this_CAD=8;operator_rebuilds_in_solve=0",
+    "precision_rule": "true residual <=1e-8 only; finite budget/missing GT/unsupported/breakdown are not validated precision"
+  },
+  "checks": {
+    "AST_passed": true,
+    "AST_calls": 1,
+    "AST_elapsed_seconds": 0.005184700014069676,
+    "request_contract_or_preflight_calls": 0,
+    "module_imports": 0,
+    "raw_deck_reads": 0,
+    "scientific_array_reads": 0,
+    "GT_reads": 0,
+    "GPU_calls": 0,
+    "model_or_weight_reads": 0,
+    "actual_prepare_operator_solve_calls": 0,
+    "toy_calls": 0
+  },
+  "known_limits": [
+    "Original accepted mathematical specialization remains narrow; unknown active cards/unsupported constraint algebra produce explicit fixed-case negative.",
+    "Curved-P2 four-point quadrature and weighted-LS RBE3 are approximate, not OptiStruct exact or engineering/generalization validation.",
+    "No first real five-CAD compatibility, parameter/property value, resource use, convergence or accuracy claim before sole actual stage.",
+    "Unexpected schema/source/label corruption is failed, not a completed scientific negative.",
+    "GT interruption without committed metrics blocks another GT read rather than fabricating metrics."
+  ]
+}

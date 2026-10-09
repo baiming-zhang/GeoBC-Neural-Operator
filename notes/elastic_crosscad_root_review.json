@@ -1,0 +1,43 @@
+{
+  "status": "necessary_source_math_API_review_passed",
+  "reviewed_at_utc": "2026-10-09T21:07:38.3355752Z",
+  "source_sha256": {
+    "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27"
+  },
+  "source_ready": "notes/elastic_crosscad_runtime_recovery_source_ready.json",
+  "plan_sha256": "a94122fefe1786ae685e019833c5cd78625c6f0a082c564fac4a990f4082fa5d",
+  "fixed_case_keys": [
+    "101_428/ver",
+    "101_56/ver",
+    "101_78/ver",
+    "102_249/ver",
+    "102_38/ver"
+  ],
+  "review": [
+    "Five independent CAD contracts use their own canonical identity and first-actual array hashes; no original101_479 hardcoded contract",
+    "Input-only reads and original material/constraints/RBE3/curvedP2/operator/Cholesky helpers remain unchanged",
+    "Full-node physical endpoints and equilibrium persist before exactly-one permitted post-solve displacement read",
+    "Attempted iteration and per-case300s/whole-stage900s cumulative wall survive resume; no budget reset",
+    "True residual1e-8 only numerical convergence; fixed five denominator retains failure and unattempted outcomes",
+    "Zero reference relative displacement null with absolute metrics retained; no artificial denominator",
+    "Original source ready and both necessary pre-execution source repair records retained"
+  ],
+  "necessary_pre_execution_repairs": [
+    "CAD_ver solve output agreement",
+    "zero reference report contract consistency"
+  ],
+  "root_module_AST_repeated": 0,
+  "root_arrays_or_GPU": 0,
+  "root_contract_or_preflight_calls": 0,
+  "integration_ready": "notes/elastic_crosscad_queue_source_ready.json",
+  "coordinator": {
+    "action": "Existing waiting coordinator unlocked; no second launch",
+    "pid": 274,
+    "already_running": true
+  },
+  "actual_acceptance": "First real frozen stage only; no separate toy, resource, GT or repeated source audits",
+  "runtime_recovery": "notes/elastic_crosscad_runtime_recovery_root.json"
+}

@@ -1,0 +1,2575 @@
+{
+  "status": "completed",
+  "kind": "elastic_crosscad_report",
+  "run_status": "completed",
+  "plan_rules_frozen": true,
+  "actual_execution_released": true,
+  "case_keys": [
+    "101_428/ver",
+    "101_56/ver",
+    "101_78/ver",
+    "102_249/ver",
+    "102_38/ver"
+  ],
+  "sources": {
+    "plan": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/notes/geobc_elastic_crosscad_plan.json",
+      "present": true,
+      "bytes": 25494,
+      "mtime_ns": 1791580206234418300,
+      "sha256": "a94122fefe1786ae685e019833c5cd78625c6f0a082c564fac4a990f4082fa5d"
+    },
+    "summary": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/summary.json",
+      "present": true,
+      "bytes": 352639,
+      "mtime_ns": 1791580968420722700,
+      "sha256": "e3d10a73758a30ff6b0cc1ec475dc8571f9177ee660f48f0585df203b058bee2"
+    }
+  },
+  "contract": {
+    "schema": "geobc_elastic_crosscad_v1",
+    "kind": "elastic_crosscad_screen",
+    "case_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver",
+      "102_249/ver",
+      "102_38/ver"
+    ],
+    "recipe": {
+      "device": "cuda:0",
+      "dtype": "float64",
+      "seed": 2026,
+      "units": "mm, N, MPa, displacement mm, strain dimensionless",
+      "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+      "node_dofs": 3,
+      "cell_chunk": 8192,
+      "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+      "quadrature_points_per_cell": 4,
+      "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+      "geometry_guard": {
+        "finite": true,
+        "maximum_J_condition": 1000000000000,
+        "minimum_abs_detJ_over_length_cubed": 1e-14,
+        "orientation_consistent_per_cell_at_center_and_four_Q": true,
+        "geometry_repair": false
+      },
+      "reader_scope": {
+        "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+        "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+        "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+        "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+        "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+        "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+        "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+        "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+        "deck_coordinate_relative_tolerance": 1e-05,
+        "material_relative_tolerance": 1e-08,
+        "allowed_static_params": {
+          "POST": [
+            "-1",
+            "0",
+            "1",
+            "2"
+          ],
+          "AUTOSPC": [
+            "YES",
+            "NO"
+          ],
+          "GRDPNT": [
+            "0"
+          ],
+          "LGDISP": [
+            "0",
+            "NO"
+          ],
+          "INREL": [
+            "0"
+          ],
+          "CHECKEL": [
+            "NO"
+          ],
+          "RENUMOK": [
+            "YES"
+          ],
+          "PRINFACC": [
+            "1"
+          ],
+          "CONTFEL": [
+            "AUTO"
+          ]
+        },
+        "allowed_gapprm_names": [
+          "GAPCMPL"
+        ],
+        "ignored_output_cards": [
+          "ENDDATA",
+          "OUTPUT",
+          "OUTPUT2",
+          "DISPLACEMENT",
+          "GPSTRESS",
+          "STRESS",
+          "STRAIN",
+          "SPCFORCE",
+          "OLOAD",
+          "GPFORCE",
+          "ECHO",
+          "FORMAT",
+          "ELFORCE",
+          "ESE"
+        ],
+        "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+        "explicit_proprietary_control_exclusions": [
+          {
+            "output_only_claim": false,
+            "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+            "card": "DEBUG",
+            "original_effect": "unknown",
+            "value": "0.0",
+            "classification": "definition_unverified_explicitly_not_reproduced",
+            "inactive_claim": false,
+            "name": "LGSHPSNS"
+          }
+        ]
+      },
+      "load_transfer": {
+        "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+        "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+        "minimum_rank": 6,
+        "maximum_normal_condition": 1000000000000,
+        "relative_guard_tolerance": 1e-09,
+        "guards": [
+          "H B=I6",
+          "virtual work",
+          "net force",
+          "net moment about true reference"
+        ],
+        "fallback_or_pseudoinverse": false,
+        "OptiStruct_exact": false
+      },
+      "input_operator": {
+        "maximum_combined_data_operator_wall_seconds": 300,
+        "maximum_guard_K_applications": 8,
+        "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+        "relative_algebra_guard_tolerance": 1e-09,
+        "guards": [
+          "six rigid null residuals",
+          "u^TKv=v^TKu",
+          "nonnegative two random energies",
+          "constraints eliminate rigid motion"
+        ],
+        "all_inputs_target_free": true,
+        "repeat_setup_or_guards_in_solve": false
+      },
+      "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+      "solve": {
+        "method": "PCG",
+        "initial_guess": "zero",
+        "maximum_iterations": 10000,
+        "maximum_cumulative_solve_wall_seconds": 300,
+        "true_relative_residual_tolerance": 1e-08,
+        "true_residual_interval": 25,
+        "checkpoint_interval": 25,
+        "budget_includes": [
+          "K apply",
+          "preconditioner",
+          "reductions",
+          "true residual verification"
+        ],
+        "resume_budget_reset": false,
+        "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+        "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+      },
+      "post_solve": {
+        "all_original_nodes": true,
+        "prediction_and_equilibrium_before_labels": true,
+        "label_reads": 1,
+        "label_scope": "Only each listed CAD/ver displacement, after finite endpoint and equilibrium are persisted and remaining stage budget is positive",
+        "metrics": [
+          "allN displacement vector relativeL2",
+          "vector RMS mm",
+          "max nodal vector error mm",
+          "support/load-interface/interior fixed regions",
+          "true free residual",
+          "constraint reaction",
+          "global net force/moment balance"
+        ],
+        "stress_scalar_comparison": false,
+        "old_final_reads": 0,
+        "DEV_dia_reads": 0,
+        "sealed_new_test_reads": 0,
+        "training_updates": 0,
+        "scaler_fits": 0
+      },
+      "maximum_stage_wall_seconds": 900,
+      "initial_guess": "zero",
+      "stage_budget": {
+        "clock": "Cumulative actual wall across all five fixed cases, including source/cache IO, setup, eight guards, solve, verification, persistence, label read and metrics",
+        "journal_persistent": true,
+        "resume_budget_reset": false,
+        "per_case_solve_wall_seconds": 300,
+        "total_wall_seconds": 900,
+        "combined_input_operator_wall_seconds_per_case": 300,
+        "inner_deadlines_use_remaining_global_budget": true,
+        "at_expiry": "No new iterations or later CADs; persist current finite endpoint/equilibrium and explicitly record finalization overshoot",
+        "later_case_status": "stage_budget_exhausted_negative",
+        "later_case_attempted": false,
+        "before_GT_requires_remaining_seconds_gt_zero": true,
+        "expired_GT_policy": {
+          "metrics": null,
+          "displacement_reads": 0
+        }
+      }
+    },
+    "physical_recipe": {
+      "device": "cuda:0",
+      "dtype": "float64",
+      "seed": 2026,
+      "units": "mm, N, MPa, displacement mm, strain dimensionless",
+      "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+      "node_dofs": 3,
+      "cell_chunk": 8192,
+      "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+      "quadrature_points_per_cell": 4,
+      "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+      "geometry_guard": {
+        "finite": true,
+        "maximum_J_condition": 1000000000000,
+        "minimum_abs_detJ_over_length_cubed": 1e-14,
+        "orientation_consistent_per_cell_at_center_and_four_Q": true,
+        "geometry_repair": false
+      },
+      "reader_scope": {
+        "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+        "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+        "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+        "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+        "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+        "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+        "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+        "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+        "deck_coordinate_relative_tolerance": 1e-05,
+        "material_relative_tolerance": 1e-08,
+        "allowed_static_params": {
+          "POST": [
+            "-1",
+            "0",
+            "1",
+            "2"
+          ],
+          "AUTOSPC": [
+            "YES",
+            "NO"
+          ],
+          "GRDPNT": [
+            "0"
+          ],
+          "LGDISP": [
+            "0",
+            "NO"
+          ],
+          "INREL": [
+            "0"
+          ],
+          "CHECKEL": [
+            "NO"
+          ],
+          "RENUMOK": [
+            "YES"
+          ],
+          "PRINFACC": [
+            "1"
+          ],
+          "CONTFEL": [
+            "AUTO"
+          ]
+        },
+        "allowed_gapprm_names": [
+          "GAPCMPL"
+        ],
+        "ignored_output_cards": [
+          "ENDDATA",
+          "OUTPUT",
+          "OUTPUT2",
+          "DISPLACEMENT",
+          "GPSTRESS",
+          "STRESS",
+          "STRAIN",
+          "SPCFORCE",
+          "OLOAD",
+          "GPFORCE",
+          "ECHO",
+          "FORMAT",
+          "ELFORCE",
+          "ESE"
+        ],
+        "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+        "explicit_proprietary_control_exclusions": [
+          {
+            "output_only_claim": false,
+            "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+            "card": "DEBUG",
+            "original_effect": "unknown",
+            "value": "0.0",
+            "classification": "definition_unverified_explicitly_not_reproduced",
+            "inactive_claim": false,
+            "name": "LGSHPSNS"
+          }
+        ]
+      },
+      "load_transfer": {
+        "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+        "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+        "minimum_rank": 6,
+        "maximum_normal_condition": 1000000000000,
+        "relative_guard_tolerance": 1e-09,
+        "guards": [
+          "H B=I6",
+          "virtual work",
+          "net force",
+          "net moment about true reference"
+        ],
+        "fallback_or_pseudoinverse": false,
+        "OptiStruct_exact": false
+      },
+      "input_operator": {
+        "maximum_combined_data_operator_wall_seconds": 300,
+        "maximum_guard_K_applications": 8,
+        "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+        "relative_algebra_guard_tolerance": 1e-09,
+        "guards": [
+          "six rigid null residuals",
+          "u^TKv=v^TKu",
+          "nonnegative two random energies",
+          "constraints eliminate rigid motion"
+        ],
+        "all_inputs_target_free": true,
+        "repeat_setup_or_guards_in_solve": false
+      },
+      "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+      "solve": {
+        "method": "PCG",
+        "initial_guess": "zero",
+        "maximum_iterations": 10000,
+        "maximum_cumulative_solve_wall_seconds": 300,
+        "true_relative_residual_tolerance": 1e-08,
+        "true_residual_interval": 25,
+        "checkpoint_interval": 25,
+        "budget_includes": [
+          "K apply",
+          "preconditioner",
+          "reductions",
+          "true residual verification"
+        ],
+        "resume_budget_reset": false,
+        "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+        "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+      },
+      "post_solve": {
+        "all_original_nodes": true,
+        "prediction_and_equilibrium_before_labels": true,
+        "label_reads": 1,
+        "label_scope": "Only current fixed CAD/ver displacement after persisted finite endpoint/equilibrium and positive remaining stage budget",
+        "metrics": [
+          "allN displacement vector relativeL2",
+          "vector RMS mm",
+          "max nodal vector error mm",
+          "support/load-interface/interior fixed regions",
+          "true free residual",
+          "constraint reaction",
+          "global net force/moment balance"
+        ],
+        "stress_scalar_comparison": false,
+        "old_final_reads": 0,
+        "DEV_dia_reads": 0,
+        "sealed_new_test_reads": 0,
+        "training_updates": 0,
+        "scaler_fits": 0
+      }
+    },
+    "records": {
+      "101_428/ver": {
+        "key": "101_428/ver",
+        "cad": "101_428",
+        "group": "train",
+        "sources": {
+          "deck": {
+            "path": "data/raw/SolverDeck/101_428.fem",
+            "bytes": 38332342,
+            "mtime_ns": 1791454661260617700
+          },
+          "geometry_h5": {
+            "path": "data/raw/FieldMesh/101_428.h5",
+            "bytes": 50172448,
+            "mtime_ns": 1791453879531543300
+          },
+          "cells_npz": {
+            "path": "data/geobc_gradient_supervision/101_428.npz",
+            "bytes": 44851374,
+            "mtime_ns": 1791521768458162100,
+            "sha256": null
+          },
+          "canonical_npz": {
+            "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+            "bytes": 45320930,
+            "mtime_ns": 1791511980352062400
+          }
+        },
+        "expected_geometry": {
+          "nodes": 270276,
+          "cells": 169852,
+          "canonical_xyz_float32_sha256": "c9f54a43f045d4729147dbb4ab4ed4f85bd5b46e8aab72228d5d46c2d2121228",
+          "grid_node_ids_int64_sha256": "65f935b3245149b5098845c7a2ff0dc69dd7bc833d2668519deddfbd235228f2",
+          "characteristic_length_mm": 185.13168334960938,
+          "bbox_min_mm": [
+            -38.653900146484375,
+            -164.1840057373047,
+            0.24787600338459015
+          ]
+        },
+        "input_members": {
+          "geometry_h5": [
+            "vertices"
+          ],
+          "cells_npz": [
+            "cells10"
+          ],
+          "canonical_npz": [
+            "xyz",
+            "grid_node_ids"
+          ]
+        },
+        "recipe": {
+          "device": "cuda:0",
+          "dtype": "float64",
+          "seed": 2026,
+          "units": "mm, N, MPa, displacement mm, strain dimensionless",
+          "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+          "node_dofs": 3,
+          "cell_chunk": 8192,
+          "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+          "quadrature_points_per_cell": 4,
+          "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+          "geometry_guard": {
+            "finite": true,
+            "maximum_J_condition": 1000000000000,
+            "minimum_abs_detJ_over_length_cubed": 1e-14,
+            "orientation_consistent_per_cell_at_center_and_four_Q": true,
+            "geometry_repair": false
+          },
+          "reader_scope": {
+            "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+            "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+            "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+            "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+            "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+            "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+            "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+            "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+            "deck_coordinate_relative_tolerance": 1e-05,
+            "material_relative_tolerance": 1e-08,
+            "allowed_static_params": {
+              "POST": [
+                "-1",
+                "0",
+                "1",
+                "2"
+              ],
+              "AUTOSPC": [
+                "YES",
+                "NO"
+              ],
+              "GRDPNT": [
+                "0"
+              ],
+              "LGDISP": [
+                "0",
+                "NO"
+              ],
+              "INREL": [
+                "0"
+              ],
+              "CHECKEL": [
+                "NO"
+              ],
+              "RENUMOK": [
+                "YES"
+              ],
+              "PRINFACC": [
+                "1"
+              ],
+              "CONTFEL": [
+                "AUTO"
+              ]
+            },
+            "allowed_gapprm_names": [
+              "GAPCMPL"
+            ],
+            "ignored_output_cards": [
+              "ENDDATA",
+              "OUTPUT",
+              "OUTPUT2",
+              "DISPLACEMENT",
+              "GPSTRESS",
+              "STRESS",
+              "STRAIN",
+              "SPCFORCE",
+              "OLOAD",
+              "GPFORCE",
+              "ECHO",
+              "FORMAT",
+              "ELFORCE",
+              "ESE"
+            ],
+            "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+            "explicit_proprietary_control_exclusions": [
+              {
+                "output_only_claim": false,
+                "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+                "card": "DEBUG",
+                "original_effect": "unknown",
+                "value": "0.0",
+                "classification": "definition_unverified_explicitly_not_reproduced",
+                "inactive_claim": false,
+                "name": "LGSHPSNS"
+              }
+            ]
+          },
+          "load_transfer": {
+            "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+            "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+            "minimum_rank": 6,
+            "maximum_normal_condition": 1000000000000,
+            "relative_guard_tolerance": 1e-09,
+            "guards": [
+              "H B=I6",
+              "virtual work",
+              "net force",
+              "net moment about true reference"
+            ],
+            "fallback_or_pseudoinverse": false,
+            "OptiStruct_exact": false
+          },
+          "input_operator": {
+            "maximum_combined_data_operator_wall_seconds": 300,
+            "maximum_guard_K_applications": 8,
+            "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+            "relative_algebra_guard_tolerance": 1e-09,
+            "guards": [
+              "six rigid null residuals",
+              "u^TKv=v^TKu",
+              "nonnegative two random energies",
+              "constraints eliminate rigid motion"
+            ],
+            "all_inputs_target_free": true,
+            "repeat_setup_or_guards_in_solve": false
+          },
+          "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+          "solve": {
+            "method": "PCG",
+            "initial_guess": "zero",
+            "maximum_iterations": 10000,
+            "maximum_cumulative_solve_wall_seconds": 300,
+            "true_relative_residual_tolerance": 1e-08,
+            "true_residual_interval": 25,
+            "checkpoint_interval": 25,
+            "budget_includes": [
+              "K apply",
+              "preconditioner",
+              "reductions",
+              "true residual verification"
+            ],
+            "resume_budget_reset": false,
+            "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+            "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+          },
+          "post_solve": {
+            "all_original_nodes": true,
+            "prediction_and_equilibrium_before_labels": true,
+            "label_reads": 1,
+            "label_scope": "Only current fixed CAD/ver displacement after persisted finite endpoint/equilibrium and positive remaining stage budget",
+            "metrics": [
+              "allN displacement vector relativeL2",
+              "vector RMS mm",
+              "max nodal vector error mm",
+              "support/load-interface/interior fixed regions",
+              "true free residual",
+              "constraint reaction",
+              "global net force/moment balance"
+            ],
+            "stress_scalar_comparison": false,
+            "old_final_reads": 0,
+            "DEV_dia_reads": 0,
+            "sealed_new_test_reads": 0,
+            "training_updates": 0,
+            "scaler_fits": 0
+          }
+        },
+        "array_identity_policy": "vertices/cells10 first formal input read hashes recorded; no invented inherited hashes",
+        "deferred_displacement_source": {
+          "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+          "bytes": 45320930,
+          "mtime_ns": 1791511980352062400
+        },
+        "data_output": "data/geobc_elastic_crosscad5/101_428/input",
+        "operator_output": "data/geobc_elastic_crosscad5/101_428/operator",
+        "solve_output": "runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver"
+      },
+      "101_56/ver": {
+        "key": "101_56/ver",
+        "cad": "101_56",
+        "group": "train",
+        "sources": {
+          "deck": {
+            "path": "data/raw/SolverDeck/101_56.fem",
+            "bytes": 31445953,
+            "mtime_ns": 1791454664977701300
+          },
+          "geometry_h5": {
+            "path": "data/raw/FieldMesh/101_56.h5",
+            "bytes": 41019640,
+            "mtime_ns": 1791453892971287300
+          },
+          "cells_npz": {
+            "path": "data/geobc_gradient_supervision/101_56.npz",
+            "bytes": 36850566,
+            "mtime_ns": 1791521770181870400,
+            "sha256": null
+          },
+          "canonical_npz": {
+            "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+            "bytes": 37050462,
+            "mtime_ns": 1791454716033307500
+          }
+        },
+        "expected_geometry": {
+          "nodes": 221213,
+          "cells": 139546,
+          "canonical_xyz_float32_sha256": "12de6dd49683cbfdab56501c8873e94eb8e4efe8f6553138b67e812c0e9c236a",
+          "grid_node_ids_int64_sha256": "b908e54d906255e2dcf5e737ce6a12ec9b89c32af6a40dd400c3ca089ddbcf94",
+          "characteristic_length_mm": 184.96849060058594,
+          "bbox_min_mm": [
+            -38.55189895629883,
+            -164.052001953125,
+            0.19492770731449127
+          ]
+        },
+        "input_members": {
+          "geometry_h5": [
+            "vertices"
+          ],
+          "cells_npz": [
+            "cells10"
+          ],
+          "canonical_npz": [
+            "xyz",
+            "grid_node_ids"
+          ]
+        },
+        "recipe": {
+          "device": "cuda:0",
+          "dtype": "float64",
+          "seed": 2026,
+          "units": "mm, N, MPa, displacement mm, strain dimensionless",
+          "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+          "node_dofs": 3,
+          "cell_chunk": 8192,
+          "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+          "quadrature_points_per_cell": 4,
+          "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+          "geometry_guard": {
+            "finite": true,
+            "maximum_J_condition": 1000000000000,
+            "minimum_abs_detJ_over_length_cubed": 1e-14,
+            "orientation_consistent_per_cell_at_center_and_four_Q": true,
+            "geometry_repair": false
+          },
+          "reader_scope": {
+            "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+            "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+            "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+            "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+            "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+            "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+            "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+            "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+            "deck_coordinate_relative_tolerance": 1e-05,
+            "material_relative_tolerance": 1e-08,
+            "allowed_static_params": {
+              "POST": [
+                "-1",
+                "0",
+                "1",
+                "2"
+              ],
+              "AUTOSPC": [
+                "YES",
+                "NO"
+              ],
+              "GRDPNT": [
+                "0"
+              ],
+              "LGDISP": [
+                "0",
+                "NO"
+              ],
+              "INREL": [
+                "0"
+              ],
+              "CHECKEL": [
+                "NO"
+              ],
+              "RENUMOK": [
+                "YES"
+              ],
+              "PRINFACC": [
+                "1"
+              ],
+              "CONTFEL": [
+                "AUTO"
+              ]
+            },
+            "allowed_gapprm_names": [
+              "GAPCMPL"
+            ],
+            "ignored_output_cards": [
+              "ENDDATA",
+              "OUTPUT",
+              "OUTPUT2",
+              "DISPLACEMENT",
+              "GPSTRESS",
+              "STRESS",
+              "STRAIN",
+              "SPCFORCE",
+              "OLOAD",
+              "GPFORCE",
+              "ECHO",
+              "FORMAT",
+              "ELFORCE",
+              "ESE"
+            ],
+            "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+            "explicit_proprietary_control_exclusions": [
+              {
+                "output_only_claim": false,
+                "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+                "card": "DEBUG",
+                "original_effect": "unknown",
+                "value": "0.0",
+                "classification": "definition_unverified_explicitly_not_reproduced",
+                "inactive_claim": false,
+                "name": "LGSHPSNS"
+              }
+            ]
+          },
+          "load_transfer": {
+            "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+            "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+            "minimum_rank": 6,
+            "maximum_normal_condition": 1000000000000,
+            "relative_guard_tolerance": 1e-09,
+            "guards": [
+              "H B=I6",
+              "virtual work",
+              "net force",
+              "net moment about true reference"
+            ],
+            "fallback_or_pseudoinverse": false,
+            "OptiStruct_exact": false
+          },
+          "input_operator": {
+            "maximum_combined_data_operator_wall_seconds": 300,
+            "maximum_guard_K_applications": 8,
+            "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+            "relative_algebra_guard_tolerance": 1e-09,
+            "guards": [
+              "six rigid null residuals",
+              "u^TKv=v^TKu",
+              "nonnegative two random energies",
+              "constraints eliminate rigid motion"
+            ],
+            "all_inputs_target_free": true,
+            "repeat_setup_or_guards_in_solve": false
+          },
+          "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+          "solve": {
+            "method": "PCG",
+            "initial_guess": "zero",
+            "maximum_iterations": 10000,
+            "maximum_cumulative_solve_wall_seconds": 300,
+            "true_relative_residual_tolerance": 1e-08,
+            "true_residual_interval": 25,
+            "checkpoint_interval": 25,
+            "budget_includes": [
+              "K apply",
+              "preconditioner",
+              "reductions",
+              "true residual verification"
+            ],
+            "resume_budget_reset": false,
+            "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+            "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+          },
+          "post_solve": {
+            "all_original_nodes": true,
+            "prediction_and_equilibrium_before_labels": true,
+            "label_reads": 1,
+            "label_scope": "Only current fixed CAD/ver displacement after persisted finite endpoint/equilibrium and positive remaining stage budget",
+            "metrics": [
+              "allN displacement vector relativeL2",
+              "vector RMS mm",
+              "max nodal vector error mm",
+              "support/load-interface/interior fixed regions",
+              "true free residual",
+              "constraint reaction",
+              "global net force/moment balance"
+            ],
+            "stress_scalar_comparison": false,
+            "old_final_reads": 0,
+            "DEV_dia_reads": 0,
+            "sealed_new_test_reads": 0,
+            "training_updates": 0,
+            "scaler_fits": 0
+          }
+        },
+        "array_identity_policy": "vertices/cells10 first formal input read hashes recorded; no invented inherited hashes",
+        "deferred_displacement_source": {
+          "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+          "bytes": 37050462,
+          "mtime_ns": 1791454716033307500
+        },
+        "data_output": "data/geobc_elastic_crosscad5/101_56/input",
+        "operator_output": "data/geobc_elastic_crosscad5/101_56/operator",
+        "solve_output": "runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver"
+      },
+      "101_78/ver": {
+        "key": "101_78/ver",
+        "cad": "101_78",
+        "group": "train",
+        "sources": {
+          "deck": {
+            "path": "data/raw/SolverDeck/101_78.fem",
+            "bytes": 27263577,
+            "mtime_ns": 1791454667180264900
+          },
+          "geometry_h5": {
+            "path": "data/raw/FieldMesh/101_78.h5",
+            "bytes": 35688680,
+            "mtime_ns": 1791453901460313900
+          },
+          "cells_npz": {
+            "path": "data/geobc_gradient_supervision/101_78.npz",
+            "bytes": 31859106,
+            "mtime_ns": 1791521770828456400,
+            "sha256": null
+          },
+          "canonical_npz": {
+            "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+            "bytes": 32255262,
+            "mtime_ns": 1791511981517772800
+          }
+        },
+        "expected_geometry": {
+          "nodes": 192353,
+          "cells": 120639,
+          "canonical_xyz_float32_sha256": "00c7c8f8f08e04ada2b91abf6501e3fe2bd76f59d8492bf955b7faa2ba09ebc2",
+          "grid_node_ids_int64_sha256": "d40d02715d19f440fa2ddc8a2614153994f828fe846cbbf065e8e3f3e3967db6",
+          "characteristic_length_mm": 185.1586456298828,
+          "bbox_min_mm": [
+            -38.932098388671875,
+            -164.20399475097656,
+            0.23825310170650482
+          ]
+        },
+        "input_members": {
+          "geometry_h5": [
+            "vertices"
+          ],
+          "cells_npz": [
+            "cells10"
+          ],
+          "canonical_npz": [
+            "xyz",
+            "grid_node_ids"
+          ]
+        },
+        "recipe": {
+          "device": "cuda:0",
+          "dtype": "float64",
+          "seed": 2026,
+          "units": "mm, N, MPa, displacement mm, strain dimensionless",
+          "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+          "node_dofs": 3,
+          "cell_chunk": 8192,
+          "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+          "quadrature_points_per_cell": 4,
+          "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+          "geometry_guard": {
+            "finite": true,
+            "maximum_J_condition": 1000000000000,
+            "minimum_abs_detJ_over_length_cubed": 1e-14,
+            "orientation_consistent_per_cell_at_center_and_four_Q": true,
+            "geometry_repair": false
+          },
+          "reader_scope": {
+            "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+            "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+            "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+            "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+            "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+            "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+            "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+            "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+            "deck_coordinate_relative_tolerance": 1e-05,
+            "material_relative_tolerance": 1e-08,
+            "allowed_static_params": {
+              "POST": [
+                "-1",
+                "0",
+                "1",
+                "2"
+              ],
+              "AUTOSPC": [
+                "YES",
+                "NO"
+              ],
+              "GRDPNT": [
+                "0"
+              ],
+              "LGDISP": [
+                "0",
+                "NO"
+              ],
+              "INREL": [
+                "0"
+              ],
+              "CHECKEL": [
+                "NO"
+              ],
+              "RENUMOK": [
+                "YES"
+              ],
+              "PRINFACC": [
+                "1"
+              ],
+              "CONTFEL": [
+                "AUTO"
+              ]
+            },
+            "allowed_gapprm_names": [
+              "GAPCMPL"
+            ],
+            "ignored_output_cards": [
+              "ENDDATA",
+              "OUTPUT",
+              "OUTPUT2",
+              "DISPLACEMENT",
+              "GPSTRESS",
+              "STRESS",
+              "STRAIN",
+              "SPCFORCE",
+              "OLOAD",
+              "GPFORCE",
+              "ECHO",
+              "FORMAT",
+              "ELFORCE",
+              "ESE"
+            ],
+            "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+            "explicit_proprietary_control_exclusions": [
+              {
+                "output_only_claim": false,
+                "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+                "card": "DEBUG",
+                "original_effect": "unknown",
+                "value": "0.0",
+                "classification": "definition_unverified_explicitly_not_reproduced",
+                "inactive_claim": false,
+                "name": "LGSHPSNS"
+              }
+            ]
+          },
+          "load_transfer": {
+            "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+            "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+            "minimum_rank": 6,
+            "maximum_normal_condition": 1000000000000,
+            "relative_guard_tolerance": 1e-09,
+            "guards": [
+              "H B=I6",
+              "virtual work",
+              "net force",
+              "net moment about true reference"
+            ],
+            "fallback_or_pseudoinverse": false,
+            "OptiStruct_exact": false
+          },
+          "input_operator": {
+            "maximum_combined_data_operator_wall_seconds": 300,
+            "maximum_guard_K_applications": 8,
+            "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+            "relative_algebra_guard_tolerance": 1e-09,
+            "guards": [
+              "six rigid null residuals",
+              "u^TKv=v^TKu",
+              "nonnegative two random energies",
+              "constraints eliminate rigid motion"
+            ],
+            "all_inputs_target_free": true,
+            "repeat_setup_or_guards_in_solve": false
+          },
+          "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+          "solve": {
+            "method": "PCG",
+            "initial_guess": "zero",
+            "maximum_iterations": 10000,
+            "maximum_cumulative_solve_wall_seconds": 300,
+            "true_relative_residual_tolerance": 1e-08,
+            "true_residual_interval": 25,
+            "checkpoint_interval": 25,
+            "budget_includes": [
+              "K apply",
+              "preconditioner",
+              "reductions",
+              "true residual verification"
+            ],
+            "resume_budget_reset": false,
+            "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+            "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+          },
+          "post_solve": {
+            "all_original_nodes": true,
+            "prediction_and_equilibrium_before_labels": true,
+            "label_reads": 1,
+            "label_scope": "Only current fixed CAD/ver displacement after persisted finite endpoint/equilibrium and positive remaining stage budget",
+            "metrics": [
+              "allN displacement vector relativeL2",
+              "vector RMS mm",
+              "max nodal vector error mm",
+              "support/load-interface/interior fixed regions",
+              "true free residual",
+              "constraint reaction",
+              "global net force/moment balance"
+            ],
+            "stress_scalar_comparison": false,
+            "old_final_reads": 0,
+            "DEV_dia_reads": 0,
+            "sealed_new_test_reads": 0,
+            "training_updates": 0,
+            "scaler_fits": 0
+          }
+        },
+        "array_identity_policy": "vertices/cells10 first formal input read hashes recorded; no invented inherited hashes",
+        "deferred_displacement_source": {
+          "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+          "bytes": 32255262,
+          "mtime_ns": 1791511981517772800
+        },
+        "data_output": "data/geobc_elastic_crosscad5/101_78/input",
+        "operator_output": "data/geobc_elastic_crosscad5/101_78/operator",
+        "solve_output": "runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver"
+      },
+      "102_249/ver": {
+        "key": "102_249/ver",
+        "cad": "102_249",
+        "group": "validation",
+        "sources": {
+          "deck": {
+            "path": "data/raw/SolverDeck/102_249.fem",
+            "bytes": 29809150,
+            "mtime_ns": 1791454674147734600
+          },
+          "geometry_h5": {
+            "path": "data/raw/FieldMesh/102_249.h5",
+            "bytes": 39246552,
+            "mtime_ns": 1791453926971284400
+          },
+          "cells_npz": {
+            "path": "data/geobc_gradient_supervision/102_249.npz",
+            "bytes": 34720674,
+            "mtime_ns": 1791521800580428500,
+            "sha256": null
+          },
+          "canonical_npz": {
+            "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+            "bytes": 35482562,
+            "mtime_ns": 1791454718057858700
+          }
+        },
+        "expected_geometry": {
+          "nodes": 211173,
+          "cells": 131480,
+          "canonical_xyz_float32_sha256": "b9b79dcbf8543c01ec365120e2d05526a2f4cef3744ad6527e134ad761c8e341",
+          "grid_node_ids_int64_sha256": "61beab4c5cc505e921a93141ae7d6341dd33eee327c4e513cd7d6e6a6cc957d7",
+          "characteristic_length_mm": 184.9840087890625,
+          "bbox_min_mm": [
+            -38.60179901123047,
+            -164.11900329589844,
+            0.21886509656906128
+          ]
+        },
+        "input_members": {
+          "geometry_h5": [
+            "vertices"
+          ],
+          "cells_npz": [
+            "cells10"
+          ],
+          "canonical_npz": [
+            "xyz",
+            "grid_node_ids"
+          ]
+        },
+        "recipe": {
+          "device": "cuda:0",
+          "dtype": "float64",
+          "seed": 2026,
+          "units": "mm, N, MPa, displacement mm, strain dimensionless",
+          "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+          "node_dofs": 3,
+          "cell_chunk": 8192,
+          "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+          "quadrature_points_per_cell": 4,
+          "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+          "geometry_guard": {
+            "finite": true,
+            "maximum_J_condition": 1000000000000,
+            "minimum_abs_detJ_over_length_cubed": 1e-14,
+            "orientation_consistent_per_cell_at_center_and_four_Q": true,
+            "geometry_repair": false
+          },
+          "reader_scope": {
+            "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+            "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+            "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+            "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+            "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+            "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+            "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+            "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+            "deck_coordinate_relative_tolerance": 1e-05,
+            "material_relative_tolerance": 1e-08,
+            "allowed_static_params": {
+              "POST": [
+                "-1",
+                "0",
+                "1",
+                "2"
+              ],
+              "AUTOSPC": [
+                "YES",
+                "NO"
+              ],
+              "GRDPNT": [
+                "0"
+              ],
+              "LGDISP": [
+                "0",
+                "NO"
+              ],
+              "INREL": [
+                "0"
+              ],
+              "CHECKEL": [
+                "NO"
+              ],
+              "RENUMOK": [
+                "YES"
+              ],
+              "PRINFACC": [
+                "1"
+              ],
+              "CONTFEL": [
+                "AUTO"
+              ]
+            },
+            "allowed_gapprm_names": [
+              "GAPCMPL"
+            ],
+            "ignored_output_cards": [
+              "ENDDATA",
+              "OUTPUT",
+              "OUTPUT2",
+              "DISPLACEMENT",
+              "GPSTRESS",
+              "STRESS",
+              "STRAIN",
+              "SPCFORCE",
+              "OLOAD",
+              "GPFORCE",
+              "ECHO",
+              "FORMAT",
+              "ELFORCE",
+              "ESE"
+            ],
+            "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+            "explicit_proprietary_control_exclusions": [
+              {
+                "output_only_claim": false,
+                "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+                "card": "DEBUG",
+                "original_effect": "unknown",
+                "value": "0.0",
+                "classification": "definition_unverified_explicitly_not_reproduced",
+                "inactive_claim": false,
+                "name": "LGSHPSNS"
+              }
+            ]
+          },
+          "load_transfer": {
+            "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+            "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+            "minimum_rank": 6,
+            "maximum_normal_condition": 1000000000000,
+            "relative_guard_tolerance": 1e-09,
+            "guards": [
+              "H B=I6",
+              "virtual work",
+              "net force",
+              "net moment about true reference"
+            ],
+            "fallback_or_pseudoinverse": false,
+            "OptiStruct_exact": false
+          },
+          "input_operator": {
+            "maximum_combined_data_operator_wall_seconds": 300,
+            "maximum_guard_K_applications": 8,
+            "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+            "relative_algebra_guard_tolerance": 1e-09,
+            "guards": [
+              "six rigid null residuals",
+              "u^TKv=v^TKu",
+              "nonnegative two random energies",
+              "constraints eliminate rigid motion"
+            ],
+            "all_inputs_target_free": true,
+            "repeat_setup_or_guards_in_solve": false
+          },
+          "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+          "solve": {
+            "method": "PCG",
+            "initial_guess": "zero",
+            "maximum_iterations": 10000,
+            "maximum_cumulative_solve_wall_seconds": 300,
+            "true_relative_residual_tolerance": 1e-08,
+            "true_residual_interval": 25,
+            "checkpoint_interval": 25,
+            "budget_includes": [
+              "K apply",
+              "preconditioner",
+              "reductions",
+              "true residual verification"
+            ],
+            "resume_budget_reset": false,
+            "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+            "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+          },
+          "post_solve": {
+            "all_original_nodes": true,
+            "prediction_and_equilibrium_before_labels": true,
+            "label_reads": 1,
+            "label_scope": "Only current fixed CAD/ver displacement after persisted finite endpoint/equilibrium and positive remaining stage budget",
+            "metrics": [
+              "allN displacement vector relativeL2",
+              "vector RMS mm",
+              "max nodal vector error mm",
+              "support/load-interface/interior fixed regions",
+              "true free residual",
+              "constraint reaction",
+              "global net force/moment balance"
+            ],
+            "stress_scalar_comparison": false,
+            "old_final_reads": 0,
+            "DEV_dia_reads": 0,
+            "sealed_new_test_reads": 0,
+            "training_updates": 0,
+            "scaler_fits": 0
+          }
+        },
+        "array_identity_policy": "vertices/cells10 first formal input read hashes recorded; no invented inherited hashes",
+        "deferred_displacement_source": {
+          "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+          "bytes": 35482562,
+          "mtime_ns": 1791454718057858700
+        },
+        "data_output": "data/geobc_elastic_crosscad5/102_249/input",
+        "operator_output": "data/geobc_elastic_crosscad5/102_249/operator",
+        "solve_output": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver"
+      },
+      "102_38/ver": {
+        "key": "102_38/ver",
+        "cad": "102_38",
+        "group": "validation",
+        "sources": {
+          "deck": {
+            "path": "data/raw/SolverDeck/102_38.fem",
+            "bytes": 27880977,
+            "mtime_ns": 1791454676353057100
+          },
+          "geometry_h5": {
+            "path": "data/raw/FieldMesh/102_38.h5",
+            "bytes": 36702592,
+            "mtime_ns": 1791453934324258400
+          },
+          "cells_npz": {
+            "path": "data/geobc_gradient_supervision/102_38.npz",
+            "bytes": 32469506,
+            "mtime_ns": 1791521801253762900,
+            "sha256": null
+          },
+          "canonical_npz": {
+            "path": "data/prepared_geobc_multiload/102_38_ver.npz",
+            "bytes": 33185758,
+            "mtime_ns": 1791511983883164000
+          }
+        },
+        "expected_geometry": {
+          "nodes": 197514,
+          "cells": 122953,
+          "canonical_xyz_float32_sha256": "de16067d56f64970c5fa816890be7c616bbea07253c63f57b77006e670334f05",
+          "grid_node_ids_int64_sha256": "3cd08b3d5349fe7948f1acff97c398e08d83ebdaaf060e861378bb27bf7dc8fb",
+          "characteristic_length_mm": 181.2263946533203,
+          "bbox_min_mm": [
+            -38.77470016479492,
+            -162.11399841308594,
+            0.23453690111637115
+          ]
+        },
+        "input_members": {
+          "geometry_h5": [
+            "vertices"
+          ],
+          "cells_npz": [
+            "cells10"
+          ],
+          "canonical_npz": [
+            "xyz",
+            "grid_node_ids"
+          ]
+        },
+        "recipe": {
+          "device": "cuda:0",
+          "dtype": "float64",
+          "seed": 2026,
+          "units": "mm, N, MPa, displacement mm, strain dimensionless",
+          "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+          "node_dofs": 3,
+          "cell_chunk": 8192,
+          "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+          "quadrature_points_per_cell": 4,
+          "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+          "geometry_guard": {
+            "finite": true,
+            "maximum_J_condition": 1000000000000,
+            "minimum_abs_detJ_over_length_cubed": 1e-14,
+            "orientation_consistent_per_cell_at_center_and_four_Q": true,
+            "geometry_repair": false
+          },
+          "reader_scope": {
+            "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+            "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+            "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+            "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+            "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+            "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+            "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+            "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+            "deck_coordinate_relative_tolerance": 1e-05,
+            "material_relative_tolerance": 1e-08,
+            "allowed_static_params": {
+              "POST": [
+                "-1",
+                "0",
+                "1",
+                "2"
+              ],
+              "AUTOSPC": [
+                "YES",
+                "NO"
+              ],
+              "GRDPNT": [
+                "0"
+              ],
+              "LGDISP": [
+                "0",
+                "NO"
+              ],
+              "INREL": [
+                "0"
+              ],
+              "CHECKEL": [
+                "NO"
+              ],
+              "RENUMOK": [
+                "YES"
+              ],
+              "PRINFACC": [
+                "1"
+              ],
+              "CONTFEL": [
+                "AUTO"
+              ]
+            },
+            "allowed_gapprm_names": [
+              "GAPCMPL"
+            ],
+            "ignored_output_cards": [
+              "ENDDATA",
+              "OUTPUT",
+              "OUTPUT2",
+              "DISPLACEMENT",
+              "GPSTRESS",
+              "STRESS",
+              "STRAIN",
+              "SPCFORCE",
+              "OLOAD",
+              "GPFORCE",
+              "ECHO",
+              "FORMAT",
+              "ELFORCE",
+              "ESE"
+            ],
+            "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+            "explicit_proprietary_control_exclusions": [
+              {
+                "output_only_claim": false,
+                "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+                "card": "DEBUG",
+                "original_effect": "unknown",
+                "value": "0.0",
+                "classification": "definition_unverified_explicitly_not_reproduced",
+                "inactive_claim": false,
+                "name": "LGSHPSNS"
+              }
+            ]
+          },
+          "load_transfer": {
+            "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+            "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+            "minimum_rank": 6,
+            "maximum_normal_condition": 1000000000000,
+            "relative_guard_tolerance": 1e-09,
+            "guards": [
+              "H B=I6",
+              "virtual work",
+              "net force",
+              "net moment about true reference"
+            ],
+            "fallback_or_pseudoinverse": false,
+            "OptiStruct_exact": false
+          },
+          "input_operator": {
+            "maximum_combined_data_operator_wall_seconds": 300,
+            "maximum_guard_K_applications": 8,
+            "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+            "relative_algebra_guard_tolerance": 1e-09,
+            "guards": [
+              "six rigid null residuals",
+              "u^TKv=v^TKu",
+              "nonnegative two random energies",
+              "constraints eliminate rigid motion"
+            ],
+            "all_inputs_target_free": true,
+            "repeat_setup_or_guards_in_solve": false
+          },
+          "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+          "solve": {
+            "method": "PCG",
+            "initial_guess": "zero",
+            "maximum_iterations": 10000,
+            "maximum_cumulative_solve_wall_seconds": 300,
+            "true_relative_residual_tolerance": 1e-08,
+            "true_residual_interval": 25,
+            "checkpoint_interval": 25,
+            "budget_includes": [
+              "K apply",
+              "preconditioner",
+              "reductions",
+              "true residual verification"
+            ],
+            "resume_budget_reset": false,
+            "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+            "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+          },
+          "post_solve": {
+            "all_original_nodes": true,
+            "prediction_and_equilibrium_before_labels": true,
+            "label_reads": 1,
+            "label_scope": "Only current fixed CAD/ver displacement after persisted finite endpoint/equilibrium and positive remaining stage budget",
+            "metrics": [
+              "allN displacement vector relativeL2",
+              "vector RMS mm",
+              "max nodal vector error mm",
+              "support/load-interface/interior fixed regions",
+              "true free residual",
+              "constraint reaction",
+              "global net force/moment balance"
+            ],
+            "stress_scalar_comparison": false,
+            "old_final_reads": 0,
+            "DEV_dia_reads": 0,
+            "sealed_new_test_reads": 0,
+            "training_updates": 0,
+            "scaler_fits": 0
+          }
+        },
+        "array_identity_policy": "vertices/cells10 first formal input read hashes recorded; no invented inherited hashes",
+        "deferred_displacement_source": {
+          "path": "data/prepared_geobc_multiload/102_38_ver.npz",
+          "bytes": 33185758,
+          "mtime_ns": 1791511983883164000
+        },
+        "data_output": "data/geobc_elastic_crosscad5/102_38/input",
+        "operator_output": "data/geobc_elastic_crosscad5/102_38/operator",
+        "solve_output": "runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver"
+      }
+    },
+    "existing_split_sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859",
+    "gradient_manifest_sha256": "052df4057186e37b129f8a44bb2c3e7279b24024a72a8b947d76239a984ac018",
+    "parent_plan_sha256": "566b4a8ba96ad9704e415302a59d2218bb83bdbbd90d0f34e95703a81e5c15a9",
+    "output": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver",
+    "source_sha256": {
+      "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f",
+      "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+      "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+      "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27"
+    },
+    "post_endpoint_label_members": [
+      "displacement"
+    ],
+    "stress_reads": 0,
+    "replacement_CADs": false,
+    "design_sha256": "c4a9197483f5d578e22429088f6f60d840bb22046f10230fd833ff04ae6e0abb",
+    "science_sha256": "9467c7f2e590386d37edb430e7cd4748e186214301c9459a4104852b584a7fb1",
+    "array_access_in_request_contract": 0,
+    "raw_deck_read_in_request_contract": false
+  },
+  "checks": {
+    "summary_kind": true,
+    "summary_case_order": true,
+    "contract_kind": true,
+    "contract_case_order": true,
+    "recipe_matches_plan": true,
+    "no_extra_case_records": true,
+    "all_five_case_records_present": true,
+    "contract_internal_digest": true,
+    "global_displacement_reads_in_range": true,
+    "global_displacement_reads_match_cases": true,
+    "zero_stress_reads": true,
+    "all_cases_zero_stress_reads": true,
+    "zero_old_final_reads": true,
+    "all_cases_zero_old_final_reads": true,
+    "zero_DEV_dia_reads": true,
+    "all_cases_zero_DEV_dia_reads": true,
+    "zero_sealed_new_test_reads": true,
+    "all_cases_zero_sealed_new_test_reads": true,
+    "zero_model_or_weight_reads": true,
+    "all_cases_zero_model_or_weight_reads": true,
+    "zero_optimizer_steps": true,
+    "all_cases_zero_optimizer_steps": true,
+    "zero_scaler_fits": true,
+    "all_cases_zero_scaler_fits": true,
+    "accepted_operators_eight_guards_once": true
+  },
+  "checks_passed": true,
+  "rows": [
+    {
+      "case_key": "101_428/ver",
+      "group": "train",
+      "record_present": true,
+      "attempted": true,
+      "input_compatible": true,
+      "operator_compatible": true,
+      "compatible": true,
+      "node_count": 270276,
+      "cell_count": 169852,
+      "expected_nodes": 270276,
+      "numerical_state": "converged",
+      "claimed_numerically_converged": true,
+      "numerical_threshold_passed": true,
+      "true_relative_residual": 9.783598713169997e-09,
+      "iterations_executed_total": 4230,
+      "metrics_available": true,
+      "metrics_evidence_passed": true,
+      "all_original_nodes": true,
+      "finite_endpoint_and_equilibrium_before_GT": true,
+      "u_vector_relative_l2": 0.00016231318020364636,
+      "u_vector_relative_l2_percent": 0.016231318020364635,
+      "vector_RMS_mm": 1.2954168010718692e-05,
+      "max_nodal_vector_error_mm": 4.196727896946212e-05,
+      "zero_reference": false,
+      "region_metrics": {
+        "support_0": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_1": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_2": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_3": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "load": {
+          "nodes": 817,
+          "u_vector_relative_l2": 0.00016226706747457807,
+          "zero_reference": false,
+          "vector_RMS_mm": 3.1265874355544476e-05,
+          "max_nodal_vector_error_mm": 3.99452846172572e-05,
+          "reference_energy_mm2": 30.33209712888913,
+          "error_energy_mm2": 7.986623526600389e-07
+        },
+        "interior": {
+          "nodes": 267699,
+          "u_vector_relative_l2": 0.00016231400712001334,
+          "zero_reference": false,
+          "vector_RMS_mm": 1.2901258053095733e-05,
+          "max_nodal_vector_error_mm": 4.196727896946212e-05,
+          "reference_energy_mm2": 1691.215203483736,
+          "error_energy_mm2": 4.455647992622296e-05
+        }
+      },
+      "validated_precision": true,
+      "cold_start_stage_seconds": 101.023081061,
+      "peak_allocated_bytes": 383472128,
+      "peak_reserved_bytes": 476053504,
+      "displacement_reads": 1,
+      "costs_by_phase": {
+        "input_preparation_seconds": 4.953401412999995,
+        "operator_wall_seconds": 3.80182211799999,
+        "solve_setup_read_seconds": 0.6729553350000117,
+        "cumulative_solve_wall_seconds": 91.48044187600001,
+        "this_call_solve_wall_seconds": 91.48044187600001,
+        "this_call_K_apply_seconds": 29.43293803999981,
+        "preconditioner_seconds": 2.600378208001217,
+        "checkpoint_seconds": 9.256607916999968,
+        "endpoint_verification_seconds": 0.04879055899999685,
+        "GT_read_and_metrics_seconds": 0.06566975999999158,
+        "solve_K_count_this_call": 4402,
+        "solve_K_count_cumulative": 4402,
+        "verification_K_count": 1,
+        "budget_overshoot_seconds": 0.0,
+        "cold_case_accounted_wall_seconds": 101.023081061,
+        "cold_case_accounting_definition": "Recorded phase walls; shared stage metadata/recovery overhead is separately in total stage wall"
+      },
+      "memory": {
+        "peak_allocated_bytes": 383472128,
+        "peak_reserved_bytes": 476053504
+      },
+      "equilibrium": {
+        "true_free_residual_relative": 9.783598713386748e-09,
+        "true_free_residual_norm_N": 1.218285184438868e-05,
+        "constraint_reaction_sum_N": [
+          1.6692210692781373e-05,
+          2.2680906113237143e-05,
+          -35585.76991918523
+        ],
+        "net_force_with_reaction_N": [
+          1.66922113749024e-05,
+          2.2680907932226546e-05,
+          8.081476198640303e-05
+        ],
+        "net_moment_with_reaction_Nmm": [
+          -0.0016958246269496158,
+          -0.0047924819809850305,
+          -0.001593345426954329
+        ],
+        "fixed_translation_max_abs_mm": 0.0,
+        "reference_xyz_mm": [
+          -19.8824,
+          -73.05,
+          46.72419
+        ],
+        "full_K_verification_calls": 1
+      },
+      "read_receipt": {
+        "displacement_reads": 1,
+        "stress_reads": 0,
+        "old_final_reads": 0,
+        "DEV_dia_reads": 0,
+        "sealed_new_test_reads": 0,
+        "model_or_weight_reads": 0,
+        "optimizer_steps": 0,
+        "scaler_fits": 0,
+        "finite_allN_prediction_and_equilibrium_persisted_before_GT": true,
+        "operator_K_guards_this_CAD": 8,
+        "operator_rebuilds_in_solve": 0
+      },
+      "reason": null,
+      "input_manifest": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/input/manifest.json",
+      "operator_summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/summary.json",
+      "physical_u_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy",
+      "prediction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy",
+        "bytes": 6486752,
+        "mtime_ns": 1791580411614811300,
+        "shape": [
+          270276,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "constraint_reaction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/constraint_reaction_N.npy",
+        "bytes": 6486752,
+        "mtime_ns": 1791580411632812500,
+        "shape": [
+          270276,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "source_grid_node_ids": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/source_grid_node_ids.npy",
+        "bytes": 2162336,
+        "mtime_ns": 1791580411641874900,
+        "shape": [
+          270276
+        ],
+        "dtype": "torch.int64"
+      }
+    },
+    {
+      "case_key": "101_56/ver",
+      "group": "train",
+      "record_present": true,
+      "attempted": true,
+      "input_compatible": true,
+      "operator_compatible": true,
+      "compatible": true,
+      "node_count": 221213,
+      "cell_count": 139546,
+      "expected_nodes": 221213,
+      "numerical_state": "converged",
+      "claimed_numerically_converged": true,
+      "numerical_threshold_passed": true,
+      "true_relative_residual": 9.954512186451086e-09,
+      "iterations_executed_total": 3487,
+      "metrics_available": true,
+      "metrics_evidence_passed": true,
+      "all_original_nodes": true,
+      "finite_endpoint_and_equilibrium_before_GT": true,
+      "u_vector_relative_l2": 0.00016232271888167626,
+      "u_vector_relative_l2_percent": 0.016232271888167626,
+      "vector_RMS_mm": 1.2958121226035636e-05,
+      "max_nodal_vector_error_mm": 3.9948558996647024e-05,
+      "zero_reference": false,
+      "region_metrics": {
+        "support_0": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_1": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_2": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_3": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "load": {
+          "nodes": 820,
+          "u_vector_relative_l2": 0.00016223351059011187,
+          "zero_reference": false,
+          "vector_RMS_mm": 2.9950467589894856e-05,
+          "max_nodal_vector_error_mm": 3.838045058546853e-05,
+          "reference_energy_mm2": 27.947304986565726,
+          "error_energy_mm2": 7.355650172597406e-07
+        },
+        "interior": {
+          "nodes": 218633,
+          "u_vector_relative_l2": 0.00016232452266128192,
+          "zero_reference": false,
+          "vector_RMS_mm": 1.2904650165674557e-05,
+          "max_nodal_vector_error_mm": 3.9948558996647024e-05,
+          "reference_energy_mm2": 1381.7832266625676,
+          "error_energy_mm2": 3.640895259326459e-05
+        }
+      },
+      "validated_precision": true,
+      "cold_start_stage_seconds": 77.105650398,
+      "peak_allocated_bytes": 342382080,
+      "peak_reserved_bytes": 476053504,
+      "displacement_reads": 1,
+      "costs_by_phase": {
+        "input_preparation_seconds": 4.315922778000015,
+        "operator_wall_seconds": 1.8550168829999905,
+        "solve_setup_read_seconds": 0.45429683800000475,
+        "cumulative_solve_wall_seconds": 70.37234796299998,
+        "this_call_solve_wall_seconds": 70.37234796299998,
+        "this_call_K_apply_seconds": 20.41371103399905,
+        "preconditioner_seconds": 1.808742338999366,
+        "checkpoint_seconds": 6.660012802999432,
+        "endpoint_verification_seconds": 0.04469961600000261,
+        "GT_read_and_metrics_seconds": 0.06336632000000009,
+        "solve_K_count_this_call": 3629,
+        "solve_K_count_cumulative": 3629,
+        "verification_K_count": 1,
+        "budget_overshoot_seconds": 0.0,
+        "cold_case_accounted_wall_seconds": 77.105650398,
+        "cold_case_accounting_definition": "Recorded phase walls; shared stage metadata/recovery overhead is separately in total stage wall"
+      },
+      "memory": {
+        "peak_allocated_bytes": 342382080,
+        "peak_reserved_bytes": 476053504
+      },
+      "equilibrium": {
+        "true_free_residual_relative": 9.95451218591447e-09,
+        "true_free_residual_norm_N": 1.2376586455771093e-05,
+        "constraint_reaction_sum_N": [
+          4.0314112084161025e-06,
+          0.00015681009881518548,
+          -35585.769962584585
+        ],
+        "net_force_with_reaction_N": [
+          4.0314107536687516e-06,
+          0.00015681009972468019,
+          3.741541331692133e-05
+        ],
+        "net_moment_with_reaction_Nmm": [
+          -0.0018405015289317816,
+          -0.0020424431713763624,
+          0.00838951813057065
+        ],
+        "fixed_translation_max_abs_mm": 0.0,
+        "reference_xyz_mm": [
+          -19.8824,
+          -73.05,
+          46.72419
+        ],
+        "full_K_verification_calls": 1
+      },
+      "read_receipt": {
+        "displacement_reads": 1,
+        "stress_reads": 0,
+        "old_final_reads": 0,
+        "DEV_dia_reads": 0,
+        "sealed_new_test_reads": 0,
+        "model_or_weight_reads": 0,
+        "optimizer_steps": 0,
+        "scaler_fits": 0,
+        "finite_allN_prediction_and_equilibrium_persisted_before_GT": true,
+        "operator_K_guards_this_CAD": 8,
+        "operator_rebuilds_in_solve": 0
+      },
+      "reason": null,
+      "input_manifest": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/input/manifest.json",
+      "operator_summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/summary.json",
+      "physical_u_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy",
+      "prediction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy",
+        "bytes": 5309240,
+        "mtime_ns": 1791580495841281900,
+        "shape": [
+          221213,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "constraint_reaction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/constraint_reaction_N.npy",
+        "bytes": 5309240,
+        "mtime_ns": 1791580495856992000,
+        "shape": [
+          221213,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "source_grid_node_ids": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/source_grid_node_ids.npy",
+        "bytes": 1769832,
+        "mtime_ns": 1791580495866003700,
+        "shape": [
+          221213
+        ],
+        "dtype": "torch.int64"
+      }
+    },
+    {
+      "case_key": "101_78/ver",
+      "group": "train",
+      "record_present": true,
+      "attempted": true,
+      "input_compatible": true,
+      "operator_compatible": true,
+      "compatible": true,
+      "node_count": 192353,
+      "cell_count": 120639,
+      "expected_nodes": 192353,
+      "numerical_state": "converged",
+      "claimed_numerically_converged": true,
+      "numerical_threshold_passed": true,
+      "true_relative_residual": 9.913933001812831e-09,
+      "iterations_executed_total": 3734,
+      "metrics_available": true,
+      "metrics_evidence_passed": true,
+      "all_original_nodes": true,
+      "finite_endpoint_and_equilibrium_before_GT": true,
+      "u_vector_relative_l2": 0.00016225127496506938,
+      "u_vector_relative_l2_percent": 0.01622512749650694,
+      "vector_RMS_mm": 1.744713231647203e-05,
+      "max_nodal_vector_error_mm": 5.1270261074795045e-05,
+      "zero_reference": false,
+      "region_metrics": {
+        "support_0": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_1": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_2": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_3": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "load": {
+          "nodes": 838,
+          "u_vector_relative_l2": 0.00016225980167918315,
+          "zero_reference": false,
+          "vector_RMS_mm": 3.869732150932573e-05,
+          "max_nodal_vector_error_mm": 4.865641305331539e-05,
+          "reference_energy_mm2": 47.66328252164161,
+          "error_energy_mm2": 1.254890495892752e-06
+        },
+        "interior": {
+          "nodes": 189755,
+          "u_vector_relative_l2": 0.00016225108823494827,
+          "zero_reference": false,
+          "vector_RMS_mm": 1.737690675691607e-05,
+          "max_nodal_vector_error_mm": 5.1270261074795045e-05,
+          "reference_energy_mm2": 2176.5213572889593,
+          "error_energy_mm2": 5.729782936565809e-05
+        }
+      },
+      "validated_precision": true,
+      "cold_start_stage_seconds": 82.52854975800003,
+      "peak_allocated_bytes": 318059008,
+      "peak_reserved_bytes": 476053504,
+      "displacement_reads": 1,
+      "costs_by_phase": {
+        "input_preparation_seconds": 3.731842749000009,
+        "operator_wall_seconds": 1.8712215109999875,
+        "solve_setup_read_seconds": 2.121144616000045,
+        "cumulative_solve_wall_seconds": 74.694631286,
+        "this_call_solve_wall_seconds": 73.76124487300001,
+        "this_call_K_apply_seconds": 19.418848079999506,
+        "preconditioner_seconds": 1.7516684890006289,
+        "checkpoint_seconds": 6.637329718999936,
+        "endpoint_verification_seconds": 0.050300845999998955,
+        "GT_read_and_metrics_seconds": 0.059408749999988686,
+        "solve_K_count_this_call": 3841,
+        "solve_K_count_cumulative": 3885,
+        "verification_K_count": 1,
+        "budget_overshoot_seconds": 0.0,
+        "cold_case_accounted_wall_seconds": 82.52854975800003,
+        "cold_case_accounting_definition": "Recorded phase walls; shared stage metadata/recovery overhead is separately in total stage wall"
+      },
+      "memory": {
+        "peak_allocated_bytes": 318059008,
+        "peak_reserved_bytes": 476053504
+      },
+      "equilibrium": {
+        "true_free_residual_relative": 9.913933001735596e-09,
+        "true_free_residual_norm_N": 1.2192526974203127e-05,
+        "constraint_reaction_sum_N": [
+          6.073136478335073e-05,
+          -2.16377184187877e-05,
+          -35585.770004848586
+        ],
+        "net_force_with_reaction_N": [
+          6.0731363987542863e-05,
+          -2.1637715690303594e-05,
+          -4.848589014727622e-06
+        ],
+        "net_moment_with_reaction_Nmm": [
+          -0.003113529412075877,
+          -0.0021089084475534037,
+          -0.0018429391129757278
+        ],
+        "fixed_translation_max_abs_mm": 0.0,
+        "reference_xyz_mm": [
+          -19.8824,
+          -73.05,
+          46.72419
+        ],
+        "full_K_verification_calls": 1
+      },
+      "read_receipt": {
+        "displacement_reads": 1,
+        "stress_reads": 0,
+        "old_final_reads": 0,
+        "DEV_dia_reads": 0,
+        "sealed_new_test_reads": 0,
+        "model_or_weight_reads": 0,
+        "optimizer_steps": 0,
+        "scaler_fits": 0,
+        "finite_allN_prediction_and_equilibrium_persisted_before_GT": true,
+        "operator_K_guards_this_CAD": 8,
+        "operator_rebuilds_in_solve": 0
+      },
+      "reason": null,
+      "input_manifest": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/input/manifest.json",
+      "operator_summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/summary.json",
+      "physical_u_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy",
+      "prediction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy",
+        "bytes": 4616600,
+        "mtime_ns": 1791580757923400300,
+        "shape": [
+          192353,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "constraint_reaction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/constraint_reaction_N.npy",
+        "bytes": 4616600,
+        "mtime_ns": 1791580757938399900,
+        "shape": [
+          192353,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "source_grid_node_ids": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/source_grid_node_ids.npy",
+        "bytes": 1538952,
+        "mtime_ns": 1791580757946399900,
+        "shape": [
+          192353
+        ],
+        "dtype": "torch.int64"
+      }
+    },
+    {
+      "case_key": "102_249/ver",
+      "group": "validation",
+      "record_present": true,
+      "attempted": true,
+      "input_compatible": true,
+      "operator_compatible": true,
+      "compatible": true,
+      "node_count": 211173,
+      "cell_count": 131480,
+      "expected_nodes": 211173,
+      "numerical_state": "converged",
+      "claimed_numerically_converged": true,
+      "numerical_threshold_passed": true,
+      "true_relative_residual": 9.923621303780578e-09,
+      "iterations_executed_total": 4713,
+      "metrics_available": true,
+      "metrics_evidence_passed": true,
+      "all_original_nodes": true,
+      "finite_endpoint_and_equilibrium_before_GT": true,
+      "u_vector_relative_l2": 0.00016220722085536477,
+      "u_vector_relative_l2_percent": 0.016220722085536477,
+      "vector_RMS_mm": 3.226017909816697e-05,
+      "max_nodal_vector_error_mm": 9.508344664776253e-05,
+      "zero_reference": false,
+      "region_metrics": {
+        "support_0": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_1": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_2": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_3": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "load": {
+          "nodes": 805,
+          "u_vector_relative_l2": 0.00016220286771635023,
+          "zero_reference": false,
+          "vector_RMS_mm": 7.161567690498687e-05,
+          "max_nodal_vector_error_mm": 8.721455384502736e-05,
+          "reference_energy_mm2": 156.92604391384617,
+          "error_energy_mm2": 4.128688168740372e-06
+        },
+        "interior": {
+          "nodes": 208608,
+          "u_vector_relative_l2": 0.00016220730420368933,
+          "zero_reference": false,
+          "vector_RMS_mm": 3.215157863743144e-05,
+          "max_nodal_vector_error_mm": 9.508344664776253e-05,
+          "reference_energy_mm2": 8195.864114142652,
+          "error_energy_mm2": 0.00021564309804421745
+        }
+      },
+      "validated_precision": true,
+      "cold_start_stage_seconds": 101.09068699299999,
+      "peak_allocated_bytes": 331834368,
+      "peak_reserved_bytes": 406847488,
+      "displacement_reads": 1,
+      "costs_by_phase": {
+        "input_preparation_seconds": 4.0439186629999995,
+        "operator_wall_seconds": 1.9887763890000087,
+        "solve_setup_read_seconds": 0.5072530559999961,
+        "cumulative_solve_wall_seconds": 94.44951252000001,
+        "this_call_solve_wall_seconds": 94.44951252000001,
+        "this_call_K_apply_seconds": 26.318753080000903,
+        "preconditioner_seconds": 2.376160856999803,
+        "checkpoint_seconds": 8.758314592999938,
+        "endpoint_verification_seconds": 0.0406273299999782,
+        "GT_read_and_metrics_seconds": 0.06059903499999564,
+        "solve_K_count_this_call": 4904,
+        "solve_K_count_cumulative": 4904,
+        "verification_K_count": 1,
+        "budget_overshoot_seconds": 0.0,
+        "cold_case_accounted_wall_seconds": 101.09068699299999,
+        "cold_case_accounting_definition": "Recorded phase walls; shared stage metadata/recovery overhead is separately in total stage wall"
+      },
+      "memory": {
+        "peak_allocated_bytes": 331834368,
+        "peak_reserved_bytes": 406847488
+      },
+      "equilibrium": {
+        "true_free_residual_relative": 9.923621304042134e-09,
+        "true_free_residual_norm_N": 1.2449005060987063e-05,
+        "constraint_reaction_sum_N": [
+          1.5862021882639965e-06,
+          7.377767042271444e-05,
+          -35585.77000323715
+        ],
+        "net_force_with_reaction_N": [
+          1.5862017335166456e-06,
+          7.377767042271444e-05,
+          -3.237159035052173e-06
+        ],
+        "net_moment_with_reaction_Nmm": [
+          0.005139103042893112,
+          0.00039940373972058296,
+          0.004139360215049237
+        ],
+        "fixed_translation_max_abs_mm": 0.0,
+        "reference_xyz_mm": [
+          -19.8824,
+          -73.05,
+          46.72419
+        ],
+        "full_K_verification_calls": 1
+      },
+      "read_receipt": {
+        "displacement_reads": 1,
+        "stress_reads": 0,
+        "old_final_reads": 0,
+        "DEV_dia_reads": 0,
+        "sealed_new_test_reads": 0,
+        "model_or_weight_reads": 0,
+        "optimizer_steps": 0,
+        "scaler_fits": 0,
+        "finite_allN_prediction_and_equilibrium_persisted_before_GT": true,
+        "operator_K_guards_this_CAD": 8,
+        "operator_rebuilds_in_solve": 0
+      },
+      "reason": null,
+      "input_manifest": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/input/manifest.json",
+      "operator_summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/summary.json",
+      "physical_u_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy",
+      "prediction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy",
+        "bytes": 5068280,
+        "mtime_ns": 1791580868309836200,
+        "shape": [
+          211173,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "constraint_reaction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/constraint_reaction_N.npy",
+        "bytes": 5068280,
+        "mtime_ns": 1791580868324837400,
+        "shape": [
+          211173,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "source_grid_node_ids": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/source_grid_node_ids.npy",
+        "bytes": 1689512,
+        "mtime_ns": 1791580868332837000,
+        "shape": [
+          211173
+        ],
+        "dtype": "torch.int64"
+      }
+    },
+    {
+      "case_key": "102_38/ver",
+      "group": "validation",
+      "record_present": true,
+      "attempted": true,
+      "input_compatible": true,
+      "operator_compatible": true,
+      "compatible": true,
+      "node_count": 197514,
+      "cell_count": 122953,
+      "expected_nodes": 197514,
+      "numerical_state": "converged",
+      "claimed_numerically_converged": true,
+      "numerical_threshold_passed": true,
+      "true_relative_residual": 9.99525893891946e-09,
+      "iterations_executed_total": 4319,
+      "metrics_available": true,
+      "metrics_evidence_passed": true,
+      "all_original_nodes": true,
+      "finite_endpoint_and_equilibrium_before_GT": true,
+      "u_vector_relative_l2": 0.00016224320859871806,
+      "u_vector_relative_l2_percent": 0.016224320859871806,
+      "vector_RMS_mm": 2.0111205946077094e-05,
+      "max_nodal_vector_error_mm": 5.949220634328167e-05,
+      "zero_reference": false,
+      "region_metrics": {
+        "support_0": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_1": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_2": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "support_3": {
+          "nodes": 440,
+          "u_vector_relative_l2": null,
+          "zero_reference": true,
+          "vector_RMS_mm": 0.0,
+          "max_nodal_vector_error_mm": 0.0,
+          "reference_energy_mm2": 0.0,
+          "error_energy_mm2": 0.0
+        },
+        "load": {
+          "nodes": 802,
+          "u_vector_relative_l2": 0.00016224180917812612,
+          "zero_reference": false,
+          "vector_RMS_mm": 4.416649777896718e-05,
+          "max_nodal_vector_error_mm": 5.546565049927469e-05,
+          "reference_energy_mm2": 59.43396893162006,
+          "error_energy_mm2": 1.5644449798997292e-06
+        },
+        "interior": {
+          "nodes": 194952,
+          "u_vector_relative_l2": 0.00016224323655178598,
+          "zero_reference": false,
+          "vector_RMS_mm": 2.0043730515734412e-05,
+          "max_nodal_vector_error_mm": 5.949220634328167e-05,
+          "reference_energy_mm2": 2975.442776714734,
+          "error_energy_mm2": 7.832218687815626e-05
+        }
+      },
+      "validated_precision": true,
+      "cold_start_stage_seconds": 91.51965855899999,
+      "peak_allocated_bytes": 321732608,
+      "peak_reserved_bytes": 406847488,
+      "displacement_reads": 1,
+      "costs_by_phase": {
+        "input_preparation_seconds": 3.645102324999982,
+        "operator_wall_seconds": 1.647727924999998,
+        "solve_setup_read_seconds": 0.5843825409999965,
+        "cumulative_solve_wall_seconds": 85.541181316,
+        "this_call_solve_wall_seconds": 85.541181316,
+        "this_call_K_apply_seconds": 22.676419818001847,
+        "preconditioner_seconds": 2.0184612679991574,
+        "checkpoint_seconds": 7.848866757999986,
+        "endpoint_verification_seconds": 0.03703928200002338,
+        "GT_read_and_metrics_seconds": 0.06422516999998606,
+        "solve_K_count_this_call": 4494,
+        "solve_K_count_cumulative": 4494,
+        "verification_K_count": 1,
+        "budget_overshoot_seconds": 0.0,
+        "cold_case_accounted_wall_seconds": 91.51965855899999,
+        "cold_case_accounting_definition": "Recorded phase walls; shared stage metadata/recovery overhead is separately in total stage wall"
+      },
+      "memory": {
+        "peak_allocated_bytes": 321732608,
+        "peak_reserved_bytes": 406847488
+      },
+      "equilibrium": {
+        "true_free_residual_relative": 9.995258938810452e-09,
+        "true_free_residual_norm_N": 1.256117736918804e-05,
+        "constraint_reaction_sum_N": [
+          4.078633901372086e-05,
+          4.294639984436799e-05,
+          -35585.77007602673
+        ],
+        "net_force_with_reaction_N": [
+          4.078633628523676e-05,
+          4.294639620638918e-05,
+          -7.602673395012971e-05
+        ],
+        "net_moment_with_reaction_Nmm": [
+          -0.004775553126819432,
+          0.002226746903033927,
+          -0.0009754546626936644
+        ],
+        "fixed_translation_max_abs_mm": 0.0,
+        "reference_xyz_mm": [
+          -19.8824,
+          -73.05,
+          46.72419
+        ],
+        "full_K_verification_calls": 1
+      },
+      "read_receipt": {
+        "displacement_reads": 1,
+        "stress_reads": 0,
+        "old_final_reads": 0,
+        "DEV_dia_reads": 0,
+        "sealed_new_test_reads": 0,
+        "model_or_weight_reads": 0,
+        "optimizer_steps": 0,
+        "scaler_fits": 0,
+        "finite_allN_prediction_and_equilibrium_persisted_before_GT": true,
+        "operator_K_guards_this_CAD": 8,
+        "operator_rebuilds_in_solve": 0
+      },
+      "reason": null,
+      "input_manifest": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/input/manifest.json",
+      "operator_summary": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/summary.json",
+      "physical_u_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy",
+      "prediction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy",
+        "bytes": 4740464,
+        "mtime_ns": 1791580968263212700,
+        "shape": [
+          197514,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "constraint_reaction": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/constraint_reaction_N.npy",
+        "bytes": 4740464,
+        "mtime_ns": 1791580968276211900,
+        "shape": [
+          197514,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "source_grid_node_ids": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/source_grid_node_ids.npy",
+        "bytes": 1580240,
+        "mtime_ns": 1791580968283212800,
+        "shape": [
+          197514
+        ],
+        "dtype": "torch.int64"
+      }
+    }
+  ],
+  "counts": {
+    "inventory_denominator": 5,
+    "records_present": 5,
+    "attempted": 5,
+    "attempt_unknown": 0,
+    "input_compatible": 5,
+    "operator_compatible": 5,
+    "numerically_converged": 5,
+    "physical_metrics_evidence_passed": 5,
+    "validated_precision_cases": 5,
+    "missing_records": 0,
+    "stage_budget_not_attempted": 0
+  },
+  "recorded_counts": {
+    "fixed_cases": 5,
+    "attempted": 5,
+    "input_compatible": 5,
+    "operator_compatible": 5,
+    "numerically_converged": 5,
+    "metrics_available": 5,
+    "displacement_reads": 5
+  },
+  "validated_precision_aggregates": {
+    "u_vector_relative_l2_percent": {
+      "metric_cases": 5,
+      "inventory_denominator": 5,
+      "mean": 0.016226752070089494,
+      "worst": 0.016232271888167626,
+      "worst_case": "101_56/ver"
+    },
+    "vector_RMS_mm": {
+      "metric_cases": 5,
+      "inventory_denominator": 5,
+      "mean": 1.9146161319494085e-05,
+      "worst": 3.226017909816697e-05,
+      "worst_case": "102_249/ver"
+    },
+    "max_nodal_vector_error_mm": {
+      "metric_cases": 5,
+      "inventory_denominator": 5,
+      "mean": 5.755235040638968e-05,
+      "worst": 9.508344664776253e-05,
+      "worst_case": "102_249/ver"
+    }
+  },
+  "reported_metric_scope": "Individual finite budget endpoints may have metrics; only compatible, true-converged, allN metric-evidenced cases enter validated aggregates. Aggregate metric_cases is explicit, never an implied five-CAD success.",
+  "costs": {
+    "cumulative_stage_wall_seconds": 459.892439847,
+    "maximum_stage_wall_seconds": 900,
+    "budget_overshoot_seconds": 0.0,
+    "this_call_stage_wall_seconds": 268.78852784099996
+  },
+  "read_receipt": {
+    "displacement_reads": 5,
+    "stress_reads": 0,
+    "old_final_reads": 0,
+    "DEV_dia_reads": 0,
+    "sealed_new_test_reads": 0,
+    "model_or_weight_reads": 0,
+    "optimizer_steps": 0,
+    "scaler_fits": 0
+  },
+  "scope": "Five fixed existing TRAIN3/DEV2 ver cases, zero start approximate physical model; not OptiStruct exact, engineering validation or learned cross-CAD generalization",
+  "diagnostics": [],
+  "units": {
+    "displacement": "mm",
+    "relative_L2_display": "%",
+    "force": "N",
+    "stress_reads": 0
+  },
+  "interpretation": [
+    "Traditional zero-start approximate per-CAD physical solve; not neural-operator generalization ranking.",
+    "Compatibility, numerical convergence, physical error and cold-start cost are separate evidence.",
+    "Curved-P2 four-point quadrature, weighted-LS RBE3 transfer and proprietary-control exclusions do not establish OptiStruct exactness or engineering qualification.",
+    "No stress accuracy, DEV dia, old final, sealed test, model-weight or optimizer evidence is produced.",
+    "Historical FNO accuracy and learned training/inference costs use a different operator/input pipeline and are not a same-budget ranking here."
+  ],
+  "reporter_read_receipt": {
+    "input_type": "plan and one summary small JSON only",
+    "raw_array_reads": 0,
+    "raw_deck_reads": 0,
+    "GT_reads": 0,
+    "weight_reads": 0,
+    "GPU_runs": 0,
+    "metrics_recomputed_from_fields": 0
+  },
+  "generated_at_utc": "2026-10-09T21:24:45.179873+00:00",
+  "figure": {
+    "generated": true,
+    "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/results/elastic_crosscad/comparison.png",
+    "source": "Only actual scalar summary JSON observations; no interpolation or field visualization"
+  }
+}

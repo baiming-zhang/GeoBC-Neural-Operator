@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "status": "necessary_source_math_API_review_passed",
+  "source_sha256": "d20cb5e82e1ae124437f87b7c609ffc59fe8d2d267d47940241746867d81de08",
+  "all_source_sha256": {
+    "geobc/elastic_fno_warmstart.py": "d20cb5e82e1ae124437f87b7c609ffc59fe8d2d267d47940241746867d81de08",
+    "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f"
+  },
+  "base_evidence_decision": "proceed_frozen_FNO_warmstart",
+  "plan_sha256": "a5819196353e626fd94b8a182eae6ed756edbd9163506cd455793c16e0db7653",
+  "reviewed_at_utc": "2026-10-09T21:42:16.5286316Z",
+  "root_scope": [
+    "True free DOF initial guess, exact unchanged K/Cholesky reduction and fresh PCG r/p/rz initialization",
+    "Finite positive curvature and rho, periodic and endpoint true1e-8 only convergence",
+    "Retained checkpoint z/r/p/rz, maximal journal attempt/cost counts, 10000/300/900 cumulative budgets without reset",
+    "FullN physical reference difference explicitly not GT, feasible/raw predictions separate, null relative zero reference",
+    "Single-query accounted cold components include NN frontend/inference/model/metadata plus inherited physical setup and new solve/endpoint/reference cost",
+    "Original zero solve cost excludes GT; cached actual incremental and model-load batch amortization separate",
+    "Fixed5 independent scientific negative outcomes; speed20percent4of5/worst1.10/true+same_solution5 gates unchanged"
+  ],
+  "delegated_disjoint_NN_scope": [
+    "Standard-library metadata request, exact frozen model/scaler source identity",
+    "Allowed input-only canonical members and original faces cloud pool/frontend/query",
+    "Complete original-node FP64 physical displacement decode",
+    "GT0 exact eight counters and reporter schema, no old GT accuracy transfer"
+  ],
+  "root_module_AST_repeated": 0,
+  "root_contract_or_resource_preflight": 0,
+  "root_arrays_or_weights_or_GPU": 0,
+  "source_ready": "notes/elastic_fno_warmstart_source_ready.json",
+  "queue_ready": "notes/elastic_fno_warmstart_queue_source_ready.json",
+  "review_scope_limitation": "Source/API review does not claim actual GPU or numerical/cost acceptance; sole frozen real stage supplies that evidence",
+  "coordinator": {
+    "already_waiting": true,
+    "pid": 394,
+    "action": "Unlock existing sole queue; no restart"
+  }
+}

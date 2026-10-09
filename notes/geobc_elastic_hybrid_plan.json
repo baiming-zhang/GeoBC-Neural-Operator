@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "kind": "elastic_frozen_fno_warmstart_screen",
+  "status": "frozen_root_released",
+  "scientific_rules_frozen": true,
+  "actual_execution_released": true,
+  "scope": "Macro solver selection: frozen FNO initial guess plus unchanged physical PCG; GT0, no training or architecture tuning",
+  "proposal": "notes/geobc_physical_hybrid_selection_proposal.md",
+  "physical_plan": "notes/geobc_elastic_crosscad_plan.json",
+  "physical_output": "runs/geobc_exploration/elastic_crosscad5_ver",
+  "case_keys": [
+    "101_428/ver",
+    "101_56/ver",
+    "101_78/ver",
+    "102_249/ver",
+    "102_38/ver"
+  ],
+  "base_eligibility": {
+    "all_five_completed": true,
+    "case_replacement": false,
+    "root_evidence_decision_required": true,
+    "all_five_original_endpoint_metrics_available": true,
+    "all_five_true_converged": true
+  },
+  "neural": {
+    "method": "fno",
+    "forbidden_members": [
+      "displacement",
+      "stress",
+      "target",
+      "physical"
+    ],
+    "data_cache_manifest": "data/geobc_solver_selection/manifest.json",
+    "decode": "FP64 linear decoding u3 only with original frozen mean/std",
+    "checkpoint": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+    "allowed_canonical_members": [
+      "xyz",
+      "features",
+      "grid_node_ids",
+      "sample_key",
+      "label_alignment",
+      "faces"
+    ],
+    "checkpoint_choice": "previously frozen cumulative600s endpoint, not best or2027",
+    "checkpoint_bytes": 170464827,
+    "seed": 2026,
+    "training_seconds_context": 608.67788,
+    "frontend": "rebuild same target-independent geometry cloud / trilinear feature stencil and splat from only canonical xyz/features/GRID IDs and identity strings; do not call target-loading prepare_data or load_case",
+    "resolution": 64,
+    "cloud_seed": 2026,
+    "scaler": "strictly frozen checkpoint/cache train scaler, no fit",
+    "raw_fno_prediction_and_feasible_initial_guess_separate": true,
+    "torch_precision": "original FP32/TF32, no autocast",
+    "cloud_points": 1024,
+    "checkpoint_first_actual_SHA_recorded": true,
+    "checkpoint_expected_step": 2880,
+    "checkpoint_last_write_utc": "2026-10-09T14:49:14.8190714Z",
+    "optional_faces_semantics": "Original boundary face indices used by load_geometry_cloud; same existing unique boundary-node sampling pool, input-only, no target members"
+  },
+  "physics": {
+    "changed_K_preconditioner_constraints_load": false,
+    "checkpoint_interval": 25,
+    "maximum_attempted_iterations_per_case": 10000,
+    "initial_guess": "z0=u_FNO_physical_mm[true free_node_ids]; exact physical reduction / Hbar restoration; initialize new r=b-Az0,p=M^-1r, never old p/r",
+    "true_residual_interval": 25,
+    "true_relative_residual_tolerance": 1E-08,
+    "no_operator_rebuild_or_guard_repeat": true,
+    "method": "same PCG",
+    "maximum_cumulative_solve_wall_seconds_per_case": 300,
+    "resume_budget_reset": false,
+    "original_helpers_unchanged": true,
+    "geometry_and_8_guard_cache_strictly_reused": true
+  },
+  "whole_stage_budget": {
+    "includes": [
+      "metadata/source/weight load",
+      "input-only frontend",
+      "inference/query/decode",
+      "physics cache load",
+      "solve",
+      "true residual/endpoint checks",
+      "reference numerical comparison",
+      "persistence"
+    ],
+    "no_new_case_or_iteration_after_expiry": true,
+    "maximum_cumulative_wall_seconds": 900,
+    "finite_endpoint_with_explicit_overshoot": true
+  },
+  "comparison": {
+    "missing_FNO_existing_GT_errors_are_null": true,
+    "zero_reference_policy": "relative null, absolute RMS<=1e-12mm for same_solution gate",
+    "pure_FNO_error_to_physical_reference_not_GT": true,
+    "fullN_vector_difference_relative_l2_maximum_for_same_solution_gate": 1E-05,
+    "all_original_nodes": true,
+    "GT_reads": 0,
+    "reference": "persisted zero-start converged physical_u, explicitly approximate numerical reference not ground truth",
+    "old_GT_metrics_never_assigned_to_new_endpoints": true
+  },
+  "cost": {
+    "zero_reference": "base cold_case_accounted_wall_seconds minus GT_read_and_metrics_seconds",
+    "five_query_model_load_amortization_secondary": true,
+    "K_calls_reported": true,
+    "primary": "accounted single-query cold cost",
+    "zero_old_PCG_cost_not_added_to_warm_budget": true,
+    "cached_incremental_wall_separate": true,
+    "no_missing_cold_component_imputed_zero": true,
+    "warm": "full measured checkpoint/scaler model-load once charged per single request + new measured target-free neural frontend + inference/query/decode + inherited fixed physical input/operator8guard costs + new physical cache/solve setup + warm solve + endpoint/reference checks/persistence"
+  },
+  "selection_gate": {
+    "maximum_worst_case_warm_to_zero_cost_ratio": 1.1,
+    "allN_same_solution_gate_required": 5,
+    "inventory_denominator": 5,
+    "both_methods_true_converged_required": 5,
+    "failed_gate_action": "Stop frozen-FNO warmstart route; no rescue seed/width/loss/budget sweeps. Continue macro solver decision.",
+    "minimum_CADs_with_at_least20percent_total_cold_cost_reduction": 4
+  },
+  "read_scope": {
+    "GT_reads": 0,
+    "checkpoint_weight_reads": "Only one fixed FNO endpoint once in actual stage; no old final models/seeds selection",
+    "optimizer_steps": 0,
+    "stress_reads": 0,
+    "new_training": 0,
+    "DEV_dia_reads": 0,
+    "sealed_new_test_reads": 0,
+    "scaler_fits": 0,
+    "old_final_reads": 0
+  },
+  "output": "runs/geobc_exploration/elastic_fno_warmstart5_ver",
+  "source": "geobc/elastic_fno_warmstart.py",
+  "source_ready": "notes/elastic_fno_warmstart_source_ready.json",
+  "root_review": "notes/elastic_fno_warmstart_root_review.json",
+  "frozen_at_utc": "2026-10-09T21:19:52.7076608Z",
+  "limitations": [
+    "Five existing TRAIN/DEV geometries, not sealed generalization",
+    "Physical displacement-only approximation; signed scalar stress remains unresolved",
+    "No OptiStruct exactness or engineering qualification",
+    "Pure neural prior and converged PCG do not share numerical responsibility"
+  ],
+  "root_base_decision": {
+    "decision": "proceed_frozen_FNO_warmstart",
+    "reason": "Five compatible, converged numerical endpoints with low original-node displacement error justify one fixed macro initial-guess speed comparison; not final solver selection",
+    "base_summary": "runs/geobc_exploration/elastic_crosscad5_ver/summary.json",
+    "base_summary_sha256": "e3d10a73758a30ff6b0cc1ec475dc8571f9177ee660f48f0585df203b058bee2",
+    "base_report": "results/elastic_crosscad/metrics.json",
+    "base_report_sha256": "ca1039e56c6aa56a89dcc3cf58948d36aa90574ded20ab528c844518b1f55410",
+    "fixed_denominator": 5,
+    "converged": 5,
+    "mean_U_percent": 0.016226752070089494,
+    "worst_U_percent": 0.016232271888167626,
+    "stage_cumulative_wall_seconds": 459.892439847,
+    "GT_scope_for_next_stage": 0,
+    "actual_execution_released": false,
+    "created_at_utc": "2026-10-09T21:27:18.7931279Z"
+  },
+  "source_sha256": {
+    "geobc/elastic_fno_warmstart.py": "d20cb5e82e1ae124437f87b7c609ffc59fe8d2d267d47940241746867d81de08",
+    "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f"
+  },
+  "root_released_at_utc": "2026-10-09T21:42:16.5286316Z"
+}

@@ -1,0 +1,29 @@
+{
+  "status": "source_ready_zero_reference_report_contract_repair_AST_passed_actual_not_executed",
+  "source": "geobc/elastic_crosscad.py",
+  "source_sha256": "ccb9279fa2e21fe24b903da9020f2d8ebfbc514802676741e5f54b916368713f",
+  "previous_source_sha256": "a901f0fda25ff8d5ad1b470af46ee0b8aed83ea9f5ce764a3251bc2ecec04d52",
+  "previous_ready_preserved": [
+    "notes/elastic_crosscad_source_ready.json",
+    "notes/elastic_crosscad_path_recovery_source_ready.json"
+  ],
+  "reason": "Root source/API review: frozen draft specifies null relative displacement error for zero reference; inherited helper returns zero for exact zero/zero. No actual/cache/GT had run.",
+  "changes": [
+    "After inherited _metrics, set u_vector_relative_l2=None for main and every region with zero_reference=True",
+    "Retain RMS, maximum error, reference/error energy and zero_reference flag unchanged"
+  ],
+  "retained_previous_path_repair": "solve_output fallback/assert uses CAD+_ver",
+  "physical_math_original_helpers_label_scope_plan_other_sources_unchanged": true,
+  "checks": {
+    "AST_passed": true,
+    "AST_calls_this_repair": 1,
+    "AST_elapsed_seconds": 0.005222999956458807,
+    "module_imports": 0,
+    "contract_or_preflight_calls": 0,
+    "scientific_array_reads": 0,
+    "raw_deck_reads": 0,
+    "GT_reads": 0,
+    "GPU_calls": 0,
+    "actual_runs": 0
+  }
+}

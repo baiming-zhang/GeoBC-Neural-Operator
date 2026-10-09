@@ -1,0 +1,104 @@
+{
+  "status": "source_ready_final_AST_metadata_only",
+  "kind": "elastic_signed_stress_readout_screen",
+  "source": "geobc/elastic_stress_readout.py",
+  "source_sha256": "c040688cb2cced43e57532bd0c2e691ce64e8d8df0c39349ba545a668fb2d386",
+  "source_bytes": 56774,
+  "source_sha256_pins": {
+    "geobc/elastic_stress_readout.py": "c040688cb2cced43e57532bd0c2e691ce64e8d8df0c39349ba545a668fb2d386",
+    "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0"
+  },
+  "plan": "notes/geobc_stress_readout_plan.json",
+  "plan_sha256_at_author_check": "090045d5eeebba80957e713f3b3dc5fd71a3f401303310a53f5d3c996e4dde9d",
+  "author_check": {
+    "AST_passed": true,
+    "AST_invocations": 1,
+    "small_frozen_plan_metadata_passed": true,
+    "elapsed_seconds": 0.01500000013038516,
+    "module_imports": 0,
+    "request_contract_executions": 0,
+    "scientific_array_reads": 0,
+    "raw_deck_reads": 0,
+    "GT_or_label_reads": 0,
+    "weight_reads": 0,
+    "model_constructions": 0,
+    "GPU_calls": 0,
+    "resource_or_toy_runs": 0
+  },
+  "API": {
+    "request_contract": "request_contract(plan_path)->(contract,plan), stdlib JSON/stat/small source hashes only",
+    "run": "run(plan_path,output_path=None)->summary; actual root release/source marker required",
+    "CLI": "python -m geobc.elastic_stress_readout --plan notes/geobc_stress_readout_plan.json --output runs/geobc_exploration/elastic_stress_readout5_ver",
+    "resume": "Same command; own input/label/scaler transactions, committed arm results and last.pt model/Adam/all RNG/order/exposures plus cumulative arm/stage costs are preserved; no budget reset"
+  },
+  "root_marker": {
+    "passed": true,
+    "source_sha256": "exact new module SHA string",
+    "stage_decision": "rough_screen_physical_tensor_stress_readout"
+  },
+  "narrow_review_regions": {
+    "physical_tensor_and_guards": "build_features",
+    "TRAIN_only_scalers_and_stress_transactions": "read_label_once, fit_scalers, label_receipt",
+    "whole_case_chain_rule_and_resume": "train_arm, load_case_inputs",
+    "cold_deployment_components": "predict_arm",
+    "DEV_barrier_budgets_summary": "all_dev_predictions, run, accuracy_gate"
+  },
+  "runtime_protocol": {
+    "train_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver"
+    ],
+    "validation_keys": [
+      "102_249/ver",
+      "102_38/ver"
+    ],
+    "arms": [
+      "direct_zero_slots",
+      "physical_tensor_slots"
+    ],
+    "updates_per_arm": 120,
+    "passes_per_arm": 40,
+    "case_order": "Independent Python Random(2026) shuffled balanced TRAIN3 passes, exactly shared",
+    "model": "Original PointNet(32,64) + scalar 67->256->256->256->256->1 ReLU; same constructor, seed, actual initial named trainable hashes",
+    "physical_features": "FP64 original zero physical_u derivative and accepted 4Q gradients/weights -> Hooke sigma6 -> quadrature mean -> full10 incidence volume/10 recovery",
+    "new_feature_guards": "finite/positive weights/partition1e-9/affine1e-9/symmetry1e-12/constant1e-12/GRID and canonical row identity/mask coverage",
+    "complete_case_loss": "allN scalar encoded MSE sum/N, chunk32768 with context leaf accumulation then one original context backward and one Adam",
+    "first_actual_acceptance": "all trainable grads present finite, encoder/head/context norms positive; exact-zero input-column gradients permitted; actual public counts/hash recorded",
+    "scalers": "Two distinct shared TRAIN3-only fits: valid sigma6 mean/std floor1e-8 MPa and signed S abs q90 scale floor1e-12, asinh mean/std floor1e-8",
+    "DEV_read_barrier": "Both arms completed120 and all four physical allN DEV prediction records persisted/stat-checked; then one shared stress member read per DEV",
+    "label_member": "stress only; original displacement is never accessed; physical prediction array reads are separate from GT displacement reads",
+    "actual_label_receipts": "Persistent read-start/read-completed/committed own cache; interrupted exposure is counted and silently repeating a missing committed label read is rejected",
+    "budgets": "900 cumulative stage seconds, 300 cumulative normal case load/H2D/full update seconds per arm; no new case/update after expiry, finite finalization overshoot explicit",
+    "checkpoint": "last.pt every complete case including initial0, step120.pt; model/Adam/Python+NumPy+Torch+CUDA RNG/step/order/exposure/history/pass costs",
+    "incomplete": "outer completed marks bounded scientific stage ended; actual arm step<120/incomplete and null or missing metrics reject gate"
+  },
+  "summary_schema": {
+    "kind": "elastic_signed_stress_readout_screen",
+    "config_contract": "request_contract returned contract, with plan_science five frozen recipe blocks",
+    "top": "train_keys,validation_keys,arms,cases,scalers,selection_gate,costs,read_receipt",
+    "arm": "status,completed120,endpoint_step,parameter_counts,initial_parameters_sha256,first_actual_gradient_check,costs,validation,training_readout",
+    "validation": "per_case stress_relative_l2/RMSE_MPa/MAE_MPa/max_abs_error_MPa/hotspot_relative_l2/hotspot_zero_reference/zero_reference/num_nodes plus mean/worst and fixed denominator2",
+    "cold": "cold_deployment_per_case components_complete/total_seconds/physical_GT_free_cold_seconds/tensor_recovery_seconds/incidence_mask_seconds/neural_input_preparation_seconds/model_load_seconds/inference_decode_persistence_seconds",
+    "receipt": "actual TRAIN_stress_reads,DEV_stress_reads,stress_reads,GT_reads,stress_member_reads_completed,optimizer_steps,scaler_fits; displacement/final/dia/sealed/external model/K guards/physical solves0",
+    "selection_gate": "fixed2, both complete120, each tensor DEV signedS relativeL2<.25, mean reduction>=.20,worst ratio<=1.05, mean hotspot reduction>=.10; null or zero-reference relatives never pass"
+  },
+  "cost_policy": {
+    "direct_zero_slots": "Normal input/cloud preparation + separately timed cells-only incidence mask + actual fixed120 model load + fullN inference/decode/persistence; no physical solve or tensor recovery charged",
+    "physical_tensor_slots": "Inherited original GT-free physical cold solve/setup + measured tensor recovery + mask/neural input/model load/fullN inference phases",
+    "shared_experiment_preparation": "Separate oneoff stage costs, not charged as direct physical deployment work",
+    "fresh_joint_cold_measurement": false
+  },
+  "limitations": [
+    "No actual arrays, first full-case gradient or resource/accuracy checks executed by author",
+    "TRAIN3/DEV2/ver rough information screen, not family-wide elimination or geometry/load generalization",
+    "Approximate constitutive tensor is an input proxy; no exporter sign/recovery formula or scalar von-Mises assumption",
+    "No OptiStruct exactness, engineering qualification or final four-field solver choice",
+    "Original physical U accuracy is not reopened or assigned as scalar-model accuracy",
+    "Actual stage gate failure closes frozen recipe without rescue width/seed/loss/sign-rule/budget searches"
+  ],
+  "source_frozen_after_check": true
+}

@@ -1,0 +1,2162 @@
+{
+  "key": "102_249/ver",
+  "group": "validation",
+  "node_count": 211173,
+  "attempted": true,
+  "config": {
+    "contract": {
+      "stage_contract_sha256": "080401e54f8d1e953028a83acbae76afb537ef16c17637a29f592858ffcc74fd",
+      "case_key": "102_249/ver",
+      "physical_record": {
+        "key": "102_249/ver",
+        "cad": "102_249",
+        "group": "validation",
+        "sources": {
+          "deck": {
+            "path": "data/raw/SolverDeck/102_249.fem",
+            "bytes": 29809150,
+            "mtime_ns": 1791454674147734600
+          },
+          "geometry_h5": {
+            "path": "data/raw/FieldMesh/102_249.h5",
+            "bytes": 39246552,
+            "mtime_ns": 1791453926971284400
+          },
+          "cells_npz": {
+            "path": "data/geobc_gradient_supervision/102_249.npz",
+            "bytes": 34720674,
+            "mtime_ns": 1791521800580428500,
+            "sha256": null
+          },
+          "canonical_npz": {
+            "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+            "bytes": 35482562,
+            "mtime_ns": 1791454718057858700
+          }
+        },
+        "expected_geometry": {
+          "nodes": 211173,
+          "cells": 131480,
+          "canonical_xyz_float32_sha256": "b9b79dcbf8543c01ec365120e2d05526a2f4cef3744ad6527e134ad761c8e341",
+          "grid_node_ids_int64_sha256": "61beab4c5cc505e921a93141ae7d6341dd33eee327c4e513cd7d6e6a6cc957d7",
+          "characteristic_length_mm": 184.9840087890625,
+          "bbox_min_mm": [
+            -38.60179901123047,
+            -164.11900329589844,
+            0.21886509656906128
+          ]
+        },
+        "input_members": {
+          "geometry_h5": [
+            "vertices"
+          ],
+          "cells_npz": [
+            "cells10"
+          ],
+          "canonical_npz": [
+            "xyz",
+            "grid_node_ids"
+          ]
+        },
+        "recipe": {
+          "device": "cuda:0",
+          "dtype": "float64",
+          "seed": 2026,
+          "units": "mm, N, MPa, displacement mm, strain dimensionless",
+          "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+          "node_dofs": 3,
+          "cell_chunk": 8192,
+          "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+          "quadrature_points_per_cell": 4,
+          "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+          "geometry_guard": {
+            "finite": true,
+            "maximum_J_condition": 1000000000000,
+            "minimum_abs_detJ_over_length_cubed": 1e-14,
+            "orientation_consistent_per_cell_at_center_and_four_Q": true,
+            "geometry_repair": false
+          },
+          "reader_scope": {
+            "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+            "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+            "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+            "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+            "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+            "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+            "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+            "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+            "deck_coordinate_relative_tolerance": 1e-05,
+            "material_relative_tolerance": 1e-08,
+            "allowed_static_params": {
+              "POST": [
+                "-1",
+                "0",
+                "1",
+                "2"
+              ],
+              "AUTOSPC": [
+                "YES",
+                "NO"
+              ],
+              "GRDPNT": [
+                "0"
+              ],
+              "LGDISP": [
+                "0",
+                "NO"
+              ],
+              "INREL": [
+                "0"
+              ],
+              "CHECKEL": [
+                "NO"
+              ],
+              "RENUMOK": [
+                "YES"
+              ],
+              "PRINFACC": [
+                "1"
+              ],
+              "CONTFEL": [
+                "AUTO"
+              ]
+            },
+            "allowed_gapprm_names": [
+              "GAPCMPL"
+            ],
+            "ignored_output_cards": [
+              "ENDDATA",
+              "OUTPUT",
+              "OUTPUT2",
+              "DISPLACEMENT",
+              "GPSTRESS",
+              "STRESS",
+              "STRAIN",
+              "SPCFORCE",
+              "OLOAD",
+              "GPFORCE",
+              "ECHO",
+              "FORMAT",
+              "ELFORCE",
+              "ESE"
+            ],
+            "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+            "explicit_proprietary_control_exclusions": [
+              {
+                "output_only_claim": false,
+                "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+                "card": "DEBUG",
+                "original_effect": "unknown",
+                "value": "0.0",
+                "classification": "definition_unverified_explicitly_not_reproduced",
+                "inactive_claim": false,
+                "name": "LGSHPSNS"
+              }
+            ]
+          },
+          "load_transfer": {
+            "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+            "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+            "minimum_rank": 6,
+            "maximum_normal_condition": 1000000000000,
+            "relative_guard_tolerance": 1e-09,
+            "guards": [
+              "H B=I6",
+              "virtual work",
+              "net force",
+              "net moment about true reference"
+            ],
+            "fallback_or_pseudoinverse": false,
+            "OptiStruct_exact": false
+          },
+          "input_operator": {
+            "maximum_combined_data_operator_wall_seconds": 300,
+            "maximum_guard_K_applications": 8,
+            "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+            "relative_algebra_guard_tolerance": 1e-09,
+            "guards": [
+              "six rigid null residuals",
+              "u^TKv=v^TKu",
+              "nonnegative two random energies",
+              "constraints eliminate rigid motion"
+            ],
+            "all_inputs_target_free": true,
+            "repeat_setup_or_guards_in_solve": false
+          },
+          "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+          "solve": {
+            "method": "PCG",
+            "initial_guess": "zero",
+            "maximum_iterations": 10000,
+            "maximum_cumulative_solve_wall_seconds": 300,
+            "true_relative_residual_tolerance": 1e-08,
+            "true_residual_interval": 25,
+            "checkpoint_interval": 25,
+            "budget_includes": [
+              "K apply",
+              "preconditioner",
+              "reductions",
+              "true residual verification"
+            ],
+            "resume_budget_reset": false,
+            "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+            "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+          },
+          "post_solve": {
+            "all_original_nodes": true,
+            "prediction_and_equilibrium_before_labels": true,
+            "label_reads": 1,
+            "label_scope": "Only current fixed CAD/ver displacement after persisted finite endpoint/equilibrium and positive remaining stage budget",
+            "metrics": [
+              "allN displacement vector relativeL2",
+              "vector RMS mm",
+              "max nodal vector error mm",
+              "support/load-interface/interior fixed regions",
+              "true free residual",
+              "constraint reaction",
+              "global net force/moment balance"
+            ],
+            "stress_scalar_comparison": false,
+            "old_final_reads": 0,
+            "DEV_dia_reads": 0,
+            "sealed_new_test_reads": 0,
+            "training_updates": 0,
+            "scaler_fits": 0
+          }
+        },
+        "array_identity_policy": "vertices/cells10 first formal input read hashes recorded; no invented inherited hashes",
+        "deferred_displacement_source": {
+          "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+          "bytes": 35482562,
+          "mtime_ns": 1791454718057858700
+        },
+        "data_output": "data/geobc_elastic_crosscad5/102_249/input",
+        "operator_output": "data/geobc_elastic_crosscad5/102_249/operator",
+        "solve_output": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver"
+      },
+      "checkpoint": {
+        "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+        "bytes": 170464827,
+        "mtime_ns": 1791557354819071400
+      },
+      "source_sha256": "d20cb5e82e1ae124437f87b7c609ffc59fe8d2d267d47940241746867d81de08"
+    },
+    "stage": "elastic_fno_warm_pcg"
+  },
+  "status": "completed",
+  "kind": "elastic_fno_warmstart_case",
+  "read_receipt": {
+    "GT_reads": 0,
+    "displacement_reads": 0,
+    "stress_reads": 0,
+    "old_final_reads": 0,
+    "DEV_dia_reads": 0,
+    "sealed_new_test_reads": 0,
+    "optimizer_steps": 0,
+    "scaler_fits": 0,
+    "K_guards_repeated": 0,
+    "setup_repeated": 0,
+    "numerical_reference_reads": 1,
+    "physical_endpoint_and_equilibrium_persisted": true,
+    "raw_and_feasible_initial_guesses_separate": true
+  },
+  "metrics": null,
+  "numerically_converged": true,
+  "numerical_same_solution": {
+    "relative_l2": 1.3882223614765039e-10,
+    "vector_RMS_mm": 2.761379255817783e-11,
+    "max_nodal_vector_difference_mm": 1.1910059635593702e-10,
+    "zero_reference": false,
+    "passed": true,
+    "reference_kind": "converged approximate zero-start numerical displacement, not GT"
+  },
+  "costs": {
+    "components_complete": true,
+    "zero_cold_cost_seconds": 101.030087958,
+    "warm_cold_cost_seconds": 108.17748411600007,
+    "warm_to_zero_cost_ratio": 1.0707452235513382,
+    "cold_cost_reduction_fraction": -0.07074522355133817,
+    "neural_model_load_full_charge_seconds": 2.7009233169999334,
+    "neural_frontend_seconds": 0.11262277000002996,
+    "neural_inference_query_decode_seconds": 0.004002462000016749,
+    "neural_prediction_persistence_seconds": 0.02675522499998806,
+    "inherited_physical_input_operator_seconds": 6.032695052000008,
+    "solve_setup_read_seconds": 0.7645644549999133,
+    "cumulative_solve_wall_seconds": 98.42393133100006,
+    "this_call_solve_wall_seconds": 98.42393133100006,
+    "endpoint_verification_seconds": 0.04651286600005733,
+    "physical_reference_IO_and_comparison_seconds": 0.06055203000005349,
+    "K_apply_seconds_this_call": 27.378644940004392,
+    "preconditioner_seconds_this_call": 2.4526250639979708,
+    "checkpoint_seconds_this_call": 9.363944458001924,
+    "solve_K_count_cumulative": 5060,
+    "solve_K_count_this_call": 5060,
+    "verification_K_count": 1,
+    "cached_incremental_wall_seconds": 99.29558030699991,
+    "cached_incremental_definition": "Actual solve call after persisted raw neural prediction and accepted FEM caches; not a new cold frontend",
+    "batch_amortized_cold_cost_seconds": 106.01674546240012,
+    "solve_budget_overshoot_seconds": 0.0,
+    "endpoint_metadata_persistence_seconds": 0.0049246080000102666
+  },
+  "numerical_state": "converged",
+  "iteration": 4863,
+  "iterations_executed_total": 4863,
+  "true_relative_residual": 9.835280063590309e-09,
+  "initial_true_relative_residual": 327.04851674495393,
+  "trace": [
+    {
+      "iteration": 0,
+      "true_relative_residual": 327.04851674495393,
+      "cumulative_solve_wall_seconds": 0.006396922000021732,
+      "reason": "initial_or_resume_true_verification"
+    },
+    {
+      "iteration": 25,
+      "true_relative_residual": 18.40615997179701,
+      "recursive_relative_residual": 18.406159971797017,
+      "cumulative_solve_wall_seconds": 0.5739290579999761
+    },
+    {
+      "iteration": 50,
+      "true_relative_residual": 6.52559547842873,
+      "recursive_relative_residual": 6.525595478428703,
+      "cumulative_solve_wall_seconds": 1.1065402010000298
+    },
+    {
+      "iteration": 75,
+      "true_relative_residual": 3.279581091494902,
+      "recursive_relative_residual": 3.2795810914947503,
+      "cumulative_solve_wall_seconds": 1.6485716229999525
+    },
+    {
+      "iteration": 100,
+      "true_relative_residual": 2.148914017549526,
+      "recursive_relative_residual": 2.1489140175494827,
+      "cumulative_solve_wall_seconds": 2.1747159589999683
+    },
+    {
+      "iteration": 125,
+      "true_relative_residual": 1.4754770355267204,
+      "recursive_relative_residual": 1.4754770355266078,
+      "cumulative_solve_wall_seconds": 2.695864711000013
+    },
+    {
+      "iteration": 150,
+      "true_relative_residual": 1.2157040065636497,
+      "recursive_relative_residual": 1.2157040065636742,
+      "cumulative_solve_wall_seconds": 3.2159555800000135
+    },
+    {
+      "iteration": 175,
+      "true_relative_residual": 0.9410685878897689,
+      "recursive_relative_residual": 0.9410685878896465,
+      "cumulative_solve_wall_seconds": 3.745754906000002
+    },
+    {
+      "iteration": 200,
+      "true_relative_residual": 0.7482229823678263,
+      "recursive_relative_residual": 0.7482229823678535,
+      "cumulative_solve_wall_seconds": 4.284207617999982
+    },
+    {
+      "iteration": 225,
+      "true_relative_residual": 0.55348122523475,
+      "recursive_relative_residual": 0.5534812252347285,
+      "cumulative_solve_wall_seconds": 4.8244571899999755
+    },
+    {
+      "iteration": 250,
+      "true_relative_residual": 0.4517947741698284,
+      "recursive_relative_residual": 0.45179477416954594,
+      "cumulative_solve_wall_seconds": 5.421216500000014
+    },
+    {
+      "iteration": 275,
+      "true_relative_residual": 0.46159315234752696,
+      "recursive_relative_residual": 0.4615931523476794,
+      "cumulative_solve_wall_seconds": 5.975232086999995
+    },
+    {
+      "iteration": 300,
+      "true_relative_residual": 0.45383000151637737,
+      "recursive_relative_residual": 0.45383000151630726,
+      "cumulative_solve_wall_seconds": 6.5412907610000275
+    },
+    {
+      "iteration": 325,
+      "true_relative_residual": 0.45737496303292163,
+      "recursive_relative_residual": 0.45737496303299097,
+      "cumulative_solve_wall_seconds": 7.13201927700004
+    },
+    {
+      "iteration": 350,
+      "true_relative_residual": 0.4698007542185948,
+      "recursive_relative_residual": 0.469800754218675,
+      "cumulative_solve_wall_seconds": 7.696049101999961
+    },
+    {
+      "iteration": 375,
+      "true_relative_residual": 0.45318900646086946,
+      "recursive_relative_residual": 0.4531890064609005,
+      "cumulative_solve_wall_seconds": 8.262935410999944
+    },
+    {
+      "iteration": 400,
+      "true_relative_residual": 0.4714826077469387,
+      "recursive_relative_residual": 0.471482607746934,
+      "cumulative_solve_wall_seconds": 8.785093894000056
+    },
+    {
+      "iteration": 425,
+      "true_relative_residual": 0.45378420554940696,
+      "recursive_relative_residual": 0.45378420554957943,
+      "cumulative_solve_wall_seconds": 9.310867633000043
+    },
+    {
+      "iteration": 450,
+      "true_relative_residual": 0.45460989468897434,
+      "recursive_relative_residual": 0.4546098946889978,
+      "cumulative_solve_wall_seconds": 9.839960332000032
+    },
+    {
+      "iteration": 475,
+      "true_relative_residual": 0.4347765848669705,
+      "recursive_relative_residual": 0.4347765848667413,
+      "cumulative_solve_wall_seconds": 10.358763275000001
+    },
+    {
+      "iteration": 500,
+      "true_relative_residual": 0.4651591599694874,
+      "recursive_relative_residual": 0.46515915996938056,
+      "cumulative_solve_wall_seconds": 10.883809746999987
+    },
+    {
+      "iteration": 525,
+      "true_relative_residual": 0.4063816935243964,
+      "recursive_relative_residual": 0.4063816935241826,
+      "cumulative_solve_wall_seconds": 11.406795331000012
+    },
+    {
+      "iteration": 550,
+      "true_relative_residual": 0.357408495406734,
+      "recursive_relative_residual": 0.35740849540683095,
+      "cumulative_solve_wall_seconds": 11.951949473000013
+    },
+    {
+      "iteration": 575,
+      "true_relative_residual": 0.35222012882180964,
+      "recursive_relative_residual": 0.3522201288217049,
+      "cumulative_solve_wall_seconds": 12.485745937000047
+    },
+    {
+      "iteration": 600,
+      "true_relative_residual": 0.3330943047466624,
+      "recursive_relative_residual": 0.3330943047465271,
+      "cumulative_solve_wall_seconds": 12.999782907000053
+    },
+    {
+      "iteration": 625,
+      "true_relative_residual": 0.2695168538190001,
+      "recursive_relative_residual": 0.26951685381916274,
+      "cumulative_solve_wall_seconds": 13.514761963999945
+    },
+    {
+      "iteration": 650,
+      "true_relative_residual": 0.22868802362784588,
+      "recursive_relative_residual": 0.22868802362763857,
+      "cumulative_solve_wall_seconds": 14.045039603999953
+    },
+    {
+      "iteration": 675,
+      "true_relative_residual": 0.1927145999629696,
+      "recursive_relative_residual": 0.19271459996297394,
+      "cumulative_solve_wall_seconds": 14.552292396999974
+    },
+    {
+      "iteration": 700,
+      "true_relative_residual": 0.16476839687730557,
+      "recursive_relative_residual": 0.16476839687747935,
+      "cumulative_solve_wall_seconds": 15.038908220000053
+    },
+    {
+      "iteration": 725,
+      "true_relative_residual": 0.12985012045682578,
+      "recursive_relative_residual": 0.12985012045655012,
+      "cumulative_solve_wall_seconds": 15.528012941000043
+    },
+    {
+      "iteration": 750,
+      "true_relative_residual": 0.11316244574680395,
+      "recursive_relative_residual": 0.11316244574648028,
+      "cumulative_solve_wall_seconds": 16.006477554999947
+    },
+    {
+      "iteration": 775,
+      "true_relative_residual": 0.09801289796681271,
+      "recursive_relative_residual": 0.09801289796661233,
+      "cumulative_solve_wall_seconds": 16.51548629299998
+    },
+    {
+      "iteration": 800,
+      "true_relative_residual": 0.08498224338430892,
+      "recursive_relative_residual": 0.08498224338413306,
+      "cumulative_solve_wall_seconds": 16.988169332999973
+    },
+    {
+      "iteration": 825,
+      "true_relative_residual": 0.07498550219288783,
+      "recursive_relative_residual": 0.07498550219271881,
+      "cumulative_solve_wall_seconds": 17.510627160000013
+    },
+    {
+      "iteration": 850,
+      "true_relative_residual": 0.06869887166120545,
+      "recursive_relative_residual": 0.068698871661209,
+      "cumulative_solve_wall_seconds": 17.991352956000014
+    },
+    {
+      "iteration": 875,
+      "true_relative_residual": 0.06948074405228265,
+      "recursive_relative_residual": 0.06948074405230631,
+      "cumulative_solve_wall_seconds": 18.485029575999988
+    },
+    {
+      "iteration": 900,
+      "true_relative_residual": 0.06639257283912478,
+      "recursive_relative_residual": 0.06639257283938702,
+      "cumulative_solve_wall_seconds": 18.994647729999997
+    },
+    {
+      "iteration": 925,
+      "true_relative_residual": 0.05937223205752642,
+      "recursive_relative_residual": 0.05937223205756901,
+      "cumulative_solve_wall_seconds": 19.515745258000038
+    },
+    {
+      "iteration": 950,
+      "true_relative_residual": 0.053729514666830555,
+      "recursive_relative_residual": 0.05372951466667192,
+      "cumulative_solve_wall_seconds": 20.019673807999993
+    },
+    {
+      "iteration": 975,
+      "true_relative_residual": 0.05049721378980037,
+      "recursive_relative_residual": 0.05049721379014245,
+      "cumulative_solve_wall_seconds": 20.55198420299996
+    },
+    {
+      "iteration": 1000,
+      "true_relative_residual": 0.047423538037301816,
+      "recursive_relative_residual": 0.047423538037613594,
+      "cumulative_solve_wall_seconds": 21.07262958700005
+    },
+    {
+      "iteration": 1025,
+      "true_relative_residual": 0.04754168362510998,
+      "recursive_relative_residual": 0.04754168362510383,
+      "cumulative_solve_wall_seconds": 21.58574980900005
+    },
+    {
+      "iteration": 1050,
+      "true_relative_residual": 0.042258525167899984,
+      "recursive_relative_residual": 0.0422585251678886,
+      "cumulative_solve_wall_seconds": 22.100373074999993
+    },
+    {
+      "iteration": 1075,
+      "true_relative_residual": 0.03970067129984159,
+      "recursive_relative_residual": 0.039700671299870975,
+      "cumulative_solve_wall_seconds": 22.588535827999976
+    },
+    {
+      "iteration": 1100,
+      "true_relative_residual": 0.03938808174610985,
+      "recursive_relative_residual": 0.0393880817461145,
+      "cumulative_solve_wall_seconds": 23.08076761899997
+    },
+    {
+      "iteration": 1125,
+      "true_relative_residual": 0.03843421509518653,
+      "recursive_relative_residual": 0.038434215094972364,
+      "cumulative_solve_wall_seconds": 23.610201110000048
+    },
+    {
+      "iteration": 1150,
+      "true_relative_residual": 0.037874415247981554,
+      "recursive_relative_residual": 0.03787441524806158,
+      "cumulative_solve_wall_seconds": 24.131347921000042
+    },
+    {
+      "iteration": 1175,
+      "true_relative_residual": 0.033682007812361185,
+      "recursive_relative_residual": 0.03368200781200966,
+      "cumulative_solve_wall_seconds": 24.60450829299998
+    },
+    {
+      "iteration": 1200,
+      "true_relative_residual": 0.03143535911959857,
+      "recursive_relative_residual": 0.03143535911989206,
+      "cumulative_solve_wall_seconds": 25.09702241499997
+    },
+    {
+      "iteration": 1225,
+      "true_relative_residual": 0.027944826914786572,
+      "recursive_relative_residual": 0.02794482691501197,
+      "cumulative_solve_wall_seconds": 25.592007301999956
+    },
+    {
+      "iteration": 1250,
+      "true_relative_residual": 0.02788626930929775,
+      "recursive_relative_residual": 0.02788626930916005,
+      "cumulative_solve_wall_seconds": 26.074885978999987
+    },
+    {
+      "iteration": 1275,
+      "true_relative_residual": 0.02387811935370893,
+      "recursive_relative_residual": 0.023878119353554553,
+      "cumulative_solve_wall_seconds": 26.618395212999985
+    },
+    {
+      "iteration": 1300,
+      "true_relative_residual": 0.021365704981631695,
+      "recursive_relative_residual": 0.021365704981772426,
+      "cumulative_solve_wall_seconds": 27.090423091000048
+    },
+    {
+      "iteration": 1325,
+      "true_relative_residual": 0.020304368706090026,
+      "recursive_relative_residual": 0.020304368705619164,
+      "cumulative_solve_wall_seconds": 27.610037557000055
+    },
+    {
+      "iteration": 1350,
+      "true_relative_residual": 0.018321317670219786,
+      "recursive_relative_residual": 0.018321317670162002,
+      "cumulative_solve_wall_seconds": 28.096617487999993
+    },
+    {
+      "iteration": 1375,
+      "true_relative_residual": 0.01698999901233548,
+      "recursive_relative_residual": 0.016989999012671664,
+      "cumulative_solve_wall_seconds": 28.59327531400004
+    },
+    {
+      "iteration": 1400,
+      "true_relative_residual": 0.015752488544807288,
+      "recursive_relative_residual": 0.015752488544957876,
+      "cumulative_solve_wall_seconds": 29.072992887000055
+    },
+    {
+      "iteration": 1425,
+      "true_relative_residual": 0.014838247414591998,
+      "recursive_relative_residual": 0.014838247414220958,
+      "cumulative_solve_wall_seconds": 29.560194335000006
+    },
+    {
+      "iteration": 1450,
+      "true_relative_residual": 0.014000201867500707,
+      "recursive_relative_residual": 0.014000201867447458,
+      "cumulative_solve_wall_seconds": 30.06023325700005
+    },
+    {
+      "iteration": 1475,
+      "true_relative_residual": 0.012810377385653141,
+      "recursive_relative_residual": 0.012810377385715324,
+      "cumulative_solve_wall_seconds": 30.545826595999984
+    },
+    {
+      "iteration": 1500,
+      "true_relative_residual": 0.013243454539337602,
+      "recursive_relative_residual": 0.013243454539376845,
+      "cumulative_solve_wall_seconds": 31.030972789999964
+    },
+    {
+      "iteration": 1525,
+      "true_relative_residual": 0.012766010698772945,
+      "recursive_relative_residual": 0.012766010698909713,
+      "cumulative_solve_wall_seconds": 31.523602858999993
+    },
+    {
+      "iteration": 1550,
+      "true_relative_residual": 0.013430879117958814,
+      "recursive_relative_residual": 0.013430879117897235,
+      "cumulative_solve_wall_seconds": 32.01958523600001
+    },
+    {
+      "iteration": 1575,
+      "true_relative_residual": 0.014321502273247435,
+      "recursive_relative_residual": 0.014321502273448111,
+      "cumulative_solve_wall_seconds": 32.51292268999998
+    },
+    {
+      "iteration": 1600,
+      "true_relative_residual": 0.014528145579468368,
+      "recursive_relative_residual": 0.014528145579340953,
+      "cumulative_solve_wall_seconds": 32.99126585399995
+    },
+    {
+      "iteration": 1625,
+      "true_relative_residual": 0.01432275456518452,
+      "recursive_relative_residual": 0.014322754564941208,
+      "cumulative_solve_wall_seconds": 33.48597233700002
+    },
+    {
+      "iteration": 1650,
+      "true_relative_residual": 0.014734448531999823,
+      "recursive_relative_residual": 0.014734448531576372,
+      "cumulative_solve_wall_seconds": 33.96983565200003
+    },
+    {
+      "iteration": 1675,
+      "true_relative_residual": 0.014015705879037811,
+      "recursive_relative_residual": 0.01401570587983978,
+      "cumulative_solve_wall_seconds": 34.506552648000024
+    },
+    {
+      "iteration": 1700,
+      "true_relative_residual": 0.013983855874514194,
+      "recursive_relative_residual": 0.013983855874299454,
+      "cumulative_solve_wall_seconds": 34.99325514099996
+    },
+    {
+      "iteration": 1725,
+      "true_relative_residual": 0.013484975934355242,
+      "recursive_relative_residual": 0.013484975934200028,
+      "cumulative_solve_wall_seconds": 35.501687111000024
+    },
+    {
+      "iteration": 1750,
+      "true_relative_residual": 0.012716166823505355,
+      "recursive_relative_residual": 0.012716166823419075,
+      "cumulative_solve_wall_seconds": 36.01532534399996
+    },
+    {
+      "iteration": 1775,
+      "true_relative_residual": 0.011592007020206041,
+      "recursive_relative_residual": 0.01159200702022408,
+      "cumulative_solve_wall_seconds": 36.513423413000055
+    },
+    {
+      "iteration": 1800,
+      "true_relative_residual": 0.01215620589267158,
+      "recursive_relative_residual": 0.01215620589234132,
+      "cumulative_solve_wall_seconds": 37.01571622300003
+    },
+    {
+      "iteration": 1825,
+      "true_relative_residual": 0.01096053094459696,
+      "recursive_relative_residual": 0.010960530944834092,
+      "cumulative_solve_wall_seconds": 37.53151870800002
+    },
+    {
+      "iteration": 1850,
+      "true_relative_residual": 0.010685862641116067,
+      "recursive_relative_residual": 0.010685862641110534,
+      "cumulative_solve_wall_seconds": 38.02838448399996
+    },
+    {
+      "iteration": 1875,
+      "true_relative_residual": 0.009584390230140525,
+      "recursive_relative_residual": 0.009584390229483215,
+      "cumulative_solve_wall_seconds": 38.51581010799998
+    },
+    {
+      "iteration": 1900,
+      "true_relative_residual": 0.009585570434581539,
+      "recursive_relative_residual": 0.009585570434396801,
+      "cumulative_solve_wall_seconds": 39.007506249000016
+    },
+    {
+      "iteration": 1925,
+      "true_relative_residual": 0.010140770265730894,
+      "recursive_relative_residual": 0.010140770265908882,
+      "cumulative_solve_wall_seconds": 39.49362764900002
+    },
+    {
+      "iteration": 1950,
+      "true_relative_residual": 0.00850911785847079,
+      "recursive_relative_residual": 0.008509117858841609,
+      "cumulative_solve_wall_seconds": 39.97115303099997
+    },
+    {
+      "iteration": 1975,
+      "true_relative_residual": 0.007333724317990843,
+      "recursive_relative_residual": 0.007333724317648869,
+      "cumulative_solve_wall_seconds": 40.45405627800005
+    },
+    {
+      "iteration": 2000,
+      "true_relative_residual": 0.0062701443814287905,
+      "recursive_relative_residual": 0.006270144381392141,
+      "cumulative_solve_wall_seconds": 40.937631846000045
+    },
+    {
+      "iteration": 2025,
+      "true_relative_residual": 0.005817706808998823,
+      "recursive_relative_residual": 0.005817706808937466,
+      "cumulative_solve_wall_seconds": 41.42806856000004
+    },
+    {
+      "iteration": 2050,
+      "true_relative_residual": 0.005343307116405321,
+      "recursive_relative_residual": 0.0053433071164240295,
+      "cumulative_solve_wall_seconds": 41.939978218999954
+    },
+    {
+      "iteration": 2075,
+      "true_relative_residual": 0.004585824344020718,
+      "recursive_relative_residual": 0.004585824344459713,
+      "cumulative_solve_wall_seconds": 42.5139954
+    },
+    {
+      "iteration": 2100,
+      "true_relative_residual": 0.004738924931714985,
+      "recursive_relative_residual": 0.004738924932207008,
+      "cumulative_solve_wall_seconds": 43.04864121100002
+    },
+    {
+      "iteration": 2125,
+      "true_relative_residual": 0.005030283911606931,
+      "recursive_relative_residual": 0.0050302839114105555,
+      "cumulative_solve_wall_seconds": 43.54865811100001
+    },
+    {
+      "iteration": 2150,
+      "true_relative_residual": 0.005654481651878357,
+      "recursive_relative_residual": 0.005654481652057857,
+      "cumulative_solve_wall_seconds": 44.05768953900008
+    },
+    {
+      "iteration": 2175,
+      "true_relative_residual": 0.0059926836473357375,
+      "recursive_relative_residual": 0.005992683647293245,
+      "cumulative_solve_wall_seconds": 44.58142781999993
+    },
+    {
+      "iteration": 2200,
+      "true_relative_residual": 0.006380393271136472,
+      "recursive_relative_residual": 0.006380393270887911,
+      "cumulative_solve_wall_seconds": 45.071393334999925
+    },
+    {
+      "iteration": 2225,
+      "true_relative_residual": 0.006804743284146913,
+      "recursive_relative_residual": 0.0068047432841622695,
+      "cumulative_solve_wall_seconds": 45.557539062000046
+    },
+    {
+      "iteration": 2250,
+      "true_relative_residual": 0.006509503931073532,
+      "recursive_relative_residual": 0.006509503930987815,
+      "cumulative_solve_wall_seconds": 46.042140698000026
+    },
+    {
+      "iteration": 2275,
+      "true_relative_residual": 0.006429192525138835,
+      "recursive_relative_residual": 0.00642919252556539,
+      "cumulative_solve_wall_seconds": 46.55162929000005
+    },
+    {
+      "iteration": 2300,
+      "true_relative_residual": 0.006214603262389606,
+      "recursive_relative_residual": 0.006214603262592014,
+      "cumulative_solve_wall_seconds": 47.03323767800009
+    },
+    {
+      "iteration": 2325,
+      "true_relative_residual": 0.005828690165575651,
+      "recursive_relative_residual": 0.005828690166187542,
+      "cumulative_solve_wall_seconds": 47.51719340200009
+    },
+    {
+      "iteration": 2350,
+      "true_relative_residual": 0.005232353199579193,
+      "recursive_relative_residual": 0.005232353199431798,
+      "cumulative_solve_wall_seconds": 48.01054867200003
+    },
+    {
+      "iteration": 2375,
+      "true_relative_residual": 0.004686972838579732,
+      "recursive_relative_residual": 0.00468697283894764,
+      "cumulative_solve_wall_seconds": 48.50453535500003
+    },
+    {
+      "iteration": 2400,
+      "true_relative_residual": 0.0039122929599765734,
+      "recursive_relative_residual": 0.003912292959458755,
+      "cumulative_solve_wall_seconds": 49.01024426400011
+    },
+    {
+      "iteration": 2425,
+      "true_relative_residual": 0.003333664097471425,
+      "recursive_relative_residual": 0.003333664097647354,
+      "cumulative_solve_wall_seconds": 49.515092668999955
+    },
+    {
+      "iteration": 2450,
+      "true_relative_residual": 0.002824238198014036,
+      "recursive_relative_residual": 0.0028242381983223266,
+      "cumulative_solve_wall_seconds": 49.99984510599995
+    },
+    {
+      "iteration": 2475,
+      "true_relative_residual": 0.002423683600378603,
+      "recursive_relative_residual": 0.002423683600237815,
+      "cumulative_solve_wall_seconds": 50.48214174399993
+    },
+    {
+      "iteration": 2500,
+      "true_relative_residual": 0.0020430966486166624,
+      "recursive_relative_residual": 0.0020430966491187773,
+      "cumulative_solve_wall_seconds": 50.969570983999915
+    },
+    {
+      "iteration": 2525,
+      "true_relative_residual": 0.0018646378503223736,
+      "recursive_relative_residual": 0.0018646378506146763,
+      "cumulative_solve_wall_seconds": 51.46361005000006
+    },
+    {
+      "iteration": 2550,
+      "true_relative_residual": 0.0017954221045465783,
+      "recursive_relative_residual": 0.0017954221037912513,
+      "cumulative_solve_wall_seconds": 51.95618395300005
+    },
+    {
+      "iteration": 2575,
+      "true_relative_residual": 0.0017507166620263162,
+      "recursive_relative_residual": 0.0017507166621578334,
+      "cumulative_solve_wall_seconds": 52.4450429530001
+    },
+    {
+      "iteration": 2600,
+      "true_relative_residual": 0.0015181891921045244,
+      "recursive_relative_residual": 0.0015181891916562506,
+      "cumulative_solve_wall_seconds": 52.91902678300005
+    },
+    {
+      "iteration": 2625,
+      "true_relative_residual": 0.0014882549173451608,
+      "recursive_relative_residual": 0.0014882549175779713,
+      "cumulative_solve_wall_seconds": 53.40613007099989
+    },
+    {
+      "iteration": 2650,
+      "true_relative_residual": 0.0013254258853001178,
+      "recursive_relative_residual": 0.001325425885187476,
+      "cumulative_solve_wall_seconds": 53.89229999399993
+    },
+    {
+      "iteration": 2675,
+      "true_relative_residual": 0.0012049618874453796,
+      "recursive_relative_residual": 0.0012049618875665943,
+      "cumulative_solve_wall_seconds": 54.38192632199991
+    },
+    {
+      "iteration": 2700,
+      "true_relative_residual": 0.0011265334536606096,
+      "recursive_relative_residual": 0.0011265334535097578,
+      "cumulative_solve_wall_seconds": 54.91130296499989
+    },
+    {
+      "iteration": 2725,
+      "true_relative_residual": 0.0009980348521084967,
+      "recursive_relative_residual": 0.0009980348525019161,
+      "cumulative_solve_wall_seconds": 55.40527640900007
+    },
+    {
+      "iteration": 2750,
+      "true_relative_residual": 0.0008215454636688164,
+      "recursive_relative_residual": 0.000821545463342214,
+      "cumulative_solve_wall_seconds": 55.880846528000006
+    },
+    {
+      "iteration": 2775,
+      "true_relative_residual": 0.0006686231549696698,
+      "recursive_relative_residual": 0.0006686231543970489,
+      "cumulative_solve_wall_seconds": 56.35822068899995
+    },
+    {
+      "iteration": 2800,
+      "true_relative_residual": 0.0006676516696893703,
+      "recursive_relative_residual": 0.0006676516697732269,
+      "cumulative_solve_wall_seconds": 56.84541591999994
+    },
+    {
+      "iteration": 2825,
+      "true_relative_residual": 0.0006491847299045985,
+      "recursive_relative_residual": 0.0006491847297319122,
+      "cumulative_solve_wall_seconds": 57.334428684000045
+    },
+    {
+      "iteration": 2850,
+      "true_relative_residual": 0.0006697286695802031,
+      "recursive_relative_residual": 0.000669728669313545,
+      "cumulative_solve_wall_seconds": 57.852227538999955
+    },
+    {
+      "iteration": 2875,
+      "true_relative_residual": 0.0007114464755410857,
+      "recursive_relative_residual": 0.0007114464756522213,
+      "cumulative_solve_wall_seconds": 58.33739283500006
+    },
+    {
+      "iteration": 2900,
+      "true_relative_residual": 0.0007118251617809909,
+      "recursive_relative_residual": 0.0007118251616681976,
+      "cumulative_solve_wall_seconds": 58.82801812199989
+    },
+    {
+      "iteration": 2925,
+      "true_relative_residual": 0.0005951363645934768,
+      "recursive_relative_residual": 0.000595136364323711,
+      "cumulative_solve_wall_seconds": 59.36095637100004
+    },
+    {
+      "iteration": 2950,
+      "true_relative_residual": 0.00048784084005785067,
+      "recursive_relative_residual": 0.000487840839835558,
+      "cumulative_solve_wall_seconds": 59.86134224
+    },
+    {
+      "iteration": 2975,
+      "true_relative_residual": 0.0004544030101820836,
+      "recursive_relative_residual": 0.0004544030105080972,
+      "cumulative_solve_wall_seconds": 60.35672104999992
+    },
+    {
+      "iteration": 3000,
+      "true_relative_residual": 0.0004078272104800182,
+      "recursive_relative_residual": 0.0004078272101318052,
+      "cumulative_solve_wall_seconds": 60.87094396200007
+    },
+    {
+      "iteration": 3025,
+      "true_relative_residual": 0.00032221444054450753,
+      "recursive_relative_residual": 0.00032221444071153934,
+      "cumulative_solve_wall_seconds": 61.36186086400005
+    },
+    {
+      "iteration": 3050,
+      "true_relative_residual": 0.000285379555963097,
+      "recursive_relative_residual": 0.00028537955674319744,
+      "cumulative_solve_wall_seconds": 61.85372978499993
+    },
+    {
+      "iteration": 3075,
+      "true_relative_residual": 0.00025476267160712913,
+      "recursive_relative_residual": 0.0002547626710617456,
+      "cumulative_solve_wall_seconds": 62.35574967199989
+    },
+    {
+      "iteration": 3100,
+      "true_relative_residual": 0.0002387385089003407,
+      "recursive_relative_residual": 0.00023873850871941236,
+      "cumulative_solve_wall_seconds": 62.842867318
+    },
+    {
+      "iteration": 3125,
+      "true_relative_residual": 0.00020783155528279637,
+      "recursive_relative_residual": 0.00020783155530189662,
+      "cumulative_solve_wall_seconds": 63.327831143000026
+    },
+    {
+      "iteration": 3150,
+      "true_relative_residual": 0.0001927204513043473,
+      "recursive_relative_residual": 0.0001927204516307782,
+      "cumulative_solve_wall_seconds": 63.819203423999966
+    },
+    {
+      "iteration": 3175,
+      "true_relative_residual": 0.0001876062228874849,
+      "recursive_relative_residual": 0.0001876062230542121,
+      "cumulative_solve_wall_seconds": 64.30785277799998
+    },
+    {
+      "iteration": 3200,
+      "true_relative_residual": 0.00016688279881165856,
+      "recursive_relative_residual": 0.00016688279859468914,
+      "cumulative_solve_wall_seconds": 64.79758000100003
+    },
+    {
+      "iteration": 3225,
+      "true_relative_residual": 0.00014368388338304957,
+      "recursive_relative_residual": 0.00014368388342336782,
+      "cumulative_solve_wall_seconds": 65.30164513900002
+    },
+    {
+      "iteration": 3250,
+      "true_relative_residual": 0.000131938079929218,
+      "recursive_relative_residual": 0.00013193807952495822,
+      "cumulative_solve_wall_seconds": 65.807502967
+    },
+    {
+      "iteration": 3275,
+      "true_relative_residual": 0.00013142449649622057,
+      "recursive_relative_residual": 0.0001314244964716372,
+      "cumulative_solve_wall_seconds": 66.2930533330001
+    },
+    {
+      "iteration": 3300,
+      "true_relative_residual": 0.00012272997174604843,
+      "recursive_relative_residual": 0.00012272997183545277,
+      "cumulative_solve_wall_seconds": 66.80553885699999
+    },
+    {
+      "iteration": 3325,
+      "true_relative_residual": 0.00011730072624629382,
+      "recursive_relative_residual": 0.00011730072623488221,
+      "cumulative_solve_wall_seconds": 67.29416058100003
+    },
+    {
+      "iteration": 3350,
+      "true_relative_residual": 9.469698485937567e-05,
+      "recursive_relative_residual": 9.469698537622514e-05,
+      "cumulative_solve_wall_seconds": 67.78922856399993
+    },
+    {
+      "iteration": 3375,
+      "true_relative_residual": 8.642050654695042e-05,
+      "recursive_relative_residual": 8.642050680594716e-05,
+      "cumulative_solve_wall_seconds": 68.30772771499994
+    },
+    {
+      "iteration": 3400,
+      "true_relative_residual": 7.080330898791095e-05,
+      "recursive_relative_residual": 7.080330919142433e-05,
+      "cumulative_solve_wall_seconds": 68.80597952699998
+    },
+    {
+      "iteration": 3425,
+      "true_relative_residual": 6.692366347311325e-05,
+      "recursive_relative_residual": 6.692366292278692e-05,
+      "cumulative_solve_wall_seconds": 69.29015972500008
+    },
+    {
+      "iteration": 3450,
+      "true_relative_residual": 6.934668157803745e-05,
+      "recursive_relative_residual": 6.934668210407764e-05,
+      "cumulative_solve_wall_seconds": 69.78038911500005
+    },
+    {
+      "iteration": 3475,
+      "true_relative_residual": 7.187995574921765e-05,
+      "recursive_relative_residual": 7.187995600904421e-05,
+      "cumulative_solve_wall_seconds": 70.26450954800009
+    },
+    {
+      "iteration": 3500,
+      "true_relative_residual": 7.128021749950016e-05,
+      "recursive_relative_residual": 7.128021710240968e-05,
+      "cumulative_solve_wall_seconds": 70.74747759500008
+    },
+    {
+      "iteration": 3525,
+      "true_relative_residual": 7.625942446657452e-05,
+      "recursive_relative_residual": 7.625942373808832e-05,
+      "cumulative_solve_wall_seconds": 71.23711893699999
+    },
+    {
+      "iteration": 3550,
+      "true_relative_residual": 7.246082018880836e-05,
+      "recursive_relative_residual": 7.246082004953645e-05,
+      "cumulative_solve_wall_seconds": 71.72432174900007
+    },
+    {
+      "iteration": 3575,
+      "true_relative_residual": 5.962387618320821e-05,
+      "recursive_relative_residual": 5.96238767348917e-05,
+      "cumulative_solve_wall_seconds": 72.21523021900009
+    },
+    {
+      "iteration": 3600,
+      "true_relative_residual": 5.8153506203278395e-05,
+      "recursive_relative_residual": 5.815350622379233e-05,
+      "cumulative_solve_wall_seconds": 72.7094107910001
+    },
+    {
+      "iteration": 3625,
+      "true_relative_residual": 4.904413719125571e-05,
+      "recursive_relative_residual": 4.904413691089836e-05,
+      "cumulative_solve_wall_seconds": 73.18092897899999
+    },
+    {
+      "iteration": 3650,
+      "true_relative_residual": 4.513707724685715e-05,
+      "recursive_relative_residual": 4.513707697037154e-05,
+      "cumulative_solve_wall_seconds": 73.65694784899995
+    },
+    {
+      "iteration": 3675,
+      "true_relative_residual": 4.255805906305707e-05,
+      "recursive_relative_residual": 4.255805921412253e-05,
+      "cumulative_solve_wall_seconds": 74.13879972300003
+    },
+    {
+      "iteration": 3700,
+      "true_relative_residual": 4.4467284424494624e-05,
+      "recursive_relative_residual": 4.446728404725271e-05,
+      "cumulative_solve_wall_seconds": 74.6219322789999
+    },
+    {
+      "iteration": 3725,
+      "true_relative_residual": 4.307462418920987e-05,
+      "recursive_relative_residual": 4.307462468932955e-05,
+      "cumulative_solve_wall_seconds": 75.10225028799994
+    },
+    {
+      "iteration": 3750,
+      "true_relative_residual": 4.0031191472151465e-05,
+      "recursive_relative_residual": 4.0031191196219423e-05,
+      "cumulative_solve_wall_seconds": 75.58713379299991
+    },
+    {
+      "iteration": 3775,
+      "true_relative_residual": 3.6874128016346824e-05,
+      "recursive_relative_residual": 3.687412737722332e-05,
+      "cumulative_solve_wall_seconds": 76.07214823800007
+    },
+    {
+      "iteration": 3800,
+      "true_relative_residual": 3.3192503103231117e-05,
+      "recursive_relative_residual": 3.3192502457910656e-05,
+      "cumulative_solve_wall_seconds": 76.63700227800007
+    },
+    {
+      "iteration": 3825,
+      "true_relative_residual": 2.6632326080906236e-05,
+      "recursive_relative_residual": 2.663232593562935e-05,
+      "cumulative_solve_wall_seconds": 77.15219446000003
+    },
+    {
+      "iteration": 3850,
+      "true_relative_residual": 2.3007030946083863e-05,
+      "recursive_relative_residual": 2.3007030415530563e-05,
+      "cumulative_solve_wall_seconds": 77.6402373279999
+    },
+    {
+      "iteration": 3875,
+      "true_relative_residual": 1.9475179746000035e-05,
+      "recursive_relative_residual": 1.9475179674412117e-05,
+      "cumulative_solve_wall_seconds": 78.1718763099999
+    },
+    {
+      "iteration": 3900,
+      "true_relative_residual": 1.962438322726372e-05,
+      "recursive_relative_residual": 1.96243831966372e-05,
+      "cumulative_solve_wall_seconds": 78.68622512700006
+    },
+    {
+      "iteration": 3925,
+      "true_relative_residual": 1.8123929679675402e-05,
+      "recursive_relative_residual": 1.8123929249927307e-05,
+      "cumulative_solve_wall_seconds": 79.2022261809999
+    },
+    {
+      "iteration": 3950,
+      "true_relative_residual": 1.6538142046791955e-05,
+      "recursive_relative_residual": 1.653814239622616e-05,
+      "cumulative_solve_wall_seconds": 79.723395417
+    },
+    {
+      "iteration": 3975,
+      "true_relative_residual": 1.5630028719465517e-05,
+      "recursive_relative_residual": 1.5630027769400536e-05,
+      "cumulative_solve_wall_seconds": 80.30570726799999
+    },
+    {
+      "iteration": 4000,
+      "true_relative_residual": 1.3906998638134565e-05,
+      "recursive_relative_residual": 1.3906998760276237e-05,
+      "cumulative_solve_wall_seconds": 80.8351780270001
+    },
+    {
+      "iteration": 4025,
+      "true_relative_residual": 1.3394043554308859e-05,
+      "recursive_relative_residual": 1.3394043595481336e-05,
+      "cumulative_solve_wall_seconds": 81.37961933100007
+    },
+    {
+      "iteration": 4050,
+      "true_relative_residual": 1.390210731856154e-05,
+      "recursive_relative_residual": 1.390210742798137e-05,
+      "cumulative_solve_wall_seconds": 81.90353321200007
+    },
+    {
+      "iteration": 4075,
+      "true_relative_residual": 1.43529751993558e-05,
+      "recursive_relative_residual": 1.4352975662784314e-05,
+      "cumulative_solve_wall_seconds": 82.41570676799995
+    },
+    {
+      "iteration": 4100,
+      "true_relative_residual": 1.1510183320908506e-05,
+      "recursive_relative_residual": 1.1510183228073923e-05,
+      "cumulative_solve_wall_seconds": 82.91038145300001
+    },
+    {
+      "iteration": 4125,
+      "true_relative_residual": 1.037900925725868e-05,
+      "recursive_relative_residual": 1.0379008669317432e-05,
+      "cumulative_solve_wall_seconds": 83.39985525899999
+    },
+    {
+      "iteration": 4150,
+      "true_relative_residual": 8.191279109879396e-06,
+      "recursive_relative_residual": 8.191279310866948e-06,
+      "cumulative_solve_wall_seconds": 83.94753425200008
+    },
+    {
+      "iteration": 4175,
+      "true_relative_residual": 6.467698075399185e-06,
+      "recursive_relative_residual": 6.467698402116106e-06,
+      "cumulative_solve_wall_seconds": 84.46731557600003
+    },
+    {
+      "iteration": 4200,
+      "true_relative_residual": 5.903111928446279e-06,
+      "recursive_relative_residual": 5.903111756086738e-06,
+      "cumulative_solve_wall_seconds": 85.00569855099991
+    },
+    {
+      "iteration": 4225,
+      "true_relative_residual": 4.5631522082536585e-06,
+      "recursive_relative_residual": 4.563151825848441e-06,
+      "cumulative_solve_wall_seconds": 85.50451726299991
+    },
+    {
+      "iteration": 4250,
+      "true_relative_residual": 3.7340045500353326e-06,
+      "recursive_relative_residual": 3.7340048541064765e-06,
+      "cumulative_solve_wall_seconds": 86.03333749799992
+    },
+    {
+      "iteration": 4275,
+      "true_relative_residual": 2.8408782344124028e-06,
+      "recursive_relative_residual": 2.840878125422501e-06,
+      "cumulative_solve_wall_seconds": 86.60014703600007
+    },
+    {
+      "iteration": 4300,
+      "true_relative_residual": 2.733965881342292e-06,
+      "recursive_relative_residual": 2.733965596256249e-06,
+      "cumulative_solve_wall_seconds": 87.12505416700003
+    },
+    {
+      "iteration": 4325,
+      "true_relative_residual": 2.2150603065590426e-06,
+      "recursive_relative_residual": 2.2150602856939267e-06,
+      "cumulative_solve_wall_seconds": 87.62627825099992
+    },
+    {
+      "iteration": 4350,
+      "true_relative_residual": 1.8784837188216043e-06,
+      "recursive_relative_residual": 1.8784837643795937e-06,
+      "cumulative_solve_wall_seconds": 88.11111319200006
+    },
+    {
+      "iteration": 4375,
+      "true_relative_residual": 1.597037165959391e-06,
+      "recursive_relative_residual": 1.5970368455963292e-06,
+      "cumulative_solve_wall_seconds": 88.59257850400002
+    },
+    {
+      "iteration": 4400,
+      "true_relative_residual": 1.473614623503701e-06,
+      "recursive_relative_residual": 1.4736153864963493e-06,
+      "cumulative_solve_wall_seconds": 89.0782531189999
+    },
+    {
+      "iteration": 4425,
+      "true_relative_residual": 1.2495778183405467e-06,
+      "recursive_relative_residual": 1.2495778523872992e-06,
+      "cumulative_solve_wall_seconds": 89.56084443299994
+    },
+    {
+      "iteration": 4450,
+      "true_relative_residual": 1.047812957334322e-06,
+      "recursive_relative_residual": 1.0478129843292896e-06,
+      "cumulative_solve_wall_seconds": 90.04237862000002
+    },
+    {
+      "iteration": 4475,
+      "true_relative_residual": 9.220587844655143e-07,
+      "recursive_relative_residual": 9.220589528062969e-07,
+      "cumulative_solve_wall_seconds": 90.53476764599998
+    },
+    {
+      "iteration": 4500,
+      "true_relative_residual": 7.426638670256718e-07,
+      "recursive_relative_residual": 7.426643683750697e-07,
+      "cumulative_solve_wall_seconds": 91.03743978099999
+    },
+    {
+      "iteration": 4525,
+      "true_relative_residual": 6.557011858278471e-07,
+      "recursive_relative_residual": 6.557015352086346e-07,
+      "cumulative_solve_wall_seconds": 91.57406949499989
+    },
+    {
+      "iteration": 4550,
+      "true_relative_residual": 6.101208947009817e-07,
+      "recursive_relative_residual": 6.101206202492849e-07,
+      "cumulative_solve_wall_seconds": 92.09978605200001
+    },
+    {
+      "iteration": 4575,
+      "true_relative_residual": 5.277880356003145e-07,
+      "recursive_relative_residual": 5.277870243763257e-07,
+      "cumulative_solve_wall_seconds": 92.61935200000005
+    },
+    {
+      "iteration": 4600,
+      "true_relative_residual": 3.813448686073992e-07,
+      "recursive_relative_residual": 3.813449585607929e-07,
+      "cumulative_solve_wall_seconds": 93.11329504499997
+    },
+    {
+      "iteration": 4625,
+      "true_relative_residual": 2.586725456713608e-07,
+      "recursive_relative_residual": 2.5867274858234107e-07,
+      "cumulative_solve_wall_seconds": 93.60564849900004
+    },
+    {
+      "iteration": 4650,
+      "true_relative_residual": 1.771225287388328e-07,
+      "recursive_relative_residual": 1.7712257670577082e-07,
+      "cumulative_solve_wall_seconds": 94.13510580700006
+    },
+    {
+      "iteration": 4675,
+      "true_relative_residual": 1.2186971416553378e-07,
+      "recursive_relative_residual": 1.2186888652525612e-07,
+      "cumulative_solve_wall_seconds": 94.61836665299995
+    },
+    {
+      "iteration": 4700,
+      "true_relative_residual": 9.200465382153021e-08,
+      "recursive_relative_residual": 9.200530331565686e-08,
+      "cumulative_solve_wall_seconds": 95.13123159500003
+    },
+    {
+      "iteration": 4725,
+      "true_relative_residual": 6.031519207398234e-08,
+      "recursive_relative_residual": 6.031479512549623e-08,
+      "cumulative_solve_wall_seconds": 95.63102227599995
+    },
+    {
+      "iteration": 4750,
+      "true_relative_residual": 4.245928611126572e-08,
+      "recursive_relative_residual": 4.245878970829609e-08,
+      "cumulative_solve_wall_seconds": 96.10350004300005
+    },
+    {
+      "iteration": 4775,
+      "true_relative_residual": 3.016432283874764e-08,
+      "recursive_relative_residual": 3.016449594012437e-08,
+      "cumulative_solve_wall_seconds": 96.58782933700002
+    },
+    {
+      "iteration": 4800,
+      "true_relative_residual": 2.5679419194543112e-08,
+      "recursive_relative_residual": 2.5677801566965976e-08,
+      "cumulative_solve_wall_seconds": 97.1119578229999
+    },
+    {
+      "iteration": 4825,
+      "true_relative_residual": 1.633688522866068e-08,
+      "recursive_relative_residual": 1.633619701123319e-08,
+      "cumulative_solve_wall_seconds": 97.58639665399994
+    },
+    {
+      "iteration": 4850,
+      "true_relative_residual": 1.2053514581004657e-08,
+      "recursive_relative_residual": 1.2053380765696561e-08,
+      "cumulative_solve_wall_seconds": 98.0647776479999
+    },
+    {
+      "iteration": 4863,
+      "true_relative_residual": 9.835280063588653e-09,
+      "recursive_relative_residual": 9.833607014493375e-09,
+      "cumulative_solve_wall_seconds": 98.3618516360001
+    },
+    {
+      "iteration": 4863,
+      "true_relative_residual": 9.835280063590309e-09,
+      "cumulative_solve_wall_seconds": 98.37331417600001,
+      "reason": "endpoint_true_verification"
+    }
+  ],
+  "raw_FNO_to_physical_reference": {
+    "relative_l2": 0.12425876390326776,
+    "vector_RMS_mm": 0.024716902890909862,
+    "max_nodal_vector_difference_mm": 0.0981813398075811,
+    "zero_reference": false,
+    "passed": false,
+    "reference_kind": "converged approximate zero-start numerical displacement, not GT"
+  },
+  "feasible_initial_to_physical_reference": {
+    "relative_l2": 0.1242023773297356,
+    "vector_RMS_mm": 0.02470568676885484,
+    "max_nodal_vector_difference_mm": 0.0981813398075811,
+    "zero_reference": false,
+    "passed": false,
+    "reference_kind": "converged approximate zero-start numerical displacement, not GT"
+  },
+  "initial_numerical_comparison": {
+    "config": {
+      "contract": {
+        "stage_contract_sha256": "080401e54f8d1e953028a83acbae76afb537ef16c17637a29f592858ffcc74fd",
+        "case_key": "102_249/ver",
+        "physical_record": {
+          "key": "102_249/ver",
+          "cad": "102_249",
+          "group": "validation",
+          "sources": {
+            "deck": {
+              "path": "data/raw/SolverDeck/102_249.fem",
+              "bytes": 29809150,
+              "mtime_ns": 1791454674147734600
+            },
+            "geometry_h5": {
+              "path": "data/raw/FieldMesh/102_249.h5",
+              "bytes": 39246552,
+              "mtime_ns": 1791453926971284400
+            },
+            "cells_npz": {
+              "path": "data/geobc_gradient_supervision/102_249.npz",
+              "bytes": 34720674,
+              "mtime_ns": 1791521800580428500,
+              "sha256": null
+            },
+            "canonical_npz": {
+              "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+              "bytes": 35482562,
+              "mtime_ns": 1791454718057858700
+            }
+          },
+          "expected_geometry": {
+            "nodes": 211173,
+            "cells": 131480,
+            "canonical_xyz_float32_sha256": "b9b79dcbf8543c01ec365120e2d05526a2f4cef3744ad6527e134ad761c8e341",
+            "grid_node_ids_int64_sha256": "61beab4c5cc505e921a93141ae7d6341dd33eee327c4e513cd7d6e6a6cc957d7",
+            "characteristic_length_mm": 184.9840087890625,
+            "bbox_min_mm": [
+              -38.60179901123047,
+              -164.11900329589844,
+              0.21886509656906128
+            ]
+          },
+          "input_members": {
+            "geometry_h5": [
+              "vertices"
+            ],
+            "cells_npz": [
+              "cells10"
+            ],
+            "canonical_npz": [
+              "xyz",
+              "grid_node_ids"
+            ]
+          },
+          "recipe": {
+            "device": "cuda:0",
+            "dtype": "float64",
+            "seed": 2026,
+            "units": "mm, N, MPa, displacement mm, strain dimensionless",
+            "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+            "node_dofs": 3,
+            "cell_chunk": 8192,
+            "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+            "quadrature_points_per_cell": 4,
+            "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+            "geometry_guard": {
+              "finite": true,
+              "maximum_J_condition": 1000000000000,
+              "minimum_abs_detJ_over_length_cubed": 1e-14,
+              "orientation_consistent_per_cell_at_center_and_four_Q": true,
+              "geometry_repair": false
+            },
+            "reader_scope": {
+              "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+              "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+              "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+              "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+              "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+              "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+              "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+              "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+              "deck_coordinate_relative_tolerance": 1e-05,
+              "material_relative_tolerance": 1e-08,
+              "allowed_static_params": {
+                "POST": [
+                  "-1",
+                  "0",
+                  "1",
+                  "2"
+                ],
+                "AUTOSPC": [
+                  "YES",
+                  "NO"
+                ],
+                "GRDPNT": [
+                  "0"
+                ],
+                "LGDISP": [
+                  "0",
+                  "NO"
+                ],
+                "INREL": [
+                  "0"
+                ],
+                "CHECKEL": [
+                  "NO"
+                ],
+                "RENUMOK": [
+                  "YES"
+                ],
+                "PRINFACC": [
+                  "1"
+                ],
+                "CONTFEL": [
+                  "AUTO"
+                ]
+              },
+              "allowed_gapprm_names": [
+                "GAPCMPL"
+              ],
+              "ignored_output_cards": [
+                "ENDDATA",
+                "OUTPUT",
+                "OUTPUT2",
+                "DISPLACEMENT",
+                "GPSTRESS",
+                "STRESS",
+                "STRAIN",
+                "SPCFORCE",
+                "OLOAD",
+                "GPFORCE",
+                "ECHO",
+                "FORMAT",
+                "ELFORCE",
+                "ESE"
+              ],
+              "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+              "explicit_proprietary_control_exclusions": [
+                {
+                  "output_only_claim": false,
+                  "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+                  "card": "DEBUG",
+                  "original_effect": "unknown",
+                  "value": "0.0",
+                  "classification": "definition_unverified_explicitly_not_reproduced",
+                  "inactive_claim": false,
+                  "name": "LGSHPSNS"
+                }
+              ]
+            },
+            "load_transfer": {
+              "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+              "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+              "minimum_rank": 6,
+              "maximum_normal_condition": 1000000000000,
+              "relative_guard_tolerance": 1e-09,
+              "guards": [
+                "H B=I6",
+                "virtual work",
+                "net force",
+                "net moment about true reference"
+              ],
+              "fallback_or_pseudoinverse": false,
+              "OptiStruct_exact": false
+            },
+            "input_operator": {
+              "maximum_combined_data_operator_wall_seconds": 300,
+              "maximum_guard_K_applications": 8,
+              "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+              "relative_algebra_guard_tolerance": 1e-09,
+              "guards": [
+                "six rigid null residuals",
+                "u^TKv=v^TKu",
+                "nonnegative two random energies",
+                "constraints eliminate rigid motion"
+              ],
+              "all_inputs_target_free": true,
+              "repeat_setup_or_guards_in_solve": false
+            },
+            "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+            "solve": {
+              "method": "PCG",
+              "initial_guess": "zero",
+              "maximum_iterations": 10000,
+              "maximum_cumulative_solve_wall_seconds": 300,
+              "true_relative_residual_tolerance": 1e-08,
+              "true_residual_interval": 25,
+              "checkpoint_interval": 25,
+              "budget_includes": [
+                "K apply",
+                "preconditioner",
+                "reductions",
+                "true residual verification"
+              ],
+              "resume_budget_reset": false,
+              "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+              "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+            },
+            "post_solve": {
+              "all_original_nodes": true,
+              "prediction_and_equilibrium_before_labels": true,
+              "label_reads": 1,
+              "label_scope": "Only current fixed CAD/ver displacement after persisted finite endpoint/equilibrium and positive remaining stage budget",
+              "metrics": [
+                "allN displacement vector relativeL2",
+                "vector RMS mm",
+                "max nodal vector error mm",
+                "support/load-interface/interior fixed regions",
+                "true free residual",
+                "constraint reaction",
+                "global net force/moment balance"
+              ],
+              "stress_scalar_comparison": false,
+              "old_final_reads": 0,
+              "DEV_dia_reads": 0,
+              "sealed_new_test_reads": 0,
+              "training_updates": 0,
+              "scaler_fits": 0
+            }
+          },
+          "array_identity_policy": "vertices/cells10 first formal input read hashes recorded; no invented inherited hashes",
+          "deferred_displacement_source": {
+            "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+            "bytes": 35482562,
+            "mtime_ns": 1791454718057858700
+          },
+          "data_output": "data/geobc_elastic_crosscad5/102_249/input",
+          "operator_output": "data/geobc_elastic_crosscad5/102_249/operator",
+          "solve_output": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver"
+        },
+        "checkpoint": {
+          "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+          "bytes": 170464827,
+          "mtime_ns": 1791557354819071400
+        },
+        "source_sha256": "d20cb5e82e1ae124437f87b7c609ffc59fe8d2d267d47940241746867d81de08"
+      },
+      "stage": "elastic_fno_warm_pcg"
+    },
+    "raw_FNO_to_physical_reference": {
+      "relative_l2": 0.12425876390326776,
+      "vector_RMS_mm": 0.024716902890909862,
+      "max_nodal_vector_difference_mm": 0.0981813398075811,
+      "zero_reference": false,
+      "passed": false,
+      "reference_kind": "converged approximate zero-start numerical displacement, not GT"
+    },
+    "feasible_initial_to_physical_reference": {
+      "relative_l2": 0.1242023773297356,
+      "vector_RMS_mm": 0.02470568676885484,
+      "max_nodal_vector_difference_mm": 0.0981813398075811,
+      "zero_reference": false,
+      "passed": false,
+      "reference_kind": "converged approximate zero-start numerical displacement, not GT"
+    },
+    "raw_fixed_translation_max_abs_mm": 0.02686774400294143,
+    "raw_to_feasible_max_nodal_difference_mm": 0.028625165601823568,
+    "feasible_initial_prediction": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_fno_warmstart5_ver/102_249_ver/feasible_initial_u_mm.npy",
+      "bytes": 5068280,
+      "mtime_ns": 1791582412682895000,
+      "shape": [
+        211173,
+        3
+      ],
+      "dtype": "torch.float64"
+    },
+    "same_original_node_identity": true,
+    "GT_reads": 0
+  },
+  "raw_FNO_prediction": {
+    "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_fno_warmstart5_ver/102_249_ver/raw_FNO_u_mm.npy",
+    "bytes": 5068280,
+    "mtime_ns": 1791582411841869900,
+    "shape": [
+      211173,
+      3
+    ],
+    "dtype": "torch.float64"
+  },
+  "prediction": {
+    "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_fno_warmstart5_ver/102_249_ver/physical_u_mm.npy",
+    "bytes": 5068280,
+    "mtime_ns": 1791582518915176400,
+    "shape": [
+      211173,
+      3
+    ],
+    "dtype": "torch.float64"
+  },
+  "physical_u_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_fno_warmstart5_ver/102_249_ver/physical_u_mm.npy",
+  "constraint_reaction": {
+    "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_fno_warmstart5_ver/102_249_ver/constraint_reaction_N.npy",
+    "bytes": 5068280,
+    "mtime_ns": 1791582518932175100,
+    "shape": [
+      211173,
+      3
+    ],
+    "dtype": "torch.float64"
+  },
+  "source_grid_node_ids": {
+    "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_fno_warmstart5_ver/102_249_ver/source_grid_node_ids.npy",
+    "bytes": 1689512,
+    "mtime_ns": 1791582518943177000,
+    "shape": [
+      211173
+    ],
+    "dtype": "torch.int64"
+  },
+  "equilibrium": {
+    "true_free_residual_relative": 9.83528006324119e-09,
+    "true_free_residual_norm_N": 1.2338182557776782e-05,
+    "constraint_reaction_sum_N": [
+      -1.5554157243968803e-05,
+      4.0110747249855194e-05,
+      -35585.770008950654
+    ],
+    "net_force_with_reaction_N": [
+      -1.5554157471342478e-05,
+      4.011074406662374e-05,
+      -8.950655683293007e-06
+    ],
+    "net_moment_with_reaction_Nmm": [
+      0.0015715559420641512,
+      0.0005252429691608995,
+      -0.0007349097868427634
+    ],
+    "fixed_translation_max_abs_mm": 0.0,
+    "full_K_verification_calls": 1
+  },
+  "memory": {
+    "peak_allocated_bytes": 345082880,
+    "peak_reserved_bytes": 989855744
+  },
+  "neural_frontend": {
+    "input_record": {
+      "physical_record": {
+        "key": "102_249/ver",
+        "cad": "102_249",
+        "group": "validation",
+        "sources": {
+          "deck": {
+            "path": "data/raw/SolverDeck/102_249.fem",
+            "bytes": 29809150,
+            "mtime_ns": 1791454674147734600
+          },
+          "geometry_h5": {
+            "path": "data/raw/FieldMesh/102_249.h5",
+            "bytes": 39246552,
+            "mtime_ns": 1791453926971284400
+          },
+          "cells_npz": {
+            "path": "data/geobc_gradient_supervision/102_249.npz",
+            "bytes": 34720674,
+            "mtime_ns": 1791521800580428500,
+            "sha256": null
+          },
+          "canonical_npz": {
+            "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+            "bytes": 35482562,
+            "mtime_ns": 1791454718057858700
+          }
+        },
+        "expected_geometry": {
+          "nodes": 211173,
+          "cells": 131480,
+          "canonical_xyz_float32_sha256": "b9b79dcbf8543c01ec365120e2d05526a2f4cef3744ad6527e134ad761c8e341",
+          "grid_node_ids_int64_sha256": "61beab4c5cc505e921a93141ae7d6341dd33eee327c4e513cd7d6e6a6cc957d7",
+          "characteristic_length_mm": 184.9840087890625,
+          "bbox_min_mm": [
+            -38.60179901123047,
+            -164.11900329589844,
+            0.21886509656906128
+          ]
+        },
+        "input_members": {
+          "geometry_h5": [
+            "vertices"
+          ],
+          "cells_npz": [
+            "cells10"
+          ],
+          "canonical_npz": [
+            "xyz",
+            "grid_node_ids"
+          ]
+        },
+        "recipe": {
+          "device": "cuda:0",
+          "dtype": "float64",
+          "seed": 2026,
+          "units": "mm, N, MPa, displacement mm, strain dimensionless",
+          "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+          "node_dofs": 3,
+          "cell_chunk": 8192,
+          "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+          "quadrature_points_per_cell": 4,
+          "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+          "geometry_guard": {
+            "finite": true,
+            "maximum_J_condition": 1000000000000,
+            "minimum_abs_detJ_over_length_cubed": 1e-14,
+            "orientation_consistent_per_cell_at_center_and_four_Q": true,
+            "geometry_repair": false
+          },
+          "reader_scope": {
+            "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+            "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+            "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+            "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+            "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+            "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+            "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+            "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+            "deck_coordinate_relative_tolerance": 1e-05,
+            "material_relative_tolerance": 1e-08,
+            "allowed_static_params": {
+              "POST": [
+                "-1",
+                "0",
+                "1",
+                "2"
+              ],
+              "AUTOSPC": [
+                "YES",
+                "NO"
+              ],
+              "GRDPNT": [
+                "0"
+              ],
+              "LGDISP": [
+                "0",
+                "NO"
+              ],
+              "INREL": [
+                "0"
+              ],
+              "CHECKEL": [
+                "NO"
+              ],
+              "RENUMOK": [
+                "YES"
+              ],
+              "PRINFACC": [
+                "1"
+              ],
+              "CONTFEL": [
+                "AUTO"
+              ]
+            },
+            "allowed_gapprm_names": [
+              "GAPCMPL"
+            ],
+            "ignored_output_cards": [
+              "ENDDATA",
+              "OUTPUT",
+              "OUTPUT2",
+              "DISPLACEMENT",
+              "GPSTRESS",
+              "STRESS",
+              "STRAIN",
+              "SPCFORCE",
+              "OLOAD",
+              "GPFORCE",
+              "ECHO",
+              "FORMAT",
+              "ELFORCE",
+              "ESE"
+            ],
+            "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+            "explicit_proprietary_control_exclusions": [
+              {
+                "output_only_claim": false,
+                "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+                "card": "DEBUG",
+                "original_effect": "unknown",
+                "value": "0.0",
+                "classification": "definition_unverified_explicitly_not_reproduced",
+                "inactive_claim": false,
+                "name": "LGSHPSNS"
+              }
+            ]
+          },
+          "load_transfer": {
+            "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+            "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+            "minimum_rank": 6,
+            "maximum_normal_condition": 1000000000000,
+            "relative_guard_tolerance": 1e-09,
+            "guards": [
+              "H B=I6",
+              "virtual work",
+              "net force",
+              "net moment about true reference"
+            ],
+            "fallback_or_pseudoinverse": false,
+            "OptiStruct_exact": false
+          },
+          "input_operator": {
+            "maximum_combined_data_operator_wall_seconds": 300,
+            "maximum_guard_K_applications": 8,
+            "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+            "relative_algebra_guard_tolerance": 1e-09,
+            "guards": [
+              "six rigid null residuals",
+              "u^TKv=v^TKu",
+              "nonnegative two random energies",
+              "constraints eliminate rigid motion"
+            ],
+            "all_inputs_target_free": true,
+            "repeat_setup_or_guards_in_solve": false
+          },
+          "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+          "solve": {
+            "method": "PCG",
+            "initial_guess": "zero",
+            "maximum_iterations": 10000,
+            "maximum_cumulative_solve_wall_seconds": 300,
+            "true_relative_residual_tolerance": 1e-08,
+            "true_residual_interval": 25,
+            "checkpoint_interval": 25,
+            "budget_includes": [
+              "K apply",
+              "preconditioner",
+              "reductions",
+              "true residual verification"
+            ],
+            "resume_budget_reset": false,
+            "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+            "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+          },
+          "post_solve": {
+            "all_original_nodes": true,
+            "prediction_and_equilibrium_before_labels": true,
+            "label_reads": 1,
+            "label_scope": "Only current fixed CAD/ver displacement after persisted finite endpoint/equilibrium and positive remaining stage budget",
+            "metrics": [
+              "allN displacement vector relativeL2",
+              "vector RMS mm",
+              "max nodal vector error mm",
+              "support/load-interface/interior fixed regions",
+              "true free residual",
+              "constraint reaction",
+              "global net force/moment balance"
+            ],
+            "stress_scalar_comparison": false,
+            "old_final_reads": 0,
+            "DEV_dia_reads": 0,
+            "sealed_new_test_reads": 0,
+            "training_updates": 0,
+            "scaler_fits": 0
+          }
+        },
+        "array_identity_policy": "vertices/cells10 first formal input read hashes recorded; no invented inherited hashes",
+        "deferred_displacement_source": {
+          "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+          "bytes": 35482562,
+          "mtime_ns": 1791454718057858700
+        },
+        "data_output": "data/geobc_elastic_crosscad5/102_249/input",
+        "operator_output": "data/geobc_elastic_crosscad5/102_249/operator",
+        "solve_output": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver"
+      },
+      "source": {
+        "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+        "bytes": 35482562,
+        "mtime_ns": 1791454718057858700
+      },
+      "base": {
+        "status": "completed",
+        "identity_valid": true,
+        "numerical_state": "converged",
+        "numerically_converged": true,
+        "true_relative_residual": 9.923621303780578e-09,
+        "input_compatible": true,
+        "operator_compatible": true,
+        "original_metrics_available": true,
+        "summary_sha256": "782614bbbbb9525ca8677f18d02a52e5dc07029fbf61d8b22f6e34c2ecf2d538",
+        "physical_u_record": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy",
+          "bytes": 5068280,
+          "mtime_ns": 1791580868309836200,
+          "shape": [
+            211173,
+            3
+          ],
+          "dtype": "torch.float64"
+        },
+        "costs": {
+          "zero_cold_cost_seconds": 101.030087958,
+          "inherited_physical_input_operator_seconds": 6.032695052000008
+        },
+        "cold_components_complete": true
+      }
+    },
+    "checkpoint": {
+      "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+      "bytes": 170464827,
+      "mtime_ns": 1791557354819071400
+    },
+    "raw_prediction": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_fno_warmstart5_ver/102_249_ver/raw_FNO_u_mm.npy",
+      "bytes": 5068280,
+      "mtime_ns": 1791582411841869900,
+      "shape": [
+        211173,
+        3
+      ],
+      "dtype": "torch.float64"
+    },
+    "frontend_seconds": 0.11262277000002996,
+    "inference_query_decode_seconds": 0.004002462000016749,
+    "prediction_persistence_seconds": 0.02675522499998806,
+    "cloud": {
+      "cad_key": "102_249",
+      "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/102_249_ver.npz",
+      "pool": "unique original quadratic-boundary node IDs",
+      "candidate_nodes": 70254,
+      "selected_nodes": 1024,
+      "cloud_points": 1024,
+      "seed": 2026,
+      "coordinate_system": "prepared normalized xyz; isotropic and aspect-ratio preserving",
+      "target_independent": true,
+      "all_loads_share_one_cad_cloud": true,
+      "sampling": "uniform unique FEM nodes, not uniform surface area"
+    },
+    "node_count": 211173,
+    "cold_frontend_rebuilt": true,
+    "cached_grid_reads": 0,
+    "canonical_members_accessed": [
+      "xyz",
+      "features",
+      "grid_node_ids",
+      "sample_key",
+      "label_alignment",
+      "faces (optional by original cloud loader)"
+    ],
+    "coordinate_GRID_identity_checked": true,
+    "read_receipt": {
+      "GT_reads": 0,
+      "displacement_reads": 0,
+      "stress_reads": 0,
+      "old_final_reads": 0,
+      "DEV_dia_reads": 0,
+      "sealed_new_test_reads": 0,
+      "optimizer_steps": 0,
+      "scaler_fits": 0,
+      "K_guards_repeated": 0,
+      "setup_repeated": 0
+    }
+  },
+  "inherited_operator_guard_K_count": 8,
+  "scope": "Numerical reference agreement only; no new GT accuracy"
+}

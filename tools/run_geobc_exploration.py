@@ -43,9 +43,13 @@ def load_jobs(plan: Path, only: list[str] | None = None) -> list[dict[str, Any]]
 
 
 def read_json_if_exists(path: Path) -> dict[str, Any] | None:
-    if not path.exists():
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        # Status writers replace files atomically. WSL's mounted Windows
+        # filesystem can briefly lose the directory entry during replacement.
+        # Retry on the next poll instead of aborting the live child process.
         return None
-    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
@@ -198,6 +202,60 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             raise ValueError(f"Physical input metadata or label-access contract differs: {job['name']}")
         if summary != read_cache_metadata(requested_plan, contract=contract):
             raise ValueError(f"Physical input cache differs from its frozen source identities: {job['name']}")
+    elif "geobc.elastic_stress_readout" in command:
+        from geobc.elastic_stress_readout import request_contract
+        requested_plan = command[command.index("--plan") + 1]
+        contract, requested = request_contract(requested_plan)
+        if (summary.get("kind") != "elastic_signed_stress_readout_screen"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("train_keys") != requested["train_keys"]
+                or summary.get("validation_keys") != requested["validation_keys"]
+                or set(summary.get("cases", {})) != set(requested["train_keys"] + requested["validation_keys"])
+                or set(summary.get("arms", {})) != set(requested["neural"]["arms"])):
+            raise ValueError(f"Stress readout screen differs from its frozen cases, arms or source recipe: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("displacement_reads", "old_final_reads", "DEV_dia_reads", "sealed_new_test_reads"):
+            if receipt.get(key) != 0:
+                raise ValueError(f"Stress readout screen unexpectedly accessed {key}: {job['name']}")
+        for key in ("GT_reads", "stress_reads", "TRAIN_stress_reads", "DEV_stress_reads", "optimizer_steps", "scaler_fits"):
+            if type(receipt.get(key)) is not int or receipt[key] < 0:
+                raise ValueError(f"Stress readout screen has no actual nonnegative {key} receipt: {job['name']}")
+        if (receipt["GT_reads"] != receipt["stress_reads"]
+                or receipt["stress_reads"] != receipt["TRAIN_stress_reads"] + receipt["DEV_stress_reads"]):
+            raise ValueError(f"Stress-only label receipt is inconsistent: {job['name']}")
+        # Scientific budget/performance negatives still complete this frozen
+        # stage; exact120/finite DEV2 and accuracy gates are the reporter's job.
+    elif "geobc.elastic_fno_warmstart" in command:
+        from geobc.elastic_fno_warmstart import request_contract
+        requested_plan = command[command.index("--plan") + 1]
+        contract, requested = request_contract(requested_plan)
+        if (summary.get("kind") != "elastic_frozen_fno_warmstart_screen"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("case_keys") != requested["case_keys"]
+                or set(summary.get("cases", {})) != set(requested["case_keys"])):
+            raise ValueError(f"Frozen FNO/PCG comparison identity differs: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("GT_reads", "displacement_reads", "stress_reads", "old_final_reads",
+                    "DEV_dia_reads", "sealed_new_test_reads", "optimizer_steps", "scaler_fits"):
+            if receipt.get(key) != 0:
+                raise ValueError(f"Frozen FNO/PCG comparison unexpectedly accessed {key}: {job['name']}")
+    elif "geobc.elastic_crosscad" in command:
+        from geobc.elastic_crosscad import request_contract
+        requested_plan = command[command.index("--plan") + 1]
+        contract, requested = request_contract(requested_plan)
+        if (summary.get("kind") != "elastic_crosscad_screen"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("case_keys") != requested["case_keys"]
+                or set(summary.get("cases", {})) != set(requested["case_keys"])):
+            raise ValueError(f"Physical screen differs from its five fixed cases/source/budgets: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        reads = receipt.get("displacement_reads")
+        if not isinstance(reads, int) or not 0 <= reads <= len(requested["case_keys"]):
+            raise ValueError(f"Physical screen displacement-read budget differs: {job['name']}")
+        for key in ("stress_reads", "old_final_reads", "DEV_dia_reads", "sealed_new_test_reads",
+                    "model_or_weight_reads", "optimizer_steps", "scaler_fits"):
+            if receipt.get(key) != 0:
+                raise ValueError(f"Physical screen unexpectedly accessed {key}: {job['name']}")
     elif "geobc.elastic_pilot_convergence" in command:
         from geobc.elastic_pilot_convergence import request_contract
         requested_plan = command[command.index("--plan") + 1]

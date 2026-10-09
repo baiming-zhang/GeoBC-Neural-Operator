@@ -17,3 +17,7 @@
 两条都以物理模型可信为前提；若该前提未通过，不自动启动。旧final不再用于开发、新test继续封存，新的适配最终需独立未使用评估集。不同路线的输入与容量不同，按精度—成本证据选型，不能作单因素因果或工程合格结论。
 
 实际数值确认更新：独立残差-only延续于4093步通过9.977e−9，累计solve57.011秒；GT读取0。原2000端点的0.027338%不得移作新端点精度。后续多CAD/warmstart仍待root冻结。
+
+五新CAD正式更新：101_428/ver、101_56/ver、101_78/ver、102_249/ver、102_38/ver，全部通过真残差1e-8、全N位移相对L2均值0.016226752%、最差0.016232272%，cold77–101秒，总StageClock459.89244秒（含明确的恢复保守成本）。原建议中的含101_479被正式独立五新CAD plan替代；101_479没有重开。root已据此决定继续唯一冻结FNO2026端点初值速度对照，规则 notes/geobc_elastic_hybrid_plan.json。门在新权重/数组读取前冻结20%完整cold收益4/5、最坏ratio≤1.10、5/5真收敛及同解；GT0，不重训。不达门就停止这条初值路线，下一宏观问题是原signedscalarstress，而不是救初值小差距。
+
+实际初值决策更新（05:50北京时间）：435.142秒完成，5/5真收敛且同数值解，但20%完整cold收益0/5；关闭固定FNO2026初值配方。两代表例101_428、102_249与旧物理解的初值U差14.7%、12.4%，初始true relative residual217、327，迭代4230→4307、4713→4863；数值参考非GT，不转移旧精度。节点值相近不足以保证方程平衡或提速。接下来独立科学冻结 notes/geobc_stress_readout_plan.json：physical tensor6 vs zero槽同MLP的原signed stress粗筛，3TRAIN+2DEV/ver、各120fullcaseupdates，900秒总预算与实质mean/worst/hotspot门；目前源码准备，不追加Hash或FNO初值微调。低依赖两层数值求解候选仅 notes/geobc_macro_solver_next_options.md 提案，待本粗筛证据后再决定。

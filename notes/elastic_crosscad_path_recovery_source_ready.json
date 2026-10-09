@@ -1,0 +1,25 @@
+{
+  "status": "source_ready_path_compatibility_repair_AST_passed_actual_not_executed",
+  "source": "geobc/elastic_crosscad.py",
+  "source_sha256": "a901f0fda25ff8d5ad1b470af46ee0b8aed83ea9f5ce764a3251bc2ecec04d52",
+  "previous_source_sha256": "9d03591427c84a276ceefbe2fa6a557e6d17cc0b39f1a66c4c1c97896329db48",
+  "previous_ready_preserved": "notes/elastic_crosscad_source_ready.json",
+  "reason": "Root source/API review found formal cases.solve_output uses CAD_ver, while fallback and assertion used CAD. No actual stage had run.",
+  "changes": [
+    "solve_output fallback uses CAD+_ver",
+    "solve_output assertion matches formal plan CAD+_ver"
+  ],
+  "scientific_rules_plan_outputs_other_sources_unchanged": true,
+  "checks": {
+    "AST_passed": true,
+    "AST_calls_this_repair": 1,
+    "AST_elapsed_seconds": 0.0056444997899234295,
+    "module_imports": 0,
+    "contract_or_preflight_calls": 0,
+    "scientific_array_reads": 0,
+    "raw_deck_reads": 0,
+    "GT_reads": 0,
+    "GPU_calls": 0,
+    "actual_runs": 0
+  }
+}

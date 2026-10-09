@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_physical_residual_verification",
+  "stage": "solver_stress_readout_selection",
   "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,34 +21,54 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "brief_action": "残差-only确认已收敛，累计57秒。下一步固定3TRAIN+升序2DEV几何的物理基线，候选初筛后再决定学习初值与物理校正。",
+    "brief_action": "Physical tensor6 rough readout completed46.260秒，DEV S94.62→31.76%/hotspot97.57→53.80%，25%eachDEV门FAIL。关闭固定120step raw6配方；先用唯一q invariant与已committed标签cache做magnitude-only诊断，区分物理恢复误差和标量读出不足，不训练/不猜sign/不修改labels。",
     "scope": "Broad solver selection: physics is a candidate; no Hash/width/seed microtuning. Numerical continuation precedes any broad physical or hybrid candidate test; oldfinal/newsealed remain closed.",
-    "stage": "solver_physical_crosscad_design",
-    "proposal": "notes/geobc_physical_solver_candidate_design.md",
+    "stage": "solver_stress_magnitude_diagnostic_preparation",
+    "proposal": "notes/geobc_physics_stress_readout_proposal.md",
     "mechanics_input_feasibility": "notes/solver_mechanics_input_feasibility.md"
   },
   "jobs": [
     {
-      "requires": [
-        "notes/geobc_elastic_convergence_plan.json",
-        "notes/elastic_pilot_convergence_source_ready.json",
-        "notes/elastic_pilot_convergence_root_review.json",
-        "runs/geobc_exploration/elastic_physical101479_ver/checkpoint.json",
-        "data/geobc_elastic_operator101479/summary.json"
-      ],
-      "stage": "solver_physical_residual_verification",
+      "name": "elastic_fno_warmstart5_ver",
+      "stage": "solver_physical_hybrid_selection",
+      "kind": "elastic_frozen_fno_warmstart_screen",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.elastic_pilot_convergence",
+        "geobc.elastic_fno_warmstart",
         "--plan",
-        "notes/geobc_elastic_convergence_plan.json",
+        "notes/geobc_elastic_hybrid_plan.json",
         "--output",
-        "runs/geobc_exploration/elastic_convergence101479_ver"
+        "runs/geobc_exploration/elastic_fno_warmstart5_ver"
       ],
-      "output": "runs/geobc_exploration/elastic_convergence101479_ver",
-      "name": "elastic_convergence101479_ver",
-      "kind": "elastic_residual_continuation"
+      "requires": [
+        "notes/geobc_elastic_hybrid_plan.json",
+        "notes/elastic_fno_warmstart_source_ready.json",
+        "notes/elastic_fno_warmstart_root_review.json",
+        "geobc/elastic_fno_warmstart.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_fno_warmstart5_ver"
+    },
+    {
+      "name": "elastic_stress_readout5_ver",
+      "stage": "solver_stress_readout_selection",
+      "kind": "elastic_signed_stress_readout_screen",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_stress_readout",
+        "--plan",
+        "notes/geobc_stress_readout_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_stress_readout5_ver"
+      ],
+      "requires": [
+        "notes/geobc_stress_readout_plan.json",
+        "notes/elastic_stress_readout_source_ready.json",
+        "notes/elastic_stress_readout_root_review.json",
+        "geobc/elastic_stress_readout.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_stress_readout5_ver"
     }
   ],
   "historical_jobs": [
@@ -3250,6 +3270,49 @@
         "data/geobc_elastic_operator101479/physical_gradients.npy",
         "data/geobc_elastic_operator101479/free_cholesky.npy"
       ]
+    },
+    {
+      "requires": [
+        "notes/geobc_elastic_convergence_plan.json",
+        "notes/elastic_pilot_convergence_source_ready.json",
+        "notes/elastic_pilot_convergence_root_review.json",
+        "runs/geobc_exploration/elastic_physical101479_ver/checkpoint.json",
+        "data/geobc_elastic_operator101479/summary.json"
+      ],
+      "stage": "solver_physical_residual_verification",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_pilot_convergence",
+        "--plan",
+        "notes/geobc_elastic_convergence_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_convergence101479_ver"
+      ],
+      "output": "runs/geobc_exploration/elastic_convergence101479_ver",
+      "name": "elastic_convergence101479_ver",
+      "kind": "elastic_residual_continuation"
+    },
+    {
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_crosscad",
+        "--plan",
+        "notes/geobc_elastic_crosscad_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_crosscad5_ver"
+      ],
+      "stage": "solver_physical_crosscad_screen",
+      "name": "elastic_crosscad5_ver",
+      "kind": "elastic_crosscad_screen",
+      "requires": [
+        "notes/geobc_elastic_crosscad_plan.json",
+        "notes/elastic_crosscad_zero_reference_source_ready.json",
+        "notes/elastic_crosscad_root_review.json",
+        "geobc/elastic_crosscad.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_crosscad5_ver"
     }
   ],
   "phase_history": [
@@ -3722,5 +3785,133 @@
     "new_solve_seconds": 29.034314095,
     "report": "results/elastic_convergence/BRIEF.md",
     "true_relative_residual": 9.9770555571315E-09
+  },
+  "physical_crosscad_source_preparation": {
+    "total_nodes_from_metadata": 1092529,
+    "case_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver",
+      "102_249/ver",
+      "102_38/ver"
+    ],
+    "source_owner": "topology_train_impl",
+    "status": "source_in_progress",
+    "total_cells_from_metadata": 684470,
+    "readiness": "Once final AST by author, necessary source/API review by root; first actual input/operator accepts geometry without toy or prior raw/array scan",
+    "design_owner": "deepjeb_research",
+    "source_eta_minutes": [
+      15,
+      20
+    ],
+    "train_CADs": [
+      "101_428",
+      "101_56",
+      "101_78"
+    ],
+    "parent_pilot_reopened": false,
+    "maximum_each_iterations": 10000,
+    "maximum_stage_seconds": 900,
+    "started_at_utc": "2026-10-09T20:45:00Z",
+    "source": "geobc/elastic_crosscad.py",
+    "DEV_CADs": [
+      "102_249",
+      "102_38"
+    ],
+    "maximum_each_solve_seconds": 300,
+    "plan": "notes/geobc_elastic_crosscad_plan.json",
+    "source_ready": "notes/elastic_crosscad_source_ready.json",
+    "root_review": "notes/elastic_crosscad_root_review.json",
+    "report_source": "tools/summarize_elastic_crosscad.py",
+    "actual_execution_released": true,
+    "released_at_utc": "2026-10-09T21:07:38.3355752Z",
+    "runtime_recovery": "notes/elastic_crosscad_runtime_recovery_root.json",
+    "running_coordinator_linux_pid": 378
+  },
+  "private_stage_delivery": {
+    "commit": "2926c3c8849e2145c8eb3823bda7a2761f8b830b",
+    "research": "ongoing",
+    "receipt": "notes/github_publish_receipt.json",
+    "owner": "baiming-zhang",
+    "repo": "GeoBC-Neural-Operator",
+    "status": "published_verified_by_script",
+    "delivered_completed_jobs": 88,
+    "at_utc": "2026-10-09T20:45:14.5627495Z",
+    "verified": "Publisher compared git ls-remote main to local commit and asserted owner/name/private via API after push",
+    "private": true
+  },
+  "physical_crosscad_completed_readout": {
+    "decision": "proceed_frozen_FNO_warmstart",
+    "reason": "Five compatible, converged numerical endpoints with low original-node displacement error justify one fixed macro initial-guess speed comparison; not final solver selection",
+    "base_summary": "runs/geobc_exploration/elastic_crosscad5_ver/summary.json",
+    "base_summary_sha256": "e3d10a73758a30ff6b0cc1ec475dc8571f9177ee660f48f0585df203b058bee2",
+    "base_report": "results/elastic_crosscad/metrics.json",
+    "base_report_sha256": "ca1039e56c6aa56a89dcc3cf58948d36aa90574ded20ab528c844518b1f55410",
+    "fixed_denominator": 5,
+    "converged": 5,
+    "mean_U_percent": 0.016226752070089494,
+    "worst_U_percent": 0.016232271888167626,
+    "stage_cumulative_wall_seconds": 459.892439847,
+    "GT_scope_for_next_stage": 0,
+    "actual_execution_released": false,
+    "created_at_utc": "2026-10-09T21:27:18.7931279Z"
+  },
+  "hybrid_source_preparation": {
+    "plan": "notes/geobc_elastic_hybrid_plan.json",
+    "source": "geobc/elastic_fno_warmstart.py",
+    "author": "/root/topology_train_impl",
+    "reporter_author": "/root/deepjeb_research",
+    "actual_execution_released": true,
+    "source_estimated_minutes": 15,
+    "source_expected_complete_Beijing": "2026-10-10 05:35–05:40",
+    "previous_coordinator_phase": "completed",
+    "previous_coordinator_pid": 365,
+    "launch_policy": "Prepare queue integration then sole waiting coordinator; do not restart any live coordinator/GPU process",
+    "released_at_utc": "2026-10-09T21:42:16.5286316Z",
+    "coordinator_linux_pid": 394
+  },
+  "fno_warmstart_completed_readout": {
+    "decision": "close_frozen_FNO_initial_guess_recipe",
+    "summary": "runs/geobc_exploration/elastic_fno_warmstart5_ver/summary.json",
+    "report": "results/elastic_fno_warmstart/metrics.json",
+    "converged": 5,
+    "same_solution": 5,
+    "significant_cold_gain_cases": 0,
+    "stage_seconds": 435.142297734,
+    "GT_reads": 0,
+    "status": "completed"
+  },
+  "stress_readout_source_preparation": {
+    "plan": "notes/geobc_stress_readout_plan.json",
+    "source": "geobc/elastic_stress_readout.py",
+    "scientific_rules_frozen": true,
+    "actual_execution_released": true,
+    "began_at_utc": "2026-10-09T21:54:25.342739Z",
+    "expected_ready_Beijing": "2026-10-10 06:12–06:20",
+    "author": "/root/topology_train_impl",
+    "reporter_author": "/root/deepjeb_research",
+    "launch_policy": "Sole queue only after source pins and real root review; completed current coordinator394 is not GPU running",
+    "coordinator_linux_pid": 269,
+    "coordinator_windows_pid": 13652,
+    "coordinator_phase": "completed",
+    "released_at_utc": "2026-10-09T22:15:25.6269248Z"
+  },
+  "stress_readout_completed_readout": {
+    "status": "completed",
+    "summary": "runs/geobc_exploration/elastic_stress_readout5_ver/summary.json",
+    "report": "results/elastic_stress_readout/metrics.json",
+    "stage_seconds": 46.25973124,
+    "direct_DEV_mean_S_percent": 94.62095849,
+    "tensor_DEV_mean_S_percent": 31.76291566,
+    "tensor_DEV_worst_S_percent": 38.53850357,
+    "direct_hotspot_mean_percent": 97.5657719,
+    "tensor_hotspot_mean_percent": 53.80164627,
+    "decision": "close_frozen_raw6_stress_recipe; diagnose constitutive magnitude agreement before deciding a different macro solver",
+    "GT_reads": 5,
+    "displacement_reads": 0,
+    "actual_updates": 240,
+    "scalar_and_tensor_scaler_fits": 2,
+    "coordinator_linux_pid": 269,
+    "coordinator_completed": true
   }
 }
