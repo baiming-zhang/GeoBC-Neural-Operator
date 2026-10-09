@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "review_type": "independent_focused_static_source_API_and_receipt_review",
+  "formal_plan": "notes/geobc_continuous_geometry_plan.json",
+  "formal_plan_sha256": "16169bbd20fc1d746cc8ccf88fa9d4c287fa410744d4ee8b6f0bb210543bb71f",
+  "implementation_policy": "notes/continuous_query_geometry_implementation_policy.json",
+  "implementation_policy_sha256": "13dd1a57dd368a9f44e74841408a30d6ac95da335fcba97a9cc1825e4eaf446f",
+  "design_review": "notes/continuous_query_geometry_design_review.json",
+  "design_review_sha256": "ac11ad35756bddee9a6b08a17936204dab7e31fb5142561517383a0f96614e15",
+  "source_sha256": {
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "tools/validate_continuous_query_geometry.py": "5308f33835164633251e743ae8896cf9536c149a4c6e40ff6437007dceff3e5f"
+  },
+  "ready_records": {
+    "notes/continuous_query_geometry_module_ready.json": "036c7aee66149d0c2070848996bcc54d9c25dd55feb314bfbb662e75197d5063",
+    "notes/continuous_query_geometry_ready.json": "72736ad3f94587799fd133c00d00f3783af98995fde17a0e601d96124aa72bec"
+  },
+  "blocking_findings": [],
+  "resolved_findings": [
+    {
+      "issue": "Tool initially expected status=ready and plan_sha256 in the module ready note; the actual frozen module ready record uses source_ready_author_synthetic_fixture_passed and formal_plan_sha256.",
+      "resolution": "Final tool lines145-152 consume the actual record, require the policy SHA, and pin both the module source SHA and module-ready SHA. Only this local change and the author's scoped failure-record/SVD handling changes were reviewed again."
+    }
+  ],
+  "checks": {
+    "source_and_ready_identity": {
+      "passed": true,
+      "evidence": "Both final source files, formal plan, implementation policy and ready records were hashed with the standard library. Source and ready recorded identities agree. No module, fixture, preflight or scientific loader was executed by this reviewer."
+    },
+    "math_and_full10_order": {
+      "passed": true,
+      "evidence": "Signed corner Li(2Li-1), midside4LiLj and VTK edge order are preserved. J[physical_coordinate,reference_coordinate] is used in the physical Newton solve. Bezier edge controls2Xm-(Xa+Xb)/2 give the conservative quadratic bounds. All10 physical positions and independent midsides remain unchanged."
+    },
+    "source_scope_and_input_identity": {
+      "passed": true,
+      "evidence": "request_contract imports only stdlib and checks the frozen plan/policy/ancestors/source/manifest identities plus file stats and TRAIN membership. Runtime reads H5 vertices only, gradient cells10 only, and explicit allowlisted prepared/local/Euclidean members. H5 field data, GT, reference-strain caches, weights and model loaders are absent. Physical vertices are read as sourcefloat32, hashed, then promoted to float64; cached normalized xyz is exactly replayed in sourcefloat32 arithmetic and hashed. GRID IDs are provenance, never node indices."
+    },
+    "descriptor_extension": {
+      "passed": true,
+      "evidence": "Raw43 is the cloned original25 with force/moment7:13 zeroed plus existing local13 and Euclidean5. Globally indexed S32 is transformed by nonaffine LN(eps1e-5) and tanh at nodes before interpolation. Raw43, Q32 and cachedxyz use the same signed all10 gather/sum; the midside-only spike explicitly rejects a corner-P1 replacement. No interpolated BC-role threshold, PCA/distance recomputation, clipping, refit or nearest-node fallback occurs."
+    },
+    "topology_scan_and_mandatory_stop": {
+      "passed": true,
+      "evidence": "The full one-CAD index/ten-distinct-ID/face-multiplicity scan checks edge-associated global midside IDs, not merely unordered six-node sets. Failed conformity returns empty cell/face selection and completed scientific negative with zero numeric queries; corrupt input/source/operational exceptions use failed. No repair, source-row replacement or geometry-ranked selection is performed."
+    },
+    "bounded_selection_and_counts": {
+      "passed": true,
+      "evidence": "First8 lexicographic paired faces and their source-row cells are included, then ascending rows fill at most32 cells. The schedule retains occurrences and duplicates:320 nodes+124 interior prefix+56 face occurrences+8 outside+4 synthetic=512 maximum. A paired face point counts once while its two traces and additional J checks are recorded separately. Smaller coverage is not refilled. Synthetic failures are separately5cells/4queries."
+    },
+    "locator_domain_and_outside_certificate": {
+      "passed": true,
+      "evidence": "Inside locator candidates are only selected original cells. The only whole-CAD numerical scan computes conservative Bezier bounds for8 bound-excluded outside queries; it is not a global Jacobian/Newton audit. No selected candidate inside whole-CAD bounds remains unresolved_inverse. The generic API labels exclusion by supplied global bounds distinctly from exclusion by its explicit submesh bounds."
+    },
+    "regularity_and_inverse": {
+      "passed": true,
+      "evidence": "All11 node/center samples are aggregated before classifying fold/singularity; evidenced sign reversal outranks a singular center and consistent negative orientation is allowed. J/L determinant/singular-value/condition predicates match the fixed contract. Two declared seeds,24 iterations and8 residual-decreasing backtracks are fixed; no clamp or residual sanitization is used. Scheduled interior/face J checks and final accepted-root predicates are additional evidence, not a global validity proof."
+    },
+    "root_collection_ties_and_failures": {
+      "passed": true,
+      "evidence": "Every seed attempt and accepted root is retained before numerical equivalence. Same-cell root separation is compared at policy1e-7, not deduplicated first by cell ID. Cross-cell ties require the same global active shared entity and associated midside IDs plus physical/descriptor trace agreement; the smallest original row is selected. Distinct/overlapping interiors or mismatched traces are ambiguous. Failure/resource/unresolved/invalid results have None field payloads and interpolate_result returns None; outside Newton-path failure alone is not a fold certificate."
+    },
+    "tolerances_are_distinct": {
+      "passed": true,
+      "direct_shape_nodal_and_known_face_trace": 1e-12,
+      "inverse_nodal_and_tie_trace": 1e-7,
+      "same_cell_reference_root_equivalence_policy": 1e-7,
+      "reference_containment": 1e-10,
+      "physical_final_residual_over_L": 1e-10,
+      "Newton_stop_residual_over_L": 1e-13,
+      "cached_normalized_xyz_rounding": 2e-7,
+      "CPU_FP32_signed_adapter": 2e-6,
+      "evidence": "The authoritative fixed_synthetic_failures list, rather than the older prose fixture description, drives the four exact failure classifications. CPU FP32 adapter replay is recorded separately from FP64 extension and does not claim native FP16 parity."
+    },
+    "receipt_failure_and_reuse_contract": {
+      "passed": true,
+      "evidence": "Completed summary stores config.contract, accessed members, array/order/normalization identities, source hashes, logical/internal counts, all checks/failures, elapsed/RSS, thread controls and zeroGT/model/CUDA fields. Strict completed reuse compares the entire contract/config/formal result. Metadata identity failures before array access record failed/zeroarray for an empty attempt; existing nonempty outputs are preserved. SVD failure in a scheduled J check is a scientific negative rather than silently accepted geometry."
+    },
+    "review_activity": {
+      "passed": true,
+      "real_array_members_read": 0,
+      "labels_or_predictions_or_weights_read": 0,
+      "models_or_locators_instantiated": 0,
+      "author_fixture_reexecutions": 0,
+      "metadata_preflight_reexecutions": 0,
+      "GPU_or_native_calls": 0,
+      "other_sources_or_plans_modified": false
+    }
+  },
+  "author_evidence_not_reexecuted": {
+    "module_fixture_status": "passed",
+    "module_fixture_elapsed_seconds": 0.01977929400004541,
+    "tool_stdlib_preflight_status": "ready",
+    "tool_stdlib_preflight_elapsed_seconds": 0.09069610899996405,
+    "tool_stdlib_contract_sha256": "1f66887f024a957adebf505521cfb59263a44e3bbccb8b52a5625e7163363d5b",
+    "actual_one_CAD_gate_executed_in_these_records": false
+  },
+  "limits": [
+    "Static source/receipt review plus reported author toy and metadata evidence; no actual one-CAD geometry outcome is established here.",
+    "Two fixed seeds, numerical root-equivalence tolerance and finite regularity samples cannot establish absence of closer distinct/unfound roots or global injectivity.",
+    "Numeric all10 descriptor interpolation is not a recomputed physical BC/distance/PCA field or a trained continuous operator.",
+    "No GT/native FP16/model/derivative/generalization or utility conclusion follows from this input-only interface gate."
+  ],
+  "execution_permission_granted_by_review": false,
+  "next_action": "Root alone may release the single queued actual one-CAD CPU gate after its parent review. This review does not authorize or run it."
+}

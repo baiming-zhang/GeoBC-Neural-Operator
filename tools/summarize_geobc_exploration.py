@@ -29,6 +29,43 @@ def job_state(job,summaries):
     if status:return '进行中' if phase!='completed' else '等待完成摘要'
     return '等待／排队'
 
+def continuous_geometry_text(result):
+    gate=result['geometry_gate']; counts=result['counts']; scan=gate['conformity']
+    checks={item['name']:item for item in gate['checks']}
+    replay_checks=[checks.get(name) for name in ('direct_FP64_nodal_descriptor_replay','inverse_nodal_descriptor_replay')]
+    replay=('通过' if all(item and item['passed'] for item in replay_checks) else
+            '未通过' if any(item and not item['passed'] for item in replay_checks) else '未执行')
+    exact=result['receipt']['array_identity']['source_float32_reproduction_exact']
+    statuses='、'.join(f'{name}={count}' for name,count in result['LOCATOR_status_counts'].items()) or '面一致性停止后未执行数值查询'
+    verdict='通过' if result['gate_pass'] else '未通过'
+    report=(f"固定TRAIN101_479的CPU几何接口gate{verdict}，耗时{result['elapsed_seconds']:.2f}s；源hash已验证，float32节点缓存{'精确复现' if exact else '未精确复现'}，全十节点描述符的直接／逆定位重放{replay}。"
+            f"全CAD的{scan['cell_count']:,}个单元、{scan['interior_face_count']:,}对共享面完成ID一致性扫描，非流形／中点ID不一致{scan['nonmanifold_face_count']}/{scan['midside_mismatch_count']}。"
+            f"数值范围为{counts['selected_original_cells']}个单元、{counts['selected_shared_faces']}对面，{counts['logical_query_occurrences']}次逻辑查询（{counts['unique_physical_points_exact_float64']}个不同物理点）；定位状态：{statuses}。"
+            '这是输入与固定LN/tanh描述符的有符号二次插值验收；没有GT、模型或GPU，不证明模型精度、泛化、全域Jacobian／单射性或native FP16连续性。正式结果见notes/geobc_continuous_geometry_result.json。')
+    brief=(f"单TRAIN几何的CPU连续查询接口gate{verdict}（{result['elapsed_seconds']:.1f}s、{counts['logical_query_occurrences']}次查询），源／节点重放{replay}；这只验收有界输入插值和定位，尚无模型精度、全域可逆性或泛化结论。")
+    return report,brief
+
+def quadratic_kinematics_text(result):
+    kin=result['kinematics']; metrics=kin['metrics']; verdict='通过' if result['gate_pass'] else '未通过'
+    scope=f"同一{len(kin['selected_original_rows'])}单元／{kin['Gauss_points_checked']}个Gauss点"
+    limits='这只描述既定局部子集；P2是位移派生代理，曲单元四点积分不是精确连续积分，不代表全CAD、solver应变GT或泛化，也不替代历史全节点恢复P1。'
+    if metrics is None:
+        return (f"固定TRAIN101_479/ver专用模型10000步保存场的CPU二次运动学诊断已完成，数值gate{verdict}，耗时{result['elapsed_seconds']:.2f}s；{scope}的Gauss几何检查未通过，未计算部分目标指标。"+limits,
+                f"冻结TRAIN保存场的局部二次运动学诊断完成，数值gate{verdict}，Gauss检查停止后没有部分精度结果；尚无全CAD或泛化结论。")
+    def relative(item):
+        return percent(item['value']) if item['value'] is not None else f"未定义（{item['reason']}）"
+    p1=relative(metrics['P1']['relative_L2_to_truth']); p2=relative(metrics['P2']['relative_L2_to_truth'])
+    mismatch=relative(metrics['truth_P2_minus_P1']['relative_L2_to_same_P2'])
+    energy=metrics['error_decomposition']
+    mid_fraction=f"{100*energy['Emid']/energy['E2']:.1f}%" if energy['E2'] else '未定义（E2为零）'
+    report=(f"固定TRAIN101_479/ver专用模型10000步保存场，在{scope}上完成源、几何和分解检查，数值gate{verdict}，耗时{result['elapsed_seconds']:.2f}s。"
+            f"P1／P2代理相对误差为{p1}／{p2}，各用自身真值Frobenius参考分母；真值P2−P1差异相对P2为{mismatch}。"
+            f"误差能量E1／Emid／有符号cross／E2={energy['E1']:.4g}／{energy['Emid']:.4g}／{energy['signed_cross']:+.4g}／{energy['E2']:.4g} mm³，恒等式残差{energy['identity_relative_residual']:.2g}；中边项约为E2的{mid_fraction}，交叉项单列，不能解释为因果错误占比。"
+            f"真值／预测中边残余位移RMS为{metrics['truth_midside_residual_displacement_vector_RMS_mm']:.4g}／{metrics['prediction_midside_residual_displacement_vector_RMS_mm']:.4g} mm。"+limits+
+            '正式结果见notes/geobc_quadratic_kinematics_result.json。')
+    brief=(f"冻结专用模型在{scope}的P1／P2派生代理误差{p1}／{p2}（各自真值分母），数值gate{verdict}；这是局部诊断，不代表全CAD或泛化，不与历史全节点P1直接比较。")
+    return report,brief
+
 def plan_next_text(plan,summaries,*,compact=False):
     current_jobs=plan.get('jobs',[])
     complete=bool(current_jobs) and all(job['name'] in summaries for job in current_jobs)
@@ -78,7 +115,9 @@ def main():
                                       'code_sha256':summary.get('config',{}).get('contract',{}).get('code_sha256',{}),
                                       'selection':summary.get('config',{}).get('checkpoint_selection')}
         target=dest/'runs'/job['name']; target.mkdir(parents=True,exist_ok=True)
-        for filename in ('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json','metrics_step0000.json','metrics_step1000.json','first_backward_check.json'):
+        filenames=('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json','metrics_step0000.json','metrics_step1000.json','first_backward_check.json')
+        if job.get('kind') in ('real_geometry_interface_acceptance','frozen_field_diagnostic'):filenames+=('status.json',)
+        for filename in filenames:
             if (source/filename).exists(): shutil.copyfile(source/filename,target/filename)
     counts=stage_counts(jobs,summaries)
     next_text=plan_next_text(plan,summaries)
@@ -459,6 +498,33 @@ def main():
             lines += [f"| {label} | {percent(m['train_u_mean_relative_l2'])}／{percent(m['train_u_worst_relative_l2'])} | {percent(m['train_P1_mean_relative_l2'])} | {m['train_P1_mean_case_physical_tensor_error_RMS']:.6g} | {m['elapsed_seconds']:.1f}s |"]
         passed=sum(g['passed'] for g in topology_message['clear_gain_gate'].values())
         lines += ['',f"完整初始化、采样和配置匹配核对通过；联合门限{'通过' if topology_message['clear_gain_gate_passed'] else '未通过'}（{passed}/4）。P1为位移导出的corner-FE代理，其物理误差RMS含shear平方权重2且不除以6。这里只检验四TRAIN拟合效用，不能推断跨几何或任意坐标连续查询。结果见notes/geobc_topology_message_pair_result.json。"]
+    continuous_geometry_path=ROOT/'notes/geobc_continuous_geometry_result.json'
+    continuous_geometry=json.loads(continuous_geometry_path.read_text()) if continuous_geometry_path.is_file() else None
+    if continuous_geometry and continuous_geometry.get('status')!='completed':continuous_geometry=None
+    continuous_geometry_receipt=None
+    if continuous_geometry:
+        continuous_report,continuous_brief=continuous_geometry_text(continuous_geometry)
+        lines += ['', '## 有界连续坐标的CPU几何接口验收','',continuous_report]
+        geometry_jobs=[job for job in jobs if job['name']=='continuous_query_geometry_train101_479' and job['name'] in summaries]
+        if geometry_jobs:
+            geometry_job=geometry_jobs[-1]
+            exported=Path('runs')/geometry_job['name']
+            continuous_geometry_receipt={'run':geometry_job['name'],'exported_files':[str(exported/name).replace('\\','/') for name in ('config.json','status.json','summary.json')],
+                                         'receipt_location':'summary.json:receipt','status':continuous_geometry['status'],
+                                         'scientific_outcome':continuous_geometry['scientific_outcome'],'gate_pass':continuous_geometry['gate_pass']}
+    quadratic_kinematics_path=ROOT/'notes/geobc_quadratic_kinematics_result.json'
+    quadratic_kinematics=json.loads(quadratic_kinematics_path.read_text()) if quadratic_kinematics_path.is_file() else None
+    if quadratic_kinematics and quadratic_kinematics.get('status')!='completed':quadratic_kinematics=None
+    quadratic_kinematics_receipt=None
+    if quadratic_kinematics:
+        quadratic_report,quadratic_brief=quadratic_kinematics_text(quadratic_kinematics)
+        lines += ['', '## 固定保存场的二次运动学诊断','',quadratic_report]
+        quadratic_jobs=[job for job in jobs if job['name']=='quadratic_kinematics_specialist101_479_ver' and job['name'] in summaries]
+        if quadratic_jobs:
+            quadratic_job=quadratic_jobs[-1]; exported=Path('runs')/quadratic_job['name']
+            quadratic_kinematics_receipt={'run':quadratic_job['name'],'exported_files':[str(exported/name).replace('\\','/') for name in ('config.json','status.json','summary.json')],
+                                          'receipt_location':'summary.json:receipt','status':quadratic_kinematics['status'],
+                                          'scientific_outcome':quadratic_kinematics['scientific_outcome'],'gate_pass':quadratic_kinematics['gate_pass']}
     lines += ['', '## 主计划中的下一阶段','',next_text]
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
@@ -518,6 +584,8 @@ def main():
     if topology_message and topology_message.get('status')=='completed':
         tm0=topology_message['arms']['self_only']['metrics'];tm1=topology_message['arms']['neighbors']['metrics']
         brief[-1]=f"四几何固定预算拟合：自身→邻居消息，位移{100*tm0['train_u_mean_relative_l2']:.2f}%→{100*tm1['train_u_mean_relative_l2']:.2f}%，P1代理{100*tm0['train_P1_mean_relative_l2']:.1f}%→{100*tm1['train_P1_mean_relative_l2']:.1f}%；联合门限{'通过' if topology_message['clear_gain_gate_passed'] else '未通过'}。这是TRAIN拟合，尚无新增泛化结论。"
+    if continuous_geometry:brief += [continuous_brief]
+    if quadratic_kinematics:brief += [quadratic_brief]
     brief += ['',f'下一步（来自主计划）：{brief_next_text} 最终测试继续保留。',
               '',f"科学训练／评估／冻结诊断完成{counts['scientific_completed']}/{counts['scientific_planned']}项，合成验收完成{counts['synthetic_acceptance_completed']}/{counts['synthetic_acceptance_planned']}项；原30项slides复现已完成。自主研究与30分钟监视继续。",'',
               '完整指标、控制变量和解释范围见 [探索报告](REPORT.md)。','']
@@ -541,6 +609,10 @@ def main():
                                    'topology_input_analysis':str(topology_result_path.relative_to(ROOT)) if topology_result else None,
                                    'balanced_topology_input_analysis':str(balanced_result_path.relative_to(ROOT)) if balanced_result else None,
                                    'topology_message_pair_analysis':str(topology_message_path.relative_to(ROOT)) if topology_message else None,
+                                   'continuous_query_geometry_analysis':str(continuous_geometry_path.relative_to(ROOT)) if continuous_geometry else None,
+                                   'continuous_query_geometry_cpu_receipt':continuous_geometry_receipt,
+                                   'quadratic_kinematics_analysis':str(quadratic_kinematics_path.relative_to(ROOT)) if quadratic_kinematics else None,
+                                   'quadratic_kinematics_cpu_receipt':quadratic_kinematics_receipt,
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',
                                    'updated_at_utc':utc_now()})
     if geo and load and comparisons:

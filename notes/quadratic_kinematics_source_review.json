@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "review_type": "independent_focused_static_math_scope_source_API_and_receipt_review",
+  "formal_plan": "notes/geobc_quadratic_kinematics_plan.json",
+  "formal_plan_sha256": "f752c5d45b7cff7b3e13d6e070f1f91980eae7a26df8fb26fc276936d7d35d2d",
+  "source": "tools/diagnose_quadratic_kinematics.py",
+  "source_sha256": "b2d5ca8b3a2abbca4818aaa34f845e5034156e80b111d1e7fd3bf8f34e058865",
+  "ready": "notes/quadratic_kinematics_ready.json",
+  "ready_sha256": "af7a0571396dd11383350a2dbcc4ca384c19a9eae81cd1de700c920cc3f0b9af",
+  "frozen_geometry_module": "geobc/continuous_query_geometry.py",
+  "frozen_geometry_module_sha256": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+  "blocking_findings": [],
+  "checks": {
+    "formal_math_and_scope": {
+      "passed": true,
+      "evidence": "One saved specialist endpoint10000 TRAIN101_479/ver only; exactly the prior accepted32 original rows and4 positive symmetric Gauss points each. Physical quadratic and corner-P1 gradients, physical-affine midside decomposition, fixed positive weights and the analytic toy energies agree with the frozen mathematics. No future training or broader data scope is selected."
+    },
+    "stdlib_contract_and_source_identity": {
+      "passed": true,
+      "evidence": "request_contract uses stdlib SHA/stat/JSON/ZIP NPY headers only. It locks the formal plan, frozen source/parent records, existing endpoint full file identity and header schema, TRAIN membership, fixed10000 selection, source scaler policy, prior32 rows/orientations, and author ready/toy/source identity. It does not construct a model or import NumPy/native libraries. The reviewer inspected code only and did not call it."
+    },
+    "input_member_scope": {
+      "passed": true,
+      "evidence": "Actual branch accesses H5 vertices only, connectivity cells10 only, and the exact declared endpoint xyz/u_true_mm/u_pred_mm/alpha/sample_key/step/channels/u_scale_mm members. Source vertices/cells and endpoint canonical xyz hashes are checked, with exact sourcefloat32 normalization replay. Source physical vertices are promoted toFP64; no normalized-coordinate physical-gradient substitution occurs. No H5 fields, reference-strain cache, weights, CSV, stress, other load/CAD or validation/final data loader is used."
+    },
+    "geometry_gate_before_fields": {
+      "passed": true,
+      "evidence": "All128 J/L matrices must be finite and meet absdet>1e-18,sigma_min>1e-12,condition<1e12 and the same prior orientation sign. Failed point yields completed scientific negative with metrics=None and zero target numerical points; there is no cell replacement, skip or partial target report. Only after this gate does the code open u_true_mm/u_pred_mm. Singular corner-P1 solve also stops the whole diagnostic without returning partial metrics. Unexpected/source exceptions remain operational failed."
+    },
+    "G1_G2_and_affine_midside_decomposition": {
+      "passed": true,
+      "evidence": "G1=solve(A.T,U.T).T, J[q,physical,reference]=X.T@dN and G2=solve(J.T,U2.T).T have the correct physical/component orientation. u_aff=u0+(X-X0)@G1.T and delta=u-u_aff are computed from actual values; the four corner residuals are checked rather than overwritten. eps=sym(G), and eps2=eps1+epsmid is explicitly checked for truth/prediction. All10 signed shape derivatives and independent midsides remain present."
+    },
+    "quadrature_and_array_broadcasting": {
+      "passed": true,
+      "evidence": "Barycentric(a,b,b,b) permutations and weights absdetJ/24 match the fixed4-point rule. Per-cell eps1[3,3] broadcasts over4 points; combined eps1 is explicitly expanded to[32,1,3,3], while eps2/epsmid are[32,4,3,3] and weights[32,4]. These shapes preserve the same per-point operator and volume weighting. Straight affine geometry/P2 polynomial energy is exact under this rule; curved geometry is labelled a fixed quadrature proxy."
+    },
+    "full_tensor_energy_and_zero_denominators": {
+      "passed": true,
+      "evidence": "Full symmetric3x3 products correctly count off-diagonal shear twice, with no division by6. signed_cross=2*sum(w*e1:emid) retains its sign. E2=E1+Emid+signed_cross is checked per-cell and combined using the declared sum-of-absolute-energy identity denominator. Scientific relativeL2 uses the actual truth energy, and same-field P2/P1 mismatch uses the named same-P2 energy. Exactzero reference energy returns null with reason; no artificial floor, abs-cross, clipping or label transform is present. max(1,maxabsB) is used only for the frozen algebraic block-error gate."
+    },
+    "readouts_and_limits": {
+      "passed": true,
+      "evidence": "Readouts separately identify P1/P2 truth/prediction/error energy, quadrature-weighted dimensionless Frobenius RMS, midside residual displacement RMS over192 uniform local incidences with duplicates retained, signed error decomposition and corner-versus-quadrature volume. Sample-quadratureP1 does not substitute for historical all-node incident-volume recoveredP1. P2-u kinematics is not solver strain/stressGT, native model derivative or off-node inference. Accuracy is an observation, not a positive-utility gate."
+    },
+    "receipt_and_immutable_reuse": {
+      "passed": true,
+      "evidence": "Runtime config contains the full strict contract/source identities/method/limits. Completed result contains accessed members, fixed rows/quadrature,128-point count, per-cell and combined scalar metrics, geometry/math checks, elapsed/RSS and zero model/weights/CUDA/optimizer/array-writes receipt. Full single-case u members are materialized as declared, but numerical gradients process only320 local node incidences. Existing output reuse requires completed summary/status/config/formal-result agreement and identical contract; incomplete or different output cannot be rerun/replaced automatically. Failed execution is distinguished from a completed scientific negative."
+    }
+  },
+  "author_evidence_not_reexecuted": {
+    "ready_status": "ready_for_source_review",
+    "toy_fixture_runs": 1,
+    "toy_passed": true,
+    "toy_elapsed_seconds": 0.07860782399995969,
+    "toy_maximum_error": 3.3306690738754696e-16,
+    "spike_energy": 0.5333333333333332,
+    "mixed_signed_cross": -0.16666666666666666,
+    "mixed_full_energy": 0.44999999999999996,
+    "author_actual_stage_executed": false
+  },
+  "review_activity": {
+    "read_only_new_tool_source_and_small_JSON": true,
+    "real_scientific_array_reads": 0,
+    "GT_or_predictions_or_weights_read": 0,
+    "toy_reexecutions": 0,
+    "request_contract_or_preflight_executions": 0,
+    "actual_executions": 0,
+    "models_instantiated": 0,
+    "native_or_GPU_calls": 0,
+    "frozen_sources_or_plans_modified": false,
+    "only_created_artifact": "notes/quadratic_kinematics_source_review.json"
+  },
+  "limits": [
+    "This is a static source/receipt review and reported author toy evidence, not the actual saved-field outcome.",
+    "Topological first32 cells are not a representative all-mesh/hotspot/validation sample.",
+    "Neither proxy inconsistency nor a local P2 error establishes the cause of generalization or justifies changing historical P1 metrics/training.",
+    "No strain/stress solverGT, constitutive law, native FP16 parity, continuous-model derivative or new precision claim is established."
+  ],
+  "execution_permission_granted_by_review": false,
+  "next_action": "Root alone may release the unique queued actual CPU diagnostic under the frozen explicit TRAIN saved-field authorization. No automatic new experiment follows from this review."
+}

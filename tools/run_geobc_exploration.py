@@ -241,6 +241,43 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             raise ValueError(f"Completed output for {job['name']} differs from its bandwidth native check")
         if not (ROOT / "notes/hash_bandwidth_native_ready.json").is_file():
             raise ValueError(f"Completed native check for {job['name']} lacks readiness record")
+    elif "tools/validate_continuous_query_geometry.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("continuous_geometry_acceptance_check", ROOT / "tools/validate_continuous_query_geometry.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed output for {job['name']} differs from its continuous-geometry acceptance contract")
+        result = read_json_if_exists(ROOT / "notes/geobc_continuous_geometry_result.json")
+        if not result or result.get("status") != "completed":
+            raise ValueError(f"Completed output for {job['name']} lacks its formal continuous-geometry result")
+    elif "tools/diagnose_quadratic_kinematics.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("quadratic_kinematic_diagnostic", ROOT / "tools/diagnose_quadratic_kinematics.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed output for {job['name']} differs from its frozen quadratic-kinematic contract")
+        if (read_json_if_exists(ROOT / "notes/geobc_quadratic_kinematics_result.json") or {}).get("status") != "completed":
+            raise ValueError(f"Completed output for {job['name']} lacks its formal quadratic-kinematic result")
+    elif "tools/diagnose_fullcad_quadratic_kinematics.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("fullcad_quadratic_diagnostic", ROOT / "tools/diagnose_fullcad_quadratic_kinematics.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed output for {job['name']} differs from its fullCAD quadratic-kinematic contract")
+        if (read_json_if_exists(ROOT / "notes/geobc_fullcad_quadratic_kinematics_result.json") or {}).get("status") != "completed":
+            raise ValueError(f"Completed output for {job['name']} lacks its formal fullCAD result")
     elif "geobc.topology_message_train" in command:
         from geobc.topology_message_train import parser as topology_parser, _scope
         parsed = topology_parser().parse_args(command[command.index("geobc.topology_message_train") + 1:])

@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "status": "predeclared",
+  "stage": "bounded_TRAIN_quadratic_kinematic_proxy_consistency",
+  "question": "Does the existing fixed specialist endpoint's corner-P1 proxy omit material midside displacement-gradient information on the already accepted geometry subset?",
+  "decision": "After the one-CAD input-only continuous-query geometry gate passed all15 checks, run one frozen-field diagnostic. No optimizer, model construction, inference, new field downloads, validation/final/dia access or automatic new loss/training.",
+  "parent": {
+    "geometry_result": "notes/geobc_continuous_geometry_result.json",
+    "geometry_result_sha256": "50309e087014dad6ae29ae347fa1fb1e8bb0a3e76958f803d92dd8caf808b5c2",
+    "geometry_plan": "notes/geobc_continuous_geometry_plan.json",
+    "geometry_plan_sha256": "16169bbd20fc1d746cc8ccf88fa9d4c287fa410744d4ee8b6f0bb210543bb71f",
+    "specialist_plan": "notes/geobc_specialist_plan.json",
+    "specialist_plan_sha256": "8acea44863abd703f12cfbc10bd2b6e7c51eb015e524dc5436761077662af4ff"
+  },
+  "fixed_scope": {
+    "CAD": "101_479",
+    "case": "101_479/ver",
+    "group": "TRAIN",
+    "endpoint": 10000,
+    "selected_original_rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      29680,
+      34114,
+      58936,
+      86485,
+      92016,
+      94185
+    ],
+    "selection": "Exactly the previous geometry gate rows; no target/geometry ranking, skip, replacement or expansion",
+    "maximum_original_cells": 32,
+    "quadrature_points_per_cell": 4,
+    "total_actual_reference_points": 128,
+    "CPU_workers": 1,
+    "BLAS_threads": 1
+  },
+  "inputs": {
+    "geometry": {
+      "path": "data/raw/FieldMesh/101_479.h5",
+      "allowed_datasets": [
+        "vertices"
+      ],
+      "bytes": 33320128,
+      "mtime_ns": 1791453885401115600,
+      "array_float32_sha256": "4a8b0468d9f4b8058f4ae2cc5591664fe3ae531131fda36b1324f32b17dd22cd",
+      "access": "Read vertices as sourcefloat32, verify identity, promote toFP64. No H5cells/faces/nodal_variables."
+    },
+    "connectivity": {
+      "path": "data/geobc_gradient_supervision/101_479.npz",
+      "allowed_members": [
+        "cells10"
+      ],
+      "bytes": 29513502,
+      "mtime_ns": 1791521769276959500,
+      "array_int64_sha256": "ef69762c30aea5d6341b6f25128e0b165a6ab9b2732f0d641db855ca3238a228",
+      "excluded": "All reference strain/volume/inverse/record members; no load_gradient_cache."
+    },
+    "endpoint": {
+      "path": "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/case_000.npz",
+      "bytes": 10761086,
+      "file_sha256": "85b4d18f407b2bef416cfe7e801d9487973bef0eb9aca899beb76671ef5b52ec",
+      "allowed_members": [
+        "xyz",
+        "u_true_mm",
+        "u_pred_mm",
+        "alpha",
+        "sample_key",
+        "step",
+        "channels",
+        "u_scale_mm"
+      ],
+      "access": "Existing immutable aligned physical signed uXYZ truth and prediction. Read only this TRAIN/ver endpoint; no checkpoint or other case. NPZ members materialize179316x3 but all numerical gradient processing uses the selected320 cell-node incidences only.",
+      "sample_key": "101_479/ver",
+      "step": 10000,
+      "channels": [
+        "ux_mm",
+        "uy_mm",
+        "uz_mm"
+      ],
+      "alpha": [
+        1,
+        0,
+        0
+      ],
+      "xyz_float32_sha256": "0fa3d59a49993b65a207ec0eafb94f655c6ffd7e75a28e651e6dc1684e929d52"
+    },
+    "endpoint_index": {
+      "path": "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/index.json",
+      "sha256": "753ac0e76126e8f1f50a8c480d1a999c65388102f201683d3a9f562971baaaa3"
+    },
+    "endpoint_config": {
+      "path": "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/config.json",
+      "sha256": "3cd9e49ed500f3f68c63cda6c6b8a6afca14484b46595c57198c6ac93d6fc74b"
+    },
+    "endpoint_summary": {
+      "path": "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/summary.json",
+      "sha256": "d824df545425c510dd384f28776704775ae7447b7bfcdc2eca501178ac531d5f"
+    },
+    "normalization": {
+      "bbox_min_mm": [
+        -38.72420120239258,
+        -163.60699462890625,
+        0.2465403974056244
+      ],
+      "characteristic_length_mm": 184.05270385742188,
+      "node_count": 179316,
+      "cell_count": 111754,
+      "cache_reproduction": "Require exact float32(vertices-origin)/L reproduction of endpoint xyz and inherited canonical hash."
+    }
+  },
+  "frozen_source": {
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "geobc/specialist_train.py": "1465ba1c9db295e3f395ae5d087239dfdc157ee3008a2b58170cbf316045581a"
+  },
+  "mathematics": {
+    "coordinate_order": "r=L1,s=L2,t=L3,L0=1-r-s-t; VTKedges01,12,20,03,13,23 unchanged",
+    "quadratic_gradient": "D=dN/d(r,s,t) [10,3]; J=X^T D [physical,reference]; G2=(u^T D)J^-1, compute transpose solve rather than explicit inverse; epsilon2=sym(G2), unitsdimensionless",
+    "physical_corner_P1": "G1=[u1-u0,u2-u0,u3-u0]*[X1-X0,X2-X0,X3-X0]^-1; epsilon1=sym(G1). No normalized-coordinate derivative mistake.",
+    "physical_affine_extension": "u_aff(X_a)=u0+G1(X_a-X0); delta_a=u_a-u_aff(X_a), all4corner delta zero. epsilon_mid=sym((delta^T D)J^-1). Require epsilon2=epsilon1+epsilon_mid for truth and prediction.",
+    "fixed_quadrature": "4 positive symmetric tetrahedron points: a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20, each barycentric permutation of(a,b,b,b); reference weight1/24 each. w=abs(det J)/24 in mm^3. Exact polynomial energy for affine geometry/P2 displacement; only a fixed quadrature proxy for curved isoparametric geometry.",
+    "energy": "Frobenius tensor inner product xx/yy/zz plus2*(xy/xz/yz). Error e1=eps1_pred-eps1_true; emid=epsmid_pred-epsmid_true; e2=e1+emid. E2=sum w||e2||F^2=E1+Emid+2sum w<e1,emid>F. Preserve signedcross, no abs or omission.",
+    "readouts": [
+      "Selected-subset quadrature-weighted reference/error RMS and relativeL2 separately for P1 and P2-u-derived proxy; do not replace historical all-node recovered P1",
+      "Truth/prediction midside residual displacement RMS; E1/Emid/signedcross/E2 and identity residual",
+      "GT-proxy mismatch epsilon2_true-epsilon1_true weighted energy/RMS and ratio to sameP2 reference; truth and prediction reference energy denominator separately",
+      "Original selectedcorner volume and quadrature volume as different diagnostics, no exact curved-volume claim"
+    ],
+    "zero_denominators": "If exact reference energy is zero report ratio/relativeL2 null with explicit reason; no artificial floors, epsilon clipping or label transform."
+  },
+  "gates": {
+    "source_and_scope_identity": "Strict file/source hashes, schemas, TRAIN membership, signed physical units, node/GRID-aligned coordinate identity; corrupt/exception is failed",
+    "new_Gauss_J": "All128 J/L finite with abs(det)>1e-18,sigma_min>1e-12,condition<1e12; sign agrees with prior regular cell orientation. One invalid point yields completed scientific negative, no cell skipping or target report from partial coverage.",
+    "direct_math_relative_tolerance": 1e-10,
+    "signed_energy_identity_relative_tolerance": 1e-10,
+    "error_definition": "Direct block maxabs(A-B)/max(1,maxabsB); energy identity abs(E2-E1-Emid-cross)/sum(abs(E2),abs(E1),abs(Emid),abs(cross)), zeroall ->0.",
+    "gate_pass_meaning": "Correct source/scope/numerical geometry and decomposition only. No accuracy threshold or positive utility/gen claim; high or low P2 error is a scientific observation."
+  },
+  "unique_author_toy": {
+    "real_array_reads": 0,
+    "FP64_tolerance": 1e-12,
+    "fixture_runs": 1,
+    "fixtures": [
+      "Straight unit tetrahedron and fixed small curved tetrahedron, physicalaffine u=a+B X including translation+antisymmetricB: G2=B,eps2=symB,epsmid=0",
+      "Straightunit tet cornersu=0,edge01midside ux=1: epsxx=4(L0-L1),epsxy=epsxz=-2L1,P1=0; 4Gauss integratedFrobeniusenergy8/15,volumeaverageRMS4/sqrt(5)",
+      "Same midpointspike plusaffine ux=s: Eaff=1/12,Emid=8/15,signedcross=-1/6,Efull=9/20; catches transpose/shear2/signedcross errors"
+    ],
+    "purpose": "Nonredundant mathematical checks before any actual saved fields; no randomfixture/test sweep."
+  },
+  "execution": {
+    "module": "tools/diagnose_quadratic_kinematics.py",
+    "API": "request_contract(planPath) purestdlib; --toy once byauthor; --plan/--output actual only via root queue after ready",
+    "result": "notes/geobc_quadratic_kinematics_result.json",
+    "output": "runs/geobc_exploration/quadratic_kinematics_specialist101_479_ver",
+    "ready": "notes/quadratic_kinematics_ready.json",
+    "source_review": "notes/quadratic_kinematics_source_review.json",
+    "parent_release": "notes/quadratic_kinematics_parent_review.json",
+    "no_model_checkpoint_GPU_or_update": true,
+    "actual_GT_access_authorization": "Root explicitly authorizes only listed existing TRAIN saved u_true/u_pred fields after source/toy/ready release; no other labels.",
+    "receipt": "config.contract, exactselectedrows/quadrature, accessedmembers/source hashes, zero model/GPU/updates, actualGT/predsource, 128point count, elapsed/RSS, scalar/percell metrics, gatefailures and limits; compact outputs no fullsourcearrays."
+  },
+  "limits": [
+    "Selected32 topology-first cells are not representative of allTRAIN mesh or worst hotspots",
+    "P2 displacement-derived kinematic proxy is not solver strain/stress GT; fixed4point curved quadrature not exact continuum integral",
+    "No model coordinate derivatives, trained continuousquery utility or remeshing/crossCAD validation",
+    "Do not reinterpret prior all-node recovered P1 results or attribute full error causality from a local proxy",
+    "No automatic loss/step/width/seed/radius/train40/val5 expansion; root chooses next stage from actual result"
+  ],
+  "predeclared_at_utc": "2026-10-09T12:38:14+00:00"
+}

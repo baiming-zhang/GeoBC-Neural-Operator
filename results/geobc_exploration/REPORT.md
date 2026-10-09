@@ -242,9 +242,17 @@
 
 完整初始化、采样和配置匹配核对通过；联合门限未通过（0/4）。P1为位移导出的corner-FE代理，其物理误差RMS含shear平方权重2且不除以6。这里只检验四TRAIN拟合效用，不能推断跨几何或任意坐标连续查询。结果见notes/geobc_topology_message_pair_result.json。
 
+## 有界连续坐标的CPU几何接口验收
+
+固定TRAIN101_479的CPU几何接口gate通过，耗时45.14s；源hash已验证，float32节点缓存精确复现，全十节点描述符的直接／逆定位重放通过。全CAD的111,754个单元、208,677对共享面完成ID一致性扫描，非流形／中点ID不一致0/0。数值范围为32个单元、8对面，512次逻辑查询（416个不同物理点）；定位状态：inside_accepted=500、outside_certified=8、invalid_jacobian=1、invalid_geometry=1、ambiguous_geometry=1、unresolved_inverse=1。这是输入与固定LN/tanh描述符的有符号二次插值验收；没有GT、模型或GPU，不证明模型精度、泛化、全域Jacobian／单射性或native FP16连续性。正式结果见notes/geobc_continuous_geometry_result.json。
+
+## 固定保存场的二次运动学诊断
+
+固定TRAIN101_479/ver专用模型10000步保存场，在同一32单元／128个Gauss点上完成源、几何和分解检查，数值gate通过，耗时0.42s。P1／P2代理相对误差为15.891%／173.086%，各用自身真值Frobenius参考分母；真值P2−P1差异相对P2为10.304%。误差能量E1／Emid／有符号cross／E2=7.589e-07／8.786e-05／+1.286e-07／8.875e-05 mm³，恒等式残差1.2e-15；中边项约为E2的99.0%，交叉项单列，不能解释为因果错误占比。真值／预测中边残余位移RMS为5.047e-05／0.0008424 mm。这只描述既定局部子集；P2是位移派生代理，曲单元四点积分不是精确连续积分，不代表全CAD、solver应变GT或泛化，也不替代历史全节点恢复P1。正式结果见notes/geobc_quadratic_kinematics_result.json。
+
 ## 主计划中的下一阶段
 
-当前正在设计下一阶段，尚未放行数据或训练。 计划阶段：continuous_query_geometry_contract_preparation。 设计：notes/geobc_continuous_query_contract_draft.json。 完成后：Root freezes one geometry-only acceptance tool after physical XYZ source and bounded scope are established; no40/5 expansion or training sweep.。
+当前主计划：fullcad_quadratic_kinematics_specialist101_479_ver（等待／排队）。 计划阶段：single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation。 设计：notes/geobc_fullcad_quadratic_kinematics_plan.json。 完成后：Evidence-based rootnexttask only; no automaticstep/loss/width/seed/CAD sweep.。
 
 ## 解释边界
 
@@ -252,4 +260,4 @@
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成45/45项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成47/48项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

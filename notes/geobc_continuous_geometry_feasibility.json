@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "status": "metadata_ready_proposal_only",
+  "stage": "one_TRAIN_CAD_geometry_only_continuous_query_interface_feasibility",
+  "execution": "No gate or implementation is authorized by this note. Root freezes one formal plan, then may authorize one isolated CPU tool. No new training, recipe, model, weights or GPU.",
+  "parent": {
+    "frozen_query_contract": "notes/geobc_continuous_query_contract_draft.json",
+    "frozen_query_contract_sha256": "e8b497529a0cfb804ea910c4b0b57c7a93669e8f0bc873d9ee17bc8b4e2c19b4",
+    "matched_pilot_result": "notes/geobc_topology_message_pair_result.json",
+    "matched_pilot_result_sha256": "8df1e94f892d9a9a2839ed2e88092e2f9cb3ea239489d6aea89e8e0ddb29b8c6",
+    "root_decision": "The completed fixed original-node matched pilot failed all4 utility gates. Root selected this input-only query-interface feasibility next; it is not a training extension or a claim that neighbor messages helped.",
+    "frozen_parent_unchanged": true
+  },
+  "activity_this_note": {
+    "source_small_JSON_and_filesystem_stat": true,
+    "H5_top_level_names_and_vertices_shape_dtype_metadata_only": true,
+    "NPZ_ZIP_member_names_only": true,
+    "H5_datasets_read": [],
+    "NPZ_members_opened": [],
+    "scientific_array_values_read": false,
+    "labels_or_weights_read": false,
+    "CUDA_imported_or_initialized": false,
+    "geometry_gate_executed": false,
+    "implementation_written": false,
+    "only_created_artifact": "notes/geobc_continuous_geometry_feasibility.json"
+  },
+  "physical_XYZ_path_closed_at_metadata_level": {
+    "windows_path": "C:/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw/FieldMesh/101_479.h5",
+    "WSL_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw/FieldMesh/101_479.h5",
+    "future_data_access": "Only dataset vertices, retaining original row order. Read the source float32 values as float32, verify the inherited vertices hash, then promote to float64 for physical-mm quadratic maps and inverses. Do not reconstruct physical X from rounded normalized xyz.",
+    "stat_observed": {"bytes": 33320128, "mtime_ns": 1791453885401115600},
+    "stat_matches": "Both gradient manifest CAD101_479.raw_geometry_source and graph manifest CAD101_479.input_sources.H5 contain the same path/bytes/mtime_ns; observed WSL stat matches.",
+    "H5_metadata_observed": {
+      "top_level_names": ["cells", "faces", "nodal_variables", "vertices"],
+      "vertices_shape": [179316, 3],
+      "vertices_dtype": "float32",
+      "datasets_read": []
+    },
+    "inherited_array_identity": {
+      "vertices_float32_le_Corder_sha256": "4a8b0468d9f4b8058f4ae2cc5591664fe3ae531131fda36b1324f32b17dd22cd",
+      "canonical_normalized_xyz_float32_sha256": "0fa3d59a49993b65a207ec0eafb94f655c6ffd7e75a28e651e6dc1684e929d52",
+      "cells10_int64_le_Corder_sha256": "ef69762c30aea5d6341b6f25128e0b165a6ab9b2732f0d641db855ca3238a228",
+      "grid_node_ids_int64_le_Corder_sha256": "8726a62393bcd00a085faf83cd2d3c013a28c1b639df9bedcc28d8d48b3ac7af",
+      "array_hashes_recomputed_this_note": false
+    },
+    "normalization": {
+      "bbox_min_mm": [-38.72420120239258, -163.60699462890625, 0.2465403974056244],
+      "characteristic_length_mm": 184.05270385742188,
+      "future_node_order_check": "Reproduce original_xyz=((vertices_float32-origin_float32)/length).astype(float32), then require exact cached canonical xyz equality and its inherited SHA. Existing tools/prepare_frozen_strain_response.py:96-113 and tools/prepare_graph_distance_pilot.py:200-223 use this float32 reproduction before promoting physical geometry. Reuse the arithmetic contract, not their raw-H5 cells/field-reading wrappers."
+    },
+    "source_order": "H5 vertices row == cached cells10 node index == prepared canonical xyz/features row. CSV GRID alignment and grid_node_ids provenance remain unchanged. Never interpret GRID_ID as index, remap coordinates by nearest search, or read H5 nodal_variables. Array equality/hash observations remain a requirement of the future gate, not a result of metadata inspection."
+  },
+  "fixed_future_scope": {
+    "CAD": "101_479",
+    "TRAIN_only_verified_in_split_JSON": true,
+    "canonical_load": "ver",
+    "node_count_metadata": 179316,
+    "cell_count_metadata": 111754,
+    "maximum_numeric_original_cells": 32,
+    "maximum_shared_faces_tested": 8,
+    "maximum_logical_physical_queries_including_synthetic": 512,
+    "counting": "Count each scheduled physical-point occurrence once even when both incident face traces are compared. Nodal/face duplicates remain scheduled occurrences; unique physical points cannot exceed the same512 cap. Report logical occurrences, unique points, element/reference evaluations and Newton attempts separately.",
+    "all_one_CAD_topology_scan": "One scan of the full111754-row cached cells10 for index validity, face multiplicity and corner-edge-mid node-ID conformity is allowed input-only topology work. It is not an all-mesh Jacobian/inverse/global-injectivity proof. No other CAD or target ranking.",
+    "compute": "One CPU worker, NumPy float64 geometry, BLAS threads1; no Torch model, CUDA or training. Numeric forward/inverse/trace tests are bounded to the selected32 original cells. A bounded submesh locator pass is not evidence of all-CAD arbitrary query coverage.",
+    "domain": "Instantiate the generic locator over the selected original-cell submesh for inside/replay tests. Global conservative Bezier bounds may be obtained from this one CAD's geometry solely to generate eight points provably outside the whole CAD; no global Newton or Jacobian audit."
+  },
+  "future_explicit_member_allowlist": [
+    {
+      "path": "data/raw/FieldMesh/101_479.h5",
+      "array_members": ["vertices"],
+      "metadata_members": "Top-level names and vertices dtype/shape only",
+      "excluded": ["cells", "faces", "nodal_variables and every field below it"],
+      "reason": "Original physical XYZ only; connectivity comes from the already aligned cache."
+    },
+    {
+      "path": "data/geobc_gradient_supervision/101_479.npz",
+      "array_members": ["cells10"],
+      "bytes": 29513502,
+      "mtime_ns": 1791521769276959500,
+      "required_ZIP_name_observed": "cells10.npy",
+      "excluded": ["reference_cell_tensor_strain", "corner_ids", "inverse_physical_edge_mm", "volumes_mm3", "supervision_fingerprint", "record_json"],
+      "reason": "Original full10 connectivity; never call load_gradient_cache or any reference-reading helper."
+    },
+    {
+      "path": "data/prepared_geobc_multiload/101_479_ver.npz",
+      "array_members": ["xyz", "features", "grid_node_ids"],
+      "metadata_members": ["sample_key", "label_alignment", "bbox_min_mm", "characteristic_length_mm", "feature_names"],
+      "bytes": 30122690,
+      "mtime_ns": 1791511974286089700,
+      "required_ZIP_names_observed": ["xyz.npy", "features.npy", "grid_node_ids.npy", "sample_key.npy", "label_alignment.npy", "bbox_min_mm.npy", "characteristic_length_mm.npy", "feature_names.npy"],
+      "excluded": ["xyz_mm", "faces", "stress", "u", "displacement", "u_units", "stress_units"],
+      "reason": "Canonical hash coordinates, original25 input descriptors and identity only. The physical map uses original H5 vertices."
+    },
+    {
+      "path": "data/geobc_local_geometry/101_479.npz",
+      "array_members": ["features"],
+      "metadata_members": ["xyz_sha256", "node_count", "canonical_case", "cad_id", "feature_names", "K", "geometry_scale", "schema_version", "target_independent"],
+      "bytes": 9336931,
+      "mtime_ns": 1791513743390124000,
+      "required_ZIP_name_observed": "features.npy",
+      "reason": "Existing actual local13, K32/.05 schema, canonical xyz hash agrees in its manifest."
+    },
+    {
+      "path": "data/geobc_graph_context/101_479.npz",
+      "array_members": ["euclidean"],
+      "metadata_members": ["cad_id", "xyz_sha256", "node_count", "characteristic_length_mm", "feature_names", "target_independent"],
+      "bytes": 7252597,
+      "mtime_ns": 1791534142410796100,
+      "required_ZIP_name_observed": "euclidean.npy",
+      "euclidean_float32_sha256": "8acdf2a5619b049f54ade0ed7de391f2205f0d72460c44911ed469c9d946a52d",
+      "excluded": ["graph", "source_node_indices", "source_GRID_IDs", "source_offsets", "record_json"],
+      "reason": "Existing five named Euclidean input channels only; no new graph distance or raw deck mapping."
+    }
+  ],
+  "future_gate_one_fixed_recipe": {
+    "preflight": "Freeze this note/formal-plan SHA, all small manifest/source identities and file stat records before any array access. Enforce each member allowlist; no archive-wide materialization. After authorization, verify physical vertices SHA, cells10 SHA, GRID-ID SHA and canonical xyz/source reproduction, CAD/load/alignment, finite arrays and exact input schemas. Zero original features7:13 on a clone; concatenate original25/local13/Euclidean5 as raw43 without refitting or clipping.",
+    "conformity_scan": "Use each face's sorted global corner triple as key, reject multiplicity>2, and require the same global midside ID on each of its three sorted global corner edges across paired faces. Require valid nonnegative node IDs and ten distinct IDs per cell. Record counts, mismatches and deterministic first failing IDs. Do not repair, move midsides, merge nodes or claim global curved validity.",
+    "selection": "Take the first8 interior face pairs in lexicographic corner-triple/original-row-pair order from that scan; include their incident cells, then add ascending original cell rows until32 unique cells. Preserve source rows and all ten nodes. No skipping cells for their geometry/error and no substitutions if fewer than8 pairs exist; report smaller coverage.",
+    "post_LN_topology32_surrogate": "Construct one deterministic globally node-indexed bounded32-channel pre-readout S using original node IDs, apply non-affine LN32 with eps1e-5 then tanh at each node, and call the resulting nodal array Q_node. Interpolate Q_node afterward. A separate midside-only spike surrogate must produce nonzero midside values with zero corner values, so corner-P1 fails the replay contract. No real Y1_2/P01/learned context/weights are required.",
+    "all10_extension": "Use the frozen full10 VTK shape functions and signed weights for physical X, raw43, final Q_node32 and cached canonical normalized xyz. Retain independent midsides; never nearest-copy, use corner-P1, abs/clamp weights or threshold interpolated BC channels. Off-node raw43 remains numeric descriptor interpolation, not physical BC flags/exact distances/PCA or curved GT.",
+    "query_schedule": "At32 cells:320 local-node occurrences;124 interior occurrences as the prefix of four fixed barycentric points per ascending selected row;56 face occurrences (three edge midpoints, center and three permutations of(.2,.3,.5)) on8 faces;8 whole-CAD bound-excluded outside occurrences;4 synthetic failure occurrences =512. Reduce counts automatically for smaller coverage, never increase another category. Retain duplicate node/face occurrences.",
+    "interior_reference_points": [[0.25, 0.25, 0.25, 0.25], [0.1, 0.2, 0.3, 0.4], [0.4, 0.1, 0.2, 0.3], [0.3, 0.4, 0.1, 0.2]],
+    "four_fixed_synthetic_queries": "Represent each synthetic polynomial map by its ten reference-node values, with Lscale=1: (1) planar X=(r,s,0), x=(.1,.1,0), expected invalid_jacobian; (2) folded X=(r,s,t*(1-2*t)), x=(.1,.1,.08), whose t=.1/.4 roots and zero center Jacobian provide explicit fold evidence, expected invalid_geometry/invalid_jacobian rather than valid; (3) two identical straight tetrahedral images with different global IDs, x=(.2,.2,.2), expected ambiguous_geometry for overlapping interiors; (4) straight reference tetrahedron, x=(.8,.8,.8), inside its conservative AABB but outside the reference simplex, expected unresolved_inverse when the declared locator supplies no separate outside certificate. No solver-budget change or randomized retries.",
+    "numeric_error_definition": "For a channel block A/B, error=max_abs(A-B)/max(1,max_abs(B)), using float64 comparisons. Physical and canonical-coordinate residuals use the recorded physical characteristic L. These tolerances are fixed before observations, not GT-driven.",
+    "required_passes": [
+      "All10 nodal shape onehot, raw43/Q32/cachedxyz replay and partition unity error<=1e-12; independent midside spike explicitly rejects corner-P1.",
+      "FP32 replay: cast cached input/surrogate nodal tensors and query shape weights to float32 and perform the same signed gather/sum. Nodal replay error and face trace discrepancy<=2e-6 under the declared normalized channel metric; report comparison to the float64 extension and both dtype paths. This is CPU adapter arithmetic only, not native FP16 model parity.",
+      "All paired face IDs conform across the full CAD. On the selected8 faces, both quadratic physical maps and raw43/Q32/cachedxyz traces agree after the true corner/edge permutation with normalized error<=1e-12.",
+      "All generated node/interior/face points expected inside the selected submesh return an accepted regular inverse with physical infinity-norm residual/L<=1e-10, reference containment and the fixed final Jacobian checks. Accepted shared-face ties agree in trace and choose smallest original row.",
+      "Interpolated cached normalized xyz differs from direct physical normalization by<=2e-7; report the actual maximum as source-cache rounding, not an exact identity.",
+      "Eight points beyond conservative whole-CAD bounds return outside_certified without a field. Four fixed synthetic singular/folded/ambiguous/unresolved queries return the respective invalid/unresolved/ambiguous statuses, with no valid field or nearest/zero fallback. A negative but consistent orientation is not automatically called a fold.",
+      "Receipt states actual cells/faces/query counts, source identities and accessed members, elapsed CPU time, zero labels/weights/model calls/CUDA, all failures and untested global properties."
+    ]
+  },
+  "generic_locator_required_before_future_run": {
+    "bounds": "Reuse B_ab=2*X_ab-(X_a+X_b)/2 plus corner control points for conservative degree2 Bezier AABBs. Existing regular-grid rasterization is not the arbitrary-point API.",
+    "solve": "Float64 full quadratic physical Newton inverse; affine corner inverse is only a seed. Two fixed seeds (affine if regular, center), at most24 iterations/seed and8 residual-decreasing backtracks/iteration. No silent iterate sanitization converting failure into a valid root.",
+    "final_predicate": "Finite L in[-1e-10,1+1e-10], physical infinity residual/L<=1e-10, partition error<=1e-12; final quadratic J/L finite with abs(det)>1e-18, sigma_min>1e-12 and condition<1e12. Fix each selected element's orientation sign from its regular reference-center Jacobian; require consistent signs at accepted roots and all scheduled reference evaluations. A consistently negative source orientation is accepted. A nearzero center/final determinant or evidenced sign reversal blocks that element rather than using abs(det) to hide the fold. Record minima/maxima/signs; corner volume and sampled sign consistency do not certify global curved validity.",
+    "ambiguity": "Collect accepted candidates/roots within the declared bounded domain before selecting a tie. Compatible shared face/edge/node ties choose smallest original cell row after agreeing traces; distinct interior roots or mismatched traces are ambiguous_geometry. Two seeds do not certify absence of other roots or global injectivity.",
+    "statuses": ["inside_accepted", "outside_certified", "unresolved_inverse", "invalid_jacobian", "invalid_geometry", "ambiguous_geometry", "source_identity_mismatch", "resource_limit"],
+    "failure_rule": "A conservative candidate with failed Newton remains unresolved_inverse, not outside. Return diagnostics and no field for failed queries. Never project to boundary, nearest-copy nodes, extrapolate, silently truncate candidates or return zero as valid field.",
+    "source_reuse": "Reuse tools/prepare_grids.py:74-87 shape/gradient and127-129 bounds mathematics plus tools/mesh_boundary.py:17-23 ordering. Do not directly import/execute build_geometry_grid or no_grad NumPy interpolate_nodal as the new locator/context adapter. Prefer the isolated CPU tool to implement these verified formulas without importing model/GT/CUDA helpers; this note writes no implementation."
+  },
+  "limits_and_next_action": {
+    "physical_path_gap": "Closed at source/metadata level with an exact local original-H5 vertices-only route; runtime array identity checks remain unexecuted until formal authorization.",
+    "remaining_genuine_unknowns": ["Actual one-CAD six-node face conformity", "Bounded generic locator success and failure classifications", "Sampled curved Jacobian validity/ambiguity", "FP16 model parity and learned off-node utility, which are outside this CPU gate", "Global injectivity/Jacobian validity and all-CAD arbitrary-point coverage, which this bounded gate cannot prove"],
+    "continuity_limit": "Conforming all10 descriptors have conditional real-arithmetic C0 traces; native FP16 compute/output and detached coordinates still limit deployed continuity and derivative claims. No GT or native model conclusion follows from this surrogate gate.",
+    "no_automatic_expansion": "One fixed recipe only. On failure stop at bounds and report; do not tune tolerances, replace shapes/geometry, broaden CADs, train, read GT or launch GPU. On pass root decides the next bounded task from actual evidence.",
+    "root_next_step": "Freeze the formal one-CAD geometry-only plan and authorize an isolated CPU implementation if desired. This note alone does not execute it."
+  },
+  "verified_metadata_and_source_identities": [
+    {"path": "notes/geobc_split.json", "sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859"},
+    {"path": "data/geobc_gradient_supervision/manifest.json", "sha256": "052df4057186e37b129f8a44bb2c3e7279b24024a72a8b947d76239a984ac018"},
+    {"path": "data/geobc_graph_context/manifest.json", "sha256": "91f8630b38ccb31a5165b92b31f8aaf61beb94fe420f52aa8b526d70f5c6d041"},
+    {"path": "data/geobc_local_geometry/manifest.json", "sha256": "8784b8ba3272b82c9d0894f1fa7521c2595d3d4cee81d22295458490db22622a"},
+    {"path": "data/prepared_geobc_multiload/manifest.json", "sha256": "8d9ea79c047977830bf152a0a0b93c64a6e62b5a7ea4941c9f4c2fbff04c1ee0"},
+    {"path": "tools/prepare_grids.py", "sha256": "34b033aa63bef6b363bfe907bb8c3d4d31f0d8f6fbba4d6efc61e6c2b7b8c2ef"},
+    {"path": "tools/mesh_boundary.py", "sha256": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b"},
+    {"path": "tools/prepare_graph_distance_pilot.py", "sha256": "b4f744cd3a806a1c7221a526df4d449948585f976002c8648c7f71713ab58dec"},
+    {"path": "tools/prepare_frozen_strain_response.py", "sha256": "364e90ffb858d79b8011707418f3125ea49a59517c14a0e2cef13b1371592d91"},
+    {"path": "geobc/local_geometry.py", "sha256": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091"}
+  ]
+}

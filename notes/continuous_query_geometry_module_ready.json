@@ -1,0 +1,147 @@
+{
+  "status": "source_ready_author_synthetic_fixture_passed",
+  "module": "geobc/continuous_query_geometry.py",
+  "source_sha256": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+  "formal_plan_sha256": "16169bbd20fc1d746cc8ccf88fa9d4c287fa410744d4ee8b6f0bb210543bb71f",
+  "implementation_policy_sha256": "13dd1a57dd368a9f44e74841408a30d6ac95da335fcba97a9cc1825e4eaf446f",
+  "source_stable_no_further_edits_expected": true,
+  "activity": {
+    "real_scientific_arrays_read": false,
+    "labels_or_weights_read": false,
+    "GPU_or_model_import": false,
+    "actual_one_CAD_gate_run": false,
+    "old_sources_or_frozen_artifacts_changed": false
+  },
+  "API": {
+    "constants": [
+      "EDGES",
+      "FACES",
+      "REFERENCE_BARYCENTRIC",
+      "REFERENCE_POINTS",
+      "REGULARITY_BARYCENTRIC"
+    ],
+    "math": [
+      "quadratic_shape(L)->signedN",
+      "shape_gradient(L)->dNdr",
+      "map_points(nodes,L)->physicalXYZ",
+      "jacobian(nodes,L)->J[physical,reference]",
+      "bezier_bounds(nodes)->(lower,upper)"
+    ],
+    "topology": "scan_face_conformity(cells10,node_count,max_records=8) validates every pair; retains first8 lexicographic records with sorted corner_ids, original cell_rows and FACES table indices local_faces; select_cells_and_faces(scan,total_cells)->(ascending_rows,faces); nonconformity returns empty selection, numeric stage unexecuted and gate=false, never repaired subset",
+    "field": "interpolate_nodal(values,cells10,element_rows,L,dtype) computes N in float64 then casts signed weights/nodal values to requested dtype for gather/sum; post_ln_surrogate(node_ids) is the exact frozen FP64 sin/cos->LN32 eps1e-5->tanh recipe",
+    "locator_constructor": "GeometryLocator(xyz_mm,cells10_selected,original_rows,L_scale,config=root_fixed_numeric_contract,global_bounds=(lower,upper),descriptor_blocks={raw43:array,Q32:array,cachedxyz:array})",
+    "locator_results": "locate(points[Q,3])->list per logical query; status, source element_row/local index, accepted barycentric/weights/residual/field_blocks or None on failure; diagnostics retains all seed attempts and accepted_candidate_rows, compatible_tie_trace_max, counters",
+    "interpolate_result": "locator.interpolate_result(result)->dict fields if inside_accepted, else None",
+    "exposed": "locator.regularity_records (11 samples, original_row/valid/status/orientation_sign/min_abs_det_over_L3/min_sigma_min_over_L/max_condition/sample_signs) and locator.counters including queries/candidates/attempts/iterations/backtracks/J/map/descriptor/affine-seed counts"
+  },
+  "mathematical_controls": {
+    "same_element_root_equivalence_reference_infinity": 1e-07,
+    "all_seed_roots_preserved_before_equivalence": true,
+    "fold_sign_reversal_precedence_over_zero_center": true,
+    "negative_consistent_orientation_allowed": true,
+    "no_nearest_clamping_sanitizing_or_positive_weight_fallback": true,
+    "outside_requires_explicit_domain_bounds": true
+  },
+  "author_fixture_receipt": {
+    "status": "passed",
+    "source_arrays_read": false,
+    "CUDA_imported": false,
+    "cardinal_error": 0.0,
+    "partition_error": 0.0,
+    "gradient_sum_error": 0.0,
+    "affine_J_error": 0.0,
+    "raw43_nodal_replay_error": 0.0,
+    "midside_spike_error": 0.0,
+    "FP32_replay_error": 2.384185793236071e-08,
+    "curved_inverse_reference_error": 1.1934897514720433e-15,
+    "negative_orientation_accepted": true,
+    "shared_face_smallest_original_row": 3,
+    "four_failure_queries": [
+      {
+        "name": "singular",
+        "expected": "invalid_jacobian",
+        "actual": "invalid_jacobian",
+        "no_field": true,
+        "passed": true,
+        "counters": {
+          "logical_queries": 1,
+          "candidate_evaluations": 1,
+          "newton_attempts": 0,
+          "newton_iterations": 0,
+          "backtrack_evaluations": 0,
+          "jacobian_evaluations": 11,
+          "map_evaluations": 0,
+          "descriptor_evaluations": 0,
+          "affine_seed_checks": 0
+        }
+      },
+      {
+        "name": "evidenced_fold",
+        "expected": "invalid_geometry",
+        "actual": "invalid_geometry",
+        "no_field": true,
+        "passed": true,
+        "counters": {
+          "logical_queries": 1,
+          "candidate_evaluations": 1,
+          "newton_attempts": 0,
+          "newton_iterations": 0,
+          "backtrack_evaluations": 0,
+          "jacobian_evaluations": 11,
+          "map_evaluations": 0,
+          "descriptor_evaluations": 0,
+          "affine_seed_checks": 0
+        }
+      },
+      {
+        "name": "overlapping_interiors",
+        "expected": "ambiguous_geometry",
+        "actual": "ambiguous_geometry",
+        "no_field": true,
+        "passed": true,
+        "counters": {
+          "logical_queries": 1,
+          "candidate_evaluations": 2,
+          "newton_attempts": 4,
+          "newton_iterations": 0,
+          "backtrack_evaluations": 0,
+          "jacobian_evaluations": 26,
+          "map_evaluations": 10,
+          "descriptor_evaluations": 0,
+          "affine_seed_checks": 2
+        }
+      },
+      {
+        "name": "unaccepted_conservative_candidate",
+        "expected": "unresolved_inverse",
+        "actual": "unresolved_inverse",
+        "no_field": true,
+        "passed": true,
+        "counters": {
+          "logical_queries": 1,
+          "candidate_evaluations": 1,
+          "newton_attempts": 2,
+          "newton_iterations": 1,
+          "backtrack_evaluations": 1,
+          "jacobian_evaluations": 14,
+          "map_evaluations": 6,
+          "descriptor_evaluations": 0,
+          "affine_seed_checks": 1
+        }
+      }
+    ],
+    "limits": "Small mathematical fixture only; no real CAD or global inverse/native model proof.",
+    "elapsed_seconds": 0.01977929400004541,
+    "author_executions": 1,
+    "logical_synthetic_queries": 16,
+    "real_CAD_arrays_read": false,
+    "synthetic_failure_cells": 5
+  },
+  "limits": [
+    "One small author CPU synthetic mathematics fixture, not a real scientific stage.",
+    "Only selected<=32 original cells numeric locator, no global inverse or unseen-root guarantee.",
+    "All-CAD topology and conservative bounds do not prove all-mesh Jacobian/injectivity.",
+    "No native FP16/model parity, derivative or GT accuracy result."
+  ],
+  "next": "Root final source/ready review and CLI release precede the single queued actual one-CAD gate; no actual array work or new training here."
+}

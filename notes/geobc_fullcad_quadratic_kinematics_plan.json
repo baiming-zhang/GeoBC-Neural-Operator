@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "status": "predeclared",
+  "stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
+  "trigger": "Bounded32-cell specialist10000/ver diagnostic showed samplequadratureP1relative15.8913% vsP2-u173.086%, truthP2-P1mismatch10.304%; E_mid/E2~99.0% with signedcrossretained. Determine whether this local omission persists across the same CAD before changing training.",
+  "parent": {
+    "bounded_plan": "notes/geobc_quadratic_kinematics_plan.json",
+    "bounded_plan_sha256": "f752c5d45b7cff7b3e13d6e070f1f91980eae7a26df8fb26fc276936d7d35d2d",
+    "bounded_result": "notes/geobc_quadratic_kinematics_result.json",
+    "bounded_result_sha256": "adfb64daff4da7e3cb5c41816cf7e4496b9d7811a2ce3fac600c408602469dde",
+    "geometry_result": "notes/geobc_continuous_geometry_result.json",
+    "geometry_result_sha256": "50309e087014dad6ae29ae347fa1fb1e8bb0a3e76958f803d92dd8caf808b5c2"
+  },
+  "inheritance": "Inherit exact existing oneTRAIN101_479/ver specialistendpoint10000 source inputs/hashes/member allowlist/physical-mm normalization, quadrature/formulas/zero-denominator and historical-metric limits from frozen bounded_plan. No other predictions/GT/case/VAL/dia/final/stress/checkpoint/model/inference/update. Only scope changes from32selected originalcells to all111754originalcells and implementation to batchedCUDAfloat64.",
+  "fixed_scope": {
+    "CAD": "101_479",
+    "case": "101_479/ver",
+    "endpoint": 10000,
+    "original_rows": "Every original cached cells10 row0..111753 exactly once in ascending order; no target ranking, skipping or substitutions",
+    "cells": 111754,
+    "quadrature_points_per_cell": 4,
+    "quadrature_points": 447016,
+    "regularity_center_points": 111754,
+    "GPU_device": "cuda:0",
+    "dtype": "float64 for geometry/strain/energies",
+    "maximum_chunk_cells": 8192,
+    "CPU_loader_workers": 1,
+    "BLAS_threads": 1,
+    "no_dynamic_budget_or_algorithm_tuning": true
+  },
+  "source_pins": {
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "tools/diagnose_quadratic_kinematics.py": "b2d5ca8b3a2abbca4818aaa34f845e5034156e80b111d1e7fd3bf8f34e058865"
+  },
+  "mathematics": "Reuse fullTETRA10 signedshape/dN order and G2=transposeSolve(J,u^T D), physicalcorneraffineG1, residualdelta_a=u_a-u0-G1(X_a-X0), eps2=eps1+epsmid. Full3x3Frobenius equals sixcomponent withshear2. Positive4pointGauss1/24, w=absdetJ/24. Preserve signedcross, no floors, clip, abs-correction or recoverednodal smoothing. Fixedquadrature onlyforcurvedgeometry.",
+  "geometry_gate": {
+    "before_saved_field_members": "Verify all geometry source hashes then inspect allcell referencecenter and fourfixedGauss Jacobians before reading u_true_mm/u_pred_mm; metadata/xyz allowed beforetargets.",
+    "normalized_J": "J/L finite, absdet>1e-18,sigma_min>1e-12,condition<1e12. Center regularorientation fixes sign; allfourGauss signs must agree. Consistent negativeorientation valid.",
+    "corner_P1": "Corner physicaledge matrix/L must meet same finite/nonzero/sigma/condition predicate for definedP1; no absdet hidingfold. The sign of corner determinant need not replace quadraticcenterorientation.",
+    "failure": "Any invalidcenter/Gauss/corner blocks scientificmetrics for wholejob: completednegative/gatefalse, report all failurecounts and first8 ascending row/pointIDs, labelsread0; no partialtargetreadout or cell replacement.",
+    "no_redundant_face_scan": "PriorfullCAD conformingfaces already accepted; require same connectivity/vertex hashes but do not redo face-IDscan, inverseNewton, all11nodeJscan or otherCADaudit.",
+    "validity_limit": "Center+fourGauss checks do not certify everywhere-positive curvedJacobian, globalinjectivity or arbitrarypointlocator coverage."
+  },
+  "parity_and_numerics": {
+    "unique_runtime_GPU_parity": "No separate authorGPUprobe/toy. On the first actual formalrun, compute the previousfixed32rows from sameGPUarrays andcompareall aggregateP1/P2/mid/cross/ref/referenceRMS andGaussgeometry values to frozen bounded_result; do not rerunCPUarrays/authorfixture.",
+    "scalar_relative_tolerance": 1e-10,
+    "zero_scalar": "Both0 equal; one0 differs. Null/reason definitions must match.",
+    "physical_affine_direct_block_tolerance": 1e-10,
+    "signed_energy_identity_relative_tolerance": 1e-10,
+    "failure": "Parity/numericalfailure completes as scientificnegative with metrics withheld or failed operationalexception distinguished; no retry/tolerance/precision/backend sweep.",
+    "geometry_and_math_guards": "All retained runtime gradients finite; preserve corner residual floatingvalues (validate, do not forcezero). Report maxdecomposition/energyidentity errors, positivequadrature/cornervolumes separately."
+  },
+  "readout": {
+    "primary": "OnefullCAD/ver volume-quadrature-weighted P1/P2truthreference/errorenergy, RMS andrelativeL2 using owntruthdenominator; GT/pred midsidephysicalaffine residualRMS; E1/Emid/signedcross/E2 and closure.",
+    "subset": "Previous32samepoints GPU-parity metrics recorded separately; never infer fullCAD by sample.",
+    "precision": "FP64 GPU reductions and CPU scalar accumulation of atmost14ascending chunks. Report backend/device/dtype and actualGPUtime/memory +walltime/RSS.",
+    "serialization": "Compact scalar/quantile/check/failurecount records; no rawXYZ/u/GT/weights/allpointarrays copied to repository, no hugefullcellJSON required.",
+    "accuracy_not_gate": "Accuracy values are observations. NumericalPASS does not mean P2modelaccuracy or generalization passes. Preserve legacyallnodeP1metrics."
+  },
+  "execution": {
+    "tool": "tools/diagnose_fullcad_quadratic_kinematics.py",
+    "API": "request_contract(planPath) purestdlib. Actual CLI --plan/--output afterready/rootrelease only.",
+    "result": "notes/geobc_fullcad_quadratic_kinematics_result.json",
+    "output": "runs/geobc_exploration/fullcad_quadratic_kinematics_specialist101_479_ver",
+    "ready": "notes/fullcad_quadratic_kinematics_ready.json",
+    "source_review": "notes/fullcad_quadratic_kinematics_source_review.json",
+    "parent_release": "notes/fullcad_quadratic_kinematics_parent_review.json",
+    "author_permission": "Source/stdlibmetadata/AST only; no scientificarrays/GT/GPUprobe/toy execution. PrioranalyticCPUtoy alreadypassed; necessarynewGPUparity is integrated into uniqueactualstage.",
+    "actual_permission": "Root authorizes onlylistedexistingTRAIN savedfields afterallnewgeometrypoints pass andsource/ready/root release; existingqueueonly, no duplicateGPUtask.",
+    "receipt": "Strictsummary.config.contract/formalresultcompleted reuse; plan/parent/source/fileidentity, accessedmembers, actualcells/Gauss/center/paritycounts, gate/scientificfailures, labels/predfilesread, no models/checkpoints/inference/updates, GPUdtype/time/memory, wall/RSS.",
+    "failure_semantics": "Corruptsource/input or operationalexception failedpreservereceipt; fixedscientificnegative completed/gatefalse. Existingnonemptysource-mismatchedoutputsnever silentlyoverwrite."
+  },
+  "root_next_decision": "AfterfullCAD evidence choose one boundednextstage. Ifomissionpersists, consider a freshlymatched singleCAD P1-vsfull10 gradient-supervision pilot with source/normalizer/losspredeclared; this is proposalonlynow. No automatictraining/crossCAD/loss sweep.",
+  "limits": [
+    "SingleobservedTRAIN/ver specialist withdedicated10000exposure is not sharedgeometry/generalizationevidence",
+    "Full10u-derivedkinematicproxy remains distinctfromsolverstrain/stressGT",
+    "FourpositiveGauss curvedintegral is fixedproxy, no exactcurvedcontinuumintegralclaim",
+    "Globalmetric doesnot establishpureHashfrequency/optimizercausality",
+    "No modelcoordinatederivative/FP16continuousutility/remeshingvalidation"
+  ],
+  "predeclared_at_utc": "2026-10-09 13:02:41 UTC"
+}

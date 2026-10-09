@@ -1,0 +1,293 @@
+{
+  "contract": {
+    "schema_version": 1,
+    "stage": "bounded_TRAIN_quadratic_kinematic_proxy_consistency",
+    "plan_sha256": "f752c5d45b7cff7b3e13d6e070f1f91980eae7a26df8fb26fc276936d7d35d2d",
+    "tool_sha256": "b2d5ca8b3a2abbca4818aaa34f845e5034156e80b111d1e7fd3bf8f34e058865",
+    "identities": {
+      "plan": {
+        "path": "notes/geobc_quadratic_kinematics_plan.json",
+        "bytes": 10123,
+        "mtime_ns": 1791549503136426500,
+        "sha256": "f752c5d45b7cff7b3e13d6e070f1f91980eae7a26df8fb26fc276936d7d35d2d"
+      },
+      "geobc/continuous_query_geometry.py": {
+        "path": "geobc/continuous_query_geometry.py",
+        "bytes": 32857,
+        "mtime_ns": 1791548426768701600,
+        "sha256": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27"
+      },
+      "geobc/specialist_train.py": {
+        "path": "geobc/specialist_train.py",
+        "bytes": 35464,
+        "mtime_ns": 1791525728243720100,
+        "sha256": "1465ba1c9db295e3f395ae5d087239dfdc157ee3008a2b58170cbf316045581a"
+      },
+      "geometry_result": {
+        "path": "notes/geobc_continuous_geometry_result.json",
+        "bytes": 3185296,
+        "mtime_ns": 1791549189338044200,
+        "sha256": "50309e087014dad6ae29ae347fa1fb1e8bb0a3e76958f803d92dd8caf808b5c2"
+      },
+      "geometry_plan": {
+        "path": "notes/geobc_continuous_geometry_plan.json",
+        "bytes": 26069,
+        "mtime_ns": 1791547504500001900,
+        "sha256": "16169bbd20fc1d746cc8ccf88fa9d4c287fa410744d4ee8b6f0bb210543bb71f"
+      },
+      "specialist_plan": {
+        "path": "notes/geobc_specialist_plan.json",
+        "bytes": 3372,
+        "mtime_ns": 1791525609666007000,
+        "sha256": "8acea44863abd703f12cfbc10bd2b6e7c51eb015e524dc5436761077662af4ff"
+      },
+      "geometry": {
+        "path": "data/raw/FieldMesh/101_479.h5",
+        "bytes": 33320128,
+        "mtime_ns": 1791453885401115600
+      },
+      "connectivity": {
+        "path": "data/geobc_gradient_supervision/101_479.npz",
+        "bytes": 29513502,
+        "mtime_ns": 1791521769276959500
+      },
+      "endpoint": {
+        "path": "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/case_000.npz",
+        "bytes": 10761086,
+        "mtime_ns": 1791526137091571300,
+        "sha256": "85b4d18f407b2bef416cfe7e801d9487973bef0eb9aca899beb76671ef5b52ec"
+      },
+      "endpoint_index": {
+        "path": "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/index.json",
+        "bytes": 766,
+        "mtime_ns": 1791526137279949600,
+        "sha256": "753ac0e76126e8f1f50a8c480d1a999c65388102f201683d3a9f562971baaaa3"
+      },
+      "endpoint_config": {
+        "path": "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/config.json",
+        "bytes": 484405,
+        "mtime_ns": 1791526026481161700,
+        "sha256": "3cd9e49ed500f3f68c63cda6c6b8a6afca14484b46595c57198c6ac93d6fc74b"
+      },
+      "endpoint_summary": {
+        "path": "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/summary.json",
+        "bytes": 598375,
+        "mtime_ns": 1791526137304102000,
+        "sha256": "d824df545425c510dd384f28776704775ae7447b7bfcdc2eca501178ac531d5f"
+      },
+      "ready": {
+        "path": "notes/quadratic_kinematics_ready.json",
+        "bytes": 3004,
+        "mtime_ns": 1791550293214695800,
+        "sha256": "af7a0571396dd11383350a2dbcc4ca384c19a9eae81cd1de700c920cc3f0b9af"
+      }
+    },
+    "fixed_scope": {
+      "CAD": "101_479",
+      "case": "101_479/ver",
+      "group": "TRAIN",
+      "endpoint": 10000,
+      "selected_original_rows": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        29680,
+        34114,
+        58936,
+        86485,
+        92016,
+        94185
+      ],
+      "selection": "Exactly the previous geometry gate rows; no target/geometry ranking, skip, replacement or expansion",
+      "maximum_original_cells": 32,
+      "quadrature_points_per_cell": 4,
+      "total_actual_reference_points": 128,
+      "CPU_workers": 1,
+      "BLAS_threads": 1
+    },
+    "endpoint_schema": {
+      "xyz": {
+        "dtype": "<f4",
+        "shape": [
+          179316,
+          3
+        ],
+        "fortran_order": false
+      },
+      "u_true_mm": {
+        "dtype": "<f8",
+        "shape": [
+          179316,
+          3
+        ],
+        "fortran_order": false
+      },
+      "u_pred_mm": {
+        "dtype": "<f8",
+        "shape": [
+          179316,
+          3
+        ],
+        "fortran_order": false
+      },
+      "alpha": {
+        "dtype": "<f4",
+        "shape": [
+          3
+        ],
+        "fortran_order": false
+      },
+      "sample_key": {
+        "dtype": "<U11",
+        "shape": [],
+        "fortran_order": false
+      },
+      "step": {
+        "dtype": "<i8",
+        "shape": [],
+        "fortran_order": false
+      },
+      "channels": {
+        "dtype": "<U5",
+        "shape": [
+          3
+        ],
+        "fortran_order": false
+      },
+      "u_scale_mm": {
+        "dtype": "<f8",
+        "shape": [],
+        "fortran_order": false
+      }
+    },
+    "connectivity_member_names": [
+      "corner_ids.npy",
+      "cells10.npy",
+      "inverse_physical_edge_mm.npy",
+      "volumes_mm3.npy",
+      "reference_cell_tensor_strain.npy",
+      "supervision_fingerprint.npy",
+      "record_json.npy"
+    ],
+    "allowed_array_reads": {
+      "geometry": [
+        "vertices"
+      ],
+      "connectivity": [
+        "cells10"
+      ],
+      "endpoint": [
+        "xyz",
+        "u_true_mm",
+        "u_pred_mm",
+        "alpha",
+        "sample_key",
+        "step",
+        "channels",
+        "u_scale_mm"
+      ]
+    },
+    "prior_orientation": {
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 1,
+      "13": 1,
+      "14": 1,
+      "15": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 1,
+      "20": 1,
+      "21": 1,
+      "22": 1,
+      "23": 1,
+      "24": 1,
+      "25": 1,
+      "29680": 1,
+      "34114": 1,
+      "58936": 1,
+      "86485": 1,
+      "92016": 1,
+      "94185": 1
+    },
+    "u_scale_mm": 0.05511113670847156,
+    "quadrature": {
+      "barycentric_a": 0.5854101966249685,
+      "barycentric_b": 0.1381966011250105,
+      "reference_weight": 0.041666666666666664,
+      "points_per_cell": 4
+    },
+    "geometry_thresholds": {
+      "abs_det_J_over_L3_strict_gt": 1e-18,
+      "sigma_min_J_over_L_strict_gt": 1e-12,
+      "condition_strict_lt": 1000000000000.0
+    },
+    "direct_math_relative_tolerance": 1e-10,
+    "signed_energy_identity_relative_tolerance": 1e-10,
+    "scientific_imports_in_request_contract": 0,
+    "model_calls": 0,
+    "CUDA_initialized": false,
+    "optimizer_updates": 0
+  },
+  "method": {
+    "coordinate_order": "r=L1,s=L2,t=L3,L0=1-r-s-t; VTKedges01,12,20,03,13,23 unchanged",
+    "quadratic_gradient": "D=dN/d(r,s,t) [10,3]; J=X^T D [physical,reference]; G2=(u^T D)J^-1, compute transpose solve rather than explicit inverse; epsilon2=sym(G2), unitsdimensionless",
+    "physical_corner_P1": "G1=[u1-u0,u2-u0,u3-u0]*[X1-X0,X2-X0,X3-X0]^-1; epsilon1=sym(G1). No normalized-coordinate derivative mistake.",
+    "physical_affine_extension": "u_aff(X_a)=u0+G1(X_a-X0); delta_a=u_a-u_aff(X_a), all4corner delta zero. epsilon_mid=sym((delta^T D)J^-1). Require epsilon2=epsilon1+epsilon_mid for truth and prediction.",
+    "fixed_quadrature": "4 positive symmetric tetrahedron points: a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20, each barycentric permutation of(a,b,b,b); reference weight1/24 each. w=abs(det J)/24 in mm^3. Exact polynomial energy for affine geometry/P2 displacement; only a fixed quadrature proxy for curved isoparametric geometry.",
+    "energy": "Frobenius tensor inner product xx/yy/zz plus2*(xy/xz/yz). Error e1=eps1_pred-eps1_true; emid=epsmid_pred-epsmid_true; e2=e1+emid. E2=sum w||e2||F^2=E1+Emid+2sum w<e1,emid>F. Preserve signedcross, no abs or omission.",
+    "readouts": [
+      "Selected-subset quadrature-weighted reference/error RMS and relativeL2 separately for P1 and P2-u-derived proxy; do not replace historical all-node recovered P1",
+      "Truth/prediction midside residual displacement RMS; E1/Emid/signedcross/E2 and identity residual",
+      "GT-proxy mismatch epsilon2_true-epsilon1_true weighted energy/RMS and ratio to sameP2 reference; truth and prediction reference energy denominator separately",
+      "Original selectedcorner volume and quadrature volume as different diagnostics, no exact curved-volume claim"
+    ],
+    "zero_denominators": "If exact reference energy is zero report ratio/relativeL2 null with explicit reason; no artificial floors, epsilon clipping or label transform."
+  },
+  "limits": [
+    "Selected32 topology-first cells are not representative of allTRAIN mesh or worst hotspots",
+    "P2 displacement-derived kinematic proxy is not solver strain/stress GT; fixed4point curved quadrature not exact continuum integral",
+    "No model coordinate derivatives, trained continuousquery utility or remeshing/crossCAD validation",
+    "Do not reinterpret prior all-node recovered P1 results or attribute full error causality from a local proxy",
+    "No automatic loss/step/width/seed/radius/train40/val5 expansion; root chooses next stage from actual result"
+  ],
+  "started_at_utc": "2026-10-09T12:56:37.401391+00:00",
+  "CPU_workers": 1,
+  "BLAS_threads": 1,
+  "no_array_writes": true,
+  "scope": "Fixed saved TRAIN101_479/ver endpoint10000; selected32 cells only"
+}

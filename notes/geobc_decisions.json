@@ -172,7 +172,7 @@
       "limits": "Singlepairedseed/reuseddevelopmentvalidation;P1 u-derivedproxy;sampledcellcounterfactualdiagnosticnotallnodeaccuracy orGTcause."
     },
     {
-      "recorded_at_utc": "2026-10-09T10:36:30.268258+00:00",
+      "recorded_at_utc": "2026-10-09T18:36:30.268258+08:00",
       "evidence": "notes/geobc_hash_condition_path_result.json",
       "status": "selected_input_feasibility_design",
       "completed_seconds": 2.7956723930110456,
@@ -205,6 +205,24 @@
       "selected_next": "Input-only all10 continuous query geometry adapter feasibility/gate on fixedTRAIN101_479",
       "reason": "Whole-field continuous coordinate interface remains an unresolved GeoBC requirement; close geometry/locator gaps before derivative or cross-CAD expansion.",
       "forbidden_automatic_expansions": "No step/width/seed/radius/lambda or40train/5val expansion"
+    },
+    {
+      "decision_id": "continuous_geometry_pass_selects_midpoint_kinematic_consistency",
+      "evidence": "notes/geobc_continuous_geometry_result.json",
+      "result": "Geometry-onlyTRAIN101_47945.137s/15checksPASS:32cells8faces512queries,500accepted/8outside/4fixedfailurecorrect",
+      "interpretation": "Bounded all10 descriptor/locator interface closed; no learned-field accuracy/gen/FP16/globalvalidity conclusion",
+      "selected_next": "notes/geobc_quadratic_kinematics_plan.json",
+      "question": "Does fourcorner P1 miss significant independent midside displacement-gradient information in fixed specialist10000?",
+      "scope": "Same32cells,128positiveGauss,onlyexistingTRAINver savedu_truth/prediction, physical-affine+midresidual signed-energy identity; no model/updates."
+    },
+    {
+      "decision_id": "midside_gradient_omission_needs_full_singleCAD_confirmation",
+      "evidence": "notes/geobc_quadratic_kinematics_result.json",
+      "result": "Same32cells128Gauss/PASS0.425s:P1relative15.8913%,P2relative173.086%,GTproxygap10.304%,E_mid/E2~99%withsignedcrossretained",
+      "interpretation": "GoodcornerP1fit does not imply goodfull10kinematicgradient on this local subset; no globalcause or solverstrainclaim",
+      "selected_next": "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+      "scope": "SameTRAIN101_479/ver existingfield, all111754cells447016GaussGPUFP64, subsetparityintegrated; zero model/updates",
+      "reason": "Check populationextent on oneCAD before changingrepresentation/loss or expandingtraining"
     }
   ],
   "future_hypotheses_not_launched": [

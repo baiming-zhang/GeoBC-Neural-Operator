@@ -1,0 +1,96 @@
+{
+  "phase": "completed",
+  "CAD": "101_479",
+  "started_at_utc": "2026-10-09T12:32:30.004574+00:00",
+  "labels_read": 0,
+  "weights_read": 0,
+  "model_calls": 0,
+  "CUDA_initialized": false,
+  "elapsed_seconds": 45.24302038200017,
+  "updated_at_utc": "2026-10-09T12:33:18.774781+00:00",
+  "input_seconds": 0.30387881599995126,
+  "gate_pass": true,
+  "scientific_outcome": "passed",
+  "counts": {
+    "selected_original_cells": 32,
+    "selected_shared_faces": 8,
+    "logical_query_occurrences": 512,
+    "unique_physical_points_exact_float64": 416,
+    "by_category": {
+      "local_node": 320,
+      "interior": 124,
+      "shared_face": 56,
+      "outside": 8,
+      "synthetic_failure": 4
+    },
+    "synthetic_cells": 5,
+    "all_CAD_face_scan_cells": 111754,
+    "all_CAD_bounds_cell_evaluations": 111754,
+    "all_CAD_bounds_control_points": 1117540,
+    "direct_arithmetic_reference_evaluations": {
+      "shape_reference_evaluations": 4850,
+      "physical_map_reference_evaluations": 556,
+      "descriptor_reference_evaluations": 3784,
+      "jacobian_reference_evaluations": 236
+    },
+    "paired_face_trace_map_evaluations": 112,
+    "additional_known_reference_J_evaluations": 236,
+    "locator_counters": {
+      "logical_queries": 508,
+      "candidate_evaluations": 1072,
+      "newton_attempts": 2144,
+      "newton_iterations": 3872,
+      "backtrack_evaluations": 3872,
+      "jacobian_evaluations": 6368,
+      "map_evaluations": 18262,
+      "descriptor_evaluations": 20190,
+      "affine_seed_checks": 1072
+    },
+    "synthetic_locator_counters": [
+      {
+        "logical_queries": 1,
+        "candidate_evaluations": 1,
+        "newton_attempts": 0,
+        "newton_iterations": 0,
+        "backtrack_evaluations": 0,
+        "jacobian_evaluations": 11,
+        "map_evaluations": 0,
+        "descriptor_evaluations": 0,
+        "affine_seed_checks": 0
+      },
+      {
+        "logical_queries": 1,
+        "candidate_evaluations": 1,
+        "newton_attempts": 0,
+        "newton_iterations": 0,
+        "backtrack_evaluations": 0,
+        "jacobian_evaluations": 11,
+        "map_evaluations": 0,
+        "descriptor_evaluations": 0,
+        "affine_seed_checks": 0
+      },
+      {
+        "logical_queries": 1,
+        "candidate_evaluations": 2,
+        "newton_attempts": 4,
+        "newton_iterations": 0,
+        "backtrack_evaluations": 0,
+        "jacobian_evaluations": 26,
+        "map_evaluations": 10,
+        "descriptor_evaluations": 2,
+        "affine_seed_checks": 2
+      },
+      {
+        "logical_queries": 1,
+        "candidate_evaluations": 1,
+        "newton_attempts": 2,
+        "newton_iterations": 1,
+        "backtrack_evaluations": 1,
+        "jacobian_evaluations": 14,
+        "map_evaluations": 6,
+        "descriptor_evaluations": 0,
+        "affine_seed_checks": 1
+      }
+    ]
+  }
+}

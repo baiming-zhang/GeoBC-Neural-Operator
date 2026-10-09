@@ -3,7 +3,7 @@
   "objective": "Learn a geometry- and boundary-conditioned continuous field that fits multiple DeepJEB cases and transfers across held-out CAD/load conditions.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "continuous_query_geometry_contract_preparation",
+  "stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,14 +21,41 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "continuous_query_geometry_contract_preparation",
-    "design": "notes/geobc_continuous_query_contract_draft.json",
-    "status": "source_and_metadata_feasibility_preparation",
-    "scope": "One fixed TRAIN101_479, input-only geometry; proposed max32cells/8faces/512queries, noGT/models/GPU",
-    "brief_action": "邻居消息配对没有联合收益。下一步验证二次单元连续查询：原节点回放、共享面的衔接与明确定位失败；先固定物理坐标来源和几何门限。",
-    "after": "Root freezes one geometry-only acceptance tool after physical XYZ source and bounded scope are established; no40/5 expansion or training sweep."
+    "stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
+    "design": "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+    "design_sha256": "40b3b9b30f1de0f4afc1f94788881778af40871e784dd0f1694f86ab66579688",
+    "scope": "SameTRAIN/ver existingendpoint10000; all111754cells447016positiveGauss points; batchedGPUfloat64, prior32parityintegrated; no training",
+    "release": "Await new isolatedsource/ready focusedreview and solequeue rootparent",
+    "brief_action": "用同CAD全部单元确认中边梯度误差是否普遍，优先GPU，之后才决定是否改监督。",
+    "after": "Evidence-based rootnexttask only; no automaticstep/loss/width/seed/CAD sweep."
   },
-  "jobs": [],
+  "jobs": [
+    {
+      "name": "fullcad_quadratic_kinematics_specialist101_479_ver",
+      "kind": "frozen_field_diagnostic",
+      "stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
+      "output": "runs/geobc_exploration/fullcad_quadratic_kinematics_specialist101_479_ver",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/diagnose_fullcad_quadratic_kinematics.py",
+        "--plan",
+        "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+        "--output",
+        "runs/geobc_exploration/fullcad_quadratic_kinematics_specialist101_479_ver"
+      ],
+      "requires": [
+        "tools/diagnose_fullcad_quadratic_kinematics.py",
+        "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+        "notes/fullcad_quadratic_kinematics_ready.json",
+        "notes/fullcad_quadratic_kinematics_source_review.json",
+        "notes/fullcad_quadratic_kinematics_parent_review.json",
+        "notes/geobc_quadratic_kinematics_result.json",
+        "data/raw/FieldMesh/101_479.h5",
+        "data/geobc_gradient_supervision/101_479.npz",
+        "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/case_000.npz"
+      ]
+    }
+  ],
   "historical_jobs": [
     {
       "name": "hash50_unseen_geometry_pilot",
@@ -2267,6 +2294,61 @@
         "data/geobc_topology_balanced_train4/manifest.json",
         "notes/geobc_topology_balanced_feasibility_result.json"
       ]
+    },
+    {
+      "name": "continuous_query_geometry_train101_479",
+      "kind": "real_geometry_interface_acceptance",
+      "stage": "bounded_TRAIN_continuous_query_geometry_acceptance",
+      "output": "runs/geobc_exploration/continuous_query_geometry_train101_479",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/validate_continuous_query_geometry.py",
+        "--plan",
+        "notes/geobc_continuous_geometry_plan.json",
+        "--output",
+        "runs/geobc_exploration/continuous_query_geometry_train101_479"
+      ],
+      "requires": [
+        "geobc/continuous_query_geometry.py",
+        "tools/validate_continuous_query_geometry.py",
+        "notes/geobc_continuous_geometry_plan.json",
+        "notes/continuous_query_geometry_implementation_policy.json",
+        "notes/continuous_query_geometry_design_review.json",
+        "notes/continuous_query_geometry_module_ready.json",
+        "notes/continuous_query_geometry_ready.json",
+        "notes/continuous_query_geometry_source_review.json",
+        "notes/continuous_query_geometry_parent_review.json",
+        "data/raw/FieldMesh/101_479.h5",
+        "data/geobc_gradient_supervision/101_479.npz",
+        "data/prepared_geobc_multiload/101_479_ver.npz",
+        "data/geobc_local_geometry/101_479.npz",
+        "data/geobc_graph_context/101_479.npz"
+      ]
+    },
+    {
+      "name": "quadratic_kinematics_specialist101_479_ver",
+      "kind": "frozen_field_diagnostic",
+      "stage": "bounded_TRAIN_quadratic_kinematic_proxy_consistency",
+      "output": "runs/geobc_exploration/quadratic_kinematics_specialist101_479_ver",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/diagnose_quadratic_kinematics.py",
+        "--plan",
+        "notes/geobc_quadratic_kinematics_plan.json",
+        "--output",
+        "runs/geobc_exploration/quadratic_kinematics_specialist101_479_ver"
+      ],
+      "requires": [
+        "tools/diagnose_quadratic_kinematics.py",
+        "notes/geobc_quadratic_kinematics_plan.json",
+        "notes/quadratic_kinematics_ready.json",
+        "notes/quadratic_kinematics_source_review.json",
+        "notes/quadratic_kinematics_parent_review.json",
+        "notes/geobc_continuous_geometry_result.json",
+        "data/raw/FieldMesh/101_479.h5",
+        "data/geobc_gradient_supervision/101_479.npz",
+        "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/case_000.npz"
+      ]
     }
   ],
   "phase_history": [
@@ -2399,7 +2481,7 @@
     },
     {
       "stage": "matched_fixed_hash_bandwidth",
-      "completed_at_utc": "2026-10-09T10:09:40.283575+00:00",
+      "completed_at_utc": "2026-10-09T18:09:40.283575+08:00",
       "scientific_training_runs": 2,
       "synthetic_acceptance_runs": 1,
       "pair_seconds": 516.4885205330065,
@@ -2411,7 +2493,7 @@
     },
     {
       "stage": "frozen_hash_condition_path_decomposition",
-      "completed_at_utc": "2026-10-09T10:35:42.894047+00:00",
+      "completed_at_utc": "2026-10-09T18:35:42.894047+08:00",
       "result": "notes/geobc_hash_condition_path_result.json",
       "seconds": 2.7956723930110456,
       "readout": "Both H and allC P1RMS and signed-interaction RMS decrease in the same input-stratified TRAIN101_479 sample; negative cross cancellation persists; no single-path causal claim.",
@@ -2428,7 +2510,7 @@
     },
     {
       "stage": "target_free_balanced_topology_context_train4_feasibility",
-      "completed_at_utc": "2026-10-09T11:32:35.514898+00:00",
+      "completed_at_utc": "2026-10-09T19:32:35.514898+08:00",
       "result": "notes/geobc_topology_balanced_feasibility_result.json",
       "feasibility_pass": true,
       "elapsed_seconds": 13.101552986999991,
@@ -2443,15 +2525,34 @@
       "gates_passed": 0,
       "paired_elapsed_seconds": 56.634747132999905,
       "decision": "One input-only geometry continuity check, no budget expansion",
-      "completed_at_utc": "2026-10-09T11:55:27.066171+00:00"
+      "completed_at_utc": "2026-10-09T19:55:27.066171+08:00"
+    },
+    {
+      "at_utc": "2026-10-09T12:40:25.1198858Z",
+      "completed_stage": "bounded_TRAIN_continuous_query_geometry_acceptance",
+      "completed": 1,
+      "elapsed_seconds": 45.13721566700019,
+      "gate_pass": true,
+      "new_stage": "bounded_TRAIN_quadratic_kinematic_proxy_consistency",
+      "basis": "All15geometrychecksPASS; next one fixed saved-field kinematic proxy diagnostic, no new training."
+    },
+    {
+      "at_utc": "2026-10-09T13:05:02.7961725Z",
+      "completed_stage": "bounded_TRAIN_quadratic_kinematic_proxy_consistency",
+      "completed": 1,
+      "elapsed_seconds": 0.42491359999996803,
+      "gate_pass": true,
+      "new_stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
+      "basis": "Same32cellquad P1/P2error15.9/173.1%; confirm sameCADallcells before any objective/training change."
     }
   ],
   "scope_rule": "historical_jobs are immutable completed evidence and are never dispatched; jobs contains only the currently authorized stage. Source SHA and weights remain in each historical run and the frozen Git commit.",
   "active_cpu_diagnostic": {
     "status": "completed",
-    "kind": "input_only_graph_distance_pilot",
-    "result": "runs/geobc_exploration/graph_distance_pilot_101_479/summary.json",
-    "seconds": 2.042458820011234
+    "kind": "bounded_quadratic_kinematic_proxy",
+    "result": "notes/geobc_quadratic_kinematics_result.json",
+    "seconds": 0.42491359999996803,
+    "gate_pass": true
   },
   "input_preparation": {
     "status": "completed",
@@ -2470,10 +2571,11 @@
     }
   },
   "active_design_preparation": {
-    "status": "source_metadata_only",
+    "status": "formal_frozen_source_implementation",
+    "design": "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+    "design_sha256": "40b3b9b30f1de0f4afc1f94788881778af40871e784dd0f1694f86ab66579688",
     "author": "continuous_query_contract",
-    "draft": "notes/geobc_continuous_query_contract_draft.json",
-    "feasibility": "notes/geobc_continuous_geometry_feasibility.json",
-    "no_real_array_or_GPU_execution_yet": true
+    "reviewer": "deepjeb_research",
+    "source_only_until_root_release": true
   }
 }

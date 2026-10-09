@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "review_type": "independent_focused_geometry_math_and_source_scope_design_review",
+  "formal_plan": "notes/geobc_continuous_geometry_plan.json",
+  "formal_plan_sha256": "16169bbd20fc1d746cc8ccf88fa9d4c287fa410744d4ee8b6f0bb210543bb71f",
+  "preobservational_implementation_policy": "notes/continuous_query_geometry_implementation_policy.json",
+  "implementation_policy_sha256": "13dd1a57dd368a9f44e74841408a30d6ac95da335fcba97a9cc1825e4eaf446f",
+  "execution_permission_granted_by_review": false,
+  "blocking_findings": [],
+  "checks": [
+    {
+      "name": "fixed source and numerical scope",
+      "status": "passed",
+      "evidence": "One previously fixed TRAIN101_479 canonicalver,32 original numeric cells/8 shared faces/512 maximum logical occurrences. Only original H5 vertices float32 plus cached cells10 and input/identity members are allowed. All-CAD face-ID conformity/index validation and conservative bounds are topology/geometry scans, not all-CAD Newton/Jacobian/injectivity coverage. No target, stress, strain reference, prediction, model, weight, CUDA or other-CAD read is selected."
+    },
+    {
+      "name": "physical coordinates and source replay",
+      "status": "passed",
+      "evidence": "Verify original vertices float32 hash/order before promotion to float64 physical mm. Reproduce the old float32 prepared normalization exactly, rather than reconstruct physical X from rounded normalized xyz. GRID_ID remains provenance, not an index or nearest-search remap. Physical residuals/Jacobians use original physical X and recorded L; interpolated cached normalized xyz is allowed the explicitly separate2e-7 source-rounding discrepancy."
+    },
+    {
+      "name": "all10 shape and independent midsides",
+      "status": "passed",
+      "evidence": "Existing inspected shape code uses corner N_i=L_i(2L_i-1), edge N_ij=4L_iL_j in the verified VTK order, with exact analytic reference derivatives. Physical X, raw43, post-LN/tanh nodal Q32 and cached normalized xyz use all ten signed weights. Independent midsides are retained; weights are never abs/clamped/thresholded. Local midside-spike replay tests cannot be replaced by corner-P1 or nearest-copy. Raw43 extension is numerical descriptor interpolation, not recomputed physical role/distance/PCA semantics."
+    },
+    {
+      "name": "conservative bounds and direct trace",
+      "status": "passed",
+      "evidence": "B_corner=X_corner and B_edge=2X_mid-(X_a+X_b)/2 are the degree2 Bezier control points; their AABB contains the quadratic simplex image because Bernstein basis weights are nonnegative and sum1. Shared six-node faces have identical direct quadratic maps/descriptors under the true global corner/edge permutation when IDs conform. Known-reference direct partition/nodal/face checks use1e-12; this is distinct from inverse-derived field agreement1e-7 and FP32 adapter comparison2e-6."
+    },
+    {
+      "name": "Newton and final acceptance",
+      "status": "passed",
+      "evidence": "Two fixed seeds affine-if-regular and center,24 iterations each and at most8 residual-decreasing backtracks, target residual/L1e-13, final physical infinity residual/L<=1e-10 and barycentric containment1e-10. Physical J has rowsphysical coordinates/columns reference coordinates; J/L supplies determinant/singular-value/condition checks. Final absdet>1e-18, sigma_min>1e-12 and condition<1e12 are explicit independent tests. No projection, silent sanitization, random retries or tolerance adaptation is selected."
+    },
+    {
+      "name": "orientation and sampled-fold evidence",
+      "status": "passed",
+      "evidence": "Each selected element is inspected at its ten reference nodes plus center. A consistent negative orientation is allowed; evidenced positive/negative determinant reversal rejects it. These eleven samples and accepted-root regularity do not prove whole-element/global injectivity. The root-confirmed implementation must collect all eleven samples before classification: the fixed r-2r^2 fold has zero center J but positive/negative nodal signs, so invalid_geometry takes precedence over a center-only invalid_jacobian. The planar singular case has no regular sign reversal and remains invalid_jacobian."
+    },
+    {
+      "name": "root equivalence and legal entity ties",
+      "status": "passed",
+      "evidence": "Root declared reference-root equivalence1e-7 before any scientific array observation in the separate frozen policy. It is a numerical-equivalence scale, not the1e-10 domain-containment gate; they must not be conflated. Retain every seed candidate diagnostic, never deduplicate by cell ID before examining distinct roots. Separated accepted roots in one cell or overlapping nonconforming interiors are ambiguous. Compatible source-global face/edge/node ties require agreeing traces and choose smallest original row; unrelated coincident geometry or mismatched traces is not a legal tie. Equivalence does not certify absence of closer distinct/unfound roots."
+    },
+    {
+      "name": "outside versus unresolved",
+      "status": "passed",
+      "evidence": "Only queries beyond the complete conservative whole-CAD bounds are certified outside in this recipe. A failed conservative candidate or a point with no selected-submesh candidate but within whole-CAD bounds is unresolved, not certified outside the whole CAD. Failures return diagnostics/no field, never nearest, extrapolated or valid zero output. Newton iterates may leave the reference domain; their Jacobian sign alone is not evidence of an interior fold. Fold assertions must use scheduled domain samples/accepted contained roots."
+    },
+    {
+      "name": "exact fixed test inventory",
+      "status": "passed",
+      "evidence": "320 node occurrences+124 interior prefix+56 face occurrences+8 outside+4 synthetic failures=512; one scheduled face point is counted once despite two traces. Internal shape/J/Newton evaluations are reported separately. Root fixed_synthetic_failures is the authoritative four-query/five-cell list: planar singular, r-2r^2 fold, two disjoint-ID overlapping affine tetrahedra, and affine(.8,.8,.8) unresolved conservative candidate. Older future_gate paragraph fixture descriptions are superseded by that root-fixed list; no alternative fixture or redistributed unused query quota is selected."
+    },
+    {
+      "name": "limited meaning of an eventual pass",
+      "status": "passed",
+      "evidence": "The global deterministic bounded post-LN/tanh nodal surrogate checks adapter arithmetic and conditional C0 shared traces; it does not exercise learned topology tokens, a native FP16 model or displacement GT. A bounded32-cell pass cannot establish full-CAD query coverage, global injectivity, exact derivative quality or generalization. Root alone decides any later task."
+    }
+  ],
+  "source_metadata_verification": {
+    "formal_plan_SHA_actual_matches": true,
+    "all_ten_verified_metadata_and_source_SHA_entries_match": true,
+    "inspected_local_formula_source": "tools/prepare_grids.py quadratic_shape/_shape_gradient and degree2 Bezier controls only; no function imported or executed",
+    "forbidden_source_wrapper_reuse": "Do not execute/import its grid rasterizer, zero-producing singular solve fallback or no_grad interpolation wrapper as the new generic locator. Isolated implementation must preserve explicit failure diagnostics."
+  },
+  "essential_final_source_checks": [
+    "Member allowlists/physical float32 hash and normalization reproduction before use; no reference-reading loader.",
+    "Root fixed synthetic list and policy SHA locked; fold-sign evidence priority and same-cell root diagnostics/equivalence implemented.",
+    "J orientation/physical normalization and two-seed/24iteration/8backtrack budgets; no silent iterate/shape/candidate clipping.",
+    "Direct versus inverse versus FP32 tolerances stored separately; source-global entity ties and original-row tie break.",
+    "512 logical occurrence receipt and32-real-cell/8-face numeric bounds, internal evaluation counts separate.",
+    "No GT/model/GPU or automatic expansion; all-CAD topology/bounds scan not relabeled global geometry validation."
+  ],
+  "review_scope": {
+    "only_output": "notes/continuous_query_geometry_design_review.json",
+    "source_and_small_JSON_only": true,
+    "scientific_arrays_labels_or_weights_read": false,
+    "fixture_actual_geometry_or_model_executed": false,
+    "CUDA_imported_or_initialized": false,
+    "source_plan_or_frozen_files_modified": false
+  },
+  "conclusion": "PASS with the root pre-observation policy and explicit fixed-fixture precedence. No mathematical/source-scope blocker remains at design level. Final isolated source and ready still require the single focused review and root execution release; no actual geometry acceptance is claimed."
+}

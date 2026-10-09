@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "released_at_utc": "2026-10-09T12:32:00+00:00",
+  "formal_plan": "notes/geobc_continuous_geometry_plan.json",
+  "formal_plan_sha256": "16169bbd20fc1d746cc8ccf88fa9d4c287fa410744d4ee8b6f0bb210543bb71f",
+  "implementation_policy_sha256": "13dd1a57dd368a9f44e74841408a30d6ac95da335fcba97a9cc1825e4eaf446f",
+  "source_sha256": {
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "tools/validate_continuous_query_geometry.py": "5308f33835164633251e743ae8896cf9536c149a4c6e40ff6437007dceff3e5f"
+  },
+  "module_ready_sha256": "036c7aee66149d0c2070848996bcc54d9c25dd55feb314bfbb662e75197d5063",
+  "tool_ready_sha256": "72736ad3f94587799fd133c00d00f3783af98995fde17a0e601d96124aa72bec",
+  "focused_source_review": "notes/continuous_query_geometry_source_review.json",
+  "focused_source_review_sha256": "294bafe6467151141488de862080e054c0a7a7126ebf727f09274192f759c3cf",
+  "author_evidence_not_reexecuted": {
+    "module_synthetic_fixture_passed": true,
+    "module_fixture_seconds": 0.01977929400004541,
+    "tool_unique_stdlib_metadata_preflight_passed": true,
+    "tool_preflight_seconds": 0.09069610899996405,
+    "actual_scientific_arrays_read_before_release": false
+  },
+  "sole_queue_pid": 398,
+  "authorized_scope": "Exactly one CPU geometry-only TRAIN101_479/ver gate: full one-CAD index/face-conformity and Bezier-bound input scans, at most32 selected original TETRA10 cells,8 paired faces,512 logical queries including4 fixed synthetic failures. Explicit member allowlist; zero GT, weights, models, Torch/native/CUDA or training.",
+  "root_decision": "Source API, mathematical ordering, member scopes, predeclared numeric tolerances, failure semantics and complete receipts reviewed. Release this existing waiting queue only. Do not restart it or launch a duplicate process.",
+  "runtime_outcome_not_yet_observed": true,
+  "scientific_negative_is_completed": true,
+  "no_automatic_tolerance_or_CAD_or_training_expansion": true,
+  "reuse_note": "PID398 loaded earlier coordinator source. The tool strict request_contract and formal result plus root runtime inspection are authoritative for this fresh gate; updated coordinator handles future restarts without interrupting this live queue.",
+  "research_status": "ongoing"
+}
