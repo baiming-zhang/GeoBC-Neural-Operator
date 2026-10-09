@@ -1,0 +1,32 @@
+# GeoBC 求解器确认轮
+
+已完成 0/6；候选已冻结。固定累计训练成本端点为主结果，共同VAL分数best为次结果。
+
+冻结的候选依据：FNO: clear joint U/stress learning; MLP: low-cost displacement/control route; Transolver++: one lower-priority slow structural route with declining U. Hash held because worst U191.41% and late U reversal; original/TS3 near zero-field and final score reversal. No route-specific objective or hyperparameter optimization.
+
+| 候选 / seed | 状态 / step / stop | 预算端点 U mean / worst % | S mean / worst / hotspot % | actual / parent / incremental训练秒 | 超额秒 |
+|---|---|---:|---:|---:|---:|
+| FNO / 2026 | training / 1760 / — | — | — | 373.84 / 99.78 / 274.06 | 0.00 |
+| FNO / 2027 | pending / — / — | — | — | — / — / — | — |
+| MLP / 2026 | pending / — / — | — | — | — / — / — | — |
+| MLP / 2027 | pending / — / — | — | — | — / — / — | — |
+| Transolver++ / 2026 | pending / — / — | — | — | — / — / — | — |
+| Transolver++ / 2027 | pending / — / — | — | — | — / — / — | — |
+
+| 同一候选 / seed | 次结果：共同VAL best step | U mean / worst % | S mean / worst / hotspot % | best累计训练秒 |
+|---|---|---:|---:|---:|
+| FNO / 2026 | 尚未完成 | — | — | — |
+| FNO / 2027 | 尚未完成 | — | — | — |
+| MLP / 2026 | 尚未完成 | — | — | — |
+| MLP / 2027 | 尚未完成 | — | — | — |
+| Transolver++ / 2026 | 尚未完成 | — | — | — |
+| Transolver++ / 2027 | 尚未完成 | — | — | — |
+
+未完成组的主/次结果留空；最新已测端点仅在metrics.json标为provisional。实际600秒附近按完整pass停，max_steps安全上限未达预算时单列；不能把超额或父成本抹去。
+
+相同40/5 CAD、三known-load、TRAIN-only共同scaler/global32/input与固定配方；seed2026沿screen last480轨迹及Adam/RNG接续，seed2027 fresh，cloud_seed2026不变。热点仅指源应力最高1%节点，U热点未测；表中误差均为物理解码后全原节点指标。
+
+两个seed逐一报告，不宣称统计显著，不按均值低于100%自动宣布胜出。FNO适配/分辨率限制、慢路线尚未充分收敛和反复使用开发验证的限制保留；final5/dia继续隔离。完整历史、每case指标、参数/显存/推断成本见[metrics.json](metrics.json)。
+
+![实测成本与物理验证误差](precision_vs_time.png)
+散点为真实累计训练秒/已提交评估，无插值；大空心点标完成的预算端点。

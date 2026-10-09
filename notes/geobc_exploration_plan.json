@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_family_selection",
+  "stage": "solver_confirmation",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,166 +21,190 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "bounded_cross_solver_screen",
-    "scope": "Six-family fresh TRAIN40/VAL5, common signed four-field prediction and train-only scaler; 480 complete-case updates per family with full-node validation.",
-    "basis": "User correction: solver has not been selected, and prior overfitting results are insufficient for generalization ranking.",
-    "brief_action": "启动六家族统一协议广筛，根据未见CAD精度、最差案例和成本推进2–3个候选。",
-    "after": "Evidence-driven shortlist confirmation; no automatic return to Hash-only optimization."
+    "stage": "solver_confirmation",
+    "scope": "FNO/MLP/Transolver++ each seed2026/2027, TOTAL600 measured training seconds including parent screen; same complete-case data/loss, no family-specific tuning",
+    "basis": "FNO: clear joint U/stress learning; MLP: low-cost displacement/control route; Transolver++: one lower-priority slow structural route with declining U. Hash held because worst U191.41% and late U reversal; original/TS3 near zero-field and final score reversal. No route-specific objective or hyperparameter optimization.",
+    "brief_action": "确认FNO与低成本MLP，保留++作为慢结构路线；固定预算端点为主要比较",
+    "after": "Analyze seed stability and worst CAD, lock route/protocol before final held-out test and continuous field capability"
   },
   "jobs": [
     {
-      "name": "solver_screen_transolver_480",
-      "kind": "solver_screen",
-      "stage": "solver_family_selection",
-      "method": "transolver",
-      "output": "runs/geobc_exploration/solver_screen_transolver_480",
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "-m",
-        "geobc.solver_selection_train",
-        "--plan",
-        "notes/geobc_solver_selection_plan.json",
-        "--method",
-        "transolver",
-        "--output",
-        "runs/geobc_exploration/solver_screen_transolver_480"
-      ],
-      "requires": [
-        "geobc/solver_selection_train.py",
-        "geobc/solver_selection_models.py",
-        "geobc/solver_selection_data.py",
-        "notes/geobc_solver_selection_plan.json",
-        "notes/solver_selection_source_review.md",
-        "data/geobc_solver_selection/manifest.json"
-      ]
-    },
-    {
-      "name": "solver_screen_mlp_480",
-      "kind": "solver_screen",
-      "stage": "solver_family_selection",
-      "method": "mlp",
-      "output": "runs/geobc_exploration/solver_screen_mlp_480",
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "-m",
-        "geobc.solver_selection_train",
-        "--plan",
-        "notes/geobc_solver_selection_plan.json",
-        "--method",
-        "mlp",
-        "--output",
-        "runs/geobc_exploration/solver_screen_mlp_480"
-      ],
-      "requires": [
-        "geobc/solver_selection_train.py",
-        "geobc/solver_selection_models.py",
-        "geobc/solver_selection_data.py",
-        "notes/geobc_solver_selection_plan.json",
-        "notes/solver_selection_source_review.md",
-        "data/geobc_solver_selection/manifest.json"
-      ]
-    },
-    {
-      "name": "solver_screen_fno_480",
-      "kind": "solver_screen",
-      "stage": "solver_family_selection",
+      "name": "solver_confirm_fno_seed2026_600s",
+      "kind": "solver_confirmation",
+      "stage": "solver_confirmation",
       "method": "fno",
-      "output": "runs/geobc_exploration/solver_screen_fno_480",
+      "seed": 2026,
+      "output": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.solver_selection_train",
+        "geobc.solver_confirmation_train",
         "--plan",
-        "notes/geobc_solver_selection_plan.json",
+        "notes/geobc_solver_confirmation_plan.json",
         "--method",
         "fno",
+        "--seed",
+        "2026",
         "--output",
-        "runs/geobc_exploration/solver_screen_fno_480"
+        "runs/geobc_exploration/solver_confirm_fno_seed2026_600s",
+        "--warmstart",
+        "runs/geobc_exploration/solver_screen_fno_480/last.pt"
       ],
       "requires": [
+        "geobc/solver_confirmation_train.py",
         "geobc/solver_selection_train.py",
         "geobc/solver_selection_models.py",
         "geobc/solver_selection_data.py",
-        "notes/geobc_solver_selection_plan.json",
-        "notes/solver_selection_source_review.md",
+        "notes/geobc_solver_confirmation_plan.json",
         "data/geobc_solver_selection/manifest.json"
       ]
     },
     {
-      "name": "solver_screen_transolver_pp_480",
-      "kind": "solver_screen",
-      "stage": "solver_family_selection",
-      "method": "transolver_pp",
-      "output": "runs/geobc_exploration/solver_screen_transolver_pp_480",
+      "name": "solver_confirm_mlp_seed2026_600s",
+      "kind": "solver_confirmation",
+      "stage": "solver_confirmation",
+      "method": "mlp",
+      "seed": 2026,
+      "output": "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.solver_selection_train",
+        "geobc.solver_confirmation_train",
         "--plan",
-        "notes/geobc_solver_selection_plan.json",
+        "notes/geobc_solver_confirmation_plan.json",
+        "--method",
+        "mlp",
+        "--seed",
+        "2026",
+        "--output",
+        "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s",
+        "--warmstart",
+        "runs/geobc_exploration/solver_screen_mlp_480/last.pt"
+      ],
+      "requires": [
+        "geobc/solver_confirmation_train.py",
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_confirmation_plan.json",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_confirm_transolver_pp_seed2026_600s",
+      "kind": "solver_confirmation",
+      "stage": "solver_confirmation",
+      "method": "transolver_pp",
+      "seed": 2026,
+      "output": "runs/geobc_exploration/solver_confirm_transolver_pp_seed2026_600s",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_confirmation_train",
+        "--plan",
+        "notes/geobc_solver_confirmation_plan.json",
         "--method",
         "transolver_pp",
+        "--seed",
+        "2026",
         "--output",
-        "runs/geobc_exploration/solver_screen_transolver_pp_480"
+        "runs/geobc_exploration/solver_confirm_transolver_pp_seed2026_600s",
+        "--warmstart",
+        "runs/geobc_exploration/solver_screen_transolver_pp_480/last.pt"
       ],
       "requires": [
+        "geobc/solver_confirmation_train.py",
         "geobc/solver_selection_train.py",
         "geobc/solver_selection_models.py",
         "geobc/solver_selection_data.py",
-        "notes/geobc_solver_selection_plan.json",
-        "notes/solver_selection_source_review.md",
+        "notes/geobc_solver_confirmation_plan.json",
         "data/geobc_solver_selection/manifest.json"
       ]
     },
     {
-      "name": "solver_screen_ts3_480",
-      "kind": "solver_screen",
-      "stage": "solver_family_selection",
-      "method": "ts3",
-      "output": "runs/geobc_exploration/solver_screen_ts3_480",
+      "name": "solver_confirm_fno_seed2027_600s",
+      "kind": "solver_confirmation",
+      "stage": "solver_confirmation",
+      "method": "fno",
+      "seed": 2027,
+      "output": "runs/geobc_exploration/solver_confirm_fno_seed2027_600s",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.solver_selection_train",
+        "geobc.solver_confirmation_train",
         "--plan",
-        "notes/geobc_solver_selection_plan.json",
+        "notes/geobc_solver_confirmation_plan.json",
         "--method",
-        "ts3",
+        "fno",
+        "--seed",
+        "2027",
         "--output",
-        "runs/geobc_exploration/solver_screen_ts3_480"
+        "runs/geobc_exploration/solver_confirm_fno_seed2027_600s"
       ],
       "requires": [
+        "geobc/solver_confirmation_train.py",
         "geobc/solver_selection_train.py",
         "geobc/solver_selection_models.py",
         "geobc/solver_selection_data.py",
-        "notes/geobc_solver_selection_plan.json",
-        "notes/solver_selection_source_review.md",
+        "notes/geobc_solver_confirmation_plan.json",
         "data/geobc_solver_selection/manifest.json"
       ]
     },
     {
-      "name": "solver_screen_hashgrid_480",
-      "kind": "solver_screen",
-      "stage": "solver_family_selection",
-      "method": "hashgrid",
-      "output": "runs/geobc_exploration/solver_screen_hashgrid_480",
+      "name": "solver_confirm_mlp_seed2027_600s",
+      "kind": "solver_confirmation",
+      "stage": "solver_confirmation",
+      "method": "mlp",
+      "seed": 2027,
+      "output": "runs/geobc_exploration/solver_confirm_mlp_seed2027_600s",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
-        "geobc.solver_selection_train",
+        "geobc.solver_confirmation_train",
         "--plan",
-        "notes/geobc_solver_selection_plan.json",
+        "notes/geobc_solver_confirmation_plan.json",
         "--method",
-        "hashgrid",
+        "mlp",
+        "--seed",
+        "2027",
         "--output",
-        "runs/geobc_exploration/solver_screen_hashgrid_480"
+        "runs/geobc_exploration/solver_confirm_mlp_seed2027_600s"
       ],
       "requires": [
+        "geobc/solver_confirmation_train.py",
         "geobc/solver_selection_train.py",
         "geobc/solver_selection_models.py",
         "geobc/solver_selection_data.py",
-        "notes/geobc_solver_selection_plan.json",
-        "notes/solver_selection_source_review.md",
+        "notes/geobc_solver_confirmation_plan.json",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_confirm_transolver_pp_seed2027_600s",
+      "kind": "solver_confirmation",
+      "stage": "solver_confirmation",
+      "method": "transolver_pp",
+      "seed": 2027,
+      "output": "runs/geobc_exploration/solver_confirm_transolver_pp_seed2027_600s",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_confirmation_train",
+        "--plan",
+        "notes/geobc_solver_confirmation_plan.json",
+        "--method",
+        "transolver_pp",
+        "--seed",
+        "2027",
+        "--output",
+        "runs/geobc_exploration/solver_confirm_transolver_pp_seed2027_600s"
+      ],
+      "requires": [
+        "geobc/solver_confirmation_train.py",
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_confirmation_plan.json",
         "data/geobc_solver_selection/manifest.json"
       ]
     }
@@ -2503,6 +2527,162 @@
         "data/geobc_gradient_supervision/101_479.npz",
         "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/case_000.npz"
       ]
+    },
+    {
+      "name": "solver_screen_transolver_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "transolver",
+      "output": "runs/geobc_exploration/solver_screen_transolver_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "transolver",
+        "--output",
+        "runs/geobc_exploration/solver_screen_transolver_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_mlp_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "mlp",
+      "output": "runs/geobc_exploration/solver_screen_mlp_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "mlp",
+        "--output",
+        "runs/geobc_exploration/solver_screen_mlp_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_fno_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "fno",
+      "output": "runs/geobc_exploration/solver_screen_fno_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "fno",
+        "--output",
+        "runs/geobc_exploration/solver_screen_fno_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_transolver_pp_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "transolver_pp",
+      "output": "runs/geobc_exploration/solver_screen_transolver_pp_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "transolver_pp",
+        "--output",
+        "runs/geobc_exploration/solver_screen_transolver_pp_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_ts3_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "ts3",
+      "output": "runs/geobc_exploration/solver_screen_ts3_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "ts3",
+        "--output",
+        "runs/geobc_exploration/solver_screen_ts3_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_hashgrid_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "hashgrid",
+      "output": "runs/geobc_exploration/solver_screen_hashgrid_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "hashgrid",
+        "--output",
+        "runs/geobc_exploration/solver_screen_hashgrid_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
     }
   ],
   "phase_history": [
@@ -2733,10 +2913,19 @@
     }
   },
   "active_design_preparation": {
-    "status": "solver_screen_recipe_frozen",
-    "previous": "singleCAD_P1_full10_supervision_pilot",
+    "status": "solver_confirmation_recipe_frozen",
     "training_launched": false,
-    "reason": "Explicit user correction on 2026-10-09",
-    "new_plan": "notes/geobc_solver_selection_plan.json"
-  }
+    "new_plan": "notes/geobc_solver_confirmation_plan.json",
+    "source_sha256": "d8eb5fa0d6c0c30e8ed0fcb3a549be818581b83251af7417e98112ca6e2fb872",
+    "arrays_reprepared": 0
+  },
+  "stage_transitions": [
+    {
+      "at_utc": "2026-10-09T14:38:04.7642299Z",
+      "completed_stage": "solver_family_selection",
+      "completed": 6,
+      "new_stage": "solver_confirmation",
+      "basis": "FNO and MLP main confirmation, one low-priority ++ structural route; fixed total600s/seed. No Hash-specific optimization."
+    }
+  ]
 }

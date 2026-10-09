@@ -1,0 +1,35 @@
+{
+  "method": "transolver_pp",
+  "started_at_utc": "2026-10-09T14:18:05.222584+00:00",
+  "step": 480,
+  "total_steps": 480,
+  "evaluated_steps": [
+    0,
+    120,
+    240,
+    480
+  ],
+  "phase": "completed",
+  "updated_at_utc": "2026-10-09T14:25:12.814427+00:00",
+  "elapsed_seconds": 408.76504502100005,
+  "eta_seconds": 0.0,
+  "eta_definition": "observed train seconds/case times remaining cases + observed mean full evaluation seconds times pending endpoints",
+  "estimated_completion_utc": "2026-10-09T14:25:12.814436+00:00",
+  "case": "107_186/ver",
+  "training_loss": 0.5583823323249817,
+  "costs": {
+    "train_seconds": 382.8679221559998,
+    "inference_seconds": 10.867647298000023,
+    "evaluation_seconds": 18.09963865600001,
+    "train_case_exposures": 480,
+    "train_node_exposures": 104319540,
+    "inference_case_exposures": 72,
+    "inference_node_exposures": 13785956
+  },
+  "memory": {
+    "peak_allocated_bytes": 11305226752,
+    "peak_reserved_bytes": 12146704384
+  },
+  "best_step": 480,
+  "selection_score": 0.9711270009424575
+}

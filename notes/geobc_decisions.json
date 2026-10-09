@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "solver_family_selection",
+  "stage": "solver_confirmation",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -239,6 +239,14 @@
       "basis": "User explicitly has not chosen Hash or another solver and requests meaningful broad exploration.",
       "next": "Compare six solver families with common observable inputs, train-only normalization, CAD-isolated development validation and accuracy/cost reporting.",
       "evidence_limit": "Existing slides experiments are primarily overfitting and do not establish a cross-CAD solver ranking."
+    },
+    {
+      "at_utc": "2026-10-09T14:40:57.6314973Z",
+      "decision": "Six-family screen completed; confirm FNO/MLP main routes plus one lower-priority Transolver++ structural route at total600s/seed2026+2027",
+      "evidence": "results/solver_selection/metrics.json",
+      "rationale": "FNO improves U/stress strongly; MLP low-cost U route with stress still underfit; ++ preserves slow structural alternative; Hash worstU191.41% and lateU reversal, original/TS3 final score reversal",
+      "limits": "Native capacities/adapter differ; four passes not convergence or universal architecture elimination; final test retained",
+      "plan": "notes/geobc_solver_confirmation_plan.json"
     }
   ],
   "future_hypotheses_not_launched": [

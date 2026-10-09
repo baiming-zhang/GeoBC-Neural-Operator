@@ -60,6 +60,18 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             parsed.steps = 2000
         if summary["config"].get("request_digest") != identity_digest(request_identity(parsed)):
             raise ValueError(f"Completed output for {job['name']} differs from current plan")
+    elif "geobc.solver_confirmation_train" in command:
+        from geobc.solver_confirmation_train import request_contract
+        requested_plan = command[command.index("--plan") + 1]
+        requested_method = command[command.index("--method") + 1]
+        requested_seed = int(command[command.index("--seed") + 1])
+        warmstart = command[command.index("--warmstart") + 1] if "--warmstart" in command else None
+        contract, _ = request_contract(requested_plan, requested_method, requested_seed, warmstart)
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Completed solver confirmation {job['name']} differs from requested protocol/data")
+        for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed solver confirmation {job['name']} lacks {filename}")
     elif "geobc.solver_selection_train" in command:
         from geobc.solver_selection_train import request_contract, contracts_compatible
         requested_plan = command[command.index("--plan") + 1]
@@ -336,7 +348,8 @@ def stage_command(job: dict[str, Any]) -> list[str]:
          or "geobc.bc_role_train" in command or "geobc.specialist_train" in command
          or "geobc.query_context_train" in command or "geobc.hash_modulation_train" in command
          or "geobc.graph_context_train" in command or "geobc.hash_bandwidth_train" in command
-         or "geobc.topology_message_train" in command or "geobc.solver_selection_train" in command)
+         or "geobc.topology_message_train" in command or "geobc.solver_selection_train" in command
+         or "geobc.solver_confirmation_train" in command)
             and "--resume" not in command and (output / "last.pt").exists()):
         command.extend(["--resume", str(output / "last.pt")])
     return command
