@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "diagnosis_complete",
+  "stage": "displacement_load_basis",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -16,6 +16,22 @@
       "evidence": "Feature names/order, normalization, CSV coordinate alignment, load/material values and frozen scaler agree. asinh amplifies one unseen-geometry tail, but large transfer error remains outside the single extreme node.",
       "conclusion": "No basis to clip labels/predictions or claim the error is merely an input schema or single-node problem.",
       "next": "Report raw physical metrics and encoded loss separately; investigate instability only if the new experiments show it."
+    },
+    {
+      "evidence": "Width64 global-PointNet vs zero: best validation65.4365% vs65.4669%; width128:65.2786% vs65.2608%. All select step1000; training improves later while validation worsens.",
+      "conclusion": "Global pooled geometry and decoder width alone do not resolve generalization. Improvements in training fit are not sufficient evidence.",
+      "next": "Matched width128 PointNet models with13 query-local boundary KNN/PCA features versus identical zero slots, train40/validation5 only.",
+      "frozen_source_published_commit": "f77fc2b3e76ed2c85126f8fcb1640ca059ff8110"
+    },
+    {
+      "evidence": "Seed2026 matched query-local geometry13 vs zero slots: best validation63.5975% vs65.2921%; train28.0661% vs39.4169%, respective beststeps9000/3000; measured training85.05/86.39s.",
+      "conclusion": "Local geometry gives a small1.6946percentage-point best-validation gain under one seed. Overall high physical error remains; this is not yet robust success.",
+      "next": "Repeat the same pair at seed2027. Build an independent displacement response-basis control using45CAD deck metadata and zero-centered train-only displacement scaling."
+    },
+    {
+      "evidence": "Seed2027 repeats local-feature gain: validation64.8557%->64.0434%,0.8124pp; hotspot44.7354%->38.7367%. Worst79.8327%->82.8601% deteriorates, as at seed2026. All45train/validation CAD deck metadata support the same rank3 homogeneous linear-static setup; metadata does not yet validate numerical dia superposition.",
+      "conclusion": "Two seeds show small average/hotspot gains, while worst-case error remains high. Freeze local actual as the common input for a distinct displacement-physics test; do not claim solved CAD generalization.",
+      "next": "Same9-output displacement basis, force-independent versus force-dependent, PointNet128/local actual/10k/seed2026. Zero-centered train-onlyu RMS; independent frozen signed-stress checkpoint. Only after completed selection, run predeclared validation5 dia probe; final5test remains excluded."
     }
   ],
   "future_hypotheses_not_launched": [

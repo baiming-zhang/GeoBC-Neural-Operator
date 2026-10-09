@@ -21,6 +21,7 @@ import numpy as np
 import torch
 
 from .conditioned_field import ConditionedField, ConditionedFieldConfig, load_geometry_cloud
+from .local_geometry import FEATURE_DIM as LOCAL_DIM, FEATURE_NAMES as LOCAL_NAMES, load_local_geometry
 from .train import load_cases, stress_metrics, utc_now, write_json
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -108,12 +109,29 @@ def _scope(args):
                                "bytes": stat.st_size, "mtime_ns": stat.st_mtime_ns})
     requested = {name: getattr(args, name) for name in
                  ("variant", "steps", "batch_size", "cases_per_batch", "eval_every",
-                  "eval_batch_size", "learning_rate", "seed", "cloud_points", "geometry_dim", "hidden_dim", "device")}
+                  "eval_batch_size", "learning_rate", "seed", "cloud_points", "geometry_dim", "hidden_dim", "local_mode", "device")}
+    local_sources = []
+    if args.local_mode == "none":
+        if args.local_geometry is not None:
+            raise ValueError("--local-geometry requires explicit --local-mode zero or actual")
+        requested["local_geometry"] = None
+    else:
+        if args.local_geometry is None:
+            raise ValueError("--local-mode zero/actual requires --local-geometry")
+        local_directory = _path(args.local_geometry)
+        requested["local_geometry"] = str(local_directory)
+        for cad in groups["train"] + groups["validation"]:
+            path = local_directory / f"{cad}.npz"
+            if not path.is_file():
+                raise FileNotFoundError(path)
+            stat = path.stat()
+            local_sources.append({"cad_id": cad, "path": str(path), "bytes": stat.st_size,
+                                  "mtime_ns": stat.st_mtime_ns})
     contract = {"version": 1, "requested": requested, "split_sha256": _sha(split_bytes),
-                "selected_sources": identities,
+                "selected_sources": identities, "selected_local_sources": local_sources,
                 "source_identity_policy": "path/size/mtime; no multi-GB label/checkpoint SHA scans",
                 "code_sha256": {name: _sha((ROOT / "geobc" / name).read_bytes()) for name in
-                                ("conditional_train.py", "conditioned_field.py", "tcnn_fields.py")}}
+                                ("conditional_train.py", "conditioned_field.py", "tcnn_fields.py", "local_geometry.py")}}
     return split, split_path, keys, files, contract
 
 
@@ -228,6 +246,21 @@ def run(args):
         all_cases = train_cases + validation_cases
         cad_keys = split["groups"]["train"] + split["groups"]["validation"]
         cad_to_row = {cad: i for i, cad in enumerate(cad_keys)}
+        # load_cases enforces the original 25-channel schema before any append.
+        # Verify every load's unchanged xyz ordering against one cache per CAD.
+        local_records = {}
+        if args.local_mode != "none":
+            by_cad = {cad: [] for cad in cad_keys}
+            for case in all_cases:
+                by_cad[case.key.split("/", 1)[0]].append(case)
+            for cad in cad_keys:
+                cache = load_local_geometry(_path(args.local_geometry), cad)
+                local_tensor = cache.tensor(mode=args.local_mode, device=device)
+                for case in by_cad[cad]:
+                    cache.verify_xyz(case.xyz)
+                    case.features = torch.cat((case.features, local_tensor), dim=-1)
+                local_records[cad] = cache.record()
+        local_dim = LOCAL_DIM if args.local_mode != "none" else 0
         clouds = [load_geometry_cloud(files[f"{cad}/ver"], cloud_points=args.cloud_points,
                                       seed=args.seed, cad_key=cad) for cad in cad_keys]
         cloud_array = np.stack([c.points for c in clouds])
@@ -241,7 +274,7 @@ def run(args):
         model_config = ConditionedFieldConfig(
             geometry_mode="shape" if args.variant == "geometry_pointnet" else "none",
             descriptor_dim=args.geometry_dim, cloud_points=args.cloud_points,
-            seed=args.seed, out_channels=1, hidden_dim=args.hidden_dim)
+            seed=args.seed, out_channels=1, hidden_dim=args.hidden_dim, condition_dim=25 + local_dim)
         model = ConditionedField(model_config, device)
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate, fused=True)
         case_rng = np.random.default_rng(args.seed + 23)
@@ -249,6 +282,13 @@ def run(args):
         config = {
             "contract": contract, "method": "GeoBC geometry-conditioned field candidate baseline",
             "variant": args.variant, "split_source": str(split_path), "dataset": split.get("dataset"),
+            "local_mode": args.local_mode, "condition_feature_dim": 25 + local_dim,
+            "local_geometry": {"mode": args.local_mode, "channels": local_dim,
+                               "directory": str(_path(args.local_geometry)) if args.local_geometry is not None else None,
+                               "feature_names": list(LOCAL_NAMES) if local_dim else [], "CADs": local_records,
+                               "input_order": "25 existing BC/material" + (" + 13 local geometry" if local_dim else "") + ", followed by global context in decoder",
+                               "target_independent": True, "all_load_xyz_hash_verified": args.local_mode != "none",
+                               "limitations": "Discrete boundary-node KNN/PCA, mesh-density dependent; unsigned node distance, not exact SDF"},
             "arguments": {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()},
             "scope": "40 training CADs / 5 validation CADs; ver,hor,tor only; test CADs and dia locked",
             "groups": split["groups"], "train_loads": split["train_loads"], "heldout_load": "dia",
@@ -275,7 +315,7 @@ def run(args):
         best_score, best_step, best_metrics, gradient_check = float("inf"), None, None, None
         if resume is not None:
             stored_config = _json(output / "config.json")
-            if any(stored_config[k] != config[k] for k in ("contract", "scaler", "model", "geometry", "cases", "precision")):
+            if any(stored_config[k] != config[k] for k in ("contract", "scaler", "model", "geometry", "local_geometry", "cases", "precision")):
                 raise ValueError("Resume scaler/model/geometry/case identities differ")
             saved = torch.load(resume, map_location=device, weights_only=False)
             if saved["config"] != stored_config:
@@ -313,6 +353,8 @@ def run(args):
             write_json(output / "config.json", config)
             write_json(output / "cloud_metadata.json", {"CADs": geometry_records, "label_members_read": [],
                                                       "policy": "geometry helper reads xyz/faces/key only"})
+            if local_dim:
+                write_json(output / "local_geometry_metadata.json", config["local_geometry"])
             np.savez(output / "geometry_clouds.npz", points=cloud_array, mask=mask_array,
                      node_indices=np.stack([c.node_indices for c in clouds]), cad_keys=np.asarray(cad_keys))
 
@@ -455,6 +497,9 @@ def parser():
     p.add_argument("--cloud-points", type=int, default=1024)
     p.add_argument("--geometry-dim", type=int, choices=(32, 64), default=32)
     p.add_argument("--hidden-dim", type=int, choices=(64, 128), default=64)
+    p.add_argument("--local-geometry", type=Path, default=None, help="Target-independent per-CAD local geometry cache directory")
+    p.add_argument("--local-mode", choices=("none", "zero", "actual"), default="none",
+                   help="zero and actual use identical 13 extra condition slots; none preserves the old input layout")
     p.add_argument("--device", default="cuda")
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--resume", nargs="?", const="last", default=None,

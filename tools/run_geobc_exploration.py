@@ -71,6 +71,15 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
         for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
             if not (ROOT / job["output"] / filename).is_file():
                 raise ValueError(f"Completed output for {job['name']} lacks {filename}")
+    elif "geobc.physics_train" in command:
+        from geobc.physics_train import parser as physics_parser, _scope
+        parsed = physics_parser().parse_args(command[command.index("geobc.physics_train") + 1:])
+        contract = _scope(parsed)[4]
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Completed output for {job['name']} differs from its displacement contract")
+        for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed output for {job['name']} lacks {filename}")
     return summary
 
 
@@ -79,7 +88,7 @@ def stage_command(job: dict[str, Any]) -> list[str]:
     output = ROOT / job["output"]
     fitting = ("geobc.exploration" in command and "--mode" in command
                and command[command.index("--mode") + 1] == "fit")
-    if ((fitting or "geobc.conditional_train" in command)
+    if ((fitting or "geobc.conditional_train" in command or "geobc.physics_train" in command)
             and "--resume" not in command and (output / "last.pt").exists()):
         command.extend(["--resume", str(output / "last.pt")])
     return command

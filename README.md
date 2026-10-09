@@ -1,8 +1,8 @@
 # GeoBC：原版 DeepJEB 复现与泛化探索
 
-**当前阶段（2026-10-09）：自主研究进行中，30分钟监视已启用。** 简明结果与研究决策见 [GeoBC探索报告](results/geobc_exploration/REPORT.md)，执行计划见 [notes/geobc_exploration_plan.json](notes/geobc_exploration_plan.json)。第一阶段发现：Hash50 在未见 CAD／新载荷组合上的平均应力误差约92%；三个共享误差26–29%的案例独立拟合后降至0.055–0.125%。正在用严格CAD划分比较相同decoder的零几何条件与整体几何编码，最终五个测试CAD及dia方向暂不参与训练或模型选择。
+**当前阶段（2026-10-09）：自主研究进行中，30分钟监视已启用。** 先读 [一分钟结果](results/geobc_exploration/BRIEF.md)；详细证据见 [探索报告](results/geobc_exploration/REPORT.md)，执行计划见 [notes/geobc_exploration_plan.json](notes/geobc_exploration_plan.json)。Hash50 换 CAD／载荷组合后应力误差约92%，难例独立拟合可降至约0.1%。严格CAD划分下，整体几何编码及解码器加宽没有明显收益；局部边界特征在两种随机种子下改善平均误差0.8–1.7个百分点，但最差案例变差。当前检验位移的线性载荷响应基，最终五个测试CAD及dia标签暂不参与训练或模型选择。
 
-GeoBC Neural Operator 研究根据几何、材料、载荷和约束预测空间坐标处的位移与应力。当前实现处于拟合诊断阶段，比较已有模型的场表示与优化能力；尚未实现完整全局几何编码，也没有未见 CAD、未见边界条件或重网格泛化证据。可发展的研究主线是以整体几何和边界接口条件化连续场，同时保留应力集中处的局部细节；具体新方法及其有效性需要后续验证。
+GeoBC Neural Operator 研究根据几何、材料、载荷和约束预测空间坐标处的位移与应力。当前实现已包含整体点云编码，并正在检验查询点局部几何条件；尚未获得有效的未见 CAD 泛化证据，也未验证重网格泛化。研究主线是以几何和边界接口条件化连续场，同时保留应力集中处的局部细节；具体新方法及其有效性需要后续验证。
 
 使用 **原版 DeepJEB v1.0**，复现 [参考 slides](https://docs.google.com/presentation/d/1g5S0QCZSDR_igYFWFe20SQ3nw2yvgYbXk_t4QSmKpBU/edit) 的可恢复量化实验，优先单样本和五样本。30/30 个计划实验已完成，正式队列用时约3小时26分钟。完整本地结果见 [ALL_METHODS_RESULTS.md](ALL_METHODS_RESULTS.md)，可移植结果包见 [results/REPORT.md](results/REPORT.md)，全部运行命令见 [notes/all_methods_plan.json](notes/all_methods_plan.json)。每项完成状态和实际物理指标保存于对应 `summary.json`。
 
@@ -40,7 +40,7 @@ Stress asinh 使用记录在配置中的 pooled P90 尺度、中心和标准差�
 
 FNO 使用真实 TETRA10 二次插值构建网格；64³ 和 192³ 使用同一物理域，192³ 间距为 0.954956 mm。原网格原点缺失，当前采用居中补齐的 182.396596 mm 立方域，作为显式假设。occupied-grid、回查 FEM、真值网格往返及蒸馏 teacher/FEM 指标分开报告。蒸馏只以 teacher 标签训练和选择检查点。
 
-这些实验评估训练案例的拟合能力，没有测试新 CAD 或新边界条件的泛化。
+上述30项 slides 实验评估训练案例的拟合能力。独立的 GeoBC 探索阶段已开展迁移诊断与按CAD隔离的验证，结果见探索报告；最终测试集保持隔离。
 
 ## 运行
 
@@ -80,4 +80,4 @@ python tools/summarize_suite.py
 python tools/plot_suite_fields.py
 ```
 
-本轮使用30分钟后台监视继续训练和整理，GitHub交付完成后自动删除监视。全部实验现已完成；导出的配置、物理指标、曲线、云图和源数据清单按用户授权发布至私人 GitHub 仓库 `baiming-zhang/GeoBC-Neural-Operator`。导出/发布参数在 `notes/github_publish_plan.json`，发布快照保存在 `publication/GeoBC-Neural-Operator`。旧 `tools/replay_runs.py` 只描述已撤回的历史实验，不作为本次全方法入口。
+30项 slides 实验及其 GitHub 交付已经完成，原监视已删除。用户进一步授权的 GeoBC 自主研究现由新的30分钟监视持续推进；阶段结束后根据证据安排下一阶段。代码、配置和可移植结果持续更新至私人 GitHub 仓库 `baiming-zhang/GeoBC-Neural-Operator`。导出/发布参数在 `notes/github_publish_plan.json`，发布快照保存在 `publication/GeoBC-Neural-Operator`。旧 `tools/replay_runs.py` 只描述已撤回的历史实验，不作为本次全方法入口。

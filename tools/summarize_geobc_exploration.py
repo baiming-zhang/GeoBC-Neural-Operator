@@ -50,26 +50,63 @@ def main():
         lines+=['| 案例 | 原共享模型 | 独立拟合 |','|---|---:|---:|']
         lines += [f'| {cad}/tor | {percent(shared)} | {percent(independent)} |' for cad,shared,independent in comparisons]
         lines+=['','这些对照固定了架构、输入和父模型 scaler；独立模型增加了总容量，不能单独证明某个几何模块必需。','']
-    lines+=['## 正在验证','',
-            '同一 40-CAD 训练／5-CAD 验证划分，对比零几何条件与 PointNet 整体几何描述。两者 decoder 布局、随机采样、预算相同；scaler 只拟合训练标签。',
+    lines+=['## 几何条件能否改善泛化','',
+            '使用同一 40-CAD 训练／5-CAD 验证划分。每组对照的 decoder 布局、随机采样、预算相同；scaler 只拟合训练标签。每项训练10,000次更新，不能与原50案例的1000个完整epoch直接等同。',
             '训练与选模型只使用 ver/hor/tor；dia 及五个官方测试 CAD 保持隔离。','']
-    conditional=[]
-    for name,summary in summaries.items():
-        if 'validation' in summary.get('best_metrics',{}):
-            metrics=summary.get('best_metrics',{})
-            if 'validation' in metrics:
-                model=summary['config']['model']
-                conditional.append((summary['config']['variant'],model['hidden_dim'],metrics['train']['case_mean_relative_l2'],metrics['validation']['case_mean_relative_l2']))
-    if conditional:
-        lines+=['| 整体几何编码 | 解码器宽度 | 最佳点训练误差 | 验证误差 |','|---|---:|---:|---:|']
-        lines += [f"| {'PointNet' if variant=='geometry_pointnet' else '无'} | {width} | {percent(train)} | {percent(val)} |" for variant,width,train,val in conditional]
-        lines += ['', '首轮宽度64的最佳验证误差约65.4%，PointNet收益仅0.03个百分点，尚无可靠改进。较宽解码器对照用于检验共享decoder表达能力是否是瓶颈。']
+    paired=[
+        ('整体几何／宽度64','hash_bc_no_geometry_10k','hash_bc_pointnet_10k'),
+        ('整体几何／宽度128','hash_bc_no_geometry_width128_10k','hash_bc_pointnet_width128_10k'),
+        ('局部几何／宽度128，均有PointNet','hash_bc_pointnet_local_zero_width128_10k','hash_bc_pointnet_local_actual_width128_10k'),
+        ('局部几何／同配置，种子2027','hash_bc_pointnet_local_zero_width128_seed2027_10k','hash_bc_pointnet_local_actual_width128_seed2027_10k'),
+    ]
+    available=[(label,summaries.get(zero),summaries.get(actual)) for label,zero,actual in paired]
+    available=[row for row in available if row[1] or row[2]]
+    if available:
+        lines+=['| 同配置对照 | 零几何特征：验证误差 | 实际几何特征：验证误差 |','|---|---:|---:|']
+        metric=lambda summary:percent(summary['best_metrics']['validation']['case_mean_relative_l2']) if summary else '待完成'
+        lines += [f'| {label} | {metric(zero)} | {metric(actual)} |' for label,zero,actual in available]
+        lines += ['', '整体PointNet的收益不足0.04个百分点，加宽解码器后最佳验证误差仍约65.3%；目前不能认为这些改动改善了泛化。',
+                  '局部几何对照使用13维离散边界距离、方向和邻域形状特征；只从几何构造，无标签拟合。同组零特征模型保留相同输入槽与参数布局。']
+    zero=summaries.get('hash_bc_pointnet_local_zero_width128_10k')
+    actual=summaries.get('hash_bc_pointnet_local_actual_width128_10k')
+    if zero and actual:
+        gap=100*(zero['best_metrics']['validation']['case_mean_relative_l2']-actual['best_metrics']['validation']['case_mean_relative_l2'])
+        lines += [f'首个种子的局部特征收益为{gap:.2f}个百分点；第二个种子用于检查收益是否稳定，高误差仍未解决。']
+        z2=summaries.get('hash_bc_pointnet_local_zero_width128_seed2027_10k')
+        a2=summaries.get('hash_bc_pointnet_local_actual_width128_seed2027_10k')
+        if z2 and a2:
+            gap2=100*(z2['best_metrics']['validation']['case_mean_relative_l2']-a2['best_metrics']['validation']['case_mean_relative_l2'])
+            lines += [f'第二个种子的收益为{gap2:.2f}个百分点。两次均改善平均与热点误差，但最差案例变差；不能称为全面改善。']
+    lines += ['', '## 位移的载荷响应基','',
+              '下一阶段将位移表示为ver/hor/tor三个载荷响应的线性组合，并比较同容量、允许响应基依赖载荷的控制模型。几何输入、训练预算和随机采样保持相同。',
+              '45个训练/验证CAD的求解配置均支持该设定；源FEM位移是否确实满足叠加，仍需在模型冻结后用dia场数值验证。训练只拟合原始uXYZ，使用训练集的零中心线性尺度；应力分支单独保留。']
+    physics=[]
+    for mode in ('linear_basis','load_dependent_basis'):
+        summary=summaries.get('displacement_'+mode+'_local_actual_10k')
+        if summary:
+            physics.append((mode,summary['best_metrics']['train']['case_mean_relative_l2'],summary['best_metrics']['validation']['case_mean_relative_l2']))
+    if physics:
+        lines += ['', '| 位移响应基 | 最佳点训练误差 | 验证误差 |','|---|---:|---:|']
+        lines += [f"| {'载荷无关，强制线性' if mode=='linear_basis' else '载荷依赖控制'} | {percent(train)} | {percent(val)} |" for mode,train,val in physics]
     lines += ['', '## 解释边界','',
-              '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。',
+              '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
               '候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。','',
-              f"本页随实验更新；累计完成 {len(summaries)}/{len(jobs)} 项。",'']
+              f"本页随实验更新；累计完成 {len(summaries)}/{len(jobs)} 项，自主研究继续。",'']
     (dest/'REPORT.md').write_text('\n'.join(lines),encoding='utf8')
+    brief=['# GeoBC：一分钟结果','',
+           '**目前的主要问题是共享场的泛化，而非单个案例能否拟合。**','',
+           '- 难例单独训练：应力误差约0.1%；原共享Hash换CAD或载荷组合：约92%。',
+           '- 整体几何编码和解码器加宽：验证误差仍约65%，没有明显收益。']
+    if zero and actual:
+        brief += ['- 加入查询点局部边界几何：两个随机种子的平均验证误差改善约0.8–1.7个百分点，热点也改善；最差案例变差，整体误差仍约64%。']
+    if physics:
+        brief += [f"- 位移{'线性响应基' if mode=='linear_basis' else '同容量载荷依赖对照'}：验证向量误差{percent(val)}。" for mode,train,val in physics]
+    else:
+        brief += ['- 正在检验位移的线性载荷响应基；应力保留独立监督，不套用位移叠加规律。']
+    brief += ['', f"完成{len(summaries)}/{len(jobs)}项探索；原30项slides复现已完成。当前研究继续，五个最终测试CAD未参与新模型训练/选择。",'',
+              '数据、控制变量及解释范围见 [完整探索报告](REPORT.md)。','']
+    (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
                                    'phase':'ongoing' if len(summaries)<len(jobs) else 'stage_completed',

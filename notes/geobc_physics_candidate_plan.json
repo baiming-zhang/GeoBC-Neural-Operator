@@ -1,0 +1,347 @@
+{
+  "version": 1,
+  "status": "implemented_CPU_checked_sources_frozen_for_root_GPU_queue",
+  "execution_authorized_by_this_plan": false,
+  "dataset": "original DeepJEB v1.0, official CSV GRID coordinates aligned to source H5 geometry",
+  "purpose": "Test a minimal linear-load displacement parameterization while preserving an independently supervised signed scalar stress field. This is a candidate physical inductive bias, not an established generalization result.",
+  "source_evidence": {
+    "load_basis": "notes/geobc_load_basis.json",
+    "strict_split": "notes/geobc_split.json",
+    "existing_scalar_scaler": "geobc/train.py:StressScaler",
+    "existing_multifield_scaler_and_metrics": "geobc/benchmark.py:FieldScaler, load_fields, field_metrics",
+    "model": "geobc/conditioned_field.py:ConditionedField and ConditionedFieldConfig",
+    "native_decoder": "geobc/tcnn_fields.py:TCNNField and TCNNFieldConfig",
+    "trainer_scope_rng_and_selection": "geobc/conditional_train.py",
+    "feature_schema": "tools/prepare_deepjeb.py:FEATURE_NAMES",
+    "local_geometry": "notes/geobc_local_geometry_ready.json",
+    "new_sources_or_literature_audit": false,
+    "field_or_weight_files_opened_for_this_design": [],
+    "existing_trainers_or_models_modified": false,
+    "GPU_execution": false,
+    "load_basis_all45": "notes/geobc_load_basis_45.json"
+  },
+  "motivation_from_completed_work": {
+    "provided_by_root": true,
+    "Hash50_new_CAD_and_new_load_pilots": "approximately 92% physical stress relative L2; pilots have historical experiment use",
+    "independent_difficult_case_stress_fits": "approximately 0.055% to 0.125%; supports conditioning/representation diagnosis rather than irreducible per-case fitting failure",
+    "strict_PointNet_and_zero_global_context_width64_or128": "best validation mean stress relative L2 approximately 65.3%, deteriorating after approximately step1000",
+    "pending_gate": "Resolved by root: two local-feature seeds improve validation mean by1.6946 and0.8124 percentage points, with worse worst-case errors; physics uses actual local geometry without an unconditional improvement claim."
+  },
+  "physical_contract": {
+    "equation": "For one fixed CAD, fixed material and homogeneous constraints with linear static stiffness K_g: K_g u = f; u(g,x,alpha) = sum_j alpha_j B_j(g,x).",
+    "basis_order": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "component_order": [
+      "ux_mm",
+      "uy_mm",
+      "uz_mm"
+    ],
+    "basis_units": "Each column B_j is the physical displacement in mm at the corresponding printed canonical load amplitude; it is not a unit-force or unit-moment column.",
+    "supported_independent_components": [
+      "Fx",
+      "Fz",
+      "Mz"
+    ],
+    "unsupported_components": [
+      "Fy",
+      "Mx",
+      "My"
+    ],
+    "rank": 3,
+    "load_feature_slots_zero_based": {
+      "force": [
+        7,
+        8,
+        9
+      ],
+      "moment": [
+        10,
+        11,
+        12
+      ],
+      "condition_dim_before_optional_local_and_global": 25
+    },
+    "evidenced_one_train_CAD": "101_479",
+    "one_CAD_canonical_actions": {
+      "ver_force_N": [
+        0.0,
+        0.0,
+        35585.77
+      ],
+      "hor_force_N": [
+        -37809.9,
+        0.0,
+        0.0
+      ],
+      "tor_moment_Nmm": [
+        0.0,
+        0.0,
+        564924.2
+      ]
+    },
+    "one_CAD_alpha": {
+      "ver": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "hor": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "tor": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "dia": [
+        0.8824848285080245,
+        0.7478522316567883,
+        0.0
+      ],
+      "dia_exact_coefficients": [
+        "981371941743/1112055312500",
+        "235635150781/315082500000",
+        "0"
+      ]
+    },
+    "general_alpha_definition": "Using that CAD's verified printed basis amplitudes, alpha_ver=Fz/Fz_ver, alpha_hor=Fx/Fx_hor (the signed negative denominator is retained), alpha_tor=Mz/Mz_tor. Check the complete printed force and moment vectors separately; never combine N and Nmm into an unscaled norm.",
+    "dia_is_not_convex": "The two nonzero coefficients sum to 1.6303370601648126; this is a load-span test, not a convex interpolation claim.",
+    "essential_exclusions": [
+      "Do not assume the documented one-CAD amplitudes or coefficients are identical on every CAD without metadata verification.",
+      "Do not infer full six-component load support from a rank3 dataset.",
+      "Do not hard-code a basis selected by load name while silently dropping the actual printed load amplitude/sign.",
+      "Do not mix, relabel, or fabricate the source signed scalar stress by applying the displacement coefficients.",
+      "Do not infer a stress tensor, constitutive stress scalar, equilibrium residual, or a zero prescribed-displacement offset from unavailable labels."
+    ],
+    "all45_metadata_status": {
+      "status": "compatible",
+      "CADs_checked": 45,
+      "same_canonical_physical_basis": true,
+      "rank": 3,
+      "all_dia_printed_force_and_moment_exact_residual_zero": true,
+      "source": "notes/geobc_load_basis_45.json",
+      "numerical_displacement_superposition_tested": false
+    }
+  },
+  "metadata_prerequisites_before_implementation_run": {
+    "scope": "Only the 40 train and 5 validation CADs; deck/BC metadata and the already permitted ver/hor/tor input arrays. No dia field archive or final-test field is needed.",
+    "checks": [
+      "For each selected CAD, confirm same geometry, material, coordinate frame, fixed support/RBE constraints and load-distribution/RBE3 reference across ver/hor/tor; prescribed support displacement must be homogeneous zero.",
+      "Compare canonical normalized xyz/node-order hashes and load-independent feature slots across the three permitted load archives; retain the current CSV-to-geometry alignment guard.",
+      "Zero features[:,7:13] and require all remaining existing 25-channel input slots to agree across the three loads for the same CAD. Fail explicitly if a load-dependent BC has been left in the basis inputs.",
+      "Use already verified deck/BC metadata to record that CAD's signed force/moment basis and its rank3 contract; force and moment units are checked separately. Metadata containing the printed dia load vector may be inspected without opening dia field labels.",
+      "If a selected CAD violates fixed linear homogeneous-BC prerequisites, stop the stage and report it; do not silently remove it after inspecting its fitting error or infer coefficients by regressing held-out displacement labels."
+    ],
+    "not_yet_verified_by_this_plan": "The one-CAD deck evidence supports the design; validity of K linearity at applied amplitudes and numerical source-field superposition have not been measured.",
+    "metadata_guard_completed": "45 real decks plus canonicalver prepared force slots verified, source notes/geobc_load_basis_45.json; runtime additionally verifies every permitted archive alpha and load-independent xyz/features hashes."
+  },
+  "recommended_minimal_candidate": {
+    "execution_order": "First isolate the displacement mechanism with an independent displacement branch and a frozen strict-supervised stress branch. A coupled joint optimization is deferred.",
+    "displacement_basis_branch": {
+      "model_reuse": "ConditionedField(out_channels=9), official TCNN hashgrid/FullyFusedMLP, from-scratch parameters",
+      "native_architecture": {
+        "levels": 12,
+        "features_per_level": 2,
+        "log2_hashmap_size": 19,
+        "base_resolution": 8,
+        "per_level_scale": 1.6,
+        "hidden_dim": 128,
+        "hidden_layers": 2,
+        "activation": "ReLU",
+        "output_activation": "None"
+      },
+      "global_context": "PointNet,32-dimensional context; canonical1024-node clouds, same layout/seed for both variants.",
+      "local_features": "Frozen actual13-dimensional boundary-node features for both variants; loader also supports none/zero for future explicit contracts.",
+      "static_inputs": "Normalized xyz, unchanged support/load-location/material/length inputs, chosen target-independent local geometry, fixed global-context layout; all six force/moment slots are zeroed for every call.",
+      "output_layout": "flat9 channels -> basis_scaled[N,basis_ver_hor_tor,component_xyz]; flat order ver_ux,ver_uy,ver_uz,hor_ux,hor_uy,hor_uz,tor_ux,tor_uy,tor_uz",
+      "composition": "prediction_scaled[n,c] = sum_j alpha[n,j]*basis_scaled[n,j,c]; u_prediction_mm=u_scale_mm*prediction_scaled",
+      "zero_load": "alpha=0 gives exactly zero displacement; no additive intercept is decoded.",
+      "load_invariance": "The basis network receives no load amplitude/name/ID and the same CAD-static inputs for all loads; load coefficients act only in the final linear composition.",
+      "training_supervision": "On ver/hor/tor, alpha is one-hot, so the observed signed 3-vector supervises the corresponding basis column. No fabricated mixed-load or dia target is constructed.",
+      "sampler": "Reuse four distinct permitted cases per update, equal 12800 sampled original nodes per case with replacement; total batch51200. Case and node generators remain independent of model initialization.",
+      "cache_policy": "Cache immutable coordinates/local features/clouds only during training. Basis outputs may be reused across loads of the same CAD only inside an eval no_grad pass, never across optimizer updates."
+    },
+    "stress_branch": {
+      "target": "Original signed scalar stress in MPa, not displacement resultant or tensor components",
+      "model": "Retain a separately supervised load-conditioned scalar field using the full original force/moment feature slots",
+      "first_pair_policy": "Freeze the selected best checkpoint from the current strict 40train/5validation stress experiments. Its train-only scaler and source contract are preserved; both displacement variants share exactly this stress branch.",
+      "prohibited_checkpoint": "Do not use Hash50 weights/scaler as the strict stress branch: that historical model trained on CADs now assigned to the locked final test group.",
+      "independence": "No displacement-loss gradient updates the frozen scalar stress parameters in this first pair. Do not claim that the displacement structural constraint has improved stress.",
+      "evaluation_reuse": "Carry the existing selected strict all-node train/validation stress metrics, not a redundant stress reevaluation. For new allowed queries, call this branch independently. Dia stress, if later unsealed, remains a separately measured extrapolation diagnostic and is never linearly composed."
+    }
+  },
+  "exact_paired_control": {
+    "variant_names": [
+      "u_load_dependent_basis9_control",
+      "u_load_independent_basis9_linear"
+    ],
+    "one_difference": "The control receives the full existing force/moment slots; the linear candidate zeroes exactly these six slots. Both have the same 9-output network, the same final alpha composition, and all other inputs and hyperparameters are identical.",
+    "control_formula": "u_control(g,x,alpha) = u_scale_mm * sum_j alpha_j B_control_j(g,x,alpha); allowing alpha in the decoder removes the fixed-basis superposition constraint while preserving output dimensionality and parameter count.",
+    "capacity_statement": "Record native TCNN padded parameter count and input/output layout for both; do not compare a9-output candidate against an unreported3-output decoder as if their capacity/initialization were necessarily identical.",
+    "paired_initialization": "Construct the same native input/output dimensions with the same seed2026 and official pinned TCNN implementation. Record initial native-parameter equality as a small check before the first update; no weights are imported from historical all50 training.",
+    "paired_sampling": "Use NumPy default_rng(seed+23) for case selection and torch.Generator(device).manual_seed(seed+17) for node sampling; save and restore both generators independently. Same eval schedule does not consume either sampler stream.",
+    "paired_auxiliary_state": "Identical immutable local features/clouds, split, canonical node ordering, scalers, Adam settings, precision flags, total queried nodes and scalar stress checkpoint",
+    "proposed_initial_budget": {
+      "steps": 10000,
+      "batch_size": 51200,
+      "cases_per_batch": 4,
+      "learning_rate": 0.003,
+      "optimizer": "Adam, fused on CUDA, betas0.9/0.999, epsilon1e-8, no weight decay",
+      "eval_every": 1000,
+      "eval_batch_size": 65536,
+      "seed": 2026
+    },
+    "budget_reason": "Root fixed10k updates/eval1k, width128/PointNet/localactual/seed2026 after both local-feature seeds completed; do not revise using dia/final-test results.",
+    "fair_timing": "Record training and full-node eval wall times separately. The load-independent candidate can evaluate a CAD's basis once and compose three loads; the control must evaluate each load. This implementation advantage is reported, not disguised as an equal number of evaluation forward calls."
+  },
+  "train_only_scalers": {
+    "fit_scope": "Exactly40 train CADs x ver,hor,tor, all original aligned nodes; no validation, dia, or final-test labels",
+    "stress": {
+      "type": "Existing StressScaler, preserved from the selected strict stress checkpoint",
+      "encode": "(asinh(stress_MPa/stress_scale_MPa)-stress_center)/stress_spread",
+      "decode": "stress_scale_MPa*sinh(stress_center+stress_spread*prediction)",
+      "note": "Centered nonlinear stress scaling is allowed only on the independent scalar branch; it must not be applied to displacement basis outputs."
+    },
+    "displacement": {
+      "type": "One shared positive scalar RMS in mm, exactly zero center, no nonlinear transform",
+      "u_scale_mm": "max(sqrt(sum_train_over_cases_nodes_components(u_mm^2)/(3*N_train_case_nodes)),1e-12 mm)",
+      "encode": "u_scaled = u_mm/u_scale_mm",
+      "decode": "u_mm = u_scale_mm*u_scaled",
+      "basis_encode": "All nine basis outputs use this same scalar; composition commutes exactly with physical decoding.",
+      "fit_method": "Stream float64 sums of squares and node counts over the explicitly allowed training archives; do not concatenate all135 cases on GPU to fit a scaler.",
+      "forbidden": "Do not reuse FieldScaler's nonzero mean or asinh for displacement; weighted sums of centered decoded basis outputs would introduce the wrong offset because dia coefficients sum to1.6303370601648126, not1."
+    },
+    "reuse_and_resume": "Fit once from the training allowlist, serialize exact values/counts/scope; validation and inference consume the serialized scalers directly. Resume must match the saved contract and scalers rather than fitting any newly allowed labels."
+  },
+  "loss_and_checkpoint_selection": {
+    "initial_pair_u_loss": "Mean squared error over all3 signed displacement components after the common zero-center train RMS scaling; equal node counts per selected case produce equal case weighting within an update.",
+    "displacement_checkpoint_selection": "Minimum validation15-case mean all-original-node physical displacement vector relativeL2; tie keeps the earlier checkpoint. Train metrics and all dia/final-test metrics do not select.",
+    "stress_selection": "The frozen strict stress branch retains its earlier validation signed-stress case-mean relativeL2 selection; no displacement/dia target changes it.",
+    "single_combined_best_caveat": "The independent branches have explicitly separate selected checkpoint paths and scores; do not claim a single jointly selected best update.",
+    "joint_extension_deferred": {
+      "status": "not part of initial pair; requires a separate root decision and a fresh matched control",
+      "minimal_possible_joint_layout": "Share only a load-independent geometry encoder if helpful; maintain a9-output load-independent displacement decoder and a separate load-conditioned signed scalar decoder. Do not feed full load features into a shared displacement trunk.",
+      "objective_and_selection": "Predeclare normalized loss weights and a validation-only selection rule before training. Auxiliary-u improvements in stress require comparison to the matched no-u control; the independent-pair results cannot establish this.",
+      "reason_for_deferral": "Two coupled objectives or a new stress selection rule would confound the first test of exact displacement load linearity."
+    }
+  },
+  "evaluation_contract": {
+    "permitted_now_after_root_gate": {
+      "train": {
+        "CADs": 40,
+        "loads": [
+          "ver",
+          "hor",
+          "tor"
+        ],
+        "cases": 120,
+        "purpose": "optimization diagnostics only"
+      },
+      "validation": {
+        "CADs": 5,
+        "loads": [
+          "ver",
+          "hor",
+          "tor"
+        ],
+        "cases": 15,
+        "purpose": "checkpoint selection and geometry transfer diagnostics"
+      },
+      "all_nodes": "Every original aligned node, float64 physical decoded metrics, no clipping/downsampling/error weights or truncation"
+    },
+    "metrics": {
+      "u_case_vector_relative_l2": "||u_pred-u_true||_F/max(||u_true||_F,1e-12 mm)",
+      "u_aggregates": [
+        "equal-case mean",
+        "worst-case relativeL2 and key",
+        "pooled Frobenius relativeL2 over all allowed nodes/components"
+      ],
+      "u_physical_errors": [
+        "componentwise signed predictions",
+        "RMSE_mm over3N components",
+        "maximum per-node vector error norm_mm"
+      ],
+      "stress": "Preserve independently supervised physical signed-stress relativeL2, top ceil(1%N) |truth| hotspot relativeL2, maximum absoluteMPa error, case mean/worst/pooled",
+      "no_resultant_target": "A displacement magnitude may be a display/metric only; never replace the signed3-component target with magnitude or sqrt-resultant inference."
+    },
+    "minimum_saved_artifacts": [
+      "config with static/load slot contract, basis order, per-CAD load amplitudes and alpha source, exact train-only scalers, native dimensions/commit/parameter counts, source identities and precision",
+      "best.pt and last.pt with Adam, step, committed metrics/history best, both sampler states and model RNG states",
+      "all-node train/validation metrics history and completed summary with separate stress/u checkpoint references",
+      "at most four allowed representative prediction files and index: xyz, sample_key, alpha, signed u_true/u_pred, physical units, basis output layout; stress reference remains independent",
+      "status/ETA and coordinator-ready gate; existing completed outputs are reused only with compatible contracts"
+    ]
+  },
+  "frozen_dia_validation": {
+    "current_status": "Still locked; implementation authorization and readiness do not authorize reading dia/final-test fields. Root maintains a separate frozen-evaluation gate.",
+    "freeze_before_opening": [
+      "Choose architecture/local-input choice, seed, budget, scalers, coefficient derivation and all metrics/interpretation rules using train and permitted validation loads only.",
+      "Select each branch using its declared permitted validation rule; persist immutable checkpoint/source references and the frozen model contract.",
+      "Root explicitly enables the held-out-load evaluation after reviewing local geometry and the displacement pair. No dia-based model/scaler/coefficient adjustment is allowed."
+    ],
+    "suggested_first_unseal": "The5 validation CADs' dia fields only; this is a frozen held-out-load diagnostic on validation CADs, not final-test performance. Keep all5 final-test CAD field archives locked.",
+    "measurements_once_unsealed": [
+      "Oracle solver/label superposition residual: r_oracle=u_true_dia-c_ver*u_true_ver-c_hor*u_true_hor-c_tor*u_true_tor, with source-verified per-CAD coefficients; report full-node relativeL2, RMSEmm and max vector normmm.",
+      "Frozen candidate and paired-control physical dia displacement errors, equal-case mean/worst/pooled, on exactly the same nodes.",
+      "Model internal superposition residual as an implementation check only: exact by construction for the linear candidate and not evidence that the FEM truth relation holds.",
+      "If scalar stress is queried, measure the separately supervised frozen scalar branch directly on original dia signed labels. Do not compare synthesized scalar stress labels or claim displacement linearity guarantees stress-scalar extrapolation."
+    ],
+    "hypotheses_only_this_step_can_verify": [
+      "Printed rank3 load-span coefficients actually produce the numerical source displacement field, within observed solver/CSV rounding error.",
+      "The stated linear small-displacement fixed-BC assumption is numerically compatible with dia output at these applied amplitudes; metadata alone does not prove this.",
+      "The exactly linear displacement parameterization transfers better than the matched load-dependent control to the unseen direction for the frozen selected models.",
+      "Two canonical-basis prediction errors do not cancel or amplify enough to reverse the expected dia benefit; this cannot be inferred just from seen-load means."
+    ],
+    "oracle_tolerance_policy": "Report raw values and source precision; no numeric solver-consistency tolerance is currently evidenced. Do not tune coefficients or choose a convenient acceptance threshold from dia results. Any required pass/fail tolerance must be justified and fixed before unsealing.",
+    "if_oracle_relation_fails": "Report a negative physical-assumption result and keep the original signed fields; do not train on synthetic dia targets or silently redefine the basis.",
+    "final_test": "Five official-test CADs remain isolated. After the research choices are frozen and a separate release gate is granted, evaluate their ver/hor/tor geometry-transfer and dia geometry-plus-load results once; no changes follow those results."
+  },
+  "implementation_handoff_if_root_later_accepts": {
+    "new_modules_only_initially": [
+      "geobc/physics_field.py",
+      "geobc/physics_train.py"
+    ],
+    "reusable_components": [
+      "ConditionedField with out_channels9",
+      "TCNNFieldConfig",
+      "strict _scope-style explicit allowlists",
+      "StressScaler supplied-scaler load path",
+      "existing local geometry coordinate-hash guard",
+      "serial coordinator and committed-resume artifact pattern"
+    ],
+    "new_loader_contract": "Open only explicit train/validation ver/hor/tor prepared NPZs; read displacement/u[N,3] rawmm alongside verified xyz/features/key/alignment. Build one CAD-static feature record after zeroing load slots, and record each case's alpha. A new zero-center RMS scaler is necessary; do not alter current StressScaler or current benchmark scaler behavior.",
+    "forward_basis_interface": "PhysicsField.response_basis(xyz[N,3],features[N,25|38],context=None,cad_index=None)->scaled_basis[N,basis3,component3]; module zeroes7:13 only in linear_basis mode",
+    "compose_interface": "PhysicsField.forward(xyz,features,alpha[N,3],...)->scaled_u[N,3]; DisplacementScaler.decode scales by common positive scale_mm without offset",
+    "minimal_CPU_checks": [
+      "zero-load output",
+      "exact homogeneity/superposition on arbitrary synthetic alpha at fixed input",
+      "nonzero-center decoding counterexample prevention",
+      "candidate basis load-slot invariance",
+      "fixed train-scaler reuse",
+      "paired sampler/checkpoint restore and validation-only selection"
+    ],
+    "one_short_GPU_check_only_after_queue_gate": "Check native9-output dimensions, signed finite forward/backward and memory at intended sampled batch once; no simultaneous GPU job or redundant long profile.",
+    "launch_rule": "Implementation is authorized and root fixed the stage. Native GPU dispatch waits only for notes/physics_trainer_ready.json; this child starts no GPU job and freezes source after writing ready."
+  },
+  "root_stage_decision": {
+    "implementation_authorized": true,
+    "configuration_frozen": true,
+    "physics_modes": [
+      "linear_basis",
+      "load_dependent_basis"
+    ],
+    "global_geometry": "PointNet",
+    "hidden_dim": 128,
+    "local_mode": "actual",
+    "seed": 2026,
+    "steps": 10000,
+    "eval_every": 1000,
+    "stress_checkpoint": "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/best.pt",
+    "GPU_dispatch_owner": "root serial coordinator"
+  }
+}

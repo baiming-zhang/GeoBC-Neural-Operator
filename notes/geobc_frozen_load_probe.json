@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "status": "frozen",
+  "predeclared_at_utc": "2026-10-09T11:03:00+08:00",
+  "scope": "A frozen held-out-load probe on the five validation CADs; no final-test CAD fields are opened.",
+  "split": "notes/geobc_split.json",
+  "data": "data/prepared_geobc_multiload",
+  "local_geometry": "data/geobc_local_geometry",
+  "load_basis": "notes/geobc_load_basis_45.json",
+  "validation_cads": [
+    "102_249",
+    "102_38",
+    "107_91",
+    "114_202",
+    "116_440"
+  ],
+  "heldout_load": "dia",
+  "frozen_models": {
+    "linear_basis": {
+      "run": "runs/geobc_exploration/displacement_linear_basis_local_actual_10k",
+      "summary": "runs\\geobc_exploration\\displacement_linear_basis_local_actual_10k\\summary.json",
+      "config": "runs\\geobc_exploration\\displacement_linear_basis_local_actual_10k\\config.json",
+      "checkpoint": "runs\\geobc_exploration\\displacement_linear_basis_local_actual_10k\\best.pt",
+      "summary_sha256": "87fc59eb3aedba4391dfee8a5f85fe02ec2783a5ae466b937d2dd7bda1f94e69",
+      "config_sha256": "6753c78ddc09e860d6a6b88f1f26ed7bb4acf87a743605ff81a4734d9333683b",
+      "best_step": 8000,
+      "selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2",
+      "checkpoint_identity": {
+        "bytes": 93526294,
+        "last_write_time_utc": "2026-10-09T03:08:46.7690352Z"
+      }
+    },
+    "load_dependent_basis": {
+      "run": "runs/geobc_exploration/displacement_load_dependent_basis_local_actual_10k",
+      "summary": "runs\\geobc_exploration\\displacement_load_dependent_basis_local_actual_10k\\summary.json",
+      "config": "runs\\geobc_exploration\\displacement_load_dependent_basis_local_actual_10k\\config.json",
+      "checkpoint": "runs\\geobc_exploration\\displacement_load_dependent_basis_local_actual_10k\\best.pt",
+      "summary_sha256": "e9101c808bebdf92ddc79ab7a70f0b655d7681fb59a2b64d9a1b639b41492960",
+      "config_sha256": "a2d9aa216c450882a65cbdbfc7991cc3ccaf9b15c760bb00576471ff483fb281",
+      "best_step": 7000,
+      "selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2",
+      "checkpoint_identity": {
+        "bytes": 93526358,
+        "last_write_time_utc": "2026-10-09T03:10:48.4607474Z"
+      }
+    },
+    "stress": {
+      "run": "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k",
+      "summary": "runs\\geobc_exploration\\hash_bc_pointnet_local_actual_width128_10k\\summary.json",
+      "config": "runs\\geobc_exploration\\hash_bc_pointnet_local_actual_width128_10k\\config.json",
+      "checkpoint": "runs\\geobc_exploration\\hash_bc_pointnet_local_actual_width128_10k\\best.pt",
+      "summary_sha256": "5e2ca969883eb485816b2aaaee7bca44e51b980671b13c578a8ab35f73c2c2b3",
+      "config_sha256": "6dd3dd730c49d26774e7999d7d07db6784f7f0e032eccdd80b5a4132383d928c",
+      "best_step": 9000,
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select",
+      "checkpoint_identity": {
+        "bytes": 93505238,
+        "last_write_time_utc": "2026-10-09T02:53:41.5206041Z"
+      }
+    }
+  },
+  "locked_config": {
+    "seed": 2026,
+    "steps": 10000,
+    "variant": "geometry_pointnet",
+    "hidden_dim": 128,
+    "local_mode": "actual",
+    "batch_size": 51200,
+    "cases_per_batch": 4,
+    "learning_rate": 0.003,
+    "checkpoint": "best.pt selected only by ver/hor/tor validation case-mean physical relative L2",
+    "scalers": "Serialized train-only scales; no refitting at evaluation"
+  },
+  "predeclared_metrics": [
+    "all-original-node signed displacement vector relative L2: case mean, worst and pooled",
+    "displacement RMSE in mm and maximum node-vector error norm in mm",
+    "oracle source displacement superposition residual for the metadata-derived ver/hor/tor coefficients",
+    "raw signed stress relative L2 and top1-percent |truth| hotspot error from the independent frozen stress model"
+  ],
+  "interpretation": [
+    "This tests an unseen combination within the observed three-dimensional load span, not a new independent load direction or full six-component loading.",
+    "Internal linearity is an architectural property; source FEM superposition must be measured separately.",
+    "Only displacement is linearly composed. Stress uses independent predictions and original source labels.",
+    "Keep all five final-test CAD field archives excluded. No architecture, coefficients, scaler, seed or checkpoint may be adjusted using this probe."
+  ],
+  "activation_rule": "Root changes status to frozen and records completed summary/config identities and selected best steps only after both training jobs complete. Evaluator refuses planned status before opening held-out fields.",
+  "output": "runs/geobc_exploration/frozen_validation_dia_probe",
+  "frozen_at_utc": "2026-10-09T03:13:12.7304297Z",
+  "holdout_opened_at_freeze": false
+}
