@@ -1,8 +1,12 @@
 # GeoBC：原版 DeepJEB 复现与泛化探索
 
-**当前阶段（2026-10-09）：自主研究进行中，30分钟监视已启用。** 先读 [一分钟结果](results/geobc_exploration/BRIEF.md)；详细证据见 [探索报告](results/geobc_exploration/REPORT.md)，执行计划见 [notes/geobc_exploration_plan.json](notes/geobc_exploration_plan.json)。Hash50 换 CAD／载荷组合后应力误差约92%，难例独立拟合可降至约0.1%。严格CAD划分下，整体几何编码及解码器加宽没有明显收益；局部边界特征在两种随机种子下改善平均误差0.8–1.7个百分点，但最差案例变差。当前检验位移的线性载荷响应基，最终五个测试CAD及dia标签暂不参与训练或模型选择。
+**当前阶段（2026-10-09）：自主研究进行中，30分钟监视已启用。** 先读 [一分钟结果](results/geobc_exploration/BRIEF.md)；详细证据见 [探索报告](results/geobc_exploration/REPORT.md)，执行计划见 [notes/geobc_exploration_plan.json](notes/geobc_exploration_plan.json)。难例独立拟合可降至约0.1%，原共享Hash换CAD／载荷组合后应力误差约92%；整体几何编码没有明显收益，局部特征只改善平均误差0.8–1.7个百分点。冻结的位移线性响应在dia组合上为28.41%，对照32.99%，源FEM叠加残差约0.31%；应力仍约87%。案例归一化位移损失的验证均值约29.1%，最差案例变差。下一步检验冻结预测位移能否帮助应力表示；最终五个测试CAD仍隔离，dia只作已冻结模型的诊断，不用于选模型。
 
-GeoBC Neural Operator 研究根据几何、材料、载荷和约束预测空间坐标处的位移与应力。当前实现已包含整体点云编码，并正在检验查询点局部几何条件；尚未获得有效的未见 CAD 泛化证据，也未验证重网格泛化。研究主线是以几何和边界接口条件化连续场，同时保留应力集中处的局部细节；具体新方法及其有效性需要后续验证。
+GeoBC Neural Operator 研究根据几何、材料、载荷和约束预测空间坐标处的位移与应力。当前已实现整体点云、局部边界几何及位移载荷响应基；未见 CAD 预测误差仍高，也未验证重网格泛化。研究主线是以几何和边界接口条件化连续场，同时保留应力集中处的局部细节；具体新方法及其有效性需要后续验证。
+
+![固定验证案例的位移预测对照](results/geobc_exploration/load_transfer.png)
+
+上图固定使用第一个代表案例102_249/dia，显示同一批7,822个原节点，前三面板共用位移模长mm色标。模长仅用于可视化，训练及指标使用原始signed uXYZ；此单案例不代表五CAD汇总。
 
 使用 **原版 DeepJEB v1.0**，复现 [参考 slides](https://docs.google.com/presentation/d/1g5S0QCZSDR_igYFWFe20SQ3nw2yvgYbXk_t4QSmKpBU/edit) 的可恢复量化实验，优先单样本和五样本。30/30 个计划实验已完成，正式队列用时约3小时26分钟。完整本地结果见 [ALL_METHODS_RESULTS.md](ALL_METHODS_RESULTS.md)，可移植结果包见 [results/REPORT.md](results/REPORT.md)，全部运行命令见 [notes/all_methods_plan.json](notes/all_methods_plan.json)。每项完成状态和实际物理指标保存于对应 `summary.json`。
 

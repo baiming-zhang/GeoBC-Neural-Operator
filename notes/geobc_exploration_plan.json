@@ -3,7 +3,7 @@
   "objective": "Learn a geometry- and boundary-conditioned continuous field that fits multiple DeepJEB cases and transfers across held-out CAD/load conditions.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "frozen_validation_load_probe",
+  "stage": "case_relative_displacement_loss",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -56,28 +56,118 @@
   ],
   "jobs": [
     {
-      "name": "frozen_validation_dia_probe",
-      "stage": "frozen_validation_load_probe",
-      "hypothesis": "Does exact displacement load linearity improve transfer to dia within the known rank3 load span, and do source FEM fields actually obey the metadata-derived superposition?",
+      "name": "displacement_linear_basis_relative_case_10k",
+      "stage": "case_relative_displacement_loss",
+      "hypothesis": "Does train-case-normalizedu MSE improve the low-amplitude TOR cases and held-out-CAD known-load validation, compared with historical rawMSE of the same physics mode?",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
-        "tools/evaluate_geobc_load_transfer.py",
-        "--gate",
-        "notes/geobc_frozen_load_probe.json",
+        "-m",
+        "geobc.physics_train",
+        "--split",
+        "notes/geobc_split.json",
+        "--data",
+        "data/prepared_geobc_multiload",
+        "--load-basis",
+        "notes/geobc_load_basis_45.json",
+        "--stress-checkpoint",
+        "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/best.pt",
+        "--physics-mode",
+        "linear_basis",
+        "--u-loss",
+        "relative_case_mse",
+        "--variant",
+        "geometry_pointnet",
+        "--hidden-dim",
+        "128",
+        "--local-geometry",
+        "data/geobc_local_geometry",
+        "--local-mode",
+        "actual",
+        "--steps",
+        "10000",
+        "--batch-size",
+        "51200",
+        "--cases-per-batch",
+        "4",
+        "--eval-every",
+        "1000",
+        "--learning-rate",
+        "0.003",
+        "--seed",
+        "2026",
         "--output",
-        "runs/geobc_exploration/frozen_validation_dia_probe"
+        "runs/geobc_exploration/displacement_linear_basis_relative_case_10k"
       ],
       "requires": [
-        "tools/evaluate_geobc_load_transfer.py",
-        "notes/load_probe_evaluator_ready.json",
-        "notes/geobc_frozen_load_probe.json",
-        "notes/physics_trainer_ready.json",
+        "geobc/physics_train.py",
+        "geobc/physics_field.py",
+        "notes/physics_relative_loss_ready.json",
+        "notes/geobc_u_loss_next_plan.json",
         "notes/geobc_load_basis_45.json",
-        "runs/geobc_exploration/displacement_linear_basis_local_actual_10k/summary.json",
-        "runs/geobc_exploration/displacement_load_dependent_basis_local_actual_10k/summary.json",
-        "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/summary.json"
+        "notes/geobc_split.json",
+        "data/prepared_geobc_multiload/manifest.json",
+        "data/geobc_local_geometry/manifest.json",
+        "notes/geobc_local_geometry_ready.json",
+        "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/best.pt"
       ],
-      "output": "runs/geobc_exploration/frozen_validation_dia_probe"
+      "output": "runs/geobc_exploration/displacement_linear_basis_relative_case_10k"
+    },
+    {
+      "name": "displacement_load_dependent_basis_relative_case_10k",
+      "stage": "case_relative_displacement_loss",
+      "hypothesis": "Does train-case-normalizedu MSE improve the low-amplitude TOR cases and held-out-CAD known-load validation, compared with historical rawMSE of the same physics mode?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.physics_train",
+        "--split",
+        "notes/geobc_split.json",
+        "--data",
+        "data/prepared_geobc_multiload",
+        "--load-basis",
+        "notes/geobc_load_basis_45.json",
+        "--stress-checkpoint",
+        "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/best.pt",
+        "--physics-mode",
+        "load_dependent_basis",
+        "--u-loss",
+        "relative_case_mse",
+        "--variant",
+        "geometry_pointnet",
+        "--hidden-dim",
+        "128",
+        "--local-geometry",
+        "data/geobc_local_geometry",
+        "--local-mode",
+        "actual",
+        "--steps",
+        "10000",
+        "--batch-size",
+        "51200",
+        "--cases-per-batch",
+        "4",
+        "--eval-every",
+        "1000",
+        "--learning-rate",
+        "0.003",
+        "--seed",
+        "2026",
+        "--output",
+        "runs/geobc_exploration/displacement_load_dependent_basis_relative_case_10k"
+      ],
+      "requires": [
+        "geobc/physics_train.py",
+        "geobc/physics_field.py",
+        "notes/physics_relative_loss_ready.json",
+        "notes/geobc_u_loss_next_plan.json",
+        "notes/geobc_load_basis_45.json",
+        "notes/geobc_split.json",
+        "data/prepared_geobc_multiload/manifest.json",
+        "data/geobc_local_geometry/manifest.json",
+        "notes/geobc_local_geometry_ready.json",
+        "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/best.pt"
+      ],
+      "output": "runs/geobc_exploration/displacement_load_dependent_basis_relative_case_10k"
     }
   ],
   "historical_jobs": [
@@ -701,6 +791,30 @@
         "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/best.pt"
       ],
       "output": "runs/geobc_exploration/displacement_load_dependent_basis_local_actual_10k"
+    },
+    {
+      "name": "frozen_validation_dia_probe",
+      "stage": "frozen_validation_load_probe",
+      "hypothesis": "Does exact displacement load linearity improve transfer to dia within the known rank3 load span, and do source FEM fields actually obey the metadata-derived superposition?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/evaluate_geobc_load_transfer.py",
+        "--gate",
+        "notes/geobc_frozen_load_probe.json",
+        "--output",
+        "runs/geobc_exploration/frozen_validation_dia_probe"
+      ],
+      "requires": [
+        "tools/evaluate_geobc_load_transfer.py",
+        "notes/load_probe_evaluator_ready.json",
+        "notes/geobc_frozen_load_probe.json",
+        "notes/physics_trainer_ready.json",
+        "notes/geobc_load_basis_45.json",
+        "runs/geobc_exploration/displacement_linear_basis_local_actual_10k/summary.json",
+        "runs/geobc_exploration/displacement_load_dependent_basis_local_actual_10k/summary.json",
+        "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/summary.json"
+      ],
+      "output": "runs/geobc_exploration/frozen_validation_dia_probe"
     }
   ],
   "phase_history": [
@@ -733,6 +847,12 @@
       "completed_jobs": 2,
       "frozen_source_sha256": "034614ef01eb47253f856708a2f17a2a43220c86054296ee153a48d6e85174bc",
       "decision": "Known-load validation u vector mean30.5837% linear vs30.0798% load-dependent; no meaningful known-load gain. Freeze both selected models before predeclared validation5 dia load-span probe. Final5CAD fields remain excluded."
+    },
+    {
+      "stage": "frozen_validation_load_probe",
+      "completed_jobs": 1,
+      "frozen_source_local_commit": "875dc058fe55039c6b76cf591dee759d0bcdc4aa",
+      "decision": "Frozen val5 dia u mean28.4116% linear vs32.9928% dependent; source superposition residual0.3059%; stress87.4260%. Next predeclared train-case-relative loss addresses TOR amplitude weighting; dia does not choose new recipe and is now an observed diagnostic."
     }
   ],
   "scope_rule": "historical_jobs are immutable completed evidence and are never dispatched; jobs contains only the currently authorized stage. Source SHA and weights remain in each historical run and the frozen Git commit."

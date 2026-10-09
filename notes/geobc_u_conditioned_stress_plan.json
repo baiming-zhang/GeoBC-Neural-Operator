@@ -1,0 +1,262 @@
+{
+  "version": 1,
+  "status": "design_ready_waiting_for_known_load_teacher_comparison_and_root_implementation_decision",
+  "created_at_utc": "2026-10-09T03:39:11.525569+00:00",
+  "execution_authorized_by_this_plan": false,
+  "implementation_performed": false,
+  "scope": "仅设计下一最小应力条件对照、接口与缓存契约；本次不改冻结源码、不读权重或场数据、不启动GPU。",
+  "dataset": "原始 DeepJEB v1.0；真实 CSV GRID 标签与 H5 节点对齐；应力保留原始 signed scalar。",
+  "motivation": {
+    "root_reported_existing_frozen_probe": {
+      "validation_dia_displacement_linear_mean_l2_approx": 0.2841,
+      "validation_dia_displacement_dependent_mean_l2_approx": 0.3299,
+      "source_u_superposition_residual_mean_l2_approx": 0.0031,
+      "independent_signed_stress_mean_l2_approx": 0.8743
+    },
+    "precision": "以上仅转录root报告的近似比例，不替代既有summary原始精度。",
+    "hypothesis": "训练位移监督得到的冻结响应包含每个query的非局部几何/变形信息；将其显式提供给仍独立监督的应力网络，可能改善当前载荷下的signed scalar stress表示。",
+    "no_assumed_constitutive_equation": "不解释源scalar为特定Von Mises定义，不取abs标签，不从u导数推导/替换stress，不对stress线性叠加。",
+    "historical_probe_boundary": "此假设受已观察的validation-dia诊断启发。该相同dia集合若后续重测属于探索性跟进，不能再称独立未见验证；本计划两训练任务不打开dia。"
+  },
+  "minimal_feature_choice": {
+    "decoder_u_features": 3,
+    "feature_names": [
+      "predicted_ux_over_teacher_train_common_u_RMS",
+      "predicted_uy_over_teacher_train_common_u_RMS",
+      "predicted_uz_over_teacher_train_common_u_RMS"
+    ],
+    "definition": "u_condition[n,c]=sum_l alpha[l]*frozen_basis_scaled[n,l,c]；feature为教师common train-only RMS尺度下的预测u，零中心；物理u_mm=scale_mm*u_condition。",
+    "why_three": "3维直接检验当前载荷的预测变形响应，新增信息和实现均最小；与现有力矩槽共同描述该载荷。9个基响应只在cache中保留，不同时作为student输入，避免一次改变两类条件。",
+    "basis12_option_deferred": "9基+3组合的12维输入暂不执行。基响应可补充不同载荷下的compliance信息，但会额外改变假设与输入维度；只有另行明确假设才考虑。",
+    "limitation": "应力通常与局部变形变化及材料关系有关，点位移本身不充分；冻结教师有预测误差且只表达rank3观测载荷span。负结果只针对这3维条件与当前预算，不否定未测试的位移梯度/strain信息。",
+    "no_extra_feature_transform": "无每CAD/per-load重新归一化、均值中心化、clipping或验证选择的feature transform。"
+  },
+  "teacher_selection": {
+    "status": "pending_not_selected",
+    "candidates_in_predeclared_order": [
+      {
+        "run": "runs/geobc_exploration/displacement_linear_basis_local_actual_10k",
+        "mode": "linear_basis",
+        "u_loss": "historical point_mse",
+        "checkpoint": "best.pt"
+      },
+      {
+        "run": "runs/geobc_exploration/displacement_linear_basis_relative_case_10k",
+        "mode": "linear_basis",
+        "u_loss": "relative_case_mse",
+        "checkpoint": "best.pt"
+      }
+    ],
+    "eligible": "仅completed、相同strict split/PointNet128/localactual/10k/seed2026的load-linear教师。load-dependent control不参与，因为其basis会随load槽变化，不能每CAD一次共享3load。",
+    "checkpoint_within_run": "沿用每run原定最小known-load validation15 case_mean displacement vector physical L2；严格更优时更新，保留已存best。",
+    "teacher_between_runs": "两个linear候选按metrics_best.validation.case_mean_relative_l2最小选择。精确相等时保留上述列表更早候选；不按dia/stress误差或teacher训练误差选择。",
+    "required_lock_before_cache_or_student_fit": [
+      "completed summary/config小文件SHA256",
+      "best_step与known-load selection score",
+      "best.pt path/bytes/mtime_ns（不全权重hash）",
+      "serialized u scaler完整record",
+      "model.source_config与冻结源码SHA",
+      "geometry_clouds来源/坐标mask hash",
+      "local_geometry schema与45CAD原有cache记录",
+      "split/load-basis SHA256"
+    ],
+    "future_frozen_manifest": "notes/geobc_u_stress_teacher_frozen.json（root选择后创建；本次不伪造selection/identity）",
+    "no_refitting_or_joint_training": "加载fixed teacher weights eval/no_grad/requires_gradFalse；student loss不更新教师。train和validation全部feature用同一selected checkpoint，不用GT u或oracle u作为stress输入。",
+    "known_validation_reuse": "教师选择使用known-load validation u信息；student best使用同15case stress信息。这是同一内部验证集上的模型开发选择，须披露，不能代替最终泛化测评。"
+  },
+  "paired_student_runs": {
+    "variants": [
+      "u_condition_zero",
+      "u_condition_actual"
+    ],
+    "proposed_outputs": [
+      "runs/geobc_exploration/stress_u_condition_zero_width128_10k",
+      "runs/geobc_exploration/stress_u_condition_actual_width128_10k"
+    ],
+    "condition_layout": {
+      "local_original_bc_material": 25,
+      "local_geometry": 13,
+      "predicted_u_slots": 3,
+      "ConditionedField_condition_dim": 41,
+      "PointNet_global_descriptor_dim": 32,
+      "TCNN_identity_condition_dim": 73,
+      "hash_features": 24
+    },
+    "append_order": "原25（含force/moment，不在stress student清零） + actual local13 + zero/actual predicted-u3；ConditionedField随后append global32。",
+    "model": "现有连续hash12levels×2features/cap19/base8/growth1.6 + native TCNN FullyFusedMLP width128/2 ReLU hidden layers，out_channels1；geometry PointNet维度32/1024固定boundary nodes。",
+    "zero_policy": "将最后3个u槽严格置零，仍保留相同41dim local input与相同TCNN decoder布局。不得复用旧38dim网络权重充当此对照。",
+    "actual_policy": "按当前CAD/node index从shared frozen basis取值，由该case预声明alpha组合成3维；不读GT u做input。",
+    "fixed_budget": {
+      "seed": 2026,
+      "steps": 10000,
+      "batch_size": 51200,
+      "cases_per_batch": 4,
+      "eval_every": 1000,
+      "eval_batch_size": 65536,
+      "learning_rate": 0.003,
+      "optimizer": "沿用Adam fused CUDA/default参数"
+    },
+    "matched_state": "新建两student，相同seed/layout/PointNet/native decoder初始化SHA；沿用独立case_rng(seed+23)/node_rng(seed+17)，相同case与节点抽样witness，不受额外teacher初始化或cache操作RNG影响。",
+    "stress_objective": "保持当前case-balanced standardized-asinh encoded signed stress MSE；本轮不改stress loss、scaler、sampling、学习率或训练预算。",
+    "gradient": "student PointNet/context梯度保持可传播；frozen basis/cache无梯度且教师权重不在student optimizer中。",
+    "no_architecture_claim": "这是GeoBC显式位移响应条件候选对照，不宣称新算法或新的物理规律。"
+  },
+  "data_and_selection": {
+    "split": "notes/geobc_split.json",
+    "split_sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859",
+    "data": "data/prepared_geobc_multiload",
+    "local_geometry": "data/geobc_local_geometry",
+    "load_basis": "notes/geobc_load_basis_45.json",
+    "load_basis_sha256": "d2560829a07a20f30071f49f4bb694127b0e8d3ddb4724e3a4b0b795795c4991",
+    "train": {
+      "CADs": [
+        "101_428",
+        "101_479",
+        "101_56",
+        "101_78",
+        "101_86",
+        "102_240",
+        "102_79",
+        "107_113",
+        "107_147",
+        "107_150",
+        "107_186",
+        "107_233",
+        "107_240",
+        "107_248",
+        "107_291",
+        "107_320",
+        "107_342",
+        "107_459",
+        "10_30",
+        "10_421",
+        "10_460",
+        "10_492",
+        "10_58",
+        "10_80",
+        "113_129",
+        "113_170",
+        "113_390",
+        "113_86",
+        "113_95",
+        "114_28",
+        "114_456",
+        "114_525",
+        "114_91",
+        "116_102",
+        "116_113",
+        "116_30",
+        "116_348",
+        "119_221",
+        "119_322",
+        "119_559"
+      ],
+      "loads": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "cases": 120
+    },
+    "validation": {
+      "CADs": [
+        "102_249",
+        "102_38",
+        "107_91",
+        "114_202",
+        "116_440"
+      ],
+      "loads": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "cases": 15
+    },
+    "final_test": "全部5CAD字段排除，既不生成basis/cache，也不加载stress/u或评估。",
+    "dia": "本轮不生成dia targets/predictions或评估；alpha metadata仅已有目标无关rank3系数。",
+    "stress_scaler": "仅train40×ver/hor/tor stress标签决定。两student共享同serialized strict120 scaler；可复用当前冻结stress配置的同120 train-only StressScaler record（scale/center/spread），不从validation/dia/test refit。",
+    "checkpoint_selection": "每student仅最小validation15-case mean all-original-node physical signed stress relative L2，原定step0/1000…10000 eval schedule；相等不替换更早best。",
+    "report_metrics": [
+      "selected step",
+      "train/validation case-mean/worst/pooled physical signed stress relative L2",
+      "per-load known-validation mean/worst",
+      "top1% |truth| hotspot relative L2",
+      "MPa RMSE/MAE/maxabs",
+      "final step physical metrics",
+      "teacher training cost and selected u quality",
+      "cache time/bytes",
+      "student wall time"
+    ],
+    "interpretation": "actual若在同预算known-validation下改善mean同时检查worst/hotspots，可支持当前冻结响应条件有帮助；训练单独改善或worst变差要记录tradeoff。两模型best均有同一验证选择成本，不把该开发验证结果称最终泛化。"
+  },
+  "cache_contract": {
+    "scope": "exactly train40+validation5 CAD，canonical ver每CAD一次；本次仅设计，不实际建cache。",
+    "suggested_directory": "data/geobc_frozen_u_response",
+    "arrays_per_CAD": {
+      "basis_scaled": "float32[N,3basis,3component]，ver/hor/tor × ux/uy/uz，未做per-load缩放/中心化",
+      "cad_id": "scalar str",
+      "node_count": "scalar int",
+      "xyz_sha256": "SHA256(ascontiguousarray(original normalized xyz,dtype=<f4).tobytes(C))，无NPY header",
+      "basis_order": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "component_order": [
+        "ux",
+        "uy",
+        "uz"
+      ],
+      "u_scale_mm": "selected serialized common positive scalar",
+      "schema_version": 1
+    },
+    "basis_generation": "仅读取canonical ver NPZ的xyz/features/sample_key/label_alignment；reuse saved perCAD geometry_cloud和actual local13。使用frozen PhysicsField.response_basis()，该linear teacher清零原25的7:13，使basis与load无关；每CAD global context只encode一次，query可分chunk但保留同context。",
+    "field_members_never_read_for_generation": [
+      "displacement",
+      "stress"
+    ],
+    "manifest": "记录chosen teacher小config/summary/metrics_best SHA与best.pt stat；basis_cache各CAD path/bytes/mtime/node_count/xyzhash、teacher identity key、fixed scale、geometry/local schema与source stat、precision、generation elapsed、finite检验。未导出的巨大权重/原数据SHA为null/not hashed。",
+    "fingerprint": "teacher config_sha256 +best_step +best.pt bytes/mtime +u_scale +CAD xyz_sha256 +local_schema_sha +saved_cloud_hash +schema_version。fingerprint不匹配则拒绝旧cache，不悄然混用不同teacher。",
+    "load_reuse": "ver/hor/tor共享basis_scaled；case的features7:13经已冻结feature_to_alpha_matrix映射必须等于metadata alpha。逐case校验original normalized xyz hash与N，再按node_indices gather basis并组合。canonical source非load25字段清零7:13后的signature应与三个case一致。",
+    "no_GT_shortcut": "teacher train/val都推断响应，缓存不包含GT u/stress、oracle superposition或预测误差。虽然生成不读标签，该teacher仍用了额外u监督，不能把条件称为纯几何target-independent特征。",
+    "device_use": "cache生成由root单GPU队列；CPU只metadata/shape/hash契约。约330.5MiB basis可GPU resident按batch gather，或CPU pinned按需传51200×9；不重复为每load生成/保存basis。",
+    "metadata_size_estimate": {
+      "source": "already completed config node counts only; no raw arrays read",
+      "unique_train_validation_CAD_nodes": 9627246,
+      "basis_float32_bytes": 346580856,
+      "basis_float32_MiB": 330.52526092529297,
+      "per_query_u_feature_dim": 3,
+      "large_cache_source_SHA_policy": "no redundant fullfile rescans"
+    }
+  },
+  "future_interface": {
+    "model_reuse": "ConditionedFieldConfig(condition_dim=41,descriptor_dim=32,geometry_mode=shape,hidden_dim=128,out_channels=1)，forward(xyz, concat(original25,local13,u3),context,cad_index)。现有冻结model源码不需要为此设计改动。",
+    "cache_loader": "load_response_cache(directory,cad_id,xyz=...) -> immutable basis_scaled[N,3,3],scale_mm,record；严格teacher identity/XYZN/order/schema检查。",
+    "feature_query": "u_condition(basis_scaled,node_indices,alpha,mode=zero|actual)->float32[queryN,3]；zero同dim精确全零；actual einsum(nl,nlc->nc)，输入系数可负，无intercept。",
+    "CLI_proposal": "专用未来stress trainer添加 --u-response-cache PATH --u-condition zero|actual；继承现有strict split/geometry/local/width/RNG/selection/resume策略。当前未创建trainer/helper或ready门。",
+    "resume": "固定teacher/cache/scaler/source/config与RNG/optimizer identity必须恢复一致，不随current training状态更换teacher；completed结果不无声覆盖。"
+  },
+  "budget_and_limits": {
+    "shared_teacher_cost": "报告被选teacher完整10k预训练、known-val checkpoint selection、额外u labels及候选teacher比较成本。已有历史teacher费用也计入pipeline说明；不因复用而称teacher免费。",
+    "student_pair_cost": "两项各10ksteps，shared cache只生成一次；zero/actual的student预算和输入容量匹配。actual pipeline整体多了u监督/预训练信息，不能与原stress-only baseline称同totalbudget。",
+    "negative_result_stop": "本轮只做这一个成对条件实验；无改善不自动扩成12dim/gradients/不同loss/更多decoder架构suite。root依据known-load结果另定必要假设。",
+    "implementation_gate": "等待当前relative-u两job completed，按上述known-load规则冻结一个linear teacher，再由root决定是否实施、分配源码所有权和GPU队列。"
+  },
+  "minimal_CPU_contract_checks_performed": {
+    "synthetic_scaled_basis_combination_shape": [
+      2,
+      3
+    ],
+    "unit_alpha_matches_each_basis_column": true,
+    "zero_alpha_zero_intercept": true,
+    "common_scalar_decode_commutes_with_alpha_combination": true,
+    "zero_actual_student_feature_layout_both": [
+      2,
+      41
+    ],
+    "files_read": "仅计划/split/load-basis及已完成run config JSON；未读取teacher权重、NPZ字段、dia或最终test。",
+    "source_files_modified": [],
+    "GPU_used": false
+  }
+}

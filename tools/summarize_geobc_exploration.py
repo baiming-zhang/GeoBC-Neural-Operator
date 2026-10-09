@@ -18,6 +18,7 @@ def main():
     dest=ROOT/'results/geobc_exploration'
     dest.mkdir(parents=True,exist_ok=True)
     summaries={}
+    checkpoints={}
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
@@ -26,9 +27,26 @@ def main():
         summary=json.loads(path.read_text())
         if summary.get('status')!='completed': continue
         summaries[job['name']]=summary
+        checkpoint_files={}
+        for filename in ('best.pt','last.pt'):
+            checkpoint=source/filename
+            if checkpoint.is_file():
+                stat=checkpoint.stat()
+                checkpoint_files[filename]={'local_path':str(checkpoint),'bytes':stat.st_size,'mtime_ns':stat.st_mtime_ns}
+        if checkpoint_files:
+            checkpoints[job['name']]={'best_step':summary.get('best_step'),'files':checkpoint_files,
+                                      'code_sha256':summary.get('config',{}).get('contract',{}).get('code_sha256',{}),
+                                      'selection':summary.get('config',{}).get('checkpoint_selection')}
         target=dest/'runs'/job['name']; target.mkdir(parents=True,exist_ok=True)
         for filename in ('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json'):
             if (source/filename).exists(): shutil.copyfile(source/filename,target/filename)
+    write_json(dest/'checkpoint_index.json',{'weights_published':False,'weights_location':'local training directories',
+                                            'identity_policy':'paths/bytes/mtime plus small config source hashes; no redundant checkpoint scans',
+                                            'runs':checkpoints})
+    manifests=dest/'data_manifests'; manifests.mkdir(exist_ok=True)
+    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry'):
+        source=ROOT/'data'/directory/'manifest.json'
+        if source.is_file():shutil.copyfile(source,manifests/(directory+'.json'))
     lines=['# GeoBC 探索：当前结论与下一步','',
            '研究对象：原版 DeepJEB；使用逐节点坐标对齐的原始有符号应力。','',
            '## 当前结论','',
@@ -88,6 +106,15 @@ def main():
     if physics:
         lines += ['', '| 位移响应基 | 最佳点训练误差 | 验证误差 |','|---|---:|---:|']
         lines += [f"| {'载荷无关，强制线性' if mode=='linear_basis' else '载荷依赖控制'} | {percent(train)} | {percent(val)} |" for mode,train,val in physics]
+    relative=[]
+    for mode in ('linear_basis','load_dependent_basis'):
+        summary=summaries.get('displacement_'+mode+'_relative_case_10k')
+        if summary:
+            relative.append((mode,summary['best_metrics']['validation']['case_mean_relative_l2'],summary['best_metrics']['validation']['worst_case_relative_l2']))
+    if relative:
+        lines += ['', '训练集证据：相同相对误差下，扭转载荷仅占原共同RMS损失约1.3%的权重。改为训练案例RMS归一化损失，物理解码尺度保持不变：']
+        lines += [f"- {'线性响应基' if mode=='linear_basis' else '载荷依赖对照'}：验证平均{percent(val)}，最差{percent(worst)}。" for mode,val,worst in relative]
+        lines += ['训练扭转拟合明显改善，但验证平均收益小、最差案例变差，幅值权重不是全部泛化瓶颈。']
     probe=summaries.get('frozen_validation_dia_probe')
     if probe:
         u=probe['displacement']
@@ -114,6 +141,8 @@ def main():
         brief += ['- 正在检验位移的线性载荷响应基；应力保留独立监督，不套用位移叠加规律。']
     if probe:
         brief += [f"- 冻结的dia组合测试：位移线性模型{percent(probe['displacement']['linear_basis']['case_mean_relative_l2'])}，对照{percent(probe['displacement']['load_dependent_basis']['case_mean_relative_l2'])}；源位移叠加残差约0.31%。应力仍约87%，尚未解决。"]
+    if relative:
+        brief += ['- 改正位移损失的案例幅值权重后，验证均值约29.1%，最差反而更差；下一步用冻结预测位移条件检验应力表示。']
     brief += ['', f"完成{len(summaries)}/{len(jobs)}项探索；原30项slides复现已完成。当前研究继续，五个最终测试CAD未参与新模型训练/选择。",'',
               '数据、控制变量及解释范围见 [完整探索报告](REPORT.md)。','']
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')

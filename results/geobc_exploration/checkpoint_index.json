@@ -1,0 +1,330 @@
+{
+  "weights_published": false,
+  "weights_location": "local training directories",
+  "identity_policy": "paths/bytes/mtime plus small config source hashes; no redundant checkpoint scans",
+  "runs": {
+    "independent_101_479_tor": {
+      "best_step": 1000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/independent_101_479_tor/best.pt",
+          "bytes": 92950485,
+          "mtime_ns": 1791512226211830900
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/independent_101_479_tor/last.pt",
+          "bytes": 92950485,
+          "mtime_ns": 1791512229666219400
+        }
+      },
+      "code_sha256": {},
+      "selection": "minimum all-original-node decoded physical stress relative L2 on the fitted case"
+    },
+    "independent_107_320_tor": {
+      "best_step": 2000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/independent_107_320_tor/best.pt",
+          "bytes": 92950485,
+          "mtime_ns": 1791512247276421800
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/independent_107_320_tor/last.pt",
+          "bytes": 92950485,
+          "mtime_ns": 1791512247693437200
+        }
+      },
+      "code_sha256": {},
+      "selection": "minimum all-original-node decoded physical stress relative L2 on the fitted case"
+    },
+    "independent_114_202_tor": {
+      "best_step": 1800,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/independent_114_202_tor/best.pt",
+          "bytes": 92950485,
+          "mtime_ns": 1791512262589570800
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/independent_114_202_tor/last.pt",
+          "bytes": 92950485,
+          "mtime_ns": 1791512263534472700
+        }
+      },
+      "code_sha256": {},
+      "selection": "minimum all-original-node decoded physical stress relative L2 on the fitted case"
+    },
+    "hash_bc_no_geometry_10k": {
+      "best_step": 1000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_no_geometry_10k/best.pt",
+          "bytes": 93013457,
+          "mtime_ns": 1791512864057194100
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_no_geometry_10k/last.pt",
+          "bytes": 93035217,
+          "mtime_ns": 1791512916457028800
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "316470343018b43d80d5904f0d6ee5f8e6ebbb95231f70e2f70bef7bb9f12378",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "hash_bc_pointnet_10k": {
+      "best_step": 1000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_10k/best.pt",
+          "bytes": 93228694,
+          "mtime_ns": 1791512943123772600
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_10k/last.pt",
+          "bytes": 93250390,
+          "mtime_ns": 1791513003979216200
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "316470343018b43d80d5904f0d6ee5f8e6ebbb95231f70e2f70bef7bb9f12378",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "hash_bc_no_geometry_width128_10k": {
+      "best_step": 1000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_no_geometry_width128_10k/best.pt",
+          "bytes": 93246929,
+          "mtime_ns": 1791513403758222200
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_no_geometry_width128_10k/last.pt",
+          "bytes": 93268689,
+          "mtime_ns": 1791513447854539900
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "934e5d0ca1953c56626e3db31722d7f02d5cc4148046c331367cf6b8142143bc",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "hash_bc_pointnet_width128_10k": {
+      "best_step": 1000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_width128_10k/best.pt",
+          "bytes": 93462166,
+          "mtime_ns": 1791513478164836300
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_width128_10k/last.pt",
+          "bytes": 93483926,
+          "mtime_ns": 1791513549859330900
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "934e5d0ca1953c56626e3db31722d7f02d5cc4148046c331367cf6b8142143bc",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "hash_bc_pointnet_local_zero_width128_10k": {
+      "best_step": 3000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_local_zero_width128_10k/best.pt",
+          "bytes": 93505238,
+          "mtime_ns": 1791514279144027300
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_local_zero_width128_10k/last.pt",
+          "bytes": 93526998,
+          "mtime_ns": 1791514328185174200
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "b460cd7c09943f33182741ebc5b9e1921a728eb67964256eeaf947acb61b42bd",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "hash_bc_pointnet_local_actual_width128_10k": {
+      "best_step": 9000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/best.pt",
+          "bytes": 93505238,
+          "mtime_ns": 1791514421520604100
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/last.pt",
+          "bytes": 93526998,
+          "mtime_ns": 1791514430153189400
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "b460cd7c09943f33182741ebc5b9e1921a728eb67964256eeaf947acb61b42bd",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "hash_bc_pointnet_local_zero_width128_seed2027_10k": {
+      "best_step": 1000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_local_zero_width128_seed2027_10k/best.pt",
+          "bytes": 93505238,
+          "mtime_ns": 1791514543156941100
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_local_zero_width128_seed2027_10k/last.pt",
+          "bytes": 93526998,
+          "mtime_ns": 1791514610754155000
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "b460cd7c09943f33182741ebc5b9e1921a728eb67964256eeaf947acb61b42bd",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "hash_bc_pointnet_local_actual_width128_seed2027_10k": {
+      "best_step": 6000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_seed2027_10k/best.pt",
+          "bytes": 93505238,
+          "mtime_ns": 1791514680290242100
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_seed2027_10k/last.pt",
+          "bytes": 93526998,
+          "mtime_ns": 1791514711338376000
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "b460cd7c09943f33182741ebc5b9e1921a728eb67964256eeaf947acb61b42bd",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "displacement_linear_basis_local_actual_10k": {
+      "best_step": 8000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_linear_basis_local_actual_10k/best.pt",
+          "bytes": 93526294,
+          "mtime_ns": 1791515326769035200
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_linear_basis_local_actual_10k/last.pt",
+          "bytes": 93537302,
+          "mtime_ns": 1791515345813892900
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "b460cd7c09943f33182741ebc5b9e1921a728eb67964256eeaf947acb61b42bd",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+        "physics_train.py": "034614ef01eb47253f856708a2f17a2a43220c86054296ee153a48d6e85174bc",
+        "physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+        "train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7"
+      },
+      "selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2"
+    },
+    "displacement_load_dependent_basis_local_actual_10k": {
+      "best_step": 7000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_load_dependent_basis_local_actual_10k/best.pt",
+          "bytes": 93526358,
+          "mtime_ns": 1791515448460747400
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_load_dependent_basis_local_actual_10k/last.pt",
+          "bytes": 93537366,
+          "mtime_ns": 1791515477540163100
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "b460cd7c09943f33182741ebc5b9e1921a728eb67964256eeaf947acb61b42bd",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+        "physics_train.py": "034614ef01eb47253f856708a2f17a2a43220c86054296ee153a48d6e85174bc",
+        "physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+        "train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7"
+      },
+      "selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2"
+    },
+    "displacement_linear_basis_relative_case_10k": {
+      "best_step": 8000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_linear_basis_relative_case_10k/best.pt",
+          "bytes": 93534614,
+          "mtime_ns": 1791516676769422000
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_linear_basis_relative_case_10k/last.pt",
+          "bytes": 93545622,
+          "mtime_ns": 1791516696355641100
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "b460cd7c09943f33182741ebc5b9e1921a728eb67964256eeaf947acb61b42bd",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+        "physics_train.py": "3105cacc364b65950eec2b1901376c8b9f8b1edae1019fbfadcc9662339c8b16",
+        "physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+        "train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7"
+      },
+      "selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2"
+    },
+    "displacement_load_dependent_basis_relative_case_10k": {
+      "best_step": 8000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_load_dependent_basis_relative_case_10k/best.pt",
+          "bytes": 93534614,
+          "mtime_ns": 1791516801254743600
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_load_dependent_basis_relative_case_10k/last.pt",
+          "bytes": 93545622,
+          "mtime_ns": 1791516818321482500
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "b460cd7c09943f33182741ebc5b9e1921a728eb67964256eeaf947acb61b42bd",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+        "physics_train.py": "3105cacc364b65950eec2b1901376c8b9f8b1edae1019fbfadcc9662339c8b16",
+        "physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+        "train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7"
+      },
+      "selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2"
+    }
+  }
+}

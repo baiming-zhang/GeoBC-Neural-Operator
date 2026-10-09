@@ -29,6 +29,7 @@ from .train import utc_now, write_json
 
 ROOT = Path(__file__).resolve().parents[1]
 BASIS_ORDER = ("ver", "hor", "tor")
+RELATIVE_CASE_RMS_FLOOR_MM = 1e-12
 
 
 def _sha(value: bytes) -> str:
@@ -114,8 +115,16 @@ def _scope(args):
     basis_path = _path(args.load_basis)
     guard = _load_basis(basis_path, split)
     stress = _stress_reference(_path(args.stress_checkpoint), split, keys)
-    contract["version"] = 2
+    contract["version"] = 3
     contract["requested"]["physics_mode"] = args.physics_mode
+    contract["requested"]["u_loss"] = args.u_loss
+    contract["u_loss_contract"] = {
+        "name": args.u_loss, "RMS_floor_mm": RELATIVE_CASE_RMS_FLOOR_MM,
+        "fit_scope": "120 training cases only; no validation/dia/finaltest weights",
+        "relative_case_formula": "w_c=common_scale_mm^2/max(R_c^2,RMS_floor_mm^2); R_c^2=sum(u_mm^2)/(3*N_c)",
+        "weight_cap": None, "extra_weight_normalization": None,
+        "decode": "unchanged common positive scalar, center0",
+    }
     contract["load_basis"] = {**_identity(basis_path), "sha256": _sha(basis_path.read_bytes()),
                               "basis_order": guard["canonical_basis"]["order"]}
     contract["stress_reference"] = stress
@@ -181,6 +190,73 @@ class DisplacementCase:
     @property
     def count(self) -> int:
         return len(self.physical_u)
+
+
+def training_loss_record(cases: list[DisplacementCase], scaler: DisplacementScaler,
+                         mode: str, saved: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Fit loss weights on explicit train cases, or reuse their saved record.
+
+    Case weights affect only the objective. The common displacement decoder
+    retains exactly the same scale and zero center for every case/load.
+    """
+    keys = [case.key for case in cases]
+    if tuple(keys) != scaler.fit_case_keys or len(keys) != len(set(keys)):
+        raise ValueError("Loss weights require exactly the scaler's training-case allowlist")
+    if mode not in ("point_mse", "relative_case_mse"):
+        raise ValueError("Unknown displacement loss")
+    header = {"name": mode, "common_scale_mm": scaler.scale_mm, "decode_center_mm": 0.0,
+              "fit_case_keys": keys, "fit_scope": "strict40 train CADs x ver/hor/tor only",
+              "RMS_floor_mm": RELATIVE_CASE_RMS_FLOOR_MM if mode == "relative_case_mse" else None,
+              "weight_cap": None, "extra_weight_normalization": None,
+              "definition": "mean_c w_c*mean_nodes_components(encoded_error^2), w_c=s^2/max(R_c^2,floor^2)"
+                            if mode == "relative_case_mse" else "unweighted mean(encoded_error^2); original pointMSE path"}
+    if saved is not None:
+        if any(saved.get(name) != value for name, value in header.items()):
+            raise ValueError("Resume displacement-loss contract or common scale differs")
+        records = saved.get("case_records", {})
+        if mode == "point_mse":
+            if records:
+                raise ValueError("point_mse must not contain fitted case weights")
+        else:
+            if set(records) != set(keys):
+                raise ValueError("Saved loss weights include missing or non-training cases")
+            for case in cases:
+                record = records[case.key]
+                rms = float(record["truth_RMS_mm"])
+                expected = scaler.scale_mm ** 2 / max(rms ** 2, RELATIVE_CASE_RMS_FLOOR_MM ** 2)
+                if (not math.isfinite(rms) or rms < 0 or record["nodes"] != case.count
+                        or not math.isfinite(float(record["weight"]))
+                        or float(record["weight"]) != expected):
+                    raise ValueError(f"Invalid saved train-only case weight: {case.key}")
+        # No label statistics are refitted on resume.
+        return saved
+    records = {}
+    if mode == "relative_case_mse":
+        for case in cases:
+            values = np.asarray(case.physical_u, np.float64)
+            rms_squared = float(np.einsum("nc,nc->", values, values)) / (3 * case.count)
+            if not math.isfinite(rms_squared) or rms_squared < 0:
+                raise ValueError(f"Nonfinite training displacement RMS: {case.key}")
+            rms = math.sqrt(rms_squared)
+            # Define weight from the recorded RMS so reload validates the exact formula.
+            weight = scaler.scale_mm ** 2 / max(rms ** 2, RELATIVE_CASE_RMS_FLOOR_MM ** 2)
+            if not math.isfinite(weight) or weight <= 0:
+                raise ValueError(f"Nonfinite relative-case weight: {case.key}")
+            records[case.key] = {"nodes": case.count, "truth_RMS_mm": rms, "weight": weight,
+                                "floor_active": rms < RELATIVE_CASE_RMS_FLOOR_MM}
+    return {**header, "case_records": records,
+            "floor_active_cases": sum(record["floor_active"] for record in records.values())}
+
+
+def relative_case_mse(prediction: torch.Tensor, target: torch.Tensor,
+                      case_weights: torch.Tensor) -> torch.Tensor:
+    """Equal-size sampled case blocks; weights are immutable train-only scalars."""
+    if (prediction.shape != target.shape or prediction.ndim != 2 or prediction.shape[1] != 3
+            or case_weights.ndim != 1 or not len(case_weights)
+            or len(prediction) % len(case_weights) or case_weights.device != prediction.device):
+        raise ValueError("Relative-case MSE needs equal-sized signed-vector case blocks and same-device weights")
+    squared = (prediction - target).square().reshape(len(case_weights), -1, 3)
+    return (squared.mean(dim=(1, 2)) * case_weights).mean()
 
 
 def load_displacement_cases(keys: list[str], files: dict[str, Path], guard: dict[str, Any], device) -> list[DisplacementCase]:
@@ -290,7 +366,7 @@ def run(args):
     if resume is not None and (not resume.is_file() or stored_config.get("contract") != contract):
         raise ValueError("Resume checkpoint is missing or its strict contract changed")
     output.mkdir(parents=True, exist_ok=True)
-    status = {"phase": "loading", "physics_mode": args.physics_mode, "step": 0,
+    status = {"phase": "loading", "physics_mode": args.physics_mode, "u_loss": args.u_loss, "step": 0,
               "total_steps": args.steps, "started_at_utc": utc_now()}
     start_step, prior_elapsed = 0, 0.0
     def elapsed():
@@ -322,6 +398,13 @@ def run(args):
         scaler = DisplacementScaler.from_record(stored_config["scaler"]) if stored_config else DisplacementScaler.fit(train_cases)
         if scaler.fit_case_keys != tuple(keys["train"]) or scaler.fit_nodes != sum(case.count for case in train_cases):
             raise ValueError("Saved u scaler scope/counts differ from the explicit training cases")
+        loss_record = training_loss_record(train_cases, scaler, args.u_loss,
+                                          stored_config["u_loss"] if stored_config else None)
+        loss_weights = (torch.as_tensor([loss_record["case_records"][case.key]["weight"] for case in train_cases],
+                                       dtype=torch.float32, device=device)
+                        if args.u_loss == "relative_case_mse" else None)
+        if loss_weights is not None and not torch.isfinite(loss_weights).all():
+            raise ValueError("Relative-case weights are not finite in the training precision")
         all_cases = train_cases + val_cases
         for case in all_cases:
             case.target = torch.as_tensor(scaler.encode(case.physical_u), device=device)
@@ -371,14 +454,16 @@ def run(args):
             "local_geometry": {"mode": args.local_mode, "feature_names": list(LOCAL_NAMES) if args.local_mode != "none" else [], "CADs": local_records},
             "sampling": "four distinct permitted cases, equal nodes per case with replacement",
             "sampling_rng": {"case": "NumPy default_rng(seed+23)", "node": "torch.Generator(device),seed+17"},
-            "loss": "case-balanced MSE of3 signed u components with train-only common RMS and exactly zero center",
+            "u_loss": loss_record,
+            "loss": "case-balanced relative-case MSE of3 signed u components; fixed train-only RMS weights, unchanged common zero-center decode"
+                    if args.u_loss == "relative_case_mse" else "case-balanced MSE of3 signed u components with train-only common RMS and exactly zero center",
             "checkpoint_selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2",
             "stress_policy": "freeze independently supervised strict stress branch; do not combine stress or train it with u loss",
             "precision": "PointNet float32/high TF32; native TCNN FP16 compute/FP32 master; physical metrics float64",
             "total_steps": args.steps, "torch_version": torch.__version__, "started_at_utc": utc_now()}
         best_score, best_step, best_metrics, gradient_check = float("inf"), None, None, None
         if resume is not None:
-            for name in ("contract", "scaler", "model", "geometry", "local_geometry", "cases", "precision"):
+            for name in ("contract", "scaler", "u_loss", "model", "geometry", "local_geometry", "cases", "precision"):
                 if config[name] != stored_config[name]:
                     raise ValueError(f"Resume {name} differs")
             saved = torch.load(resume, map_location=device, weights_only=False)
@@ -472,7 +557,12 @@ def run(args):
                     witness_nodes.append(nodes[:32].cpu().numpy().tobytes())
             optimizer.zero_grad(set_to_none=True)
             prediction = model(torch.cat(xyz), torch.cat(features), torch.cat(alpha), cad_index=torch.cat(indices), context=context)
-            loss = (prediction - torch.cat(target)).square().mean()
+            if args.u_loss == "point_mse":
+                # Preserve the original operation and sampler RNG path verbatim.
+                loss = (prediction - torch.cat(target)).square().mean()
+            else:
+                selected_rows = torch.as_tensor(selected, dtype=torch.long, device=device)
+                loss = relative_case_mse(prediction, torch.cat(target), loss_weights[selected_rows])
             if not torch.isfinite(loss):
                 raise FloatingPointError(f"Nonfinite u loss at step{step}")
             loss.backward()
@@ -537,6 +627,7 @@ def guard_case_alpha(guard: dict[str, Any], key: str) -> list[float]:
 def parser():
     result = argparse.ArgumentParser(description=__doc__)
     result.add_argument("--physics-mode", choices=("linear_basis", "load_dependent_basis"), required=True)
+    result.add_argument("--u-loss", choices=("point_mse", "relative_case_mse"), default="point_mse")
     result.add_argument("--split", type=Path, default=Path("notes/geobc_split.json"))
     result.add_argument("--data", type=Path, default=Path("data/prepared_geobc_multiload"))
     result.add_argument("--load-basis", type=Path, default=Path("notes/geobc_load_basis_45.json"))
