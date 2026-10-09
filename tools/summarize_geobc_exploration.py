@@ -32,7 +32,8 @@ def job_state(job,summaries):
 def plan_next_text(plan,summaries,*,compact=False):
     current_jobs=plan.get('jobs',[])
     complete=bool(current_jobs) and all(job['name'] in summaries for job in current_jobs)
-    text=('当前计划阶段已完成，后续决策仍由主计划确定。' if complete else
+    text=('当前正在设计下一阶段，尚未放行数据或训练。' if not current_jobs else
+          '当前计划阶段已完成，后续决策仍由主计划确定。' if complete else
           '当前主计划：'+ '；'.join(f"{job['name']}（{job_state(job,summaries)}）" for job in current_jobs)+'。')
     stages=plan.get('next_stages',[])
     if isinstance(stages,dict):stages=[stages]
@@ -409,6 +410,22 @@ def main():
                   '这是单种子的开发验证和表示效用对照，不能单独识别频率原因，也不保证场带限或加速。P1为位移导出的代理，最终测试和dia未用于本组。完整分析见notes/geobc_hash_bandwidth_pair_result.json。']
         if (dest/'hash_bandwidth_comparison.png').is_file():
             lines += ['', '![完整12层和前8层的位移与P1验证结果](hash_bandwidth_comparison.png)']
+    path_result_path=ROOT/'notes/geobc_hash_condition_path_result.json'
+    path_result=json.loads(path_result_path.read_text()) if path_result_path.is_file() else None
+    if path_result and path_result.get('status')!='completed':path_result=None
+    if path_result:
+        witness=path_result['sampling']
+        lines += ['', '## 固定训练几何的Hash与条件路径诊断','',
+                  f"固定TRAIN101_479，两组自身位移选模best9000，至多1024个输入分层单元；实际{witness['sample_cells']}个，BC位角点变化／不变各{witness['strata']['BC_change']['sample']}／{witness['strata']['no_BC_change']['sample']}个。先提交选点再读同TRAIN参考，耗时{path_result['elapsed_seconds']:.2f}s，无反向传播或更新。变化层在原网格只有{witness['strata']['BC_change']['population']}/{witness['population_cells']}个单元，因此该过采样合并结果不能当作全CAD估计。",
+                  '从实际公共decoder输入捕获masked Hash24与全部条件107；用corner0为锚的四次交叉配方，按对称约定分配交互，保留真实交叉项。自然输出精确重放，位移差先转FP64，再计算物理P1。',
+                  '| 载荷 | Hash路径RMS：12层→8层 | 条件路径RMS：12层→8层 | 抽样cell P1相对误差：12层→8层 |',
+                  '|---|---:|---:|---:|']
+        for load_name in ('ver','hor','tor'):
+            pf=path_result['models']['full12']['per_load'][load_name]['combined']
+            pc=path_result['models']['coarse8']['per_load'][load_name]['combined']
+            lines += [f"| {load_name} | {pf['H_RMS']:.4g}→{pc['H_RMS']:.4g} | {pf['C_RMS']:.4g}→{pc['C_RMS']:.4g} | {percent(pf['sampled_cell_relative_l2'])}→{percent(pc['sampled_cell_relative_l2'])} |"]
+        lines += ['', '两条路径的P1 RMS、交互RMS以及两个分层内的误差均下降；H/C交叉项为负，存在抵消，不能把各项能量当成互相独立的错误占比。全部条件包括离散BC、局部几何、距离、平滑query与固定global，不可把C统一称作边界噪声。',
+                  '这是单TRAIN几何、输入分层样本与可能离流形的交叉输入描述；不能识别因果、代表全CAD/验证集，或部署成纠正场。RMS无量纲，P1仍为位移导出代理。正式结果见notes/geobc_hash_condition_path_result.json。']
     lines += ['', '## 主计划中的下一阶段','',next_text]
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
@@ -459,6 +476,8 @@ def main():
         brief += ['',f"上一组距离对照的native接口验收已通过（{graph_native['elapsed_seconds']:.2f}s、零参数更新），只证明接口可用。"]
     elif native:
         brief += ['',f"新native合成验收{'已通过' if native_passed else '未通过'}（{native['elapsed_seconds']:.2f}s、零参数更新），不代表物理表现。"]
+    if path_result:
+        brief += ['', f"冻结诊断（{path_result['elapsed_seconds']:.1f}秒）显示两条路径的空间变化都减小，不能把瓶颈归于单一分支；这是单TRAIN几何的分层抽样结果。"]
     brief += ['',f'下一步（来自主计划）：{brief_next_text} 最终测试继续保留。',
               '',f"科学训练／评估／冻结诊断完成{counts['scientific_completed']}/{counts['scientific_planned']}项，合成验收完成{counts['synthetic_acceptance_completed']}/{counts['synthetic_acceptance_planned']}项；原30项slides复现已完成。自主研究与30分钟监视继续。",'',
               '完整指标、控制变量和解释范围见 [探索报告](REPORT.md)。','']
@@ -466,7 +485,7 @@ def main():
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
                                    **counts,
-                                   'phase':'ongoing' if len(summaries)<len(jobs) else 'stage_completed',
+                                   'phase':'design_in_progress' if not plan['jobs'] else 'ongoing' if len(summaries)<len(jobs) else 'stage_completed',
                                    'research_status':'ongoing','current_stage':plan['stage'],
                                    'current_stage_complete':current_stage_complete,
                                    'original_slides_completed':plan.get('prior_completed_slides_experiments',30),
@@ -478,6 +497,7 @@ def main():
                                    'graph_context_pair_analysis':str(graph_result_path.relative_to(ROOT)) if graph_result else None,
                                    'error_gradient_analysis':str(error_gradient_path.relative_to(ROOT)) if error_gradient else None,
                                    'hash_bandwidth_pair_analysis':str(bandwidth_result_path.relative_to(ROOT)) if bandwidth_result else None,
+                                   'hash_condition_path_analysis':str(path_result_path.relative_to(ROOT)) if path_result else None,
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',
                                    'updated_at_utc':utc_now()})
     if geo and load and comparisons:

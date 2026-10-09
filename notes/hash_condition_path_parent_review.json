@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "release": "frozen_TRAIN101_479_H_C_path_diagnostic_only",
+  "reviewed_at_utc": "2026-10-09T10:33:00+00:00",
+  "reviewer": "root with independent hashgrid_impl focused static review",
+  "tool": "tools/diagnose_hash_condition_paths.py",
+  "tool_sha256": "b538e21e405a12c02cd32c9c1845076fbfd3a6b1b7f30c5cc0f22471f7856696",
+  "ready": "notes/hash_condition_path_ready.json",
+  "ready_sha256": "bcc973ba748df4144e4283eef06d1de5aca6cdb5a389442451a676693f3cddcd",
+  "plan": "notes/geobc_hash_condition_path_plan.json",
+  "plan_sha256": "ce67d4352ae1f3a7aec328fea52b0a549ed0ef689065854a12daa10b03d43d97",
+  "checks": [
+    "Fixed TRAIN101_479, own full12/coarse8 u-selected best9000, frozen sources and metadata contract match.",
+    "Input-bit stratified indices and hash committed before reference access; only this TRAIN cloud row materialized.",
+    "Public input144 captures maskedH24, allC107 and unchanged13ones; natural F11 replay bitwise exact; five Network calls per model.",
+    "FP64 promotion before subtraction, displacement scale applied once, physical inverse edge applied without another L division.",
+    "Symmetric H/C path strain closure and both prediction/reference error energy closures retain signed cross terms.",
+    "No raw displacement/stress labels, val/dia/final arrays, backwards or optimizer updates; no duplicate native or author fixture execution."
+  ],
+  "limitations": [
+    "Input-stratified conditional sample, not a whole-CAD or population estimate.",
+    "C includes smooth, local, global and discrete information; no claim that all C variation is BC noise.",
+    "Latent/condition swaps can be off-manifold; interaction is conventionally shared, not a causal identification.",
+    "Reference NPZ member is decompressed in full for this TRAIN after witness commit, then selected cells used; not1024-row byte access."
+  ]
+}

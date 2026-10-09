@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "status": "proposal_only",
+  "stage": "bounded_nonlocal_geometry_BC_conditioning_options",
+  "priority_is_not_selection": true,
+  "current_sole_active_stage": "frozen_hash_condition_path_decomposition",
+  "current_plan": "notes/geobc_hash_condition_path_plan.json",
+  "scope": {
+    "new_source_written": false,
+    "experiment_selected": false,
+    "training_or_GPU_started": false,
+    "real_arrays_labels_weights_read": false,
+    "finaltest_or_dia_read": false,
+    "only_output": "notes/geobc_nonlocal_conditioning_options.json"
+  },
+  "evidence": {
+    "source": "notes/geobc_hash_bandwidth_pair_result.json",
+    "coarse8_validation_u_percent": 19.96714074280072,
+    "coarse8_validation_P1_percent": 165.96575575620062,
+    "coarse8_training_u_percent": 9.628911326975134,
+    "coarse8_training_P1_percent": 120.58500533331578,
+    "gate": "3/4 pass; P1 <=100% fails. One adaptively reused development seed, not final-test evidence.",
+    "specialist": "Previously fixed TRAIN101_479 can jointly fit u0.757%/P117.889% with a dedicated same-recipe model; this does not isolate absent geometry information from shared optimization/interference.",
+    "inference": "Existing point pooling, query context, learned Hash gate and scalar edge distances do not supply an explicit elastic inter-node operator. This is a representation gap to test, not a proven error cause."
+  },
+  "available_from_existing_records": [
+    "Original H5 TETRA10 geometry/order and target-independent edge construction; 45 TRAIN/validation canonical geometries already aligned.",
+    "Existing gradient geometry cache has corner indices, cells10, physical inverse edges and volumes; no new GT is needed to build topology.",
+    "Input DOF support memberships0:6, load member6, verified GRID-to-vertex mapping, real four support groups and loaded interface metadata; absolute L is already original25 slot24.",
+    "notes/geobc_load_basis_45.json confirms45 compatible linear/static materials and canonical ver/hor/tor force/moment basis. Existing25/local13/Euclidean5/query32/global32 and train-only scaler remain reference.",
+    "Distance caches alone do not constitute a persistent coarse CSR graph or a stiffness operator."
+  ],
+  "ranked_candidates": [
+    {
+      "rank": 1,
+      "name": "Topology-preserving coarse mesh message context",
+      "question": "Does learned communication along the volume mesh, rather than independent cloud pooling or another scalar distance, improve shared u/P1 representation?",
+      "mechanism": "Construct a deterministic two-level hierarchy from actual corner-mid mesh edges, preserving components and support/load roles. Process coarse node/edge latents, then sparse topology-derived prolongation supplies32-dimensional context at sampled original nodes. Replace the existing query32 slots, retain global32/original43/coarse8 Hash, rather than append another32 channels; both new controls use this same interface.",
+      "bounded_shape_proposal": "Illustrative fixed caps2048/128 coarse nodes, latent32 and one fixed down/up message schedule; these are proposals, not measured choices or a radius/depth sweep. Preserve original connectivity evidence and input DOF/load roles in both controls.",
+      "inputs": "Physical relative edge vectors/L, cell-volume aggregation, same material/L and original support/load roles. No target u/stress, predicted teacher field or sample-ID feature. All9 response channels retain external source alpha and load linearity.",
+      "control": "Fresh same decoder width and graph encoder, same nodes/prolongation/roles/latent widths/stored parameters/RNG. Compare actual mesh-neighbor messages against a self-only processor using the same modules. Native107-condition layout can remain unchanged, but graph parameters replace the old query projection and counts must be measured. Active communication differs; no pure topology-causality claim or historical-control substitution.",
+      "recomputation": "Only static hierarchy/CSR/prolongation may be cached. Learned messages and query context must be recomputed for sampled CADs each optimizer step with gradients into the encoder; do not freeze a pretrained target-dependent graph cache.",
+      "continuous_limit": "Initial utility trial evaluates original nodes and current physical P1. Arbitrary-point context later requires element location and a declared conforming interpolation, including TETRA10 geometry; nearest-node copying cannot establish continuous-field correctness.",
+      "costs": {
+        "preparation": "One target-independent graph contraction/prolongation per selected CAD; original graphs can be reconstructed from existing geometry. Actual coarsening runtime, nonzeros and source-to-query reach must be measured before claiming low cost.",
+        "training": "Coarse message cost O(B*E_coarse*z^2) plus sparse query gathers, not fullN hidden-state backpropagation. With B4,z32,(2048+128) nodes, one nodal latent activation is about1.06MiB; a51200x32 query activation is6.25MiB. Edge activations and backward dominate and are currently unmeasured.",
+        "no_claim": "No measured speedup, exact global receptive field or memory fit is asserted."
+      },
+      "missing": [
+        "Topology-preserving coarse hierarchy and sparse interpolation; retain thin bridges and distinct BC roles instead of spatial shortcut edges.",
+        "Measured coarse reach/edge counts and exact input-gradient path through the existing native decoder.",
+        "A control-specific fresh parameter count/init and runtime acceptance; current PointNet clouds are not a volume graph."
+      ],
+      "falsifiable_small_trial": "If root later selects it, begin with the previously fixed4 TRAIN CADs101_428/101_479/101_56/101_78 x3knownloads, one matched1000-update pilot with shared exposure and frozen current loss/scaler. Require joint TRAIN u/P1 utility over self-only control before considering40/5 escalation. A TRAIN-only gain cannot establish CAD transfer; no gain or loss tradeoff rejects automatic escalation. Numeric gates would be frozen by root before execution, not chosen from this note.",
+      "real_contribution_if_validated": "An efficient, traceable topology/BC-conditioned mesh-to-query interface and demonstrated shared/CAD joint u-P1 utility with a continuous decoder. Graph messages, hierarchy or Hash encoding themselves are established methods.",
+      "primary_sources": [
+        "https://proceedings.mlr.press/v202/cao23a.html",
+        "https://github.com/google-deepmind/deepmind-research/blob/master/meshgraphnets/core_model.py"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Frozen coarse elastic response context plus Hash residual",
+      "question": "Would an input-derived nonlocal elastic response, rather than a learned geometric descriptor, supply the missing whole-deformation structure?",
+      "mechanism": "Build a small Galerkin operator Kc=P^T K_P1 P from physical element geometry and E,nu, with a prolongation retaining rigid-body modes and constrained DOFs. Solve the three canonical ver/hor/tor RHS once per CAD; prolong the resulting9 physical u responses, use them as context and optionally as an additive base for the same9 Hash residual response. External alpha preserves linear load combination.",
+      "physical_units": "Use mm,N,Nmm and E inN/mm2; K has unitsN/mm and u ismm. Reuse fixed common train-only uRMS for a declared decoder transform, not a newly fitted scaler.",
+      "control": "If selected, use two fresh identically enlarged residual decoders and stored parameters with physical base/context active versus explicitly zero base/context. This tests utility of an input-derived solver prior; extra active information/effective capacity and initialization outputs differ. It is not equivalent to the historical coarse8 model.",
+      "costs": {
+        "preparation": "Assembly/projection is O(number_of_original_cells) and may be significant; three sparse RHS share one CAD operator. Illustrative512 aggregates with six rigid modes each gives around3072 coarse unknowns. Sparse factorization fill/cost must be measured; do not cache dense matrices for45CADs or promise seconds.",
+        "training": "Freeze the input-only sparse solve/cache, so per-step cost is query interpolation and the residual decoder; no full solver differentiation is required for this first hypothesis.",
+        "no_claim": "A cornerP1 coarse proxy is not the source quadratic Nastran solve or solver-GT strain."
+      },
+      "blockers": [
+        "Exact RBE2/RBE3/MPC interpolation/constraint matrices and force/moment work transfer are not established by existing member flags/load_basis guard. Do not uniformly distribute master loads or replace real rigid links with guessed mesh shortcuts.",
+        "Rigid-mode preservation, constrained DOF handling, positive operator and load-work consistency need input-only verification.",
+        "No faithful coarse operator/prolongation or measured sparse-solve implementation currently exists."
+      ],
+      "falsifiable_small_trial": "After those input-only blockers are resolved and only if selected by root, freeze one coarse operator on historical TRAIN101_479, verify rigid/affine and force-moment work tests, then assess its three known-load u/P1 references in a bounded diagnostic. If the base has no joint utility, do not deploy a shared Hash-residual training pair. If useful, the eventual40/5 matched pair must use existing full-node gates and separate the solver-only base from learned residual metrics.",
+      "real_contribution_if_validated": "A budgeted coarse elastic influence basis coupled to a geometry-conditioned continuous residual, with explicit BC transfer and joint displacement/gradient evidence. Galerkin reduction, linear elasticity and residual correction are not new.",
+      "primary_sources": [
+        "https://docs.fenicsproject.org/dolfinx/main/python/demos/demo_elasticity.html"
+      ]
+    }
+  ],
+  "source_verification": [
+    {
+      "title": "Cao et al., ICML2023 Bi-Stride Multi-Scale GNN",
+      "url": "https://proceedings.mlr.press/v202/cao23a.html",
+      "primary": true,
+      "verified": "Publisher abstract describes BFS bi-stride pooling, avoidance of wrong proximity edges across boundaries and non-parametric pooling/unpooling. This motivates topology-preserving hierarchy, not a guarantee for DeepJEB static elasticity."
+    },
+    {
+      "title": "Original Google DeepMind MeshGraphNets core",
+      "url": "https://github.com/google-deepmind/deepmind-research/blob/master/meshgraphnets/core_model.py",
+      "primary": true,
+      "verified": "Official code updates edge states from sender/receiver/edge features, aggregates incoming edge messages and uses residual encoder-processor-decoder blocks. Dynamic simulation code is not a drop-in static DeepJEB operator."
+    },
+    {
+      "title": "Official DOLFINx elasticity/AMG demo",
+      "url": "https://docs.fenicsproject.org/dolfinx/main/python/demos/demo_elasticity.html",
+      "primary": true,
+      "verified": "Demonstrates isotropic linear elasticity assembly, constrained solve and six rigid-body near-nullspace modes for AMG. Its box/body-force example does not supply DeepJEB RBE coupling or signed scalar stress semantics.",
+      "version_seen": "0.12.0.dev0; reference only, no dependency installed"
+    }
+  ],
+  "decision_boundary": "Priority1 is lower implementation risk. Priority2 has stronger explicit physics but unresolved BC work-transfer requirements. Neither is selected: sole active pathdiagnostic stays unchanged, and root decides after its actual result.",
+  "exclusions": [
+    "No new distance/channel/radius/width/lambda sweep.",
+    "No stress constitutive GT claim, final-test/dia access or overfit-as-generalization claim.",
+    "No arrays/models/training or frozen source/plan/report edits performed for this proposal."
+  ]
+}

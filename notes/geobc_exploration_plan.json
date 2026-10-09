@@ -3,7 +3,7 @@
   "objective": "Learn a geometry- and boundary-conditioned continuous field that fits multiple DeepJEB cases and transfers across held-out CAD/load conditions.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "frozen_hash_condition_path_decomposition",
+  "stage": "topology_context_input_feasibility_design",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,44 +21,14 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "frozen_hash_condition_path_decomposition",
-    "design": "notes/geobc_hash_condition_path_plan.json",
-    "scope": "FixedpreviousTRAIN101_479, atmost1024input-stratifiedcells, twofrozenbest9000 fields; H24/allC107 anchor-corner finite-change bookkeeping with signed cross",
-    "recipe": "No optimizer, backward, updates, new normalizers or raw u/stress; existing selected TRAINcellP1 reference diagnostic only",
-    "release": "One coordinator after newtoolready/focusedmathinterfaceparentreview",
-    "brief_action": "冻结两模型，检查单元角点的变化来自Hash特征还是全部条件路径；保留交互项，不更新参数。",
-    "after": "Parent selects one bounded evidence-driven nexttask; no automaticseed/channel/radius/loss sweep"
+    "stage": "topology_context_input_feasibility_design",
+    "status": "selected_design_in_progress",
+    "scope": "Only fixed TRAIN CAD101_428/101_479/101_56/101_78 geometry and original BC inputs; no labels, weights, validation or final arrays.",
+    "design": "Formal execution plan pending root freeze of source/primary/math drafts.",
+    "brief_action": "先在四个固定训练几何上检查粗网格信息传递和连续插值的连通性与成本，通过后再做共享小样本匹配训练。",
+    "after": "No automatic training escalation: freeze one matched pilot and its numerical gates after input feasibility."
   },
-  "jobs": [
-    {
-      "name": "hash_condition_path_101_479",
-      "kind": "frozen_model_input_path_diagnostic",
-      "stage": "frozen_hash_condition_path_decomposition",
-      "output": "runs/geobc_exploration/hash_condition_path_101_479",
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "tools/diagnose_hash_condition_paths.py",
-        "--plan",
-        "notes/geobc_hash_condition_path_plan.json",
-        "--output",
-        "runs/geobc_exploration/hash_condition_path_101_479"
-      ],
-      "requires": [
-        "tools/diagnose_hash_condition_paths.py",
-        "notes/geobc_hash_condition_path_plan.json",
-        "notes/hash_condition_path_ready.json",
-        "notes/hash_condition_path_parent_review.json",
-        "notes/geobc_hash_bandwidth_pair_result.json",
-        "geobc/hash_bandwidth_field.py",
-        "runs/geobc_exploration/displacement_hash_full12_10k/best.pt",
-        "runs/geobc_exploration/displacement_hash_coarse8_10k/best.pt",
-        "data/geobc_gradient_supervision/101_479.npz",
-        "data/geobc_local_geometry/101_479.npz",
-        "data/geobc_graph_context/101_479.npz",
-        "data/prepared_geobc_multiload/101_479_ver.npz"
-      ]
-    }
-  ],
+  "jobs": [],
   "historical_jobs": [
     {
       "name": "hash50_unseen_geometry_pilot",
@@ -2141,6 +2111,34 @@
         "data/geobc_gradient_supervision/manifest.json",
         "runs/geobc_exploration/displacement_query_context_actual_10k/config.json"
       ]
+    },
+    {
+      "name": "hash_condition_path_101_479",
+      "kind": "frozen_model_input_path_diagnostic",
+      "stage": "frozen_hash_condition_path_decomposition",
+      "output": "runs/geobc_exploration/hash_condition_path_101_479",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/diagnose_hash_condition_paths.py",
+        "--plan",
+        "notes/geobc_hash_condition_path_plan.json",
+        "--output",
+        "runs/geobc_exploration/hash_condition_path_101_479"
+      ],
+      "requires": [
+        "tools/diagnose_hash_condition_paths.py",
+        "notes/geobc_hash_condition_path_plan.json",
+        "notes/hash_condition_path_ready.json",
+        "notes/hash_condition_path_parent_review.json",
+        "notes/geobc_hash_bandwidth_pair_result.json",
+        "geobc/hash_bandwidth_field.py",
+        "runs/geobc_exploration/displacement_hash_full12_10k/best.pt",
+        "runs/geobc_exploration/displacement_hash_coarse8_10k/best.pt",
+        "data/geobc_gradient_supervision/101_479.npz",
+        "data/geobc_local_geometry/101_479.npz",
+        "data/geobc_graph_context/101_479.npz",
+        "data/prepared_geobc_multiload/101_479_ver.npz"
+      ]
     }
   ],
   "phase_history": [
@@ -2282,6 +2280,14 @@
       "clear_gain_gate_passed": false,
       "readout": "valU22.23294→19.96714%,worst41.29291→34.39351%,P1626.229→165.966%;3improvementcriteriaPASS,P1cap100%FAIL",
       "next": "frozen_hash_condition_path_decomposition"
+    },
+    {
+      "stage": "frozen_hash_condition_path_decomposition",
+      "completed_at_utc": "2026-10-09T10:35:42.894047+00:00",
+      "result": "notes/geobc_hash_condition_path_result.json",
+      "seconds": 2.7956723930110456,
+      "readout": "Both H and allC P1RMS and signed-interaction RMS decrease in the same input-stratified TRAIN101_479 sample; negative cross cancellation persists; no single-path causal claim.",
+      "next": "topology_context_input_feasibility_design"
     }
   ],
   "scope_rule": "historical_jobs are immutable completed evidence and are never dispatched; jobs contains only the currently authorized stage. Source SHA and weights remain in each historical run and the frozen Git commit.",
@@ -2308,9 +2314,8 @@
     }
   },
   "active_design_preparation": {
-    "status": "selected_frozen_diagnostic_tool_preparation",
-    "design": "notes/geobc_hash_condition_path_plan.json",
-    "design_sha256": "ce67d4352ae1f3a7aec328fea52b0a549ed0ef689065854a12daa10b03d43d97",
-    "launch_rule": "Only root singlequeue after ready/parentreview; no model updates."
+    "status": "selected_input_feasibility_design",
+    "mechanism": "Real mesh connectivity, connected two-level aggregation and positive sparse smoothed prolongation; no nearest-aggregate constant context.",
+    "launch_rule": "No real arrays/GPU until formal source-independent plan and focused parent review."
   }
 }

@@ -203,9 +203,22 @@
 
 ![完整12层和前8层的位移与P1验证结果](hash_bandwidth_comparison.png)
 
+## 固定训练几何的Hash与条件路径诊断
+
+固定TRAIN101_479，两组自身位移选模best9000，至多1024个输入分层单元；实际1024个，BC位角点变化／不变各512／512个。先提交选点再读同TRAIN参考，耗时2.80s，无反向传播或更新。变化层在原网格只有4040/111754个单元，因此该过采样合并结果不能当作全CAD估计。
+从实际公共decoder输入捕获masked Hash24与全部条件107；用corner0为锚的四次交叉配方，按对称约定分配交互，保留真实交叉项。自然输出精确重放，位移差先转FP64，再计算物理P1。
+| 载荷 | Hash路径RMS：12层→8层 | 条件路径RMS：12层→8层 | 抽样cell P1相对误差：12层→8层 |
+|---|---:|---:|---:|
+| ver | 0.003091→0.001991 | 0.002729→0.001392 | 187.651%→154.898% |
+| hor | 0.002923→0.001838 | 0.002613→0.001351 | 170.628%→134.614% |
+| tor | 0.001478→0.0009208 | 0.0008972→0.0004851 | 155.882%→98.638% |
+
+两条路径的P1 RMS、交互RMS以及两个分层内的误差均下降；H/C交叉项为负，存在抵消，不能把各项能量当成互相独立的错误占比。全部条件包括离散BC、局部几何、距离、平滑query与固定global，不可把C统一称作边界噪声。
+这是单TRAIN几何、输入分层样本与可能离流形的交叉输入描述；不能识别因果、代表全CAD/验证集，或部署成纠正场。RMS无量纲，P1仍为位移导出代理。正式结果见notes/geobc_hash_condition_path_result.json。
+
 ## 主计划中的下一阶段
 
-当前主计划：hash_condition_path_101_479（等待／排队）。 计划阶段：frozen_hash_condition_path_decomposition。 设计：notes/geobc_hash_condition_path_plan.json。 完成后：Parent selects one bounded evidence-driven nexttask; no automaticseed/channel/radius/loss sweep。
+当前正在设计下一阶段，尚未放行数据或训练。 计划阶段：topology_context_input_feasibility_design。 设计：Formal execution plan pending root freeze of source/primary/math drafts.。 完成后：No automatic training escalation: freeze one matched pilot and its numerical gates after input feasibility.。
 
 ## 解释边界
 
@@ -213,4 +226,4 @@
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成40/41项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成41/41项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
