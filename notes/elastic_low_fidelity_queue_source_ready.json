@@ -1,0 +1,95 @@
+{
+  "status": "tools_source_ready_final_AST_static_metadata_only",
+  "kind": "elastic_direct_coarse_screen",
+  "source_sha256": {
+    "tools/run_geobc_exploration.py": "4bdce5106a6cda6707fdf2558d516fcb8c149ef8e54f99aac3becc636e280917",
+    "tools/summarize_geobc_exploration.py": "3bf26916fa6f7f345e09f8e19f323bf3920f2ed9037015420d466935b936a12d"
+  },
+  "previous_source_sha256": {
+    "tools/run_geobc_exploration.py": "4a6e196af2cbb94ce6c5c78eb4ab89e46c9097fea5a60596d17fbdaca4abf4f6",
+    "tools/summarize_geobc_exploration.py": "c0709454480c362c4db4de12414fc193cd8ed23a5e7b808711f303f8958fcf6a"
+  },
+  "service_branch_body_sha256": "b3017eb1bc1d59fa1e0f7a118e033c765119b31537f44ecbb48c0ddf82c49918",
+  "service_branch_body_verbatim_preserved": true,
+  "service_source_sha256_unchanged": "328da3f21052f606a6b921ee32ed6d08f979f806ced29b0bf2c669363e6b094a",
+  "candidate_source_sha256_author_reported": "43e086581996e371ce2c81e41282c5d11ce0d9c9a433f9ad865921be4bbe77f7",
+  "checks": {
+    "AST_batch_invocations": 1,
+    "AST_files": 2,
+    "AST_passed": true,
+    "static_routing_before_generic": true,
+    "static_service_branch_preserved": true
+  },
+  "elapsed_seconds": 0.03385960008017719,
+  "API": {
+    "metadata": "geobc.elastic_low_fidelity.request_contract(plan)->(contract,plan)",
+    "job": "elastic_low_fidelity2_ver",
+    "kind": "elastic_direct_coarse_screen",
+    "case_keys": [
+      "101_428/ver",
+      "102_249/ver"
+    ],
+    "contract_identity": "Exact summary.config.contract equality, source_sha256/source_hashes MAP ownkey geobc/elastic_low_fidelity.py and both science digest strings",
+    "terminal_policy": "completed negative numerical/budget/cold gate closes fixed screen; no rescue or replay"
+  },
+  "read_receipt": {
+    "prohibited_native_int_zero": [
+      "GT_reads",
+      "displacement_reads",
+      "stress_reads",
+      "old_final_reads",
+      "DEV_dia_reads",
+      "sealed_new_test_reads",
+      "optimizer_steps",
+      "scaler_fits",
+      "learned_weight_reads",
+      "setup_K_guards_repeated",
+      "inherited_fine_K_guards_repeated",
+      "fine_operator_rebuilds"
+    ],
+    "allowed_actual_native_int_nonnegative": [
+      "numerical_reference_reads",
+      "accepted_coarse_cache_reads",
+      "fine_endpoint_K_applications"
+    ],
+    "validated_locations": [
+      "top summary",
+      "each of fixed two cases"
+    ]
+  },
+  "export": {
+    "top_small_JSON": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "read_receipt.json"
+    ],
+    "child_small_JSON": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "read_receipt.json",
+      "checkpoint.json",
+      "endpoint_no_GT.json",
+      "prediction_before_reference.json"
+    ],
+    "child_directories": "case_key.replace(/,_)",
+    "provenance": "summary/config.contract; no separate guessed manifests required",
+    "global_receipt_key": "elastic_direct_coarse_receipt",
+    "array_or_PT_copy": false,
+    "legacy_GT_metrics_copy": false,
+    "plots_assumed": false
+  },
+  "scope": {
+    "newmodule_imports": 0,
+    "newmodule_AST": 0,
+    "contracts_executed": 0,
+    "scientific_array_reads": 0,
+    "GT_reads": 0,
+    "weight_reads": 0,
+    "GPU_calls": 0,
+    "actual_candidate_runs": 0,
+    "reporter_runs": 0,
+    "master_or_candidate_source_plan_changes": 0
+  }
+}

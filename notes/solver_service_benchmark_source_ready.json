@@ -1,0 +1,107 @@
+{
+  "status": "source_ready_AST_and_small_JSON_only",
+  "kind": "solver_service_cost_screen",
+  "source": "geobc/solver_service_benchmark.py",
+  "source_sha256": "328da3f21052f606a6b921ee32ed6d08f979f806ced29b0bf2c669363e6b094a",
+  "sources_sha256": {
+    "geobc/solver_service_benchmark.py": "328da3f21052f606a6b921ee32ed6d08f979f806ced29b0bf2c669363e6b094a",
+    "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a"
+  },
+  "plan": "notes/geobc_solver_service_benchmark_plan.json",
+  "plan_sha256": "65dbd7b249f330ccd6dfeaf1092ffe2566287f07608f4881e6bf2d879a317463",
+  "science_recipe_sha256": "d4a3cf1d663b97667b490836d882fa296ba09a6fdcf757bd9dd25a20c3c82e19",
+  "checks": {
+    "AST_passed": true,
+    "AST_invocations": 1,
+    "small_plan_schema_passed": true,
+    "metadata_API_not_executed": true
+  },
+  "preparation_seconds": 0.0083188998978585,
+  "API": {
+    "request_contract": "request_contract(plan_path)->(contract,plan), standard-library only",
+    "run": "run(plan_path,output_path=None)",
+    "CLI": "python -m geobc.solver_service_benchmark --plan notes/geobc_solver_service_benchmark_plan.json --output runs/geobc_exploration/solver_service_dev2_fixed_endpoint",
+    "release": "actual_execution_released=true; all six source pins exact; root_review.passed=true and source_sha256 equals exact own-source string"
+  },
+  "summary_schema": {
+    "kind": "solver_service_cost_screen",
+    "config_contract": true,
+    "request_keys": [
+      "fno:102_249/ver",
+      "fno:102_38/ver",
+      "mlp:102_249/ver",
+      "mlp:102_38/ver"
+    ],
+    "requests": "dict keyed by fixed request key",
+    "request_directory": "key.replace(\":\",\"_\").replace(\"/\",\"_\")",
+    "read_receipt_zero_keys": [
+      "zero_GT_reads",
+      "displacement_target_reads",
+      "stress_target_reads",
+      "training_updates",
+      "scaler_fits",
+      "old_final_reads",
+      "sealed_new_test_reads",
+      "DEV_dia_reads"
+    ],
+    "read_receipt_actual_counts": [
+      "model_checkpoint_reads",
+      "model_checkpoint_read_attempts",
+      "model_checkpoint_read_completed",
+      "prepared_archive_reads",
+      "prepared_archive_read_attempts",
+      "prepared_archive_read_completed",
+      "prepared_member_reads"
+    ],
+    "member_ledgers": [
+      "prepared_member_read_attempts",
+      "prepared_member_read_completed"
+    ],
+    "costs": "cumulative_stage_wall_seconds; request observed launch-to-exit cold; partial/missing upstream; separately conservative interrupted-child resume gap",
+    "completion_gate": "four finite fullN responses, fixed denominator4, zero forbidden reads, measured request and cumulative budgets satisfied",
+    "results": [
+      "results/solver_service/metrics.json",
+      "results/solver_service/BRIEF.md <=25 lines"
+    ]
+  },
+  "scope": {
+    "actual_execution_released": false,
+    "scientific_array_reads": 0,
+    "GT_reads": 0,
+    "weight_reads": 0,
+    "GPU_calls": 0,
+    "models_constructed": 0,
+    "module_imports": 0,
+    "request_contract_calls": 0,
+    "resource_or_toy_runs": 0,
+    "old_source_changes": 0,
+    "raw_CAD_end_to_end": false,
+    "fixed_input_members": [
+      "xyz",
+      "features",
+      "sample_key",
+      "label_alignment",
+      "faces"
+    ],
+    "fixed_model_steps": {
+      "fno": 2880,
+      "mlp": 7080
+    },
+    "isolated_requests": 4,
+    "stage_budget_seconds": 900,
+    "request_budget_seconds": 180,
+    "memory_cap_bytes": 25769803776
+  },
+  "known_limits": [
+    "Provided normalized point/condition interface, not raw CAD end-to-end",
+    "Full FE physical interface is different; no architecture causal ranking",
+    "Historical NN accuracy not re-evaluated; rebuilt atomic FP32 splat can have rounding differences",
+    "One clean process per request, no latency distribution or warm benchmark",
+    "Old zero-label U accuracy is not assigned to new coarse endpoint; physical signed scalar stress still unresolved",
+    "Final/dia/sealed test remain closed"
+  ]
+}

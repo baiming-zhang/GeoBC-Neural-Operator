@@ -1,0 +1,931 @@
+{
+  "contract": {
+    "schema": "geobc_solver_service_benchmark_v1",
+    "kind": "solver_service_cost_screen",
+    "request_keys": [
+      "fno:102_249/ver",
+      "fno:102_38/ver",
+      "mlp:102_249/ver",
+      "mlp:102_38/ver"
+    ],
+    "models": {
+      "fno": {
+        "method": "fno",
+        "seed": 2026,
+        "selected_step": 2880,
+        "checkpoint_role": "fixed_cumulative600s_last_endpoint",
+        "checkpoint": {
+          "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+          "bytes": 170464827,
+          "mtime_ns": 1791557354819071400
+        },
+        "summary": {
+          "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/summary.json",
+          "bytes": 862782,
+          "sha256": "505ba9caab71a37a628b95e3027c9cd8522427d6c9576ae95a5a8030aebbf14f"
+        },
+        "config": {
+          "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/config.json",
+          "bytes": 421126,
+          "sha256": "6d9bd673b21f621b4f573ce9edc5aec8cfd270953d34e7265e08d45f71da375a"
+        },
+        "seed2027_summary_reference_only": {
+          "path": "runs/geobc_exploration/solver_confirm_fno_seed2027_600s/summary.json",
+          "bytes": 762487,
+          "sha256": "9da16460bcbc78200fe07a0dfe3e9911c074ca437f86ac4b66c826d83ceec5e1"
+        },
+        "expected_config_sha256": "1f0a5a765179ceb814159b20491b5d2b9d0ad92a440ef9088ab4e259fd58121a",
+        "source_config": {
+          "method": "fno",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2026,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "in_channels": 61,
+            "out_channels": 4,
+            "width": 16,
+            "modes": 12,
+            "layers": 4,
+            "head_width": 128,
+            "padding": 0,
+            "checkpoint_blocks": true,
+            "layout": "B,C,X,Y,Z",
+            "xyz_channels": true,
+            "fft_norm": "backward",
+            "sources": {
+              "paper": "https://arxiv.org/abs/2010.08895v3",
+              "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+              "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+              "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+            },
+            "unknown_reference_details": [
+              "18 input channel definitions",
+              "padding",
+              "projection width",
+              "optimizer/scaling schedule"
+            ],
+            "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+            "resolution": 64
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "capabilities": {
+            "forward_points": false,
+            "forward_grid": true,
+            "pointwise_external_chunks": false,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 14160548,
+          "total": 14177284
+        },
+        "budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 99.78055045300016,
+          "incremental_train_seconds": 508.897330257999,
+          "total_train_seconds": 608.6778807109991,
+          "actual_seconds": 608.6778807109991,
+          "delta_seconds": 8.677880710999148,
+          "overshoot_seconds": 8.677880710999148,
+          "crossing_step": 2837,
+          "overshoot_updates": 43,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "existing_accuracy_seed2026": {
+          "102_249/ver": {
+            "nodes": 211173,
+            "u_relative_l2": 0.124253859129817,
+            "u_vector_error_RMS_mm": 0.02471191928465699,
+            "u_max_vector_error_mm": 0.09824992071492274,
+            "stress_relative_l2": 0.6354761836411316,
+            "stress_RMSE_MPa": 63.33105097836408,
+            "stress_MAE_MPa": 42.325529133972125,
+            "stress_hotspot_relative_l2": 0.5013072985533082,
+            "stress_hotspot_nodes": 2112
+          },
+          "102_38/ver": {
+            "nodes": 197514,
+            "u_relative_l2": 0.2063560444100417,
+            "u_vector_error_RMS_mm": 0.02557930740640549,
+            "u_max_vector_error_mm": 0.11360961925826588,
+            "stress_relative_l2": 0.5853620843153226,
+            "stress_RMSE_MPa": 45.64384260290445,
+            "stress_MAE_MPa": 31.31860735823175,
+            "stress_hotspot_relative_l2": 0.4830992616754938,
+            "stress_hotspot_nodes": 1976
+          }
+        },
+        "existing_accuracy_seed2027_reference_only": {
+          "102_249/ver": {
+            "nodes": 211173,
+            "u_relative_l2": 0.14928098313863977,
+            "u_vector_error_RMS_mm": 0.02968937650622281,
+            "u_max_vector_error_mm": 0.14328526412792875,
+            "stress_relative_l2": 0.6121958330721635,
+            "stress_RMSE_MPa": 61.01094975878775,
+            "stress_MAE_MPa": 40.84889013044401,
+            "stress_hotspot_relative_l2": 0.5008840745474215,
+            "stress_hotspot_nodes": 2112
+          },
+          "102_38/ver": {
+            "nodes": 197514,
+            "u_relative_l2": 0.21176583679875874,
+            "u_vector_error_RMS_mm": 0.026249889859715454,
+            "u_max_vector_error_mm": 0.09675564617751252,
+            "stress_relative_l2": 0.5619365860622559,
+            "stress_RMSE_MPa": 43.817230009080184,
+            "stress_MAE_MPa": 30.55473944646122,
+            "stress_hotspot_relative_l2": 0.46910418624741074,
+            "stress_hotspot_nodes": 1976
+          }
+        }
+      },
+      "mlp": {
+        "method": "mlp",
+        "seed": 2026,
+        "selected_step": 7080,
+        "checkpoint_role": "fixed_cumulative600s_last_endpoint",
+        "checkpoint": {
+          "path": "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/last.pt",
+          "bytes": 3211949,
+          "mtime_ns": 1791558076232772100
+        },
+        "summary": {
+          "path": "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/summary.json",
+          "bytes": 1372602,
+          "sha256": "687aba6920906f54611a81de539d606fc348b25c7c4adb5b0f15359f539fde6e"
+        },
+        "config": {
+          "path": "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/config.json",
+          "bytes": 419490,
+          "sha256": "398a7dd978908ea433839bbd22f79adbc7b619e2ce2d0f37fdb0d4d52cdac907"
+        },
+        "seed2027_summary_reference_only": {
+          "path": "runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/summary.json",
+          "bytes": 1275588,
+          "sha256": "effd71bb7f9e0befd7dc10d702d1642400dcfdd7b46033e4d2346221b0772601"
+        },
+        "expected_config_sha256": "dcdd66b54138b2ad6999b7f5e5dc15ce5d2f5c9985f976121a8a7a93e14700b5",
+        "source_config": {
+          "method": "mlp",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2026,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "family": "plain_coordinate_BC_global_MLP",
+            "hidden_width": 256,
+            "hidden_layers": 4,
+            "activation": "ReLU",
+            "input_dim": 60,
+            "output_dim": 4,
+            "hash_encoding": false,
+            "backend": "torch"
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "capabilities": {
+            "forward_points": true,
+            "forward_grid": false,
+            "pointwise_external_chunks": true,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 214020,
+          "total": 230756
+        },
+        "budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 43.698551514,
+          "incremental_train_seconds": 560.5199380839956,
+          "total_train_seconds": 604.2184895979956,
+          "actual_seconds": 604.2184895979956,
+          "delta_seconds": 4.218489597995585,
+          "overshoot_seconds": 4.218489597995585,
+          "crossing_step": 7031,
+          "overshoot_updates": 49,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "existing_accuracy_seed2026": {
+          "102_249/ver": {
+            "nodes": 211173,
+            "u_relative_l2": 0.3593251770160638,
+            "u_vector_error_RMS_mm": 0.07146349283275684,
+            "u_max_vector_error_mm": 0.20461391741262752,
+            "stress_relative_l2": 0.7723216588518398,
+            "stress_RMSE_MPa": 76.96896218546927,
+            "stress_MAE_MPa": 57.159566104491034,
+            "stress_hotspot_relative_l2": 0.7700419078844781,
+            "stress_hotspot_nodes": 2112
+          },
+          "102_38/ver": {
+            "nodes": 197514,
+            "u_relative_l2": 0.22412493856614876,
+            "u_vector_error_RMS_mm": 0.02778188890669726,
+            "u_max_vector_error_mm": 0.08673780765223334,
+            "stress_relative_l2": 0.7081281993262432,
+            "stress_RMSE_MPa": 55.216579513397654,
+            "stress_MAE_MPa": 39.07352553576641,
+            "stress_hotspot_relative_l2": 0.7106993516106505,
+            "stress_hotspot_nodes": 1976
+          }
+        },
+        "existing_accuracy_seed2027_reference_only": {
+          "102_249/ver": {
+            "nodes": 211173,
+            "u_relative_l2": 0.40112465652265167,
+            "u_vector_error_RMS_mm": 0.07977667820133585,
+            "u_max_vector_error_mm": 0.23922049455560548,
+            "stress_relative_l2": 0.7570105997507884,
+            "stress_RMSE_MPa": 75.44307421449061,
+            "stress_MAE_MPa": 56.72926746122998,
+            "stress_hotspot_relative_l2": 0.7622035608128885,
+            "stress_hotspot_nodes": 2112
+          },
+          "102_38/ver": {
+            "nodes": 197514,
+            "u_relative_l2": 0.171935403318198,
+            "u_vector_error_RMS_mm": 0.021312622792775737,
+            "u_max_vector_error_mm": 0.06087795514814847,
+            "stress_relative_l2": 0.7185077671244318,
+            "stress_RMSE_MPa": 56.02593046311083,
+            "stress_MAE_MPa": 40.4301498446096,
+            "stress_hotspot_relative_l2": 0.7131562040638367,
+            "stress_hotspot_nodes": 1976
+          }
+        }
+      }
+    },
+    "records": {
+      "102_249/ver": {
+        "case_key": "102_249/ver",
+        "group": "DEV",
+        "node_count": 211173,
+        "canonical_archive": {
+          "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+          "bytes": 35482562,
+          "mtime_ns": 1791454718057858700
+        },
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+      },
+      "102_38/ver": {
+        "case_key": "102_38/ver",
+        "group": "DEV",
+        "node_count": 197514,
+        "canonical_archive": {
+          "path": "data/prepared_geobc_multiload/102_38_ver.npz",
+          "bytes": 33185758,
+          "mtime_ns": 1791511983883164000
+        },
+        "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+      }
+    },
+    "scaler": {
+      "mean": [
+        -0.006059544265096125,
+        -0.0005008273527146082,
+        0.015260029003479832,
+        0.09629744183585241
+      ],
+      "std": [
+        0.05393032209940291,
+        0.011291299669602316,
+        0.07619646768716026,
+        0.5232191238243877
+      ],
+      "stress_scale": 90.46589813232424,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "plan_science": {
+      "recipe": {
+        "seed": 2026,
+        "device": "cuda:0",
+        "cloud_seed": 2026,
+        "cloud_points": 1024,
+        "grid_resolution": 64,
+        "point_chunk": 32768,
+        "precision": "FP32/TF32 high; eval/no_grad; no autocast or method fallback",
+        "processes": "Four serial isolated Python processes; exactly one request per method/case, no warm replay",
+        "request_start": "Node normalized xyz, original25 BC/material conditions and optional original boundary faces supplied in canonical NPZ, fixed trained model supplied; actual archive input IO is charged",
+        "request_end": "Every original node decoded ux/uy/uz mm and original signed scalar stress MPa, finite full field persisted",
+        "allowed_prepared_members": [
+          "xyz",
+          "features",
+          "sample_key",
+          "label_alignment",
+          "faces"
+        ],
+        "optional_member": "faces; use exact old all-node pool only if boundary faces absent/empty, never targets",
+        "cloud": "Exact existing conditioned_field._cad_seed plus old unique boundary-node candidate/choice rule; rebuilt every request",
+        "fno_frontend": "Rebuild original _stencil/_splat occupancy1+xyz3+original25; append original PointNet32 inside model; no cached grid/cloud/stencil read",
+        "inference": "Original encode_geometry once; MLP fullN in32768chunks, FNO forward_grid plus standard encoded trilinear query; original frozen FieldScaler.decode",
+        "maximum_cumulative_stage_wall_seconds": 900,
+        "maximum_request_wall_seconds": 180,
+        "maximum_peak_memory_bytes": 25769803776,
+        "costs": "Parent monotonic before Popen until observed child exit; imports/CUDA initialization/input IO/cloud/frontend/H2D/modelload/fullN/query/decode/persist/teardown all charged. Stage clock persistent across resumes",
+        "resume": "Committed requests reused without scientific rereads; failed/interrupted single replays not automatically repeated; attempts/costs kept. Unobserved live-child resume gaps conservatively charged to the cumulative budget and never claimed as measured cold latency. Budget negatives complete with missing rows and gatefalse",
+        "accuracy": "Existing final endpoint JSON only, never GT re-evaluate. Seed2027 JSON reference only, never load its model",
+        "missing_upstream": [
+          "Raw FE deck and coordinate normalization generation before supplied canonical xyz",
+          "Optional original boundary-face extraction before supplied input archive",
+          "BC/material25 condition generation from raw solver input"
+        ],
+        "partial_cold_relative_to_declared_xyz25_start": false,
+        "raw_CAD_end_to_end": false,
+        "physical": "No physical rerun; old zero GT accuracy, new coarse numerical same-solution and charged cold remain separate; fresh physical cold not measured"
+      },
+      "read_policy": {
+        "zero_GT_reads": 0,
+        "displacement_target_reads": 0,
+        "stress_target_reads": 0,
+        "training_updates": 0,
+        "scaler_fits": 0,
+        "old_final_reads": 0,
+        "sealed_new_test_reads": 0,
+        "DEV_dia_reads": 0,
+        "checkpoint_reads": "Actual one per successful request, attempted/completed persistent; allowed fixed2026 weights only",
+        "prepared_reads": "Actual archive and each allowed member attempted/completed persistent; archive includes targets but those members never accessed"
+      },
+      "models": {
+        "fno": {
+          "method": "fno",
+          "seed": 2026,
+          "selected_step": 2880,
+          "checkpoint_role": "fixed_cumulative600s_last_endpoint",
+          "checkpoint": {
+            "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+            "bytes": 170464827,
+            "mtime_ns": 1791557354819071400
+          },
+          "summary": {
+            "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/summary.json",
+            "bytes": 862782,
+            "sha256": "505ba9caab71a37a628b95e3027c9cd8522427d6c9576ae95a5a8030aebbf14f"
+          },
+          "config": {
+            "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/config.json",
+            "bytes": 421126,
+            "sha256": "6d9bd673b21f621b4f573ce9edc5aec8cfd270953d34e7265e08d45f71da375a"
+          },
+          "seed2027_summary_reference_only": {
+            "path": "runs/geobc_exploration/solver_confirm_fno_seed2027_600s/summary.json",
+            "bytes": 762487,
+            "sha256": "9da16460bcbc78200fe07a0dfe3e9911c074ca437f86ac4b66c826d83ceec5e1"
+          }
+        },
+        "mlp": {
+          "method": "mlp",
+          "seed": 2026,
+          "selected_step": 7080,
+          "checkpoint_role": "fixed_cumulative600s_last_endpoint",
+          "checkpoint": {
+            "path": "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/last.pt",
+            "bytes": 3211949,
+            "mtime_ns": 1791558076232772100
+          },
+          "summary": {
+            "path": "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/summary.json",
+            "bytes": 1372602,
+            "sha256": "687aba6920906f54611a81de539d606fc348b25c7c4adb5b0f15359f539fde6e"
+          },
+          "config": {
+            "path": "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/config.json",
+            "bytes": 419490,
+            "sha256": "398a7dd978908ea433839bbd22f79adbc7b619e2ce2d0f37fdb0d4d52cdac907"
+          },
+          "seed2027_summary_reference_only": {
+            "path": "runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/summary.json",
+            "bytes": 1275588,
+            "sha256": "effd71bb7f9e0befd7dc10d702d1642400dcfdd7b46033e4d2346221b0772601"
+          }
+        }
+      },
+      "records": {
+        "102_249/ver": {
+          "case_key": "102_249/ver",
+          "group": "DEV",
+          "node_count": 211173,
+          "canonical_archive": {
+            "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+            "bytes": 35482562,
+            "mtime_ns": 1791454718057858700
+          },
+          "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+        },
+        "102_38/ver": {
+          "case_key": "102_38/ver",
+          "group": "DEV",
+          "node_count": 197514,
+          "canonical_archive": {
+            "path": "data/prepared_geobc_multiload/102_38_ver.npz",
+            "bytes": 33185758,
+            "mtime_ns": 1791511983883164000
+          },
+          "label_alignment": "official CSV GRID coordinates -> H5 vertices"
+        }
+      },
+      "scaler": {
+        "mean": [
+          -0.006059544265096125,
+          -0.0005008273527146082,
+          0.015260029003479832,
+          0.09629744183585241
+        ],
+        "std": [
+          0.05393032209940291,
+          0.011291299669602316,
+          0.07619646768716026,
+          0.5232191238243877
+        ],
+        "stress_scale": 90.46589813232424,
+        "channels": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "selection_manifest": {
+        "path": "data/geobc_solver_selection/manifest.json",
+        "bytes": 269313,
+        "sha256": "76ba5189e0cfb4db226db472ca9cfe019f4d7f81c1eff9d0335726eea73a4ced"
+      },
+      "existing_split": {
+        "path": "notes/geobc_split.json",
+        "bytes": 25283,
+        "sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859"
+      },
+      "historical_physical_references": {
+        "102_249/ver": {
+          "old_zero_accuracy_reference": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/summary.json",
+            "bytes": 55185,
+            "sha256": "782614bbbbb9525ca8677f18d02a52e5dc07029fbf61d8b22f6e34c2ecf2d538"
+          },
+          "new_coarse_numerical_reference": {
+            "path": "runs/geobc_exploration/elastic_coarse2_ver/102_249_ver/summary.json",
+            "bytes": 30012,
+            "sha256": "ecfd2a03b2fa1ecaee5e2ebed6ab73cb0dcfc373610062b4e0db6d41c7634a6f"
+          }
+        },
+        "102_38/ver": {
+          "old_zero_accuracy_reference": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/summary.json",
+            "bytes": 52073,
+            "sha256": "19ce243bd77f2cfe60687e8090121cadc363077ce832bf567c4f036f28a7ee29"
+          },
+          "new_coarse_numerical_reference": {
+            "path": "runs/geobc_exploration/elastic_coarse5_ver_extension/102_38_ver/summary.json",
+            "bytes": 29529,
+            "sha256": "1b61aba5e44fa0a7809df97a3ecd22ff4553e503aa0be978931b0bcbf2c764e5"
+          }
+        }
+      }
+    },
+    "science_recipe_sha256": "d4a3cf1d663b97667b490836d882fa296ba09a6fdcf757bd9dd25a20c3c82e19",
+    "source_sha256": {
+      "geobc/solver_service_benchmark.py": "328da3f21052f606a6b921ee32ed6d08f979f806ced29b0bf2c669363e6b094a",
+      "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+      "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+      "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+      "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a"
+    },
+    "historical_physical_evidence": {
+      "102_249/ver": {
+        "sources": {
+          "old_zero_accuracy_reference": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/summary.json",
+            "bytes": 55185,
+            "sha256": "782614bbbbb9525ca8677f18d02a52e5dc07029fbf61d8b22f6e34c2ecf2d538"
+          },
+          "new_coarse_numerical_reference": {
+            "path": "runs/geobc_exploration/elastic_coarse2_ver/102_249_ver/summary.json",
+            "bytes": 30012,
+            "sha256": "ecfd2a03b2fa1ecaee5e2ebed6ab73cb0dcfc373610062b4e0db6d41c7634a6f"
+          }
+        },
+        "old_zero_GT_accuracy_only": {
+          "nodes": 211173,
+          "u_vector_relative_l2": 0.00016220722085536477,
+          "zero_reference": false,
+          "vector_RMS_mm": 3.226017909816697e-05,
+          "max_nodal_vector_error_mm": 9.508344664776253e-05,
+          "reference_energy_mm2": 8352.790158056498,
+          "error_energy_mm2": 0.0002197717862129578,
+          "regions": {
+            "support_0": {
+              "nodes": 440,
+              "u_vector_relative_l2": null,
+              "zero_reference": true,
+              "vector_RMS_mm": 0.0,
+              "max_nodal_vector_error_mm": 0.0,
+              "reference_energy_mm2": 0.0,
+              "error_energy_mm2": 0.0
+            },
+            "support_1": {
+              "nodes": 440,
+              "u_vector_relative_l2": null,
+              "zero_reference": true,
+              "vector_RMS_mm": 0.0,
+              "max_nodal_vector_error_mm": 0.0,
+              "reference_energy_mm2": 0.0,
+              "error_energy_mm2": 0.0
+            },
+            "support_2": {
+              "nodes": 440,
+              "u_vector_relative_l2": null,
+              "zero_reference": true,
+              "vector_RMS_mm": 0.0,
+              "max_nodal_vector_error_mm": 0.0,
+              "reference_energy_mm2": 0.0,
+              "error_energy_mm2": 0.0
+            },
+            "support_3": {
+              "nodes": 440,
+              "u_vector_relative_l2": null,
+              "zero_reference": true,
+              "vector_RMS_mm": 0.0,
+              "max_nodal_vector_error_mm": 0.0,
+              "reference_energy_mm2": 0.0,
+              "error_energy_mm2": 0.0
+            },
+            "load": {
+              "nodes": 805,
+              "u_vector_relative_l2": 0.00016220286771635023,
+              "zero_reference": false,
+              "vector_RMS_mm": 7.161567690498687e-05,
+              "max_nodal_vector_error_mm": 8.721455384502736e-05,
+              "reference_energy_mm2": 156.92604391384617,
+              "error_energy_mm2": 4.128688168740372e-06
+            },
+            "interior": {
+              "nodes": 208608,
+              "u_vector_relative_l2": 0.00016220730420368933,
+              "zero_reference": false,
+              "vector_RMS_mm": 3.215157863743144e-05,
+              "max_nodal_vector_error_mm": 9.508344664776253e-05,
+              "reference_energy_mm2": 8195.864114142652,
+              "error_energy_mm2": 0.00021564309804421745
+            }
+          }
+        },
+        "old_zero_true_residual": 9.923621303780578e-09,
+        "new_coarse_true_residual": 9.88548443694444e-09,
+        "new_coarse_numerical_comparison": {
+          "nodes": 211173,
+          "reference_role": "Same-system converged approximate numerical displacement, not GT",
+          "relative_l2": 7.998194113632486e-11,
+          "vector_RMS_mm": 1.5909589070369158e-11,
+          "maximum_nodal_vector_difference_mm": 8.515098191364361e-11,
+          "reference_energy_mm2": 8355.499820831961,
+          "difference_energy_mm2": 5.34510590450892e-17,
+          "zero_numerical_reference": false,
+          "same_solution_passed": true,
+          "relative_l2_tolerance": 1e-05,
+          "zero_reference_RMS_tolerance_mm": 1e-12,
+          "old_GT_accuracy_assigned_to_new_endpoint": false
+        },
+        "new_coarse_charged_costs": {
+          "zero_cold_without_GT_seconds": 101.030087958,
+          "inherited_fine_input_operator_seconds": 6.032695052000008,
+          "stage_metadata_single_query_seconds": 0.10869354399999054,
+          "new_case_cumulative_wall_seconds": 30.350665297999996,
+          "coarse_cold_accounted_wall_seconds": 36.492053893999994,
+          "coarse_to_zero_cold_cost_ratio": 0.3611998626505244,
+          "cold_cost_reduction_fraction": 0.6388001373494756,
+          "components_complete": true,
+          "cumulative_setup_read_seconds": 0.4962881679999924,
+          "cumulative_coarse_setup_seconds": 0.631101368000003,
+          "cumulative_solve_wall_seconds": 29.097711009000008,
+          "cumulative_endpoint_seconds": 0.048670289000000366,
+          "cumulative_reference_seconds": 0.03759986099998969,
+          "cumulative_persistence_seconds": 0.03929460300000187,
+          "block_preconditioner_seconds": 0.5205845529996651,
+          "coarse_inverse_seconds": 2.0670773359999544,
+          "transfer_seconds": 0.24675637100021675,
+          "preconditioner_wall_seconds": 2.8355040060001926,
+          "checkpoint_seconds": 2.128422024999935,
+          "cached_solve_verification_reference_seconds": 29.183981159,
+          "fresh_combined_cold_remeasured": false,
+          "definition": "Inherited accepted original fine input/operator setup + actual cumulative new case wall + common stage metadata per single query; numerical reference/verification/checkpoints included",
+          "fine_setup_reused_but_charged": true,
+          "old_zero_iterations_charged_to_new_budget": false,
+          "coarse_setup_budget_overshoot_seconds": 0.0,
+          "solve_budget_overshoot_seconds": 0.0
+        },
+        "new_coarse_GT_reads": 0,
+        "fresh_physical_cold_measured_here": false,
+        "old_GT_error_not_assigned_to_coarse": true
+      },
+      "102_38/ver": {
+        "sources": {
+          "old_zero_accuracy_reference": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/summary.json",
+            "bytes": 52073,
+            "sha256": "19ce243bd77f2cfe60687e8090121cadc363077ce832bf567c4f036f28a7ee29"
+          },
+          "new_coarse_numerical_reference": {
+            "path": "runs/geobc_exploration/elastic_coarse5_ver_extension/102_38_ver/summary.json",
+            "bytes": 29529,
+            "sha256": "1b61aba5e44fa0a7809df97a3ecd22ff4553e503aa0be978931b0bcbf2c764e5"
+          }
+        },
+        "old_zero_GT_accuracy_only": {
+          "nodes": 197514,
+          "u_vector_relative_l2": 0.00016224320859871806,
+          "zero_reference": false,
+          "vector_RMS_mm": 2.0111205946077094e-05,
+          "max_nodal_vector_error_mm": 5.949220634328167e-05,
+          "reference_energy_mm2": 3034.876745646354,
+          "error_energy_mm2": 7.9886631858056e-05,
+          "regions": {
+            "support_0": {
+              "nodes": 440,
+              "u_vector_relative_l2": null,
+              "zero_reference": true,
+              "vector_RMS_mm": 0.0,
+              "max_nodal_vector_error_mm": 0.0,
+              "reference_energy_mm2": 0.0,
+              "error_energy_mm2": 0.0
+            },
+            "support_1": {
+              "nodes": 440,
+              "u_vector_relative_l2": null,
+              "zero_reference": true,
+              "vector_RMS_mm": 0.0,
+              "max_nodal_vector_error_mm": 0.0,
+              "reference_energy_mm2": 0.0,
+              "error_energy_mm2": 0.0
+            },
+            "support_2": {
+              "nodes": 440,
+              "u_vector_relative_l2": null,
+              "zero_reference": true,
+              "vector_RMS_mm": 0.0,
+              "max_nodal_vector_error_mm": 0.0,
+              "reference_energy_mm2": 0.0,
+              "error_energy_mm2": 0.0
+            },
+            "support_3": {
+              "nodes": 440,
+              "u_vector_relative_l2": null,
+              "zero_reference": true,
+              "vector_RMS_mm": 0.0,
+              "max_nodal_vector_error_mm": 0.0,
+              "reference_energy_mm2": 0.0,
+              "error_energy_mm2": 0.0
+            },
+            "load": {
+              "nodes": 802,
+              "u_vector_relative_l2": 0.00016224180917812612,
+              "zero_reference": false,
+              "vector_RMS_mm": 4.416649777896718e-05,
+              "max_nodal_vector_error_mm": 5.546565049927469e-05,
+              "reference_energy_mm2": 59.43396893162006,
+              "error_energy_mm2": 1.5644449798997292e-06
+            },
+            "interior": {
+              "nodes": 194952,
+              "u_vector_relative_l2": 0.00016224323655178598,
+              "zero_reference": false,
+              "vector_RMS_mm": 2.0043730515734412e-05,
+              "max_nodal_vector_error_mm": 5.949220634328167e-05,
+              "reference_energy_mm2": 2975.442776714734,
+              "error_energy_mm2": 7.832218687815626e-05
+            }
+          }
+        },
+        "old_zero_true_residual": 9.99525893891946e-09,
+        "new_coarse_true_residual": 9.99350322420056e-09,
+        "new_coarse_numerical_comparison": {
+          "nodes": 197514,
+          "reference_role": "Same-system converged approximate numerical displacement, not GT",
+          "relative_l2": 3.6109470566087307e-10,
+          "vector_RMS_mm": 4.476753086307014e-11,
+          "maximum_nodal_vector_difference_mm": 3.3283855984032473e-10,
+          "reference_energy_mm2": 3035.8612995264825,
+          "difference_energy_mm2": 3.958440922117217e-16,
+          "zero_numerical_reference": false,
+          "same_solution_passed": true,
+          "relative_l2_tolerance": 1e-05,
+          "zero_reference_RMS_tolerance_mm": 1e-12,
+          "old_GT_accuracy_assigned_to_new_endpoint": false
+        },
+        "new_coarse_charged_costs": {
+          "zero_cold_without_GT_seconds": 91.455433389,
+          "inherited_fine_input_operator_seconds": 5.29283024999998,
+          "stage_metadata_single_query_seconds": 0.21582645600000205,
+          "new_case_cumulative_wall_seconds": 28.911696132999992,
+          "coarse_cold_accounted_wall_seconds": 34.420352838999975,
+          "coarse_to_zero_cold_cost_ratio": 0.3763620329980302,
+          "cold_cost_reduction_fraction": 0.6236379670019698,
+          "components_complete": true,
+          "cumulative_setup_read_seconds": 0.5145508159999963,
+          "cumulative_coarse_setup_seconds": 0.6596485700000017,
+          "cumulative_solve_wall_seconds": 27.612670743999985,
+          "cumulative_endpoint_seconds": 0.047381001000019296,
+          "cumulative_reference_seconds": 0.03760217699999657,
+          "cumulative_persistence_seconds": 0.03984282499999381,
+          "block_preconditioner_seconds": 0.46268223499899364,
+          "coarse_inverse_seconds": 2.0164801929999214,
+          "transfer_seconds": 0.2338425570000311,
+          "preconditioner_wall_seconds": 2.714121546000456,
+          "checkpoint_seconds": 1.97501735100019,
+          "cached_solve_verification_reference_seconds": 27.697653922,
+          "fresh_combined_cold_remeasured": false,
+          "definition": "Inherited accepted original fine input/operator setup + actual cumulative new case wall + common stage metadata per single query; numerical reference/verification/checkpoints included",
+          "fine_setup_reused_but_charged": true,
+          "old_zero_iterations_charged_to_new_budget": false,
+          "coarse_setup_budget_overshoot_seconds": 0.0,
+          "solve_budget_overshoot_seconds": 0.0
+        },
+        "new_coarse_GT_reads": 0,
+        "fresh_physical_cold_measured_here": false,
+        "old_GT_error_not_assigned_to_coarse": true
+      }
+    },
+    "output": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_service_dev2_fixed_endpoint",
+    "array_or_weight_reads_in_request_contract": 0
+  },
+  "request_key": "mlp:102_38/ver",
+  "stage": "solver_service_cost_screen"
+}

@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_physical_coarse_confirmation_and_factored_stress",
+  "stage": "solver_common_request_cost_and_macro_candidate_design",
   "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,10 +21,32 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "solver_signed_output_interface_resolution",
-    "brief_action": "C5PASS/SFAIL: retain trustworthy physical displacement and cost route, close fixed sign head. Once primary-source signed scalar/export/nodal recovery interface resolution before new complete solver claims or further training. FNO remains pointcloud learning reference; newtest fields sealed."
+    "stage": "solver_spatial_physical_recovery_structural_design",
+    "brief_action": "Direct coarse closed onboth accuracy/cost; preserve exactfine-preconditioned solver. Prepare one geometry/BC/physics-conditioned spatial-vs-local directS recovery pair, no newsource until current97stage publication stable, no sealed/final."
   },
   "jobs": [
+    {
+      "name": "elastic_low_fidelity2_ver",
+      "stage": "solver_low_fidelity_physical_selection",
+      "kind": "elastic_direct_coarse_screen",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_low_fidelity",
+        "--plan",
+        "notes/geobc_low_fidelity_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_low_fidelity2_ver"
+      ],
+      "requires": [
+        "notes/geobc_low_fidelity_plan.json",
+        "notes/elastic_low_fidelity_source_ready.json",
+        "notes/elastic_low_fidelity_root_review.json",
+        "notes/elastic_low_fidelity_queue_source_ready.json",
+        "geobc/elastic_low_fidelity.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_low_fidelity2_ver"
+    },
     {
       "name": "elastic_fno_warmstart5_ver",
       "stage": "solver_physical_hybrid_selection",
@@ -150,6 +172,27 @@
         "geobc/elastic_coarse_extension.py"
       ],
       "output": "runs/geobc_exploration/elastic_coarse5_ver_extension"
+    },
+    {
+      "name": "solver_service_dev2_fixed_endpoint",
+      "stage": "solver_common_request_service_cost",
+      "kind": "solver_service_cost_screen",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_service_benchmark",
+        "--plan",
+        "notes/geobc_solver_service_benchmark_plan.json",
+        "--output",
+        "runs/geobc_exploration/solver_service_dev2_fixed_endpoint"
+      ],
+      "requires": [
+        "notes/geobc_solver_service_benchmark_plan.json",
+        "notes/solver_service_benchmark_source_ready.json",
+        "notes/solver_service_benchmark_root_review.json",
+        "geobc/solver_service_benchmark.py"
+      ],
+      "output": "runs/geobc_exploration/solver_service_dev2_fixed_endpoint"
     }
   ],
   "historical_jobs": [
@@ -4194,5 +4237,135 @@
     },
     "decision": "close_fixed_factored_representation_no_seed_width_loss_training_rescue"
   },
-  "solver_selection_status": "No final solver selected; full signed stress and input-interface service requirements remain unresolved"
+  "solver_selection_status": "No final solver selected; full signed stress and input-interface service requirements remain unresolved",
+  "signed_output_interface_readout": {
+    "report": "notes/geobc_signed_output_interface.md",
+    "status": "completed_unknown",
+    "actual_H3D_request_confirmed": true,
+    "CSV_exact_selector_sign_nodal_recovery_confirmed": false,
+    "scientific_array_or_GT_reads": 0,
+    "scientific_execution": false,
+    "decision": "End source-interface stage with unknown. No official-compatible formula selection by DEV; physical route retains U reference, not complete signedS solver."
+  },
+  "common_service_design": {
+    "proposal": "notes/geobc_common_service_comparison_plan.md",
+    "status": "frozen_root_released",
+    "kind": "solver_service_cost_screen",
+    "scope": "FNO/MLP2026 completed600s last.pt x existingDEV2/ver; four separate clean processes one full-node request each",
+    "source": "geobc/solver_service_benchmark.py",
+    "formal_plan": "notes/geobc_solver_service_benchmark_plan.json",
+    "source_ready": "notes/solver_service_benchmark_source_ready.json",
+    "root_review": "notes/solver_service_benchmark_root_review.json",
+    "actual_execution_released": true,
+    "GT_training_scaler_final_sealed_reads": 0,
+    "no_physics_rerun_now": true,
+    "physics_chargedcold_not_fresh_explicit": true,
+    "interface": "Given node xyz/25conditions input, actual IO/geometry/cloud/grid/model/allN decode persistence included; missing raw-CAD upstream declared, do not claim full raw-CAD E2E",
+    "input_members_allowed": [
+      "xyz",
+      "features",
+      "sample_key",
+      "label_alignment",
+      "optional faces (geometry-only boundary)"
+    ],
+    "summary_interface": "Four fixed request_keys; completion_gate requires whole-node finite delivery and complete account within given-xyz25 interface; raw_CAD_end_to_end=false, missing upstream declared.",
+    "science_recipe_sha256": "d4a3cf1d663b97667b490836d882fa296ba09a6fdcf757bd9dd25a20c3c82e19"
+  },
+  "low_fidelity_structural_decision": {
+    "status": "frozen_root_released",
+    "selected_at_utc": "2026-10-09T23:29:27.378965+00:00",
+    "design": "notes/geobc_low_fidelity_solver_candidate.md",
+    "design_sha256": "5c0e4ff04f6a871bf59410db7610752cb229e31f8d553ed30468acccb357140a",
+    "kind": "elastic_direct_coarse_screen",
+    "job": "elastic_low_fidelity2_ver",
+    "case_keys": [
+      "101_428/ver",
+      "102_249/ver"
+    ],
+    "actual_execution_released": true,
+    "candidate": "Directly solve existing masked Ac=P.T@A@P; lower-dimensional trial space, not prior fine-PCG preconditioner tuning",
+    "recipe": {
+      "dtype": "float64",
+      "initial_guess": "zero",
+      "preconditioner": "existing_positive_scalar_diagonal",
+      "coarse_true_relative_residual": 1e-08,
+      "true_check_cadence": 25,
+      "maximum_iterations": 10000,
+      "each_solve_seconds": 60,
+      "cumulative_campaign_seconds": 240,
+      "peak_GiB": 24
+    },
+    "gate": {
+      "all_two_cases_required": true,
+      "full_original_node_U_relative_difference_to_fixed_fine_numerical_reference_max": 0.05,
+      "accounted_cold_reduction_min": 0.5,
+      "baseline_accounted_cold_seconds": {
+        "101_428/ver": 42.107864124,
+        "102_249/ver": 36.492053894
+      }
+    },
+    "limits": [
+      "GT zero; no S/strain GT/final/sealed/dia/neural outputs",
+      "Persist allN original uXYZ before reading immutable original converged fine numerical reference",
+      "Coarse true residual and projected orthogonality do not prove fine equilibrium",
+      "Account inherited attributable input/operator/coarse setup and actual new solve/reconstruct/check/persist; not fresh combined cold",
+      "No changed cases/budget/space/tolerance or repeated completed requests to rescue negative result"
+    ],
+    "science_recipe_sha256": "553aac2ca09aa462e02b2b2554bcc0e1f1e663cfd31377cba28f90b9335745b5",
+    "root_review": "notes/elastic_low_fidelity_root_review.json"
+  },
+  "common_service_completed_readout": {
+    "status": "completed",
+    "completion_gate": {
+      "passed": true,
+      "four_full_finite_deliveries": true,
+      "zero_GT_training_or_forbidden_reads": true,
+      "fixed_request_denominator": 4
+    },
+    "actual_stage_seconds": 10.718763588000002,
+    "request_cold_seconds": {
+      "fno:102_249/ver": 3.6783962160000003,
+      "fno:102_38/ver": 2.619988094,
+      "mlp:102_249/ver": 2.036719636000001,
+      "mlp:102_38/ver": 2.053138326999999
+    },
+    "forbidden_GT_training_sealed_reads": 0,
+    "allN_four_delivered": true,
+    "raw_CAD_end_to_end": false,
+    "fresh_physical_rerun": false,
+    "report": "results/solver_service/BRIEF.md"
+  },
+  "low_fidelity_completed_readout": {
+    "status": "completed",
+    "decision": "close_frozen_low_fidelity_candidate_no_rescue",
+    "completion_gate": {
+      "passed": false,
+      "inventory_denominator": 2,
+      "coarse_true_converged_cases": 2,
+      "fullN_numerical_U_difference_le5percent_cases": 0,
+      "accounted_cold_le_half_accepted_coarse_cases": 0,
+      "cost_components_complete": true,
+      "target_and_weight_reads_zero": true,
+      "decision": "close_frozen_low_fidelity_candidate_no_rescue",
+      "campaign_accounted_budget_passed": true
+    },
+    "actual_stage_seconds": 51.068014511,
+    "campaign_accounted_seconds": 67.90835970399999,
+    "case_results": {
+      "101_428/ver": {
+        "numerical_U_relative_l2": 0.059541128151163525,
+        "accounted_cold_seconds": 32.974447519999956,
+        "true_coarse_residual": 9.951489269757208e-09,
+        "fine_free_relative_residual": 12.018348160755892
+      },
+      "102_249/ver": {
+        "numerical_U_relative_l2": 0.07764724510278749,
+        "accounted_cold_seconds": 35.026595899,
+        "true_coarse_residual": 9.866293949001296e-09,
+        "fine_free_relative_residual": 19.23048945565329
+      }
+    },
+    "GT_reads": 0,
+    "report": "results/elastic_low_fidelity/BRIEF.md"
+  }
 }

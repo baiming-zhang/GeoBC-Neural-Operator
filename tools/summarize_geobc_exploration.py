@@ -217,6 +217,8 @@ def main(*, preserve_existing_plots=False):
     metadata_kinds.add('elastic_p1_derived_coarse_screen')
     metadata_kinds.add('elastic_factored_signed_stress_screen')
     metadata_kinds.add('elastic_p1_derived_coarse_extension')
+    metadata_kinds.add('solver_service_cost_screen')
+    metadata_kinds.add('elastic_direct_coarse_screen')
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
@@ -241,6 +243,8 @@ def main(*, preserve_existing_plots=False):
         filenames=('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json','metrics_step0000.json','metrics_step1000.json','first_backward_check.json')
         if job.get('kind') in ('real_geometry_interface_acceptance','frozen_field_diagnostic','solver_screen','solver_confirmation','solver_final_input_cache','solver_final_evaluation'):filenames+=('status.json',)
         if job.get('kind') in metadata_kinds:filenames=('summary.json','config.json','status.json')
+        if job.get('kind')=='solver_service_cost_screen':filenames+=('read_receipt.json','request_metadata.json',)
+        if job.get('kind')=='elastic_direct_coarse_screen':filenames+=('read_receipt.json',)
         if job.get('kind')=='gino_training_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json')
         if job.get('kind')=='fno_response_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
         if job.get('kind')=='deeponet_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
@@ -288,6 +292,27 @@ def main(*, preserve_existing_plots=False):
                     if path.is_file():
                         case_dest.mkdir(exist_ok=True)
                         shutil.copyfile(path,case_dest/filename)
+        if job.get('kind')=='elastic_direct_coarse_screen':
+            for case_key in summary.get('case_keys',[]):
+                case_source=source/case_key.replace('/','_')
+                case_dest=target/case_key.replace('/','_')
+                for filename in ('config.json','status.json','summary.json','checkpoint.json',
+                                 'endpoint_no_GT.json','read_receipt.json','prediction_before_reference.json'):
+                    path=case_source/filename
+                    if path.is_file():
+                        case_dest.mkdir(exist_ok=True)
+                        shutil.copyfile(path,case_dest/filename)
+        if job.get('kind')=='solver_service_cost_screen':
+            for request_key in summary.get('request_keys',[]):
+                request_stem=request_key.replace(':','_').replace('/','_')
+                request_source=source/request_stem
+                request_dest=target/request_stem
+                for filename in ('config.json','status.json','summary.json',
+                                 'read_receipt.json','request_metadata.json'):
+                    path=request_source/filename
+                    if path.is_file():
+                        request_dest.mkdir(exist_ok=True)
+                        shutil.copyfile(path,request_dest/filename)
         if job.get('kind')=='elastic_signed_stress_readout_screen':
             for case_key in summary.get('train_keys',[])+summary.get('validation_keys',[]):
                 case_dest=target/case_key.replace('/','_')
@@ -303,6 +328,23 @@ def main(*, preserve_existing_plots=False):
                 'exported_files':[str(Path('runs')/job['name']/name).replace('\\','/') for name in filenames if (source/name).exists()],
                 'export_policy':'Small JSON only; no NPY/CSR/raw/weights copied',
                 'cache_payloads_exported':False,'receipt_location':'summary.json:receipt or config.contract'}
+            if job.get('kind')=='elastic_direct_coarse_screen':
+                observed_receipts[job['kind']].update({
+                    'case_keys':summary.get('case_keys',[]),
+                    'read_receipt':summary.get('read_receipt',{}),
+                    'metric_scope':'Numerical U difference to accepted fine endpoint; no GT metrics',
+                    'contract_location':'config.contract.source_sha256/source_hashes and science digests',
+                    'gate_location':'summary.json:cases coarse_true_converged/numerical_U_difference_passed/cold_cost_gate_passed',
+                    'legacy_GT_metrics_exported':False,'numerical_arrays_exported':False})
+            if job.get('kind')=='solver_service_cost_screen':
+                observed_receipts[job['kind']].update({
+                    'request_keys':summary.get('request_keys',[]),
+                    'read_receipt':summary.get('read_receipt',{}),
+                    'request_metadata_location':'summary.json:requests',
+                    'contract_location':'config.json:contract or summary.json:config.contract',
+                    'new_GT_metrics_expected':False,
+                    'endpoint_checkpoint_policy':'Frozen seed2026 last complete 600s endpoints; no best/seed selection',
+                    'model_checkpoints_exported':False})
     counts=stage_counts(jobs,summaries)
     next_text=plan_next_text(plan,summaries)
     brief_next_text=plan_next_text(plan,summaries,compact=True)
@@ -934,6 +976,8 @@ def main(*, preserve_existing_plots=False):
                                    'elastic_coarse_solver_receipt':observed_receipts.get('elastic_p1_derived_coarse_screen'),
                                    'elastic_factored_stress_receipt':observed_receipts.get('elastic_factored_signed_stress_screen'),
                                    'elastic_coarse_extension_receipt':observed_receipts.get('elastic_p1_derived_coarse_extension'),
+                                   'solver_service_cost_receipt':observed_receipts.get('solver_service_cost_screen'),
+                                   'elastic_direct_coarse_receipt':observed_receipts.get('elastic_direct_coarse_screen'),
                                    'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
                                    'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',

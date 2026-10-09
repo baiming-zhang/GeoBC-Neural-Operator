@@ -1,0 +1,251 @@
+{
+  "status": "completed",
+  "kind": "elastic_direct_coarse_screen",
+  "completion_gate": {
+    "passed": false,
+    "inventory_denominator": 2,
+    "coarse_true_converged_cases": 2,
+    "fullN_numerical_U_difference_le5percent_cases": 0,
+    "accounted_cold_le_half_accepted_coarse_cases": 0,
+    "cost_components_complete": true,
+    "target_and_weight_reads_zero": true,
+    "decision": "close_frozen_low_fidelity_candidate_no_rescue",
+    "campaign_accounted_budget_passed": true
+  },
+  "cases": {
+    "101_428/ver": {
+      "true_coarse_relative_residual": 9.951489269757208e-09,
+      "metrics": {
+        "nodes": 270276,
+        "u_vector_relative_l2": 0.059541128151163525,
+        "zero_reference": false,
+        "vector_RMS_mm": 0.004752730967435996,
+        "max_nodal_vector_error_mm": 0.01892246299425833,
+        "reference_energy_mm2": 1722.1057915691413,
+        "error_energy_mm2": 6.1051163578378524,
+        "regions": {
+          "support_0": {
+            "nodes": 440,
+            "u_vector_relative_l2": 0.0,
+            "zero_reference": true,
+            "vector_RMS_mm": 0.0,
+            "max_nodal_vector_error_mm": 0.0,
+            "reference_energy_mm2": 0.0,
+            "error_energy_mm2": 0.0
+          },
+          "support_1": {
+            "nodes": 440,
+            "u_vector_relative_l2": 0.0,
+            "zero_reference": true,
+            "vector_RMS_mm": 0.0,
+            "max_nodal_vector_error_mm": 0.0,
+            "reference_energy_mm2": 0.0,
+            "error_energy_mm2": 0.0
+          },
+          "support_2": {
+            "nodes": 440,
+            "u_vector_relative_l2": 0.0,
+            "zero_reference": true,
+            "vector_RMS_mm": 0.0,
+            "max_nodal_vector_error_mm": 0.0,
+            "reference_energy_mm2": 0.0,
+            "error_energy_mm2": 0.0
+          },
+          "support_3": {
+            "nodes": 440,
+            "u_vector_relative_l2": 0.0,
+            "zero_reference": true,
+            "vector_RMS_mm": 0.0,
+            "max_nodal_vector_error_mm": 0.0,
+            "reference_energy_mm2": 0.0,
+            "error_energy_mm2": 0.0
+          },
+          "load": {
+            "nodes": 817,
+            "u_vector_relative_l2": 0.06259650570778896,
+            "zero_reference": false,
+            "vector_RMS_mm": 0.012063150278806336,
+            "max_nodal_vector_error_mm": 0.018228737686475618,
+            "reference_energy_mm2": 30.34194046415426,
+            "error_energy_mm2": 0.11888950882828639
+          },
+          "interior": {
+            "nodes": 267699,
+            "u_vector_relative_l2": 0.05948489711758661,
+            "zero_reference": false,
+            "vector_RMS_mm": 0.004728824656589496,
+            "max_nodal_vector_error_mm": 0.01892246299425833,
+            "reference_energy_mm2": 1691.7638511049872,
+            "error_energy_mm2": 5.986226849009565
+          }
+        },
+        "reference_role": "Immutable original zero-start fine converged numerical U, not GT",
+        "numerical_difference_relative_l2_maximum": 0.05,
+        "old_GT_accuracy_assigned_to_new_endpoint": false
+      },
+      "endpoint_fine_residual": {
+        "fine_free_relative_residual": 12.018348160755892,
+        "fine_free_residual_norm_N": 14965.633745426318,
+        "PT_fine_residual_relative_to_coarse_rhs": 9.951486900173495e-09,
+        "PT_fine_residual_norm_N": 2.3501176909828184e-05,
+        "projected_orthogonality_le1e8": true,
+        "fixed_translation_max_abs_mm": 0.0,
+        "fine_true1e8_required": false,
+        "full_fine_equilibrium_claimed": false,
+        "fine_operator_applications": 1,
+        "old_fine_K_guard_repeats": 0
+      },
+      "costs": {
+        "components_complete": true,
+        "accounted_cold_wall_seconds": 32.974447519999956,
+        "inherited_attributable_setup": {
+          "fine_input_operator_seconds": 8.755223530999984,
+          "accepted_coarse_construction_seconds": 1.4213246609999999,
+          "total_seconds": 10.176548191999984,
+          "old_fine_iterative_solve_seconds_charged": 0,
+          "old_numerical_reference_IO_seconds_charged": 0
+        },
+        "actual_new_case_cumulative_wall_seconds": 22.64922378899999,
+        "actual_metadata_per_single_query_seconds": 0.14867553899998143,
+        "maximum_candidate_accounted_cold_seconds": 21.053932062,
+        "accepted_coarse_cold_seconds": 42.10786412399999,
+        "cold_to_accepted_coarse_ratio": 0.7830947545307978,
+        "cached_actual_latency_seconds": 22.64922378899999,
+        "fresh_combined_cold_remeasured": false,
+        "new_reference_IO_and_comparison_seconds": 0.06330154299999435,
+        "new_reference_IO_already_in_actual_case_wall": true,
+        "old_fine_iterative_solve_and_reference_IO_charged": false,
+        "cumulative_solve_wall_seconds": 20.278203478999984,
+        "cumulative_setup_read_seconds": 1.5347853890000067,
+        "cumulative_endpoint_seconds": 0.7195505820000108,
+        "cumulative_persistence_seconds": 0.05338279599999396,
+        "checkpoint_seconds": 1.6505408779999016,
+        "solve_budget_overshoot_seconds": 0.0,
+        "definition": "Inherited accepted fine input/operator + coarse construction + actual cumulative case wall + actual stage metadata; reference/endpoint/checkpoint I/O inside wall once"
+      },
+      "memory": {
+        "peak_allocated_bytes": 383624192,
+        "peak_reserved_bytes": 404750336
+      },
+      "reason": null
+    },
+    "102_249/ver": {
+      "true_coarse_relative_residual": 9.866293949001296e-09,
+      "metrics": {
+        "nodes": 211173,
+        "u_vector_relative_l2": 0.07764724510278749,
+        "zero_reference": false,
+        "vector_RMS_mm": 0.015445183556198273,
+        "max_nodal_vector_error_mm": 0.04944591614714086,
+        "reference_energy_mm2": 8355.499820831961,
+        "error_energy_mm2": 50.376099452112385,
+        "regions": {
+          "support_0": {
+            "nodes": 440,
+            "u_vector_relative_l2": 0.0,
+            "zero_reference": true,
+            "vector_RMS_mm": 0.0,
+            "max_nodal_vector_error_mm": 0.0,
+            "reference_energy_mm2": 0.0,
+            "error_energy_mm2": 0.0
+          },
+          "support_1": {
+            "nodes": 440,
+            "u_vector_relative_l2": 0.0,
+            "zero_reference": true,
+            "vector_RMS_mm": 0.0,
+            "max_nodal_vector_error_mm": 0.0,
+            "reference_energy_mm2": 0.0,
+            "error_energy_mm2": 0.0
+          },
+          "support_2": {
+            "nodes": 440,
+            "u_vector_relative_l2": 0.0,
+            "zero_reference": true,
+            "vector_RMS_mm": 0.0,
+            "max_nodal_vector_error_mm": 0.0,
+            "reference_energy_mm2": 0.0,
+            "error_energy_mm2": 0.0
+          },
+          "support_3": {
+            "nodes": 440,
+            "u_vector_relative_l2": 0.0,
+            "zero_reference": true,
+            "vector_RMS_mm": 0.0,
+            "max_nodal_vector_error_mm": 0.0,
+            "reference_energy_mm2": 0.0,
+            "error_energy_mm2": 0.0
+          },
+          "load": {
+            "nodes": 805,
+            "u_vector_relative_l2": 0.07857729045205358,
+            "zero_reference": false,
+            "vector_RMS_mm": 0.03469900796130604,
+            "max_nodal_vector_error_mm": 0.04557105114750416,
+            "reference_energy_mm2": 156.97695453936348,
+            "error_energy_mm2": 0.9692370285665177
+          },
+          "interior": {
+            "nodes": 208608,
+            "u_vector_relative_l2": 0.0776293288280116,
+            "zero_reference": false,
+            "vector_RMS_mm": 0.01538962926352729,
+            "max_nodal_vector_error_mm": 0.04944591614714086,
+            "reference_energy_mm2": 8198.522866292598,
+            "error_energy_mm2": 49.40686242354587
+          }
+        },
+        "reference_role": "Immutable original zero-start fine converged numerical U, not GT",
+        "numerical_difference_relative_l2_maximum": 0.05,
+        "old_GT_accuracy_assigned_to_new_endpoint": false
+      },
+      "endpoint_fine_residual": {
+        "fine_free_relative_residual": 19.23048945565329,
+        "fine_free_residual_norm_N": 24124.304346556684,
+        "PT_fine_residual_relative_to_coarse_rhs": 9.866296621635237e-09,
+        "PT_fine_residual_norm_N": 2.3435519432144563e-05,
+        "projected_orthogonality_le1e8": true,
+        "fixed_translation_max_abs_mm": 0.0,
+        "fine_true1e8_required": false,
+        "full_fine_equilibrium_claimed": false,
+        "fine_operator_applications": 1,
+        "old_fine_K_guard_repeats": 0
+      },
+      "costs": {
+        "components_complete": true,
+        "accounted_cold_wall_seconds": 35.026595899,
+        "inherited_attributable_setup": {
+          "fine_input_operator_seconds": 6.032695052000008,
+          "accepted_coarse_construction_seconds": 0.631101368000003,
+          "total_seconds": 6.663796420000011,
+          "old_fine_iterative_solve_seconds_charged": 0,
+          "old_numerical_reference_IO_seconds_charged": 0
+        },
+        "actual_new_case_cumulative_wall_seconds": 28.214123940000007,
+        "actual_metadata_per_single_query_seconds": 0.14867553899998143,
+        "maximum_candidate_accounted_cold_seconds": 18.246026947,
+        "accepted_coarse_cold_seconds": 36.492053893999994,
+        "cold_to_accepted_coarse_ratio": 0.9598417233719765,
+        "cached_actual_latency_seconds": 28.214123940000007,
+        "fresh_combined_cold_remeasured": false,
+        "new_reference_IO_and_comparison_seconds": 0.04592398099998718,
+        "new_reference_IO_already_in_actual_case_wall": true,
+        "old_fine_iterative_solve_and_reference_IO_charged": false,
+        "cumulative_solve_wall_seconds": 27.264310084999977,
+        "cumulative_setup_read_seconds": 0.40151071400001115,
+        "cumulative_endpoint_seconds": 0.45720153800002095,
+        "cumulative_persistence_seconds": 0.0451776220000113,
+        "checkpoint_seconds": 2.0979395089999286,
+        "solve_budget_overshoot_seconds": 0.0,
+        "definition": "Inherited accepted fine input/operator + coarse construction + actual cumulative case wall + actual stage metadata; reference/endpoint/checkpoint I/O inside wall once"
+      },
+      "memory": {
+        "peak_allocated_bytes": 309868032,
+        "peak_reserved_bytes": 404750336
+      },
+      "reason": null
+    }
+  },
+  "GT_reads": 0,
+  "old_GT_accuracy_assigned_to_new_endpoint": false
+}

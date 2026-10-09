@@ -59,7 +59,74 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
     if not summary or summary.get("status") != "completed":
         return None
     command = job["command"]
-    if "geobc.exploration" in command:
+    if "geobc.elastic_low_fidelity" in command:
+        from geobc.elastic_low_fidelity import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        fixed_cases = ["101_428/ver", "102_249/ver"]
+        source_pins = contract.get("source_sha256")
+        source_hashes = contract.get("source_hashes")
+        own_source = source_pins.get("geobc/elastic_low_fidelity.py") if isinstance(source_pins, dict) else None
+        if (job.get("kind") != "elastic_direct_coarse_screen"
+                or summary.get("kind") != "elastic_direct_coarse_screen"
+                or summary.get("config", {}).get("contract") != contract
+                or requested.get("case_keys") != fixed_cases
+                or summary.get("case_keys") != fixed_cases
+                or set(summary.get("cases", {})) != set(fixed_cases)
+                or not isinstance(source_pins, dict) or not isinstance(source_hashes, dict)
+                or not isinstance(own_source, str) or len(own_source) != 64
+                or source_hashes.get("geobc/elastic_low_fidelity.py") != own_source
+                or any(not isinstance(contract.get(name), str) or not contract[name]
+                       for name in ("scientific_digest", "science_recipe_sha256"))):
+            raise ValueError(f"Direct coarse screen differs from frozen two-case/source/equation contract: {job['name']}")
+        receipts = [summary.get("read_receipt", {})]
+        for case_key in fixed_cases:
+            record = summary["cases"][case_key]
+            receipts.append(record.get("read_receipt", {}))
+        for receipt in receipts:
+            for key in ("GT_reads", "displacement_reads", "stress_reads", "old_final_reads",
+                        "DEV_dia_reads", "sealed_new_test_reads", "optimizer_steps", "scaler_fits",
+                        "learned_weight_reads", "setup_K_guards_repeated",
+                        "inherited_fine_K_guards_repeated", "fine_operator_rebuilds"):
+                if type(receipt.get(key)) is not int or receipt[key] != 0:
+                    raise ValueError(f"Direct coarse screen unexpectedly accessed {key}: {job['name']}")
+            for key in ("numerical_reference_reads", "accepted_coarse_cache_reads", "fine_endpoint_K_applications"):
+                if type(receipt.get(key)) is not int or receipt[key] < 0:
+                    raise ValueError(f"Direct coarse screen lacks actual nonnegative {key}: {job['name']}")
+        # False numerical/cold-cost gates and budget negatives are terminal
+        # completed screens; numerical U references are required reads, not GT.
+    elif "geobc.solver_service_benchmark" in command:
+        from geobc.solver_service_benchmark import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        fixed_requests = ["fno:102_249/ver", "fno:102_38/ver",
+                          "mlp:102_249/ver", "mlp:102_38/ver"]
+        source_pins = contract.get("source_sha256", {})
+        own_source = source_pins.get("geobc/solver_service_benchmark.py")
+        if (job.get("kind") != "solver_service_cost_screen"
+                or summary.get("kind") != "solver_service_cost_screen"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("request_keys") != fixed_requests
+                or set(summary.get("requests", {})) != set(fixed_requests)
+                or not isinstance(own_source, str) or len(own_source) != 64):
+            raise ValueError(f"Service costs differ from frozen endpoint/input/source/request contract: {job['name']}")
+        receipts = [summary.get("read_receipt", {})]
+        for request_key in fixed_requests:
+            record = summary["requests"][request_key]
+            method, case_key = request_key.split(":", 1)
+            if record.get("method") != method or record.get("case_key") != case_key:
+                raise ValueError(f"Service request endpoint/case differs: {job['name']}:{request_key}")
+            receipts.append(record.get("read_receipt", {}))
+        for receipt in receipts:
+            for key in ("zero_GT_reads", "displacement_target_reads", "stress_target_reads",
+                        "training_updates", "scaler_fits", "old_final_reads",
+                        "sealed_new_test_reads", "DEV_dia_reads"):
+                if type(receipt.get(key)) is not int or receipt[key] != 0:
+                    raise ValueError(f"Service costs unexpectedly accessed {key}: {job['name']}")
+            for key in ("model_checkpoint_reads", "prepared_member_reads"):
+                if type(receipt.get(key)) is not int or receipt[key] < 0:
+                    raise ValueError(f"Service costs lack actual nonnegative {key}: {job['name']}")
+        # Completed budget/backend negatives terminate this frozen cost screen.
+        # Endpoint weights and input members are required reads, not forbidden GT.
+    elif "geobc.exploration" in command:
         cli_args = command[command.index("geobc.exploration") + 1:]
         parsed = exploration_parser().parse_args(cli_args)
         if parsed.steps is None and parsed.epochs is None:

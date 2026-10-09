@@ -1,0 +1,61 @@
+{
+  "status": "completed",
+  "phase": "child_summary_committed",
+  "costs": {
+    "child_until_receipt_wall_seconds": 1.810577202000001,
+    "phase_seconds": {
+      "interpreter_stdlib_module_startup_seconds": 0.04436943100000157,
+      "metadata_release_seconds": 0.19217578800000013,
+      "scientific_imports_CUDA_startup_seconds": 0.8276129369999996,
+      "prepared_input_IO_identity_seconds": 0.15259006500000005,
+      "PointNet_cloud_preparation_seconds": 0.014692163999999508,
+      "input_H2D_seconds": 0.004426587000001092,
+      "model_construction_checkpoint_load_H2D_seconds": 0.07662936299999856,
+      "PointNet_context_encode_seconds": 0.3500155669999998,
+      "MLP_allN_forward_seconds": 0.003921408000000071,
+      "allN_output_D2H_seconds": 0.0003814929999990113,
+      "frozen_physical_decode_seconds": 0.007057851999999087,
+      "allN_physical_persistence_seconds": 0.020644873000000175
+    },
+    "request_budget_seconds": 180.0,
+    "partial_cold": false,
+    "startpoint": "Node normalized xyz, original25 BC/material conditions and optional original boundary faces supplied in canonical NPZ, fixed trained model supplied; actual archive input IO is charged",
+    "missing_upstream": [
+      "Raw FE deck and coordinate normalization generation before supplied canonical xyz",
+      "Optional original boundary-face extraction before supplied input archive",
+      "BC/material25 condition generation from raw solver input"
+    ],
+    "raw_CAD_end_to_end": false
+  },
+  "read_receipt": {
+    "zero_GT_reads": 0,
+    "displacement_target_reads": 0,
+    "stress_target_reads": 0,
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "old_final_reads": 0,
+    "sealed_new_test_reads": 0,
+    "DEV_dia_reads": 0,
+    "model_checkpoint_reads": 1,
+    "model_checkpoint_read_attempts": 1,
+    "model_checkpoint_read_completed": 1,
+    "prepared_archive_reads": 1,
+    "prepared_archive_read_attempts": 1,
+    "prepared_archive_read_completed": 1,
+    "prepared_member_reads": 5,
+    "prepared_member_read_attempts": {
+      "xyz": 1,
+      "features": 1,
+      "sample_key": 1,
+      "label_alignment": 1,
+      "faces": 1
+    },
+    "prepared_member_read_completed": {
+      "xyz": 1,
+      "features": 1,
+      "sample_key": 1,
+      "label_alignment": 1,
+      "faces": 1
+    }
+  }
+}

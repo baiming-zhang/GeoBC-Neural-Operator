@@ -2,7 +2,11 @@
 
 **当前阶段（2026-10-10）：先筛选求解器，尚未选定最终方案；Hash专项微调已停止。** 十类学习结构探索后，FNO在现有配方下较有依据，但未知CAD的应力误差仍约50%。近似物理求解器在另一组固定五CAD/ver上，位移误差约0.0162%，全部真收敛。固定粗空间两例64秒、新增三例82秒，五例全部保持同方程、同数值解，完整核算冷成本77–101秒→31–42秒，降低55%–64%，通过五例25%收益门。它仍未解决原signed scalar stress，不能视为完整GeoBC方案。学习与物理评估集合、接口信息不同，不能把数字直接拼成精度排名。
 
-**物理信息明显有用，完整应力仍未解决。** 同MLP加入六个物理张量槽的46秒粗筛，DEV signed stress均值31.8%、热点53.8%，未通过预定门。固定幅值诊断2.24秒，DEV均值／最差10.10%／10.56%，热点17.00%，严格10%门inconclusive。独立的物理幅值乘小模型因子候选4.79秒完成固定60次更新：DEV均值／最差30.41%／30.83%、热点29.72%，仍未达25%门；关闭该固定表示，不追加训练或微调Hash。接下来只核实原signed输出／节点恢复接口，保留可信物理位移及成本收益，尚不选定完整GeoBC方案。FNO初值配方已结束；新test5继续封存。先读[一分钟判断](results/SOLVER_BRIEF.md)，细节见[物理位移](results/elastic_crosscad/BRIEF.md)、[应力读出](results/elastic_stress_readout/BRIEF.md)、[因子候选](results/elastic_factored_stress/BRIEF.md)、[五例粗空间成本](results/elastic_coarse_extension/BRIEF.md)。
+**物理信息明显有用，完整应力仍未解决。** 同MLP加入六个物理张量槽的46秒粗筛，DEV signed stress均值31.8%、热点53.8%，未通过预定门。固定幅值诊断2.24秒，DEV均值／最差10.10%／10.56%，热点17.00%，严格10%门inconclusive。独立的物理幅值乘小模型因子候选4.79秒完成固定60次更新：DEV均值／最差30.41%／30.83%、热点29.72%，仍未达25%门；关闭该固定表示，不追加训练或微调Hash。一次[源输出接口核实](notes/geobc_signed_output_interface.md)已结束：原H3D请求可确认，CSV精确selector／符号／节点恢复仍未知，不枚举公式挑DEV最佳者。下一步恢复同CAD／同载荷的已有服务证据，分别判断位移与完整U/S任务，保留输入接口和成本差异。FNO初值配方已结束；新test5继续封存。先读[一分钟判断](results/SOLVER_BRIEF.md)，细节见[物理位移](results/elastic_crosscad/BRIEF.md)、[应力读出](results/elastic_stress_readout/BRIEF.md)、[因子候选](results/elastic_factored_stress/BRIEF.md)、[五例粗空间成本](results/elastic_coarse_extension/BRIEF.md)。
+
+**最新两个选型实验已结束。** [同DEV2服务计时](results/solver_service/BRIEF.md)四次独立完整请求共10.72秒，FNO为2.62–3.68秒、MLP约2.04–2.05秒；起点为已给xyz／25条件，原CAD到条件生成的上游成本未包含，精度只引用已有端点。原node-only接口下速度可接受，signed应力精度仍不足。[直接粗空间候选](results/elastic_low_fidelity/BRIEF.md)实际51.07秒、含继承setup共67.91秒：两例true coarse1e-8，但对原fine数值位移差5.95%／7.76%，accounted cold32.97／35.03秒，精度和50%提速门均失败。关闭固定候选，不追加救参；它的投影平衡不等于完整fine平衡，也没有GT评价。保留粗空间作为完整物理求解预条件。
+
+下一结构候选正在设计：用几何、BC及物理位移／张量场共同控制直接signed-S预测，比较整体空间传播与相同局部查询解码；完整FE与点云接口分别判断。尚未训练这一新候选，未选定最终solver。
 
 **现有证据支持Hash的小样本拟合能力，尚不支持将它选定为GeoBC求解器。** 原实验主要测训练拟合，此前探索集中于Hash；现在已补上共同CAD划分下的六家族筛选、成本确认与最终检验。关闭Hash最后4层曾把旧开发验证位移均值22.23%降至19.97%，但应变代理仍差；它与本轮signed四场预测的配方不同，不能直接拼成跨架构排名。[选型计划](notes/geobc_solver_selection_plan.json)记录初筛范围。
 

@@ -1,0 +1,176 @@
+{
+  "status": "completed",
+  "costs": {
+    "cumulative_stage_wall_seconds": 10.718763588000002,
+    "maximum_stage_wall_seconds": 900,
+    "stage_overshoot_seconds": 0.0,
+    "startpoint": "Node normalized xyz, original25 BC/material conditions and optional original boundary faces supplied in canonical NPZ, fixed trained model supplied; actual archive input IO is charged",
+    "missing_upstream": [
+      "Raw FE deck and coordinate normalization generation before supplied canonical xyz",
+      "Optional original boundary-face extraction before supplied input archive",
+      "BC/material25 condition generation from raw solver input"
+    ],
+    "partial_cold": false,
+    "raw_CAD_end_to_end": false,
+    "training_and_GT_accuracy_costs_inherited_only_not_charged_to_service": true,
+    "fresh_physical_cold_measured_here": false,
+    "conservatively_charged_resume_gap_seconds": 0.0
+  },
+  "read_receipt": {
+    "zero_GT_reads": 0,
+    "displacement_target_reads": 0,
+    "stress_target_reads": 0,
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "old_final_reads": 0,
+    "sealed_new_test_reads": 0,
+    "DEV_dia_reads": 0,
+    "model_checkpoint_reads": 4,
+    "model_checkpoint_read_attempts": 4,
+    "model_checkpoint_read_completed": 4,
+    "prepared_archive_reads": 4,
+    "prepared_archive_read_attempts": 4,
+    "prepared_archive_read_completed": 4,
+    "prepared_member_reads": 20,
+    "prepared_member_read_attempts": {
+      "xyz": 4,
+      "features": 4,
+      "sample_key": 4,
+      "label_alignment": 4,
+      "faces": 4
+    },
+    "prepared_member_read_completed": {
+      "xyz": 4,
+      "features": 4,
+      "sample_key": 4,
+      "label_alignment": 4,
+      "faces": 4
+    },
+    "per_request": {
+      "fno:102_249/ver": {
+        "zero_GT_reads": 0,
+        "displacement_target_reads": 0,
+        "stress_target_reads": 0,
+        "training_updates": 0,
+        "scaler_fits": 0,
+        "old_final_reads": 0,
+        "sealed_new_test_reads": 0,
+        "DEV_dia_reads": 0,
+        "model_checkpoint_reads": 1,
+        "model_checkpoint_read_attempts": 1,
+        "model_checkpoint_read_completed": 1,
+        "prepared_archive_reads": 1,
+        "prepared_archive_read_attempts": 1,
+        "prepared_archive_read_completed": 1,
+        "prepared_member_reads": 5,
+        "prepared_member_read_attempts": {
+          "xyz": 1,
+          "features": 1,
+          "sample_key": 1,
+          "label_alignment": 1,
+          "faces": 1
+        },
+        "prepared_member_read_completed": {
+          "xyz": 1,
+          "features": 1,
+          "sample_key": 1,
+          "label_alignment": 1,
+          "faces": 1
+        }
+      },
+      "fno:102_38/ver": {
+        "zero_GT_reads": 0,
+        "displacement_target_reads": 0,
+        "stress_target_reads": 0,
+        "training_updates": 0,
+        "scaler_fits": 0,
+        "old_final_reads": 0,
+        "sealed_new_test_reads": 0,
+        "DEV_dia_reads": 0,
+        "model_checkpoint_reads": 1,
+        "model_checkpoint_read_attempts": 1,
+        "model_checkpoint_read_completed": 1,
+        "prepared_archive_reads": 1,
+        "prepared_archive_read_attempts": 1,
+        "prepared_archive_read_completed": 1,
+        "prepared_member_reads": 5,
+        "prepared_member_read_attempts": {
+          "xyz": 1,
+          "features": 1,
+          "sample_key": 1,
+          "label_alignment": 1,
+          "faces": 1
+        },
+        "prepared_member_read_completed": {
+          "xyz": 1,
+          "features": 1,
+          "sample_key": 1,
+          "label_alignment": 1,
+          "faces": 1
+        }
+      },
+      "mlp:102_249/ver": {
+        "zero_GT_reads": 0,
+        "displacement_target_reads": 0,
+        "stress_target_reads": 0,
+        "training_updates": 0,
+        "scaler_fits": 0,
+        "old_final_reads": 0,
+        "sealed_new_test_reads": 0,
+        "DEV_dia_reads": 0,
+        "model_checkpoint_reads": 1,
+        "model_checkpoint_read_attempts": 1,
+        "model_checkpoint_read_completed": 1,
+        "prepared_archive_reads": 1,
+        "prepared_archive_read_attempts": 1,
+        "prepared_archive_read_completed": 1,
+        "prepared_member_reads": 5,
+        "prepared_member_read_attempts": {
+          "xyz": 1,
+          "features": 1,
+          "sample_key": 1,
+          "label_alignment": 1,
+          "faces": 1
+        },
+        "prepared_member_read_completed": {
+          "xyz": 1,
+          "features": 1,
+          "sample_key": 1,
+          "label_alignment": 1,
+          "faces": 1
+        }
+      },
+      "mlp:102_38/ver": {
+        "zero_GT_reads": 0,
+        "displacement_target_reads": 0,
+        "stress_target_reads": 0,
+        "training_updates": 0,
+        "scaler_fits": 0,
+        "old_final_reads": 0,
+        "sealed_new_test_reads": 0,
+        "DEV_dia_reads": 0,
+        "model_checkpoint_reads": 1,
+        "model_checkpoint_read_attempts": 1,
+        "model_checkpoint_read_completed": 1,
+        "prepared_archive_reads": 1,
+        "prepared_archive_read_attempts": 1,
+        "prepared_archive_read_completed": 1,
+        "prepared_member_reads": 5,
+        "prepared_member_read_attempts": {
+          "xyz": 1,
+          "features": 1,
+          "sample_key": 1,
+          "label_alignment": 1,
+          "faces": 1
+        },
+        "prepared_member_read_completed": {
+          "xyz": 1,
+          "features": 1,
+          "sample_key": 1,
+          "label_alignment": 1,
+          "faces": 1
+        }
+      }
+    }
+  }
+}
