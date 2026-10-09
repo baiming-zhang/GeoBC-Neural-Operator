@@ -805,6 +805,82 @@
         "tools/prepare_graph_context.py": "a445c202a01956604254a7410c3e0d96aea7318073e1855ce79582fc4fdedf0a"
       },
       "selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2"
+    },
+    "displacement_hash_full12_10k": {
+      "best_step": 9000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_hash_full12_10k/best.pt",
+          "bytes": 94235116,
+          "mtime_ns": 1791539742562732200
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_hash_full12_10k/last.pt",
+          "bytes": 94258540,
+          "mtime_ns": 1791539766859721000
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+        "physics_train.py": "3105cacc364b65950eec2b1901376c8b9f8b1edae1019fbfadcc9662339c8b16",
+        "physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+        "train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7",
+        "gradient_train.py": "a27c3845507b60b86b7792a5f1cdcec184f969b26edc83d454665ce5e54eb393",
+        "gradient_supervision.py": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389",
+        "gradient_balance_train.py": "b45b5734c91e5112b83da511d90a2c11b065b5ec2099d24b8a3b432efa25265a",
+        "bc_role_train.py": "9f7ca1b12c2358be6a936ff1dc0c99eb51a82f550d2d584dd0cbb39b4f2b3186",
+        "bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+        "bc_role_condition.py": "a9adee5a0fcbf7f408a4199ca1b4a87d676a43d56f4b18c1a91ff02cc6a3a232",
+        "query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+        "query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+        "graph_context_train.py": "52c7f6cc53a7f46fcb250d2815b092d472f94fe411cf68f66ea04560db26e35f",
+        "graph_context_field.py": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+        "hash_bandwidth_train.py": "c7b4c3c37bb2060d865c6d308d8c7d33a3d2fee311d20df01c5350e891b6f85e",
+        "hash_bandwidth_field.py": "cc57127c700b968d81ebc8c31622bdc74d487645a6ec601c7ebed42e144cae6d",
+        "tools/prepare_graph_context.py": "a445c202a01956604254a7410c3e0d96aea7318073e1855ce79582fc4fdedf0a"
+      },
+      "selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2"
+    },
+    "displacement_hash_coarse8_10k": {
+      "best_step": 9000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_hash_coarse8_10k/best.pt",
+          "bytes": 94235180,
+          "mtime_ns": 1791540037877555400
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_hash_coarse8_10k/last.pt",
+          "bytes": 94258604,
+          "mtime_ns": 1791540062299580900
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+        "physics_train.py": "3105cacc364b65950eec2b1901376c8b9f8b1edae1019fbfadcc9662339c8b16",
+        "physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+        "train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7",
+        "gradient_train.py": "a27c3845507b60b86b7792a5f1cdcec184f969b26edc83d454665ce5e54eb393",
+        "gradient_supervision.py": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389",
+        "gradient_balance_train.py": "b45b5734c91e5112b83da511d90a2c11b065b5ec2099d24b8a3b432efa25265a",
+        "bc_role_train.py": "9f7ca1b12c2358be6a936ff1dc0c99eb51a82f550d2d584dd0cbb39b4f2b3186",
+        "bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+        "bc_role_condition.py": "a9adee5a0fcbf7f408a4199ca1b4a87d676a43d56f4b18c1a91ff02cc6a3a232",
+        "query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+        "query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+        "graph_context_train.py": "52c7f6cc53a7f46fcb250d2815b092d472f94fe411cf68f66ea04560db26e35f",
+        "graph_context_field.py": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+        "hash_bandwidth_train.py": "c7b4c3c37bb2060d865c6d308d8c7d33a3d2fee311d20df01c5350e891b6f85e",
+        "hash_bandwidth_field.py": "cc57127c700b968d81ebc8c31622bdc74d487645a6ec601c7ebed42e144cae6d",
+        "tools/prepare_graph_context.py": "a445c202a01956604254a7410c3e0d96aea7318073e1855ce79582fc4fdedf0a"
+      },
+      "selection": "minimum validation15-case mean all-original-node physical displacement vector relativeL2"
     }
   }
 }

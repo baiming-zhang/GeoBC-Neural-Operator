@@ -194,9 +194,18 @@
 去除仿射误差后，保留的全节点P1误差能量为原来的100.86%／101.03%；仿射能量／原始能量为0.74%／1.03%，有符号两倍交叉项／原始能量为-1.60%／-2.06%。这些项包含交叉作用，不能当作互相独立的因果贡献。
 预先声明的非仿射保留标记达到，小单元集中标记未达到；后者只描述最小输入h四分位中的体积加权cell误差集中，与全节点能量不能混加。它不证明Hash频率振荡、全体验证瓶颈或新的精度收益。P1仍是角节点恢复代理，不是solver应变GT。正式结果见notes/geobc_error_gradient_result.json。
 
+## 固定Hash空间层数的匹配对照
+
+完整12层与只保留前8层共用Euclidean43、query32、global32、训练正常器、损失、初始化和预算。两侧均计算完整12层Encoding，后者把最后8个特征乘零；采用新分离Encoding/Network布局，历史模型不作匹配基线。存储参数数相同，但有效空间容量和梯度路径不同。
+开发验证位移均值22.233% → 19.967%，最差41.293% → 34.394%；同一位移选模检查点的P1代理均值626.229% → 165.966%。选择步9000／9000，两组耗时8.6分钟。
+训练位移均值12.364% → 9.629%，训练P1均值156.908% → 120.585%。匹配检查通过，四项预定综合标准未通过；没有调整门槛。
+这是单种子的开发验证和表示效用对照，不能单独识别频率原因，也不保证场带限或加速。P1为位移导出的代理，最终测试和dia未用于本组。完整分析见notes/geobc_hash_bandwidth_pair_result.json。
+
+![完整12层和前8层的位移与P1验证结果](hash_bandwidth_comparison.png)
+
 ## 主计划中的下一阶段
 
-当前计划阶段已完成，后续决策仍由主计划确定。 计划阶段：matched_fixed_hash_bandwidth。 设计：notes/geobc_hash_bandwidth_feasibility.json。 完成后：Assess unchanged displacement/P1 joint gate; no cutoff/loss/radius/width sweep or automatic follow-up seed。
+当前主计划：hash_condition_path_101_479（等待／排队）。 计划阶段：frozen_hash_condition_path_decomposition。 设计：notes/geobc_hash_condition_path_plan.json。 完成后：Parent selects one bounded evidence-driven nexttask; no automaticseed/channel/radius/loss sweep。
 
 ## 解释边界
 
@@ -204,4 +213,4 @@
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成38/38项，合成验收完成2/2项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成40/41项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

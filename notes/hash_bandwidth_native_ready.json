@@ -1,0 +1,73 @@
+{
+  "status": "ready",
+  "plan_sha256": "8fc4e3355c8892f143428383049e39fa6f0fe380968cbefd59bb3b3058e42f12",
+  "source_sha256": {
+    "geobc/hash_bandwidth_field.py": "cc57127c700b968d81ebc8c31622bdc74d487645a6ec601c7ebed42e144cae6d",
+    "tools/validate_hash_bandwidth_native.py": "c71e668f529c0de27a39e42d240630196b36a280dd15adc1b501d586a8bcf5fa",
+    "geobc/graph_context_field.py": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+    "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+    "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+    "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12"
+  },
+  "summary": "runs/geobc_exploration/hash_bandwidth_native_smoke/summary.json",
+  "summary_sha256": "a8b1576ae52b9f5492909c1df9003f52aa237d0353178acc86ef59e657e38ca3",
+  "native_layout": {
+    "full12": {
+      "encoding_public_input_dims": 3,
+      "encoding_public_output_dims": 24,
+      "encoding_native_output_dims": 24,
+      "network_public_input_dims": 144,
+      "network_native_input_dims": 144,
+      "network_public_output_dims": 9,
+      "network_native_padded_output_dims": 16,
+      "Identity_conditions": 107,
+      "nominal_encoded_channels": 131,
+      "explicit_one_padding_channels": 13,
+      "encoding_parameters": 7733632,
+      "network_parameters": 36864,
+      "native_total_parameters": 7770496,
+      "public_parameter_buffers": [
+        "encoding.params",
+        "network.params"
+      ],
+      "master_dtype": "torch.float32",
+      "compute_dtype": "torch.float16",
+      "flat_buffer_offsets_inferred": false,
+      "new_learned_head_parameters": 0,
+      "full_model_parameters": 7789376
+    },
+    "coarse8": {
+      "encoding_public_input_dims": 3,
+      "encoding_public_output_dims": 24,
+      "encoding_native_output_dims": 24,
+      "network_public_input_dims": 144,
+      "network_native_input_dims": 144,
+      "network_public_output_dims": 9,
+      "network_native_padded_output_dims": 16,
+      "Identity_conditions": 107,
+      "nominal_encoded_channels": 131,
+      "explicit_one_padding_channels": 13,
+      "encoding_parameters": 7733632,
+      "network_parameters": 36864,
+      "native_total_parameters": 7770496,
+      "public_parameter_buffers": [
+        "encoding.params",
+        "network.params"
+      ],
+      "master_dtype": "torch.float32",
+      "compute_dtype": "torch.float16",
+      "flat_buffer_offsets_inferred": false,
+      "new_learned_head_parameters": 0,
+      "full_model_parameters": 7789376
+    }
+  },
+  "paired_trainable_init_exact": true,
+  "mask_buffer_difference_declared": true,
+  "public_native_encoder_query_and_inactive_activation_gradients_passed": true,
+  "GT_fields_read": 0,
+  "optimizer_updates": 0
+}

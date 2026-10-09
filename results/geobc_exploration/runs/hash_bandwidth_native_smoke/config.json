@@ -1,0 +1,58 @@
+{
+  "contract": {
+    "version": 1,
+    "plan": {
+      "path": "notes/geobc_hash_bandwidth_plan.json",
+      "sha256": "8fc4e3355c8892f143428383049e39fa6f0fe380968cbefd59bb3b3058e42f12"
+    },
+    "sources_sha256": {
+      "geobc/hash_bandwidth_field.py": "cc57127c700b968d81ebc8c31622bdc74d487645a6ec601c7ebed42e144cae6d",
+      "tools/validate_hash_bandwidth_native.py": "c71e668f529c0de27a39e42d240630196b36a280dd15adc1b501d586a8bcf5fa",
+      "geobc/graph_context_field.py": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+      "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+      "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+      "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+      "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+      "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+      "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12"
+    },
+    "seed": 2026,
+    "modes": [
+      "full12",
+      "coarse8"
+    ],
+    "distance_mode": "euclidean",
+    "native_counts_expected": {
+      "encoding": 7733632,
+      "network": 36864,
+      "PointNet": 16800,
+      "query_projection": 2080,
+      "total_native": 7770496,
+      "total_model": 7789376
+    },
+    "rows": 512,
+    "synthetic_CADs": 2,
+    "cloud_points": 1024,
+    "query_chunk": 4096,
+    "native_encoding_input_output": [
+      3,
+      24
+    ],
+    "native_network_input_output": [
+      144,
+      9
+    ],
+    "network_native_output_padding_source_derived": 16,
+    "explicit_one_padding_channels": 13,
+    "parameter_equality_scope": "all named trainable parameters; fixed feature_mask buffer differs",
+    "dataset_files_opened": 0,
+    "checkpoint_files_opened": 0,
+    "GT_fields_read": 0,
+    "backwards": 2,
+    "optimizer_updates": 0,
+    "scope": "synthetic API/gradient acceptance only"
+  },
+  "optimizer": null,
+  "precision": "FP32/highTF32 PointNet/query; nativeFP16/FP32master; first-order parameter backward"
+}

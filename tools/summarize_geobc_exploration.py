@@ -396,6 +396,19 @@ def main():
                   f"欧氏／网格路径模型的位移参考RMS为{de['u']['reference_RMS']:.6g}／{dg['u']['reference_RMS']:.6g}mm；原始／仿射／残余误差RMS分别为{de['u']['raw_error_RMS']:.6g}／{de['u']['affine_error_RMS']:.6g}／{de['u']['residual_error_RMS']:.6g}mm与{dg['u']['raw_error_RMS']:.6g}／{dg['u']['affine_error_RMS']:.6g}／{dg['u']['residual_error_RMS']:.6g}mm。全节点P1参考Frobenius RMS为{ep['reference_RMS']:.6g}／{gp['reference_RMS']:.6g}，原始误差RMS为{ep['raw_error_RMS']:.6g}／{gp['raw_error_RMS']:.6g}（均无量纲）。",
                   f"去除仿射误差后，保留的全节点P1误差能量为原来的{100*ep['residual_over_raw_error_energy']:.2f}%／{100*gp['residual_over_raw_error_energy']:.2f}%；仿射能量／原始能量为{energy_share(ep,'affine_error_energy'):.2f}%／{energy_share(gp,'affine_error_energy'):.2f}%，有符号两倍交叉项／原始能量为{energy_share(ep,'signed_two_affine_residual_cross'):+.2f}%／{energy_share(gp,'signed_two_affine_residual_cross'):+.2f}%。这些项包含交叉作用，不能当作互相独立的因果贡献。",
                   f"预先声明的非仿射保留标记{'达到' if error_gradient['readout']['non_affine_dominance_flag'] else '未达到'}，小单元集中标记{'达到' if error_gradient['readout']['small_cell_concentration_flag'] else '未达到'}；后者只描述最小输入h四分位中的体积加权cell误差集中，与全节点能量不能混加。它不证明Hash频率振荡、全体验证瓶颈或新的精度收益。P1仍是角节点恢复代理，不是solver应变GT。正式结果见notes/geobc_error_gradient_result.json。"]
+    bandwidth_result_path=ROOT/'notes/geobc_hash_bandwidth_pair_result.json'
+    bandwidth_result=json.loads(bandwidth_result_path.read_text()) if bandwidth_result_path.is_file() else None
+    if bandwidth_result and not (bandwidth_result.get('status')=='completed' and bandwidth_result.get('matched_controls_passed') and bandwidth_result.get('pair_controls_passed')):
+        bandwidth_result=None
+    if bandwidth_result:
+        bf=bandwidth_result['runs']['full12'];bc=bandwidth_result['runs']['coarse8']
+        lines += ['', '## 固定Hash空间层数的匹配对照','',
+                  '完整12层与只保留前8层共用Euclidean43、query32、global32、训练正常器、损失、初始化和预算。两侧均计算完整12层Encoding，后者把最后8个特征乘零；采用新分离Encoding/Network布局，历史模型不作匹配基线。存储参数数相同，但有效空间容量和梯度路径不同。',
+                  f"开发验证位移均值{percent(bf['validation_u_mean_relative_l2'])} → {percent(bc['validation_u_mean_relative_l2'])}，最差{percent(bf['validation_u_worst_relative_l2'])} → {percent(bc['validation_u_worst_relative_l2'])}；同一位移选模检查点的P1代理均值{percent(bf['validation_P1_mean_relative_l2'])} → {percent(bc['validation_P1_mean_relative_l2'])}。选择步{bf['best_step']}／{bc['best_step']}，两组耗时{(bf['elapsed_seconds']+bc['elapsed_seconds'])/60:.1f}分钟。",
+                  f"训练位移均值{percent(bf['train_u_mean_relative_l2'])} → {percent(bc['train_u_mean_relative_l2'])}，训练P1均值{percent(bf['train_P1_mean_relative_l2'])} → {percent(bc['train_P1_mean_relative_l2'])}。匹配检查通过，四项预定综合标准{'通过' if bandwidth_result['clear_gain_gate_passed'] else '未通过'}；没有调整门槛。",
+                  '这是单种子的开发验证和表示效用对照，不能单独识别频率原因，也不保证场带限或加速。P1为位移导出的代理，最终测试和dia未用于本组。完整分析见notes/geobc_hash_bandwidth_pair_result.json。']
+        if (dest/'hash_bandwidth_comparison.png').is_file():
+            lines += ['', '![完整12层和前8层的位移与P1验证结果](hash_bandwidth_comparison.png)']
     lines += ['', '## 主计划中的下一阶段','',next_text]
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
@@ -410,7 +423,10 @@ def main():
         brief += [f"- **已有能力：**一个训练CAD的位移／P1应变代理误差{100*f['case_mean_relative_l2']:.2f}%／{100*f['strain']['case_mean_relative_l2']:.1f}%。这是专用拟合，不能代表泛化。"]
     else:
         brief += ['- **已有能力：**难例单独训练的应力误差约0.1%；共享预测新几何仍很差。']
-    if graph_result:
+    if bandwidth_result:
+        brief += [f"- **最新进展：**完整12层／前8层Hash的验证位移{100*bf['validation_u_mean_relative_l2']:.2f}% → {100*bc['validation_u_mean_relative_l2']:.2f}%，P1代理{100*bf['validation_P1_mean_relative_l2']:.1f}% → {100*bc['validation_P1_mean_relative_l2']:.1f}%；两组耗时{(bf['elapsed_seconds']+bc['elapsed_seconds'])/60:.1f}分钟。",
+                  f"- **判断：**最差位移{100*bf['validation_u_worst_relative_l2']:.1f}% → {100*bc['validation_u_worst_relative_l2']:.1f}%，预定综合标准{'通过' if bandwidth_result['clear_gain_gate_passed'] else '未通过'}。两组存储容量相同、有效容量不同；这项对比不单独证明频率原因，跨几何可靠性仍需后续证据。"]
+    elif graph_result:
         e=graph_result['runs']['euclidean'];g=graph_result['runs']['graph']
         brief += [f"- **最新进展：**同边界欧氏／网格路径距离的验证位移{100*e['validation_u_mean_relative_l2']:.2f}% → {100*g['validation_u_mean_relative_l2']:.2f}%，{'达到' if graph_result['clear_gain_gate_passed'] else '未达到'}预定综合门槛；两组计算共{(e['elapsed_seconds']+g['elapsed_seconds'])/60:.1f}分钟。",
                   f"- **当前瓶颈：**网格路径模型的P1应变代理误差{100*g['validation_P1_mean_relative_l2']:.0f}%，最差位移{100*g['validation_u_worst_relative_l2']:.1f}%。这是一个种子的开发验证；距离表示的帮助须结合全项门槛判断，尚未使用最终测试。"]
@@ -430,8 +446,17 @@ def main():
     else:
         brief += ['- **当前瓶颈：**共享模型的位移验证约24%，P1代理仍约584%。',
                   '- **当前证据：**科学结果以已完成配对分析为准，阶段状态见主计划；合成接口验收没有泛化指标。']
-    if graph_native:
-        brief += ['',f"本轮两组共用的距离缓存已准备；native接口验收已通过（{graph_native['elapsed_seconds']:.2f}s、零参数更新），训练结果仍须独立判断。"]
+    if plan['stage']=='matched_fixed_hash_bandwidth':
+        bandwidth_native_path=ROOT/'notes/hash_bandwidth_native_ready.json'
+        if bandwidth_native_path.is_file():
+            bandwidth_native=json.loads(bandwidth_native_path.read_text())
+            brief += ['', '本组Hash层数对照的合成接口记录已生成；模型表现以完成的配对训练分析为准。']
+        else:
+            brief += ['', '本组Hash层数对照正在准备模型与训练入口，合成接口尚未验收；已有距离缓存直接复用。']
+    elif bandwidth_result:
+        pass  # Completed training analysis already establishes this pair's scope.
+    elif graph_native:
+        brief += ['',f"上一组距离对照的native接口验收已通过（{graph_native['elapsed_seconds']:.2f}s、零参数更新），只证明接口可用。"]
     elif native:
         brief += ['',f"新native合成验收{'已通过' if native_passed else '未通过'}（{native['elapsed_seconds']:.2f}s、零参数更新），不代表物理表现。"]
     brief += ['',f'下一步（来自主计划）：{brief_next_text} 最终测试继续保留。',
@@ -452,6 +477,7 @@ def main():
                                    'hash_modulation_use_analysis':str(hash_use_path.relative_to(ROOT)) if hash_use else None,
                                    'graph_context_pair_analysis':str(graph_result_path.relative_to(ROOT)) if graph_result else None,
                                    'error_gradient_analysis':str(error_gradient_path.relative_to(ROOT)) if error_gradient else None,
+                                   'hash_bandwidth_pair_analysis':str(bandwidth_result_path.relative_to(ROOT)) if bandwidth_result else None,
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',
                                    'updated_at_utc':utc_now()})
     if geo and load and comparisons:

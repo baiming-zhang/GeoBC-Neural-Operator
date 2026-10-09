@@ -1,0 +1,1434 @@
+{
+  "status": "completed",
+  "config": {
+    "contract": {
+      "version": 1,
+      "plan": {
+        "path": "notes/geobc_hash_bandwidth_plan.json",
+        "sha256": "8fc4e3355c8892f143428383049e39fa6f0fe380968cbefd59bb3b3058e42f12"
+      },
+      "sources_sha256": {
+        "geobc/hash_bandwidth_field.py": "cc57127c700b968d81ebc8c31622bdc74d487645a6ec601c7ebed42e144cae6d",
+        "tools/validate_hash_bandwidth_native.py": "c71e668f529c0de27a39e42d240630196b36a280dd15adc1b501d586a8bcf5fa",
+        "geobc/graph_context_field.py": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+        "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+        "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+        "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+        "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12"
+      },
+      "seed": 2026,
+      "modes": [
+        "full12",
+        "coarse8"
+      ],
+      "distance_mode": "euclidean",
+      "native_counts_expected": {
+        "encoding": 7733632,
+        "network": 36864,
+        "PointNet": 16800,
+        "query_projection": 2080,
+        "total_native": 7770496,
+        "total_model": 7789376
+      },
+      "rows": 512,
+      "synthetic_CADs": 2,
+      "cloud_points": 1024,
+      "query_chunk": 4096,
+      "native_encoding_input_output": [
+        3,
+        24
+      ],
+      "native_network_input_output": [
+        144,
+        9
+      ],
+      "network_native_output_padding_source_derived": 16,
+      "explicit_one_padding_channels": 13,
+      "parameter_equality_scope": "all named trainable parameters; fixed feature_mask buffer differs",
+      "dataset_files_opened": 0,
+      "checkpoint_files_opened": 0,
+      "GT_fields_read": 0,
+      "backwards": 2,
+      "optimizer_updates": 0,
+      "scope": "synthetic API/gradient acceptance only"
+    },
+    "optimizer": null,
+    "precision": "FP32/highTF32 PointNet/query; nativeFP16/FP32master; first-order parameter backward"
+  },
+  "source_sha256": {
+    "geobc/hash_bandwidth_field.py": "cc57127c700b968d81ebc8c31622bdc74d487645a6ec601c7ebed42e144cae6d",
+    "tools/validate_hash_bandwidth_native.py": "c71e668f529c0de27a39e42d240630196b36a280dd15adc1b501d586a8bcf5fa",
+    "geobc/graph_context_field.py": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+    "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+    "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+    "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12"
+  },
+  "paired_named_trainable_initial_exact_equal": true,
+  "initial_parameters": {
+    "full12": {
+      "complete_named_trainable_sha256": "67977df97f1b6df030df722458a0402e0ea2fd1133d953e4434ee338e8537879",
+      "parameters": {
+        "field.encoder.point_mlp.0.weight": {
+          "shape": [
+            32,
+            5
+          ],
+          "dtype": "torch.float32",
+          "numel": 160,
+          "sha256": "5df07895395a26725cce01788a6741e7c52a43ca006e63cd88204ade30779260"
+        },
+        "field.encoder.point_mlp.0.bias": {
+          "shape": [
+            32
+          ],
+          "dtype": "torch.float32",
+          "numel": 32,
+          "sha256": "a3543d94136cb8e905c6ba96a8e08a5d3219fd2c8c5d6d75add9c4c827b965bc"
+        },
+        "field.encoder.point_mlp.2.weight": {
+          "shape": [
+            64,
+            32
+          ],
+          "dtype": "torch.float32",
+          "numel": 2048,
+          "sha256": "737dd1b0d100ba01ee244c83635ebbf9437e9e16af9e7edd9c043d429514b023"
+        },
+        "field.encoder.point_mlp.2.bias": {
+          "shape": [
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 64,
+          "sha256": "14932545518e89eddbb3fb9e1c6278f56115b00966f03741fd115dd5fabd49e9"
+        },
+        "field.encoder.point_mlp.4.weight": {
+          "shape": [
+            64,
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 4096,
+          "sha256": "d8b321eb1288bb861047358deb4e31dec99820ae27e107cda2375909dd3d53e6"
+        },
+        "field.encoder.point_mlp.4.bias": {
+          "shape": [
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 64,
+          "sha256": "3435e06ec5d01176952ff14eb675e909c3cdc59333827a50cec3ceaf9d06d5ca"
+        },
+        "field.encoder.head.0.weight": {
+          "shape": [
+            64,
+            128
+          ],
+          "dtype": "torch.float32",
+          "numel": 8192,
+          "sha256": "5578aa120cfc9868382777107bb2bd5470b188b845eb7b40d8b7ae99f1ef57c1"
+        },
+        "field.encoder.head.0.bias": {
+          "shape": [
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 64,
+          "sha256": "482574aa9eeb38f8340de9c40f6219a7e7cc10807e6ba6224caafb95c16d0306"
+        },
+        "field.encoder.head.2.weight": {
+          "shape": [
+            32,
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 2048,
+          "sha256": "fe8fa7aec19611ba34a79d6cc8bd01447db3d52fb6fd76795c33c329d6cdd27b"
+        },
+        "field.encoder.head.2.bias": {
+          "shape": [
+            32
+          ],
+          "dtype": "torch.float32",
+          "numel": 32,
+          "sha256": "db46765715b520724d6f86228d9722bb76c1248b45d5f4e3343053ee70510f88"
+        },
+        "field.query_projection.weight": {
+          "shape": [
+            32,
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 2048,
+          "sha256": "4905bfe419d9fdd0a413608c60a66fba2edfbc3c877d83cec9a30d9e9e96e6b4"
+        },
+        "field.query_projection.bias": {
+          "shape": [
+            32
+          ],
+          "dtype": "torch.float32",
+          "numel": 32,
+          "sha256": "ec2eecad049e1dd905c024b82b2926d35b9867ceaf43fcfdc24606c980198064"
+        },
+        "field.decoder.encoding.params": {
+          "shape": [
+            7733632
+          ],
+          "dtype": "torch.float32",
+          "numel": 7733632,
+          "sha256": "99c501eebed7c758580dc60ebbda294ce0fec6736ae3ea3f6e608826926acf1b"
+        },
+        "field.decoder.network.params": {
+          "shape": [
+            36864
+          ],
+          "dtype": "torch.float32",
+          "numel": 36864,
+          "sha256": "ad4b4adddd2f0e01a9624df5b1c1fccbde02c946be976f7b13bc6a088f1422f4"
+        }
+      },
+      "total_parameters": 7789376
+    },
+    "coarse8": {
+      "complete_named_trainable_sha256": "67977df97f1b6df030df722458a0402e0ea2fd1133d953e4434ee338e8537879",
+      "parameters": {
+        "field.encoder.point_mlp.0.weight": {
+          "shape": [
+            32,
+            5
+          ],
+          "dtype": "torch.float32",
+          "numel": 160,
+          "sha256": "5df07895395a26725cce01788a6741e7c52a43ca006e63cd88204ade30779260"
+        },
+        "field.encoder.point_mlp.0.bias": {
+          "shape": [
+            32
+          ],
+          "dtype": "torch.float32",
+          "numel": 32,
+          "sha256": "a3543d94136cb8e905c6ba96a8e08a5d3219fd2c8c5d6d75add9c4c827b965bc"
+        },
+        "field.encoder.point_mlp.2.weight": {
+          "shape": [
+            64,
+            32
+          ],
+          "dtype": "torch.float32",
+          "numel": 2048,
+          "sha256": "737dd1b0d100ba01ee244c83635ebbf9437e9e16af9e7edd9c043d429514b023"
+        },
+        "field.encoder.point_mlp.2.bias": {
+          "shape": [
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 64,
+          "sha256": "14932545518e89eddbb3fb9e1c6278f56115b00966f03741fd115dd5fabd49e9"
+        },
+        "field.encoder.point_mlp.4.weight": {
+          "shape": [
+            64,
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 4096,
+          "sha256": "d8b321eb1288bb861047358deb4e31dec99820ae27e107cda2375909dd3d53e6"
+        },
+        "field.encoder.point_mlp.4.bias": {
+          "shape": [
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 64,
+          "sha256": "3435e06ec5d01176952ff14eb675e909c3cdc59333827a50cec3ceaf9d06d5ca"
+        },
+        "field.encoder.head.0.weight": {
+          "shape": [
+            64,
+            128
+          ],
+          "dtype": "torch.float32",
+          "numel": 8192,
+          "sha256": "5578aa120cfc9868382777107bb2bd5470b188b845eb7b40d8b7ae99f1ef57c1"
+        },
+        "field.encoder.head.0.bias": {
+          "shape": [
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 64,
+          "sha256": "482574aa9eeb38f8340de9c40f6219a7e7cc10807e6ba6224caafb95c16d0306"
+        },
+        "field.encoder.head.2.weight": {
+          "shape": [
+            32,
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 2048,
+          "sha256": "fe8fa7aec19611ba34a79d6cc8bd01447db3d52fb6fd76795c33c329d6cdd27b"
+        },
+        "field.encoder.head.2.bias": {
+          "shape": [
+            32
+          ],
+          "dtype": "torch.float32",
+          "numel": 32,
+          "sha256": "db46765715b520724d6f86228d9722bb76c1248b45d5f4e3343053ee70510f88"
+        },
+        "field.query_projection.weight": {
+          "shape": [
+            32,
+            64
+          ],
+          "dtype": "torch.float32",
+          "numel": 2048,
+          "sha256": "4905bfe419d9fdd0a413608c60a66fba2edfbc3c877d83cec9a30d9e9e96e6b4"
+        },
+        "field.query_projection.bias": {
+          "shape": [
+            32
+          ],
+          "dtype": "torch.float32",
+          "numel": 32,
+          "sha256": "ec2eecad049e1dd905c024b82b2926d35b9867ceaf43fcfdc24606c980198064"
+        },
+        "field.decoder.encoding.params": {
+          "shape": [
+            7733632
+          ],
+          "dtype": "torch.float32",
+          "numel": 7733632,
+          "sha256": "99c501eebed7c758580dc60ebbda294ce0fec6736ae3ea3f6e608826926acf1b"
+        },
+        "field.decoder.network.params": {
+          "shape": [
+            36864
+          ],
+          "dtype": "torch.float32",
+          "numel": 36864,
+          "sha256": "ad4b4adddd2f0e01a9624df5b1c1fccbde02c946be976f7b13bc6a088f1422f4"
+        }
+      },
+      "total_parameters": 7789376
+    }
+  },
+  "nonlearned_mask_buffers": {
+    "full12": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "coarse8": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "nonlearned_mask_buffers_equal": false,
+  "natural_step0_prediction_exact_equal_observed": false,
+  "natural_step0_prediction_equality_required": false,
+  "shared_synthetic_input_sha256": {
+    "cloud": "96d9477bfedaccf91acd698ad39e699a5f4e1fadb19228924eb32f18310f9093",
+    "mask": "55d6b8a6f33ecccf7dc6be3607848c74c1cf374058babb92179726c5fbb7da23",
+    "xyz": "824c13cf5cd45d98e3e36084a9badbb66cf4d9ba72d3977f49117e029bf44577",
+    "features": "f00140280101ce9eb969c3ab65d89581eb409075f1cb51ceb153a8996b5e45b0",
+    "alpha": "8efc0f3bea78c92a0a5b6db9c1a8d5f9be2b22f69e7cbde5ba9ed2c6a5288537",
+    "cad_index": "0cbc0e71412afb2a097f93179ef213631f12d1d9520288f2d09c0a3b8ef2d24b"
+  },
+  "native_checks": {
+    "full12": {
+      "layout": {
+        "encoding_public_input_dims": 3,
+        "encoding_public_output_dims": 24,
+        "encoding_native_output_dims": 24,
+        "network_public_input_dims": 144,
+        "network_native_input_dims": 144,
+        "network_public_output_dims": 9,
+        "network_native_padded_output_dims": 16,
+        "Identity_conditions": 107,
+        "nominal_encoded_channels": 131,
+        "explicit_one_padding_channels": 13,
+        "encoding_parameters": 7733632,
+        "network_parameters": 36864,
+        "native_total_parameters": 7770496,
+        "public_parameter_buffers": [
+          "encoding.params",
+          "network.params"
+        ],
+        "master_dtype": "torch.float32",
+        "compute_dtype": "torch.float16",
+        "flat_buffer_offsets_inferred": false,
+        "new_learned_head_parameters": 0,
+        "full_model_parameters": 7789376
+      },
+      "source_config": {
+        "mode": "linear_basis",
+        "geometry_mode": "shape",
+        "condition_dim": 43,
+        "descriptor_dim": 32,
+        "hidden_dim": 128,
+        "hidden_layers": 2,
+        "cloud_points": 1024,
+        "seed": 2026,
+        "bc_role_mode": "actual",
+        "query_mode": "actual",
+        "query_dim": 32,
+        "sigma": 0.15,
+        "query_chunk": 4096,
+        "distance_mode": "euclidean",
+        "hash_bandwidth_mode": "full12",
+        "method": "GeoBC fixed hash bandwidth/capacity utility ablation",
+        "claim": "one matched full12/coarse8 utility comparison; no frequency-causality or generalization claim",
+        "conditioned_field": {
+          "geometry_mode": "shape",
+          "descriptor_dim": 32,
+          "condition_dim": 75,
+          "cloud_points": 1024,
+          "point_width": 64,
+          "out_channels": 9,
+          "seed": 2026,
+          "n_levels": 12,
+          "n_features_per_level": 2,
+          "log2_hashmap_size": 19,
+          "base_resolution": 8,
+          "per_level_scale": 1.6,
+          "hidden_dim": 128,
+          "hidden_layers": 2,
+          "method": "PointNet-conditioned continuous hash field",
+          "claim": "GeoBC candidate baseline; no new-algorithm or generalization claim",
+          "decoder": {
+            "implementation": "separate official Encoding/Network and nonlearned post-Encoding level mask",
+            "backend": "tcnn_split_encoding_network_hash_bandwidth",
+            "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+            "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+            "outer_interface_config": {
+              "out_channels": 9,
+              "input_mode": "both",
+              "condition_dim": 107,
+              "n_levels": 12,
+              "n_features_per_level": 2,
+              "log2_hashmap_size": 19,
+              "base_resolution": 8,
+              "per_level_scale": 1.6,
+              "hidden_dim": 128,
+              "hidden_layers": 2,
+              "seed": 2026
+            },
+            "outer_interface_only": true,
+            "encoding": {
+              "class": "tinycudann.Encoding",
+              "n_input_dims": 3,
+              "n_output_dims": 24,
+              "encoding_config": {
+                "otype": "HashGrid",
+                "n_levels": 12,
+                "n_features_per_level": 2,
+                "log2_hashmap_size": 19,
+                "base_resolution": 8,
+                "per_level_scale": 1.6,
+                "interpolation": "Linear",
+                "hash": "CoherentPrime"
+              },
+              "seed": 2026,
+              "parameters": 7733632,
+              "public_parameter": "encoding.params",
+              "compute_dtype": "torch.float16"
+            },
+            "network": {
+              "class": "tinycudann.Network",
+              "n_input_dims": 144,
+              "n_output_dims": 9,
+              "native_padded_output_dims_source_derived": 16,
+              "network_config": {
+                "otype": "FullyFusedMLP",
+                "activation": "ReLU",
+                "output_activation": "None",
+                "n_neurons": 128,
+                "n_hidden_layers": 2
+              },
+              "seed": 2026,
+              "parameters": 36864,
+              "public_parameter": "network.params",
+              "compute_dtype": "torch.float16"
+            },
+            "layout": "hash24(level-major) *mask24, Identity107 unchanged, explicit13 ones -> public Network144",
+            "mask": {
+              "mode": "full12",
+              "buffer": "feature_mask",
+              "learned": false,
+              "values": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "active_levels": 12
+            },
+            "master_dtype": "torch.float32",
+            "native_buffers": [
+              "encoding.params",
+              "network.params"
+            ],
+            "jit_fusion": false,
+            "learned_gate": false,
+            "LoD_used": false,
+            "new_learned_parameters": 0,
+            "raw_xyz_after_encoding": false,
+            "coordinate_derivatives": false,
+            "flat_buffer_offsets_inferred": false,
+            "native_layout_verified": true,
+            "initialization_limit": "same fresh split pair seeds/order; no equality to historical fused initialization assumed",
+            "performance_limit": "all12 hash levels computed; materialized24 activations and separate native calls",
+            "CPU_injection_limit": null
+          },
+          "encoder": {
+            "point_mlp": [
+              5,
+              32,
+              64,
+              64
+            ],
+            "pooling": "concatenated masked max and masked mean",
+            "head": [
+              128,
+              64,
+              32
+            ],
+            "activation": "ReLU",
+            "output": "non-affine LayerNorm then tanh, bounded [-1,1]",
+            "batch_norm": false,
+            "dropout": false,
+            "input_order": [
+              "x_normalized",
+              "y_normalized",
+              "z_normalized",
+              "support_union_original_DOF0_to5",
+              "load_member_original_feature6"
+            ],
+            "extra_parameters_vs_xyz_encoder": 64
+          },
+          "conditioning": "masked original25/local13/Euclidean5, actual query32, actual global32",
+          "geometry_source": "unchanged saved canonical actual-BC-role5 cloud; distance5 supplied only as external query inputs",
+          "geometry_sampling": "CAD-key/seed-stable sampling without replacement; masked padding for small clouds",
+          "geometry_target_independent": true,
+          "geometry_load_independent": true,
+          "context_gradient": "index_select/concatenate preserve gradients through native TCNN inputs",
+          "context_training_cache": "clouds only; re-encode once per unique CAD each optimizer step",
+          "control": "none/id retain the same decoder condition dimension and width as shape",
+          "id_policy": "fixed case identity codes for a diagnostic only; cannot encode unseen geometry",
+          "actual_decoder_backend": "tcnn_split_encoding_network_hash_bandwidth",
+          "decoder_parameters": 7770496,
+          "geometry_encoder_parameters": 16800,
+          "query_context": {
+            "mode": "actual",
+            "projection": [
+              64,
+              32
+            ],
+            "projection_parameters": 2080,
+            "sigma_normalized_xyz": 0.15,
+            "distance": "direct FP32 coordinate differences squared, no TF32 dot distance",
+            "weights": "masked softmax(-squared_distance/(2*sigma^2)); valid cloud weights sum1",
+            "pool_matmul_precision": "FP32 tensors; pooling follows the trainer's high/TF32 matmul setting",
+            "order": "point64 -> Linear64to32 -> Gaussian weighted pool -> non-affine LayerNorm32 -> tanh",
+            "linear_projection_before_pool": "equivalent to postpool linear in exact arithmetic because weights sum1",
+            "query_chunk": 4096,
+            "zero_control": "None; query32 remains actual in both bandwidth modes",
+            "coordinate_derivatives": false,
+            "point_features_reused_for_global_and_query": true,
+            "state_cache": "explicit geometry-context bundle per optimizer step, no data_ptr/implicit mutable lookup"
+          },
+          "query_projection_parameters": 2080
+        },
+        "output_channels": 9,
+        "basis_shape": "[N,3 reference loads,3 displacement components]",
+        "reference_load_order": [
+          "ver",
+          "hor",
+          "tor"
+        ],
+        "component_order": [
+          "ux",
+          "uy",
+          "uz"
+        ],
+        "flat_output_order": [
+          "ver_ux",
+          "ver_uy",
+          "ver_uz",
+          "hor_ux",
+          "hor_uy",
+          "hor_uz",
+          "tor_ux",
+          "tor_uy",
+          "tor_uz"
+        ],
+        "combination": "scaled_u[n,c] = sum_l alpha[n,l] * basis[n,l,c]",
+        "coefficient_source": "external target-independent reference-load metadata; no files parsed here",
+        "load_feature_policy": "zero original25 columns7:13",
+        "input_layout": "masked original25 +local13 +active Euclidean5 +actual query32 +actual global32 =107 conditions",
+        "scale_policy": "trainer directly reuses fixed TRAIN120 common u RMS, center0; no model scale fitting",
+        "physical_decode": "u_mm = common_u_scale_mm * scaled_u; no per-load bias or learned scale",
+        "stress_policy": "No stress output, training, scale fitting or linear stress combination in this module",
+        "linearity_scope": "linear_basis only, with identical geometry and nonload BC/material/local features; load_dependent_basis need not be load-linear",
+        "query_context": {
+          "mode": "actual",
+          "projection": [
+            64,
+            32
+          ],
+          "projection_parameters": 2080,
+          "sigma_normalized_xyz": 0.15,
+          "distance": "direct FP32 coordinate differences squared, no TF32 dot distance",
+          "weights": "masked softmax(-squared_distance/(2*sigma^2)); valid cloud weights sum1",
+          "pool_matmul_precision": "FP32 tensors; pooling follows the trainer's high/TF32 matmul setting",
+          "order": "point64 -> Linear64to32 -> Gaussian weighted pool -> non-affine LayerNorm32 -> tanh",
+          "linear_projection_before_pool": "equivalent to postpool linear in exact arithmetic because weights sum1",
+          "query_chunk": 4096,
+          "zero_control": "None; query32 remains actual in both bandwidth modes",
+          "coordinate_derivatives": false,
+          "point_features_reused_for_global_and_query": true,
+          "state_cache": "explicit geometry-context bundle per optimizer step, no data_ptr/implicit mutable lookup"
+        },
+        "native_condition_dim": 107,
+        "role_order": [
+          "support_union_original_DOF0_to5",
+          "load_member_original_feature6"
+        ],
+        "global_cloud_input_dimension": 5,
+        "geometry_target_independent": true,
+        "geometry_load_independent": true,
+        "hash_bandwidth": {
+          "mode": "full12",
+          "allocated_levels": 12,
+          "features_per_level": 2,
+          "active_levels": 12,
+          "encoded_width_both": 24,
+          "nonlearned_mask": "all24 ones",
+          "parameter_equality_scope": "complete named trainable parameters; mode-specific fixed mask buffer explicitly differs",
+          "natural_initial_prediction_equality_required": false,
+          "capacity_limit": "equal stored parameters, different effective usable spatial capacity and gradient paths",
+          "smoothness_limit": "continuous piecewise-linear grid interpolation; query/local/ReLU variation remains",
+          "performance_limit": "all12 encoding levels computed in both modes; no lookup speedup claimed",
+          "fresh_control": "both new split Encoding/Network constructions; no old fused checkpoint/control"
+        },
+        "capacity_cost": {
+          "PointNet_parameters": 16800,
+          "query_projection_parameters": 2080,
+          "encoding_parameters_source_derived": 7733632,
+          "network_parameters_source_derived": 36864,
+          "full_parameters_source_derived": 7789376,
+          "new_learned_head_parameters": 0,
+          "hash_channels": 24,
+          "Identity_condition_channels": 107,
+          "nominal_encoded_channels": 131,
+          "explicit_constant_one_channels": 13,
+          "public_Network_input_channels": 144,
+          "performance_limit": "public hash24 materialization and separate native call/autograd boundary"
+        },
+        "actual_decoder_backend": "tcnn_split_encoding_network_hash_bandwidth",
+        "encoder_parameters": 16800,
+        "decoder_parameters": 7770496,
+        "query_projection_parameters": 2080,
+        "query_context_dim": 32,
+        "native_identity_condition_dim": 107,
+        "query_context_bundle": "global_tensor/cloudxyz/mask/projected_tokens; explicit differentiable CAD slices",
+        "native_nominal_encoded_channels": 131,
+        "native_parameter_buffers": [
+          "field.decoder.encoding.params",
+          "field.decoder.network.params"
+        ],
+        "full_model_parameters": 7789376,
+        "native_layout": {
+          "encoding_public_input_dims": 3,
+          "encoding_public_output_dims": 24,
+          "encoding_native_output_dims": 24,
+          "network_public_input_dims": 144,
+          "network_native_input_dims": 144,
+          "network_public_output_dims": 9,
+          "network_native_padded_output_dims": 16,
+          "Identity_conditions": 107,
+          "nominal_encoded_channels": 131,
+          "explicit_one_padding_channels": 13,
+          "encoding_parameters": 7733632,
+          "network_parameters": 36864,
+          "native_total_parameters": 7770496,
+          "public_parameter_buffers": [
+            "encoding.params",
+            "network.params"
+          ],
+          "master_dtype": "torch.float32",
+          "compute_dtype": "torch.float16",
+          "flat_buffer_offsets_inferred": false,
+          "new_learned_head_parameters": 0,
+          "full_model_parameters": 7789376
+        },
+        "CPU_injection_limit": null,
+        "new_learned_head_parameters": 0,
+        "hash_modulation_enabled": false,
+        "initialization_policy": "complete named trainable parameters equal; only nonlearned feature_mask differs; natural initial outputs need not equal",
+        "decoder_implementation": {
+          "implementation": "separate official Encoding/Network and nonlearned post-Encoding level mask",
+          "backend": "tcnn_split_encoding_network_hash_bandwidth",
+          "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+          "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+          "outer_interface_config": {
+            "out_channels": 9,
+            "input_mode": "both",
+            "condition_dim": 107,
+            "n_levels": 12,
+            "n_features_per_level": 2,
+            "log2_hashmap_size": 19,
+            "base_resolution": 8,
+            "per_level_scale": 1.6,
+            "hidden_dim": 128,
+            "hidden_layers": 2,
+            "seed": 2026
+          },
+          "outer_interface_only": true,
+          "encoding": {
+            "class": "tinycudann.Encoding",
+            "n_input_dims": 3,
+            "n_output_dims": 24,
+            "encoding_config": {
+              "otype": "HashGrid",
+              "n_levels": 12,
+              "n_features_per_level": 2,
+              "log2_hashmap_size": 19,
+              "base_resolution": 8,
+              "per_level_scale": 1.6,
+              "interpolation": "Linear",
+              "hash": "CoherentPrime"
+            },
+            "seed": 2026,
+            "parameters": 7733632,
+            "public_parameter": "encoding.params",
+            "compute_dtype": "torch.float16"
+          },
+          "network": {
+            "class": "tinycudann.Network",
+            "n_input_dims": 144,
+            "n_output_dims": 9,
+            "native_padded_output_dims_source_derived": 16,
+            "network_config": {
+              "otype": "FullyFusedMLP",
+              "activation": "ReLU",
+              "output_activation": "None",
+              "n_neurons": 128,
+              "n_hidden_layers": 2
+            },
+            "seed": 2026,
+            "parameters": 36864,
+            "public_parameter": "network.params",
+            "compute_dtype": "torch.float16"
+          },
+          "layout": "hash24(level-major) *mask24, Identity107 unchanged, explicit13 ones -> public Network144",
+          "mask": {
+            "mode": "full12",
+            "buffer": "feature_mask",
+            "learned": false,
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "active_levels": 12
+          },
+          "master_dtype": "torch.float32",
+          "native_buffers": [
+            "encoding.params",
+            "network.params"
+          ],
+          "jit_fusion": false,
+          "learned_gate": false,
+          "LoD_used": false,
+          "new_learned_parameters": 0,
+          "raw_xyz_after_encoding": false,
+          "coordinate_derivatives": false,
+          "flat_buffer_offsets_inferred": false,
+          "native_layout_verified": true,
+          "initialization_limit": "same fresh split pair seeds/order; no equality to historical fused initialization assumed",
+          "performance_limit": "all12 hash levels computed; materialized24 activations and separate native calls",
+          "CPU_injection_limit": null
+        },
+        "native_encoding_parameters": 7733632,
+        "native_network_parameters": 36864,
+        "native_public_network_input_dim": 144,
+        "native_explicit_one_padding_channels": 13,
+        "native_public_encoding_input_dim": 3
+      },
+      "native_encoding_gradient": {
+        "parameter_tensors": 1,
+        "parameters": 7733632,
+        "present_finite": true,
+        "gradient_L1": 0.5489526987075806
+      },
+      "native_network_gradient": {
+        "parameter_tensors": 1,
+        "parameters": 36864,
+        "present_finite": true,
+        "gradient_L1": 181.2786694765091
+      },
+      "activation_gradient": {
+        "capture_point": "FP32 Encoding output BEFORE mask",
+        "shape": [
+          512,
+          24
+        ],
+        "active_first16_gradient_L1": 0.3606254658661783,
+        "fine_last8_gradient_L1": 0.21364139625802636,
+        "pre_mask_fine_last8_value_L1": 0.10255491733551025,
+        "post_mask_fine_last8_value_L1": 0.10255491733551025,
+        "coarse_fine_gradient_exact_zero": null,
+        "coarse_post_mask_value_exact_zero": null,
+        "all_present_and_finite": true,
+        "no_per_level_parameter_offsets": true
+      },
+      "query_gradient": {
+        "query_context_mode": "actual",
+        "query_projection_gradient_l1": 6.5616794518147525,
+        "projected_tokens_gradient_l1": 2.6602023168697277,
+        "query_projection_parameter_tensors": 2,
+        "query_projection_parameter_count": 2080,
+        "projected_tokens_shape": [
+          2,
+          1024,
+          32
+        ],
+        "projection_and_tokens_gradients_present_and_finite": true,
+        "expected_gradient": "nonzero",
+        "checked_after_backward_before_optimizer_step": true
+      },
+      "encoder_gradient": {
+        "applicable": true,
+        "encoder_gradient_l1": 26.230154737830162,
+        "context_gradient_l1_per_cad": [
+          0.20427727699279785,
+          0.19852182269096375
+        ],
+        "checked_after_backward_before_optimizer_step": true
+      },
+      "objective": -0.061721935868263245,
+      "force_slot_invariant": true
+    },
+    "coarse8": {
+      "layout": {
+        "encoding_public_input_dims": 3,
+        "encoding_public_output_dims": 24,
+        "encoding_native_output_dims": 24,
+        "network_public_input_dims": 144,
+        "network_native_input_dims": 144,
+        "network_public_output_dims": 9,
+        "network_native_padded_output_dims": 16,
+        "Identity_conditions": 107,
+        "nominal_encoded_channels": 131,
+        "explicit_one_padding_channels": 13,
+        "encoding_parameters": 7733632,
+        "network_parameters": 36864,
+        "native_total_parameters": 7770496,
+        "public_parameter_buffers": [
+          "encoding.params",
+          "network.params"
+        ],
+        "master_dtype": "torch.float32",
+        "compute_dtype": "torch.float16",
+        "flat_buffer_offsets_inferred": false,
+        "new_learned_head_parameters": 0,
+        "full_model_parameters": 7789376
+      },
+      "source_config": {
+        "mode": "linear_basis",
+        "geometry_mode": "shape",
+        "condition_dim": 43,
+        "descriptor_dim": 32,
+        "hidden_dim": 128,
+        "hidden_layers": 2,
+        "cloud_points": 1024,
+        "seed": 2026,
+        "bc_role_mode": "actual",
+        "query_mode": "actual",
+        "query_dim": 32,
+        "sigma": 0.15,
+        "query_chunk": 4096,
+        "distance_mode": "euclidean",
+        "hash_bandwidth_mode": "coarse8",
+        "method": "GeoBC fixed hash bandwidth/capacity utility ablation",
+        "claim": "one matched full12/coarse8 utility comparison; no frequency-causality or generalization claim",
+        "conditioned_field": {
+          "geometry_mode": "shape",
+          "descriptor_dim": 32,
+          "condition_dim": 75,
+          "cloud_points": 1024,
+          "point_width": 64,
+          "out_channels": 9,
+          "seed": 2026,
+          "n_levels": 12,
+          "n_features_per_level": 2,
+          "log2_hashmap_size": 19,
+          "base_resolution": 8,
+          "per_level_scale": 1.6,
+          "hidden_dim": 128,
+          "hidden_layers": 2,
+          "method": "PointNet-conditioned continuous hash field",
+          "claim": "GeoBC candidate baseline; no new-algorithm or generalization claim",
+          "decoder": {
+            "implementation": "separate official Encoding/Network and nonlearned post-Encoding level mask",
+            "backend": "tcnn_split_encoding_network_hash_bandwidth",
+            "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+            "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+            "outer_interface_config": {
+              "out_channels": 9,
+              "input_mode": "both",
+              "condition_dim": 107,
+              "n_levels": 12,
+              "n_features_per_level": 2,
+              "log2_hashmap_size": 19,
+              "base_resolution": 8,
+              "per_level_scale": 1.6,
+              "hidden_dim": 128,
+              "hidden_layers": 2,
+              "seed": 2026
+            },
+            "outer_interface_only": true,
+            "encoding": {
+              "class": "tinycudann.Encoding",
+              "n_input_dims": 3,
+              "n_output_dims": 24,
+              "encoding_config": {
+                "otype": "HashGrid",
+                "n_levels": 12,
+                "n_features_per_level": 2,
+                "log2_hashmap_size": 19,
+                "base_resolution": 8,
+                "per_level_scale": 1.6,
+                "interpolation": "Linear",
+                "hash": "CoherentPrime"
+              },
+              "seed": 2026,
+              "parameters": 7733632,
+              "public_parameter": "encoding.params",
+              "compute_dtype": "torch.float16"
+            },
+            "network": {
+              "class": "tinycudann.Network",
+              "n_input_dims": 144,
+              "n_output_dims": 9,
+              "native_padded_output_dims_source_derived": 16,
+              "network_config": {
+                "otype": "FullyFusedMLP",
+                "activation": "ReLU",
+                "output_activation": "None",
+                "n_neurons": 128,
+                "n_hidden_layers": 2
+              },
+              "seed": 2026,
+              "parameters": 36864,
+              "public_parameter": "network.params",
+              "compute_dtype": "torch.float16"
+            },
+            "layout": "hash24(level-major) *mask24, Identity107 unchanged, explicit13 ones -> public Network144",
+            "mask": {
+              "mode": "coarse8",
+              "buffer": "feature_mask",
+              "learned": false,
+              "values": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "active_levels": 8
+            },
+            "master_dtype": "torch.float32",
+            "native_buffers": [
+              "encoding.params",
+              "network.params"
+            ],
+            "jit_fusion": false,
+            "learned_gate": false,
+            "LoD_used": false,
+            "new_learned_parameters": 0,
+            "raw_xyz_after_encoding": false,
+            "coordinate_derivatives": false,
+            "flat_buffer_offsets_inferred": false,
+            "native_layout_verified": true,
+            "initialization_limit": "same fresh split pair seeds/order; no equality to historical fused initialization assumed",
+            "performance_limit": "all12 hash levels computed; materialized24 activations and separate native calls",
+            "CPU_injection_limit": null
+          },
+          "encoder": {
+            "point_mlp": [
+              5,
+              32,
+              64,
+              64
+            ],
+            "pooling": "concatenated masked max and masked mean",
+            "head": [
+              128,
+              64,
+              32
+            ],
+            "activation": "ReLU",
+            "output": "non-affine LayerNorm then tanh, bounded [-1,1]",
+            "batch_norm": false,
+            "dropout": false,
+            "input_order": [
+              "x_normalized",
+              "y_normalized",
+              "z_normalized",
+              "support_union_original_DOF0_to5",
+              "load_member_original_feature6"
+            ],
+            "extra_parameters_vs_xyz_encoder": 64
+          },
+          "conditioning": "masked original25/local13/Euclidean5, actual query32, actual global32",
+          "geometry_source": "unchanged saved canonical actual-BC-role5 cloud; distance5 supplied only as external query inputs",
+          "geometry_sampling": "CAD-key/seed-stable sampling without replacement; masked padding for small clouds",
+          "geometry_target_independent": true,
+          "geometry_load_independent": true,
+          "context_gradient": "index_select/concatenate preserve gradients through native TCNN inputs",
+          "context_training_cache": "clouds only; re-encode once per unique CAD each optimizer step",
+          "control": "none/id retain the same decoder condition dimension and width as shape",
+          "id_policy": "fixed case identity codes for a diagnostic only; cannot encode unseen geometry",
+          "actual_decoder_backend": "tcnn_split_encoding_network_hash_bandwidth",
+          "decoder_parameters": 7770496,
+          "geometry_encoder_parameters": 16800,
+          "query_context": {
+            "mode": "actual",
+            "projection": [
+              64,
+              32
+            ],
+            "projection_parameters": 2080,
+            "sigma_normalized_xyz": 0.15,
+            "distance": "direct FP32 coordinate differences squared, no TF32 dot distance",
+            "weights": "masked softmax(-squared_distance/(2*sigma^2)); valid cloud weights sum1",
+            "pool_matmul_precision": "FP32 tensors; pooling follows the trainer's high/TF32 matmul setting",
+            "order": "point64 -> Linear64to32 -> Gaussian weighted pool -> non-affine LayerNorm32 -> tanh",
+            "linear_projection_before_pool": "equivalent to postpool linear in exact arithmetic because weights sum1",
+            "query_chunk": 4096,
+            "zero_control": "None; query32 remains actual in both bandwidth modes",
+            "coordinate_derivatives": false,
+            "point_features_reused_for_global_and_query": true,
+            "state_cache": "explicit geometry-context bundle per optimizer step, no data_ptr/implicit mutable lookup"
+          },
+          "query_projection_parameters": 2080
+        },
+        "output_channels": 9,
+        "basis_shape": "[N,3 reference loads,3 displacement components]",
+        "reference_load_order": [
+          "ver",
+          "hor",
+          "tor"
+        ],
+        "component_order": [
+          "ux",
+          "uy",
+          "uz"
+        ],
+        "flat_output_order": [
+          "ver_ux",
+          "ver_uy",
+          "ver_uz",
+          "hor_ux",
+          "hor_uy",
+          "hor_uz",
+          "tor_ux",
+          "tor_uy",
+          "tor_uz"
+        ],
+        "combination": "scaled_u[n,c] = sum_l alpha[n,l] * basis[n,l,c]",
+        "coefficient_source": "external target-independent reference-load metadata; no files parsed here",
+        "load_feature_policy": "zero original25 columns7:13",
+        "input_layout": "masked original25 +local13 +active Euclidean5 +actual query32 +actual global32 =107 conditions",
+        "scale_policy": "trainer directly reuses fixed TRAIN120 common u RMS, center0; no model scale fitting",
+        "physical_decode": "u_mm = common_u_scale_mm * scaled_u; no per-load bias or learned scale",
+        "stress_policy": "No stress output, training, scale fitting or linear stress combination in this module",
+        "linearity_scope": "linear_basis only, with identical geometry and nonload BC/material/local features; load_dependent_basis need not be load-linear",
+        "query_context": {
+          "mode": "actual",
+          "projection": [
+            64,
+            32
+          ],
+          "projection_parameters": 2080,
+          "sigma_normalized_xyz": 0.15,
+          "distance": "direct FP32 coordinate differences squared, no TF32 dot distance",
+          "weights": "masked softmax(-squared_distance/(2*sigma^2)); valid cloud weights sum1",
+          "pool_matmul_precision": "FP32 tensors; pooling follows the trainer's high/TF32 matmul setting",
+          "order": "point64 -> Linear64to32 -> Gaussian weighted pool -> non-affine LayerNorm32 -> tanh",
+          "linear_projection_before_pool": "equivalent to postpool linear in exact arithmetic because weights sum1",
+          "query_chunk": 4096,
+          "zero_control": "None; query32 remains actual in both bandwidth modes",
+          "coordinate_derivatives": false,
+          "point_features_reused_for_global_and_query": true,
+          "state_cache": "explicit geometry-context bundle per optimizer step, no data_ptr/implicit mutable lookup"
+        },
+        "native_condition_dim": 107,
+        "role_order": [
+          "support_union_original_DOF0_to5",
+          "load_member_original_feature6"
+        ],
+        "global_cloud_input_dimension": 5,
+        "geometry_target_independent": true,
+        "geometry_load_independent": true,
+        "hash_bandwidth": {
+          "mode": "coarse8",
+          "allocated_levels": 12,
+          "features_per_level": 2,
+          "active_levels": 8,
+          "encoded_width_both": 24,
+          "nonlearned_mask": "first16 ones, last8 zeros",
+          "parameter_equality_scope": "complete named trainable parameters; mode-specific fixed mask buffer explicitly differs",
+          "natural_initial_prediction_equality_required": false,
+          "capacity_limit": "equal stored parameters, different effective usable spatial capacity and gradient paths",
+          "smoothness_limit": "continuous piecewise-linear grid interpolation; query/local/ReLU variation remains",
+          "performance_limit": "all12 encoding levels computed in both modes; no lookup speedup claimed",
+          "fresh_control": "both new split Encoding/Network constructions; no old fused checkpoint/control"
+        },
+        "capacity_cost": {
+          "PointNet_parameters": 16800,
+          "query_projection_parameters": 2080,
+          "encoding_parameters_source_derived": 7733632,
+          "network_parameters_source_derived": 36864,
+          "full_parameters_source_derived": 7789376,
+          "new_learned_head_parameters": 0,
+          "hash_channels": 24,
+          "Identity_condition_channels": 107,
+          "nominal_encoded_channels": 131,
+          "explicit_constant_one_channels": 13,
+          "public_Network_input_channels": 144,
+          "performance_limit": "public hash24 materialization and separate native call/autograd boundary"
+        },
+        "actual_decoder_backend": "tcnn_split_encoding_network_hash_bandwidth",
+        "encoder_parameters": 16800,
+        "decoder_parameters": 7770496,
+        "query_projection_parameters": 2080,
+        "query_context_dim": 32,
+        "native_identity_condition_dim": 107,
+        "query_context_bundle": "global_tensor/cloudxyz/mask/projected_tokens; explicit differentiable CAD slices",
+        "native_nominal_encoded_channels": 131,
+        "native_parameter_buffers": [
+          "field.decoder.encoding.params",
+          "field.decoder.network.params"
+        ],
+        "full_model_parameters": 7789376,
+        "native_layout": {
+          "encoding_public_input_dims": 3,
+          "encoding_public_output_dims": 24,
+          "encoding_native_output_dims": 24,
+          "network_public_input_dims": 144,
+          "network_native_input_dims": 144,
+          "network_public_output_dims": 9,
+          "network_native_padded_output_dims": 16,
+          "Identity_conditions": 107,
+          "nominal_encoded_channels": 131,
+          "explicit_one_padding_channels": 13,
+          "encoding_parameters": 7733632,
+          "network_parameters": 36864,
+          "native_total_parameters": 7770496,
+          "public_parameter_buffers": [
+            "encoding.params",
+            "network.params"
+          ],
+          "master_dtype": "torch.float32",
+          "compute_dtype": "torch.float16",
+          "flat_buffer_offsets_inferred": false,
+          "new_learned_head_parameters": 0,
+          "full_model_parameters": 7789376
+        },
+        "CPU_injection_limit": null,
+        "new_learned_head_parameters": 0,
+        "hash_modulation_enabled": false,
+        "initialization_policy": "complete named trainable parameters equal; only nonlearned feature_mask differs; natural initial outputs need not equal",
+        "decoder_implementation": {
+          "implementation": "separate official Encoding/Network and nonlearned post-Encoding level mask",
+          "backend": "tcnn_split_encoding_network_hash_bandwidth",
+          "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+          "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+          "outer_interface_config": {
+            "out_channels": 9,
+            "input_mode": "both",
+            "condition_dim": 107,
+            "n_levels": 12,
+            "n_features_per_level": 2,
+            "log2_hashmap_size": 19,
+            "base_resolution": 8,
+            "per_level_scale": 1.6,
+            "hidden_dim": 128,
+            "hidden_layers": 2,
+            "seed": 2026
+          },
+          "outer_interface_only": true,
+          "encoding": {
+            "class": "tinycudann.Encoding",
+            "n_input_dims": 3,
+            "n_output_dims": 24,
+            "encoding_config": {
+              "otype": "HashGrid",
+              "n_levels": 12,
+              "n_features_per_level": 2,
+              "log2_hashmap_size": 19,
+              "base_resolution": 8,
+              "per_level_scale": 1.6,
+              "interpolation": "Linear",
+              "hash": "CoherentPrime"
+            },
+            "seed": 2026,
+            "parameters": 7733632,
+            "public_parameter": "encoding.params",
+            "compute_dtype": "torch.float16"
+          },
+          "network": {
+            "class": "tinycudann.Network",
+            "n_input_dims": 144,
+            "n_output_dims": 9,
+            "native_padded_output_dims_source_derived": 16,
+            "network_config": {
+              "otype": "FullyFusedMLP",
+              "activation": "ReLU",
+              "output_activation": "None",
+              "n_neurons": 128,
+              "n_hidden_layers": 2
+            },
+            "seed": 2026,
+            "parameters": 36864,
+            "public_parameter": "network.params",
+            "compute_dtype": "torch.float16"
+          },
+          "layout": "hash24(level-major) *mask24, Identity107 unchanged, explicit13 ones -> public Network144",
+          "mask": {
+            "mode": "coarse8",
+            "buffer": "feature_mask",
+            "learned": false,
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "active_levels": 8
+          },
+          "master_dtype": "torch.float32",
+          "native_buffers": [
+            "encoding.params",
+            "network.params"
+          ],
+          "jit_fusion": false,
+          "learned_gate": false,
+          "LoD_used": false,
+          "new_learned_parameters": 0,
+          "raw_xyz_after_encoding": false,
+          "coordinate_derivatives": false,
+          "flat_buffer_offsets_inferred": false,
+          "native_layout_verified": true,
+          "initialization_limit": "same fresh split pair seeds/order; no equality to historical fused initialization assumed",
+          "performance_limit": "all12 hash levels computed; materialized24 activations and separate native calls",
+          "CPU_injection_limit": null
+        },
+        "native_encoding_parameters": 7733632,
+        "native_network_parameters": 36864,
+        "native_public_network_input_dim": 144,
+        "native_explicit_one_padding_channels": 13,
+        "native_public_encoding_input_dim": 3
+      },
+      "native_encoding_gradient": {
+        "parameter_tensors": 1,
+        "parameters": 7733632,
+        "present_finite": true,
+        "gradient_L1": 0.3355647921562195
+      },
+      "native_network_gradient": {
+        "parameter_tensors": 1,
+        "parameters": 36864,
+        "present_finite": true,
+        "gradient_L1": 181.2789368033409
+      },
+      "activation_gradient": {
+        "capture_point": "FP32 Encoding output BEFORE mask",
+        "shape": [
+          512,
+          24
+        ],
+        "active_first16_gradient_L1": 0.36061987979337573,
+        "fine_last8_gradient_L1": 0.0,
+        "pre_mask_fine_last8_value_L1": 0.10255491733551025,
+        "post_mask_fine_last8_value_L1": 0.0,
+        "coarse_fine_gradient_exact_zero": true,
+        "coarse_post_mask_value_exact_zero": true,
+        "all_present_and_finite": true,
+        "no_per_level_parameter_offsets": true
+      },
+      "query_gradient": {
+        "query_context_mode": "actual",
+        "query_projection_gradient_l1": 6.5619667775540105,
+        "projected_tokens_gradient_l1": 2.6602341358142594,
+        "query_projection_parameter_tensors": 2,
+        "query_projection_parameter_count": 2080,
+        "projected_tokens_shape": [
+          2,
+          1024,
+          32
+        ],
+        "projection_and_tokens_gradients_present_and_finite": true,
+        "expected_gradient": "nonzero",
+        "checked_after_backward_before_optimizer_step": true
+      },
+      "encoder_gradient": {
+        "applicable": true,
+        "encoder_gradient_l1": 26.229269325733185,
+        "context_gradient_l1_per_cad": [
+          0.20428012311458588,
+          0.19855177402496338
+        ],
+        "checked_after_backward_before_optimizer_step": true
+      },
+      "objective": -0.06171862781047821,
+      "force_slot_invariant": true
+    }
+  },
+  "memory": {
+    "peak_allocated_bytes": 288813568,
+    "peak_reserved_bytes": 381681664
+  },
+  "elapsed_seconds": 1.5507438060012646,
+  "backwards": 2,
+  "optimizer_updates": 0,
+  "GT_fields_read": 0,
+  "dataset_or_checkpoint_files_opened": 0,
+  "GPU_models_released_before_completion": true,
+  "limit": "synthetic API/gradient acceptance; equal stored capacity does not imply equal effective capacity or useful learning"
+}
