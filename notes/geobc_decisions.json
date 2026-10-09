@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "fixed_training_CAD_joint_u_P1_preparation",
+  "stage": "query_dependent_geometry_BC_context_preparation",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -101,6 +101,13 @@
       "evidence": "Matched5inputrole2:valumean24.1103→24.4026%,worst52.0400→43.6758%,P1mean616.096→583.883%;trainumean13.667→12.631%,trainP1rel−12.853%;2runs203.897s+213.543s,allmatchingchecks passed.",
       "conclusion": "Nooverallmeanu gain andP1stillworse thanzerostrainbaseline;tailimprovementworthrecordingbutcomprehensivegatefailed. No automaticseedreplication/stress expansion.",
       "next": "Onealready-chosenTRAIN101_479three-loadspecialist, originalxyz3 field/calibratedλ/commonfrozenuscale, new4slotswithreplacement, fixed250/10kendpoints. Compare mainlysharedfinal10k andreport40xexposure, nofinaltest.",
+      "source_local_commit": "pending publication"
+    },
+    {
+      "decision_id": "joint_single_CAD_fit_returns_to_conditioning",
+      "evidence": "Specialist104.04s:fixed10ku.7575%/P117.8892% vs sharedsameCADfinal10k16.8457%/293.2417%;at250u7.4725/P1136.5784% withperload338/332/330 draws vs317/352/360shared. Fullfinal40xexposure documented;init/scaler/weightsnativegrad checks passed.",
+      "conclusion": "Existingnativefield/lossjointfitthisCAD underdedicatedoptimization. MultiCADsharing/geometryconditioning/optimizercompetitionremainhypotheses; cannotidentifycauseorclaimgeneralization.",
+      "next": "Returnto40/5 sharedmethod:oneGaussianquery-dependent geometryBCdescriptor32, bothcommonBCactual/global32 andmatchedzero/actual newbranch;σ.15 andnativeexpandedlayoutpredeclared beforevalues.",
       "source_local_commit": "pending publication"
     }
   ],

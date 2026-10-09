@@ -1,0 +1,178 @@
+{
+  "status": "ready",
+  "created_at_utc": "2026-10-09T06:28:30.629108+00:00",
+  "sources_frozen": true,
+  "source_parent_commit": "c31be67d",
+  "files": [
+    "geobc/query_context_train.py"
+  ],
+  "source_sha256": {
+    "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+    "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+    "geobc/bc_role_train.py": "9f7ca1b12c2358be6a936ff1dc0c99eb51a82f550d2d584dd0cbb39b4f2b3186",
+    "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+    "geobc/bc_role_condition.py": "a9adee5a0fcbf7f408a4199ca1b4a87d676a43d56f4b18c1a91ff02cc6a3a232",
+    "geobc/gradient_balance_train.py": "b45b5734c91e5112b83da511d90a2c11b065b5ec2099d24b8a3b432efa25265a",
+    "geobc/gradient_train.py": "a27c3845507b60b86b7792a5f1cdcec184f969b26edc83d454665ce5e54eb393",
+    "geobc/gradient_supervision.py": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389",
+    "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+    "geobc/physics_train.py": "3105cacc364b65950eec2b1901376c8b9f8b1edae1019fbfadcc9662339c8b16",
+    "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "geobc/local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+    "geobc/train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7"
+  },
+  "jobs": [
+    "displacement_query_context_zero_10k",
+    "displacement_query_context_actual_10k"
+  ],
+  "design": "notes/geobc_query_context_plan.json",
+  "API": {
+    "parser": "Same BC-role flags; bc-role-mode onlyactual/defaultactual; query-context-mode zero|actual required; sigma/querydimension/chunk fixed and no new sweep flags",
+    "_scope": "Five-tuple; original strict135known-load cases plus frozencloud/calibration/cache/code and querymode identity; JSON/stat/small SHA only",
+    "summary_and_resume": "Unchanged config/best_metrics/final_metrics/historybest/optimizer/threeRNG scheme; added query_context strict identity and first-gradient metadata"
+  },
+  "common_layout": {
+    "bc_role_mode": "actual",
+    "cloud_channels": 5,
+    "global_dim": 32,
+    "query_original_local_features": 38,
+    "projected_query_dim": 32,
+    "native_identity_conditions": 102,
+    "hash_encoded_channels": 24,
+    "hidden_dim": 128,
+    "basis_outputs": 9,
+    "projection_parameters": 2080,
+    "gaussian_sigma": 0.15,
+    "query_chunk": 4096,
+    "new_capacity_present_in_both": true,
+    "old_BC_global_model_reused_as_control": false
+  },
+  "query_definition": "PointNetpoint64 -> Linear64to32 -> masked softmax Gaussian weighted pool from direct FP32 squared coordinate differences/(2*.15^2) -> nonaffineLayerNorm -> tanh; zero computes same branch and multiplies0",
+  "scope": "Frozen40train/5validationCAD x ver/hor/tor; no dia/finaltest; no GT response as input; existing train-only calibrated u/P1 losses and normalizers unchanged",
+  "cloud": {
+    "reference_actualBC_role5": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_bc_role_actual_10k/geometry_clouds.npz",
+      "bytes": 1338590,
+      "mtime_ns": 1791525305014058900,
+      "config_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_bc_role_actual_10k/config.json",
+      "config_sha256": "65d782c1e31f7f21ac189e26e0ced2a9b87d2931e6a31c79d3732ea2f450bb4b",
+      "summary_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/displacement_bc_role_actual_10k/summary.json",
+      "summary_sha256": "1861ffe6fb709948a33ea6ed74121888baafe674ce515d1540b902f783ba897f",
+      "raw_features5_sha256": "731867c080401cdd0fe82ade6d03a50201ab643c7fdfe7130b96e3edb568b112",
+      "raw_roles_sha256": "e92f0c166df06c649de7fbe900f3420edc962997f033b69d38a6cc133f1aadc1",
+      "node_indices_sha256": "93a2a7bfa8735e515fe95ee06d6531d3d1970c442d975084f858dd565dc80783",
+      "acceptance": "Exact45CAD raw5 cloud/mask/nodeindices/CAD order equality before training; no trained weights are loaded"
+    },
+    "also_inherits_calibrated_xyz3_reference": true,
+    "formal_acceptance": "All45 raw5/mask/nodeindices/CAD order must equal actualBC savedcloud and xyz3 subset must equal original calibrated savedcloud; role padding0",
+    "raw_cloud_geometry_identical_in_pair": true,
+    "cloud_seed_fixed2026_training_seed_independent": true
+  },
+  "compute_proof": {
+    "changed_existing_functions": [
+      "_scope",
+      "run",
+      "parser"
+    ],
+    "new_first_step_function": "_query_gradient",
+    "unchanged_function_AST_text_SHA": {
+      "_sha": {
+        "AST_sha256": "c2db75cc5ab3409d2427bff4ef5683cdf1f370a2a5c585fa28c9c735cf650d10",
+        "text_sha256": "3fed474e096474e63e1bb2afdd7455a3c55c31c78b17339beb6d6406221d8b08",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "_json": {
+        "AST_sha256": "51798c5d0f9b34786d1cfadf377fa2b5cb4645e9666c86100a5f06dd6da6acf6",
+        "text_sha256": "424673af3f2e69996c88331e9bbb11b5cb70d7c2a9ee53caa52f8d9b82a05b2f",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "_memory_record": {
+        "AST_sha256": "401ecdce3d59bf5beb99a7020b3e612c550286b20d6b918370dcab0212abc312",
+        "text_sha256": "60767627564d2a58f1a3c6de07882f5ca4203880d588549f432bc9fc5984204d",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "mixed_query_indices": {
+        "AST_sha256": "64a2388a8da0cdae84375e3678d1a18971639e73eb2cbadc8cc64833d2f77a20",
+        "text_sha256": "ece2f21d2f1dcd87640bbc4f41fc15378d432e925ac47f48ce7ccca7739377e7",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "gradient_batch_loss": {
+        "AST_sha256": "2cdecbea49586dbc0c71c0e7527e8cd6ec4ea4ca5068e79c1492c6fd75e7335a",
+        "text_sha256": "d492f789919e275d12ba1ea9d576aba3c8e88f5aea6c6b58ba5b7ba6f2e98762",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "_strain_metrics": {
+        "AST_sha256": "249a952490daaea0c8a21c8514913f276232d3df6ae69c5101e3485c48da22dc",
+        "text_sha256": "3f788406affc7882f9eb02e05f1243167cf10ef8f343b9f2dfa26ed38f49cc57",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "_evaluate_group": {
+        "AST_sha256": "443a66953ea16aed2fd47b9e18af14ec4a121272ba4755e92f962cc5fade43af",
+        "text_sha256": "62a0b756945f3f9cb25ad8fa5ea60e25ba1bc509654e13480ea7e21a18e4d202",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "elapsed": {
+        "AST_sha256": "4ebf4e60b2cabbaf921c21ed1d0e851c27d4b1e3ebc20538c8e5ce21d6a0cad8",
+        "text_sha256": "63a31223ed00a0978f97f2c516bddc3095fefdaaf0ee3697d10d81163b0b45c0",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "update": {
+        "AST_sha256": "c15182e68d7e86a3106ba613cd3ce1f403759435f060f1f4be3397d2a470e3bb",
+        "text_sha256": "f88627e209dcee562e53a866cac733fb94c2a36e055f0c28acad4c6a6812d0ed",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "checkpoint_payload": {
+        "AST_sha256": "8a3d328f1479b9c53c6423822e1fc3da6b8ed12e03b897678fd23b07cb5e08de",
+        "text_sha256": "1a0cc7246d41f8b8697de73458e74850848dd43f129a2c4ffff3acfbc1942110",
+        "AST_equal": true,
+        "text_equal": true
+      },
+      "evaluate": {
+        "AST_sha256": "7c97b9e8730172b41305f48cedccc3ba6aa7b6b67002439146114d6f7b466176",
+        "text_sha256": "3ccbd229c72f3cc5e378eb5422cb8dc0df126e8b3daab6fb0f319380fc9fb188",
+        "AST_equal": true,
+        "text_equal": true
+      }
+    },
+    "training_loop": "Text-identical after removal of sole extra first-step query-gradient-check call",
+    "original_training_loop_text_sha256": "db0af26102cc2c6e660a1d7a69320e8538fd63247d8dca7f7c7f24a5d67ce2c7",
+    "only_loop_addition": "gradient_check.update(_query_gradient(model, context, args.query_context_mode))",
+    "selection": "Known-load val all-node u mean ONLY; same selectedcheckpoint P1 diagnostic"
+  },
+  "first_gradient_policy": {
+    "global_encoder_context_and_all_decoder": "Existing acceptance unchanged; present/finite and aggregateL1 positive",
+    "query_actual": "All projectionparameter grads and retained projected_tokens.grad present/finite; bothL1>0",
+    "query_zero": "Same grads present/finite and bothL1 exactly0",
+    "CPU_guard_fixture": "Zero/actual and wrong-mode rejection passed",
+    "actual_CPU_bundle_field_check": "hashgrid_impl tested parentbundle.retain_grad plus row-sliced forward with both frozen_encoder_gradient and new_query_gradient; zero projection/tokens0,actualfinite/nonzero; no native GPU smoke"
+  },
+  "checks": {
+    "syntax_AST_global_names": "passed",
+    "real_jobs_scope_metadata_only": "passed; np/weights reads blocked",
+    "pair_contract_only_query_context_mode": true,
+    "unrelated_functions_and_training_loop_proof": "passed",
+    "field_ready_SHA_matches": true,
+    "CPU_bundle_and_query_gradient": "passed by field owner using newtrainer helper",
+    "CUDA_used": false,
+    "actual_fields_or_weights_opened_by_trainer_acceptance": false,
+    "training_updates": 0
+  },
+  "field_ready": {
+    "path": "notes/query_context_field_ready.json",
+    "sha256": "1411a2263a72a1b9d4bed05130c2c463c2fcec4182c6e27521c20b2f409170b3"
+  },
+  "cost": "Inherited actual elapsed/evaltime/CPU RSS/CUDA peak allocated+reserved records; query weights51200x1024 about210MB saved across backward, chunks limit temporary distance buffers",
+  "claim_limit": "Matched activation ablation with additional effective spatial capacity; smooth distance context is not a solved load path or a novelty/generalization claim",
+  "no_training_launched": true
+}

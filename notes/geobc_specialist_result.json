@@ -1,0 +1,81 @@
+{
+  "status": "completed",
+  "stage": "fixed_training_CAD_joint_u_P1_fitting_diagnostic",
+  "elapsed_seconds": 104.03742086499551,
+  "control_checks_passed": true,
+  "endpoint_selection": "Fixed250/10000, no validation or strain-based model selection",
+  "reference_step": 10000,
+  "reference_u_mean_relative_l2": 0.1684565541845017,
+  "reference_P1_mean_relative_l2": 2.932417068129567,
+  "endpoints": {
+    "250": {
+      "step": 250,
+      "u_mean_relative_l2": 0.07472508101863128,
+      "u_worst_relative_l2": 0.08045307563331305,
+      "P1_mean_relative_l2": 1.3657835758624044,
+      "P1_worst_relative_l2": 1.6812257264796133,
+      "u_relative_error_reduction_vs_shared_final": 0.5564133352936285,
+      "P1_relative_error_reduction_vs_shared_final": 0.5342464785428476,
+      "per_case": {
+        "101_479/ver": {
+          "u_relative_l2": 0.07922087118229343,
+          "P1_relative_l2": 1.6812257264796133
+        },
+        "101_479/hor": {
+          "u_relative_l2": 0.08045307563331305,
+          "P1_relative_l2": 1.5499059374975388
+        },
+        "101_479/tor": {
+          "u_relative_l2": 0.06450129624028732,
+          "P1_relative_l2": 0.8662190636100615
+        }
+      }
+    },
+    "10000": {
+      "step": 10000,
+      "u_mean_relative_l2": 0.007574766101250457,
+      "u_worst_relative_l2": 0.008683086489585351,
+      "P1_mean_relative_l2": 0.17889217948026134,
+      "P1_worst_relative_l2": 0.20850126031287114,
+      "u_relative_error_reduction_vs_shared_final": 0.9550343046139113,
+      "P1_relative_error_reduction_vs_shared_final": 0.9389949740013049,
+      "per_case": {
+        "101_479/ver": {
+          "u_relative_l2": 0.007049890431392526,
+          "P1_relative_l2": 0.19394506615386087
+        },
+        "101_479/hor": {
+          "u_relative_l2": 0.006991321382773494,
+          "P1_relative_l2": 0.20850126031287114
+        },
+        "101_479/tor": {
+          "u_relative_l2": 0.008683086489585351,
+          "P1_relative_l2": 0.13423021197405197
+        }
+      }
+    }
+  },
+  "case_slot_draw_counts": {
+    "shared10000": {
+      "101_479/ver": 317,
+      "101_479/hor": 352,
+      "101_479/tor": 360
+    },
+    "specialist250": {
+      "101_479/ver": 338,
+      "101_479/hor": 332,
+      "101_479/tor": 330
+    },
+    "specialist10000": {
+      "101_479/ver": 13312,
+      "101_479/hor": 13328,
+      "101_479/tor": 13360
+    }
+  },
+  "exposure_replay": "Only NumPy case RNG replay validated against saved first-case witnesses; no fields/checkpoints/GPU",
+  "expected_exposure_ratio_final": 40,
+  "conclusion": "On this fixed training CAD, the same native field and calibrated loss fit both displacement and P1 gradients under dedicated optimization. Sharing/conditioning/optimization competition remain candidates; cause and transfer success are not established.",
+  "limitations": "OneCAD; separate model adds totalparameters and40x case exposure at10k.250 matches expectedslotexposure only, not optimization trajectory or per-case counts. P1 proxy is not solverGTtensor.",
+  "next_stage": "matched_query_dependent_geometry_BC_context",
+  "validation_dia_finaltest_fields_opened": false
+}

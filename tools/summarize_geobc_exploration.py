@@ -231,13 +231,24 @@ def main():
     if (ROOT/'results/geobc_exploration/gradient_tradeoff.png').is_file():
         lines += ['', '![位移与P1梯度精度的取舍](gradient_tradeoff.png)',
                   '图中每点均取该模型按位移验证均值选择的同一checkpoint；同形状标记区分各组对照。BC增益仅比较两个新方块，不能把旧三输入校准点与新五输入零角色点的差异归于BC信息。']
+    specialist=summaries.get('specialist_101_479_joint_u_P1_10k')
     specialist_design_path=ROOT/'notes/geobc_specialist_plan.json'
     if specialist_design_path.is_file():
         specialist_design=json.loads(specialist_design_path.read_text())
         if specialist_design.get('status')=='selected_after_failed_BC_gate':
-            lines += ['', '## 下一阶段：固定训练CAD独立拟合','',
+            lines += ['', '## 固定训练CAD独立拟合','',
                       '固定已观察的TRAIN101_479/ver、hor、tor，采用原xyz3模型与同一校准损失，共享模型的scaler和案例权重不重拟合。报告固定250与10000步，不用验证或应变挑选最优checkpoint。主要比较共享模型固定10000步的该CAD：位移16.85%、P1应变293.24%。',
                       '单CAD每步四个载荷槽有放回抽样，这是显式诊断变化。250步仅匹配共享10000步的期望案例曝光，完整10000步约有40倍曝光；独立模型也增加总参数。即使独立拟合成功，也不能单独证明共享容量不足或获得泛化能力。设计见notes/geobc_specialist_plan.json。']
+    if specialist:
+        reference=specialist['reference_final_10000']
+        early=specialist['endpoint_metrics']['250']['train']
+        final=specialist['endpoint_metrics']['10000']['train']
+        lines += ['', '| TRAIN101_479三个载荷 | 位移均值 | P1应变均值 |', '|---|---:|---:|',
+                  f"| 共享模型固定10000步 | {percent(reference['case_mean_relative_l2'])} | {percent(reference['strain']['case_mean_relative_l2'])} |",
+                  f"| 独立模型固定250步 | {percent(early['case_mean_relative_l2'])} | {percent(early['strain']['case_mean_relative_l2'])} |",
+                  f"| 独立模型固定10000步 | {percent(final['case_mean_relative_l2'])} | {percent(final['strain']['case_mean_relative_l2'])} |",'',
+                  f"独立训练耗时{specialist['elapsed_seconds']:.1f}s，最终最差位移{percent(final['worst_case_relative_l2'])}、最差P1{percent(final['strain']['worst_case_relative_l2'])}。同一场与损失在该CAD能联合拟合；250步案例曝光接近共享10000步仍有改善，但优化轨迹与专用容量不同，不能单独证明共享容量或编码是原因。",
+                  '下一阶段回到40/5共享训练，匹配新增查询上下文32的零／真实分支：对同一PointNet几何／BC点token按固定Gaussian距离加权，σ=.15归一化长度。原全局32保留，新增投影和native输入容量在两侧相同；这是整个分支消融，不能称纯信息因果控制。设计见notes/geobc_query_context_plan.json。']
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
@@ -252,7 +263,10 @@ def main():
         brief += ['  局部几何收益在两个种子上重复，但最差案例变差，不能称为全面改善。']
     if probe:
         brief += ['- 组合载荷诊断：强制位移线性响应优于对照（28.4% vs 33.0%），但应力仍约87%；位移物理结构有用，应力迁移仍未解决。']
-    if bz and ba and bc_result_path.is_file():
+    if specialist:
+        final=specialist['endpoint_metrics']['10000']['train']
+        brief += ['', f"**关键新发现：**同一场与损失在一个固定训练CAD上，独立拟合达到位移{100*final['case_mean_relative_l2']:.2f}%／P1应变代理{100*final['strain']['case_mean_relative_l2']:.1f}%。两者可以同时拟合；专用模型和40倍曝光使结果不能等同于泛化或容量因果证明。下一步回到共享模型，检验随查询位置变化的几何／BC上下文，最终测试继续保留。"]
+    elif bz and ba and bc_result_path.is_file():
         bc_result=json.loads(bc_result_path.read_text())
         z=bz['best_metrics']['validation'];a=ba['best_metrics']['validation']
         brief += ['', f"**最新对照：**整体点云加入固定／加载角色，位移验证均值{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%，最差{100*z['worst_case_relative_l2']:.1f}% → {100*a['worst_case_relative_l2']:.1f}%，P1应变代理误差仍约{100*a['strain']['case_mean_relative_l2']:.0f}%。综合门槛{'通过' if bc_result['clear_gain_gate_passed'] else '未通过'}。下一步固定一个训练CAD独立拟合位移与应变，定位共享训练的瓶颈；最终测试继续保留。"]

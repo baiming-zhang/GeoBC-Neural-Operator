@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "status": "one_design_selected_after_actual_specialist_joint_fit_no_implementation",
+  "created_at_utc": "2026-10-09T06:16:57.751543+00:00",
+  "scope": {
+    "candidate_count": 1,
+    "design_only": true,
+    "current_plans_gates_sources_edited": false,
+    "arrays_targets_predictions_weights_read": false,
+    "GPU_or_training_started": false,
+    "dia_or_finaltest_arrays_read": false,
+    "only_output": "notes/geobc_after_specialist_options.json"
+  },
+  "actual_decision_evidence": {
+    "specialist_source": "notes/geobc_specialist_result.json",
+    "completed_seconds": 104.03742086499551,
+    "controls_passed": true,
+    "shared_fixed10k_u_mean": 0.1684565541845017,
+    "shared_fixed10k_P1_mean": 2.932417068129567,
+    "specialist_endpoints": {
+      "250": {
+        "step": 250,
+        "u_mean_relative_l2": 0.07472508101863128,
+        "u_worst_relative_l2": 0.08045307563331305,
+        "P1_mean_relative_l2": 1.3657835758624044,
+        "P1_worst_relative_l2": 1.6812257264796133,
+        "u_relative_error_reduction_vs_shared_final": 0.5564133352936285,
+        "P1_relative_error_reduction_vs_shared_final": 0.5342464785428476,
+        "per_case": {
+          "101_479/ver": {
+            "u_relative_l2": 0.07922087118229343,
+            "P1_relative_l2": 1.6812257264796133
+          },
+          "101_479/hor": {
+            "u_relative_l2": 0.08045307563331305,
+            "P1_relative_l2": 1.5499059374975388
+          },
+          "101_479/tor": {
+            "u_relative_l2": 0.06450129624028732,
+            "P1_relative_l2": 0.8662190636100615
+          }
+        }
+      },
+      "10000": {
+        "step": 10000,
+        "u_mean_relative_l2": 0.007574766101250457,
+        "u_worst_relative_l2": 0.008683086489585351,
+        "P1_mean_relative_l2": 0.17889217948026134,
+        "P1_worst_relative_l2": 0.20850126031287114,
+        "u_relative_error_reduction_vs_shared_final": 0.9550343046139113,
+        "P1_relative_error_reduction_vs_shared_final": 0.9389949740013049,
+        "per_case": {
+          "101_479/ver": {
+            "u_relative_l2": 0.007049890431392526,
+            "P1_relative_l2": 0.19394506615386087
+          },
+          "101_479/hor": {
+            "u_relative_l2": 0.006991321382773494,
+            "P1_relative_l2": 0.20850126031287114
+          },
+          "101_479/tor": {
+            "u_relative_l2": 0.008683086489585351,
+            "P1_relative_l2": 0.13423021197405197
+          }
+        }
+      }
+    },
+    "case_slot_draw_counts": {
+      "shared10000": {
+        "101_479/ver": 317,
+        "101_479/hor": 352,
+        "101_479/tor": 360
+      },
+      "specialist250": {
+        "101_479/ver": 338,
+        "101_479/hor": 332,
+        "101_479/tor": 330
+      },
+      "specialist10000": {
+        "101_479/ver": 13312,
+        "101_479/hor": 13328,
+        "101_479/tor": 13360
+      }
+    },
+    "expected_exposure_ratio_final": 40,
+    "BC_pair_gate_passed": false,
+    "BC_validation_u_mean_gain_pp": -0.29225920731292543,
+    "BC_validation_worst_deterioration_pp": -8.364240428549685,
+    "BC_validation_P1_relative_reduction": 0.05228573503100997,
+    "interpretation": "The same native field/loss jointly fits one diagnosed TRAIN CAD. Even approximately exposure-matched250 steps improve both metrics, but sampling realizations differ. Dedicated10k has40x exposure. This motivates one shared conditioning test; it does not prove capacity, missing load paths or generalization."
+  },
+  "single_next_candidate": {
+    "name": "fixed-distance query-dependent geometry/BC token pooling, matched zero versus actual query32",
+    "information_hypothesis": "A single CAD-global max/mean descriptor and query local13 may compress geometry/role information in a way that cannot distinguish the spatial relation of remote boundary/support/load points to each query. Smooth query-dependent readout of the SAME learned cloud tokens may improve a shared conditional field.",
+    "claim_boundary": "Tests a query-conditioned nonlocal geometric summary. Euclidean distance weighting is not FEM load-path propagation, graph connectivity, an elasticity solver, learned attention or a novel algorithm. Existing original25 already contains absolute physical size.",
+    "common_base": "Both use canonical actual BC roles in the same5-input PointNet, unchanged global32 and query38. Role-zero/actual is NOT repeated here; query32-zero/actual is the only information switch.",
+    "tokens": "PointNet5 point MLP5→32→64→64 produces h[B,P,64]. Unchanged masked max+mean head128→64→32, nonaffine LayerNorm+tanh provides global32 in BOTH controls.",
+    "fixed_kernel": {
+      "sigma": 0.15,
+      "coordinate_units": "existing isotropic normalized xyz, L=max physical bbox extent",
+      "log_weight": "-sum((query_xyz-cloud_xyz)^2)/(2*0.15^2)",
+      "mask": "set invalid/padded points to -infinity before softmax over P; everyCAD has≥1 valid point",
+      "weight": "w_ni=masked_softmax(log_weight_ni); sum_valid_i w_ni=1",
+      "numerics": "Compute geometry differences/squared sums and stable softmax in float32, with no FP16 exponential. Avoid an unintended low-precision TF32 dot-product distance approximation; normalized geometry is fixed, so weight calculation needs no geometry-parameter gradients.",
+      "physical_bandwidth_mm_metadata": {
+        "min": 26.715229797363282,
+        "median": 27.639628601074218,
+        "max": 27.791537475585937
+      },
+      "assumption": "sigma=.15 is a predeclared unvalidated normalized geometric scale, not tuned from validation. Fixed one kernel only; no bandwidth or multi-kernel sweep."
+    },
+    "query_descriptor_semantics": "t_n=sum_i w_ni*h_i (64 channels); q_n=tanh(LayerNorm32(nonaffine, Linear64→32(t_n))). Projection includes bias; head adds2080 trainable parameters in each control. LayerNorm/tanh occur AFTER query pooling, never separately per cloud point.",
+    "equivalent_linear_optimization": "Because weights sum1, Linear64→32 may be evaluated once per point and then weighted, algebraically equal to Linear(weighted h). LayerNorm/tanh still follow pooling. Choose one implementation and use it identically in both branches; record any numerical reordering. Semantics above are the reference.",
+    "zero_actual": {
+      "zero": "compute common tokens/global head/query pooling/projection, append0*q_n as32 zero query channels",
+      "actual": "compute the identical paths and appendq_n",
+      "match": "Both instantiate same new projection, native decoder input dimensions, initialization, parameter count, optimizer and scheduled budget; same operation path where practical. Masking only the final query32 information preserves the control."
+    },
+    "decoder_layout": {
+      "original25_local13": 38,
+      "global_descriptor": 32,
+      "query_descriptor": 32,
+      "Identity_conditions": 102,
+      "hash_xyz_dimensions": 3,
+      "hash_output_channels": 24,
+      "native_network_width": 128,
+      "hidden_layers": 2,
+      "basis_output_channels": 9,
+      "load_basis_order": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "reference_flat_input": "HashGrid(xyz) plus Identity[masked original25+local13, global32, query32]",
+      "fixed_hash": "12levels,2features/log2table19/base8/growth1.6, native same commit"
+    },
+    "capacity_matching": "Encoder expected16800+2080=18880 each; native first-layer input grows by32 condition channels in BOTH controls (expected4096 extra weights at width128 after usual alignment; runtime parameter/alignment record must verify). This is a matched enlarged zero/actual pair, not directly matched to earlier70-condition historical runs.",
+    "linearity": "global and query contexts are shared across all loads of a CAD and contain no F/M or case ID. The original force/moment slots7:13 remain masked in the basis decoder; external alpha still combines9 basis outputs. Geometry-only query readout preserves exact load-linearity of the ansatz."
+  },
+  "training_execution_contract_for_parent_declaration": {
+    "strict_split": "unchanged40 trainCAD×ver/hor/tor=120 cases,5 validationCAD×3 knownloads=15; final5 anddia excluded",
+    "geometry": "reuse exact saved45-CAD1024 points/mask/node_indices/actual roles from completedBC artifact, no resampling/reordering/role-coverage repair; canonicalver aligned input fields only",
+    "frozen_cloud_metadata": {
+      "point_sha256": "8e9391c76707661fd27e95ea16c5b488eaa2452dd77315cc3f7260aacdb50c90",
+      "mask_sha256": "391f0a597f6f0daa5166bf008a62af1133e90eabd1d2470a29c0b61f29e3da82",
+      "role_presence": true,
+      "support_count_range": [
+        15,
+        43
+      ],
+      "load_count_range": [
+        7,
+        21
+      ],
+      "require": "record saved indices,roles,CAD-order hashes from existing BC artifact too; existing input-only proof does not imply full patch coverage"
+    },
+    "recompute_and_gradient": "Every optimizer step encode current learned point tokens/global context once per uniqueCAD, then GPU pool query chunks using current tokens. No detached/no_grad token or learned-context cache, no numpy conversion of learned contexts. Only fixed geometry/roles may be cached.",
+    "native_gradient_checks": "Actual branch separately retain/verify finite nonzero gradients through native decoder into BOTH global32 and query32 and back to relevant global head/query projection/point MLP. Zero branch global path must train; upstream query projection gradient expectedzero after0*q. Check both control initial-state hashes and capacity equality.",
+    "query_chunk": 2048,
+    "geometry_weight_grad_policy": "geometry requires no gradients, token/projection/model parameters do; coordinate autograd with fixed condition fields is not used as physical strain",
+    "precision": "same current PointNet/native TCNN settings; float32 query kernel, FP64 physical mesh P1 geometry/loss and metrics",
+    "loss": "unchanged relative-case signeduXYZ objective and existing train-only physical corner-P1/Frobenius/volume normalizers; no stress target/constitutive scalar law/extra regularizer",
+    "calibrated_lambda": 0.0004106650618638651,
+    "common_u_scale_mm": 0.05511113670847156,
+    "u_center_mm": 0.0,
+    "optimizer": {
+      "name": "Adam",
+      "fused": true,
+      "learning_rate": 0.003,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "epsilon": 1e-08,
+      "weight_decay": 0.0
+    },
+    "seed": 2026,
+    "updates_each_branch": 10000,
+    "queries_per_update": 51200,
+    "case_sampling": "same four distinct known trainingcases; each6400 uniform nodes +1600 uniform tets×4corners, duplicates retained; same RNG and witnesses in matched branches",
+    "checkpoint_selection": "minimum known-val15 mean all-original-node physical signeduXYZ vector relativeL2 only, same eval cadence; report P1 at these selected checkpoints, never select byP1/dia/test"
+  },
+  "compute_overhead_estimates_not_measurements": {
+    "query_point_weights_per_training_batch": 52428800,
+    "float32_weight_bytes_if_saved_for_backward": 209715200,
+    "largest_weight_chunk_bytes": 8388608,
+    "pooled64_batch_bytes": 13107200,
+    "query32_batch_bytes": 6553600,
+    "reference_pool64_MACs_per_update": 3355443200,
+    "equivalent_preproject32_pool_MACs_per_update": 1677721600,
+    "memory_note": "Chunking bounds temporary distance matrices, but autograd may retain every chunk weight matrix to differentiate into tokens, about210MB total atB51200. Do not claim backward uses only one8MB chunk. No giant45CAD×allnode×1024 weight cache.",
+    "evaluation": "all-node knownval/training diagnostics still required; compute perCAD and chunk, reuse tokens only inside the current frozen evaluation pass",
+    "ETA": "No actual GPU profile or timing was run. New pooling/native input width adds overhead; parent measures matched small functional checks before queue and communicates measured ETA."
+  },
+  "predeclared_gate_recommendation": {
+    "comparator": "new matched query-zero versus query-actual, each at u-only-selected checkpoint; earlierBC or sharedcalibrated metrics are context only",
+    "all_required": {
+      "validation_u_mean_improvement_pp_at_least": 2.0,
+      "validation_u_worst_deterioration_pp_at_most": 2.0,
+      "validation_P1_mean_relative_error_reduction_at_least": 0.3,
+      "validation_P1_mean_relativeL2_at_most": 1.0
+    },
+    "P1_definition": "same existing15case all-node unweighted symmetric-FrobeniusL2 of incident-volume-averaged cornerP1 tensor, shear squared weight2; physical mm gradients. Not trainingcell loss, not solver tensorGT, not signed scalarstress.",
+    "zero_strain_baseline": "predicting zero strain gives relativeL2=1 for nonzero-reference cases; distinct from queryzero branch",
+    "records": "train120 all-node U/P1 using same definitions at selected checkpoints; matched contract/init/sampling hashes and finite checks",
+    "no_threshold_changes": "Do not tunesigma,relax gate or choose a strain-selected checkpoint after results."
+  },
+  "limitations_and_outcome_interpretation": [
+    "A scalar Gaussian distance cannot represent explicit tetrahedral connectivity, stiffness transfer, surface geodesics or distinguish all topology/load paths; success supports this query summary, not the asserted mechanism.",
+    "Support union still loses individual DOFs and fourpatch identity; role coverage is sparse and nonuniform FEM-node sampling. These limitations are held fixed in the pair.",
+    "Fixed sigma is an untested bias and smooth distant-token weights may become small; a failure does not refute all query-aware conditioning, and it does not authorize a bandwidth sweep.",
+    "New learned projection and decoder slots are equal-capacity instantiated controls; gradients to query projection vanish inzero as an intended information control. The result tests the combined supplied query-context representation, not pure theoretical capacity.",
+    "Native low precision, shared optimization competition and finite budget remain possible contributors; specialist success alone does not separate them.",
+    "If train gains but validation does not, shared conditional fit improves without observed CAD transfer under this split. If neither improves, no benefit at thisfixed recipe is shown. Neither outcome automatically triggers secondseed,width/loss/attention sweeps.",
+    "Validation is adaptive research and u checkpoint selection; no finaltest, new-load result, statistics acrossseeds or new-algorithm claim follows."
+  ],
+  "conditional_fallback_not_selected": "Had the actual specialist retained the value/gradient tradeoff, the next choice would instead be one local TRAIN-only fixed-checkpoint loss-gradient readout (Lu andlambdaL_P1 parameter-gradient norm ratio/cosine on predeclared minibatches), with no newarchitecture or loss sweep. The actual joint fit selects the query-context candidate, so that alternative is NOT proposed for execution now.",
+  "source_proof": {
+    "read_only_source_files": [
+      "notes/geobc_specialist_result.json",
+      "notes/geobc_bc_role_pair_result.json",
+      "notes/geobc_bc_role_coverage.json",
+      "notes/geobc_physical_scale_input_audit.json",
+      "geobc/bc_role_field.py",
+      "geobc/bc_role_condition.py",
+      "geobc/physics_field.py"
+    ],
+    "small_source_sha256": {
+      "notes/geobc_specialist_result.json": "f16dde2d8bda41f8f645d6e6c89adc1df8af393257a254157cbafabbc2170bce",
+      "notes/geobc_bc_role_pair_result.json": "6140ca2ced9e0add441444dc6476268e1f9f6d94c8172e8ef2d2bf5b4a345581",
+      "notes/geobc_bc_role_coverage.json": "1d9359949cca784f93dbd2fee6c6009072fbdedf9271a873506bdaaa90a7fa70",
+      "notes/geobc_physical_scale_input_audit.json": "dfcfdb0cc82b0bb248cb54091693cf3c0417ab691501cf4bad49c1f692fc68ac",
+      "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+      "geobc/bc_role_condition.py": "a9adee5a0fcbf7f408a4199ca1b4a87d676a43d56f4b18c1a91ff02cc6a3a232",
+      "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c"
+    },
+    "labels_or_arrays_read": "none; evidence solely completed scalar JSON/source construction"
+  }
+}

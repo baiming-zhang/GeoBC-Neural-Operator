@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "status": "predeclared",
+  "stage": "matched_query_dependent_geometry_BC_context",
+  "question": "Does a smooth query-dependent summary of geometry/BC point tokens improve the shared displacement field beyond one global CAD descriptor?",
+  "evidence": "notes/geobc_specialist_result.json: same native xyz3 field/loss on TRAIN101_479 jointly reachesu0.7575%/P117.8892% under dedicated training.250-step u7.4725%/P1136.5784% with similar case exposures to shared10k; cause of shared error remains unproven.",
+  "design_source": "notes/geobc_after_specialist_options.json",
+  "dataset": "Original DeepJEB v1.0; official CSV GRID coordinates -> H5 vertices",
+  "split": "Frozen40train/5validationCAD x ver/hor/tor; no dia/finaltest field opens",
+  "common_input": {
+    "query": "Original25 + existinglocal13 =38, originalforce/momentslots7:13 masked forlinear basis",
+    "geometry": "Same saved45CAD canonical1024 xyz/mask/nodeindices; originalbinarysupport_union/load_member BOTH actual",
+    "global": "Same PointNet5->32->64->64; maskedmax/mean->global32",
+    "query_tokens": "Shared64D PointNet pointfeatures; one newLinear64->32 (2080params) before weightedpool; nonaffineLayerNorm andtanh AFTERquerypool",
+    "native_layout": "original38 + querycontext32 + global32 =102 Identityconditioning; same12levelhash, width128x2,9basisoutputs",
+    "new_capacity": "Bothzero/actual construct identicalprojection andexpandeddecoder/nativepadding. OldBC models cannot be reused as matched control. Querybranch active onlyinactual can changeeffectivecapacity; this testsbranchaswhole, notpurecausality ofmissing information."
+  },
+  "kernel": {
+    "formula": "w(q,p)=masked_softmax[-||q_xyz-p_xyz||^2/(2*sigma^2)]; query_preLN=sum_p w(q,p)*Linear(pointfeature_p); query32=tanh(nonaffineLayerNorm(query_preLN))",
+    "sigma": 0.15,
+    "coordinate_units": "Existing isotropicnormalizedxyz; physicalsigma=.15*L_mm",
+    "selection": "One explicit radius chosen before any new results; no validation tuning, learnedattention or multi-radius sweep",
+    "mask": "Paddedpoints logits minusinfinity; requireatleastonevalidpoint perCAD",
+    "precision": "FP32 distances via directdifferences or non-matmul cdist, FP32softmax; avoidTF32dot cancellation near identicalpoints",
+    "query_chunk_limit": 4096,
+    "cost": "At51200x1024, weights saved acrossbackward about210MB evenwithchunking; record measuredtraining/evaltime andmemory"
+  },
+  "pair": {
+    "zero": "Compute same querydescriptor then multiplyby0 atdecoderentry, preserving explicitzero parametergradients",
+    "actual": "Use boundedquery32 atsame decoderentry",
+    "only_mode_difference": "query_context_mode",
+    "initialization": "Samefullinitialparameters/nativeparams/RNGcalls inbothnewmodels",
+    "context": "Explicit bundle withglobaltensor, projectedpointtokens, rawxyz andmask; CAD slicingmustslicealltogether. No data_ptr inference orimplicitstale graphcache",
+    "training": "Re-encode point/globaltokens peroptimizerstep foruniqueCADs; preserve gradients intoencoder/projection throughnativeTCNN",
+    "first_step_checks": "Bothglobal/encoder andallnativedecoder gradfinite/nonzero; actualqueryprojection+tokens gradfinite/nonzero; zeromodequerygrad explicitlyzero"
+  },
+  "recipe": {
+    "seed": 2026,
+    "steps": 10000,
+    "batch_size": 51200,
+    "case_sampling": "Fourdistinctcases, sameoriginalcase/node/tet RNGstreams",
+    "queries": "6400uniformnodes+1600uniformtetsx4corners percase",
+    "eval_every": 1000,
+    "optimizer": "FusedAdam,lr.003; unchangedbetas/eps/noweightdecay",
+    "gradient_weight": 0.0004106650618638651,
+    "normalizers": "Samecommonzero-centeredtrain-onlyu RMS, originalpercaseu weights andexistingtrain-onlygradientcache; no refit/recalibration",
+    "selection": "Known-loadval15 all-nodephysicalu mean only; P1 reportedatthat samecheckpoint"
+  },
+  "clear_gain_gate": {
+    "validation_u_mean_improvement_percentage_points_at_least": 2.0,
+    "validation_u_worst_deterioration_percentage_points_at_most": 2.0,
+    "validation_P1_relative_error_reduction_at_least": 0.30,
+    "validation_P1_case_mean_relative_L2_at_most": 1.0
+  },
+  "next": {
+    "if_pass": "Repeatmatchedseed2027 beforefrozen stress teacher orfinaltest; keepclouds fixed anddocumentselection reuse",
+    "if_fail": "One boundedanalysisoftrain/validation andquerybranchlearning; no automaticradius/width/loss sweep orspecialist suite"
+  },
+  "limitations": "Smoothdistancepooling is not a solvedelasticloadpath orgeodesic; surfacecloud sparse/nonuniform, local13availableonlyoriginalqueries. P1 is a displacement-derivedcornerproxy, not solverGTstrain. Newbranchcomposition has no provennovelty orCADtransfer success; developmentvalidationreused,finaltestisolated.",
+  "execution": "Two newmatched runs inone serialGPUqueue; preserve frozenhistorical modules/checkpoints"
+}
