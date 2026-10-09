@@ -1,0 +1,56 @@
+{
+  "status": "ready",
+  "created_at_utc": "2026-10-09T04:05:02.152351+00:00",
+  "sources_frozen": true,
+  "parent_18_source_commit": "ac2247683896eeeade7b7c310ba1ff003417ae8e",
+  "source_sha256": {
+    "geobc/conditional_train.py": "05165ba0b621de777d608dfe9c942e1566861ed7c7411f9e4ad1c146687c0ce4",
+    "geobc/displacement_condition.py": "d82b4f627ddfbe3bf8c217667bf411b4ebf66ada98736e59580721489cf9289a",
+    "tools/prepare_frozen_u_response.py": "6adb72709fe156ed31a3a607dd0c59c27f1e2905ec4ec1ffd097b2c214ed7789",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "geobc/local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+    "geobc/train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7"
+  },
+  "changed_source_files": [
+    "geobc/conditional_train.py"
+  ],
+  "old_ready_files_preserved": true,
+  "cache_ready": "notes/frozen_u_response_ready.json",
+  "teacher_gate": "notes/geobc_u_stress_teacher_frozen.json",
+  "CLI": "--u-response-cache data/geobc_frozen_u_response --u-condition none(default)|zero|actual",
+  "jobs": [
+    "stress_u_condition_zero_width128_10k",
+    "stress_u_condition_actual_width128_10k"
+  ],
+  "condition_layout": {
+    "original_BC_material": 25,
+    "actual_local_geometry": 13,
+    "current_load_predicted_u": 3,
+    "student_condition_dim": 41,
+    "PointNet_global_dim": 32,
+    "TCNN_identity_condition_dim": 73
+  },
+  "feature_definition": "u_condition[n,c]=sum_l alpha[l]*frozen_basis_scaled[n,l,c]; zero center and same positive teacher train-only common RMS; physical u_mm=scale_mm*u_condition",
+  "fit_scope": "stress scaler fit train120 only; train40/validation5 ver,hor,tor; validation15 fixed scaler selects best physical signed-stress case-mean relativeL2; final5/dia excluded",
+  "teacher_policy": "cached predicted displacement only; teacher never loaded/updated by student, GT u never student input; extra displacement supervision, teacher candidate costs and cache/student elapsed recorded",
+  "matched_pair": "same41+32 layout, seed2026, decoder+PointNet initial parameter SHA, independent case(seed+23)/node(seed+17) RNG and firstbatch witness; original stress loss/optimizer/sampler/budget unchanged",
+  "contracts": "_scope remains five-tuple metadata-only; manifest/gate/teacher checkpoint and small metadata identity/scaler/source SHA/cache45 identities; completed reuse and strict last.pt resume verify fixed provenance without loading model in completed branch",
+  "checks": {
+    "metadata_scope_no_arrays_weights_CUDA_train120_val15": true,
+    "paired_scope_same_cache_teacher_scale_sources": true,
+    "default_none_preserves_previous_input_layout": true,
+    "response_alpha_gather_scaled_combination_zero_exact": true,
+    "response_loading_and_combination_consume_no_sampling_RNG": true,
+    "xyz_order_mismatch_rejected": true,
+    "CPU_injected_decoder_41plus32_shape_and_same_init_SHA": true,
+    "training_sampler_loss_optimizer_and_firstbatch_witness_AST_unchanged": true,
+    "metadata_only_completed_reuse_passed": true,
+    "changed_completed_provenance_rejected": true,
+    "CUDA_initialized": false,
+    "GPU_training_started_by_child": false,
+    "real_weights_or_field_arrays_opened_in_checks": false
+  },
+  "native_GPU_validation": "Only root formal queue first backward; retained finite nonzero PointNet gradient check; no extra GPU smoke",
+  "freeze_policy": "No source edits after this ready receipt until both student jobs complete or root requests a direct repair"
+}

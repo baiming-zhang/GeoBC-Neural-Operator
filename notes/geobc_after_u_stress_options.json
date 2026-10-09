@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "status": "research_design_only_wait_for_root_result_and_authorization",
+  "execution_authorized_by_this_note": false,
+  "scope": "Read existing BRIEF, u-conditioned-stress plan, frozen-teacher metadata, model/preparation source and allowed45 canonical-ver manifest geometry counts. Inspect one trainCAD raw H5 geometry dataset shapes/dtypes and prepared sample_key/characteristic_length scalar only. No label/prediction arrays, weights, dia or final-test fields were read; no training, cache generation, source/data edit or GPU work was performed.",
+  "inputs_read": [
+    "results/geobc_exploration/BRIEF.md",
+    "notes/geobc_u_conditioned_stress_plan.json",
+    "notes/geobc_u_stress_teacher_frozen.json (small metadata only)",
+    "notes/geobc_stress_semantics.json",
+    "geobc/physics_field.py",
+    "geobc/conditioned_field.py",
+    "geobc/conditional_train.py",
+    "geobc/tcnn_fields.py",
+    "geobc/models.py",
+    "geobc/train.py",
+    "tools/prepare_deepjeb.py",
+    "tools/prepare_multifield.py",
+    "tools/prepare_geobc_exploration.py",
+    "tools/mesh_boundary.py",
+    "data/prepared_geobc_multiload/manifest.json (allowed45 canonical-ver geometry counts only)",
+    "data/raw/FieldMesh/101_479.h5 (vertices/cells/faces dataset shape/dtype metadata only)",
+    "data/prepared_geobc_multiload/101_479_ver.npz (sample_key and characteristic_length_mm only)"
+  ],
+  "current_pair_boundary": {
+    "current_hypothesis": "Frozen predicted displacement at each query, u3, can improve separately supervised source signed scalar stress. The zero and actual students share input dimension, initialization, sampling and budget.",
+    "current_result": "Not inspected in this task; root is running the frozen pair.",
+    "teacher_information": "Selected teacher has extra training-only displacement supervision and known-load validation selection. Its features are not target-independent geometry, even though cache generation reads no truth arrays.",
+    "negative_result_scope": "A small or training-only u3 benefit concerns point-displacement conditioning with this teacher and budget. It does not show that local strain is useless, that a particular architecture is missing, or that the signed scalar obeys an established constitutive formula.",
+    "validation_scope": "Five CADs x ver/hor/tor, 15 cases, remain development validation. CAD-level paired summaries matter because the three loads within one CAD are dependent. Neither dia nor the five final-test CADs select any option."
+  },
+  "decision_gates": {
+    "definition": "Delta = zero case-mean all-node physical signed-stress relative L2 minus actual. Fractions are used: 0.01 equals one percentage point. Thresholds below are proposed operational gates, not significance tests or observed results; root must lock or revise them before a new experiment.",
+    "credible_u3_gain": "If Delta >= 0.01, at least 4/5 CAD means improve, and worst-case / mean-hotspot L2 regress by at most 0.01, prefer one matched second-seed confirmation of the same u3 hypothesis before adding another feature. A single development seed is insufficient for a generalization claim.",
+    "small_or_training_only_u3_gain": "If Delta < 0.01 or only training physical L2 improves, candidate A is the preferred new information hypothesis, subject to its discrete-gradient feasibility guard. Do not automatically expand to basis9, joint training, constitutive scalar loss, smoothing choices or a broad architecture suite.",
+    "objective_mismatch": "Candidate B is eligible only if existing history shows decreasing encoded train loss with stagnant/worse physical train L2 or hotspot L2, or late sinh amplification causes physical failures. Training physical improvement with no CAD-validation improvement alone is not evidence for B.",
+    "if_both_eligible": "Choose B first only when the loss/physical-metric mismatch is documented from existing histories; otherwise choose A. Execute one hypothesis, not both concurrently. No diagnosis requires new dia/final-test evaluation.",
+    "if_neither_guard_passes": "Stop expansion and report an unresolved teacher/generalization limit; do not manufacture a strain signal or infer a missing module.",
+    "new_candidate_success": "Use the same known-load all-node mean/worst/hotspot metrics and proposed >=0.01 mean gain / 4-of-5-CAD consistency gate, then second-seed confirmation. Report final-step and selected-step scores. Validation-selected gains remain internal development evidence."
+  },
+  "candidate_A": {
+    "name": "Frozen local strain conditioning, paired zero/actual six-channel control",
+    "question": "Does local variation of the predicted displacement contain stress-relevant information that point displacement u3 omits?",
+    "minimal_change": "Keep the selected frozen teacher, original25, local13, PointNet32, and u3 policy identical in both branches; append six zero/actual recovered small-strain slots. Use the existing u3-actual policy in both branches regardless of its gain, so the intervention is the additional derivative information alone.",
+    "student_layout": "original25 + local13 + u3 + strain6 = 47 local condition channels; then global32. Same native TCNN width128/two ReLU hidden layers, same seed2026, 10k steps, batch51200/4 cases, optimizer/loss/sampling/selection as the u3 pair. New paired initialization; do not use an old lower-dimensional zero baseline.",
+    "strain_order": ["epsilon_xx", "epsilon_yy", "epsilon_zz", "epsilon_xy", "epsilon_xz", "epsilon_yz"],
+    "definition": "G_ij = partial u_i(mm) / partial x_j(mm); epsilon = 0.5*(G+G^T). Off-diagonal slots are tensor strain, not engineering shear gamma=2*epsilon. Strain is dimensionless.",
+    "feature_scaling": "After obtaining physical dimensionless epsilon, divide all six channels by one positive common RMS fitted only over optimization train40 x ver/hor/tor predicted strain (never validation/dia/test); center stays zero. Save exact scaler and method. This is a feature transform, not a relabeling or stress scaler change. No per-CAD/per-load scaling or clipping.",
+    "frozen_basis_reuse": "Recovery is a geometry-fixed linear operator. Recover three reference-basis strain fields once per CAD, then combine with the existing physical alpha. Cache [N,3basis,6strain], not three copies per known load. Common feature scaling commutes with this combination.",
+    "primary_recovery": "For the smallest first test, recommend a predeclared P1 corner-recovery proxy: use each original TETRA10's first four corner coordinates and their frozen nine-component basis values, solve the constant affine displacement gradient in physical units once per cell, symmetrize, then positive corner-tetra-volume-weighted average the incident cell strain to each of its ten original node IDs. Every original query node gets the same fixed recovery rule; no resampling or extra nodes. Call the result corner-P1 recovered strain proxy, not exact TETRA10 strain or solver stress recovery.",
+    "P1_limitations": "P1 ignores midside displacement values and curved quadratic geometry in the local derivative and smears the per-cell constant gradient onto midside query nodes. It can miss within-cell strain variation and local stress concentration. It is interpretable and inexpensive for testing whether any resolved local variation helps beyond u3; a negative result cannot reject full quadratic strain information.",
+    "TETRA10_alternative_not_parallel_suite": "Full quadratic isoparametric recovery uses all ten original displacements and curved coordinates, shape derivatives and the physical Jacobian at each of ten local node positions, followed by a locked nodal recovery average. This is necessary to claim derivatives of the original quadratic interpolant, but is not necessary to name a cheap P1 proxy correctly. Do not run or tune both estimators by validation. Root should lock P1 first unless the goal specifically requires quadratic-field derivative fidelity; full TETRA10 is a later separately authorized refinement, and does not solve unknown scalar exporter semantics.",
+    "availability": "Source preparation code confirms prepared files keep xyz, xyz_mm, characteristic_length_mm and correct global boundary faces, but do not save volume cells. Frozen u cache contains basis_scaled / node identity / scale, not cells. Actual train101_479 H5 metadata confirms vertices[179316,3] float32, cells[111754,10] int64 and faces[118648,3] int64; its prepared L_mm is184.05270385742188 and has_cells=false. All45 existing canonical-ver manifest records total6037810 volume tetrahedra and9627246 nodes. Future recovery needs a geometry-only read of local raw H5 cells for those same45 CADs and coordinate/node-order identity checks; never nodal_variables or truth arrays. This task inspected shapes/scalars only, not geometry or field array contents.",
+    "conditional_fallback": "If topology recovery is impractical, a separately locked local affine fit over 32 volume-node neighbors can be a cheaper approximate-gradient candidate. Fit differences, Delta U = Delta X @ G^T, in float64; use a fixed geometry-only weighting and neighbor rule. Prefer incident-element / mesh-connected neighborhoods. Pure Euclidean KNN can connect opposite thin walls or cross holes; boundary-only KNN is often rank2 and cannot recover all three spatial derivatives. Record rank/conditioning/support and explicitly call it an approximate recovered gradient. Do not silently switch estimators after validation.",
+    "feasibility_guard_before_45_CAD_cache": [
+      "One fixed train CAD, selected independently of stress; no truth comparison or validation-based estimator choice.",
+      "On its actual coordinate/connectivity geometry, synthetic constant translation gives G=0, affine displacement recovers the prescribed G, and skew affine rotation gives epsilon=0 to float64 numerical tolerance. These verify units/operator, not teacher accuracy.",
+      "For P1 require finite, nonzero corner-tetra volume and full-rank coordinate-edge matrix; lock a conditioning threshold before validation. For a later TETRA10 implementation also check invertible Jacobians / consistent orientation inside the quadratic cell. Affine/KNN must have rank3. Bad geometry/support must fail explicitly, not be filled with zero and treated as a valid response.",
+      "Report fixed-support numerical sensitivity / recovery spread on a small predefined subset of the frozen predictions before full caching, without truth. Large instability means do not launch the student pair. Successful synthetic tests still do not establish accurate physical derivatives of the learned teacher."
+    ],
+    "important_confound": "Teacher nodewise u accuracy around 30% does not bound derivative accuracy. A hash field can have small-amplitude short-scale variation whose derivatives are large; finite-element interpolation or KNN recovery adds mesh-scale discretization/smoothing. A failure may concern teacher derivative quality or recovery, not the physical relevance of strain.",
+    "stress_policy": "Use recovered strain only as a learned condition to the existing independently supervised source signed scalar stress. Do not reconstruct a new VM/principal/tensor target, add sigma=C:epsilon equality, assume an exporter sign formula, or linearly compose scalar stress.",
+    "cost": {
+      "unique_train_validation_nodes_from_existing_metadata": 9627246,
+      "volume_TETRA10_cells_from_existing_allowed45_manifest": 6037810,
+      "volume_TETRA10_min_max_per_CAD": [94497, 205198],
+      "P1_constant_cell_gradient_evaluations": 6037810,
+      "P1_node_cell_recovery_contributions": 60378100,
+      "TETRA10_cell_node_Jacobian_and_gradient_evaluations": 60378100,
+      "basis_strain18_float32_bytes": 693161712,
+      "basis_strain18_MiB": 661.0505218505859,
+      "full_basis_gradient27_float32_bytes_if_saved": 1039742568,
+      "full_basis_gradient27_MiB_if_saved": 991.5757827758789,
+      "existing_basis9_float32_MiB": 330.52526092529297,
+      "avoid": "Do not save full27 gradients if six strain channels suffice, or retain a full N x 32 neighbor graph: int32 indices alone would cost 1232287488 bytes.",
+      "implementation_budget": "Precompute geometry/recovery once per CAD; batched gather/3x3 solves and scatter reduce can use the root-managed GPU queue, or CPU2 workers/BLAS1 with bounded chunks. P1 needs one3x3 solve with nine RHS per cell plus10 incident-node scatter contributions; full quadratic node recovery needs ten Jacobians and ten-node interpolation sums per cell, approximately10x Jacobian solves and25x shape-node contractions relative to a four-corner constant gradient (operation estimates, not a wall-time claim). No additional neural inference is required once the frozen basis cache exists. KNN chunk8192 needs about6 MiB DeltaX +18 MiB nine-channel DeltaU in float64 before other temporary arrays. Full cells int64 total483024800 bytes but process one CAD at a time; maximum205198 cells are about15.7 MiB, and max325387-node18-channel float64 accumulator about44.7 MiB. Neither path has a measured ETA in this note; benchmark fixed train101_479 first. No full45 computation or new GPU task was launched.",
+      "training_budget": "Two new same-budget10k student runs; no teacher refit or backprop through recovery/cache. Include shared teacher supervision/cost and cache generation in reporting."
+    }
+  },
+  "candidate_B": {
+    "name": "One-variable physical case-relative objective control",
+    "question": "Is optimizing centered standardized-asinh MSE failing to optimize physical signed-stress energy error, even before unseen-CAD generalization?",
+    "eligibility": "Use only with the existing-history objective-mismatch gate above; u3 improves training but not CAD validation is insufficient by itself.",
+    "minimal_change": "Keep the frozen teacher, architecture, selected u3 feature policy, original stress scaler, initialization, sampled cases/nodes and budget fixed in two newly paired branches. Change only encoded-asinh MSE versus physical case-relative MSE; no strain input, new sampling, extra capacity, new teacher or mixed loss weight sweep.",
+    "loss_definition": "For each equally sampled training case c, L_c = mean_sample[(sigma_pred_MPa-sigma_true_MPa)^2] / mean_all_training_nodes[sigma_true_MPa^2]; average L_c over sampled cases. Denominators are fixed training-only scalars, not per-batch, per-validation or per-load fitted transforms. This estimates squared per-case relative L2; selection still uses the original mean unsquared all-node physical relative L2. Explicitly report that distinction.",
+    "decode": "Keep sigma_pred = stress_scale*sinh(center + spread*z_pred), with the existing strict train-only StressScaler. Local Jacobian is stress_scale*spread*cosh(center+spread*z); therefore the physical loss can produce much larger gradients than encoded MSE.",
+    "numerical_guard": "Before any10k pair, a bounded train-only finite forward/backward check is required. Nonfinite decoded values or gradients stop this candidate explicitly. Do not repair it with unreported clipping, truth modification or a simultaneous learning-rate sweep; such changes would require a separate hypothesis and root decision.",
+    "interpretation": "Improved physical train error without CAD-validation benefit points to the remaining transfer limitation, not evidence that further physical loss tuning will solve it. A validation improvement supports this objective choice under this budget; it does not validate a constitutive scalar definition.",
+    "cost": "No new geometry/gradient cache; two same-budget10k runs plus training-only120 scalar denominators. Decoding and the case reduction add O(batch_size) arithmetic; no weight or data rescans are proposed in this research task."
+  },
+  "point_u_vs_gradient": {
+    "point_value": "u at one point changes under rigid translation. Two fields can share that point value while having different gradients. Hence a zero u3 result cannot reject local strain information.",
+    "small_strain": "The symmetric physical gradient removes infinitesimal rigid rotation and encodes local extension/shear under the existing small linear-static material assumption. It is a plausible representation condition, not an identified scalar exporter formula.",
+    "normalization_chain_rule": "prepared x_hat=(x_mm-min_xyz_mm)/L_mm, L_mm=characteristic_length_mm=max bounding-box extent; physical u_mm=s_u_mm*b_scaled. Thus G_ij=(s_u_mm/L_mm)*partial b_scaled_i/partial x_hat_j. If differences are formed directly in physical xyz_mm/u_mm, no additional L or s multiplication applies. Do not confuse boundary geometry scale0.05 with L_mm, and do not use anisotropic axis spans.",
+    "spatial_features": "ConditionedField also consumes spatially varying25 BC/reference-distance channels and13 cached local geometry channels. Total spatial variation includes these channels, whereas autograd in xyz with them held fixed gives a partial derivative. Boundary/interface masks are discontinuous and cached geometry has no derivative graph. Recovering derivatives from frozen nodal u incorporates their sampled effect, with explicit discretization error.",
+    "native_backend": "TCNNField passes concatenated xyz/conditions to native NetworkWithInputEncoding. TorchHashGrid fixed-coordinate lookup explicitly rejects requires_grad and is unsuitable for PDE xyz gradients. Neither source supplies a ready, validated total-field derivative operator for this model.",
+    "source_scalar_boundary": "Original paper says signed von Mises, but released CSV only names stress(MPa); exporter sign and nodal recovery conventions remain unknown. Tensor constitutive relations are not proof that a chosen scalar matches these labels."
+  },
+  "primary_references": [
+    {
+      "title": "Kitware VTK vtkQuadraticTetra official documentation / source",
+      "url": "https://vtk.org/doc/nightly/html/classvtkQuadraticTetra.html",
+      "source_url": "https://github.com/Kitware/VTK/blob/master/Common/DataModel/vtkQuadraticTetra.cxx",
+      "supports": "Ten-node quadratic shape derivatives and inverse physical Jacobian; nodewise Derivatives maps reference-coordinate derivatives into physical XYZ. Proposed recovery averaging/guards are our design choices, not a claim about DeepJEB exporter settings."
+    },
+    {
+      "title": "MFEM official bilinear-integrator documentation",
+      "url": "https://mfem.org/bilininteg/",
+      "supports": "Small-strain isotropic elasticity uses epsilon(u)=0.5*(grad u + grad u transpose), and stress tensor lambda*div(u)*I +2*mu*epsilon. This does not establish the released signed scalar stress or its export/sign rule."
+    },
+    {
+      "title": "SciPy official cKDTree.query documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.cKDTree.query.html",
+      "supports": "Batched k-nearest-neighbor queries, Euclidean metric p=2, exact query eps=0 and controlled workers. It defines neighbor querying, not a strain estimator or a guarantee of topology-safe support."
+    },
+    {
+      "title": "Existing bounded original DeepJEB stress-semantics review",
+      "local_note": "notes/geobc_stress_semantics.json",
+      "primary_paper_url": "https://arxiv.org/html/2406.09047v2",
+      "supports": "Author-intended signed-von-Mises terminology was previously confirmed; exact exporter scalar/sign/recovery is unresolved. No new source-semantic search or target comparison was performed here."
+    }
+  ],
+  "deferred_not_candidates": [
+    "basis9+u3 compliance descriptor expansion",
+    "joint teacher/student training",
+    "constitutive scalar equality or new VM targets",
+    "smoothing/K/loss/architecture hyperparameter suite",
+    "additional dia probing or final-test selection"
+  ],
+  "root_action": "Wait for the current frozen u3 pair to complete; apply the declared evidence gates, lock one next option and its implementation/cache details, then decide whether to allocate it. This note itself launches nothing."
+}

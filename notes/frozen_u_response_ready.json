@@ -1,0 +1,59 @@
+{
+  "status": "ready",
+  "created_at_utc": "2026-10-09T04:02:52.979106+00:00",
+  "sources_frozen": true,
+  "source_sha256": {
+    "displacement_condition.py": "d82b4f627ddfbe3bf8c217667bf411b4ebf66ada98736e59580721489cf9289a",
+    "prepare_frozen_u_response.py": "6adb72709fe156ed31a3a607dd0c59c27f1e2905ec4ec1ffd097b2c214ed7789"
+  },
+  "parent_source_commit": "ac2247683896eeeade7b7c310ba1ff003417ae8e",
+  "files": [
+    "geobc/displacement_condition.py",
+    "tools/prepare_frozen_u_response.py"
+  ],
+  "gate": "notes/geobc_u_stress_teacher_frozen.json",
+  "teacher_fingerprint": "37e9f3493e7eea1be322ae26c82d51c8b049c2ad775a729d31d1a9e0a38d35f8",
+  "CLI": "python tools/prepare_frozen_u_response.py --gate notes/geobc_u_stress_teacher_frozen.json --output data/geobc_frozen_u_response --batch-size 65536",
+  "scope": "only 40 train +5 validation CAD canonical ver; no labels/dia/finaltest members",
+  "checks": [
+    "Python syntax AST",
+    "Windows and WSL JSON/stat-only frozen metadata dry-run; no checkpoint deserialization or NPZ array read",
+    "synthetic 45CAD float32[N,3,3] cache roundtrip",
+    "reject permuted xyz, changed teacher and final-test CAD",
+    "NumPy+CPU torch gather, alpha combination, zero exact3-layout, unit alpha basis columns, zero intercept",
+    "common physical scalar decode commutes with alpha combination",
+    "original25 force/moment metadata validation; dia rejected by training helper",
+    "synthetic reader guard rejects stress/displacement/u label access and confirms optional existing characteristic_length_mm/bbox_min_mm preservation",
+    "trainer agent independent read-only frozen factory/scaler/cloud/context/response API review"
+  ],
+  "helper_API": {
+    "load_response_manifest": "(directory, *, expected_teacher=None)->dict; metadata JSON/small SHA/stat only; verifies frozen parent identities if existing, no NPZ/torch",
+    "load_response_cache": "(directory,cad_id,*,xyz=None,expected_teacher=None,manifest=None)->FrozenResponseCache; basis_scaled float32[N,3,3],scale_mm,record(),verify_xyz(),tensor(device)",
+    "displacement_condition": "(basis_scaled,node_indices,alpha,*,mode=zero|actual)->[Q,3], NumPy or torch; scaled common u, no recenter/refit",
+    "alpha_from_original_features": "(features25,case_key,guard)->np.float32[3]; NumPy/torch input, verifies ver/hor/tor slots7:13 against frozen45 metadata; only6slots transfer if input torch",
+    "record_geometry": "normalization stores exact existing characteristic_length_mm/bbox_min_mm or unknown; no raw H5/cells scan"
+  },
+  "manifest": "data/geobc_frozen_u_response/manifest.json",
+  "completion_order": "45 atomic NPZ caches; delete teacher/model/context refs; GC + CUDA synchronize/empty_cache; then atomic completed manifest, finally status",
+  "cost_fields": [
+    "cost.cache_generation_elapsed_seconds",
+    "cost.teacher_training_elapsed_seconds",
+    "cost.candidate_training_costs"
+  ],
+  "actual_cache_generation_executed": false,
+  "GPU_used": false,
+  "real_source_NPZ_arrays_read": 0,
+  "real_checkpoint_opened": false,
+  "scientific_note": "Frozen predictor learned additional train u supervision. No GT u/stress enters response features. Teacher/cache/pretraining cost is additional, not an equal-total-budget stress-only baseline.",
+  "dry_run": {
+    "Windows": "passed",
+    "WSL": "passed",
+    "status": "frozen_metadata_ready",
+    "CADs": 45,
+    "best_step": 8000,
+    "checkpoint_opened": false,
+    "NPZ_arrays_opened": 0,
+    "GPU_used": false
+  },
+  "incomplete_output_policy": "Nonempty incomplete output is refused; no automatic deletion or silent overwrite/resume."
+}

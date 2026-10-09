@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "case_relative_displacement_loss",
+  "stage": "frozen_u_conditioned_stress",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -38,6 +38,13 @@
       "conclusion": "Approximate displacement load linearity helps this frozen load-span probe, but high prediction error and extreme-node tradeoff remain. Scalar stress transfer is unresolved; no stress linearity assumption is permitted.",
       "next": "Apply predeclared train-case-normalizedu MSE in matched two physics modes, keepcommonzero-center physicaldecode andknown-loadvalidationselection. Dia probe already observed and remains a diagnostic; do not use it to choose the loss recipe or claim a pristine blind second probe. Final5CAD still excluded.",
       "immutable_original_source_local_commit": "906ca17d3e056b358676d7b017984703d54ee252"
+    },
+    {
+      "decision_id": "u_condition_3",
+      "evidence": "Case-relative u loss: known-load validation mean29.1783% linear/29.0858% dependent, modest improvement versus30.5837%/30.0798%; worst error increased. Training TOR improved substantially, validation less.",
+      "conclusion": "Amplitude imbalance contributed but does not resolve unseen-CAD transfer. Freeze the eligible load-linear relative-loss teacher by known-load validation only.",
+      "next": "Matched stress student41 local channels: original25+actual geometry13+zero/predictedu3. Same10k seed2026 budget and stress objective; report teacher auxiliary supervision and preprocessing costs. No dia or finaltest opens.",
+      "source_local_commit": "ac2247683896eeeade7b7c310ba1ff003417ae8e"
     }
   ],
   "future_hypotheses_not_launched": [

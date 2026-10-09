@@ -44,7 +44,7 @@ def main():
                                             'identity_policy':'paths/bytes/mtime plus small config source hashes; no redundant checkpoint scans',
                                             'runs':checkpoints})
     manifests=dest/'data_manifests'; manifests.mkdir(exist_ok=True)
-    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry'):
+    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response'):
         source=ROOT/'data'/directory/'manifest.json'
         if source.is_file():shutil.copyfile(source,manifests/(directory+'.json'))
     lines=['# GeoBC 探索：当前结论与下一步','',
@@ -70,7 +70,7 @@ def main():
         lines+=['','这些对照固定了架构、输入和父模型 scaler；独立模型增加了总容量，不能单独证明某个几何模块必需。','']
     lines+=['## 几何条件能否改善泛化','',
             '使用同一 40-CAD 训练／5-CAD 验证划分。每组对照的 decoder 布局、随机采样、预算相同；scaler 只拟合训练标签。每项训练10,000次更新，不能与原50案例的1000个完整epoch直接等同。',
-            '训练与选模型只使用 ver/hor/tor；dia 及五个官方测试 CAD 保持隔离。','']
+            '训练与选模型只使用 ver/hor/tor；五个官方测试 CAD 保持隔离。验证CAD的dia曾作一次模型冻结后的诊断，后续不能再称全新盲测。','']
     paired=[
         ('整体几何／宽度64','hash_bc_no_geometry_10k','hash_bc_pointnet_10k'),
         ('整体几何／宽度128','hash_bc_no_geometry_width128_10k','hash_bc_pointnet_width128_10k'),
@@ -96,8 +96,8 @@ def main():
             gap2=100*(z2['best_metrics']['validation']['case_mean_relative_l2']-a2['best_metrics']['validation']['case_mean_relative_l2'])
             lines += [f'第二个种子的收益为{gap2:.2f}个百分点。两次均改善平均与热点误差，但最差案例变差；不能称为全面改善。']
     lines += ['', '## 位移的载荷响应基','',
-              '下一阶段将位移表示为ver/hor/tor三个载荷响应的线性组合，并比较同容量、允许响应基依赖载荷的控制模型。几何输入、训练预算和随机采样保持相同。',
-              '45个训练/验证CAD的求解配置均支持该设定；源FEM位移是否确实满足叠加，仍需在模型冻结后用dia场数值验证。训练只拟合原始uXYZ，使用训练集的零中心线性尺度；应力分支单独保留。']
+              '已实现ver/hor/tor位移响应的线性组合，并与同容量、允许响应基依赖载荷的控制模型比较。几何输入、训练预算和随机采样保持相同。',
+              '45个训练/验证CAD的求解配置支持该设定；源FEM叠加残差见下方冻结诊断。训练只拟合原始uXYZ，使用训练集的零中心线性尺度；应力保留独立监督。']
     physics=[]
     for mode in ('linear_basis','load_dependent_basis'):
         summary=summaries.get('displacement_'+mode+'_local_actual_10k')
@@ -123,6 +123,23 @@ def main():
                   f"- 源FEM位移叠加残差平均{percent(u['oracle']['case_mean_relative_l2'])}，支持近似线性；不能说数值残差为零或已确定其来源。",
                   f"- 独立应力模型的dia平均误差仍为{percent(probe['stress']['case_mean_relative_l2'])}，组合载荷应力预测仍是主要瓶颈。",
                   '这是验证集载荷组合诊断，未读取最终测试CAD。线性模型的最大绝对位移误差仍可能高于对照，完整物理指标保留在原始summary。']
+    uz=summaries.get('stress_u_condition_zero_width128_10k')
+    ua=summaries.get('stress_u_condition_actual_width128_10k')
+    lines += ['', '## 冻结预测位移作为应力条件','',
+              '按常规载荷验证均值选择并冻结案例归一化损失的线性位移教师（29.178%）。每CAD只推断一次三组响应，再按当前载荷组合成三维预测位移；应力模型的对应三个槽使用预测值或全零。两者均从头训练，相同41维局部输入、32维整体描述、采样与10k预算。',
+              '预测条件生成不读取真实位移或应力；教师本身使用额外的训练位移监督，因此整个pipeline不能声称与stress-only模型有相同监督量或总成本。两个候选教师训练成本合计约223秒，缓存生成和应力训练成本另列。']
+    if uz or ua:
+        lines += ['', '| 位移条件 | 验证应力均值 | 最差案例 | 热点均值 | 训练耗时 |','|---|---:|---:|---:|---:|']
+        for mode,summary in [('零槽',uz),('冻结预测位移',ua)]:
+            if summary:
+                v=summary['best_metrics']['validation']
+                lines += [f"| {mode} | {percent(v['case_mean_relative_l2'])} | {percent(v['worst_case_relative_l2'])} | {percent(v['case_mean_hotspot_relative_l2'])} | {summary['elapsed_seconds']:.1f}s |"]
+            else:
+                lines += [f'| {mode} | 待完成 | — | — | — |']
+    else:
+        lines += ['成对实验已排队，等待实现及共享响应缓存。此轮不打开dia或最终测试CAD。']
+    if uz and ua:
+        lines += ['位移条件改善了均值与最差案例，但热点变差；未通过预定的复验门。下一轮固定预测u3，比较廉价mesh恢复应变六槽与同布局全零槽，检验局部变形变化是否提供不同的信息。它是corner-P1离散代理，不是精确TETRA10应变，也不以本构公式替换源应力标签。']
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
@@ -132,17 +149,16 @@ def main():
     brief=['# GeoBC：一分钟结果','',
            '**目前的主要问题是共享场的泛化，而非单个案例能否拟合。**','',
            '- 难例单独训练：应力误差约0.1%；原共享Hash换CAD或载荷组合：约92%。',
-           '- 整体几何编码和解码器加宽：验证误差仍约65%，没有明显收益。']
+           '- 整体几何编码和解码器加宽没有明显收益；局部边界几何仅将应力验证误差从约65%改善到约64%。']
     if zero and actual:
-        brief += ['- 加入查询点局部边界几何：两个随机种子的平均验证误差改善约0.8–1.7个百分点，热点也改善；最差案例变差，整体误差仍约64%。']
-    if physics:
-        brief += [f"- 位移{'线性响应基' if mode=='linear_basis' else '同容量载荷依赖对照'}：验证向量误差{percent(val)}。" for mode,train,val in physics]
-    else:
-        brief += ['- 正在检验位移的线性载荷响应基；应力保留独立监督，不套用位移叠加规律。']
+        brief += ['  局部几何收益在两个种子上重复，但最差案例变差，不能称为全面改善。']
     if probe:
-        brief += [f"- 冻结的dia组合测试：位移线性模型{percent(probe['displacement']['linear_basis']['case_mean_relative_l2'])}，对照{percent(probe['displacement']['load_dependent_basis']['case_mean_relative_l2'])}；源位移叠加残差约0.31%。应力仍约87%，尚未解决。"]
-    if relative:
-        brief += ['- 改正位移损失的案例幅值权重后，验证均值约29.1%，最差反而更差；下一步用冻结预测位移条件检验应力表示。']
+        brief += ['- 组合载荷诊断：强制位移线性响应优于对照（28.4% vs 33.0%），但应力仍约87%；位移物理结构有用，应力迁移仍未解决。']
+    if uz and ua:
+        z=uz['best_metrics']['validation'];a=ua['best_metrics']['validation']
+        brief += ['', f"最新对照：预测位移条件将应力验证均值{percent(z['case_mean_relative_l2'])} → {percent(a['case_mean_relative_l2'])}，最差也改善；热点{percent(z['case_mean_hotspot_relative_l2'])} → {percent(a['case_mean_hotspot_relative_l2'])}，反而变差。下一步检验局部应变条件，最终测试继续保留。"]
+    else:
+        brief += ['', '正在检验：冻结模型预测的位移，能否帮助应力预测；与相同输入布局的零条件做成对比较。']
     brief += ['', f"完成{len(summaries)}/{len(jobs)}项探索；原30项slides复现已完成。当前研究继续，五个最终测试CAD未参与新模型训练/选择。",'',
               '数据、控制变量及解释范围见 [完整探索报告](REPORT.md)。','']
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')

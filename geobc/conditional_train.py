@@ -41,6 +41,21 @@ def _sha(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
+def _initial_parameters(model):
+    """Small paired-run witness; never consumes model or sampling RNGs."""
+    digest = hashlib.sha256()
+    for name, parameter in model.named_parameters():
+        value = parameter.detach().cpu().contiguous().numpy()
+        digest.update(name.encode())
+        digest.update(str(value.dtype).encode())
+        digest.update(np.asarray(value.shape, dtype=np.int64).tobytes())
+        digest.update(value.tobytes())
+    return {"all_parameter_sha256": digest.hexdigest(),
+            "decoder_parameter_sha256": _sha(model.decoder.native.params.detach().cpu().contiguous().numpy().tobytes()),
+            "recorded_before_optimizer_or_resume": True,
+            "paired_zero_actual_require_same_architecture_and_seed": True}
+
+
 def _json(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -127,11 +142,62 @@ def _scope(args):
             stat = path.stat()
             local_sources.append({"cad_id": cad, "path": str(path), "bytes": stat.st_size,
                                   "mtime_ns": stat.st_mtime_ns})
+    # This branch reads only completed JSON metadata and file identities. In
+    # particular, completed reuse and resume checks never open targets/cache
+    # arrays, instantiate a teacher, or initialize CUDA.
+    u_mode = getattr(args, "u_condition", "none")
+    u_directory_arg = getattr(args, "u_response_cache", None)
+    requested["u_condition"] = u_mode
+    requested["u_response_cache"] = None
+    response_contract = None
+    if u_mode == "none":
+        if u_directory_arg is not None:
+            raise ValueError("--u-response-cache requires explicit --u-condition zero or actual")
+    else:
+        if u_mode not in ("zero", "actual") or u_directory_arg is None:
+            raise ValueError("--u-condition zero/actual requires --u-response-cache")
+        if args.local_mode != "actual" or args.variant != "geometry_pointnet" or args.geometry_dim != 32:
+            raise ValueError("The frozen-u control uses local actual, PointNet, and global32: 41+32 inputs")
+        from .displacement_condition import load_response_manifest
+        directory = _path(u_directory_arg)
+        requested["u_response_cache"] = str(directory)
+        manifest_path = directory / "manifest.json"
+        manifest_bytes = manifest_path.read_bytes()
+        manifest = load_response_manifest(directory)
+        gate_path = _path(manifest["gate"]["path"])
+        gate = _json(gate_path)
+        allowed = groups["train"] + groups["validation"]
+        if gate["cache_CADs"] != allowed or gate["split"]["sha256"] != _sha(split_bytes):
+            raise ValueError("Frozen response and student train/validation split identities differ")
+        cache_sources = []
+        for cad in allowed:
+            record = manifest["CADs"][cad]
+            path = directory / f"{cad}.npz"
+            stat = path.stat()
+            if (record["file"] != path.name or record["bytes"] != stat.st_size
+                    or record["mtime_ns"] != stat.st_mtime_ns):
+                raise ValueError(f"{cad}: frozen response cache identity changed")
+            cache_sources.append({"cad_id": cad, "path": str(path), "bytes": stat.st_size,
+                                  "mtime_ns": stat.st_mtime_ns, "node_count": record["node_count"],
+                                  "xyz_sha256": record["xyz_sha256"]})
+        response_contract = {
+            "manifest": str(manifest_path), "manifest_sha256": _sha(manifest_bytes),
+            "teacher_fingerprint": manifest["teacher_fingerprint"], "gate": manifest["gate"],
+            "teacher": gate["teacher"], "load_basis": gate["load_basis"],
+            "selected_cache_sources": cache_sources, "scale_mm": manifest["scale_mm"],
+            "basis_order": manifest["basis_order"], "component_order": manifest["component_order"],
+            "feature_definition": "predicted u_xyz / frozen teacher train common zero-centered RMS; zero control zeros same slots",
+            "extra_u_supervision": True, "teacher_is_frozen_and_not_in_student_optimizer": True,
+            "final_test_and_dia_excluded": True}
     contract = {"version": 1, "requested": requested, "split_sha256": _sha(split_bytes),
                 "selected_sources": identities, "selected_local_sources": local_sources,
+                "u_response": response_contract,
                 "source_identity_policy": "path/size/mtime; no multi-GB label/checkpoint SHA scans",
                 "code_sha256": {name: _sha((ROOT / "geobc" / name).read_bytes()) for name in
                                 ("conditional_train.py", "conditioned_field.py", "tcnn_fields.py", "local_geometry.py")}}
+    if response_contract is not None:
+        contract["version"] = 2
+        contract["code_sha256"]["displacement_condition.py"] = _sha((ROOT / "geobc" / "displacement_condition.py").read_bytes())
     return split, split_path, keys, files, contract
 
 
@@ -200,6 +266,14 @@ def run(args):
                     raise ValueError(f"Completed run lacks {filename}")
             if summary["best_metrics"] != _json(output / "metrics_best.json") or summary["final_metrics"] != _json(output / "metrics_latest.json"):
                 raise ValueError("Completed summary and saved metrics disagree")
+            if getattr(args, "u_condition", "none") != "none":
+                for filename in ("u_response_metadata.json", "sampling_first_batch.json"):
+                    if not (output / filename).is_file():
+                        raise ValueError(f"Completed frozen-u pair lacks {filename}")
+                if (_json(output / "config.json") != summary["config"]
+                        or _json(output / "u_response_metadata.json") != summary["config"]["u_condition"]
+                        or not summary["config"].get("initial_parameters", {}).get("all_parameter_sha256")):
+                    raise ValueError("Completed frozen-u provenance/configuration witness differs")
             print(json.dumps({"status": "completed", "reused": True, "output": str(output),
                               "best_step": summary["best_step"]}), flush=True)
             return summary
@@ -211,7 +285,8 @@ def run(args):
     if resume is not None and _json(output / "config.json").get("contract") != contract:
         raise ValueError("Resume contract differs; data, model, budget, sampling and LR must be unchanged")
     status = {"phase": "loading", "step": 0, "total_steps": args.steps,
-              "started_at_utc": utc_now(), "variant": args.variant}
+              "started_at_utc": utc_now(), "variant": args.variant,
+              "u_condition": getattr(args, "u_condition", "none")}
     prior_elapsed, start_step = 0.0, 0
 
     def elapsed():
@@ -246,6 +321,21 @@ def run(args):
         all_cases = train_cases + validation_cases
         cad_keys = split["groups"]["train"] + split["groups"]["validation"]
         cad_to_row = {cad: i for i, cad in enumerate(cad_keys)}
+        u_mode = getattr(args, "u_condition", "none")
+        u_records, response_manifest, response_gate = {}, None, None
+        u_alphas = {}
+        if u_mode != "none":
+            from .displacement_condition import (load_response_manifest, load_response_cache,
+                                                 alpha_from_original_features, displacement_condition,
+                                                 FEATURE_NAMES as U_NAMES)
+            response_manifest = load_response_manifest(
+                _path(args.u_response_cache), expected_teacher=contract["u_response"]["teacher_fingerprint"])
+            response_gate = _json(_path(response_manifest["gate"]["path"]))
+            load_basis = _json(_path(response_gate["load_basis"]["path"]))
+            # Check known-load alpha against original BC slots before local/u
+            # feature appends. No ground-truth displacement field is opened.
+            u_alphas = {case.key: alpha_from_original_features(case.features, case.key, load_basis)
+                        for case in all_cases}
         # load_cases enforces the original 25-channel schema before any append.
         # Verify every load's unchanged xyz ordering against one cache per CAD.
         local_records = {}
@@ -261,6 +351,26 @@ def run(args):
                     case.features = torch.cat((case.features, local_tensor), dim=-1)
                 local_records[cad] = cache.record()
         local_dim = LOCAL_DIM if args.local_mode != "none" else 0
+        response_began = time.monotonic()
+        if u_mode != "none":
+            by_cad = {cad: [] for cad in cad_keys}
+            for case in all_cases:
+                by_cad[case.key.split("/", 1)[0]].append(case)
+            for cad in cad_keys:
+                cache = load_response_cache(_path(args.u_response_cache), cad,
+                    expected_teacher=contract["u_response"]["teacher_fingerprint"], manifest=response_manifest)
+                basis = cache.tensor(device=device)
+                for case in by_cad[cad]:
+                    cache.verify_xyz(case.xyz)
+                    predicted_u = displacement_condition(basis, None, u_alphas[case.key], mode=u_mode)
+                    if predicted_u.shape != (case.count, 3) or not torch.isfinite(predicted_u).all():
+                        raise ValueError(f"{case.key}: frozen u feature shape/finite check failed")
+                    case.features = torch.cat((case.features, predicted_u), dim=-1)
+                u_records[cad] = cache.record()
+                del basis, predicted_u, cache
+        response_load_seconds = time.monotonic() - response_began if u_mode != "none" else 0.0
+        u_dim = 3 if u_mode != "none" else 0
+        condition_dim = 25 + local_dim + u_dim
         clouds = [load_geometry_cloud(files[f"{cad}/ver"], cloud_points=args.cloud_points,
                                       seed=args.seed, cad_key=cad) for cad in cad_keys]
         cloud_array = np.stack([c.points for c in clouds])
@@ -274,19 +384,20 @@ def run(args):
         model_config = ConditionedFieldConfig(
             geometry_mode="shape" if args.variant == "geometry_pointnet" else "none",
             descriptor_dim=args.geometry_dim, cloud_points=args.cloud_points,
-            seed=args.seed, out_channels=1, hidden_dim=args.hidden_dim, condition_dim=25 + local_dim)
+            seed=args.seed, out_channels=1, hidden_dim=args.hidden_dim, condition_dim=condition_dim)
         model = ConditionedField(model_config, device)
+        initial_parameters = _initial_parameters(model) if u_dim else None
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate, fused=True)
         case_rng = np.random.default_rng(args.seed + 23)
         node_rng = torch.Generator(device=device).manual_seed(args.seed + 17)
         config = {
             "contract": contract, "method": "GeoBC geometry-conditioned field candidate baseline",
             "variant": args.variant, "split_source": str(split_path), "dataset": split.get("dataset"),
-            "local_mode": args.local_mode, "condition_feature_dim": 25 + local_dim,
+            "local_mode": args.local_mode, "condition_feature_dim": condition_dim,
             "local_geometry": {"mode": args.local_mode, "channels": local_dim,
                                "directory": str(_path(args.local_geometry)) if args.local_geometry is not None else None,
                                "feature_names": list(LOCAL_NAMES) if local_dim else [], "CADs": local_records,
-                               "input_order": "25 existing BC/material" + (" + 13 local geometry" if local_dim else "") + ", followed by global context in decoder",
+                               "input_order": "25 existing BC/material" + (" + 13 local geometry" if local_dim else "") + (" + 3 frozen predicted u" if u_dim else "") + ", followed by global context in decoder",
                                "target_independent": True, "all_load_xyz_hash_verified": args.local_mode != "none",
                                "limitations": "Discrete boundary-node KNN/PCA, mesh-density dependent; unsigned node distance, not exact SDF"},
             "arguments": {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()},
@@ -312,11 +423,41 @@ def run(args):
             "precision": "PointNet float32/high TF32; native TCNN FP16 compute, FP32 master, float32 returned output",
             "torch_version": torch.__version__, "started_at_utc": utc_now(),
             "claim": "candidate baseline, not a new algorithm or an already established generalization result"}
+        if u_dim:
+            config["initial_parameters"] = initial_parameters
+            config["u_condition"] = {
+                "mode": u_mode, "channels": u_dim, "input_columns": [38, 39, 40],
+                "feature_names": list(U_NAMES), "feature_definition": contract["u_response"]["feature_definition"],
+                "directory": str(_path(args.u_response_cache)), "teacher_fingerprint": response_manifest["teacher_fingerprint"],
+                "manifest_sha256": contract["u_response"]["manifest_sha256"],
+                "gate": response_manifest["gate"], "teacher": response_gate["teacher"],
+                "scale_mm": response_manifest["scale_mm"], "center_mm": 0.0,
+                "basis_order": response_manifest["basis_order"], "component_order": response_manifest["component_order"],
+                "CADs": u_records, "all_load_xyz_hash_verified": True,
+                "alpha_source": "frozen compatible load-basis metadata, checked against original force/moment feature slots",
+                "student_input": "current-load predicted three-component displacement only; no nine-component basis or GT u",
+                "sampling": "all three predicted features composed once per original node; usual uniform student sampler gathers them",
+                "teacher_train_supervision": "additional train120 displacement labels used by the separately frozen teacher",
+                "teacher_validation_selection": "known-load validation15 displacement relative L2; no dia/final-test selection",
+                "teacher_in_optimizer": False, "teacher_online_forward": False,
+                "teacher_candidate_training_costs": response_gate.get("candidates", []),
+                "teacher_selected_training_elapsed_seconds": response_gate["teacher"].get("training_elapsed_seconds"),
+                "extra_supervision_cost": True, "cache_generation_cost": response_manifest.get("cost", response_manifest.get("elapsed_seconds")),
+                "cache_feature_load_seconds": response_load_seconds,
+                "comparison": "zero and actual share teacher provenance, 41 condition slots, initialization, and student sampling",
+                "stress_loss_and_scaler_unchanged": True, "final_test_and_dia_excluded": True}
         best_score, best_step, best_metrics, gradient_check = float("inf"), None, None, None
         if resume is not None:
             stored_config = _json(output / "config.json")
             if any(stored_config[k] != config[k] for k in ("contract", "scaler", "model", "geometry", "local_geometry", "cases", "precision")):
                 raise ValueError("Resume scaler/model/geometry/case identities differ")
+            if u_dim:
+                # Runtime load time is a cost observation, not cache identity.
+                old_u, new_u = dict(stored_config["u_condition"]), dict(config["u_condition"])
+                old_u.pop("cache_feature_load_seconds", None)
+                new_u.pop("cache_feature_load_seconds", None)
+                if old_u != new_u or stored_config["initial_parameters"] != initial_parameters:
+                    raise ValueError("Resume frozen-u provenance/layout or paired initial parameters differ")
             saved = torch.load(resume, map_location=device, weights_only=False)
             if saved["config"] != stored_config:
                 raise ValueError("last.pt and config.json disagree")
@@ -355,6 +496,8 @@ def run(args):
                                                       "policy": "geometry helper reads xyz/faces/key only"})
             if local_dim:
                 write_json(output / "local_geometry_metadata.json", config["local_geometry"])
+            if u_dim:
+                write_json(output / "u_response_metadata.json", config["u_condition"])
             np.savez(output / "geometry_clouds.npz", points=cloud_array, mask=mask_array,
                      node_indices=np.stack([c.node_indices for c in clouds]), cad_keys=np.asarray(cad_keys))
 
@@ -500,6 +643,10 @@ def parser():
     p.add_argument("--local-geometry", type=Path, default=None, help="Target-independent per-CAD local geometry cache directory")
     p.add_argument("--local-mode", choices=("none", "zero", "actual"), default="none",
                    help="zero and actual use identical 13 extra condition slots; none preserves the old input layout")
+    p.add_argument("--u-response-cache", type=Path, default=None,
+                   help="Completed frozen displacement response cache; never a GT field input")
+    p.add_argument("--u-condition", choices=("none", "zero", "actual"), default="none",
+                   help="zero/actual share three frozen predicted-u slots after actual local geometry; none preserves prior layout")
     p.add_argument("--device", default="cuda")
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--resume", nargs="?", const="last", default=None,
