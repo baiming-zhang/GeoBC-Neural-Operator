@@ -1,0 +1,432 @@
+{
+  "contract": {
+    "schema_version": 1,
+    "plan": {
+      "path": "notes/geobc_topology_balanced_plan.json",
+      "bytes": 12729,
+      "mtime_ns": 1791544245844579500,
+      "sha256": "63b0e2a1d680966f295e3358c2e3ed1923ddd19d7c762830edd739fbf3809b18"
+    },
+    "split": {
+      "path": "notes/geobc_split.json",
+      "bytes": 25283,
+      "mtime_ns": 1791512131944894800,
+      "sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859"
+    },
+    "CAD_order": [
+      "101_428",
+      "101_479",
+      "101_56",
+      "101_78"
+    ],
+    "manifests": [
+      {
+        "path": "data/geobc_gradient_supervision/manifest.json",
+        "bytes": 201503,
+        "mtime_ns": 1791521803497653200,
+        "sha256": "052df4057186e37b129f8a44bb2c3e7279b24024a72a8b947d76239a984ac018"
+      },
+      {
+        "path": "data/geobc_graph_context/manifest.json",
+        "bytes": 591664,
+        "mtime_ns": 1791534168986633800,
+        "sha256": "91f8630b38ccb31a5165b92b31f8aaf61beb94fe420f52aa8b526d70f5c6d041"
+      }
+    ],
+    "source_sha256": {
+      "tools/prepare_topology_context.py": "9ccffda61a05880401b8da346e77e873893e50c90e64d2ccd264b80bf6d96593",
+      "tools/prepare_topology_context_balanced.py": "c89a1dab4986dbf5cfe90a07e4feab4ff540e775c4e0313d1f2c94fb1d61be07"
+    },
+    "inputs": {
+      "101_428": {
+        "prepared": {
+          "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+          "bytes": 45320930,
+          "mtime_ns": 1791511980352062400,
+          "sha256": null
+        },
+        "gradient_geometry": {
+          "path": "data/geobc_gradient_supervision/101_428.npz",
+          "bytes": 44851374,
+          "mtime_ns": 1791521768458162100,
+          "sha256": null
+        },
+        "interface_inputs": {
+          "path": "data/geobc_graph_context/101_428.npz",
+          "bytes": 10891141,
+          "mtime_ns": 1791534143411881500,
+          "sha256": null
+        },
+        "node_count": 270276,
+        "cell_count": 169852,
+        "xyz_sha256": "c9f54a43f045d4729147dbb4ab4ed4f85bd5b46e8aab72228d5d46c2d2121228",
+        "normalization": {
+          "bbox_min_mm": [
+            -38.653900146484375,
+            -164.1840057373047,
+            0.24787600338459015
+          ],
+          "characteristic_length_mm": 185.13168334960938
+        },
+        "sum_volume_mm3": 327426.49734480085,
+        "cells_sha256": "c4e5f96cc88bf6d544b4f4123772827b137ac7ff12276ed315fdb04d77270e45",
+        "edges_sha256": "17328c969d22d135d2802fc790b8e65601c561e204fe4933389e9638ca9acad5",
+        "source_groups": [
+          {
+            "channel": 0,
+            "role": "support",
+            "master_node_id": 271002,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "f6de71106f5bb31a392aed702f80c0c18166b053e9dab471d27d8957289f4c85",
+            "member_node_indices_sha256": "3b3b69684fc6fce1c6b3146585e8ac9f6ae3e5918640e2205792d722b25447f1"
+          },
+          {
+            "channel": 1,
+            "role": "support",
+            "master_node_id": 271003,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "1c7d84c1a052b8d693908e6353a8c85ace16c3c67044abd709348b93cdc4a466",
+            "member_node_indices_sha256": "145719b752247ccaf1fa2611f36910a4f586e2a0f77741371c18e68782894ff6"
+          },
+          {
+            "channel": 2,
+            "role": "support",
+            "master_node_id": 271004,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "0177eb88b75a3d395241d3e311233b744eb28f62b3124a9671da50f82044baa0",
+            "member_node_indices_sha256": "8b2d7ee9c15b024fb3b305c39af77b01affa0d16667a663cfbbb765c2ad8831e"
+          },
+          {
+            "channel": 3,
+            "role": "support",
+            "master_node_id": 271005,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "e969e3e36a45ec2f5d527132637d5675b493a8a3bc821e9ad9d9ff40932d0232",
+            "member_node_indices_sha256": "d131bea1be8ef21ee933980bd7c87671ac653dddc074f1226341ed94b3b1454d"
+          },
+          {
+            "channel": 4,
+            "role": "load",
+            "master_node_id": 271001,
+            "card_type": "RBE3",
+            "member_count": 817,
+            "member_GRID_IDs_sha256": "d2c41a43fddb8df3a3c763758f16ebb82e8bf9e8ae7c14a030bff5ac6515e8b5",
+            "member_node_indices_sha256": "b7e76f118c238ab1a9f2ce1ecf5036ba8f371ed9b3dd8b92f3dd33ce184db191"
+          }
+        ]
+      },
+      "101_479": {
+        "prepared": {
+          "path": "data/prepared_geobc_multiload/101_479_ver.npz",
+          "bytes": 30122690,
+          "mtime_ns": 1791511974286089700,
+          "sha256": null
+        },
+        "gradient_geometry": {
+          "path": "data/geobc_gradient_supervision/101_479.npz",
+          "bytes": 29513502,
+          "mtime_ns": 1791521769276959500,
+          "sha256": null
+        },
+        "interface_inputs": {
+          "path": "data/geobc_graph_context/101_479.npz",
+          "bytes": 7252597,
+          "mtime_ns": 1791534142410796100,
+          "sha256": null
+        },
+        "node_count": 179316,
+        "cell_count": 111754,
+        "xyz_sha256": "0fa3d59a49993b65a207ec0eafb94f655c6ffd7e75a28e651e6dc1684e929d52",
+        "normalization": {
+          "bbox_min_mm": [
+            -38.72420120239258,
+            -163.60699462890625,
+            0.2465403974056244
+          ],
+          "characteristic_length_mm": 184.05270385742188
+        },
+        "sum_volume_mm3": 192971.22604001488,
+        "cells_sha256": "ef69762c30aea5d6341b6f25128e0b165a6ab9b2732f0d641db855ca3238a228",
+        "edges_sha256": "2fedd1f0fe39e3177fe99bcab417279ea303f427a74a22206daef0f0bf8d8203",
+        "source_groups": [
+          {
+            "channel": 0,
+            "role": "support",
+            "master_node_id": 180002,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "f795a6ca1fea905ccf2fcfb2dc52df52e0e917c9579747e8b76f87b503a86706",
+            "member_node_indices_sha256": "bb90d31dce587d25298b9fc197de0986591a683279383fbabb4d121e2a9ddda3"
+          },
+          {
+            "channel": 1,
+            "role": "support",
+            "master_node_id": 180003,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "50aa7b7a8b4dcf19c1c6177044bff1c45ec545d681bf601f59a75fdad9b67021",
+            "member_node_indices_sha256": "add78acc61800322f87d753ca8bc8ef409f75d2b00539300e36fc8b0d828dda5"
+          },
+          {
+            "channel": 2,
+            "role": "support",
+            "master_node_id": 180004,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "28aeae7a07c30d56be768ab5ea4040767dfc49e173461c735e8fb9f796842d9c",
+            "member_node_indices_sha256": "a82c6d7c7a1d840c558b089f0b45ec5874f15c880545829943d9d7cff6b0990e"
+          },
+          {
+            "channel": 3,
+            "role": "support",
+            "master_node_id": 180005,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "f4a52442d53ef46bc8ae1f9877c150a8b9ec23b63c9e6f4c126dac855d3fabb9",
+            "member_node_indices_sha256": "aa0143a1eb60b6481d3ab7eb966dd6a7dcb130fffb4e00d177c92853fc8cf04f"
+          },
+          {
+            "channel": 4,
+            "role": "load",
+            "master_node_id": 180001,
+            "card_type": "RBE3",
+            "member_count": 805,
+            "member_GRID_IDs_sha256": "710355004fbe7cb934e0d68b79a0e2041735d3fb959e1b39e330ce9837449379",
+            "member_node_indices_sha256": "d6955190ece4deb2f3a78c637617ac3982f1d839f7c5b0be85a2ea4e2b3f1e33"
+          }
+        ]
+      },
+      "101_56": {
+        "prepared": {
+          "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+          "bytes": 37050462,
+          "mtime_ns": 1791454716033307500,
+          "sha256": null
+        },
+        "gradient_geometry": {
+          "path": "data/geobc_gradient_supervision/101_56.npz",
+          "bytes": 36850566,
+          "mtime_ns": 1791521770181870400,
+          "sha256": null
+        },
+        "interface_inputs": {
+          "path": "data/geobc_graph_context/101_56.npz",
+          "bytes": 8928589,
+          "mtime_ns": 1791534142826558700,
+          "sha256": null
+        },
+        "node_count": 221213,
+        "cell_count": 139546,
+        "xyz_sha256": "12de6dd49683cbfdab56501c8873e94eb8e4efe8f6553138b67e812c0e9c236a",
+        "normalization": {
+          "bbox_min_mm": [
+            -38.55189895629883,
+            -164.052001953125,
+            0.19492770731449127
+          ],
+          "characteristic_length_mm": 184.96849060058594
+        },
+        "sum_volume_mm3": 373943.8567763446,
+        "cells_sha256": "20a3d5fa85640874dd36b0e98a9516540c2144b357dbf02bad7041f421d1b2d7",
+        "edges_sha256": "e23168e7838061f71c7ff36629bb83472b8dbef109925a5877c7bb287d23678f",
+        "source_groups": [
+          {
+            "channel": 0,
+            "role": "support",
+            "master_node_id": 222002,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "f70e55feb3cec64bcd3a70d514a72ec7876737255a25c04144324ed7b07dbf88",
+            "member_node_indices_sha256": "d8a7a045b3f69fbc5429cf3ed570d05241a0521e1425abcf07398df25a9deb7b"
+          },
+          {
+            "channel": 1,
+            "role": "support",
+            "master_node_id": 222003,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "5a5e39b4f7872635a2351ea236b6708c3b2c6a0208f35615252470da6991b86f",
+            "member_node_indices_sha256": "c346d2a9bab55bb582732cedbdd84a4f3c6a84590fd1141bdf439efd8f00ca23"
+          },
+          {
+            "channel": 2,
+            "role": "support",
+            "master_node_id": 222004,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "688565f4f47566179c63f7ca5452160b5833a6207458afe771136aa88e534dd1",
+            "member_node_indices_sha256": "30afd1ce1bad627a3205b61f6571d8471adf7140e327ce61d7fc54ab0927320f"
+          },
+          {
+            "channel": 3,
+            "role": "support",
+            "master_node_id": 222005,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "b0e5f611c025e65fc2b2537c3bd70a7b48dd82d3e994e1a5a63395a833300e9c",
+            "member_node_indices_sha256": "d948656c57ab294fe46a05ce9fc800a6625d25c2b6b242f0cb22c7a4e338d0d5"
+          },
+          {
+            "channel": 4,
+            "role": "load",
+            "master_node_id": 222001,
+            "card_type": "RBE3",
+            "member_count": 820,
+            "member_GRID_IDs_sha256": "2866487a4296b307fd96451ec1b92424261a84313d4f89efd572139df589f3e9",
+            "member_node_indices_sha256": "f512e06490fa633bbe7a24e31e752eca687189339cd8d36a546856200321bc54"
+          }
+        ]
+      },
+      "101_78": {
+        "prepared": {
+          "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+          "bytes": 32255262,
+          "mtime_ns": 1791511981517772800,
+          "sha256": null
+        },
+        "gradient_geometry": {
+          "path": "data/geobc_gradient_supervision/101_78.npz",
+          "bytes": 31859106,
+          "mtime_ns": 1791521770828456400,
+          "sha256": null
+        },
+        "interface_inputs": {
+          "path": "data/geobc_graph_context/101_78.npz",
+          "bytes": 7774585,
+          "mtime_ns": 1791534142488548400,
+          "sha256": null
+        },
+        "node_count": 192353,
+        "cell_count": 120639,
+        "xyz_sha256": "00c7c8f8f08e04ada2b91abf6501e3fe2bd76f59d8492bf955b7faa2ba09ebc2",
+        "normalization": {
+          "bbox_min_mm": [
+            -38.932098388671875,
+            -164.20399475097656,
+            0.23825310170650482
+          ],
+          "characteristic_length_mm": 185.1586456298828
+        },
+        "sum_volume_mm3": 314347.10329232836,
+        "cells_sha256": "dc614dce3463085a75d6c33c8a05d8154847c38a6cf7595478aee7eaee4f7a57",
+        "edges_sha256": "7a2de0fe808abb1f71e9d16da343406efcc95b11ecb415e5ec25fdcae29f9411",
+        "source_groups": [
+          {
+            "channel": 0,
+            "role": "support",
+            "master_node_id": 193002,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "4ef98a39526d5f7e141246afdcf031b89d0c9b109149aa03dd0e33b1c427044b",
+            "member_node_indices_sha256": "fd87e3c18d3213678e465f5c97ccb547a8d768077e145a63c4468c6aac4b65fb"
+          },
+          {
+            "channel": 1,
+            "role": "support",
+            "master_node_id": 193003,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "854d4b16212e782c563fc84c30bacf88d22cbd5ea22c3c91cf8e5ce7f913a5f4",
+            "member_node_indices_sha256": "8b58de851497cb94bb4430de6f1b05cd19a11f284385161d474dedd99481c90c"
+          },
+          {
+            "channel": 2,
+            "role": "support",
+            "master_node_id": 193004,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "1290b46e4e023b7345296f859c71de234ff493665d5cd529061ffc761315cd2b",
+            "member_node_indices_sha256": "928b0b54979dfb6edbd206e4571f25793b92d337be2da319f5a69e82e1633d89"
+          },
+          {
+            "channel": 3,
+            "role": "support",
+            "master_node_id": 193005,
+            "card_type": "RBE2",
+            "member_count": 440,
+            "member_GRID_IDs_sha256": "b8f28dd576b215d449ac28f3f30696ff466bee9a8605995ad61b10e74d37c854",
+            "member_node_indices_sha256": "30d9506b006db3ca460afe6c1c22f9e072a9722a82fd53f8cef40186758c6609"
+          },
+          {
+            "channel": 4,
+            "role": "load",
+            "master_node_id": 193001,
+            "card_type": "RBE3",
+            "member_count": 838,
+            "member_GRID_IDs_sha256": "af2e6f33f505198f5f8948c66cb049923fec11ee8b1f1e5b8d90afd262b42b08",
+            "member_node_indices_sha256": "2b7170e89667c8ea212d22b0745a85eaef977229a0e75df197599a9f3250aa22"
+          }
+        ]
+      }
+    },
+    "cache": "data/geobc_topology_balanced_train4",
+    "recipe": {
+      "soft_targets": [
+        2048,
+        128
+      ],
+      "hard_maxima": [
+        4096,
+        512
+      ],
+      "omega": 0.6666666666666666,
+      "passes": 2,
+      "P_average_nnz_limit": 64,
+      "cache_bytes_limit": 1073741824,
+      "restriction": "hard mass",
+      "W0": "binary",
+      "coarse_W": "actual cut multiplicities",
+      "CSR_storage": "int64 indices; float32 P/R; float64 W",
+      "aggregation": "minimum mergeable current-level-size/minDesc group into minimum same-role actual neighbor",
+      "initial_hard_cap_check": false,
+      "desired": "max(soft_target, role_component_lower_bound)",
+      "representative": "retain chosen neighbor; small-to-large adjacency migration; generation-checked heap and DSU",
+      "connectivity": "final original current-level same-owner BFS parent/admission proof"
+    },
+    "named_member_access": {
+      "prepared": [
+        "xyz",
+        "features",
+        "sample_key",
+        "label_alignment",
+        "bbox_min_mm",
+        "characteristic_length_mm"
+      ],
+      "gradient": [
+        "cells10",
+        "volumes_mm3"
+      ],
+      "interface": [
+        "euclidean",
+        "cad_id",
+        "xyz_sha256"
+      ]
+    },
+    "labels_read": 0,
+    "raw_sources_opened": false,
+    "CPU_only": true,
+    "CUDA_initialized": false,
+    "updates": 0,
+    "base_plan": {
+      "path": "notes/geobc_topology_context_plan.json",
+      "bytes": 10852,
+      "mtime_ns": 1791542875607346800,
+      "sha256": "a1748a2e9bd02a50d48a57070eaffee6e20325ac51e5f2167e19ce46200aab7d"
+    },
+    "base_source_sha256": "9ccffda61a05880401b8da346e77e873893e50c90e64d2ccd264b80bf6d96593",
+    "parent_evidence": {
+      "path": "notes/geobc_topology_context_feasibility_result.json",
+      "bytes": 17407,
+      "mtime_ns": 1791543746538346100,
+      "sha256": "7c38884d8de40a0c1abe797c2d0a5405392bd70c85553910fb3be0f24f30a15f"
+    },
+    "formal_result": "notes/geobc_topology_balanced_feasibility_result.json"
+  },
+  "contract_sha256": "f5fc7be157ef17586e830ffec8a31acac3db641bcdaf8cfade4250c9def9d950",
+  "scope": "four fixed TRAIN canonical ver inputs only; new balanced ownership",
+  "optimizer_updates": 0
+}

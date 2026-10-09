@@ -216,9 +216,24 @@
 两条路径的P1 RMS、交互RMS以及两个分层内的误差均下降；H/C交叉项为负，存在抵消，不能把各项能量当成互相独立的错误占比。全部条件包括离散BC、局部几何、距离、平滑query与固定global，不可把C统一称作边界噪声。
 这是单TRAIN几何、输入分层样本与可能离流形的交叉输入描述；不能识别因果、代表全CAD/验证集，或部署成纠正场。RMS无量纲，P1仍为位移导出代理。正式结果见notes/geobc_hash_condition_path_result.json。
 
+## 网格拓扑上下文的输入可行性
+
+首次四TRAIN输入准备完成科学可行性诊断，耗时1.33s，实际完成缓存0/4，没有读取标签、模型或初始化CUDA。
+101_428的bounded BFS在分配21,921/270,276节点时形成4,097个组，超过4,096硬上限；角色诱导组件下界仅7。这是所选贪心粗化的碎片化，而非必要的BC组件过多；其他三个几何尚未处理。
+随后另行冻结实际边上的小组合并方案，保持角色、规模上限、完整P/R和平滑公式；旧结果和源码保留。这是输入工程可行性，不是模型精度或泛化收益。
+新合并方案耗时13.10s，可行性通过，完成4/4缓存，共326.5MiB。没有自动放行训练。
+
+| TRAIN CAD | 原节点 | 中间／粗节点 | P01非零元 |
+|---|---:|---:|---:|
+| 101_428 | 270,276 | 2,048/128 | 1,469,914 |
+| 101_479 | 179,316 | 2,048/128 | 1,048,091 |
+| 101_56 | 221,213 | 2,048/128 | 1,254,440 |
+| 101_78 | 192,353 | 2,048/128 | 1,109,522 |
+正式记录见notes/geobc_topology_balanced_feasibility_result.json；节点排序依赖、P1代理质量、任意坐标连续查询与重网格泛化仍未验证。
+
 ## 主计划中的下一阶段
 
-当前正在设计下一阶段，尚未放行数据或训练。 计划阶段：topology_context_input_feasibility_design。 设计：Formal execution plan pending root freeze of source/primary/math drafts.。 完成后：No automatic training escalation: freeze one matched pilot and its numerical gates after input feasibility.。
+当前主计划：topology_message_self_only_train4_1k（等待／排队）；topology_message_neighbors_train4_1k（等待／排队）。 计划阶段：matched_topology_message_train4_pilot。 设计：notes/geobc_topology_message_plan.json。 完成后：Root interprets fixed4gate result and selects one bounded next task; continuous all10 query remains source/math-only future proposal.。
 
 ## 解释边界
 
@@ -226,4 +241,4 @@
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成41/41项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成43/45项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

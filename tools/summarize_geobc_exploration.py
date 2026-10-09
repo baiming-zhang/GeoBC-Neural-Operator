@@ -68,7 +68,7 @@ def main():
         if summary.get('status')!='completed': continue
         summaries[job['name']]=summary
         checkpoint_files={}
-        for filename in ('best.pt','last.pt','endpoint_250.pt','endpoint_10000.pt'):
+        for filename in ('best.pt','last.pt','endpoint_250.pt','endpoint_10000.pt','endpoint_0000.pt','endpoint_1000.pt'):
             checkpoint=source/filename
             if checkpoint.is_file():
                 stat=checkpoint.stat()
@@ -78,7 +78,7 @@ def main():
                                       'code_sha256':summary.get('config',{}).get('contract',{}).get('code_sha256',{}),
                                       'selection':summary.get('config',{}).get('checkpoint_selection')}
         target=dest/'runs'/job['name']; target.mkdir(parents=True,exist_ok=True)
-        for filename in ('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json'):
+        for filename in ('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json','metrics_step0000.json','metrics_step1000.json','first_backward_check.json'):
             if (source/filename).exists(): shutil.copyfile(source/filename,target/filename)
     counts=stage_counts(jobs,summaries)
     next_text=plan_next_text(plan,summaries)
@@ -426,6 +426,39 @@ def main():
             lines += [f"| {load_name} | {pf['H_RMS']:.4g}→{pc['H_RMS']:.4g} | {pf['C_RMS']:.4g}→{pc['C_RMS']:.4g} | {percent(pf['sampled_cell_relative_l2'])}→{percent(pc['sampled_cell_relative_l2'])} |"]
         lines += ['', '两条路径的P1 RMS、交互RMS以及两个分层内的误差均下降；H/C交叉项为负，存在抵消，不能把各项能量当成互相独立的错误占比。全部条件包括离散BC、局部几何、距离、平滑query与固定global，不可把C统一称作边界噪声。',
                   '这是单TRAIN几何、输入分层样本与可能离流形的交叉输入描述；不能识别因果、代表全CAD/验证集，或部署成纠正场。RMS无量纲，P1仍为位移导出代理。正式结果见notes/geobc_hash_condition_path_result.json。']
+    topology_result_path=ROOT/'notes/geobc_topology_context_feasibility_result.json'
+    topology_result=json.loads(topology_result_path.read_text()) if topology_result_path.is_file() else None
+    if topology_result and topology_result.get('status')!='completed':topology_result=None
+    balanced_result_path=ROOT/'notes/geobc_topology_balanced_feasibility_result.json'
+    balanced_result=json.loads(balanced_result_path.read_text()) if balanced_result_path.is_file() else None
+    if balanced_result and balanced_result.get('status')!='completed':balanced_result=None
+    if topology_result:
+        lines += ['', '## 网格拓扑上下文的输入可行性','',
+                  f"首次四TRAIN输入准备完成科学可行性诊断，耗时{topology_result['elapsed_seconds']:.2f}s，实际完成缓存{len(topology_result['completed_CADs'])}/4，没有读取标签、模型或初始化CUDA。"]
+        for cad,record in topology_result.get('blocked_CADs',{}).items():
+            e=record['evidence']
+            lines += [f"{cad}的bounded BFS在分配{e['assigned_vertices']:,}/{e['vertices']:,}节点时形成{e['observed_aggregate_count']:,}个组，超过{e['hard_maximum']:,}硬上限；角色诱导组件下界仅{e['role_components']['lower_bound']}。这是所选贪心粗化的碎片化，而非必要的BC组件过多；其他三个几何尚未处理。"]
+        lines += ['随后另行冻结实际边上的小组合并方案，保持角色、规模上限、完整P/R和平滑公式；旧结果和源码保留。这是输入工程可行性，不是模型精度或泛化收益。']
+    if balanced_result:
+        lines += [f"新合并方案耗时{balanced_result['elapsed_seconds']:.2f}s，可行性{'通过' if balanced_result['feasibility_pass'] else '未通过'}，完成{len(balanced_result['completed_CADs'])}/4缓存，共{balanced_result['cache_bytes']/2**20:.1f}MiB。没有自动放行训练。"]
+        if balanced_result['feasibility_pass']:
+            lines += ['', '| TRAIN CAD | 原节点 | 中间／粗节点 | P01非零元 |','|---|---:|---:|---:|']
+            for cad,record in balanced_result['CADs'].items():
+                f=record['facts']
+                lines += [f"| {cad} | {f['N0']:,} | {f['N1']:,}/{f['N2']:,} | {f['maps']['P01']['nnz']:,} |"]
+        lines += ['正式记录见notes/geobc_topology_balanced_feasibility_result.json；节点排序依赖、P1代理质量、任意坐标连续查询与重网格泛化仍未验证。']
+    topology_message_path=ROOT/'notes/geobc_topology_message_pair_result.json'
+    topology_message= json.loads(topology_message_path.read_text()) if topology_message_path.is_file() else None
+    if topology_message and topology_message.get('status')=='completed':
+        lines += ['', '## 四TRAIN几何：学习邻居消息的固定预算试验','',
+                  '两个fresh模型均使用coarse8 Hash、同一完整网格聚合／平滑、Euclidean43与整体BC；唯一差异为消息层使用自身或真实邻居加权平均。12个TRAIN案例，固定1000步端点，无验证选模。自身组也含共同R/P空间混合，不能称为无拓扑基线。','',
+                  '| 消息 | TRAIN位移均值／最差 | TRAIN全节点P1均值 | 物理P1误差RMS案例均值 | 耗时 |',
+                  '|---|---:|---:|---:|---:|']
+        for mode,label in [('self_only','自身'),('neighbors','邻居')]:
+            m=topology_message['arms'][mode]['metrics']
+            lines += [f"| {label} | {percent(m['train_u_mean_relative_l2'])}／{percent(m['train_u_worst_relative_l2'])} | {percent(m['train_P1_mean_relative_l2'])} | {m['train_P1_mean_case_physical_tensor_error_RMS']:.6g} | {m['elapsed_seconds']:.1f}s |"]
+        passed=sum(g['passed'] for g in topology_message['clear_gain_gate'].values())
+        lines += ['',f"完整初始化、采样和配置匹配核对通过；联合门限{'通过' if topology_message['clear_gain_gate_passed'] else '未通过'}（{passed}/4）。P1为位移导出的corner-FE代理，其物理误差RMS含shear平方权重2且不除以6。这里只检验四TRAIN拟合效用，不能推断跨几何或任意坐标连续查询。结果见notes/geobc_topology_message_pair_result.json。"]
     lines += ['', '## 主计划中的下一阶段','',next_text]
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
@@ -478,6 +511,13 @@ def main():
         brief += ['',f"新native合成验收{'已通过' if native_passed else '未通过'}（{native['elapsed_seconds']:.2f}s、零参数更新），不代表物理表现。"]
     if path_result:
         brief += ['', f"冻结诊断（{path_result['elapsed_seconds']:.1f}秒）显示两条路径的空间变化都减小，不能把瓶颈归于单一分支；这是单TRAIN几何的分层抽样结果。"]
+    if topology_result and not topology_result['feasibility_pass'] and not balanced_result:
+        brief += ['首次粗网格准备发现贪心粗化碎片化，尚无缓存完成；现保持约束与上限，改用真实边上的同角色小组合并。']
+    elif balanced_result:
+        brief += [f"粗网格输入可行性{'通过' if balanced_result['feasibility_pass'] else '未通过'}（{balanced_result['elapsed_seconds']:.1f}秒，{len(balanced_result['completed_CADs'])}/4几何）；训练收益尚待配对检验。"]
+    if topology_message and topology_message.get('status')=='completed':
+        tm0=topology_message['arms']['self_only']['metrics'];tm1=topology_message['arms']['neighbors']['metrics']
+        brief[-1]=f"四几何固定预算拟合：自身→邻居消息，位移{100*tm0['train_u_mean_relative_l2']:.2f}%→{100*tm1['train_u_mean_relative_l2']:.2f}%，P1代理{100*tm0['train_P1_mean_relative_l2']:.1f}%→{100*tm1['train_P1_mean_relative_l2']:.1f}%；联合门限{'通过' if topology_message['clear_gain_gate_passed'] else '未通过'}。这是TRAIN拟合，尚无新增泛化结论。"
     brief += ['',f'下一步（来自主计划）：{brief_next_text} 最终测试继续保留。',
               '',f"科学训练／评估／冻结诊断完成{counts['scientific_completed']}/{counts['scientific_planned']}项，合成验收完成{counts['synthetic_acceptance_completed']}/{counts['synthetic_acceptance_planned']}项；原30项slides复现已完成。自主研究与30分钟监视继续。",'',
               '完整指标、控制变量和解释范围见 [探索报告](REPORT.md)。','']
@@ -498,6 +538,9 @@ def main():
                                    'error_gradient_analysis':str(error_gradient_path.relative_to(ROOT)) if error_gradient else None,
                                    'hash_bandwidth_pair_analysis':str(bandwidth_result_path.relative_to(ROOT)) if bandwidth_result else None,
                                    'hash_condition_path_analysis':str(path_result_path.relative_to(ROOT)) if path_result else None,
+                                   'topology_input_analysis':str(topology_result_path.relative_to(ROOT)) if topology_result else None,
+                                   'balanced_topology_input_analysis':str(balanced_result_path.relative_to(ROOT)) if balanced_result else None,
+                                   'topology_message_pair_analysis':str(topology_message_path.relative_to(ROOT)) if topology_message else None,
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',
                                    'updated_at_utc':utc_now()})
     if geo and load and comparisons:

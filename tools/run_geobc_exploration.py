@@ -190,6 +190,32 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             raise ValueError(f"Completed output for {job['name']} differs from its graph-context native check")
         if not (ROOT / "notes/graph_context_native_ready.json").is_file():
             raise ValueError(f"Completed native check for {job['name']} lacks readiness record")
+    elif "tools/prepare_topology_context_balanced.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("balanced_topology_context_preparation", ROOT / "tools/prepare_topology_context_balanced.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed output for {job['name']} differs from its balanced topology contract")
+        result_path = ROOT / "notes/geobc_topology_balanced_feasibility_result.json"
+        if not result_path.is_file() or read_json_if_exists(result_path).get("status") != "completed":
+            raise ValueError(f"Completed input diagnostic for {job['name']} lacks its formal result")
+    elif "tools/prepare_topology_context.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("topology_context_preparation", ROOT / "tools/prepare_topology_context.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed output for {job['name']} differs from its topology input contract")
+        result_path = ROOT / "notes/geobc_topology_context_feasibility_result.json"
+        if not result_path.is_file() or read_json_if_exists(result_path).get("status") != "completed":
+            raise ValueError(f"Completed input diagnostic for {job['name']} lacks its formal result")
     elif "tools/diagnose_hash_condition_paths.py" in command:
         import importlib.util
         spec = importlib.util.spec_from_file_location("hash_condition_path_diagnostic", ROOT / "tools/diagnose_hash_condition_paths.py")
@@ -215,6 +241,16 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             raise ValueError(f"Completed output for {job['name']} differs from its bandwidth native check")
         if not (ROOT / "notes/hash_bandwidth_native_ready.json").is_file():
             raise ValueError(f"Completed native check for {job['name']} lacks readiness record")
+    elif "geobc.topology_message_train" in command:
+        from geobc.topology_message_train import parser as topology_parser, _scope
+        parsed = topology_parser().parse_args(command[command.index("geobc.topology_message_train") + 1:])
+        if summary.get("config", {}).get("contract") != _scope(parsed)[3]:
+            raise ValueError(f"Completed output for {job['name']} differs from its fixed topology-message contract")
+        if summary.get("endpoint_step") != 1000 or summary.get("message_mode") != parsed.message_mode:
+            raise ValueError(f"Completed output for {job['name']} differs from its fixed endpoint/mode")
+        for filename in ("last.pt", "endpoint_1000.pt", "metrics_step0000.json", "metrics_step1000.json", "config.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed output for {job['name']} lacks {filename}")
     elif "geobc.hash_bandwidth_train" in command:
         from geobc.hash_bandwidth_train import parser as bandwidth_parser, _scope
         parsed = bandwidth_parser().parse_args(command[command.index("geobc.hash_bandwidth_train") + 1:])
@@ -251,7 +287,8 @@ def stage_command(job: dict[str, Any]) -> list[str]:
          or "geobc.gradient_train" in command or "geobc.gradient_balance_train" in command
          or "geobc.bc_role_train" in command or "geobc.specialist_train" in command
          or "geobc.query_context_train" in command or "geobc.hash_modulation_train" in command
-         or "geobc.graph_context_train" in command or "geobc.hash_bandwidth_train" in command)
+         or "geobc.graph_context_train" in command or "geobc.hash_bandwidth_train" in command
+         or "geobc.topology_message_train" in command)
             and "--resume" not in command and (output / "last.pt").exists()):
         command.extend(["--resume", str(output / "last.pt")])
     return command

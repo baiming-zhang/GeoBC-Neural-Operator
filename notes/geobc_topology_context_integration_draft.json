@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "status": "proposal_only",
+  "execution_plan_frozen": false,
+  "candidate": "Two-level connected-mesh message context replacing the current Gaussian query32",
+  "scope": {
+    "activity": "Read existing source and small JSON metadata; write this integration draft only",
+    "real_arrays_labels_weights_opened": false,
+    "GPU_or_training_run": false,
+    "frozen_sources_changed": false,
+    "no_validation_dia_final_fields": true,
+    "no_new_trainer_or_model": true,
+    "next_authorization": "Root reconciles this and the companion aggregation/prolongation drafts, then freezes one input-preparation plan"
+  },
+  "fixed_decoder_interface": {
+    "outer_input": "The same original25 + actual local13 + active Euclidean5 =43; original force/moment slots7:13 cleared for load-linear basis",
+    "replacement": "Replace query32 with topology32 at exactly the same position; do not append a second context",
+    "conditions": "43 + topology32 + unchanged BCactual PointNet global32 =107",
+    "native": "Same split public Encoding24, fixed coarse8 mask, conditions107, thirteen explicit ones, public Network144/out9",
+    "outputs": "Signed displacement basis [N,3 basis ver/hor/tor,3 Cartesian components]; alpha combination outside the basis network",
+    "global_path": "Keep the same canonical xyz3+BCrole2 cloud, PointNet encoder, global32 and own cloud masks/node indices",
+    "fresh_pair": "Two newly initialized models using the same class/module registration/constructor order and seed; no reuse of a historical Gaussian-query or bandwidth run as the matched control",
+    "parameter_count": "Native input/output dimensions remain fixed. New topology-context parameter count is not assumed equal to the old query projection; measure actual counts. Neighbor/self-only counts and every named trainable initial tensor must match exactly."
+  },
+  "companion_input_contract": {
+    "current_preparation_only": "Root's current bounded input-only stage reads the fixed4 TRAIN canonical prepared xyz/original25 input features and existing gradient cells10/positive volumes, plus scalar metadata. It does not read local13, Euclidean5, reference strain, displacement/stress, weights or validation/test arrays for preparation. Those43 student inputs remain a possible later model interface, not extra current preparation scope.",
+    "levels": "Role-homogeneous connected P0 aggregates with soft targets2048 fine and128 coarse; component/role constraints can exceed those targets. Hard safety limits4096/512 block preparation rather than silently violate constraints.",
+    "partition": "Deterministic bounded-BFS growth on the original topology; no nearest-anchor geometric shortcut. Original BC bits0:7 must be homogeneous within each P0 aggregate.",
+    "full_mesh": "Preserve original TETRA10 node IDs, including midside nodes; use the12 corner-midpoint subedges, not a corner-only graph that leaves midside nodes unconnected",
+    "node_to_fine": "P0 is a fixed node-to-connected-aggregate one-hot map",
+    "prolongation": "At both levels use fixed nonnegative row-stochastic P=J*J*P0, J=(1-omega)*I+omega*D^-1*W, omega=2/3, with valid isolated-node identity handling. Sparse maps retain all coefficients: no topK or threshold pruning.",
+    "meaning_of_positive": "Nonnegative coefficients, no empty rows, each row sum1; exact sparse zero coefficients are allowed",
+    "level_transfer": "P01[N, M0] and P12[M0, M1] CSR; each comes from its hard connected ownership and two-pass smoothing. Fine W uses binary positive topology; coarse W=P0^T*W*P0 with diagonal removed, retaining real interface edges. Positive lumped incidence proxy supplies input mass; do not use quadratic shape-function row sums as positive mass.",
+    "role_limit": "Smoothing can mix distinct BC-role aggregates although hard P0 ownership is homogeneous. Original43 input channels remain active; these maps do not enforce a hard boundary condition.",
+    "same_input_cache": "Both branches use identical aggregate ownership, edge topology, input descriptors, level-transfer maps and nodal prolongation",
+    "required_metadata": ["canonical CAD/node count/XYZ hash", "train group and canonical source identity", "TETRA10 node and connectivity provenance", "aggregate owners and sizes", "edge weights and normalization convention", "prolongation row-sum/finite/nonnegative validation", "coarse/fine token feature schema", "cache/source/split SHA and file stats"],
+    "force_guard": "Aggregate descriptors are geometry/static BC inputs only; if original features are used, clear slots7:13 before aggregation so the basis context is load independent",
+    "forbidden_context_inputs": "No GT displacement/stress/strain, frozen predicted displacement, case ID embedding, validation/test labels or learned targets in topology inputs"
+  },
+  "proposed_new_interfaces": {
+    "encode_context": "model.encode_context(clouds5, masks, topology_inputs_in_explicit_cad_order) -> TopologyContextBundle",
+    "bundle": "global_tensor[B,32] plus per-CAD differentiable fine/coarse tokens and fixed sparse prolongation references; integer/slice preserve the CAD axis without detach; retain_grad/grad expose global plus topology tensors for first-backward checks",
+    "query": "model.topology_query(node_indices[N], cad_index[N], bundle) -> [N,32], using original mesh node IDs; repeated queries are preserved",
+    "basis": "new response_basis(xyz, features43, *, node_indices, cad_index, context) -> [N,3,3]",
+    "displacement": "new forward(xyz, features43, alpha, *, node_indices, cad_index, context) -> [N,3]",
+    "no_implicit_state": "No data_ptr lookup, coordinate-nearest matching, detached context cache or weights from a previous optimizer step",
+    "implementation_ownership": "New isolated field/trainer/helper only after root freezes the preparation and candidate plans; old PhysicsField/query/bandwidth sources remain frozen"
+  },
+  "minimal_message_route_not_yet_selected": {
+    "status": "Illustrative integration route only; learned token feature schema, widths/layer equations and pilot gates are not frozen or selected before actual input feasibility",
+    "route": "Embed input-only128-level descriptors to32, apply one128-level message block, prolong with P12 to2048, combine with embedded2048 descriptors, apply one2048-level message block, and gather P01 rows to original nodes for topology32",
+    "common_blocks": "Use the same embedding, message transforms, residual/nonlinear operations and output normalization on both modes. Neighbor/self-only changes only the aggregation matrix at each message block; module layout and initialization remain identical.",
+    "final_freeze": "Exact descriptor schema, message equation and common nonlinear/normalization choices belong to the root's candidate plan after input feasibility; this draft does not authorize those modules or a pilot"
+  },
+  "per_optimizer_step": [
+    "Use the unchanged ordered case RNG selection; four case slots can contain different loads of one CAD. Deduplicate to at most4 distinct CADs, preserving first-occurrence order.",
+    "On those distinct CADs only, recompute trainable aggregate embeddings and the two-level message context from fixed input caches. Recompute the unchanged PointNet global context in the same step.",
+    "For each selected case call the unchanged mixed_query_indices:6400 uniform original nodes +1600 uniform cells times4 corners. Keep exact repeated node/cell occurrences and ordering.",
+    "Concatenate original node IDs in the same order as xyz/features/targets/alpha/cad_index. Obtain topology32 by sparse prolongation rows at these node IDs, rather than materializing all-node context when unnecessary.",
+    "Run the same51200-query native decoder and same relative-case displacement plus calibrated physical corner-P1 loss. Backpropagate through topology tokens/messages and sparse weighted gathers, then apply the same Adam update.",
+    "After the update, release the step bundle. Only input geometry/maps may remain cached; learned context is recomputed next step."
+  ],
+  "matched_control": {
+    "modes": ["self_only", "neighbors"],
+    "sole_change": "Replace each predeclared learned message aggregation operator by identity/self-only in the control; use the same trainable transforms, residual paths, layer count, nonlinearities, topology32 head, global path and decoder",
+    "no_parameter_pruning": "Both modes instantiate and execute all matching trainable modules. Record matching initial named-tensor/parameter-storage hashes and independent model-independent data RNG witnesses.",
+    "shared_spatial_mixing": "Restriction, coarse ownership and nodal two-pass prolongation already mix geometry in both branches. This comparison isolates neighbor message aggregation conditional on those shared operations; self-only is not a no-topology or no-neighbor-information baseline.",
+    "effective_capacity_limit": "Equal stored parameter count does not imply equal effective function class: neighbor mode has a larger receptive field. No claim that this alone identifies the cause of previous P1 errors.",
+    "first_backward": "Check public native encoding/network, global encoder and topology trainable parameter gradients present/finite and positive aggregate L1; preserve coarse last8 pre-mask activation-gradient zero guard. No old Gaussian query-projection gradient requirement after that module is replaced."
+  },
+  "bounded_pilot_draft": {
+    "status": "Unselected proposed recipe only; first run the separately frozen4CAD input-only preparation/feasibility stage. Root must then freeze a pilot candidate/criterion before any training.",
+    "candidate_CADs": ["101_479", "101_428", "101_56", "101_78"],
+    "CAD_selection": "Previously fixed four TRAIN geometries from notes/geobc_query_learning_plan.json, not newly ranked by errors; canonical source/ordering must be frozen by root",
+    "loads": ["ver", "hor", "tor"],
+    "case_count": 12,
+    "updates": 1000,
+    "seed": 2026,
+    "batch_size": 51200,
+    "case_slots": 4,
+    "case_selection": "Uniform without replacement among12 cases, preserving the existing4 case-slot loop and deduplication to at most4 distinct CAD contexts; root confirmed no distinct4-CAD sampler change.",
+    "sampler": "Frozen hash_bandwidth_train.py uses independent NumPy case RNG seed+23, Torch node RNG seed+17 and tet RNG seed+41; both modes use the same ordered streams and first-batch case/node/tet/corner witness",
+    "normalizers": "Reuse common zero-centered u_scale_mm=.05511113670847156, train120 relative-case weights and per-case TRAIN reference strain normalization from the same completed parent JSON/cache; do not refit from the12 pilot cases",
+    "loss": "L=relative_case_MSE_u_on_all12800_mixed_queries_per_slot + .0004106650618638651*uniform-cell_volume_importance_relative_Frobenius_strain_loss; true tensor shear squared weight2; no stress supervision",
+    "gradient_weight_exact": 0.0004106650618638651,
+    "gradient_weight_metadata_check": "Confirmed equal to notes/geobc_hash_bandwidth_plan.json recipe.gradient_weight and completed displacement_hash_coarse8_10k/config.json arguments.gradient_weight; JSON-only check, no recalibration",
+    "optimizer": "Same Adam, lr.003 and fused CUDA policy; preserve other frozen optimizer settings",
+    "selection": "Fixed1000 endpoint, no validation/strain-best selection and no early stop; optionally fixed0 endpoint for initialization evidence, with the same predeclared reporting schedule on both branches",
+    "readout": "Report u loss, raw strain loss, calibrated total, all-node physical displacement mean/worst/per-load and incident-volume-recovered all-node P1 at the fixed endpoint; use the same case denominators/operator as the parent",
+    "resume": "Save last/endpoint weights, optimizer and all Torch/NumPy sampling RNG state; strict cache/source/mode/budget/scaler identity; completed output reused only when the full contract matches",
+    "cost": "Each branch1000 updates and51200000 query occurrences; record unique-CAD encode count, total elapsed, context-encode/query time and CPU/GPU peak memory; no inference-speed or validation-generalization claim from this fitting pilot"
+  },
+  "evaluation_and_future_queries": {
+    "pilot_evaluation": "Encode the4 pilot CAD contexts once under no_grad at each fixed endpoint, reuse each CAD basis predictions across3 loads, pass arange(original node count) to nodal context queries, and reuse u predictions for existing corner-P1/recovery diagnostics",
+    "continuous_extension_future_unimplemented": "The future candidate query convention uses all10 original TETRA10 nodes: for a known containing original element, invert its physical curved quadratic isoparametric mapping, then interpolate topology context with its10 conforming shared-node shape functions. This preserves independently assigned midside nodal contexts and gives C0 face compatibility when mesh ordering/geometry are conforming. It is unimplemented and does not authorize an off-node evaluation now; no nearest-node copy.",
+    "P1_corner_only_limit": "Corner-only barycentric P1 interpolation is an unchosen alternative: continuous on a conforming corner mesh, but it does not reproduce independently assigned TETRA10 midpoint contexts. It is not the extension of the proposed original10-node gather and cannot be presented as such.",
+    "interpolation_sign": "TETRA10 quadratic shape weights can be negative; positive row-stochastic P01/P12 describe the nodal prolongation only, not every off-node continuous query weight.",
+    "field_limit": "Continuity of topology32 alone does not establish continuity of the entire decoder input or prediction: raw BC membership/local13 and finite-precision native arithmetic remain. A continuous off-node definition for the full43 channels, including discrete BC and local features, is explicitly unresolved; whole-field continuous inference is not claimed."
+  },
+  "GPU_overhead_estimates_not_benchmarks": {
+    "coarse_tokens": "At4 distinct CADs, (2048+128)*32*4bytes*4 =1114112bytes per single token activation (~1.06MiB); actual hidden layers and saved backward tensors add memory",
+    "sampled_query32": "51200*32*4bytes =6553600bytes (~6.25MiB) for one query32 tensor",
+    "dense_all_node_risk": "Dense context costs sum_CAD(N)*32*4bytes per tensor; at4*200000 nodes about97.7MiB before backward buffers. Prefer cached sparse prolongation row gathers, subject to measured sparse row degree/fill.",
+    "operations": "Trainable compute scales with coarse-node/edge counts and layer width; sparse query multiply scales with selected prolongation nnz times32. Fixed2pass maps can be prepared once, without differentiating through input graph construction.",
+    "comparison": "Replacing Gaussian pooling removes its51200x1024 saved-weight term (~200MiB FP32); this is an arithmetic storage comparison, not a measured speedup or peak-memory guarantee",
+    "acceptance": "Measure one formally scheduled native first update and the bounded pilot; no extra GPU profile or training is authorized by this draft"
+  },
+  "source_evidence": [
+    {"path": "geobc/query_context_field.py", "lines": [70, 125, 145, 171], "finding": "Explicit differentiable bundle and per-query32 insertion before global32; current query is coordinate-based Gaussian pooling"},
+    {"path": "geobc/hash_bandwidth_field.py", "lines": [162, 203], "finding": "Public split Hash24 mask, Identity107 and13ones into Network144; model response_basis API inherited"},
+    {"path": "geobc/hash_bandwidth_train.py", "lines": [452, 460, 495, 943], "finding": "Independent mixed-node/tet sampling, calibrated P1 loss, all-node evaluation, and deduplicated per-step CAD context reconstruction"},
+    {"path": "notes/geobc_query_learning_plan.json", "finding": "Prior fixed4 TRAIN CADs; no new case ranking required for the draft"}
+  ],
+  "unresolved_before_freeze": [
+    "Finalize companion input-schema, bounded-BFS/component/BC-role feasibility and isolated-node handling under omega2/3 sparse two-pass maps",
+    "Exact message-layer widths/count and neighbor/self operator equations, with matching constructor and all stored trainable parameters",
+    "Root's fixed pilot case order, endpoint schedule/pass criterion after input-only feasibility; preserve the confirmed original4 case slots",
+    "Input-cache memory/row-degree evidence from preparation only; no runtime or accuracy claims before execution"
+  ]
+}

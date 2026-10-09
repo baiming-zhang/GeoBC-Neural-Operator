@@ -3,7 +3,7 @@
   "objective": "Learn a geometry- and boundary-conditioned continuous field that fits multiple DeepJEB cases and transfers across held-out CAD/load conditions.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "topology_context_input_feasibility_design",
+  "stage": "matched_topology_message_train4_pilot",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,14 +21,71 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "topology_context_input_feasibility_design",
-    "status": "selected_design_in_progress",
-    "scope": "Only fixed TRAIN CAD101_428/101_479/101_56/101_78 geometry and original BC inputs; no labels, weights, validation or final arrays.",
-    "design": "Formal execution plan pending root freeze of source/primary/math drafts.",
-    "brief_action": "先在四个固定训练几何上检查粗网格信息传递和连续插值的连通性与成本，通过后再做共享小样本匹配训练。",
-    "after": "No automatic training escalation: freeze one matched pilot and its numerical gates after input feasibility."
+    "stage": "matched_topology_message_train4_pilot",
+    "design": "notes/geobc_topology_message_plan.json",
+    "design_sha256": "05fd5a5afba10871c58d18fde2e31997b85b1c1aa695b828e4ee416c43e43e68",
+    "scope": "4TRAIN CADs ×3known loads,1000fixed endpoint each self_only/neighbors; noVAL/DIA/final/stress",
+    "brief_action": "四几何输入13秒通过：现在实现同预算的自身／邻居消息配对；同时要求位移与P1改善，结果出来后再决定扩大或改方向。",
+    "after": "Root interprets fixed4gate result and selects one bounded next task; continuous all10 query remains source/math-only future proposal."
   },
-  "jobs": [],
+  "jobs": [
+    {
+      "name": "topology_message_self_only_train4_1k",
+      "kind": "real_training_pilot",
+      "stage": "matched_topology_message_train4_pilot",
+      "output": "runs/geobc_exploration/topology_message_self_only_train4_1k",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.topology_message_train",
+        "--plan",
+        "notes/geobc_topology_message_plan.json",
+        "--message-mode",
+        "self_only",
+        "--output",
+        "runs/geobc_exploration/topology_message_self_only_train4_1k"
+      ],
+      "requires": [
+        "geobc/topology_message_field.py",
+        "geobc/topology_message_train.py",
+        "notes/geobc_topology_message_plan.json",
+        "notes/topology_message_design_review.json",
+        "notes/topology_message_field_ready.json",
+        "notes/topology_message_train_ready.json",
+        "notes/topology_message_parent_review.json",
+        "data/geobc_topology_balanced_train4/manifest.json",
+        "notes/geobc_topology_balanced_feasibility_result.json"
+      ]
+    },
+    {
+      "name": "topology_message_neighbors_train4_1k",
+      "kind": "real_training_pilot",
+      "stage": "matched_topology_message_train4_pilot",
+      "output": "runs/geobc_exploration/topology_message_neighbors_train4_1k",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.topology_message_train",
+        "--plan",
+        "notes/geobc_topology_message_plan.json",
+        "--message-mode",
+        "neighbors",
+        "--output",
+        "runs/geobc_exploration/topology_message_neighbors_train4_1k"
+      ],
+      "requires": [
+        "geobc/topology_message_field.py",
+        "geobc/topology_message_train.py",
+        "notes/geobc_topology_message_plan.json",
+        "notes/topology_message_design_review.json",
+        "notes/topology_message_field_ready.json",
+        "notes/topology_message_train_ready.json",
+        "notes/topology_message_parent_review.json",
+        "data/geobc_topology_balanced_train4/manifest.json",
+        "notes/geobc_topology_balanced_feasibility_result.json"
+      ]
+    }
+  ],
   "historical_jobs": [
     {
       "name": "hash50_unseen_geometry_pilot",
@@ -2139,6 +2196,78 @@
         "data/geobc_graph_context/101_479.npz",
         "data/prepared_geobc_multiload/101_479_ver.npz"
       ]
+    },
+    {
+      "name": "topology_context_input_train4",
+      "kind": "real_geometry_operator_feasibility",
+      "stage": "target_free_topology_context_train4_feasibility",
+      "output": "runs/geobc_exploration/topology_context_input_train4",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/prepare_topology_context.py",
+        "--plan",
+        "notes/geobc_topology_context_plan.json",
+        "--output",
+        "runs/geobc_exploration/topology_context_input_train4"
+      ],
+      "requires": [
+        "tools/prepare_topology_context.py",
+        "notes/geobc_topology_context_plan.json",
+        "notes/topology_context_design_parent_review.json",
+        "notes/topology_context_input_ready.json",
+        "notes/topology_context_input_parent_review.json",
+        "data/geobc_gradient_supervision/manifest.json",
+        "data/geobc_graph_context/manifest.json",
+        "data/prepared_geobc_multiload/101_428_ver.npz",
+        "data/geobc_gradient_supervision/101_428.npz",
+        "data/geobc_graph_context/101_428.npz",
+        "data/prepared_geobc_multiload/101_479_ver.npz",
+        "data/geobc_gradient_supervision/101_479.npz",
+        "data/geobc_graph_context/101_479.npz",
+        "data/prepared_geobc_multiload/101_56_ver.npz",
+        "data/geobc_gradient_supervision/101_56.npz",
+        "data/geobc_graph_context/101_56.npz",
+        "data/prepared_geobc_multiload/101_78_ver.npz",
+        "data/geobc_gradient_supervision/101_78.npz",
+        "data/geobc_graph_context/101_78.npz"
+      ]
+    },
+    {
+      "name": "topology_context_balanced_train4",
+      "kind": "real_geometry_operator_feasibility",
+      "stage": "target_free_balanced_topology_context_train4_feasibility",
+      "output": "runs/geobc_exploration/topology_context_balanced_train4",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/prepare_topology_context_balanced.py",
+        "--plan",
+        "notes/geobc_topology_balanced_plan.json",
+        "--output",
+        "runs/geobc_exploration/topology_context_balanced_train4"
+      ],
+      "requires": [
+        "tools/prepare_topology_context_balanced.py",
+        "notes/geobc_topology_balanced_plan.json",
+        "notes/topology_balanced_design_parent_review.json",
+        "notes/topology_balanced_input_ready.json",
+        "notes/topology_balanced_input_parent_review.json",
+        "notes/geobc_topology_context_feasibility_result.json",
+        "tools/prepare_topology_context.py",
+        "data/geobc_gradient_supervision/manifest.json",
+        "data/geobc_graph_context/manifest.json",
+        "data/prepared_geobc_multiload/101_428_ver.npz",
+        "data/geobc_gradient_supervision/101_428.npz",
+        "data/geobc_graph_context/101_428.npz",
+        "data/prepared_geobc_multiload/101_479_ver.npz",
+        "data/geobc_gradient_supervision/101_479.npz",
+        "data/geobc_graph_context/101_479.npz",
+        "data/prepared_geobc_multiload/101_56_ver.npz",
+        "data/geobc_gradient_supervision/101_56.npz",
+        "data/geobc_graph_context/101_56.npz",
+        "data/prepared_geobc_multiload/101_78_ver.npz",
+        "data/geobc_gradient_supervision/101_78.npz",
+        "data/geobc_graph_context/101_78.npz"
+      ]
     }
   ],
   "phase_history": [
@@ -2288,6 +2417,24 @@
       "seconds": 2.7956723930110456,
       "readout": "Both H and allC P1RMS and signed-interaction RMS decrease in the same input-stratified TRAIN101_479 sample; negative cross cancellation persists; no single-path causal claim.",
       "next": "topology_context_input_feasibility_design"
+    },
+    {
+      "stage": "target_free_topology_context_train4_feasibility",
+      "result": "notes/geobc_topology_context_feasibility_result.json",
+      "seconds": 1.3319807660009246,
+      "feasibility_pass": false,
+      "prepared_CADs": 0,
+      "readout": "BFS4097groupsafter21921/270276assigned; rolelowerbound7, no initial mandatory BC fragmentation. Preserved rejectedstage; no budget relaxations.",
+      "next": "target_free_balanced_topology_context_train4_feasibility"
+    },
+    {
+      "stage": "target_free_balanced_topology_context_train4_feasibility",
+      "completed_at_utc": "2026-10-09T11:32:35.514898+00:00",
+      "result": "notes/geobc_topology_balanced_feasibility_result.json",
+      "feasibility_pass": true,
+      "elapsed_seconds": 13.101552986999991,
+      "cache_bytes": 342364814,
+      "next_formal_plan": "notes/geobc_topology_message_plan.json"
     }
   ],
   "scope_rule": "historical_jobs are immutable completed evidence and are never dispatched; jobs contains only the currently authorized stage. Source SHA and weights remain in each historical run and the frozen Git commit.",
@@ -2314,8 +2461,15 @@
     }
   },
   "active_design_preparation": {
-    "status": "selected_input_feasibility_design",
-    "mechanism": "Real mesh connectivity, connected two-level aggregation and positive sparse smoothed prolongation; no nearest-aggregate constant context.",
-    "launch_rule": "No real arrays/GPU until formal source-independent plan and focused parent review."
+    "status": "completed_sources_released",
+    "design": "notes/geobc_topology_message_plan.json",
+    "design_sha256": "05fd5a5afba10871c58d18fde2e31997b85b1c1aa695b828e4ee416c43e43e68",
+    "field_author": "hashgrid_impl",
+    "trainer_author": "topology_train_impl",
+    "release": "Root focusedreview passed, solePID422 released1000fixedupdates each",
+    "source_sha256": {
+      "geobc/topology_message_field.py": "d9d853e0deae66eb1e146480e111d85c68de790119ff0ab82f5f4dbf082c49be",
+      "geobc/topology_message_train.py": "843abf30618800c9cad4377789d59fb1fc36349e841ca63e05a9dbde1096de15"
+    }
   }
 }

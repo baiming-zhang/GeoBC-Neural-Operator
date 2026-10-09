@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "status": "ready",
+  "stage": "matched_topology_message_train4_pilot",
+  "readiness_scope": "Source and metadata only; actual native initialization/count/first-backward checks are required by the formal pilot",
+  "plan": "notes/geobc_topology_message_plan.json",
+  "plan_sha256": "05fd5a5afba10871c58d18fde2e31997b85b1c1aa695b828e4ee416c43e43e68",
+  "source_sha256": {
+    "geobc/topology_message_train.py": "843abf30618800c9cad4377789d59fb1fc36349e841ca63e05a9dbde1096de15",
+    "geobc/topology_message_field.py": "d9d853e0deae66eb1e146480e111d85c68de790119ff0ab82f5f4dbf082c49be",
+    "geobc/hash_bandwidth_train.py": "c7b4c3c37bb2060d865c6d308d8c7d33a3d2fee311d20df01c5350e891b6f85e",
+    "geobc/hash_bandwidth_field.py": "cc57127c700b968d81ebc8c31622bdc74d487645a6ec601c7ebed42e144cae6d",
+    "geobc/gradient_supervision.py": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389",
+    "geobc/physics_train.py": "3105cacc364b65950eec2b1901376c8b9f8b1edae1019fbfadcc9662339c8b16",
+    "geobc/bc_role_condition.py": "a9adee5a0fcbf7f408a4199ca1b4a87d676a43d56f4b18c1a91ff02cc6a3a232",
+    "geobc/local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091"
+  },
+  "field_ready": "notes/topology_message_field_ready.json",
+  "field_ready_sha256": "b3672954758beb0f3cef7578354c4f821580bb7487aa604c35ca534353b4d35b",
+  "metadata_checks": {
+    "source_syntax_compile_pass": true,
+    "stdlib_only_top_level_and_preflight_AST_pass": true,
+    "normalizer_fit_or_training_loss_refit_call_absent": true,
+    "best_checkpoint_path_absent": true,
+    "CLI_help_pass": true,
+    "both_modes_preflight_pass": true,
+    "NumPy_and_Torch_absent_from_sys_modules": true,
+    "frozen_source_and_metadata_SHA_checked": true,
+    "selected_only_TRAIN12_file_stats_and_cache_node_order_checked": true,
+    "preflight_runs_per_mode": 1
+  },
+  "preflight": {
+    "self_only": {
+      "status": "ready",
+      "contract_sha256": "9106b5d165894ad33f7e8cf3dc66abd2d9642f3d25baece0da2b51d4633bf337",
+      "elapsed_seconds": 0.28873051799996574
+    },
+    "neighbors": {
+      "status": "ready",
+      "contract_sha256": "a8e50aeb8c12c17cff4cd99417da6ab8ef26f143cdda4ecc40d807e9988c10ab",
+      "elapsed_seconds": 0.2449753219999593
+    },
+    "array_files_opened": 0,
+    "labels_read": 0,
+    "models_constructed": 0,
+    "updates": 0,
+    "CUDA_initialized": false,
+    "Torch_imported": false,
+    "NumPy_imported": false
+  },
+  "API": {
+    "parser": "parser().parse_args(argv)",
+    "preflight": "preflight(args) -> metadata-only readiness dict; no output folder created",
+    "scope_return": ["plan", "keys", "files", "contract", "load_basis_guard", "topology_manifest"],
+    "scope_function": "_scope(args)",
+    "contract_identity_keys": ["plan_sha256", "source_sha256", "metadata_sha256", "selected_sources", "selected_caches", "fixed_normalizers"],
+    "matched_contract_expected_difference": "message_mode only; output path is excluded",
+    "summary_keys": ["status", "message_mode", "endpoint_step", "final_metrics", "initial_metrics", "config", "first_backward_check", "sampling_witnesses", "elapsed_seconds"],
+    "initial_parameter_keys": ["all_parameter_sha256", "named_parameter_sha256", "named_trainable_tensors", "native_public_parameter_sha256", "counts"],
+    "actual_parameter_count_keys": ["encoding", "network", "native_total", "PointNet", "topology", "total"],
+    "u_mean": "final_metrics.train.case_mean_relative_l2",
+    "u_worst": "final_metrics.train.worst_case_relative_l2",
+    "recovered_P1_mean": "final_metrics.train.strain.case_mean_relative_l2",
+    "physical_P1_RMS_mean": "final_metrics.train.strain.mean_case_physical_tensor_error_RMS",
+    "physical_P1_RMS_case": "final_metrics.train.strain.per_case[case_key].physical_tensor_error_RMS"
+  },
+  "recipe": {
+    "CAD_order": ["101_428", "101_479", "101_56", "101_78"],
+    "known_loads": ["ver", "hor", "tor"],
+    "TRAIN_cases": 12,
+    "steps": 1000,
+    "eval_endpoints": [0, 1000],
+    "selection": "fixed endpoint1000 only; no best selection or early stop",
+    "seed": 2026,
+    "sampler": "four distinct ordered case slots; each6400 uniform original nodes plus1600 original cells x4 ordered corners; duplicates retained",
+    "batch_size": 51200,
+    "RNG_offsets": {"case": 23, "node": 17, "tet": 41},
+    "optimizer": {"name": "Adam", "fused": true, "lr": 0.003, "betas": [0.9, 0.999], "eps": 1e-8, "weight_decay": 0},
+    "u_scale_mm": 0.05511113670847156,
+    "gradient_weight": 0.0004106650618638651,
+    "normalizer_source": "runs/geobc_exploration/displacement_query_context_actual_10k/config.json",
+    "normalizer_config_sha256": "451d419512a6256f0c7dd12d8668c277319e87e8b72f9242b1c40870856c96a9",
+    "new_scales_or_weights_fit": false,
+    "P1_denominators": "directly reused selected four frozen TRAIN cache per-load full-volume denominators",
+    "physical_P1_error_RMS": "sqrt(allnode symmetric Frobenius error energy/Nnodes); shear squared weight2; no division by6",
+    "context": "deduplicate at most4 active CADs in ordered case slots; recompute differentiable global/topology/full-node Q once per CAD per update; explicit original IDs preserve duplicates; no context detach or cross-step reuse",
+    "evaluation": "no_grad all4CAD context once; basis9 once perCAD over original arange IDs in chunks; combine known3 loads; same signed physical u drives recovered corner-P1 metrics",
+    "timings": "CUDA phase events and end-of-step sync; field embedding/messages/full-node prolongation segments only first step and endpoints; full-step wall time and CPU/GPU peak memory",
+    "resume": "this output last.pt only; strict mode/source/input-stat/scaler/weights/budget contract; optimizer and all case/node/tet/global NumPy/Torch/CUDA/Python RNG restored",
+    "witnesses": "all1000 ordered case/node/cell/corner sample hashes persisted and checkpointed",
+    "validation_DIA_final_stress_enabled": false
+  },
+  "formal_first_step_requirements": {
+    "all_named_initial_trainable_hashes": true,
+    "two_public_native_parameter_hashes_and_counts": true,
+    "expected_total_parameters_source_estimate": 7797152,
+    "expected_topology_parameters_source_estimate": 9856,
+    "nonlearned_common_coarse8_mask_record": true,
+    "finite_nonzero_PointNet_and_all_five_linears_gradients": true,
+    "finite_nonzero_retained_global_fine_fullnode_context_gradients": true,
+    "finite_nonzero_two_public_native_parameter_gradients": true,
+    "fixed_coarse8_activation_mask_gradient_policy": true,
+    "checks_performed_now": false
+  },
+  "commands": {
+    "self_only": "python -m geobc.topology_message_train --plan notes/geobc_topology_message_plan.json --message-mode self_only --output runs/geobc_exploration/topology_message_self_only_train4_1000",
+    "neighbors": "python -m geobc.topology_message_train --plan notes/geobc_topology_message_plan.json --message-mode neighbors --output runs/geobc_exploration/topology_message_neighbors_train4_1000",
+    "metadata_preflight": "append --preflight",
+    "resume": "append --resume last"
+  },
+  "training_executed": false,
+  "research_status": "ongoing"
+}

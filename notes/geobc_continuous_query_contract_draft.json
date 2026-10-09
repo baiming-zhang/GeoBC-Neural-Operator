@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "status": "proposal_only",
+  "title": "Minimal conforming all10 TETRA10 extension of raw43 and nodal topology32",
+  "decision_owner": "root; continuous query remains a future proposal after the selected original-node pilot",
+  "current_stage": "Root reported balanced four-TRAIN input feasibility complete in13.10s: all4 CADs N1=2048/N2=128, P01 mean support5.44-5.84, cache approximately326.5MiB, feasibility=true. Root selected next a fixed4TRAIN1000-step self_only vs neighbors original-node pilot. This source/math draft does not implement or test a continuous adapter, change that pilot or authorize geometry-array access, GPU work, training or GT evaluation by this subtask.",
+  "activity": {
+    "source_and_small_JSON_read_only": true,
+    "scientific_binary_arrays_read": false,
+    "raw_solver_decks_or_raw_H5_read": false,
+    "labels_or_weights_read": false,
+    "CUDA_initialized": false,
+    "scientific_algorithms_or_tests_executed": false,
+    "code_or_frozen_plan_changed": false,
+    "only_created_artifact": "notes/geobc_continuous_query_contract_draft.json"
+  },
+  "current_limitation": {
+    "node_only_API": "The message candidate explicitly defines Q(node_ids)=tanh(LN32(P01[node_ids,:]@Y1_2)). Its context API requires original node_indices and CAD index; its evaluation enumerates original arange node IDs. No arbitrary physical-point locator or raw43 extension is supplied.",
+    "interpretation": "A fitting pilot on original nodes can assess utility there. It does not establish continuous off-node inference, a valid curved-mesh inverse, conforming face traces or off-node field accuracy.",
+    "proposal_is_adapter_only": "Add a declared physical-query-to-nodal-interpolation adapter around the frozen node field. Do not change the context hierarchy, message equations, decoder architecture, initialization, load basis, losses, optimizer or pilot budget. The existing node-ID path remains the nodal reference."
+  },
+  "frozen_invariants": {
+    "nodal_raw": "F_i=concat(original25_i, actual local13_i, Euclidean5_i), float32[N,43], in the canonical H5-vertex row order. Clone and set slots7:13 to zero before interpolation or context assembly in load-linear mode.",
+    "nodal_context": "For a fixed model state and CAD, define Q_i=tanh(LN32(P01[i,:]@Y1_2)) in the candidate's exact FP32 operation policy. The adapter interpolates these final 32-channel nodal values; applying the nonlinear readout after interpolation would be a different off-node extension and is not this proposal.",
+    "global": "Reuse the same actual BC-role5 PointNet global32 and same CAD context for all its queries and all three basis loads. No spatial interpolation of global32 and no query-dependent re-encoding of the cloud.",
+    "decoder": "Use the unchanged coarse8 SplitHashBandwidthDecoder: all12 allocated hash levels/24 channels with the existing mask retaining the first16 channels, raw43 + topology32 + global32 = Identity107, explicit13 ones -> public Network144, width128x2, output9.",
+    "loads": "Keep output ordering [ver_ux,ver_uy,ver_uz,hor_ux,hor_uy,hor_uz,tor_ux,tor_uy,tor_uz], reshape to [Q,3,3], and combine u_scaled[q,c]=sum_l alpha[q,l]*basis[q,l,c]. Alpha is unchanged external load metadata; no interpolation of alpha, case-ID embedding or load-feature reintroduction.",
+    "units_and_signs": "Retain existing input scales and zero-center u scale when the root eventually authorizes a model call. No fitting of new normalizers, no absolute value of signed displacement or signed scalar stress, no inferred constitutive stress. The adapter uses no labels.",
+    "mode_parity": "If root later selects the matched self_only/neighbors pair, both receive identical cells, locator results, weights, raw43, hash coordinates, global32, alpha and query ordering. Only the already declared message operators may differ."
+  },
+  "canonical_geometry_and_order": {
+    "node_identity": "The row index used by cells10 is the canonical original H5-vertex row, not CSV row, GRID_ID-1, sorted GRID ID, a new point cloud or a nearest-coordinate guess. Reuse the existing originalDeepJEBv1 CSV GRID-coordinate -> H5-vertex alignment provenance and grid_node_ids mapping.",
+    "geometry": "Use original physical node coordinates X_i in mm, all ten cells10 node IDs, and the verified VTK edge order. Retain original midside coordinates without moving them to corner midpoints. If the current authorized geometry cache supplies only normalized float32 xyz, a separately frozen input-only source for original xyz_mm is a prerequisite; do not silently reconstruct a supposedly exact physical map from rounded normalized xyz or reopen raw H5.",
+    "local_order": {
+      "corners": [0, 1, 2, 3],
+      "midside_edges_in_slots_4_to_9": [[0, 1], [1, 2], [2, 0], [0, 3], [1, 3], [2, 3]],
+      "six_node_faces": [[0, 1, 2, 4, 5, 6], [0, 1, 3, 4, 8, 7], [0, 2, 3, 6, 9, 7], [1, 2, 3, 5, 9, 8]]
+    },
+    "identity_record": "Before any future implementation or geometry gate, freeze CAD/split/load order, input-member allowlists, source-file identities, xyz_mm and canonical normalized-xyz hashes/dtypes, cells10 hash and original row order, raw43 feature names/scales/hashes, alignment string/GRID mapping provenance, topology-cache contract/P01 identity, and locator constants/source revision. Record geometry units and decoder coordinate normalization separately.",
+    "face_compatibility": "Two cells sharing a corner triple must also assign the identical global midside node ID to each of that face's three global corner edges. Matching the unordered six-node set alone is insufficient if midside assignments are permuted. Never merge coincident but differently indexed nodes by tolerance. Nonmanifold faces, conflicting edge-mid IDs and overlapping distinct interiors block a whole-domain continuity claim."
+  },
+  "all10_shape_contract": {
+    "reference": "Let r=(L1,L2,L3), L0=1-L1-L2-L3; the reference tetrahedron has L_a>=0 and sum_a L_a=1.",
+    "shape": "For corners a=0..3, N_a=L_a*(2*L_a-1). For each declared edge(a,b), N_ab=4*L_a*L_b, stored in slots4..9 in the fixed order.",
+    "physical_map": "X_e(r)=sum_{i=0}^9 N_i(r)*X_{cells10[e,i]} in mm. Locate a physical query x by solving this full quadratic map, not by finding corner-P1 barycentrics and reusing them without a physical residual check.",
+    "signed_weights": "Valid interior quadratic weights can be negative: at L=(1/4,1/4,1/4,1/4), each corner weight is -1/8 and each edge weight is 1/4. Their sum is1. Preserve signs; do not clamp, take abs, renormalize positive parts or use nearest-node copying. Positive nodal P01 is unrelated to positivity of N_i.",
+    "nodal_property": "At each of the four reference corners or six reference edge midpoints, N_i(r_j)=delta_ij. Thus every independent original midside feature/context value is reproduced. Corner-P1 interpolation would instead average edge-end values and fails this contract whenever a midside value is independent.",
+    "constant_property": "sum_i N_i=(sum_a L_a)^2=1. A constant nodal channel remains constant. This does not imply a maximum principle, nonnegative distances, valid covariance spectra, affine topology-context preservation or exact physical BC semantics.",
+    "hash_coordinate": "Let z_i be the existing canonical float32 normalized xyz rows. Use z_q=sum_i N_i(r_q)*z_{cells10[e_q,i]} as the declared hash-coordinate extension, then the unchanged decoder casts to float32. At every original node this returns its cached hash coordinate, including midsides. In ideal arithmetic with unrounded z_i=(X_i-bbox_min_mm)/L, this equals (x-bbox_min_mm)/L; finite cache rounding is an explicit coordinate approximation, not a new scale or an exact physical identity. Report its discrepancy from direct physical normalization and its source dtype. Do not substitute a padded FNO cube normalization.",
+    "numerical_precision": "Compute physical inverse/residuals and acceptance comparisons in float64. Geometry-cache weight precision must be explicit; retain float64 in the first geometry gate. A later float32 query-weight cache needs its own residual/parity observation before reuse. Do not treat a tolerance test as bitwise equality."
+  },
+  "raw43_extension_and_semantics": [
+    {
+      "slots": "0:7",
+      "nodal_meaning": "Six original support-DOF bits and loaded-member bit",
+      "offnode_rule": "Interpolate the seven nodal channels with the same N_i. Values may be negative or exceed1. They are continuous numeric descriptors, not physical BC flags, support occupancy, probability, DOF membership or an enforcement mask. Do not threshold/reclassify them."
+    },
+    {
+      "slots": "7:13",
+      "nodal_meaning": "Original normalized total force/moment inputs",
+      "offnode_rule": "Zero them in the cloned nodal tensor before interpolation for the existing load-linear basis. The resulting channels are identically zero."
+    },
+    {
+      "slots": "13:16,24",
+      "nodal_meaning": "Material E/113800MPa, nu, rho/4.47e-9_t_per_mm3, and L/200mm",
+      "offnode_rule": "Interpolate cached values unchanged. CAD-constant values reproduce by partition of unity; no new fit, clip or normalization."
+    },
+    {
+      "slots": "16:19",
+      "nodal_meaning": "Physical offset from load master /L",
+      "offnode_rule": "Interpolate cached values. With unrounded consistent physical coordinates this reproduces the affine physical offset, because geometry uses the same full10 shape functions. Finite input rounding remains a declared approximation."
+    },
+    {
+      "slots": "19:24,38:43",
+      "nodal_meaning": "Four master-point distances, loaded-node-set distance, and five named member-set Euclidean distances /L",
+      "offnode_rule": "Interpolate the original values rather than recomputing point-set distances at x. Exact distance to a fixed finite point set is continuous but generally nondifferentiable where the nearest member changes; its quadratic nodal interpolant is a different declared function and may undershoot below0. Preserve duplicated loaded-distance channels as supplied, including existing floating rounding; do not silently repair or claim exact geometric distance."
+    },
+    {
+      "slots": "25:38",
+      "nodal_meaning": "Existing boundary-node K32 nearest offset/distance, covariance components/trace, two eigenvalue ratios and kth distance using .05 in canonical normalized coordinates",
+      "offnode_rule": "Interpolate all13 cached nodal channels with the same N_i. Fresh nearest-node offset changes discontinuously across nearest-node switches; KNN/PCA descriptors can change at K-neighborhood changes. Nearest and kth scalar distances themselves are continuous to fixed finite sets, although not generally differentiable. Interpolation supplies a continuous descriptor extension while preserving nodal data; it is not an exact SDF, continuous-surface PCA, valid off-node covariance/eigensystem or a new KNN computation."
+    }
+  ],
+  "minimal_adapter_equations": {
+    "query_input": "Explicit ordered physical x_mm[Q,3] and cad_index[Q], one geometry/context bundle per CAD, plus alpha[Q,3] in ver/hor/tor order for a model call. Preserve duplicate physical queries and caller order. Do not require invented node IDs for off-node queries.",
+    "locator_output": "For each successful query: original element row e, reference L[4], signed N[10], final residual_mm, Jacobian diagnostics and status. A supplied element/reference pair is only a hint until the same physical residual and geometry checks pass.",
+    "raw": "F(x_q)=sum_i N_i(r_q)*F_masked[cells10[e_q,i],:]",
+    "topology": "Q(x_q)=sum_i N_i(r_q)*Q_node[cells10[e_q,i],:], with Q_node_j=tanh(LN32(P01[j,:]@Y1_2)). Keep this order: node prolongation -> node LN/tanh -> all10 interpolation. It is permissible to evaluate only the union of the query cells' original node IDs in chunks; no N0x32 materialization is required.",
+    "condition": "C(x_q)=concat(F(x_q),Q(x_q),global32[cad_index_q]) in the unchanged107 layout; decoder(hash_coord z_q,C(x_q)) yields basis9.",
+    "nodal_replay": "For every local node j of every compatible regular original element, N(r_j)=onehot(j), hence raw43, topology32 and cached normalized hash coordinate match the current original-node gathers in real arithmetic. With the same global32, decoder and alpha, the ideal nodal model output agrees. Numerical parity must state precision/tolerance; no learned weights are read to assert a result now.",
+    "trainable_path": "If later used during an authorized training step, learned Y1_2 -> nodal Q -> query interpolation stays in the current autograd graph; do not detach nodal Q or cache it across optimizer updates. Geometry locator/reference weights are nonlearned. Existing native xyz.detach() means this adapter does not authorize or establish coordinate-autograd derivatives.",
+    "no_extra_parameters": "The adapter adds no embedding, neural head, attention, smoothing, nearest reassignment or trainable parameter. It defines an off-node input extension only."
+  },
+  "conditional_face_C0_proof": {
+    "assumptions": "Adjacent cells share the same three global corner IDs, the same edge-associated three global midside IDs and their physical coordinates. Each cell map has a regular, single-valued inverse on the relevant side of the face, and their interiors do not overlap. Each global node has one raw43 and one topology32 value for the same fixed model state/CAD.",
+    "trace": "On a face opposite corner a, L_a=0. Its corner shape and all three edge shapes incident to a vanish. The remaining six shapes are the same quadratic triangle functions, merely permuted by the shared corner/edge correspondence. Thus the physical face maps and raw43/topology32/hash-coordinate traces coincide pointwise. Applying the same continuous ideal hash interpolation and decoder to equal traces, with equal global32 and fixed alpha, yields equal displacement traces.",
+    "limits": "This establishes C0 in exact real arithmetic on a conforming valid mesh, conditional on the stated inverse/geometry assumptions. It does not establish C1 gradients, strain/stress continuity, validity of every curved element, global point-location success, remeshing invariance, exact curved FE truth or off-node accuracy. If alpha is artificially made discontinuous in space, its output combination need not be continuous.",
+    "current_evidence_gap": "tools/mesh_boundary.py groups faces by corner triple and checks midpoint deviation percentiles. It does not compare edge-associated midside IDs across paired faces. Its four straight subtriangles are not an exact curved face locator. No all-face compatibility result was produced in this source-only task."
+  },
+  "physical_locator_contract_proposal": {
+    "broad_phase": "Use the full10 geometry's degree2 Bernstein control points: four corners X_a and six edge controls B_ab=2*X_ab-(X_a+X_b)/2. The convex hull bounds the reference-simplex image, so a padded AABB of all ten controls is conservative. Reuse the existing formula, with a source-row-preserving spatial index for arbitrary points; do not use a corner-only AABB or straight boundary triangles.",
+    "inverse": "For each candidate element, solve X_e(r)=x in float64 using the existing correct shape/gradient formulas. An affine-corner inverse can seed the solve, but never defines physical inside/outside or accepted final barycentrics. Use a fixed bounded safeguarded Newton policy frozen before observation; record iterations, seed policy, tolerances, any retry bound and failures. Two convenient seeds or bounded Newton success rates cannot certify a globally unique inverse.",
+    "proposed_first_gate_constants": "For the tiny CPU geometry gate: at most24 Newton iterations per declared seed, two fixed seeds (corner-affine when nonsingular, and center), at most8 residual-decreasing backtracks per iteration; normalized physical residual infinity-norm <=1e-10, reference L bounds [-1e-10,1+1e-10], partition-unity error <=1e-12. Proposed constants only; root must freeze them and the implementation before execution rather than tune from GT or failed fields.",
+    "jacobians": "Use the full quadratic J=dX_e/dr, normalized by the same physical L for diagnostics. The final J must be finite and nonsingular with sigma_min(J/L)>1e-12 and condition number<1e12 in the proposed gate; reject numerical singularity and report determinant/sign. A consistent negative determinant can reflect reversed cell orientation and is not automatically a fold. Require declared element orientation and no evidenced sign reversal/fold on its reference domain. Positive corner-P1 volume or regularity at one point does not certify this. No whole-domain field claim without an input-only curved-map validity argument or a declared restricted valid domain.",
+    "final_acceptance": "Accept only finite roots inside reference bounds, with the full physical residual passing, a regular final J, consistent admitted element geometry and no conflicting accepted root. Recompute N from the accepted reference coordinates; preserve signed weights without clipping L or N. Trace tolerances must be reported rather than used to collapse incompatible faces.",
+    "ties": "If several regular candidates meet only on a verified compatible shared face/edge/node, choose the smallest original cell row after trace compatibility, preserving the existing source-order convention. Distinct accepted interior roots or different traces are ambiguous_geometry, not a harmless source-row tie. Bounded seeds do not prove absence of another root.",
+    "outside": "Return outside_certified only when conservative bounds exclude all admitted elements, or a separately justified geometry procedure certifies outside. A Newton failure while a conservative candidate exists is unresolved_inverse. A box candidate is not itself an inside certificate. Physical outside points are not extrapolated, projected to the boundary, assigned a nearest node or silently returned as zero-valued valid fields.",
+    "failure_statuses": ["outside_certified", "unresolved_inverse", "invalid_jacobian", "invalid_geometry", "ambiguous_geometry", "source_identity_mismatch", "resource_limit"],
+    "failure_output": "For each failed query retain query order and diagnostics, provide no valid basis/u value and do not call the decoder. Never relabel failure as outside, truncate candidate sets without a resource_limit status, or use nearest-node fallback.",
+    "performance_scope": "Cache only target-free static geometry/search data by the exact identity contract. Chunk point/candidate work and query-node gathers. After this proposal and a passed CPU gate, root may choose a measured GPU implementation; no speed promise, GPU run or new architecture is authorized here."
+  },
+  "existing_source_reuse_review": [
+    {
+      "source": "tools/prepare_grids.py:74-87",
+      "decision": "Reuse the quadratic_shape and _shape_gradient mathematics: source inspection and the pinned VTK primary implementation agree on all10 shape formulas and ordering. No numerical test was run here. A dependency-neutral implementation/extraction is a future code task, not authorized by this note."
+    },
+    {
+      "source": "tools/prepare_grids.py:127-129",
+      "decision": "Reuse the degree2 Bezier control-point/AABB mathematics for a physical arbitrary-point broad phase. The existing rasterization enumerates regular grid points and is not the new query API."
+    },
+    {
+      "source": "tools/prepare_grids.py:90-99,102-218",
+      "decision": "Do not reuse build_geometry_grid or _solve_columns unchanged as a certified arbitrary-query locator. They are grid-specific; singular solves become zero updates, Newton sanitizes/clamps iterates, final acceptance checks residual/reference bounds without a final Jacobian validity predicate, and failures are omitted from occupancy rather than classified. The smallest-row winner does not detect overlapping interior roots. Reporting singular corner matrices is not full curved-map validity."
+    },
+    {
+      "source": "tools/prepare_grids.py:242-252",
+      "decision": "Reuse the signed nodal gather-and-weight sum as the interpolation formula. Do not call interpolate_nodal for trainable topology32: it has @torch.no_grad(), converts output to CPU NumPy and would sever the learned context graph. A later differentiable chunked gather/sum needs the same formula, with no label-processing wrapper."
+    },
+    {
+      "source": "tools/mesh_boundary.py:17-23,61-73",
+      "decision": "Reuse verified local edge/face index tables. Corner-triple grouping and geometric deviation percentiles alone do not establish compatible six-node traces; do not treat its straight subtriangle surface as the exact quadratic face."
+    }
+  ],
+  "tiny_future_geometry_only_acceptance": {
+    "status": "not authorized or executed; root may freeze this as a separate bounded prerequisite before GPU or GT",
+    "scope": "One fixed TRAIN CAD101_479 only, CPU float64 geometry/math, at most32 original cells,8 shared faces and512 physical query occurrences. No model construction, weights, CUDA, displacement, stress, reference strain, teacher predictions, validation, DIA or final-test arrays.",
+    "input_allowlist": "Only existing input-only original xyz_mm/canonical xyz/cells10 metadata and geometry members, sampled masked original25/local13/Euclidean5 input rows, alignment identities and optional existing face-adjacency metadata. Obtain an explicit root freeze for any member not in the current input stage. Never use a helper that reads GT alongside geometry.",
+    "selection": "From canonical original cell order, take the first8 distinct interior face pairs by lexicographic corner triple and original row pair; include their incident cells, then the first original cell rows until32 unique cells. Topology inspection alone chooses them, with no error/target ranking. If8 pairs are unavailable, report the exact smaller coverage rather than substitute nearest faces or expand scope.",
+    "surrogate_topology32": "Use a deterministic globally node-indexed bounded32-channel nodal tensor, including independent midside values and a midside-only spike channel, as Q_node. This tests adapter mathematics without a learned topology context. Passing cannot certify an eventual real context implementation or native output.",
+    "query_budget": "All10 reference nodes of each selected cell <=320 occurrences; four fixed reference interior points per cell <=128; seven trace points per shared face <=56 (three edge midpoints, face center, permutations of face barycentrics(.2,.3,.5)); eight clearly outside all conservative control-point bounds <=8. Duplicate nodal and face query occurrences are retained.",
+    "required_checks": [
+      "Full10 cardinal replay: interpolate sampled masked raw43, surrogate topology32 and canonical hash xyz at every local corner/midside; compare with their original-node gathers. In float64, shape onehot and partition unity error <=1e-12 and normalized channel/coordinate replay error <=1e-12. Explicitly exhibit that the midside-only spike cannot be reproduced by corner-P1.",
+      "Paired faces: first verify global corner-edge-mid ID correspondence, then compare both physical maps and raw43/topology32/hash traces at the seven fixed points using the correct local permutation. Normalized physical/coordinate trace error <=1e-12 and normalized channel trace error <=1e-12. A mismatched six-node face fails; never average the traces.",
+      "Physical inverse: generate nonnodal physical points by the full10 map, query the bounded locator, and require normalized physical residual <=1e-10, reference containment and stated Jacobian checks. Include all selected midside nodes rather than only corners. Report max residual/iterations/failures and both determinant signs without assuming positive orientation.",
+      "Canonical normalization: compare interpolated cached xyz with direct (x-bbox_min_mm)/L; report the maximum discrepancy and source rounding separately, proposed gate <=2e-7 normalized. This is a rounding tolerance, not proof of exact physical equality.",
+      "Outside and invalid geometry statuses: all eight bound-excluded points must return outside_certified without a field value. One tiny synthetic singular map and one explicitly folded/conflicting-root fixture must return invalid/unresolved/ambiguous status rather than a valid field or zero fallback. Synthetic fixtures add no source GT and fit within the same512 query cap by reducing interior occurrences as needed.",
+      "Identity/access receipt: report source/member identities, selected original rows/IDs, actual occurrence counts, CPU elapsed time, no labels/weights read, no CUDA and no model call. A test pass is local adapter feasibility, not all-mesh validity or continuous physical GT accuracy."
+    ],
+    "failure_action": "Stop this gate at its predeclared bounds and report the actual issue. Do not tune inverse tolerances, move midsides, use corner-P1, expand CAD coverage, smooth features or start a GPU/model probe automatically. Root chooses the next bounded task from the evidence.",
+    "no_redundant_audit": "One bounded implementation/geometry check after source freeze. Do not repeat existing alignment, split, raw-deck or label audits, sweep locators, or append a broad literature study."
+  },
+  "native_precision_and_claim_boundary": {
+    "source_fact": "geobc/hash_bandwidth_field.py constructs the public Encoding with torch.float16 and validates native Encoding/Network FP16 compute with FP32 parameter masters; forward returns network(...).float(). Promotion cannot recover rounded bits.",
+    "continuity_caveat": "The raw43/topology32 geometry extension is C0 under the stated mathematical assumptions. The exact real-arithmetic hash/decoder composition has continuous traces; deployed FP16 inputs, activations and outputs can introduce quantized plateaus/jumps and finite precision trace discrepancies. Do not label the current native implementation rigorously continuous in floating arithmetic or infer derivatives from it.",
+    "GT_caveat": "Full10 interpolation of geometry and input descriptors is a declared query representation. It is not proof that quadratic interpolation of any nodal prediction equals solver truth at curved off-node points. The existing corner-P1/recovered-strain metric remains its own stated surrogate and is not exact TETRA10 strain or signed-stress truth.",
+    "stage_caveat": "Neither a node-only fitting pilot nor the tiny geometry-only gate establishes geometry/BC-conditioned generalization, whole-domain continuity, remeshing invariance or usefulness of the future off-node field."
+  },
+  "root_checklist_and_genuine_blockers": {
+    "checklist": [
+      "Use the completed balanced input evidence and root's selected original-node pilot without expanding this continuous-query proposal into execution.",
+      "Freeze the final selected node32 readout order and raw43 layout; preserve post-LN/tanh interpolation and all10 midside reproduction in any later adapter.",
+      "Freeze original physical geometry/member provenance and canonical normalization; the present stage's normalized xyz/corner-volume proxy alone does not supply a certified curved physical map.",
+      "Choose whether to authorize one isolated adapter implementation plus the tiny input-only CPU gate. This note is not that authorization.",
+      "Resolve compatible six-node faces, regular/unique physical inverse assumptions and explicit failure statuses before a whole-domain continuity claim.",
+      "Only after actual geometry evidence may root choose a bounded native parity/off-node utility experiment; no GT/GPU/training start follows automatically."
+    ],
+    "genuine_blockers": [
+      "Balanced cache feasibility passed according to root's result message, and root selected the fixed original-node pilot. This adapter remains unimplemented and untested; this artifact supplies no real nodal topology32, learned-field result or pilot evidence.",
+      "Current input-stage allowed arrays do not include original physical xyz_mm; a root-frozen target-free source/member route is needed for physical quadratic inversion.",
+      "Existing source does not establish paired edge-mid face compatibility or curved-map validity throughout each element. Bounded samples can expose failures but do not certify the global mesh.",
+      "There is no arbitrary-physical-point locator with explicit inverse failure/Jacobian/ambiguity statuses in the verified source; the FNO grid locator cannot be adopted unchanged.",
+      "The current native FP16 compute/output path and detached coordinate path limit deployed continuity/derivative claims even after the geometric descriptor extension is defined."
+    ],
+    "design_resolved_by_this_note": "Raw43 off-node semantics are made explicit as a full10 nodal numeric descriptor extension; original binary BC roles are preserved at nodes only. The compatible-face C0 argument is supplied conditionally. No further feature invention, corner-only substitute or physical-BC relabeling is needed."
+  },
+  "verified_primary_sources": [
+    {
+      "title": "Pinned Kitware VTK quadratic tetra implementation",
+      "url": "https://github.com/Kitware/VTK/blob/517e98882892a079f639d40fb70cb76a6cf95a0e/Common/DataModel/vtkQuadraticTetra.cxx",
+      "support": "The corner and six edge shape-function formulas and derivatives were checked against the primary source. The nodal, partition-of-unity and compatible-face proofs here are explicit mathematical deductions from those formulas, not quoted claims of mesh validity."
+    },
+    {
+      "title": "MFEM 4.8 InverseElementTransformation primary API documentation",
+      "url": "https://docs.mfem.org/4.8/classmfem_1_1InverseElementTransformation.html",
+      "support": "Its inverse-transform documentation distinguishes inside, probable outside and unknown outcomes, and states that bounded Newton/initial-guess options do not guarantee finding every inside point. This supports explicit unresolved status; no MFEM dependency or locator replacement is selected."
+    }
+  ],
+  "verified_local_source_evidence": [
+    {"path": "notes/geobc_topology_message_candidate_draft.json", "sha256": "306b0233a58699d903f41d1780b1c57c212f91b6798c1ad1eca20b6b4268180d", "verified": "Original-node Q readout, frozen raw43/global32/coarse8/9basis proposal and unresolved future-query limitation"},
+    {"path": "tools/prepare_grids.py", "sha256": "34b033aa63bef6b363bfe907bb8c3d4d31f0d8f6fbba4d6efc61e6c2b7b8c2ef", "lines": [74, 81, 90, 102, 127, 145, 170, 242], "verified": "Full10 shape/gradient, Bezier controls, current grid-only Newton acceptance and no_grad NumPy interpolation wrapper"},
+    {"path": "tools/mesh_boundary.py", "sha256": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b", "lines": [17, 19, 39, 61, 66], "verified": "VTK edge/face tables; corner-triple face grouping and heuristic midpoint deviation checks"},
+    {"path": "tools/prepare_deepjeb.py", "sha256": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22", "lines": [25, 95, 105, 110, 113, 114, 116, 117, 118], "verified": "Original25 roles, geometry inputs and unchanged scales"},
+    {"path": "tools/prepare_multifield.py", "sha256": "81ebc98ff3b42896ca18761f17ecca07fef4517a86f797d500674fba2493fb83", "lines": [2, 63, 69, 83, 91, 114], "verified": "Original signed fields and CSV GRID-to-H5-vertex coordinate alignment provenance; source read only"},
+    {"path": "tools/prepare_local_geometry.py", "sha256": "96880d5af4c8e60bbe72f6063c62f6c3eb24bea3f5730e10fb724913aeb2fb04", "lines": [36, 47, 109], "verified": "K32 boundary-node descriptors, .05 normalized-coordinate scale and discrete KNN/PCA semantics"},
+    {"path": "geobc/local_geometry.py", "sha256": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091", "lines": [19, 49, 79], "verified": "Local13 names, canonical xyz hash and cache order guard"},
+    {"path": "tools/prepare_graph_context.py", "sha256": "a445c202a01956604254a7410c3e0d96aea7318073e1855ce79582fc4fdedf0a", "lines": [28, 139, 160, 190], "verified": "Five named member-set Euclidean distances and existing float32 target-free cache provenance"},
+    {"path": "geobc/hash_bandwidth_field.py", "sha256": "cc57127c700b968d81ebc8c31622bdc74d487645a6ec601c7ebed42e144cae6d", "lines": [93, 111, 137, 162, 175, 191, 196], "verified": "Fixed coarse8/native144/conditions107/9 output, FP16 computation and coordinate-detach limitations"},
+    {"path": "geobc/physics_field.py", "sha256": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c", "lines": [19, 20, 56, 70, 83, 143], "verified": "Nine signed displacement basis layout and unchanged external alpha combination"}
+  ]
+}

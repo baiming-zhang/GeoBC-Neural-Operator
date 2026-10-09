@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "status": "design_draft_pending_root_adoption",
+  "stage": "target_independent_two_level_topology_context_input_feasibility",
+  "execution_selected_by_this_note": false,
+  "training_selected_by_this_note": false,
+  "scope": {
+    "fixed_TRAIN_CADs": ["101_428", "101_479", "101_56", "101_78"],
+    "canonical_geometry_case": "ver",
+    "loads_do_not_change_this_geometry_cache": true,
+    "allowed_future_inputs": ["canonical aligned prepared xyz/features25/normalization metadata", "existing gradient geometry cache cells10 and physical volumes only", "existing graph manifest interface counts/provenance metadata only"],
+    "minimal_read_policy": "Reuse the checked prepared/cell-geometry identities; do not reopen duplicate H5, redo SolverDeck GRID mapping, scan Local13 or load any cached reference field. No43-token input architecture is selected at this stage.",
+    "excluded": ["u/stress labels", "models/checkpoints/predictions", "validation/dia/final-test arrays", "training or GPU calls", "downloads"],
+    "reads_performed_for_this_design": "Small completed JSON excerpts, existing construction code and primary source pages only; no array/label/weight reads.",
+    "only_file_written": "notes/geobc_topology_context_design_draft.json"
+  },
+  "evidence_and_question": {
+    "previous_proposal": "notes/geobc_nonlocal_conditioning_options.json",
+    "frozen_diagnostic": "notes/geobc_hash_condition_path_result.json",
+    "diagnostic_elapsed_seconds": 2.7956723930110456,
+    "bounded_readout": "On the fixed sampled TRAIN101_479 cells, both Hash-path H and condition-path C tensor RMS decrease with coarse8 for ver/hor/tor. The signed H-C energy cross term is negative in both models and all three loads; individual positive energies cannot be interpreted without this cancellation.",
+    "example_vertical_P1_RMS": {
+      "full12_H": 0.0030911621362145546,
+      "coarse8_H": 0.001990965901020105,
+      "full12_C": 0.0027285039936407857,
+      "coarse8_C": 0.0013923212637091023,
+      "units": "dimensionless symmetric Frobenius RMS"
+    },
+    "inference": "C is not established as the unique failure cause. A topology context is a target-independent representation hypothesis; the hybrid H/C diagnostic is not a causal attribution or full-CAD accuracy measurement.",
+    "current_question": "Can a role-preserving connected hierarchy with sparse, nonnegative, constant-preserving prolongation be prepared within a measured bounded cost, without geometry shortcuts or hard assignment jumps in the final nodal context?"
+  },
+  "fine_geometry_contract": {
+    "node_order": "All original volume nodes, including TETRA10 midsides, in exactly the aligned canonical prepared/H5 vertex order; do not use GRID_ID-1.",
+    "mapping": "Existing prepared GRID-coordinate -> H5-vertex alignment remains the provenance. Match canonical prepared xyz node order/hash to the existing cells10 geometry cache without redoing raw mapping. Cache CAD/node_count/xyz_sha256/geometry/source identities.",
+    "xyz_normalization": "x=(x_mm-bbox_min_mm)/characteristic_length_mm, with the existing isotropic max-bbox-extent L; retain physical mm coordinates or reproducible normalization metadata.",
+    "cells": "Original cells[T,10] from the existing checked gradient geometry cache, retaining its VTK ordering/midpoint-order provenance; no remeshing or corner-only node deletion and no new raw-H5 rescan.",
+    "midside_slots_4_to_9": [[0, 1], [1, 2], [2, 0], [0, 3], [1, 3], [2, 3]],
+    "edges": "For each of six corner pairs (a,b) and its midside m, add undirected (a,m) and (m,b); unique sorted pairs give 12 subedges per cell before deduplication.",
+    "forbidden_edges": ["Euclidean nearest-neighbor shortcuts", "corner cliques or face diagonals", "inserted RBE/master shortcuts", "edges across original connected components"],
+    "W0": "Symmetric binary adjacency: W0[i,j]=1 for every unique original subedge, 0 otherwise, diagonal0. The existing distance producer returns lengths, which must not be reused as these weights.",
+    "physical_edge_attributes": "Store original endpoint displacement/L and positive edge length/L separately from W0; W0 is topology, not stiffness, conductance, or inverse physical length.",
+    "volume_mass_proxy": "Let V_t be the existing positive physical corner-P1 tetra volume in mm3. m0[i]=sum over incident cells t of V_t/10 for each of all ten source nodes. This conserves sum_t V_t and gives positive nodal aggregation weights; it is not the quadratic consistent/lumped FE mass or exact curved-TETRA10 volume.",
+    "component_policy": "Report full graph components, zero-degree nodes and each role-induced component count before aggregation. Never reconnect disconnected components geometrically. Genuine zero-degree rows use identity smoothing and singleton aggregation; unused/invalid geometry nodes or zero mass block preparation rather than inventing coordinates or mass."
+  },
+  "hard_connected_hierarchy": {
+    "notation": "G0[N0,N1] and G1[N1,N2] are unsmoothed one-hot hard assignments. Each row has exactly one1. Graph levels are0 original,1 intermediate,2 coarse.",
+    "soft_target_nodes": [2048, 128],
+    "hard_safety_max_nodes": [4096, 512],
+    "exact_role_signature": "Validate original features[:,0:7] as binary input values and encode r_i=sum_b 2^b*flag_i,b. This preserves six SPC DOF bits and the actual loaded-member bit. Level1/2 inherit the same exact signature from their hard children; do not threshold averaged/smoothed roles.",
+    "role_component_lower_bound": "For each level graph, form induced subgraphs for each exact role signature. Every connected component of every induced graph needs at least one aggregate; the sum is a mandatory lower bound and can exceed either soft target or hard limit even if the full graph has one component.",
+    "deterministic_bounded_BFS": [
+      "At level l set growth_size=max(1,ceil(N_l/soft_target_l)); the target is a size heuristic, not an exact group count.",
+      "Use sorted CSR neighbors and process the smallest original-descendant node ID among unassigned vertices as the next seed, with exact-role signature recorded. No RNG or geometric anchor is used.",
+      "Grow a FIFO BFS only through unassigned actual-edge neighbors of that seed's exact role. Assign each discovered vertex immediately to the current aggregate and enqueue it, so every admitted vertex has a parent already in that aggregate.",
+      "Stop when growth_size vertices are admitted or the admissible frontier is empty; selected but unprocessed frontier vertices remain assigned. Repeat from the next smallest unassigned original-descendant ID until every vertex is assigned once.",
+      "Renumber aggregates by their minimum original-descendant node ID. Validate each aggregate's induced graph connectivity, exact role homogeneity, disjointness and complete coverage. No automatic role relaxation, anchor-nearest assignment, small-group merge, or target-forcing repair is part of this draft.",
+      "If actual N1>4096 or N2>512, or the role-component lower bound already exceeds the relevant hard limit, record blocked with counts and stop. Do not cross roles/components, add shortcuts or silently enlarge the budget. Root must select any later change."
+    ],
+    "coarse_graphs": {
+      "W1": "G0^T W0 G0 with diagonal removed; off-diagonal entry counts actual fine cut-edge connections between connected aggregates.",
+      "W2": "G1^T W1 G1 with diagonal removed; retain positive cut-edge multiplicities rather than binarizing or replacing edges by centroid neighbors.",
+      "properties": "Symmetric nonnegative adjacency with positive stored off-diagonal entries. Every quotient edge has at least one original mesh-path witness; every hard aggregate has a connected original descendant set.",
+      "coarse_positions_and_mass": "Hard aggregation only: m1=G0^T m0, x1=diag(m1)^-1 G0^T diag(m0)x0; m2=G1^T m1, x2 analogously. Source-descendant minimum IDs/signatures and seven raw-role member counts/presence are retained. Named five-interface counts/provenance remain separate existing metadata, not inferred from seven bits."
+    }
+  },
+  "smooth_prolongation": {
+    "omega": 0.6666666666666666,
+    "passes": 2,
+    "level_formula": "For l=0,1 define D_l=diag(W_l*1), Lgraph_l=D_l-W_l, J_l=I-(2/3)D_l^-1 Lgraph_l=(1/3)I+(2/3)D_l^-1W_l on positive-degree rows. For a zero-degree row set J_l[i,i]=1 exactly and report it.",
+    "P01": "J0*(J0*G0), shape[N0,N1]",
+    "P12": "J1*(J1*G1), shape[N1,N2]",
+    "proof": "W_l is nonnegative and D_l its row sum, so J_l>=0 and J_l*1=1. G_l*1=1, hence P_l>=0 and P_l*1=1 after two passes. Constant coarse latents reproduce exactly in real arithmetic. These are positive row-stochastic maps; structurally absent entries remain0.",
+    "R01_and_R12": "For declared node-volume pooling, R_l=diag(P_l^T*m_l)^-1 P_l^T diag(m_l), with positive denominator guarded. Shapes R01[N1,N0],R12[N2,N1]; R_l*1=1. Save these sparse restrictions and denominator vectors. This smoothed restriction's effective pooled mass differs from hard m_{l+1}; distinguish them explicitly and do not substitute it for hard graph contraction.",
+    "sparse_policy": "Build in float64 CSR, coalesce duplicate paths, sort columns. No top-k, radius cutoff, threshold pruning, approximate nearest aggregate, or dropping small positive entries. Algebraically exact0 entries may be removed. Save complete support and both build/storage row-sum errors.",
+    "storage": "CSR data may be float32 after measured validation; row-sum error <=1e-6, no negative data, all finite. Fail rather than silently clip, renormalize, truncate or use float16 interpolation weights.",
+    "local_support": "P01 rows depend on aggregate labels reachable within two fine graph hops; P12 rows on labels reachable within two intermediate graph hops. P01*P12 may be applied associatively without materializing a dense/full composite. Two smoothing passes are not global elastic communication.",
+    "role_mixing": "J smoothing deliberately crosses ordinary actual edges, including different roles; P rows can mix coarse BC and free-space tokens. Hard G remains homogeneous. Original query BC43 remains available; this is neither hard BC enforcement nor a constraint interpolation matrix.",
+    "continuity_limit": "P removes the abrupt one-hot nearest-aggregate context assignment, but it is a discrete nodal smoother, not a C1 physical field, exact SDF or an affine/rigid-mode-preserving elastic prolongation. It does not guarantee lower physical P1 error; a nonlinear encoder/decoder can still create local variation."
+  },
+  "BC_small_set_retention": {
+    "source_groups": "Existing graph-manifest metadata may record four actual support group counts in master-ID order and the actual loaded-group count/card type/mapping provenance; no new named-membership reconstruction is required for this input-only feasibility.",
+    "hard_roles": "BC bits protect support/load versus free-space and different DOF signatures from hard merging. They do not uniquely name four support patches that happen to have identical bits.",
+    "per_level_records": "For each of seven raw bits keep exact hard descendant member counts and presence, plus exact-signature counts. A nonempty bit must remain represented by a coarse token; never majority-threshold away a small role set. Named per-patch coarse membership is not claimed unless a separately allowed later input provides it.",
+    "overlap": "Retain original overlapping raw bits; do not force disjoint roles or copy a guessed role onto nearby free nodes. Existing named-source metadata and seven raw bits remain immutable.",
+    "tradeoff_to_expose": "Role-induced fragmentation can exceed soft targets or hard caps. Same-bit connected support patches may share an aggregate; smoothing mixes roles. Counts/presence preserve nonempty seven-bit sets but do not preserve named four-patch identity, exact patch geometry, DOF topology or load work transfer. Report these facts rather than claim exact BC preservation."
+  },
+  "proposed_cache_interface": {
+    "format": "One immutable per-CAD input-only NPZ plus small JSON manifest; CSR arrays, never dense N0x2048.",
+    "scalar_metadata": ["cad_id", "node_count", "canonical_case", "xyz_sha256", "vertices_mm_sha256", "cells_sha256", "L_mm", "source_identities", "algorithm_contract_sha256", "labels_read=0"],
+    "node_arrays": {"aggregate01": "int64[N0]", "aggregate12": "int64[N1]", "role_bits0": "uint8[N0]", "role_bits1": "uint8[N1]", "role_bits2": "uint8[N2]", "mass0_mm3": "float64[N0]", "mass1_mm3": "float64[N1]", "mass2_mm3": "float64[N2]", "restriction_denominator01_mm3": "float64[N1]", "restriction_denominator12_mm3": "float64[N2]", "xyz1_normalized": "float32[N1,3]", "xyz2_normalized": "float32[N2,3]", "role_member_counts1": "int64[N1,7]", "role_member_counts2": "int64[N2,7]", "degree0": "float64[N0]", "degree1": "float64[N1]", "degree2": "float64[N2]"},
+    "sparse_arrays": "For W0,W1,W2,P01,P12,R01,R12 store *_indptr[int64], *_indices[int64], *_data plus explicit shape; W0 values1, W1/W2 positive cut counts, P/R weights complete float32 validated from float64. Physical fine subedge lengths/vectors use a separately named array, not W-data.",
+    "manifest_required_facts": ["actual N0/N1/N2 and per-level edges/degree/components", "per-role component lower bounds and actual aggregate sizes", "connectivity/homogeneity/seven-bit coverage checks", "P/R nonzeros and min/max row support/row sum errors", "role mixing fractions after smoothing", "bytes/peak-memory estimate and measured stage times", "zero-degree identity rows", "blocked reasons and source geometry hashes/stat identities"],
+    "consumer_node_gather": "Gather P01 rows by canonical original node indices supplied by the sampler; duplicated queries may gather the same row. Apply live coarse latents through sparse matrix products/gathers with gradients to learned tokens. No nearest-vertex substitution or target-dependent latent cache.",
+    "two_level_consumer": "P12 maps N2-token latents to N1; P01 maps N1-token latents to original nodes. A later encoder must declare how level1 and level2 learned latents combine; this input-feasibility draft does not silently select a learned architecture.",
+    "future_continuous_query": "Currently defined only at original nodes. Off-node use requires a separately declared original-element locator and shared TETRA10 ten-node shape-function interpolation to agree with saved midside nodal values; corner-only P1 interpolation or nearest-node copying changes the query semantics. No arbitrary-point guarantee is made here."
+  },
+  "future_input_feasibility_acceptance": [
+    "Only the four fixed TRAIN geometries; record0 label/model/GPU accesses and no fitted normalizer.",
+    "Original node/coordinate normalization/flags/source interface mapping replay; valid TETRA10 order and positive physical geometry/volume proxy.",
+    "Every node assigned exactly once; every hard aggregate connected and exact-role homogeneous; original components retained; actual sizes within4096/512 hard safety.",
+    "W symmetric, zero diagonal, positive stored actual-edge cut weights; positive masses and seven-bit representation at both levels; report every isolated identity row.",
+    "Both P/R maps nonnegative/finite/row-stochastic within storage tolerance, full support retained, constant test passes; no top-k or threshold pruning.",
+    "Synthetic sharp one-hot/constant examples demonstrate what two passes do and do not preserve; no affine/rigid or target-gradient accuracy claim from constant reproduction.",
+    "Report per-CAD runtime/memory/nonzeros/role fragmentation and sparse query reach before any model or45-CAD expansion is selected. Any failure is blocked with evidence, without automated algorithm/budget changes."
+  ],
+  "complexity_and_unknowns": {
+    "construction": "Unique original edges require sorting/deduplication of12T emitted subedges; sorted-CSR BFS and hard contraction are O(N+E) after deduplication, with no O(N*2048) anchor-distance computation. Role/component verification is O(N+E). Two sparse prolongation products cost proportional to actual neighbor support unions and can expand nonzeros; no uniform small-k bound is promised.",
+    "memory": "O(N+E+nnz(P01)+nnz(P12)) plus source cell connectivity; no dense N0xN1 tensor. Known metadata puts these four original graphs at179316–270276 vertices and611812–923364 directed CSR entries per CAD. Exact intermediate nonzeros/peak memory remain unmeasured.",
+    "future_training": "Static maps can be cached, learned graph states cannot. Only later root-selected code may recompute sampled-CAD tokens per step and feed32 context slots. Coarse encoder edge activations, backward cost, native input-gradient routing and runtime versus old query pooling need separate measured acceptance.",
+    "unmeasured": ["role-induced component counts and whether4096/512 are feasible", "actual N1/N2, thin-bridge aggregation quality and quotient graph reach", "P nonzero expansion/storage row error/memory/runtime", "physical source-group dilution under smoothing", "whether eventual learned context improves joint u/P1 or CAD transfer"],
+    "stopping": "A future implementation must publish its fixed resource safety limits before reading/processing arrays; stop with a blocked artifact instead of silently pruning P or changing targets. This draft authorizes no execution."
+  },
+  "sources_and_limits": [
+    {"type": "local source inspected", "path": "tools/prepare_graph_distance_pilot.py", "evidence": "EDGE_ORDER and build_graph implement the actual unique12 corner-mid subedges and physical length/L; this draft explicitly separates those distance weights from binary W."},
+    {"type": "primary original paper", "url": "https://proceedings.mlr.press/v202/cao23a.html", "evidence": "Bi-Stride Multi-Scale GNN motivates topology-aware BFS hierarchy and warns that spatial proximity can introduce wrong mesh edges. Its simulation results do not establish DeepJEB static-elastic utility."},
+    {"type": "primary official implementation", "url": "https://github.com/pyamg/pyamg/blob/main/pyamg/aggregation/smooth.py", "verified_at": "2026-10-09", "evidence": "Official jacobi_prolongation_smoother applies repeated Jacobi updates to a tentative prolongator. Its general AMG implementation estimates a spectral radius and may filter entries; this draft instead explicitly derives fixed graph-Laplacian J, no spectral estimate/filter, and proves constant/nonnegative preservation."},
+    {"type": "mathematical derivation in this draft", "evidence": "Nonnegative row-stochastic J and one-hot G imply P=J²G is nonnegative and constant preserving. This says nothing about stiffness, long-range elasticity, remeshing invariance or exact physical strain."}
+  ],
+  "decision_boundary": "Root adoption/freezing is required before even the input-only4-CAD preparation. This is not a selected GPU experiment, new physics law or novel smoothing algorithm. Current target u/P1, calibrated loss/scaler, load linearity and closed validation/dia/final-test policies remain unchanged."
+}

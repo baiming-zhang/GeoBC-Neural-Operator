@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "topology_context_input_feasibility_design",
+  "stage": "matched_topology_message_train4_pilot",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -180,6 +180,23 @@
       "action": "Real-volume-mesh twolevel connected aggregation plus positive sparse smooth prolongation feasibility on fixedTRAIN101_428/101_479/101_56/101_78; root to freeze algorithm before any arrays. No label/model/GPU/training in current design work.",
       "why": "Test geometry/BC communication rather than another scalar distance or local feature sweep; prevent new piecewise-constant context jumps.",
       "escalation": "Source/geometry feasibility first; one fresh matched neighbor-vs-self pilot only after explicit evidence-based root gate, no automatic full40/5."
+    },
+    {
+      "evidence": "notes/geobc_topology_context_feasibility_result.json",
+      "result": "scientificinputinfeasible1.33198s/cache0/3untouched",
+      "cause_scope": "Observed greedy BFS aggregation fragmentation, not mandatory role decomposition or solver field cause",
+      "selected_next": "notes/geobc_topology_balanced_plan.json",
+      "sole_change": "Smallest connected same-role actual-edge union; hardcaps/P/R/inputmembers unchanged",
+      "future_training": "Candidate306b message architecture unchanged and independent mathPASS, but still proposal until input actual success."
+    },
+    {
+      "evidence": "notes/geobc_topology_balanced_feasibility_result.json",
+      "result": "FourTRAIN input caches passed13.10s/326.5MiB,2048/128nodes perCAD; noGT/GPU",
+      "selected_next": "notes/geobc_topology_message_plan.json",
+      "scope": "One freshly initialized matched12TRAINcases ×1000update pair",
+      "mechanism": "A1/A2 learned message operator only; commonR/P topology is retained in self_only",
+      "four_gates_frozen_before_fit": true,
+      "no_automatic_scaling": true
     }
   ],
   "future_hypotheses_not_launched": [

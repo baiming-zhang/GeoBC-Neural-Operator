@@ -1,0 +1,84 @@
+{
+  "status": "ready",
+  "created_at_utc": "2026-10-09T11:44:13.302111+00:00",
+  "file": "geobc/topology_message_field.py",
+  "source_sha256": "d9d853e0deae66eb1e146480e111d85c68de790119ff0ab82f5f4dbf082c49be",
+  "plan": "notes/geobc_topology_message_plan.json",
+  "plan_sha256": "05fd5a5afba10871c58d18fde2e31997b85b1c1aa695b828e4ee416c43e43e68",
+  "checks": [
+    {
+      "name": "CPU syntax compilation",
+      "status": "passed"
+    },
+    {
+      "name": "one new small topology-encoder CPU mathematical fixture",
+      "status": "passed",
+      "elapsed_seconds": 0.09777171300004284,
+      "topology_parameters": 9856,
+      "self_only_dense_formula_max_abs_error": 1.6391277313232422e-07,
+      "neighbors_dense_formula_max_abs_error": 1.7881393432617188e-07,
+      "paired_initial_parameters_equal": true,
+      "paired_initial_RNG_equal": true,
+      "five_linears_gradients": "all present finite nonzero both modes",
+      "covers": [
+        "hardR descriptor43+xyz3+massratio1",
+        "force/moment slots7:13 zero before restriction",
+        "caller input unchanged",
+        "R12 two coarse updates P12 half fusion two fine updates P01 then nonaffineLN+tanh",
+        "explicit node duplicate/order preservation",
+        "bundle row slice preserves graph"
+      ]
+    },
+    {
+      "name": "frozen real manifest small JSON/SHA/stat metadata",
+      "status": "passed",
+      "NPZ_arrays_opened": false,
+      "cache_bytes": 342364814
+    }
+  ],
+  "API": {
+    "config": "TopologyMessageFieldConfig(message_mode=self_only|neighbors, fixed seed2026/43/global32/top32/128x2/9)",
+    "model": "TopologyMessageField(config,device,decoder=None), independent nn.Module; direct encoder/topology_encoder/decoder attributes",
+    "manifest": "load_topology_manifest(directory,plan_path=...) -> dict; JSON/small SHA/stat only, no NPZ/native construction",
+    "static_input": "load_topology_input(directory,cad_id,xyz=...,features43=...,manifest=...,device=...) -> TopologyInput; D47 assembled once on CPU, complete R12/P12/P01/A1_neighbors/A2_neighbors CSR moved to device",
+    "context": "encode_context(clouds5,masks,orderedTopologyInputs,record_timing=False) -> TopologyContextBundle(global_tensor,node_contexts,fine_tokens,cad_keys,timings); each unique CAD fullnode Q once",
+    "basis": "response_basis(xyz,features43,context=...,node_indices=long[N],cad_index=long[N]|None) -> [N,3,3]",
+    "forward": "forward(xyz,features43,alpha,context=...,node_indices=...,cad_index=...) -> scaled_u[N,3]",
+    "bundle": "integer/slice retains CAD axis and autograd; retain_grad() global/fine/node tensors; grad proxies global_tensor.grad",
+    "topology_groups": "topology_parameter_groups(): embed/coarse0/coarse1/fine0/fine1, each list(weight,bias)",
+    "native_groups": "native_parameter_groups(): encoding/network public buffers; names decoder.encoding.params/decoder.network.params",
+    "timing": "bundle.timings global + perCAD embedding/restriction_and_coarse_messages/fusion_and_fine_messages/fullnode_prolongation_and_normalization; synchronized CUDA events only when record_timing=True; ordinary context call has no timer synchronization"
+  },
+  "source_reuse": {
+    "PointNetBCRoleEncoder": "geobc/bc_role_field.py",
+    "SplitHashBandwidthDecoder_coarse8": "geobc/hash_bandwidth_field.py",
+    "frozen_sources_edited": false,
+    "old_query_projection_retained": false
+  },
+  "measured_input_feasibility": {
+    "elapsed_seconds": 13.101552986999991,
+    "four_CAD_cache_bytes": 342364814,
+    "N1_N2_each": [
+      2048,
+      128
+    ],
+    "single_fullnode_fourCAD_query_buffer_MiB": 105.365966796875,
+    "interpretation": "input preparation only; single FP32 N32 buffer, not peak memory or training speed"
+  },
+  "pending_formal_first_step": [
+    "actual fullmodel/publicnative counts7797152",
+    "matched named trainable initial hashes and ordered sampling",
+    "global/five topology linears/two native buffers finite nonzero gradients",
+    "CUDA CSR dense-feature backward",
+    "coarse8 native arithmetic and masks"
+  ],
+  "actual_NPZ_arrays_read": false,
+  "labels_read": 0,
+  "models_or_weights_loaded": false,
+  "native_constructed": false,
+  "CUDA_initialized": false,
+  "GPU_smoke_run": false,
+  "pilot_training_run": false,
+  "research_task_complete": false,
+  "claim": "isolated candidate implementation ready; fourTRAIN fitting utility still unmeasured"
+}

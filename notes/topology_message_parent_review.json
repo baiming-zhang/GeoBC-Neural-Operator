@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "released_at_utc": "2026-10-09T11:50:37.031997+00:00",
+  "plan": "notes/geobc_topology_message_plan.json",
+  "plan_sha256": "05fd5a5afba10871c58d18fde2e31997b85b1c1aa695b828e4ee416c43e43e68",
+  "source_sha256": {
+    "geobc/topology_message_field.py": "d9d853e0deae66eb1e146480e111d85c68de790119ff0ab82f5f4dbf082c49be",
+    "geobc/topology_message_train.py": "843abf30618800c9cad4377789d59fb1fc36349e841ca63e05a9dbde1096de15"
+  },
+  "focused_review": "notes/topology_message_source_review.json",
+  "focused_review_sha256": "5ff7ef9aff5b0287a523c9f9bfc3c1346909ebacaedf0870b039b770e7e6bec5",
+  "author_ready": {
+    "field": {
+      "path": "notes/topology_message_field_ready.json",
+      "sha256": "b3672954758beb0f3cef7578354c4f821580bb7487aa604c35ca534353b4d35b",
+      "status": "ready"
+    },
+    "trainer": {
+      "path": "notes/topology_message_train_ready.json",
+      "sha256": "81cf0f55272f880ea898a163e875f7aeaa7a39aaf16704cfef8b75799d7f1e43",
+      "status": "ready"
+    },
+    "checks": "Author CPU fixture and one metadata preflight per mode are recorded in ready artifacts; this reviewer did not repeat them. Source identities and declared plan match."
+  },
+  "sole_queue_pid": 422,
+  "authorized_scope": "Only matched self_only/neighbors4TRAIN x3known loads;1000fixedupdates each, endpoint0/1000",
+  "actual_native_and_first_gradient_checks": "Integrated into each first formal training step, not a separate probe",
+  "runtime_checks_not_yet_observed": true,
+  "reuse_note": "CurrentPID422 loaded pre-topology queue functions; trainer strictreuse/endpoint witness and root pair analyzer remain authoritative. Updated coordinator file handles future restarts. No live restart.",
+  "all_four_gates_predeclared": true,
+  "no_automatic_expansion": true,
+  "research_status": "ongoing"
+}

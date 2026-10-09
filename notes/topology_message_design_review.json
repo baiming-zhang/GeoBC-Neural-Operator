@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "review_type": "independent_focused_frozen_design_review",
+  "plan": "notes/geobc_topology_message_plan.json",
+  "plan_sha256": "05fd5a5afba10871c58d18fde2e31997b85b1c1aa695b828e4ee416c43e43e68",
+  "review_is_execution_authorization": false,
+  "blocking_findings": [],
+  "scope": {
+    "only_output": "notes/topology_message_design_review.json",
+    "reviewed": "Frozen plan JSON, small source identities and source-derived arithmetic; no actual cache/source arrays or learned models.",
+    "arrays_or_labels_read": false,
+    "weights_or_models_loaded": false,
+    "GPU_initialized": false,
+    "training_or_fixture_executed": false,
+    "frozen_source_plan_or_report_modified": false,
+    "later_source_runtime_acceptance_required": true
+  },
+  "checks": [
+    {
+      "name": "frozen identities",
+      "status": "passed",
+      "evidence": "Actual plan SHA matches05fd5a5a...3e68. All seven existing source_evidence file hashes match the plan. Balanced input preparation/result/manifest identities are explicitly frozen by the plan; cache arrays were not reopened for this review."
+    },
+    {
+      "name": "scope and fixed endpoint",
+      "status": "passed",
+      "evidence": "Only previously fixed TRAIN CADs101_428/101_479/101_56/101_78 x ver/hor/tor, twelve cases. Paired self_only/neighbors each1000 updates, shared endpoints0 and1000, no best checkpoint or validation/DIA/final/stress selection. This is fitting utility, not CAD-transfer evidence."
+    },
+    {
+      "name": "descriptor and load independence",
+      "status": "passed",
+      "evidence": "F0 is original25+existing local13+named Euclidean5, with force/moment7:13 cleared before restriction/embedding and decoder. D1=[R01 F0_masked, hard-volume centroid xyz1, m1/mean(m1)] has47 channels. Materials, absolute L/200 and all geometric scales stay in their existing units. One CAD context supports the external ver/hor/tor linear basis; cross-load masked input equality is a required runtime check."
+    },
+    {
+      "name": "hierarchical algebra",
+      "status": "passed",
+      "evidence": "Embedding at2048 nodes, hard R12 down to128, two independent coarse updates, .5*(original fine embedding+P12 coarse result), two independent fine updates, then complete P01 to all original nodes. Row-normalized positive quotient W defines A_neighbors, zero-degree rowsI. A_self=I changes only the learned message aggregation and preserves module order/layout."
+    },
+    {
+      "name": "parameters and normalization",
+      "status": "passed",
+      "source_derived_counts": {
+        "Linear47_to_32_with_bias": 1536,
+        "four_Linear64_to_32_with_bias": 8320,
+        "topology_total": 9856,
+        "nonaffine_LayerNorm_uses": 6,
+        "LayerNorm_trainable_parameters": 0,
+        "full_model_estimate": 7797152
+      },
+      "evidence": "Six LN uses are embedding1, updates4, final full-node query1, all nonaffine eps1e-5. Old Gaussian projection2080 is replaced rather than retained unused. Native144 input, coarse8 fixed mask, output9 and both public native buffers remain common. Actual implementation tensor counts/hashes must confirm the estimate before the first update; no parameter offsets are inferred."
+    },
+    {
+      "name": "matched controls",
+      "status": "passed",
+      "evidence": "Both fresh modes construct all the same modules in the same order under seed2026; complete trainable tensors and both native buffers must initialize identically. Same BCactual/global32/raw43/coarse8, balanced hierarchy/P/R, scaler, lambda, sampler and budget. Natural initial outputs can differ because A differs. Equal stored parameters do not imply equal active function classes."
+    },
+    {
+      "name": "common spatial mixing limitation",
+      "status": "passed",
+      "evidence": "Both modes already contain connected aggregate pooling, actual quotient geometry, hard R and positive Jacobi P smoothing, plus global PointNet. Self-only is conditional control of four learned neighbor-message operations; it is not a no-topology or no-neighbor-information baseline. The finite hierarchy receptive field is not an elastic solve."
+    },
+    {
+      "name": "original-node query and gradients",
+      "status": "passed",
+      "evidence": "Full Q0=tanh(nonaffineLN(P01@Y1_2)) must be computed once per unique active CAD per optimizer step and ordinary original node-ID gather preserves duplicates/order. Full-node Q and context must remain differentiable; no detached teacher cache, nearest-coordinate query or unsupported CUDA CSR.index_select. Evaluate under no_grad with original arange IDs. Future curved all10 TETRA10 interpolation remains unexecuted and does not define all raw43 off-node features yet."
+    },
+    {
+      "name": "recipe and supervision meaning",
+      "status": "passed",
+      "evidence": "Same ordered four case slots,6400 uniform nodes+1600 original-cell four corners each,51200 total query occurrences and independent frozen case/node/tet RNG streams. Direct reuse of common zero-center physical u_scale .05511113670847156mm, selected twelve relative-case weights, full-volume TRAIN P1 denominators and calibrated lambda .0004106650618638651; no fitting/recalibration. P1 is symmetric physical displacement-gradient proxy with shear energy weight2, not solver GT strain or signed-stress constitutive supervision."
+    },
+    {
+      "name": "four physical gates",
+      "status": "passed",
+      "evidence": "At the fixed1000 endpoint require all four: U case-mean relativeL2 reduction>=10%; recovered all-node P1 case-mean relativeL2 reduction>=20%; neighbors-minus-self U worst deterioration<=.02 (2percentage points); mean over twelve cases of physical recovered Frobenius error RMS must not increase. Last quantity is sqrt(sum_node ||tensor_error||_F^2/Nnodes), shear squared weight2 and no division by6. It is not sampled normalized squared cell loss. Zero control errors make relative reductions undefined and cannot silently pass. Both modes use each case's same truth denominator."
+    },
+    {
+      "name": "bounded decision and prerequisites",
+      "status": "passed",
+      "evidence": "Source/interface/count/init/native and encoder-gradient/sampler checks remain prerequisites in the first root-authorized step. A pilot pass or fail does not automatically launch40/5, second seed, off-node adapter or parameter sweep. This review approves design consistency only; root owns execution release."
+    }
+  ],
+  "nonblocking_recording_note": {
+    "location": "plan.cost_estimates_not_measurements.prolongation_query",
+    "finding": "The selected-query nnz/.21GFLOP estimate is left over from the earlier gather-first possibility. The authoritative architecture and per_step clauses now explicitly compute full-node Q0 once, then gather; cost must be measured/reported over all P01 nonzeros of active CADs, not merely51200 sampled occurrences.",
+    "source_derived_upper_active_scope": {
+      "four_CAD_total_nodes": 863158,
+      "one_full_four_CAD_Q32_FP32_buffer_bytes": 110484224,
+      "one_full_four_CAD_Q32_FP32_buffer_MiB": 105.365966796875
+    },
+    "action": "Do not change the frozen execution recipe for this stale estimate. Follow full-node Q as declared, report actual full-node sparse/context timing and peak memory. The105.4MiB figure is one logical tensor, not entire backward/runtime memory; no speed or fit claim follows."
+  },
+  "conclusion": "PASS with no mathematical or scope blocker. The pair tests additional learned nonlocal message utility on four TRAIN geometries conditional on common topology operations; it establishes neither new graph methodology, causal missing-physics identification, continuous-field correctness nor generalization."
+}

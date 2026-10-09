@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "status": "predeclared",
+  "stage": "target_free_topology_context_train4_feasibility",
+  "predeclared_at_utc": "2026-10-09T10:47:30+00:00",
+  "question": "Can a connected role-preserving two-level mesh hierarchy with complete positive smoothed prolongation remain sparse and inexpensive on the four previously fixed TRAIN geometries?",
+  "adoption": {
+    "draft": "notes/geobc_topology_context_design_draft.json",
+    "draft_sha256": "bc7edaa9d8646abcfda885102ebb6043bfe61fba48b4aa856323458890f521f2",
+    "formal_plan_overrides_draft": true,
+    "override": "Only existing prepared/cached members below. Recover named5 member masks from exact zero Euclidean input distances; use hard mass restriction, not optional smoothed restriction. Explicit P nnz/cached-bytes safety bounds, no automatic repair or expansion."
+  },
+  "scope": {
+    "CAD_order": ["101_428", "101_479", "101_56", "101_78"],
+    "group": "train",
+    "canonical_load": "ver",
+    "selection": "Previously fixed four TRAIN CADs in notes/geobc_query_learning_plan.json, not newly ranked by model/GT errors.",
+    "split": "notes/geobc_split.json",
+    "split_sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859",
+    "raw_H5_or_solver_deck_reads": false,
+    "displacement_stress_reference_strain_reads": false,
+    "checkpoint_model_reads": false,
+    "validation_dia_final_reads": false,
+    "normalizers_fitted": false,
+    "optimizer_updates": 0,
+    "CUDA_initialized": false,
+    "execution": "CPU SciPy CSR and deterministic topology traversal; this small static preparation is not a GPU training run.",
+    "workers": 1,
+    "CPU_numeric_threads": 1
+  },
+  "data": {
+    "prepared": "data/prepared_geobc_multiload",
+    "prepared_members": ["xyz", "features", "sample_key", "label_alignment", "bbox_min_mm", "characteristic_length_mm"],
+    "prepared_use": "Only normalized xyz, exact BC flags0:7 and geometry/alignment scalars. Loading the features member also decompresses its other input columns; no target members are accessed.",
+    "gradient_geometry": "data/geobc_gradient_supervision",
+    "gradient_members": ["cells10", "volumes_mm3"],
+    "gradient_use": "Explicit member access only, never load_gradient_cache because that helper loads the reference strain member.",
+    "interface_inputs": "data/geobc_graph_context",
+    "interface_members": ["euclidean", "cad_id", "xyz_sha256"],
+    "manifests": ["data/geobc_gradient_supervision/manifest.json", "data/geobc_graph_context/manifest.json"],
+    "identity": "Freeze small manifest/split/source SHA and selected source stat identities in metadata-only request_contract. Check selected cache node count/xyz SHA/normalization against prepared. Existing H5/source mapping/order provenance remains metadata; do not reopen source arrays or targets.",
+    "node_order": "Canonical original H5 vertices, GRID-coordinate-aligned input order, not GRID_ID-1.",
+    "roles": "Validate features[:,0:7] exactly0/1. signature=sum_b(2**b*flag_b). Preserve all six SPC bits and load member bit, no thresholded average.",
+    "named_interfaces": "Each of four support masks and one loaded mask is exactly euclidean[:,j]==0.0. No numerical tolerance or role expansion. Compare their counts to existing input manifest, support union to any of flags0:6 and loaded mask to flag6; retain separate group counts at both hard levels even if signatures coincide.",
+    "no_labels": "Prepared displacement/stress, gradient reference_cell_tensor_strain, any learned predictions or caches, val/dia/final fields and sample-ID embeddings forbidden."
+  },
+  "graph": {
+    "node_set": "All original nodes, including six mids per TETRA10",
+    "mid_slots": [[0,1],[1,2],[2,0],[0,3],[1,3],[2,3]],
+    "edges": "For each corresponding mid column4..9, insert (corner_a,mid),(mid,corner_b); unique sorted undirected pairs; validate valid indices/no duplicate nodes within a cell.",
+    "W0": "Symmetric binary adjacency on unique real subedges, diagonal0. Do not reuse existing path-length costs as W0.",
+    "edge_geometry": "Store separate sorted undirected endpoint pairs, normalized displacement xyz[j]-xyz[i] and positive length/L. Not stiffness or guessed rigid/RBE shortcuts.",
+    "m0": "Accumulate each positive finite cached corner-P1 cell volume V/10 onto its ten source nodes. Require every node positive mass; sum(m0)=sum(V). This is an input-volume proxy, not quadratic consistent/lumped mass or exact curved volume.",
+    "zero_degree": "Report components/isolates. Positive-mass genuine isolated nodes form singleton hard aggregates and identity smoothing; zero-mass or invalid/uncovered source node blocks. No geometry reconnect."
+  },
+  "hierarchy": {
+    "soft_targets": [2048,128],
+    "hard_maxima": [4096,512],
+    "algorithm": "Deterministic bounded FIFO BFS at each level. growth_size=max(1,ceil(N_level/soft_target)). Use sorted CSR neighbors; seed minimum original-descendant ID unassigned. Discover/assign/enqueue only unassigned same-signature actual neighbors, stopping at growth_size admitted vertices. Admitted frontier vertices remain assigned when growth stops. Repeat to cover all nodes, renumber by minimum original-descendant ID. No RNG, merging, nearest reassignment, shortcut or role relaxation.",
+    "connectivity_witness": "Store BFS parent/source-descendant minimum IDs. Each admitted vertex has an earlier same-owner parent joined by an actual edge; seed parent points to itself. Validate complete/disjoint ownership and role homogeneity, report parent connectivity proof and aggregate sizes.",
+    "role_component_lower_bound": "At each level count connected components of every exact-role induced subgraph before aggregation. Sum lower-bounds group count. If lower bound or actual count exceeds hard maximum, record blocked evidence and stop; no automatic budget increase.",
+    "G0_G1": "One-hot hard owners (N0->N1,N1->N2), one nonempty owner per node",
+    "W1": "G0.T @ W0 @ G0; remove diagonal only. Positive off-diagonal integer cut-edge multiplicity, no binarizing or centroid-neighbor replacement.",
+    "W2": "G1.T @ W1 @ G1; remove diagonal only, retain multiplicities.",
+    "hard_mass_positions_roles": "m1=G0.T m0; x1=diag(m1)^-1 G0.T diag(m0)x0, m2/x2 analogously. Hard exact roles inherited; named5 counts add along owners.",
+    "R01": "diag(m1)^-1 @ G0.T @ diag(m0), shape[N1,N0], exactly one positive entry per original node before grouping, row sums1",
+    "R12": "diag(m2)^-1 @ G1.T @ diag(m1), shape[N2,N1], row sums1; hard restriction selected, optional smoothed R not used."
+  },
+  "prolongation": {
+    "omega": 0.6666666666666666,
+    "passes": 2,
+    "J": "For each level0/1 with d=W*1>0, J=(1/3)I+(2/3)diag(d)^-1 W. Isolated row Jii=1. Nonnegative row-stochastic.",
+    "P01": "J0 @ (J0 @ G0), shape[N0,N1]",
+    "P12": "J1 @ (J1 @ G1), shape[N1,N2]",
+    "construction": "Complete FP64 CSR; coalesce duplicate paths/sort indices, remove exactzeros only. No dense N0xN1, top-k, threshold, support clipping or unannounced row renormalization.",
+    "storage": "Float32 CSR values, int64 indices/indptr; report FP64 build and FP32 saved row-sum errors, finite/nonnegative support and constant reproduction. Float32 tolerance1e-6; FP64 tolerance1e-12.",
+    "max_P01_nonzeros_per_original_node_average": 64,
+    "max_P12_nonzeros_per_level1_node_average": 64,
+    "over_limit": "Blocked evidence, retain existing completed CAD outputs; no fallback/factorization or truncation automatically.",
+    "role_mixing": "Smoothing can cross role boundaries along real edges. Hard ownership remains homogeneous and original query BC inputs remain available; this is not hard BC constraint enforcement.",
+    "physical_limit": "Only nodal constant preservation established. No affine/rigid preservation, C1/bandlimit, exact elasticity, global receptive field or P1 accuracy guarantee."
+  },
+  "output": {
+    "cache": "data/geobc_topology_context_train4",
+    "run": "runs/geobc_exploration/topology_context_input_train4",
+    "format": "Atomic immutable per-CAD plain NPZ with owners/BFS parent/roles/named5counts/masses/centroids, real edge geometry, W0/W1/W2/P01/P12/R01/R12 CSR arrays and scalar identities; small manifest, summary/status/config.",
+    "max_cache_bytes": 1073741824,
+    "readout": "N0/N1/N2, graph/role component counts and isolates, aggregate coverage/connectedness/homogeneity, quotient symmetry/positive weights, source count conservation, mass conservation, P/R full supports and row sums, constant reproduction, P role mixing, actual per-step runtimes/cache bytes and peak RSS.",
+    "resume": "Reuse only completed CAD outputs whose complete contract and file identities match. Preserve completed files on failure; strict contract on summary reuse. No optimizer/model exists.",
+    "formal_result": "notes/geobc_topology_context_feasibility_result.json after all four complete or a predeclared scientific safety condition is actually reached. Summary status=completed/feasibility_pass=false/outcome=infeasible records the latter with completed/blocked/untouched CAD lists and exact evidence; it does not claim all caches prepared. Exceptions/missing/corrupt inputs are statusfailed, never a completed scientific rejection."
+  },
+  "checks": {
+    "author_fixture": "One synthetic CPU fixture covers known TETRA10 subedge ordering, connected role BFS/quotient, positive J/P/R/constant preservation and an isolated identity case. No actual arrays or CUDA before parent review.",
+    "parent_review": "One independent focused source/interface review and root release. Do not rerun author's fixture or native validation.",
+    "runtime_acceptance": "All four TRAIN caches satisfy predeclared invariants and safety bounds. Report actual overhead, not extrapolated training speed."
+  },
+  "after": {
+    "no_automatic_training": true,
+    "if_pass": "Root freezes one small matched TRAIN4 known-load1000 endpoint neighbor-vs-self pilot after measured input sparsity/cost. Replace query32, keep same original43/global32/coarse8/native144/9basis; all stored params/init/recipe/case RNG matched. Its architecture and numeric utility gates are not selected by this input plan.",
+    "if_blocked": "Use actual fragmentation/density/runtime evidence to select one minimal follow-up; do not sweep budgets or silently relax roles.",
+    "continuous_scope": "Original-node input pilot only. Future arbitrary-point context requires shared all10 TETRA10 shape interpolation and physical curved-map inversion; signed quadratic weights allowed. Entire raw43 off-node definition remains unresolved."
+  },
+  "novelty": "Connected mesh hierarchy, Jacobi smoothing, mass restriction and message passing are established mechanisms. This stage tests a GeoBC interface/cost hypothesis; no new algorithm or generalization success claim."
+}

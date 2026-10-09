@@ -1,0 +1,86 @@
+{
+  "status": "ready",
+  "created_at_utc": "2026-10-09T10:58:44.903516+00:00",
+  "file": "tools/prepare_topology_context.py",
+  "source_sha256": "9ccffda61a05880401b8da346e77e873893e50c90e64d2ccd264b80bf6d96593",
+  "plan": "notes/geobc_topology_context_plan.json",
+  "plan_sha256": "a1748a2e9bd02a50d48a57070eaffee6e20325ac51e5f2167e19ce46200aab7d",
+  "checks": [
+    {
+      "name": "CPU syntax compilation",
+      "status": "passed"
+    },
+    {
+      "name": "single CPU synthetic TETRA10 fixture plus isolated abstract positive-mass row",
+      "status": "passed",
+      "N0_N1_N2": [
+        10,
+        5,
+        3
+      ],
+      "edge_count": 12,
+      "covers": [
+        "VTK12subedges",
+        "role-homogeneous bounded FIFO BFS parent proof",
+        "coarse cut multiplicities",
+        "hard mass and named5 counts conservation",
+        "complete positive P/R constant preservation",
+        "isolated singleton identity"
+      ]
+    },
+    {
+      "name": "actual metadata-only request_contract/run dry preflight",
+      "status": "passed",
+      "CAD_order": [
+        "101_428",
+        "101_479",
+        "101_56",
+        "101_78"
+      ],
+      "scientific_modules_imported": false,
+      "arrays_opened": false,
+      "contract_sha256": "4982247fb6e93b02258faf9df8199c36213edd5f8f35aa2e92cf1b2ff54195d8"
+    },
+    {
+      "name": "CLI help",
+      "status": "passed"
+    }
+  ],
+  "CLI": "python tools/prepare_topology_context.py --plan notes/geobc_topology_context_plan.json --output runs/geobc_exploration/topology_context_input_train4",
+  "metadata_CLI": "python tools/prepare_topology_context.py --plan notes/geobc_topology_context_plan.json --dry-run",
+  "cache": "data/geobc_topology_context_train4",
+  "interface": {
+    "request_contract": "request_contract(plan_path) -> pure stdlib small JSON/source SHA/selected NPZ stat; equal summary.config.contract",
+    "arrays": [
+      "aggregate01/aggregate12",
+      "bfs_parent0/1 and bfs_admission_rank0/1",
+      "descendant_min0/1/2",
+      "role_bits0/1/2",
+      "named5_counts0/1/2 and role_member_counts0/1/2",
+      "mass0/1/2_mm3",
+      "xyz0/1/2_normalized",
+      "edge_endpoints/edge_vectors_normalized/edge_lengths_normalized",
+      "W0/W1/W2/P01/P12/R01/R12 *_indptr[int64], *_indices[int64], *_data, *_shape"
+    ],
+    "sparse_values": "float64 adjacency; validated complete float32 P/R; exact zeros removed only",
+    "resume": "Completed atomic perCAD NPZ source/contract/stat/SHA identity reuse; orphan complete files recover embedded record_json only",
+    "scientific_rejection": "role-component/actual aggregate caps, complete P average support or total NPZ cache size safety -> status completed, feasibility_pass false, outcome infeasible; exact completed/blocked/untouched lists",
+    "invalid_input_or_exception": "status failed, never scientific completion; completed outputs preserved"
+  },
+  "labels_read": 0,
+  "actual_arrays_read": false,
+  "raw_H5_or_deck_read": false,
+  "models_or_weights_read": false,
+  "CUDA_initialized": false,
+  "actual_preparation_executed": false,
+  "parent_review_required_before_actual_execution": true,
+  "limits": {
+    "aggregate_caps": [
+      4096,
+      512
+    ],
+    "P_average_support": 64,
+    "total_NPZ_cache_bytes": 1073741824
+  },
+  "source_provenance_policy": "Only prepared named xyz/features25/geometry scalars + gradient cells10/volumes + graph euclidean/cad/xyzSHA. Does not import gradient loader or raw readers."
+}
