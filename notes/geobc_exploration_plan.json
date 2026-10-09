@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_stress_readout_selection",
+  "stage": "solver_physical_coarse_confirmation_and_factored_stress",
   "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,11 +21,8 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "brief_action": "Physical tensor6 rough readout completed46.260秒，DEV S94.62→31.76%/hotspot97.57→53.80%，25%eachDEV门FAIL。关闭固定120step raw6配方；先用唯一q invariant与已committed标签cache做magnitude-only诊断，区分物理恢复误差和标量读出不足，不训练/不猜sign/不修改labels。",
-    "scope": "Broad solver selection: physics is a candidate; no Hash/width/seed microtuning. Numerical continuation precedes any broad physical or hybrid candidate test; oldfinal/newsealed remain closed.",
-    "stage": "solver_stress_magnitude_diagnostic_preparation",
-    "proposal": "notes/geobc_physics_stress_readout_proposal.md",
-    "mechanics_input_feasibility": "notes/solver_mechanics_input_feasibility.md"
+    "stage": "solver_signed_output_interface_resolution",
+    "brief_action": "C5PASS/SFAIL: retain trustworthy physical displacement and cost route, close fixed sign head. Once primary-source signed scalar/export/nodal recovery interface resolution before new complete solver claims or further training. FNO remains pointcloud learning reference; newtest fields sealed."
   },
   "jobs": [
     {
@@ -69,6 +66,90 @@
         "geobc/elastic_stress_readout.py"
       ],
       "output": "runs/geobc_exploration/elastic_stress_readout5_ver"
+    },
+    {
+      "name": "elastic_stress_magnitude5_ver",
+      "stage": "solver_stress_magnitude_diagnostic",
+      "kind": "elastic_stress_magnitude_diagnostic",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_stress_magnitude",
+        "--plan",
+        "notes/geobc_stress_magnitude_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_stress_magnitude5_ver"
+      ],
+      "requires": [
+        "notes/geobc_stress_magnitude_plan.json",
+        "notes/elastic_stress_magnitude_source_ready.json",
+        "notes/elastic_stress_magnitude_root_review.json",
+        "geobc/elastic_stress_magnitude.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_stress_magnitude5_ver"
+    },
+    {
+      "name": "elastic_coarse2_ver",
+      "stage": "solver_structural_physical_acceleration",
+      "kind": "elastic_p1_derived_coarse_screen",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_coarse",
+        "--plan",
+        "notes/geobc_elastic_coarse_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_coarse2_ver"
+      ],
+      "requires": [
+        "notes/geobc_elastic_coarse_plan.json",
+        "notes/elastic_coarse_source_ready.json",
+        "notes/elastic_coarse_root_review.json",
+        "geobc/elastic_coarse.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_coarse2_ver"
+    },
+    {
+      "name": "elastic_factored_stress5_ver",
+      "stage": "solver_structural_signed_stress_readout",
+      "kind": "elastic_factored_signed_stress_screen",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_factored_stress",
+        "--plan",
+        "notes/geobc_factored_stress_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_factored_stress5_ver"
+      ],
+      "requires": [
+        "notes/geobc_factored_stress_plan.json",
+        "notes/elastic_factored_stress_source_ready.json",
+        "notes/elastic_factored_stress_root_review.json",
+        "geobc/elastic_factored_stress.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_factored_stress5_ver"
+    },
+    {
+      "name": "elastic_coarse5_ver_extension",
+      "stage": "solver_structural_physical_acceleration_five_confirmation",
+      "kind": "elastic_p1_derived_coarse_extension",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_coarse_extension",
+        "--plan",
+        "notes/geobc_elastic_coarse_extension_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_coarse5_ver_extension"
+      ],
+      "requires": [
+        "notes/geobc_elastic_coarse_extension_plan.json",
+        "notes/elastic_coarse_extension_source_ready.json",
+        "notes/elastic_coarse_extension_root_review.json",
+        "geobc/elastic_coarse_extension.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_coarse5_ver_extension"
     }
   ],
   "historical_jobs": [
@@ -3748,7 +3829,7 @@
     "numerical_state": "iteration_budget_limit",
     "numerically_converged": false,
     "one_TRAIN_u_percent": 0.027338035686050283,
-    "RMS_mm": 4.4761446947739514E-05,
+    "RMS_mm": 4.4761446947739514e-05,
     "max_mm": 0.00036239097534964115,
     "report": "results/elastic_pilot/BRIEF.md",
     "figure_QA": "PASS once, actual trace points and frozen tolerance only",
@@ -3784,7 +3865,7 @@
     "figure_QA": "PASS once, actual residual trace including parent costs only",
     "new_solve_seconds": 29.034314095,
     "report": "results/elastic_convergence/BRIEF.md",
-    "true_relative_residual": 9.9770555571315E-09
+    "true_relative_residual": 9.9770555571315e-09
   },
   "physical_crosscad_source_preparation": {
     "total_nodes_from_metadata": 1092529,
@@ -3829,16 +3910,11 @@
     "running_coordinator_linux_pid": 378
   },
   "private_stage_delivery": {
-    "commit": "2926c3c8849e2145c8eb3823bda7a2761f8b830b",
-    "research": "ongoing",
-    "receipt": "notes/github_publish_receipt.json",
-    "owner": "baiming-zhang",
-    "repo": "GeoBC-Neural-Operator",
-    "status": "published_verified_by_script",
-    "delivered_completed_jobs": 88,
-    "at_utc": "2026-10-09T20:45:14.5627495Z",
-    "verified": "Publisher compared git ls-remote main to local commit and asserted owner/name/private via API after push",
-    "private": true
+    "private": true,
+    "commit": "d60268e22456a52b2b2968136e0fce4430315564",
+    "published_at_utc": "2026-10-09T22:28:30.8447932Z",
+    "exploration_completed": 91,
+    "includes": "crossCAD5, FNO warmstart5 and frozen120 stress readout5"
   },
   "physical_crosscad_completed_readout": {
     "decision": "proceed_frozen_FNO_warmstart",
@@ -3913,5 +3989,210 @@
     "scalar_and_tensor_scaler_fits": 2,
     "coordinator_linux_pid": 269,
     "coordinator_completed": true
-  }
+  },
+  "coordinator_completed": true,
+  "parallel_source_preparation": {
+    "kind": "elastic_p1_derived_coarse_screen",
+    "plan": "notes/geobc_elastic_coarse_plan.json",
+    "phase": "scientific_recipe_accepted_source_preparation",
+    "author": "/root/macro_solver_next",
+    "actual_execution_released": false,
+    "estimated_source_minutes": 45,
+    "goal": "Structural physical solver acceleration with same equation, no Hash microoptimization"
+  },
+  "magnitude_diagnostic_completed_readout": {
+    "elapsed_seconds": 2.23989261,
+    "classification": "inconclusive",
+    "DEV_mean_relativeL2": 0.10102096249527057,
+    "DEV_worst_relativeL2": 0.10556562892385095,
+    "DEV_mean_hotspot_relativeL2": 0.1699828295800936,
+    "normal_cache_GT_reads": 5,
+    "original_source_reads": 0,
+    "coverage_all_nodes": 1092529
+  },
+  "parallel_stress_representation_source_preparation": {
+    "plan": "notes/geobc_factored_stress_plan.json",
+    "kind": "elastic_factored_signed_stress_screen",
+    "actual_execution_released": false,
+    "frozen_rule": "Fixedq learned bounded factor, tensor-only head60updates; originalS loss+supervised sign, no hand rules/no raw6 rescue"
+  },
+  "coarse2_completed_readout": {
+    "elapsed_seconds": 63.75584193799999,
+    "gate_passed": true,
+    "cases": {
+      "101_428/ver": {
+        "cold_seconds": 42.10786412399999,
+        "cold_gain_fraction": 0.5829145816897259,
+        "true_residual": 9.981947040095148e-09,
+        "same_solution_relativeL2": 1.4062537888123828e-10,
+        "iterations": 943
+      },
+      "102_249/ver": {
+        "cold_seconds": 36.492053893999994,
+        "cold_gain_fraction": 0.6388001373494756,
+        "true_residual": 9.88548443694444e-09,
+        "same_solution_relativeL2": 7.998194113632486e-11,
+        "iterations": 1037
+      }
+    },
+    "GT_reads": 0,
+    "source_immutable": "a723024b08c773bcab66ee7494e3a450f4b4b7990dbefe6410e3f0ef2454d420"
+  },
+  "coarse5_completed_readout": {
+    "summary": "runs/geobc_exploration/elastic_coarse5_ver_extension/summary.json",
+    "completed": true,
+    "gate_passed": true,
+    "parent_actual_seconds": 63.75584193799999,
+    "new_extension_actual_seconds": 82.25808349199998,
+    "campaign_seconds": 146.01392542999997,
+    "cold_seconds_range": [
+      30.747142337,
+      42.10786412399999
+    ],
+    "gain_fraction_range": [
+      0.5522894482713079,
+      0.6388001373494756
+    ],
+    "no_GT_reads": true,
+    "old_two_reused_without_new_science": true
+  },
+  "factored_stress_completed_readout": {
+    "summary": "runs/geobc_exploration/elastic_factored_stress5_ver/summary.json",
+    "completed": true,
+    "gate_passed": false,
+    "actual_fullcase_updates": 60,
+    "elapsed_seconds": 4.791342622999991,
+    "training_seconds": 1.0110910079999087,
+    "DEV": {
+      "fixed_denominator": 2,
+      "case_keys": [
+        "102_249/ver",
+        "102_38/ver"
+      ],
+      "signed_relative_l2_mean": 0.30407943831995254,
+      "signed_relative_l2_worst": 0.3082635940606405,
+      "hotspot_relative_l2_mean": 0.2972187746520664,
+      "hotspot_relative_l2_worst": 0.3267244219490675,
+      "S_squared_weighted_sign_error_mean": 0.020720895816007077,
+      "S_squared_weighted_sign_error_worst": 0.023559255091816174,
+      "range_floor_relative_l2_mean": 0.09771631021687141,
+      "range_floor_relative_l2_worst": 0.10257014881658501,
+      "RMSE_MPa_mean": 27.052879581014388,
+      "RMSE_MPa_worst": 30.721304578824412
+    },
+    "read_receipt": {
+      "source_stress_member_reads": 0,
+      "canonical_archive_reads": 0,
+      "displacement_reads": 0,
+      "old_final_reads": 0,
+      "DEV_dia_reads": 0,
+      "sealed_new_test_reads": 0,
+      "external_model_or_weight_reads": 0,
+      "new_physical_solves": 0,
+      "K_guards_repeated": 0,
+      "scaler_fits": 0,
+      "GT_reads": 5,
+      "stress_reads": 5,
+      "cached_signed_stress_reads": 5,
+      "TRAIN_stress_reads": 3,
+      "DEV_stress_reads": 2,
+      "sigma_array_reads": 5,
+      "valid_array_reads": 5,
+      "attempted_array_reads": {
+        "sigma_MPa": 5,
+        "valid": 5,
+        "signed_stress": 5
+      },
+      "completed_array_reads": {
+        "sigma_MPa": 5,
+        "valid": 5,
+        "signed_stress": 5
+      },
+      "per_case": {
+        "101_428/ver": {
+          "sigma_MPa": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "valid": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "signed_stress": {
+            "attempted": 1,
+            "completed": 1
+          }
+        },
+        "101_56/ver": {
+          "sigma_MPa": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "valid": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "signed_stress": {
+            "attempted": 1,
+            "completed": 1
+          }
+        },
+        "101_78/ver": {
+          "sigma_MPa": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "valid": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "signed_stress": {
+            "attempted": 1,
+            "completed": 1
+          }
+        },
+        "102_249/ver": {
+          "sigma_MPa": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "valid": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "signed_stress": {
+            "attempted": 1,
+            "completed": 1
+          }
+        },
+        "102_38/ver": {
+          "sigma_MPa": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "valid": {
+            "attempted": 1,
+            "completed": 1
+          },
+          "signed_stress": {
+            "attempted": 1,
+            "completed": 1
+          }
+        }
+      },
+      "own_stage_reads": {
+        "checkpoint_attempted": 0,
+        "checkpoint_completed": 0,
+        "head_attempted": 1,
+        "head_completed": 1,
+        "prediction_attempted": 0,
+        "prediction_completed": 0
+      },
+      "optimizer_steps": 60,
+      "optimizer_step_attempts": 60,
+      "training_updates": 60
+    },
+    "decision": "close_fixed_factored_representation_no_seed_width_loss_training_rescue"
+  },
+  "solver_selection_status": "No final solver selected; full signed stress and input-interface service requirements remain unresolved"
 }

@@ -1,14 +1,14 @@
 {
   "scope": "GeoBC exploration; independent of the completed slides suite",
-  "completed": 91,
-  "planned": 91,
-  "scientific_completed": 88,
-  "scientific_planned": 88,
+  "completed": 95,
+  "planned": 95,
+  "scientific_completed": 92,
+  "scientific_planned": 92,
   "synthetic_acceptance_completed": 3,
   "synthetic_acceptance_planned": 3,
   "phase": "stage_completed",
   "research_status": "ongoing",
-  "current_stage": "solver_stress_readout_selection",
+  "current_stage": "solver_physical_coarse_confirmation_and_factored_stress",
   "current_stage_complete": true,
   "original_slides_completed": 30,
   "original_slides_planned": 30,
@@ -402,6 +402,62 @@
     "cache_payloads_exported": false,
     "receipt_location": "summary.json:receipt or config.contract"
   },
+  "elastic_stress_magnitude_receipt": {
+    "run": "elastic_stress_magnitude5_ver",
+    "status": "completed",
+    "source_output": "runs/geobc_exploration/elastic_stress_magnitude5_ver",
+    "completed_stage": true,
+    "exported_files": [
+      "runs/elastic_stress_magnitude5_ver/summary.json",
+      "runs/elastic_stress_magnitude5_ver/config.json",
+      "runs/elastic_stress_magnitude5_ver/status.json"
+    ],
+    "export_policy": "Small JSON only; no NPY/CSR/raw/weights copied",
+    "cache_payloads_exported": false,
+    "receipt_location": "summary.json:receipt or config.contract"
+  },
+  "elastic_coarse_solver_receipt": {
+    "run": "elastic_coarse2_ver",
+    "status": "completed",
+    "source_output": "runs/geobc_exploration/elastic_coarse2_ver",
+    "completed_stage": true,
+    "exported_files": [
+      "runs/elastic_coarse2_ver/summary.json",
+      "runs/elastic_coarse2_ver/config.json",
+      "runs/elastic_coarse2_ver/status.json"
+    ],
+    "export_policy": "Small JSON only; no NPY/CSR/raw/weights copied",
+    "cache_payloads_exported": false,
+    "receipt_location": "summary.json:receipt or config.contract"
+  },
+  "elastic_factored_stress_receipt": {
+    "run": "elastic_factored_stress5_ver",
+    "status": "completed",
+    "source_output": "runs/geobc_exploration/elastic_factored_stress5_ver",
+    "completed_stage": true,
+    "exported_files": [
+      "runs/elastic_factored_stress5_ver/summary.json",
+      "runs/elastic_factored_stress5_ver/config.json",
+      "runs/elastic_factored_stress5_ver/status.json"
+    ],
+    "export_policy": "Small JSON only; no NPY/CSR/raw/weights copied",
+    "cache_payloads_exported": false,
+    "receipt_location": "summary.json:receipt or config.contract"
+  },
+  "elastic_coarse_extension_receipt": {
+    "run": "elastic_coarse5_ver_extension",
+    "status": "completed",
+    "source_output": "runs/geobc_exploration/elastic_coarse5_ver_extension",
+    "completed_stage": true,
+    "exported_files": [
+      "runs/elastic_coarse5_ver_extension/summary.json",
+      "runs/elastic_coarse5_ver_extension/config.json",
+      "runs/elastic_coarse5_ver_extension/status.json"
+    ],
+    "export_policy": "Small JSON only; no NPY/CSR/raw/weights copied",
+    "cache_payloads_exported": false,
+    "receipt_location": "summary.json:receipt or config.contract"
+  },
   "observed_noncompleted_stages": {},
   "new_stage_export_policy": "config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit",
   "summaries": [
@@ -495,8 +551,12 @@
     "elastic_convergence101479_ver",
     "elastic_crosscad5_ver",
     "elastic_fno_warmstart5_ver",
-    "elastic_stress_readout5_ver"
+    "elastic_stress_readout5_ver",
+    "elastic_stress_magnitude5_ver",
+    "elastic_coarse2_ver",
+    "elastic_factored_stress5_ver",
+    "elastic_coarse5_ver_extension"
   ],
   "raw_data_checkpoints_predictions": "retained locally; not included in Git payload",
-  "updated_at_utc": "2026-10-09T22:28:25.795560+00:00"
+  "updated_at_utc": "2026-10-09T23:07:26.014346+00:00"
 }

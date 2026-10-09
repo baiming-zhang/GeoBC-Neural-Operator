@@ -1,0 +1,171 @@
+{
+  "kind": "elastic_p1_derived_coarse_screen",
+  "case_keys": [
+    "101_428/ver",
+    "102_249/ver"
+  ],
+  "selection_gate": {
+    "passed": true,
+    "inventory_denominator": 2,
+    "numerically_converged_cases": 2,
+    "same_solution_passed_cases": 2,
+    "cases_with_at_least25percent_cold_cost_reduction": 2,
+    "complete_cost_components": true,
+    "target_and_weight_reads_zero": true,
+    "minimum_required_gain_fraction": 0.25,
+    "decision": "expand_fixed_candidate_to_existing_five_CAD_only_after_root_decision"
+  },
+  "read_receipt": {
+    "GT_reads": 0,
+    "displacement_reads": 0,
+    "stress_reads": 0,
+    "old_final_reads": 0,
+    "DEV_dia_reads": 0,
+    "sealed_new_test_reads": 0,
+    "optimizer_steps": 0,
+    "scaler_fits": 0,
+    "learned_weight_reads": 0,
+    "fine_operator_rebuilds": 0,
+    "inherited_fine_K_guards_repeated": 0,
+    "setup_K_guards_repeated": 0,
+    "numerical_reference_reads": 2
+  },
+  "costs": {
+    "cumulative_stage_wall_seconds": 63.75584193799999,
+    "maximum_stage_wall_seconds": 900,
+    "this_call_stage_wall_seconds": 63.755846618999996,
+    "stage_budget_overshoot_seconds": 0.0,
+    "metadata_seconds_per_single_query": 0.10869354399999054,
+    "actual_metadata_seconds_including_resumes": 0.10869354399999054
+  },
+  "cases": {
+    "101_428/ver": {
+      "numerical_state": "converged",
+      "true_relative_residual": 9.981947040095148e-09,
+      "same_solution_passed": true,
+      "numerical_comparison": {
+        "nodes": 270276,
+        "reference_role": "Same-system converged approximate numerical displacement, not GT",
+        "relative_l2": 1.4062537888123828e-10,
+        "vector_RMS_mm": 1.1225091189395281e-11,
+        "maximum_nodal_vector_difference_mm": 5.600199194720747e-11,
+        "reference_energy_mm2": 1722.1057915691413,
+        "difference_energy_mm2": 3.405549823429471e-17,
+        "zero_numerical_reference": false,
+        "same_solution_passed": true,
+        "relative_l2_tolerance": 1e-05,
+        "zero_reference_RMS_tolerance_mm": 1e-12,
+        "old_GT_accuracy_assigned_to_new_endpoint": false
+      },
+      "costs": {
+        "zero_cold_without_GT_seconds": 100.95741130100001,
+        "inherited_fine_input_operator_seconds": 8.755223530999984,
+        "stage_metadata_single_query_seconds": 0.10869354399999054,
+        "new_case_cumulative_wall_seconds": 33.24394704900001,
+        "coarse_cold_accounted_wall_seconds": 42.10786412399999,
+        "coarse_to_zero_cold_cost_ratio": 0.4170854183102742,
+        "cold_cost_reduction_fraction": 0.5829145816897259,
+        "components_complete": true,
+        "cumulative_setup_read_seconds": 1.8886254880000024,
+        "cumulative_coarse_setup_seconds": 1.4213246609999999,
+        "cumulative_solve_wall_seconds": 29.784714314,
+        "cumulative_endpoint_seconds": 0.06986321800000894,
+        "cumulative_reference_seconds": 0.04182236999999134,
+        "cumulative_persistence_seconds": 0.03759699800001215,
+        "block_preconditioner_seconds": 0.6348998179995675,
+        "coarse_inverse_seconds": 2.2255816270002953,
+        "transfer_seconds": 0.2755405089998533,
+        "preconditioner_wall_seconds": 3.1371217110001197,
+        "checkpoint_seconds": 2.395726562000007,
+        "cached_solve_verification_reference_seconds": 29.896399902,
+        "fresh_combined_cold_remeasured": false,
+        "definition": "Inherited accepted original fine input/operator setup + actual cumulative new case wall + common stage metadata per single query; numerical reference/verification/checkpoints included",
+        "fine_setup_reused_but_charged": true,
+        "old_zero_iterations_charged_to_new_budget": false,
+        "coarse_setup_budget_overshoot_seconds": 0.0,
+        "solve_budget_overshoot_seconds": 0.0
+      },
+      "counts": {
+        "iterations_executed_total": 943,
+        "fine_K_applications": 986,
+        "setup_K_applications": 2,
+        "solve_K_applications": 983,
+        "endpoint_K_applications": 1,
+        "coarse_matvec_calls": 30242,
+        "P_calls": 947,
+        "PT_calls": 949,
+        "preconditioner_calls": 945,
+        "coarse_construct_attempts": 1,
+        "numerical_reference_reads": 1
+      },
+      "memory": {
+        "peak_allocated_bytes": 2434438144,
+        "peak_reserved_bytes": 2642411520
+      }
+    },
+    "102_249/ver": {
+      "numerical_state": "converged",
+      "true_relative_residual": 9.88548443694444e-09,
+      "same_solution_passed": true,
+      "numerical_comparison": {
+        "nodes": 211173,
+        "reference_role": "Same-system converged approximate numerical displacement, not GT",
+        "relative_l2": 7.998194113632486e-11,
+        "vector_RMS_mm": 1.5909589070369158e-11,
+        "maximum_nodal_vector_difference_mm": 8.515098191364361e-11,
+        "reference_energy_mm2": 8355.499820831961,
+        "difference_energy_mm2": 5.34510590450892e-17,
+        "zero_numerical_reference": false,
+        "same_solution_passed": true,
+        "relative_l2_tolerance": 1e-05,
+        "zero_reference_RMS_tolerance_mm": 1e-12,
+        "old_GT_accuracy_assigned_to_new_endpoint": false
+      },
+      "costs": {
+        "zero_cold_without_GT_seconds": 101.030087958,
+        "inherited_fine_input_operator_seconds": 6.032695052000008,
+        "stage_metadata_single_query_seconds": 0.10869354399999054,
+        "new_case_cumulative_wall_seconds": 30.350665297999996,
+        "coarse_cold_accounted_wall_seconds": 36.492053893999994,
+        "coarse_to_zero_cold_cost_ratio": 0.3611998626505244,
+        "cold_cost_reduction_fraction": 0.6388001373494756,
+        "components_complete": true,
+        "cumulative_setup_read_seconds": 0.4962881679999924,
+        "cumulative_coarse_setup_seconds": 0.631101368000003,
+        "cumulative_solve_wall_seconds": 29.097711009000008,
+        "cumulative_endpoint_seconds": 0.048670289000000366,
+        "cumulative_reference_seconds": 0.03759986099998969,
+        "cumulative_persistence_seconds": 0.03929460300000187,
+        "block_preconditioner_seconds": 0.5205845529996651,
+        "coarse_inverse_seconds": 2.0670773359999544,
+        "transfer_seconds": 0.24675637100021675,
+        "preconditioner_wall_seconds": 2.8355040060001926,
+        "checkpoint_seconds": 2.128422024999935,
+        "cached_solve_verification_reference_seconds": 29.183981159,
+        "fresh_combined_cold_remeasured": false,
+        "definition": "Inherited accepted original fine input/operator setup + actual cumulative new case wall + common stage metadata per single query; numerical reference/verification/checkpoints included",
+        "fine_setup_reused_but_charged": true,
+        "old_zero_iterations_charged_to_new_budget": false,
+        "coarse_setup_budget_overshoot_seconds": 0.0,
+        "solve_budget_overshoot_seconds": 0.0
+      },
+      "counts": {
+        "iterations_executed_total": 1037,
+        "fine_K_applications": 1084,
+        "setup_K_applications": 2,
+        "solve_K_applications": 1081,
+        "endpoint_K_applications": 1,
+        "coarse_matvec_calls": 33250,
+        "P_calls": 1041,
+        "PT_calls": 1043,
+        "preconditioner_calls": 1039,
+        "coarse_construct_attempts": 1,
+        "numerical_reference_reads": 1
+      },
+      "memory": {
+        "peak_allocated_bytes": 1884732416,
+        "peak_reserved_bytes": 2642411520
+      }
+    }
+  }
+}

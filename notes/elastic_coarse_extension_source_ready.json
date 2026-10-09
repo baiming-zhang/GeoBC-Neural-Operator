@@ -1,0 +1,131 @@
+{
+  "status": "source_ready_single_wrapper_AST_small_metadata_only_actual_closed",
+  "source": "geobc/elastic_coarse_extension.py",
+  "source_sha256": "f853e048a4d0c8f31de7811f4f874f787280b3470d84e80ad9f29035b2b46c02",
+  "source_bytes": 26679,
+  "source_files_sha256": {
+    "geobc/elastic_coarse_extension.py": "f853e048a4d0c8f31de7811f4f874f787280b3470d84e80ad9f29035b2b46c02",
+    "geobc/elastic_coarse.py": "a723024b08c773bcab66ee7494e3a450f4b4b7990dbefe6410e3f0ef2454d420",
+    "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27"
+  },
+  "plan": "notes/geobc_elastic_coarse_extension_plan.json",
+  "plan_sha256": "b0329a86670eba6dcf4e7aa282df38ff692430aba039d99d596f4cdef4d3fef8",
+  "science_recipe_sha256": "2cfd978f6c67f29e6376c21c4c83afca6bb2843f8baf8ac8c652e09c615ac9ce",
+  "kind": "elastic_p1_derived_coarse_extension",
+  "case_keys": [
+    "101_428/ver",
+    "101_56/ver",
+    "101_78/ver",
+    "102_249/ver",
+    "102_38/ver"
+  ],
+  "reused_case_keys": [
+    "101_428/ver",
+    "102_249/ver"
+  ],
+  "new_case_keys": [
+    "101_56/ver",
+    "101_78/ver",
+    "102_38/ver"
+  ],
+  "scientific_rules_frozen": true,
+  "actual_execution_released": false,
+  "root_review_created": false,
+  "author_check": {
+    "AST_passed": true,
+    "final_wrapper_AST_invocations": 1,
+    "core_AST_invocations": 0,
+    "stdlib_metadata_seconds": 0.016086388999999812,
+    "scientific_imports": 0,
+    "request_contract_calls": 0,
+    "core_contract_or_run_calls": 0,
+    "arrays_read": 0,
+    "GT_reads": 0,
+    "weight_or_checkpoint_reads": 0,
+    "GPU_runs": 0,
+    "resource_checks": 0,
+    "toys": 0,
+    "training_updates": 0,
+    "scaler_fits": 0
+  },
+  "API": {
+    "request_contract": "request_contract(plan_path)->(contract,plan), source/smallJSON/stat only; never core.request_contract or old single-case API",
+    "run": "run(plan_path,output_path=None)->summary, actual source/root release before scientific work",
+    "actual_case_worker": "Only immutable core.coarse_case for fixed new3, own full extension contract with all6pins; no core.run",
+    "report": "Fixed5 denominator, old2 exact original summary dictionaries plus separate provenance, new3 actual summaries, stage BRIEF.md/metrics.json",
+    "root_marker": "notes/elastic_coarse_extension_root_review.json authentic root only; wrapper source/recipe+campaign digest binding",
+    "author_actual_checks": 0,
+    "root_review_required": {
+      "passed": true,
+      "source_sha256": "Exact wrapper source SHA string",
+      "science_recipe_sha256": "Sorted-JSON digest of recipe/comparison/cost/selection_gate/read_policy/campaign_budget",
+      "base_evidence_decision": "extend_existing_five_reuse_two_run_three"
+    }
+  },
+  "parent_provenance": {
+    "core_source_sha256": "a723024b08c773bcab66ee7494e3a450f4b4b7990dbefe6410e3f0ef2454d420",
+    "core_plan": {
+      "path": "notes/geobc_elastic_coarse_plan.json",
+      "sha256": "bb7260eb9669bb6d210943df5f8fc66612a8ad8df25e1c942a261260f997a453"
+    },
+    "core_root_review": {
+      "path": "notes/elastic_coarse_root_review.json",
+      "sha256": "9f9e793fdbc31c1d181407b30bbb69061d804cfe39aea19fcdeeb881adb0bfc1"
+    },
+    "core_summary": {
+      "path": "runs/geobc_exploration/elastic_coarse2_ver/summary.json",
+      "sha256": "ab0496a92304f49955da5223ff281a2f81005698bf0bb4a92fbebcb4e6ce1695",
+      "actual_parent_stage_wall_seconds": 63.75584193799999,
+      "kind": "elastic_p1_derived_coarse_screen"
+    },
+    "reused_summaries": {
+      "101_428/ver": {
+        "path": "runs/geobc_exploration/elastic_coarse2_ver/101_428_ver/summary.json",
+        "sha256": "295bd3a209d27019d6fdc70fe86f4faceb7796cf02754d2b94d8820dd9586340",
+        "provenance": "Original accepted two-CAD actual core summary; retain original config/costs; metadata reuse only"
+      },
+      "102_249/ver": {
+        "path": "runs/geobc_exploration/elastic_coarse2_ver/102_249_ver/summary.json",
+        "sha256": "ecfd2a03b2fa1ecaee5e2ebed6ab73cb0dcfc373610062b4e0db6d41c7634a6f",
+        "provenance": "Original accepted two-CAD actual core summary; retain original config/costs; metadata reuse only"
+      }
+    },
+    "old_outputs_or_configs_written": 0,
+    "old_reference_arrays_read": 0
+  },
+  "budget": {
+    "whole_campaign_seconds": 900,
+    "parent_actual_stage_wall_seconds": 63.75584193799999,
+    "initial_campaign_prior_policy": "max(own prior,parent actual), no repeated parent addition",
+    "new_case_coarse_setup_seconds": 60,
+    "new_case_solve_seconds": 300,
+    "new_case_attempted_iterations": 10000,
+    "actual_peak_GPU_bytes": 25769803776,
+    "resume_reset": false
+  },
+  "scientific_protocol": "Immutable accepted core.coarse_case for only3 new existing CADs; same masks/Galerkin32/true1e-8/allN1e-5/25percent/cap; no repeated core-body source/math/preflight audit",
+  "receipts": "Newstage actual numerical-reference reads only3 if fully completed; parent2 preserved separately; campaign5 actual across both, never pretend wrapper reopened old2 arrays; all GT/target/final/sealed/optimizer/scaler/weight/old8guard counters0",
+  "reports": "Fixed5 original cases dictionaries, separate original/provenance hashes; old2 costs unchanged; new3 own actual summaries; denominator5 gate; small BRIEF.md/metrics.json; no finalsolver or equalinterface ranking",
+  "summary_schema": {
+    "kind": "elastic_p1_derived_coarse_extension",
+    "config.contract": "request_contract full exact wrapper contract",
+    "case_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver",
+      "102_249/ver",
+      "102_38/ver"
+    ],
+    "reused_cases": 2,
+    "new_case_inventory": 3,
+    "newly_attempted_cases": "Actual attempted count, normally3; unattempted-budget negatives remain truthful",
+    "case_provenance": "Old2 original path/hash/config preserved, never wrapper-generated",
+    "read_receipt": "New3 only",
+    "parent_read_receipt": "Parent2 original receipt",
+    "campaign_read_receipt": "Parent2+new3, no fake array rereads"
+  },
+  "old_core_or_plan_modified": false
+}

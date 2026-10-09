@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "source_sha256": "538c0a8d5a8018a1fecb1a2d09a97ab12568a8906cf4bc3644049887522c009f",
+  "source_ready_sha256": "2501ebc77decf1a0cbe408255bb12cbe7b9412ee771664956557cc7732e34371",
+  "stage_decision": "fixed_cached_magnitude_diagnostic",
+  "reviewed_at_utc": "2026-10-09T22:39:10.089103+00:00",
+  "plan_sha256_at_release": "b79593a00f0a100ad3bdc2b4b29539ef26530d82f1a057a6bb52b310edc5d4d4",
+  "scope": "Root necessary source-only formula/MPa/identity/cache-GT receipt/scopes/ties/null/aggregate/classification/resume/cumulative60/release/API review",
+  "scientific_formula": "VM FP64 tensor-shear6 versus abs(cached original signed S) only, no source-sign formula or label rewrite",
+  "review_findings": {
+    "source_and_cache_path_pins": true,
+    "exact_five_parent120_inputs_in_root_freeze": true,
+    "same_cached_row_values_sha": true,
+    "fullN_and_valid_metrics": true,
+    "stable_hotspot_row_ties": true,
+    "zero_relative_null": true,
+    "fixed_denominators": true,
+    "TRAIN_DEV_frozen_thresholds": true,
+    "real_cached_GT_attempt_completed_resume_counts": true,
+    "no_forbidden_source_or_model_reads": true,
+    "cumulative60_includes_metadata_imports_IO_math_mainpersistence": true,
+    "completed_case_reuse": true,
+    "scientific_negative_separate_from_runtime": true
+  },
+  "root_AST_checks": 0,
+  "root_contract_runs": 0,
+  "array_reads": 0,
+  "GT_reads": 0,
+  "GPU_work": 0
+}

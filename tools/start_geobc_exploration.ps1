@@ -11,7 +11,7 @@ if (Test-Path -LiteralPath $coordinatorPath) {
     if ($saved.phase -in @('running','training','evaluating','waiting_for_inputs')) {
         # Linux flock is the final authority. This avoids needlessly launching
         # a second Windows helper while an existing coordinator is active.
-        $probe = & wsl.exe -d cold-surge-ubuntu-24.04 --exec /usr/bin/python3 -c "import os,sys; pid=int(sys.argv[1]); print('alive' if os.path.exists('/proc/'+str(pid)) else 'gone')" $saved.pid
+        $probe = & wsl.exe -d cold-surge-ubuntu-24.04 --exec /usr/bin/python3 -c "import pathlib,sys; p=pathlib.Path('/proc/'+str(int(sys.argv[1]))+'/cmdline'); argv=p.read_bytes().split(bytes([0])) if p.exists() else []; print('alive' if any(x==b'tools/run_geobc_exploration.py' or x.endswith(b'/tools/run_geobc_exploration.py') for x in argv) else 'gone')" $saved.pid
         if ($LASTEXITCODE -eq 0 -and $probe.Trim() -eq 'alive') {
             [pscustomobject]@{status='already-running';pid=$saved.pid;phase=$saved.phase;writes=$false} | ConvertTo-Json
             exit 0

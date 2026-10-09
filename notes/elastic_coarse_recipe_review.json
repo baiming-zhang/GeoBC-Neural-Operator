@@ -1,0 +1,19 @@
+{
+  "scope": "root scientific recipe review, not execution release",
+  "reviewed_at_utc": "2026-10-09T22:34:48.727859+00:00",
+  "reviewed_plan_sha256": "f7e2a78cec8ad5c11dc4001d20a57fbd2e2c71dfb3f530e008ad70d3376380ad",
+  "scientific_recipe_accepted": true,
+  "actual_execution_released": false,
+  "actual_root_marker_created": false,
+  "cases": [
+    "101_428/ver",
+    "102_249/ver"
+  ],
+  "core_math": "Fine fixed rows masked before Ac=P^T A P; independent free-corner injection columns; symmetric positive fixed32 Jacobi polynomial conditional on fine SPD; ordinary additive PCG",
+  "guard_scope": "Two fixed Galerkin/W vectors in actual construction only, old eight fine guards not repeated; not whole-spectrum SPD proof",
+  "selection": "both true1e-8 same solution and both accounted cold >=25% reduction, otherwise close fixed recipe",
+  "source_review_pending": true,
+  "array_reads": 0,
+  "GT_reads": 0,
+  "GPU_work": 0
+}

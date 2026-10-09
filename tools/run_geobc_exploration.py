@@ -202,6 +202,80 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             raise ValueError(f"Physical input metadata or label-access contract differs: {job['name']}")
         if summary != read_cache_metadata(requested_plan, contract=contract):
             raise ValueError(f"Physical input cache differs from its frozen source identities: {job['name']}")
+    elif "geobc.elastic_coarse_extension" in command:
+        from geobc.elastic_coarse_extension import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        if (summary.get("kind") != "elastic_p1_derived_coarse_extension"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("case_keys") != requested["case_keys"]
+                or set(summary.get("cases", {})) != set(requested["case_keys"])):
+            raise ValueError(f"Coarse extension differs from frozen five-case campaign: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("GT_reads", "displacement_reads", "stress_reads", "old_final_reads",
+                    "DEV_dia_reads", "sealed_new_test_reads", "optimizer_steps", "scaler_fits",
+                    "learned_weight_reads", "setup_K_guards_repeated"):
+            if receipt.get(key) != 0:
+                raise ValueError(f"Coarse extension unexpectedly accessed {key}: {job['name']}")
+    elif "geobc.elastic_factored_stress" in command:
+        from geobc.elastic_factored_stress import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        if (summary.get("kind") != "elastic_factored_signed_stress_screen"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("train_keys") != requested["train_keys"]
+                or summary.get("validation_keys") != requested["validation_keys"]
+                or set(summary.get("cases", {})) != set(requested["train_keys"] + requested["validation_keys"])):
+            raise ValueError(f"Factored signed-stress candidate differs from its frozen cache/recipe: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("source_stress_member_reads", "canonical_archive_reads", "displacement_reads",
+                    "old_final_reads", "DEV_dia_reads", "sealed_new_test_reads", "external_model_or_weight_reads",
+                    "new_physical_solves", "K_guards_repeated", "scaler_fits"):
+            if receipt.get(key) != 0:
+                raise ValueError(f"Factored signed-stress candidate unexpectedly accessed {key}: {job['name']}")
+        for key in ("GT_reads", "stress_reads", "TRAIN_stress_reads", "DEV_stress_reads", "optimizer_steps"):
+            if type(receipt.get(key)) is not int or receipt[key] < 0:
+                raise ValueError(f"Factored candidate lacks actual nonnegative {key}: {job['name']}")
+        if (receipt["GT_reads"] != receipt["stress_reads"]
+                or receipt["stress_reads"] != receipt["TRAIN_stress_reads"] + receipt["DEV_stress_reads"]):
+            raise ValueError(f"Factored signed-stress label accounting is inconsistent: {job['name']}")
+        # Fixed60 budget/accuracy negatives close the representation recipe.
+    elif "geobc.elastic_coarse" in command:
+        from geobc.elastic_coarse import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        if (summary.get("kind") != "elastic_p1_derived_coarse_screen"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("case_keys") != requested["case_keys"]
+                or set(summary.get("cases", {})) != set(requested["case_keys"])):
+            raise ValueError(f"Coarse solver screen differs from its frozen equation or two cases: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("GT_reads", "displacement_reads", "stress_reads", "old_final_reads",
+                    "DEV_dia_reads", "sealed_new_test_reads", "optimizer_steps", "scaler_fits",
+                    "learned_weight_reads", "setup_K_guards_repeated"):
+            if receipt.get(key) != 0:
+                raise ValueError(f"Coarse solver screen unexpectedly accessed {key}: {job['name']}")
+        # Sparse-backend, budget and performance negatives close this fixed
+        # candidate; the scientific same-solution/cost gate is kept separate.
+    elif "geobc.elastic_stress_magnitude" in command:
+        from geobc.elastic_stress_magnitude import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        if (summary.get("kind") != "elastic_stress_magnitude_diagnostic"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("train_keys") != requested["train_keys"]
+                or summary.get("validation_keys") != requested["validation_keys"]
+                or set(summary.get("cases", {})) != set(requested["train_keys"] + requested["validation_keys"])):
+            raise ValueError(f"Magnitude diagnostic differs from its frozen cases or cache identities: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in requested["science"]["read_policy"]["forbidden_zero"]:
+            if receipt.get(key) != 0:
+                raise ValueError(f"Magnitude diagnostic unexpectedly accessed {key}: {job['name']}")
+        for key in requested["science"]["read_policy"]["normal_completed_reads"]:
+            if type(receipt.get(key)) is not int or receipt[key] < 0:
+                raise ValueError(f"Magnitude diagnostic lacks actual nonnegative {key}: {job['name']}")
+        if (receipt["GT_reads"] != receipt["stress_reads"]
+                or receipt["stress_reads"] != receipt["cached_signed_stress_reads"]
+                or receipt["stress_reads"] != receipt["TRAIN_stress_reads"] + receipt["DEV_stress_reads"]):
+            raise ValueError(f"Cached GT stress accounting is inconsistent: {job['name']}")
+        # Invalid/budget-limited scientific outcomes still finish this fixed
+        # diagnostic; they cannot become accuracy successes or retry loops.
     elif "geobc.elastic_stress_readout" in command:
         from geobc.elastic_stress_readout import request_contract
         requested_plan = command[command.index("--plan") + 1]
