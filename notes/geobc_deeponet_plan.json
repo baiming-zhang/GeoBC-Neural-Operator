@@ -1,0 +1,221 @@
+{
+  "kind": "deeponet_screen",
+  "status": "frozen_root_released",
+  "training_rules_frozen": true,
+  "dia_rules_frozen": true,
+  "existing_split": "notes/geobc_split.json",
+  "prepared_data": "data/prepared_geobc_multiload",
+  "data_cache": "data/geobc_solver_selection",
+  "bc_cloud_cache": "data/geobc_geometry_bc_clouds",
+  "load_basis": "notes/geobc_load_basis_45.json",
+  "recipe": {
+    "modes": [
+      "deeponet",
+      "concat_mlp"
+    ],
+    "seed": 2026,
+    "cloud_seed": 2026,
+    "cloud_points": 1024,
+    "cloud_channels": 22,
+    "cloud_nonforce_slots": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "nonforce_slots": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "geometry_dim": 32,
+    "encoder_width": 64,
+    "train_loads": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "steps": 480,
+    "passes": 4,
+    "eval_steps": [
+      0,
+      120,
+      240,
+      480
+    ],
+    "microbatch_nodes": 32768,
+    "eval_batch_size": 32768,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "fused": true,
+    "stress_transform": "asinh",
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "grid_resolution": 64,
+    "training_readout_keys": [
+      "101_479/ver",
+      "107_320/hor",
+      "10_58/tor"
+    ],
+    "loss": "Unchanged TRAIN-only signed4 encoding, all original nodes MSE/4. Each chunk weighted by its node count over N; one optimizer update per whole case.",
+    "case_order": "Existing PythonRandom2026 shuffled120 case keys for four passes;480 stored updates; each known3 case exposed four times, independent of model RNG.",
+    "geometry_input": "One shared1024 original cloud-index replay per canonical CAD: xyz3+nonforce19 features=22; current force/moment slots7:13 excluded; same BC22 encoder64/global32 for both arms.",
+    "query_input": "Original xyz plus nonforce19 local features and explicit global32; u basis independent of actual force6. Stress branch sees actual normalized load6 separately.",
+    "u_units": "Zero-centered V[k,j]=B[k,j]/existing std_j; alpha from normalized load6 verified basis; encoded_u=sum(alpha*V)-mean/std once; physical_u=std*sum(alpha*V).",
+    "stress": "Independent head with actual normalized force/moment6; unchanged signed scalar asinh encoding, no stress superposition claim.",
+    "architecture_comparison": "DeepONet branch/trunk contraction vs local concatMLP with common BC22/cloud/scaler/factorization/protocol; heads/counts differ and are disclosed. Common encoder constructor/seed only; no whole-model equal-init/equal-capacity claim.",
+    "gradient": "BC cloud encoded once per case. Detach global32 to a leaf, accumulate exact node-weighted head/query gradients for all chunks, then context.backward(leaf.grad) once through original encoder graph. No cloud recoding per chunk or cross-step context reuse.",
+    "selection": "Fixed480 primary; common knownVAL15 score0.5*(case-mean U relativeL2+signedstress relativeL2), validation-best secondary; no training-best or dia-based selection.",
+    "timing": "Primary train_seconds begins before ordinary selection load_case+BCcloud read/H2D and ends after complete allnode update/Adam/sync. New45CAD BCcloud preparation cost/coverage retained separately and is not hidden in model train cost. Inference timed after normal input/H2D; evaluationwall includes input loads. Overlapping cost fields are not summed. Raw runwall includes model startup/evaluation/checkpoint IO.",
+    "precision": "Same float32/TF32/high/noautocast as existing screen; physical scalerdecode/metrics float64."
+  },
+  "numerical_tolerances": {
+    "alpha_atol": 2E-07,
+    "alpha_rtol": 1E-06,
+    "normalized_span_atol": 1E-07,
+    "affine_atol": 3E-06,
+    "affine_rtol": 2E-06,
+    "force_atol_N": 0.01,
+    "moment_atol_Nmm": 0.1,
+    "physical_load_rtol": 1E-06
+  },
+  "access": {
+    "train": "Existing40TRAIN known3 only",
+    "validation": "Existing5DEV known3 plus fixedTRAIN3 readout",
+    "old_final": false,
+    "sealed_new_test": false,
+    "warm_start": false,
+    "scaler_fit": false,
+    "author": "Source plus one AST/metadata check; no scientific arrays/models/weights/GPU",
+    "actual": "Sole root serial queue after final source review and recipefreeze"
+  },
+  "checkpoint": "Atomic last/best/step0,120,240,480; last first update/every30. Full model/Adam/Python/NumPy/Torch/CUDA RNG/order/nextposition/case-node exposure/passcost/history restore; no oldsolver warm start.",
+  "first_actual_check": "Only first complete realcase training update: BC22/global/output shape, alpha and forceN/momentNmm units, reused first8node basis affine offset once, finite positive active encoder/querytrunk/basis/stress gradients. Onehot inactive basis rows may have zero gradient; no toy, pre-scan or extra forward.",
+  "development_dia": {
+    "CADs": [
+      "102_249",
+      "102_38",
+      "107_91",
+      "114_202",
+      "116_440"
+    ],
+    "load": "dia",
+    "modes": [
+      "deeponet",
+      "concat_mlp"
+    ],
+    "checkpoint_step": 480,
+    "seed": 2026,
+    "all_nodes": true,
+    "checkpoint_selection": "Both completed fresh endpoint480 last.pt only, strict same config/order/exposures; no dia choice of checkpoint/seed/budget",
+    "known3": "Reuse completed endpoint summaries; no repeated known3 prediction",
+    "input_check": "Original node order/xyz and nonforce19 exact to canonical ver input; same BC22 cloud/mask for both routes; finite constant normalized load6 in existing rank3 span",
+    "label_access": "For each DEVdia case, both full-node predictions and physical decode finish before opening displacement/stress members; input loads access only xyz/features first",
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "scope": "Previously explored DEV5/dia structural diagnostic, not unseen final generalization; oldfinal/newsealedtest untouched"
+  },
+  "runs": {
+    "deeponet": "runs/geobc_exploration/deeponet_bc_seed2026_480",
+    "concat_mlp": "runs/geobc_exploration/concat_mlp_bc_seed2026_480"
+  },
+  "queue_jobs": [
+    {
+      "name": "geometry_bc_cloud_cache45",
+      "kind": "deeponet_bc_cloud_input",
+      "module": "geobc.deeponet_data",
+      "plan": "notes/geobc_deeponet_plan.json",
+      "output": "data/geobc_geometry_bc_clouds",
+      "status": "root_released"
+    },
+    {
+      "name": "deeponet_bc_480",
+      "kind": "deeponet_screen",
+      "module": "geobc.deeponet_train",
+      "mode": "deeponet",
+      "plan": "notes/geobc_deeponet_plan.json",
+      "output": "runs/geobc_exploration/deeponet_bc_seed2026_480",
+      "status": "root_released"
+    },
+    {
+      "name": "concat_mlp_bc_480",
+      "kind": "deeponet_screen",
+      "module": "geobc.deeponet_train",
+      "mode": "concat_mlp",
+      "plan": "notes/geobc_deeponet_plan.json",
+      "output": "runs/geobc_exploration/concat_mlp_bc_seed2026_480",
+      "status": "root_released"
+    },
+    {
+      "name": "deeponet_bc_development_dia480",
+      "kind": "deeponet_development_dia_eval",
+      "module": "geobc.deeponet_train",
+      "flag": "--evaluate-dia",
+      "plan": "notes/geobc_deeponet_plan.json",
+      "output": "runs/geobc_exploration/deeponet_bc_development_dia480",
+      "status": "root_released"
+    }
+  ],
+  "limitations": [
+    "BCcloud uses exact original random1024 indices and may miss rare boundary roles; perCAD coverage disclosed, no oversampling/repair",
+    "Known3 and explored DEVdia do not establish final-CAD generalization or validate all Field GT superposition",
+    "Common input/factorization/update count does not imply architecture capacity or actualtime matching",
+    "Pointwise scalar stress head is not a tensor/PDE/strictboundary solver"
+  ],
+  "source_sha256": {
+    "geobc/deeponet_train.py": "ee054321bfa5a7fee06cbee66e69bc4db77476dacd4a84898b9131ddcc14240f",
+    "geobc/deeponet_field.py": "81d1a4cd53675cbb7238421a59c74144b2e0b27a6a865661d7b3ed40a4958d46",
+    "geobc/deeponet_data.py": "768057394b8a545201d7e37405f3aedfd4504689726efc54ff04ab210f4a43e6",
+    "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/fno_response_train.py": "e7ad1c68f25f8dcb948713bfcf79abddedbc3401eb5d33bbff63b3e5499e7b49",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f"
+  },
+  "root_release": {
+    "released_at_utc": "2026-10-09T18:30:45.0094680Z",
+    "field_math_and_API_source_review": "Passed: BC22 common encoder, fixedrank64 branch/trunk versus concatMLP, normalized rank3 alpha, displacement mean applied once, independently load-conditioned signedstress",
+    "whole_case_gradient_source_review": "Passed: encode geometry once; exact N-weighted query loss accumulates leaf gradients; encoder backward once; Adam once; full RNG/order/Adam restoration",
+    "validation": "One author AST/metadata each; no duplicate models/toy/prefit audit; first formal fullcase actual checks retained",
+    "scope": "TRAIN40 known3 / previously explored DEV5 known3+dia; oldfinal and newsealed test closed",
+    "old_coordinator_pid": 272,
+    "old_coordinator_gone": true,
+    "strict_capacity_matching": false
+  }
+}

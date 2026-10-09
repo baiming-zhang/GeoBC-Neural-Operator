@@ -1,6 +1,6 @@
 # GeoBC 求解器：当前判断
 
-**尚未选定求解器。已统一筛选七类方法，当前以FNO为主候选、MLP为低成本对照；Hash专项小幅优化已暂停。**
+**尚未选定求解器。已完成八类结构探索，当前以FNO为主候选、MLP为低成本对照；Hash专项小幅优化已暂停。**
 
 目前FNO的应力预测较好且两个seed较稳，MLP保留为低成本位移对照。一次冻结新CAD评估的全节点误差如下（两seed范围）：
 
@@ -17,6 +17,8 @@ MLP一个seed的位移优于FNO；组合载荷dia两者均明显退化。Hash小
 
 最新结构对照已完成（两臂训练合计约5分钟）：开发集组合载荷的U从普通FNO的55.9%降至约29.8%，S从70.4%升至73.8–74.6%。两种响应结构几乎相同，强制主干与载荷无关没有额外收益；不能把位移改善单独归因于这个约束。
 
-**下一步：**设计几何／BC感知的DeepONet与共享输入MLP对照，检验不同场表示。新test5标签继续封存，旧final不用于调参。
+几何／BC DeepONet与共享输入MLP已完成（总队列3分钟）：known3位移约68%、应力95–97%；组合载荷位移45–48%、应力85–88%。当前低秩点式结构没有选型优势，四pass结果也不能否定整个家族。
 
-详细证据：[七类比较](gino_screen/BRIEF.md) · [固定成本确认](solver_confirmation/BRIEF.md) · [冻结评估](solver_final_eval/BRIEF.md) · [连续能力](solver_capability/BRIEF.md) · [响应结构结果](fno_response/BRIEF.md) · [后续结构](../notes/solver_next_structures.md)。
+**下一步：**设计真实网格上的多尺度求解器，检验局部交互与远程边界传播是否值得保留。新test5标签继续封存，旧final不用于调参。
+
+详细证据：[七类比较](gino_screen/BRIEF.md) · [固定成本确认](solver_confirmation/BRIEF.md) · [冻结评估](solver_final_eval/BRIEF.md) · [连续能力](solver_capability/BRIEF.md) · [响应结构结果](fno_response/BRIEF.md) · [DeepONet结果](deeponet_screen/BRIEF.md) · [后续结构](../notes/solver_next_structures.md)。

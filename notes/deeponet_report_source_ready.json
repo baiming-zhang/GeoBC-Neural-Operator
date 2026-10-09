@@ -1,0 +1,132 @@
+{
+  "status": "source_ready_one_final_AST_only",
+  "created_at_utc": "2026-10-10T02:33:44.692852+08:00",
+  "source": "tools/summarize_deeponet_screen.py",
+  "source_sha256": "a1b8922b2a2f8ec01d6ff64cb9cf68a769e55e1e10894ba430b8a1007eb60475",
+  "sources": {
+    "tools/summarize_deeponet_screen.py": {
+      "sha256": "a1b8922b2a2f8ec01d6ff64cb9cf68a769e55e1e10894ba430b8a1007eb60475",
+      "bytes": 22353
+    },
+    "tools/summarize_geobc_exploration.py": {
+      "sha256": "d792354c74ee8856a0f21e4b4482b642f0068f77970bd55ca5a9cc571339825e",
+      "bytes": 100949
+    }
+  },
+  "frozen_reporting_dependency": {
+    "path": "tools/summarize_fno_response.py",
+    "sha256": "1800ffbd73cb168ac98c185847944b16f26e248db9b3507b7a62a8d90d965c2e",
+    "purpose": "Standard-library JSON/path/metric/format/write helpers; no solver/data imports"
+  },
+  "author_check": {
+    "passed": true,
+    "kind": "one_final_AST",
+    "elapsed_seconds": 0.02496639988385141,
+    "reporter_imported": false,
+    "reporter_executed": false,
+    "scientific_imports": 0,
+    "arrays_read": 0,
+    "weight_files_read": 0,
+    "models_constructed": 0,
+    "GPU_work": false,
+    "reports_generated": 0,
+    "plots_generated": 0
+  },
+  "API": {
+    "command": "python tools/summarize_deeponet_screen.py",
+    "flags": [
+      "--plan",
+      "--dia-run",
+      "--output",
+      "--no-plot",
+      "--check"
+    ],
+    "default_plan": "notes/geobc_deeponet_plan.json",
+    "default_dia_run": "runs/geobc_exploration/deeponet_bc_development_dia480",
+    "default_output": "results/deeponet_screen",
+    "outputs": [
+      "BRIEF.md",
+      "metrics.json",
+      "comparison.png"
+    ],
+    "runs": [
+      "runs/geobc_exploration/deeponet_bc_seed2026_480",
+      "runs/geobc_exploration/concat_mlp_bc_seed2026_480"
+    ]
+  },
+  "result_schema": {
+    "top_keys": [
+      "status",
+      "runs",
+      "pair",
+      "development_dia",
+      "BC_cloud_input",
+      "historical480_context",
+      "scope",
+      "figure"
+    ],
+    "runs": [
+      "deeponet",
+      "concat_mlp"
+    ],
+    "endpoint": 480,
+    "known_cases": 15,
+    "dia_cases": 5,
+    "data_kind": "deeponet_bc_cloud_input",
+    "training_kind": "deeponet_screen",
+    "eval_kind": "deeponet_development_dia_eval",
+    "first_real_check": "first_actual_check.{gradient,units_alpha_query,geometry_encodes,original_context_backwards,complete_nodes}",
+    "input_receipt": "45CAD real original index/zero coordinate error/all7role coverage/zero target reads; no arrays opened by reporter",
+    "pending_values": "No provisional metrics/params/zero placeholders; incomplete source has explicit status",
+    "timing": "Actual per-arm train/wall/inference and overlapping BC-read timers retained; one shared45CAD preparation record, do not double add"
+  },
+  "historical_scope": {
+    "completed_fixed480_only": [
+      "FNO force-free u9",
+      "FNO retained-load u9",
+      "FNO direct4",
+      "MLP direct4"
+    ],
+    "not_matched": true,
+    "old_final_or_600second_confirmation_or_sealed_test_read": false
+  },
+  "global_narrow_changes": {
+    "metadata_kinds_added": [
+      "deeponet_bc_cloud_input",
+      "deeponet_screen",
+      "deeponet_development_dia_eval"
+    ],
+    "cache_export": "manifest/config/status small JSON only, no BC22 cloud or indices NPY",
+    "screen_export": "summary/config/status, metrics_best/latest/jsonl and actual first checks if present",
+    "source_ready_export": [
+      "deeponet_field_source_ready.json",
+      "deeponet_data_source_ready.json",
+      "deeponet_train_source_ready.json",
+      "deeponet_report_source_ready.json"
+    ],
+    "brief_link": "Only after completed new reporter metrics",
+    "historical_science_text_or_figures_changed": false
+  },
+  "limitations": [
+    "Only common encoder constructor/seed declaration; no full-head init or capacity equality",
+    "Single seed early four-pass screen, not statistical significance or engineering qualification",
+    "Shared signed scalar stress nonlinear head; no scalar-stress superposition",
+    "No arbitrary offnode/continuous/strictBC guarantee",
+    "Existing DEVdia previously explored, no blind-final claim"
+  ],
+  "actual_export_and_visual_QA": "Reserved to parent after formal stages completed",
+  "root_visual_fix": {
+    "at_utc": "2026-10-09T18:36:25.3412522Z",
+    "reason": "Actual rendered legends covered stress labels at either top corner; placed both legends below axes and exported tight bounds",
+    "author_AST_source_sha256": "6756877d46383f7c0dd8dde664d662fa813bd236c9c68b431019c057df34dd5c",
+    "current_source_sha256": "a1b8922b2a2f8ec01d6ff64cb9cf68a769e55e1e10894ba430b8a1007eb60475",
+    "scientific_metrics_changed": false,
+    "verification": "Formal CPU JSON report regeneration and visual inspection only; no model or arrays/GPU rerun"
+  },
+  "root_global_export_change": {
+    "previous_source_sha256": "54ee43cc83a76e442d3f5f103df7cc5b70e5b3515c1fd3cf3ec6a8b9ea92c906",
+    "change": "Added preserve-existing-plots CLI option so new JSON receipts export without regenerating unchanged historical diagnosis",
+    "science_changed": false,
+    "verification": "Formal CPU export execution, no model/arrays/GPU check"
+  }
+}

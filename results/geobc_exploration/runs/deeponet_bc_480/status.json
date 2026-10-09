@@ -1,0 +1,38 @@
+{
+  "kind": "deeponet_screen",
+  "mode": "deeponet",
+  "step": 480,
+  "total_steps": 480,
+  "evaluated_steps": [
+    0,
+    120,
+    240,
+    480
+  ],
+  "started_at_utc": "2026-10-09T18:31:43.354298+00:00",
+  "phase": "completed",
+  "updated_at_utc": "2026-10-09T18:32:53.641059+00:00",
+  "elapsed_seconds": 64.38655809899998,
+  "costs": {
+    "train_seconds": 52.29256356399969,
+    "inference_seconds": 0.9403236589998869,
+    "evaluation_seconds": 7.999237683999979,
+    "bc_cloud_read_H2D_seconds": 3.5643974270003866,
+    "train_case_exposures": 480,
+    "train_node_exposures": 104319540,
+    "inference_case_exposures": 72,
+    "inference_node_exposures": 13785956,
+    "train_seconds_definition": "Begin before normal selection load_case + BC22 cloud read/H2D; complete all-node chunk loss/backward, one BC encoder backward, Adam/sync",
+    "shared_bc_cloud_preparation_seconds": 11.81277648599999,
+    "shared_bc_cloud_preparation_policy": "One common45CAD preparation job; not added to each arm train_seconds or double-counted across arms"
+  },
+  "eta_seconds": 0.0,
+  "estimated_completion_utc": "2026-10-09T18:32:53.641068+00:00",
+  "best_step": 480,
+  "memory": {
+    "peak_allocated_bytes": 219425792,
+    "peak_reserved_bytes": 350224384
+  },
+  "case": "107_186/ver",
+  "training_loss": 0.38005021680146456
+}

@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_deeponet_design",
+  "stage": "solver_multiscale_mesh_design",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,11 +21,114 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "brief_action": "响应结构DEV组合载荷位移明显改善，应力略退；载荷清零无额外收益。下一步设计几何/BC DeepONet与共享输入MLP，继续跨结构筛选。",
-    "scope": "Completed paired response screen and DEV5 dia; force-free versus load-dependent pair has little difference, both improve dia U versus historical direct4 with stress regression. Prefer an affordable genuinely different geometry/BC factorized-field candidate with a shared-input pointwise control, not Hash/FNO micro-tuning. New test remains sealed.",
-    "stage": "solver_deeponet_design"
+    "brief_action": "DeepONet与共享BC输入MLP初筛均未超过FNO响应结构；准备真实多尺度mesh operator，继续跨结构选型，不做Hash局部优化。",
+    "scope": "Completed new4-stage DeepONet pair+DEVdia; lowrank pointwise route has no present screening advantage. Propose a genuine multiscale allnode mesh solver with local interaction and learned coarse-to-fine propagation. Do not infer missing topology is proven cause or open oldfinal/newsealed test.",
+    "stage": "solver_multiscale_mesh_design"
   },
-  "jobs": [],
+  "jobs": [
+    {
+      "name": "geometry_bc_cloud_cache45",
+      "kind": "deeponet_bc_cloud_input",
+      "stage": "solver_deeponet_screen",
+      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.deeponet_data",
+        "--plan",
+        "notes/geobc_deeponet_plan.json"
+      ],
+      "requires": [
+        "notes/geobc_deeponet_plan.json",
+        "notes/deeponet_field_source_ready.json",
+        "notes/deeponet_data_source_ready.json",
+        "notes/deeponet_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json"
+      ],
+      "output": "data/geobc_geometry_bc_clouds"
+    },
+    {
+      "name": "deeponet_bc_480",
+      "kind": "deeponet_screen",
+      "stage": "solver_deeponet_screen",
+      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.deeponet_train",
+        "--plan",
+        "notes/geobc_deeponet_plan.json",
+        "--mode",
+        "deeponet",
+        "--output",
+        "runs/geobc_exploration/deeponet_bc_seed2026_480"
+      ],
+      "requires": [
+        "notes/geobc_deeponet_plan.json",
+        "notes/deeponet_field_source_ready.json",
+        "notes/deeponet_data_source_ready.json",
+        "notes/deeponet_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_geometry_bc_clouds/manifest.json"
+      ],
+      "output": "runs/geobc_exploration/deeponet_bc_seed2026_480"
+    },
+    {
+      "name": "concat_mlp_bc_480",
+      "kind": "deeponet_screen",
+      "stage": "solver_deeponet_screen",
+      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.deeponet_train",
+        "--plan",
+        "notes/geobc_deeponet_plan.json",
+        "--mode",
+        "concat_mlp",
+        "--output",
+        "runs/geobc_exploration/concat_mlp_bc_seed2026_480"
+      ],
+      "requires": [
+        "notes/geobc_deeponet_plan.json",
+        "notes/deeponet_field_source_ready.json",
+        "notes/deeponet_data_source_ready.json",
+        "notes/deeponet_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_geometry_bc_clouds/manifest.json"
+      ],
+      "output": "runs/geobc_exploration/concat_mlp_bc_seed2026_480"
+    },
+    {
+      "name": "deeponet_bc_development_dia480",
+      "kind": "deeponet_development_dia_eval",
+      "stage": "solver_deeponet_screen",
+      "hypothesis": "Geometry/BC DeepONet branch-trunk contraction versus common-input concatMLP, fixed480 known3 and priorDEV5 dia diagnostic",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.deeponet_train",
+        "--plan",
+        "notes/geobc_deeponet_plan.json",
+        "--evaluate-dia",
+        "--output",
+        "runs/geobc_exploration/deeponet_bc_development_dia480"
+      ],
+      "requires": [
+        "notes/geobc_deeponet_plan.json",
+        "notes/deeponet_field_source_ready.json",
+        "notes/deeponet_data_source_ready.json",
+        "notes/deeponet_train_source_ready.json",
+        "data/geobc_solver_selection/manifest.json",
+        "data/geobc_geometry_bc_clouds/manifest.json",
+        "runs/geobc_exploration/deeponet_bc_seed2026_480/summary.json",
+        "runs/geobc_exploration/deeponet_bc_seed2026_480/last.pt",
+        "runs/geobc_exploration/concat_mlp_bc_seed2026_480/summary.json",
+        "runs/geobc_exploration/concat_mlp_bc_seed2026_480/last.pt"
+      ],
+      "output": "runs/geobc_exploration/deeponet_bc_development_dia480"
+    }
+  ],
   "historical_jobs": [
     {
       "name": "hash50_unseen_geometry_pilot",
@@ -3147,21 +3250,29 @@
     }
   },
   "active_design_preparation": {
+    "status": "completed_deeponet_stage_next_multiscale_design",
     "continue_hash_microoptimization": false,
-    "proposal": "notes/fno_response_basis_candidate_design.md",
     "newtest_labels_sealed": true,
-    "gino_result": "results/gino_screen/BRIEF.md",
-    "status": "completed_response_suite_next_architecture_design",
-    "field_source": "geobc/fno_response_field.py",
-    "train_source": "geobc/fno_response_train.py",
-    "evaluation_source": "geobc/fno_response_eval.py",
-    "evaluation_scope": "Existing DEV5 dia only, fixed480 endpoints for two fresh matched response arms and historical direct4 FNO. No oldfinal/newsealedtest. Freeze source/checkpoint rules before dia access.",
-    "root_authorized_at_utc": "2026-10-09T17:40:35.4495018Z",
-    "field_accepted_sha256": "9e26621699f0ef781e04056f959f98c1b9196d8212226817f4b66ecf8dc5f1e3",
-    "field_review": "Root read final source once; mask, rank3 physical load mapping, one affine mean offset, independent signed-stress branch and identical paired parameter creation accepted. Actual full-node runtime checks remain in first formal training step.",
-    "trainer_accepted_sha256": "e7ad1c68f25f8dcb948713bfcf79abddedbc3401eb5d33bbff63b3e5499e7b49",
-    "evaluator_accepted_sha256": "3b4046963a5ca5d3ee1c3bc9771dbba22e5078ab08d5c935233ac6d0c1ee7156",
-    "next_proposal": "notes/solver_next_structures.md"
+    "proposal": "notes/solver_next_structures.md",
+    "field_source": "geobc/deeponet_field.py",
+    "data_source": "geobc/deeponet_data.py",
+    "train_source": "geobc/deeponet_train.py",
+    "training_plan": "notes/geobc_deeponet_plan.json",
+    "response_result": "results/fno_response/BRIEF.md",
+    "source_only_until_root_freeze": true,
+    "root_authorized_at_utc": "2026-10-09T18:21:46.2682965Z",
+    "mode_pair": [
+      "deeponet",
+      "concat_mlp"
+    ],
+    "geometry_cloud": "Same old1024 point identities, exact original node indices then xyz+nonforce19; no nearest copying/resampling",
+    "common_u_structure": "force-independent nine physical basis responses with actual rank3 alpha and affine mean offset once",
+    "common_stress": "Independent normalized actual six-load conditioned signed scalar branch",
+    "architecture": "Fixedrank64 branch-times-trunk versus common-input concatenated point MLP; differing head parameters and initialization explicitly reported",
+    "dataset": "Same TRAIN40/DEV5 known3 and already explored DEV5 dia fixed endpoints; oldfinal and newsealedtest remain closed",
+    "publisher_verified_commit": "a39bf46b8eb97a09b30e1c310256d9d3c6cab01c",
+    "released_at_utc": "2026-10-09T18:30:45.0399862Z",
+    "next_design_note": "notes/geobc_next_solver_decision.md"
   },
   "stage_transitions": [
     {

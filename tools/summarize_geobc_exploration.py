@@ -197,7 +197,7 @@ def plan_next_text(plan,summaries,*,compact=False):
         if stage.get('after'):text+=f" 完成后：{stage['after']}。"
     return text
 
-def main():
+def main(*, preserve_existing_plots=False):
     plan=json.loads((ROOT/'notes/geobc_exploration_plan.json').read_text())
     dest=ROOT/'results/geobc_exploration'
     dest.mkdir(parents=True,exist_ok=True)
@@ -205,11 +205,11 @@ def main():
     checkpoints={}
     observed_stages={}
     observed_receipts={}
-    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','gino_training_screen','sealed_test_input_acquisition','fno_response_screen','fno_response_eval'}
+    metadata_kinds={'solver_continuous_capability','gino_radius_input_pilot','gino_native_resource','gino_training_screen','sealed_test_input_acquisition','fno_response_screen','fno_response_eval','deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval'}
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
-        path=source/('manifest.json' if job.get('kind')=='solver_final_input_cache' else 'summary.json')
+        path=source/('manifest.json' if job.get('kind') in ('solver_final_input_cache','deeponet_bc_cloud_input') else 'summary.json')
         if not path.exists(): continue
         summary=json.loads(path.read_text())
         completed=summary.get('status')=='completed'
@@ -232,6 +232,8 @@ def main():
         if job.get('kind') in metadata_kinds:filenames=('summary.json','config.json','status.json')
         if job.get('kind')=='gino_training_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json')
         if job.get('kind')=='fno_response_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
+        if job.get('kind')=='deeponet_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
+        if job.get('kind')=='deeponet_bc_cloud_input':filenames+=('manifest.json',)
         if job.get('kind')=='solver_final_input_cache':filenames+=('manifest.json',)
         if job.get('kind') in ('solver_screen','solver_confirmation'):filenames+=('first_update_gradient_check.json',)
         for filename in filenames:
@@ -783,6 +785,17 @@ def main():
     fno_response_metrics=ROOT/'results/fno_response/metrics.json'
     if fno_response_metrics.is_file() and json.loads(fno_response_metrics.read_text(encoding='utf8')).get('status')=='completed':
         brief += ['', '固定480的FNO响应基结构配对与DEV组合载荷结果见[FNO结构简报](../fno_response/BRIEF.md)；历史direct4仅上下文，未据此改旧final或新sealed test。']
+    deeponet_metrics=ROOT/'results/deeponet_screen/metrics.json'
+    if deeponet_metrics.is_file() and json.loads(deeponet_metrics.read_text(encoding='utf8')).get('status')=='completed':
+        brief += ['', '共同BC22输入、固定480的DeepONet/concat-MLP与DEV组合载荷结果见[结构初筛简报](../deeponet_screen/BRIEF.md)；heads/容量不同，单seed早期结果不是工程资格或full-model初始化匹配。']
+    deeponet_ready_exports=[]
+    if any(job.get('kind') in ('deeponet_bc_cloud_input','deeponet_screen','deeponet_development_dia_eval') for job in jobs):
+        for ready_name in ('deeponet_field_source_ready.json','deeponet_data_source_ready.json','deeponet_train_source_ready.json','deeponet_report_source_ready.json'):
+            ready_source=ROOT/'notes'/ready_name
+            if ready_source.is_file():
+                ready_target=dest/'source_ready'/ready_name;ready_target.parent.mkdir(parents=True,exist_ok=True)
+                shutil.copyfile(ready_source,ready_target)
+                deeponet_ready_exports.append(str(ready_target.relative_to(dest)).replace('\\','/'))
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
@@ -814,11 +827,15 @@ def main():
                                    'gino_native_resource_receipt':observed_receipts.get('gino_native_resource'),
                                    'gino_training_screen_receipt':observed_receipts.get('gino_training_screen'),
                                    'sealed_test_input_acquisition_receipt':observed_receipts.get('sealed_test_input_acquisition'),
+                                   'deeponet_bc_cloud_input_receipt':observed_receipts.get('deeponet_bc_cloud_input'),
+                                   'deeponet_screen_receipt':observed_receipts.get('deeponet_screen'),
+                                   'deeponet_development_dia_eval_receipt':observed_receipts.get('deeponet_development_dia_eval'),
+                                   'deeponet_source_ready_exports':deeponet_ready_exports,
                                    'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
                                    'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',
                                    'updated_at_utc':utc_now()})
-    if geo and load and comparisons:
+    if geo and load and comparisons and not (preserve_existing_plots and (dest/'diagnosis.png').is_file()):
         import matplotlib
         matplotlib.use('Agg')
         import matplotlib.pyplot as plt
@@ -844,4 +861,8 @@ def main():
         plt.close(fig)
     print(json.dumps({'completed':len(summaries),'planned':len(jobs),**counts,'research_status':'ongoing','report':str(dest/'REPORT.md')}))
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser(description='Export small GeoBC receipts and reports')
+    parser.add_argument('--preserve-existing-plots',action='store_true',help='Reuse unchanged historical diagnosis figure')
+    main(preserve_existing_plots=parser.parse_args().preserve_existing_plots)

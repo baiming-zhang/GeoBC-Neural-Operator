@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "step": 1,
+  "case": "107_150/tor",
+  "complete_nodes": 325387,
+  "chunk_nodes": 32768,
+  "geometry_encodes": 1,
+  "original_context_backwards": 1,
+  "gradient": {
+    "passed": true,
+    "all_present_gradients_finite": true,
+    "trainable_tensors": 22,
+    "gradient_tensors": 22,
+    "missing_gradient_names": [],
+    "allowed_missing": [],
+    "allowed_missing_reason": null,
+    "L2_gradient_norms": {
+      "total": 0.11438500881195068,
+      "encoder": 0.008293748833239079,
+      "solver": 0.11408393830060959
+    },
+    "source": "first actual full-case loss backward; no probe or warmup",
+    "component_L2_gradient_norms": {
+      "encoder": 0.008293748590934277,
+      "query_trunk": 0.03447979889480037,
+      "u_basis_head": 0.08907611654211185,
+      "stress_head": 0.06238375947252328
+    },
+    "context_leaf_L2_gradient_norm": 0.001132240635342896,
+    "context_policy": "Encode BC cloud once; node-weighted chunk gradients accumulate on leaf; original context.backward once",
+    "zero_row_policy": "Inactive one-hot displacement basis rows may have zero gradient"
+  },
+  "units_alpha_query": {
+    "passed": true,
+    "case": "107_150/tor",
+    "witness_original_node_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "alpha": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "expected_alpha": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "basis_node_shape": [
+      32768,
+      9
+    ],
+    "force_reconstruction_residual_N": 0.0,
+    "moment_reconstruction_residual_Nmm": 0.006081294966861606,
+    "force_tolerance_N": 0.01,
+    "moment_tolerance_Nmm": 0.6649241939187049,
+    "affine_encoded_max_abs_error": 1.8507092691688598e-08,
+    "physical_affine_max_error_mm": 1.4101750886799658e-09,
+    "algebraic_zero_load_physical_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "extra_forward_calls": 0,
+    "scope": "First actual complete-case update, reused first chunk components; no synthetic or GT superposition test"
+  }
+}
