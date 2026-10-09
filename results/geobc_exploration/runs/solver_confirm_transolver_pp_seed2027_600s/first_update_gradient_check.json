@@ -1,0 +1,20 @@
+{
+  "step": 1,
+  "case": "107_320/hor",
+  "passed": true,
+  "all_present_gradients_finite": true,
+  "trainable_tensors": 373,
+  "gradient_tensors": 371,
+  "missing_gradient_names": [],
+  "allowed_missing": [
+    "solver.backbone.embedding.weight",
+    "solver.backbone.embedding.bias"
+  ],
+  "allowed_missing_reason": "Transolver++ condition=None; all 60 conditioning channels already enter the main input, so the separate conditional embedding is inactive",
+  "L2_gradient_norms": {
+    "total": 36.3748664855957,
+    "encoder": 4.068022727966309,
+    "solver": 36.14667510986328
+  },
+  "source": "first actual full-case loss backward; no probe or warmup"
+}

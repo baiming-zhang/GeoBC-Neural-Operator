@@ -1,0 +1,3224 @@
+{
+  "contract": {
+    "schema": "geobc_solver_final_eval_v1",
+    "plan": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/notes/geobc_solver_final_eval_plan.json",
+    "input_contract": {
+      "schema": "geobc_solver_final_input_v1",
+      "plan_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/notes/geobc_solver_final_eval_plan.json",
+      "final_rules_frozen": true,
+      "final_rules_sha256": "ec218d7647038086631dde0ae1e25a0ffef47fb03afa04465d9eff4183e116d1",
+      "routes": [
+        {
+          "route_id": "fno_seed2026_endpoint_primary",
+          "method": "fno",
+          "seed": 2026,
+          "checkpoint_role": "endpoint_primary",
+          "selected_step": 2880,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+          "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s",
+          "checkpoint_stat": {
+            "bytes": 170464827,
+            "mtime_ns": 1791557354819071400
+          },
+          "budget_origin": {
+            "phase": "confirmation",
+            "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+            "step": 2880
+          },
+          "budget": {
+            "mode": "total_training_seconds",
+            "requested_seconds": 600,
+            "parent_train_seconds": 99.78055045300016,
+            "incremental_train_seconds": 508.897330257999,
+            "total_train_seconds": 608.6778807109991,
+            "actual_seconds": 608.6778807109991,
+            "delta_seconds": 8.677880710999148,
+            "overshoot_seconds": 8.677880710999148,
+            "crossing_step": 2837,
+            "overshoot_updates": 43,
+            "complete_pass": true,
+            "max_steps": 12000
+          },
+          "expected_model_source_config": {
+            "method": "fno",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2026,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "in_channels": 61,
+              "out_channels": 4,
+              "width": 16,
+              "modes": 12,
+              "layers": 4,
+              "head_width": 128,
+              "padding": 0,
+              "checkpoint_blocks": true,
+              "layout": "B,C,X,Y,Z",
+              "xyz_channels": true,
+              "fft_norm": "backward",
+              "sources": {
+                "paper": "https://arxiv.org/abs/2010.08895v3",
+                "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+                "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+                "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+              },
+              "unknown_reference_details": [
+                "18 input channel definitions",
+                "padding",
+                "projection width",
+                "optimizer/scaling schedule"
+              ],
+              "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+              "resolution": 64
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 14160548,
+              "total": 14177284
+            },
+            "capabilities": {
+              "forward_points": false,
+              "forward_grid": true,
+              "pointwise_external_chunks": false,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "selected_checkpoint_costs": {
+            "train_seconds": 608.6778807109991,
+            "inference_seconds": 10.998252616999672,
+            "evaluation_seconds": 106.24536973500014,
+            "train_case_exposures": 2880,
+            "train_node_exposures": 625917240,
+            "inference_case_exposures": 432,
+            "inference_node_exposures": 82715736
+          },
+          "selected_validation_summary": {
+            "case_mean_u_relative_l2": 0.3627884176080105,
+            "worst_case_u_relative_l2": 0.7561329603783523,
+            "case_mean_stress_relative_l2": 0.5645220326029999,
+            "worst_case_stress_relative_l2": 0.7548419201687406,
+            "case_mean_stress_hotspot_relative_l2": 0.45580880226156384,
+            "selection_score": 0.4636552251055052
+          },
+          "selected_validation_score": 0.4636552251055052,
+          "endpoint_validation_summary": {
+            "case_mean_u_relative_l2": 0.3627884176080105,
+            "worst_case_u_relative_l2": 0.7561329603783523,
+            "case_mean_stress_relative_l2": 0.5645220326029999,
+            "worst_case_stress_relative_l2": 0.7548419201687406,
+            "case_mean_stress_hotspot_relative_l2": 0.45580880226156384,
+            "selection_score": 0.4636552251055052
+          },
+          "summary_sha256": "505ba9caab71a37a628b95e3027c9cd8522427d6c9576ae95a5a8030aebbf14f",
+          "config_sha256": "6d9bd673b21f621b4f573ce9edc5aec8cfd270953d34e7265e08d45f71da375a"
+        },
+        {
+          "route_id": "fno_seed2026_validation_best_secondary",
+          "method": "fno",
+          "seed": 2026,
+          "checkpoint_role": "validation_best_secondary",
+          "selected_step": 2640,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/best.pt",
+          "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s",
+          "checkpoint_stat": {
+            "bytes": 170457275,
+            "mtime_ns": 1791557288830591700
+          },
+          "budget_origin": {
+            "phase": "confirmation",
+            "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/best.pt",
+            "step": 2640
+          },
+          "budget": {
+            "mode": "total_training_seconds",
+            "requested_seconds": 600,
+            "parent_train_seconds": 99.78055045300016,
+            "incremental_train_seconds": 508.897330257999,
+            "total_train_seconds": 608.6778807109991,
+            "actual_seconds": 608.6778807109991,
+            "delta_seconds": 8.677880710999148,
+            "overshoot_seconds": 8.677880710999148,
+            "crossing_step": 2837,
+            "overshoot_updates": 43,
+            "complete_pass": true,
+            "max_steps": 12000
+          },
+          "expected_model_source_config": {
+            "method": "fno",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2026,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "in_channels": 61,
+              "out_channels": 4,
+              "width": 16,
+              "modes": 12,
+              "layers": 4,
+              "head_width": 128,
+              "padding": 0,
+              "checkpoint_blocks": true,
+              "layout": "B,C,X,Y,Z",
+              "xyz_channels": true,
+              "fft_norm": "backward",
+              "sources": {
+                "paper": "https://arxiv.org/abs/2010.08895v3",
+                "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+                "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+                "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+              },
+              "unknown_reference_details": [
+                "18 input channel definitions",
+                "padding",
+                "projection width",
+                "optimizer/scaling schedule"
+              ],
+              "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+              "resolution": 64
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 14160548,
+              "total": 14177284
+            },
+            "capabilities": {
+              "forward_points": false,
+              "forward_grid": true,
+              "pointwise_external_chunks": false,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "selected_checkpoint_costs": {
+            "train_seconds": 558.2064868139995,
+            "inference_seconds": 10.07537619499984,
+            "evaluation_seconds": 97.37540885300015,
+            "train_case_exposures": 2640,
+            "train_node_exposures": 573757470,
+            "inference_case_exposures": 396,
+            "inference_node_exposures": 75822758
+          },
+          "selected_validation_summary": {
+            "case_mean_u_relative_l2": 0.250721535384423,
+            "worst_case_u_relative_l2": 0.43301831926775114,
+            "case_mean_stress_relative_l2": 0.5543746358565849,
+            "worst_case_stress_relative_l2": 0.7360923151836345,
+            "case_mean_stress_hotspot_relative_l2": 0.4476225413274199,
+            "selection_score": 0.4025480856205039
+          },
+          "selected_validation_score": 0.4025480856205039,
+          "endpoint_validation_summary": {
+            "case_mean_u_relative_l2": 0.3627884176080105,
+            "worst_case_u_relative_l2": 0.7561329603783523,
+            "case_mean_stress_relative_l2": 0.5645220326029999,
+            "worst_case_stress_relative_l2": 0.7548419201687406,
+            "case_mean_stress_hotspot_relative_l2": 0.45580880226156384,
+            "selection_score": 0.4636552251055052
+          },
+          "summary_sha256": "505ba9caab71a37a628b95e3027c9cd8522427d6c9576ae95a5a8030aebbf14f",
+          "config_sha256": "6d9bd673b21f621b4f573ce9edc5aec8cfd270953d34e7265e08d45f71da375a"
+        },
+        {
+          "route_id": "mlp_seed2026_endpoint_primary",
+          "method": "mlp",
+          "seed": 2026,
+          "checkpoint_role": "endpoint_primary",
+          "selected_step": 7080,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/last.pt",
+          "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s",
+          "checkpoint_stat": {
+            "bytes": 3211949,
+            "mtime_ns": 1791558076232772100
+          },
+          "budget_origin": {
+            "phase": "confirmation",
+            "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/last.pt",
+            "step": 7080
+          },
+          "budget": {
+            "mode": "total_training_seconds",
+            "requested_seconds": 600,
+            "parent_train_seconds": 43.698551514,
+            "incremental_train_seconds": 560.5199380839956,
+            "total_train_seconds": 604.2184895979956,
+            "actual_seconds": 604.2184895979956,
+            "delta_seconds": 4.218489597995585,
+            "overshoot_seconds": 4.218489597995585,
+            "crossing_step": 7031,
+            "overshoot_updates": 49,
+            "complete_pass": true,
+            "max_steps": 12000
+          },
+          "expected_model_source_config": {
+            "method": "mlp",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2026,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "family": "plain_coordinate_BC_global_MLP",
+              "hidden_width": 256,
+              "hidden_layers": 4,
+              "activation": "ReLU",
+              "input_dim": 60,
+              "output_dim": 4,
+              "hash_encoding": false,
+              "backend": "torch"
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 214020,
+              "total": 230756
+            },
+            "capabilities": {
+              "forward_points": true,
+              "forward_grid": false,
+              "pointwise_external_chunks": true,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "selected_checkpoint_costs": {
+            "train_seconds": 604.2184895979956,
+            "inference_seconds": 3.3819160149985574,
+            "evaluation_seconds": 96.37422363700001,
+            "train_case_exposures": 7080,
+            "train_node_exposures": 1538713215,
+            "inference_case_exposures": 1062,
+            "inference_node_exposures": 203342851
+          },
+          "selected_validation_summary": {
+            "case_mean_u_relative_l2": 0.5169084246026078,
+            "worst_case_u_relative_l2": 1.2819758249587372,
+            "case_mean_stress_relative_l2": 0.7562170731387928,
+            "worst_case_stress_relative_l2": 0.9678971828364324,
+            "case_mean_stress_hotspot_relative_l2": 0.6907131454538936,
+            "selection_score": 0.6365627488707003
+          },
+          "selected_validation_score": 0.6365627488707003,
+          "endpoint_validation_summary": {
+            "case_mean_u_relative_l2": 0.5169084246026078,
+            "worst_case_u_relative_l2": 1.2819758249587372,
+            "case_mean_stress_relative_l2": 0.7562170731387928,
+            "worst_case_stress_relative_l2": 0.9678971828364324,
+            "case_mean_stress_hotspot_relative_l2": 0.6907131454538936,
+            "selection_score": 0.6365627488707003
+          },
+          "summary_sha256": "687aba6920906f54611a81de539d606fc348b25c7c4adb5b0f15359f539fde6e",
+          "config_sha256": "398a7dd978908ea433839bbd22f79adbc7b619e2ce2d0f37fdb0d4d52cdac907"
+        },
+        {
+          "route_id": "mlp_seed2026_validation_best_secondary",
+          "method": "mlp",
+          "seed": 2026,
+          "checkpoint_role": "validation_best_secondary",
+          "selected_step": 6480,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/best.pt",
+          "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s",
+          "checkpoint_stat": {
+            "bytes": 3193133,
+            "mtime_ns": 1791558011660619000
+          },
+          "budget_origin": {
+            "phase": "confirmation",
+            "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/best.pt",
+            "step": 6480
+          },
+          "budget": {
+            "mode": "total_training_seconds",
+            "requested_seconds": 600,
+            "parent_train_seconds": 43.698551514,
+            "incremental_train_seconds": 560.5199380839956,
+            "total_train_seconds": 604.2184895979956,
+            "actual_seconds": 604.2184895979956,
+            "delta_seconds": 4.218489597995585,
+            "overshoot_seconds": 4.218489597995585,
+            "crossing_step": 7031,
+            "overshoot_updates": 49,
+            "complete_pass": true,
+            "max_steps": 12000
+          },
+          "expected_model_source_config": {
+            "method": "mlp",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2026,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "family": "plain_coordinate_BC_global_MLP",
+              "hidden_width": 256,
+              "hidden_layers": 4,
+              "activation": "ReLU",
+              "input_dim": 60,
+              "output_dim": 4,
+              "hash_encoding": false,
+              "backend": "torch"
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 214020,
+              "total": 230756
+            },
+            "capabilities": {
+              "forward_points": true,
+              "forward_grid": false,
+              "pointwise_external_chunks": true,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "selected_checkpoint_costs": {
+            "train_seconds": 553.6983433319979,
+            "inference_seconds": 3.132379795998565,
+            "evaluation_seconds": 88.3211098559997,
+            "train_case_exposures": 6480,
+            "train_node_exposures": 1408313790,
+            "inference_case_exposures": 972,
+            "inference_node_exposures": 186110406
+          },
+          "selected_validation_summary": {
+            "case_mean_u_relative_l2": 0.4217353966910159,
+            "worst_case_u_relative_l2": 0.6096651049286601,
+            "case_mean_stress_relative_l2": 0.7263974864831303,
+            "worst_case_stress_relative_l2": 0.8208246010296412,
+            "case_mean_stress_hotspot_relative_l2": 0.6996448934064244,
+            "selection_score": 0.5740664415870731
+          },
+          "selected_validation_score": 0.5740664415870731,
+          "endpoint_validation_summary": {
+            "case_mean_u_relative_l2": 0.5169084246026078,
+            "worst_case_u_relative_l2": 1.2819758249587372,
+            "case_mean_stress_relative_l2": 0.7562170731387928,
+            "worst_case_stress_relative_l2": 0.9678971828364324,
+            "case_mean_stress_hotspot_relative_l2": 0.6907131454538936,
+            "selection_score": 0.6365627488707003
+          },
+          "summary_sha256": "687aba6920906f54611a81de539d606fc348b25c7c4adb5b0f15359f539fde6e",
+          "config_sha256": "398a7dd978908ea433839bbd22f79adbc7b619e2ce2d0f37fdb0d4d52cdac907"
+        },
+        {
+          "route_id": "fno_seed2027_endpoint_primary",
+          "method": "fno",
+          "seed": 2027,
+          "checkpoint_role": "endpoint_primary",
+          "selected_step": 2880,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/last.pt",
+          "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s",
+          "checkpoint_stat": {
+            "bytes": 170389755,
+            "mtime_ns": 1791559209160787100
+          },
+          "budget_origin": {
+            "phase": "confirmation",
+            "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/last.pt",
+            "step": 2880
+          },
+          "budget": {
+            "mode": "total_training_seconds",
+            "requested_seconds": 600,
+            "parent_train_seconds": 0.0,
+            "incremental_train_seconds": 601.5754067829937,
+            "total_train_seconds": 601.5754067829937,
+            "actual_seconds": 601.5754067829937,
+            "delta_seconds": 1.5754067829936957,
+            "overshoot_seconds": 1.5754067829936957,
+            "crossing_step": 2873,
+            "overshoot_updates": 7,
+            "complete_pass": true,
+            "max_steps": 12000
+          },
+          "expected_model_source_config": {
+            "method": "fno",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2027,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "in_channels": 61,
+              "out_channels": 4,
+              "width": 16,
+              "modes": 12,
+              "layers": 4,
+              "head_width": 128,
+              "padding": 0,
+              "checkpoint_blocks": true,
+              "layout": "B,C,X,Y,Z",
+              "xyz_channels": true,
+              "fft_norm": "backward",
+              "sources": {
+                "paper": "https://arxiv.org/abs/2010.08895v3",
+                "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+                "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+                "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+              },
+              "unknown_reference_details": [
+                "18 input channel definitions",
+                "padding",
+                "projection width",
+                "optimizer/scaling schedule"
+              ],
+              "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+              "resolution": 64
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 14160548,
+              "total": 14177284
+            },
+            "capabilities": {
+              "forward_points": false,
+              "forward_grid": true,
+              "pointwise_external_chunks": false,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "selected_checkpoint_costs": {
+            "train_seconds": 601.5754067829937,
+            "inference_seconds": 10.8375944170009,
+            "evaluation_seconds": 111.11184850500058,
+            "train_case_exposures": 2880,
+            "train_node_exposures": 625917240,
+            "inference_case_exposures": 450,
+            "inference_node_exposures": 86162225
+          },
+          "selected_validation_summary": {
+            "case_mean_u_relative_l2": 0.36223107120843484,
+            "worst_case_u_relative_l2": 0.7207178888013864,
+            "case_mean_stress_relative_l2": 0.5606817267361248,
+            "worst_case_stress_relative_l2": 0.7331576873256912,
+            "case_mean_stress_hotspot_relative_l2": 0.44168684652353557,
+            "selection_score": 0.46145639897227986
+          },
+          "selected_validation_score": 0.46145639897227986,
+          "endpoint_validation_summary": {
+            "case_mean_u_relative_l2": 0.36223107120843484,
+            "worst_case_u_relative_l2": 0.7207178888013864,
+            "case_mean_stress_relative_l2": 0.5606817267361248,
+            "worst_case_stress_relative_l2": 0.7331576873256912,
+            "case_mean_stress_hotspot_relative_l2": 0.44168684652353557,
+            "selection_score": 0.46145639897227986
+          },
+          "summary_sha256": "9da16460bcbc78200fe07a0dfe3e9911c074ca437f86ac4b66c826d83ceec5e1",
+          "config_sha256": "f06382a90a54419e7e7e763e754eef8f07c0fa098c7c2fc44041dadeb6be376b"
+        },
+        {
+          "route_id": "fno_seed2027_validation_best_secondary",
+          "method": "fno",
+          "seed": 2027,
+          "checkpoint_role": "validation_best_secondary",
+          "selected_step": 2640,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/best.pt",
+          "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s",
+          "checkpoint_stat": {
+            "bytes": 170382203,
+            "mtime_ns": 1791559142208022700
+          },
+          "budget_origin": {
+            "phase": "confirmation",
+            "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/best.pt",
+            "step": 2640
+          },
+          "budget": {
+            "mode": "total_training_seconds",
+            "requested_seconds": 600,
+            "parent_train_seconds": 0.0,
+            "incremental_train_seconds": 601.5754067829937,
+            "total_train_seconds": 601.5754067829937,
+            "actual_seconds": 601.5754067829937,
+            "delta_seconds": 1.5754067829936957,
+            "overshoot_seconds": 1.5754067829936957,
+            "crossing_step": 2873,
+            "overshoot_updates": 7,
+            "complete_pass": true,
+            "max_steps": 12000
+          },
+          "expected_model_source_config": {
+            "method": "fno",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2027,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "in_channels": 61,
+              "out_channels": 4,
+              "width": 16,
+              "modes": 12,
+              "layers": 4,
+              "head_width": 128,
+              "padding": 0,
+              "checkpoint_blocks": true,
+              "layout": "B,C,X,Y,Z",
+              "xyz_channels": true,
+              "fft_norm": "backward",
+              "sources": {
+                "paper": "https://arxiv.org/abs/2010.08895v3",
+                "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+                "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+                "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+              },
+              "unknown_reference_details": [
+                "18 input channel definitions",
+                "padding",
+                "projection width",
+                "optimizer/scaling schedule"
+              ],
+              "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+              "resolution": 64
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 14160548,
+              "total": 14177284
+            },
+            "capabilities": {
+              "forward_points": false,
+              "forward_grid": true,
+              "pointwise_external_chunks": false,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "selected_checkpoint_costs": {
+            "train_seconds": 550.3076184349977,
+            "inference_seconds": 9.959201475000327,
+            "evaluation_seconds": 102.17510621600059,
+            "train_case_exposures": 2640,
+            "train_node_exposures": 573757470,
+            "inference_case_exposures": 414,
+            "inference_node_exposures": 79269247
+          },
+          "selected_validation_summary": {
+            "case_mean_u_relative_l2": 0.26280128649944334,
+            "worst_case_u_relative_l2": 0.4557802198787786,
+            "case_mean_stress_relative_l2": 0.5505337644577495,
+            "worst_case_stress_relative_l2": 0.7242223490236671,
+            "case_mean_stress_hotspot_relative_l2": 0.43648570815461896,
+            "selection_score": 0.4066675254785964
+          },
+          "selected_validation_score": 0.4066675254785964,
+          "endpoint_validation_summary": {
+            "case_mean_u_relative_l2": 0.36223107120843484,
+            "worst_case_u_relative_l2": 0.7207178888013864,
+            "case_mean_stress_relative_l2": 0.5606817267361248,
+            "worst_case_stress_relative_l2": 0.7331576873256912,
+            "case_mean_stress_hotspot_relative_l2": 0.44168684652353557,
+            "selection_score": 0.46145639897227986
+          },
+          "summary_sha256": "9da16460bcbc78200fe07a0dfe3e9911c074ca437f86ac4b66c826d83ceec5e1",
+          "config_sha256": "f06382a90a54419e7e7e763e754eef8f07c0fa098c7c2fc44041dadeb6be376b"
+        },
+        {
+          "route_id": "mlp_seed2027_endpoint_primary",
+          "method": "mlp",
+          "seed": 2027,
+          "checkpoint_role": "endpoint_primary",
+          "selected_step": 7080,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/last.pt",
+          "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s",
+          "checkpoint_stat": {
+            "bytes": 3137517,
+            "mtime_ns": 1791559989776779600
+          },
+          "budget_origin": {
+            "phase": "confirmation",
+            "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/last.pt",
+            "step": 7080
+          },
+          "budget": {
+            "mode": "total_training_seconds",
+            "requested_seconds": 600,
+            "parent_train_seconds": 0.0,
+            "incremental_train_seconds": 607.661245224986,
+            "total_train_seconds": 607.661245224986,
+            "actual_seconds": 607.661245224986,
+            "delta_seconds": 7.6612452249860326,
+            "overshoot_seconds": 7.6612452249860326,
+            "crossing_step": 6989,
+            "overshoot_updates": 91,
+            "complete_pass": true,
+            "max_steps": 12000
+          },
+          "expected_model_source_config": {
+            "method": "mlp",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2027,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "family": "plain_coordinate_BC_global_MLP",
+              "hidden_width": 256,
+              "hidden_layers": 4,
+              "activation": "ReLU",
+              "input_dim": 60,
+              "output_dim": 4,
+              "hash_encoding": false,
+              "backend": "torch"
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 214020,
+              "total": 230756
+            },
+            "capabilities": {
+              "forward_points": true,
+              "forward_grid": false,
+              "pointwise_external_chunks": true,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "selected_checkpoint_costs": {
+            "train_seconds": 607.661245224986,
+            "inference_seconds": 3.2921985889993266,
+            "evaluation_seconds": 97.19536424700073,
+            "train_case_exposures": 7080,
+            "train_node_exposures": 1538713215,
+            "inference_case_exposures": 1080,
+            "inference_node_exposures": 206789340
+          },
+          "selected_validation_summary": {
+            "case_mean_u_relative_l2": 0.43010453171261814,
+            "worst_case_u_relative_l2": 0.6387090831486468,
+            "case_mean_stress_relative_l2": 0.7324411674393444,
+            "worst_case_stress_relative_l2": 0.8255837590336937,
+            "case_mean_stress_hotspot_relative_l2": 0.6857425994808849,
+            "selection_score": 0.5812728495759812
+          },
+          "selected_validation_score": 0.5812728495759812,
+          "endpoint_validation_summary": {
+            "case_mean_u_relative_l2": 0.43010453171261814,
+            "worst_case_u_relative_l2": 0.6387090831486468,
+            "case_mean_stress_relative_l2": 0.7324411674393444,
+            "worst_case_stress_relative_l2": 0.8255837590336937,
+            "case_mean_stress_hotspot_relative_l2": 0.6857425994808849,
+            "selection_score": 0.5812728495759812
+          },
+          "summary_sha256": "effd71bb7f9e0befd7dc10d702d1642400dcfdd7b46033e4d2346221b0772601",
+          "config_sha256": "cb9099726fc9647db07e350ab985ba18545d78c09cb703d335239e1764b4fea8"
+        },
+        {
+          "route_id": "mlp_seed2027_validation_best_secondary",
+          "method": "mlp",
+          "seed": 2027,
+          "checkpoint_role": "validation_best_secondary",
+          "selected_step": 6840,
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/best.pt",
+          "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s",
+          "checkpoint_stat": {
+            "bytes": 3129965,
+            "mtime_ns": 1791559963933521900
+          },
+          "budget_origin": {
+            "phase": "confirmation",
+            "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/best.pt",
+            "step": 6840
+          },
+          "budget": {
+            "mode": "total_training_seconds",
+            "requested_seconds": 600,
+            "parent_train_seconds": 0.0,
+            "incremental_train_seconds": 607.661245224986,
+            "total_train_seconds": 607.661245224986,
+            "actual_seconds": 607.661245224986,
+            "delta_seconds": 7.6612452249860326,
+            "overshoot_seconds": 7.6612452249860326,
+            "crossing_step": 6989,
+            "overshoot_updates": 91,
+            "complete_pass": true,
+            "max_steps": 12000
+          },
+          "expected_model_source_config": {
+            "method": "mlp",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2027,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "family": "plain_coordinate_BC_global_MLP",
+              "hidden_width": 256,
+              "hidden_layers": 4,
+              "activation": "ReLU",
+              "input_dim": 60,
+              "output_dim": 4,
+              "hash_encoding": false,
+              "backend": "torch"
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 214020,
+              "total": 230756
+            },
+            "capabilities": {
+              "forward_points": true,
+              "forward_grid": false,
+              "pointwise_external_chunks": true,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "selected_checkpoint_costs": {
+            "train_seconds": 587.445381278987,
+            "inference_seconds": 3.192356504000145,
+            "evaluation_seconds": 93.96557091900058,
+            "train_case_exposures": 6840,
+            "train_node_exposures": 1486553445,
+            "inference_case_exposures": 1044,
+            "inference_node_exposures": 199896362
+          },
+          "selected_validation_summary": {
+            "case_mean_u_relative_l2": 0.4299433295782652,
+            "worst_case_u_relative_l2": 0.5933316906613829,
+            "case_mean_stress_relative_l2": 0.7270058399022299,
+            "worst_case_stress_relative_l2": 0.8433809815893965,
+            "case_mean_stress_hotspot_relative_l2": 0.6831503163836425,
+            "selection_score": 0.5784745847402475
+          },
+          "selected_validation_score": 0.5784745847402475,
+          "endpoint_validation_summary": {
+            "case_mean_u_relative_l2": 0.43010453171261814,
+            "worst_case_u_relative_l2": 0.6387090831486468,
+            "case_mean_stress_relative_l2": 0.7324411674393444,
+            "worst_case_stress_relative_l2": 0.8255837590336937,
+            "case_mean_stress_hotspot_relative_l2": 0.6857425994808849,
+            "selection_score": 0.5812728495759812
+          },
+          "summary_sha256": "effd71bb7f9e0befd7dc10d702d1642400dcfdd7b46033e4d2346221b0772601",
+          "config_sha256": "cb9099726fc9647db07e350ab985ba18545d78c09cb703d335239e1764b4fea8"
+        }
+      ],
+      "input_recipe": {
+        "cloud_seed": 2026,
+        "cloud_points": 1024,
+        "geometry_dim": 32,
+        "grid_resolution": 64,
+        "features": 25,
+        "device": "cuda",
+        "channels": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "train_scaler_source": "data/geobc_solver_selection/manifest.json",
+        "refit_scaler": false
+      },
+      "split": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/notes/geobc_split.json",
+        "present": true,
+        "bytes": 25283,
+        "sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859",
+        "test_CADs": [
+          "107_95",
+          "113_345",
+          "113_472",
+          "114_319",
+          "116_61"
+        ]
+      },
+      "selection_cache": {
+        "manifest": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/manifest.json",
+          "present": true,
+          "bytes": 269313,
+          "sha256": "76ba5189e0cfb4db226db472ca9cfe019f4d7f81c1eff9d0335726eea73a4ced"
+        },
+        "contract_sha256": "68b9990634e9cbd3efbb463e448d2c76c4d6819c21f465be9bf848522f9c3b78",
+        "scaler_sha256": "a21a731f7c6ede6578da21afdddfd8f85a51045bf9d0e0b96e6afd3ed0035fd8"
+      },
+      "scaler": {
+        "mean": [
+          -0.006059544265096125,
+          -0.0005008273527146082,
+          0.015260029003479832,
+          0.09629744183585241
+        ],
+        "std": [
+          0.05393032209940291,
+          0.011291299669602316,
+          0.07619646768716026,
+          0.5232191238243877
+        ],
+        "stress_scale": 90.46589813232424,
+        "channels": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "known_keys": [
+        "107_95/ver",
+        "107_95/hor",
+        "107_95/tor",
+        "113_345/ver",
+        "113_345/hor",
+        "113_345/tor",
+        "113_472/ver",
+        "113_472/hor",
+        "113_472/tor",
+        "114_319/ver",
+        "114_319/hor",
+        "114_319/tor",
+        "116_61/ver",
+        "116_61/hor",
+        "116_61/tor"
+      ],
+      "combination_keys": [
+        "107_95/dia",
+        "113_345/dia",
+        "113_472/dia",
+        "114_319/dia",
+        "116_61/dia"
+      ],
+      "source_npz_metadata": [
+        {
+          "key": "107_95/ver",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_95_ver.npz",
+          "stat": {
+            "bytes": 32056542,
+            "mtime_ns": 1791511992737245500
+          }
+        },
+        {
+          "key": "107_95/hor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_95_hor.npz",
+          "stat": {
+            "bytes": 32056542,
+            "mtime_ns": 1791511992791432700
+          }
+        },
+        {
+          "key": "107_95/tor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_95_tor.npz",
+          "stat": {
+            "bytes": 32056542,
+            "mtime_ns": 1791454778762902000
+          }
+        },
+        {
+          "key": "113_345/ver",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_345_ver.npz",
+          "stat": {
+            "bytes": 39214882,
+            "mtime_ns": 1791511995138043200
+          }
+        },
+        {
+          "key": "113_345/hor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_345_hor.npz",
+          "stat": {
+            "bytes": 39214882,
+            "mtime_ns": 1791511995206062300
+          }
+        },
+        {
+          "key": "113_345/tor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_345_tor.npz",
+          "stat": {
+            "bytes": 39214882,
+            "mtime_ns": 1791511995271127500
+          }
+        },
+        {
+          "key": "113_472/ver",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_472_ver.npz",
+          "stat": {
+            "bytes": 34802018,
+            "mtime_ns": 1791454782259580700
+          }
+        },
+        {
+          "key": "113_472/hor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_472_hor.npz",
+          "stat": {
+            "bytes": 34802018,
+            "mtime_ns": 1791511996337889700
+          }
+        },
+        {
+          "key": "113_472/tor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_472_tor.npz",
+          "stat": {
+            "bytes": 34802018,
+            "mtime_ns": 1791511996459969000
+          }
+        },
+        {
+          "key": "114_319/ver",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_319_ver.npz",
+          "stat": {
+            "bytes": 35493698,
+            "mtime_ns": 1791511999297932600
+          }
+        },
+        {
+          "key": "114_319/hor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_319_hor.npz",
+          "stat": {
+            "bytes": 35493698,
+            "mtime_ns": 1791454784500715900
+          }
+        },
+        {
+          "key": "114_319/tor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_319_tor.npz",
+          "stat": {
+            "bytes": 35493698,
+            "mtime_ns": 1791511999532965000
+          }
+        },
+        {
+          "key": "116_61/ver",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_61_ver.npz",
+          "stat": {
+            "bytes": 35826398,
+            "mtime_ns": 1791512006012768300
+          }
+        },
+        {
+          "key": "116_61/hor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_61_hor.npz",
+          "stat": {
+            "bytes": 35826398,
+            "mtime_ns": 1791512006119077100
+          }
+        },
+        {
+          "key": "116_61/tor",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_61_tor.npz",
+          "stat": {
+            "bytes": 35826398,
+            "mtime_ns": 1791512006219062800
+          }
+        },
+        {
+          "key": "107_95/dia",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/107_95_dia.npz",
+          "stat": {
+            "bytes": 32056542,
+            "mtime_ns": 1791511992851309600
+          }
+        },
+        {
+          "key": "113_345/dia",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_345_dia.npz",
+          "stat": {
+            "bytes": 39214882,
+            "mtime_ns": 1791454780610733500
+          }
+        },
+        {
+          "key": "113_472/dia",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/113_472_dia.npz",
+          "stat": {
+            "bytes": 34802018,
+            "mtime_ns": 1791511996398917500
+          }
+        },
+        {
+          "key": "114_319/dia",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/114_319_dia.npz",
+          "stat": {
+            "bytes": 35493698,
+            "mtime_ns": 1791511999395385200
+          }
+        },
+        {
+          "key": "116_61/dia",
+          "source_npz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/116_61_dia.npz",
+          "stat": {
+            "bytes": 35826398,
+            "mtime_ns": 1791454789309631700
+          }
+        }
+      ],
+      "confirmation_gate": {
+        "all_six_completed": true,
+        "invalid_runs": [],
+        "recipe_sha256": "b884cd2f7a25260e88966a05bf3b6c77a519cf143e246de438414f6a3617ff0e",
+        "runs": [
+          {
+            "method": "fno",
+            "seed": 2026,
+            "output": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s",
+            "status": "completed",
+            "identity_valid": true,
+            "summary": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/summary.json",
+              "present": true,
+              "bytes": 862782,
+              "sha256": "505ba9caab71a37a628b95e3027c9cd8522427d6c9576ae95a5a8030aebbf14f"
+            },
+            "config": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/config.json",
+              "present": true,
+              "bytes": 421126,
+              "sha256": "6d9bd673b21f621b4f573ce9edc5aec8cfd270953d34e7265e08d45f71da375a"
+            },
+            "errors": []
+          },
+          {
+            "method": "mlp",
+            "seed": 2026,
+            "output": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s",
+            "status": "completed",
+            "identity_valid": true,
+            "summary": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/summary.json",
+              "present": true,
+              "bytes": 1372602,
+              "sha256": "687aba6920906f54611a81de539d606fc348b25c7c4adb5b0f15359f539fde6e"
+            },
+            "config": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/config.json",
+              "present": true,
+              "bytes": 419490,
+              "sha256": "398a7dd978908ea433839bbd22f79adbc7b619e2ce2d0f37fdb0d4d52cdac907"
+            },
+            "errors": []
+          },
+          {
+            "method": "transolver_pp",
+            "seed": 2026,
+            "output": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_transolver_pp_seed2026_600s",
+            "status": "completed",
+            "identity_valid": true,
+            "summary": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_transolver_pp_seed2026_600s/summary.json",
+              "present": true,
+              "bytes": 619346,
+              "sha256": "c79a8303b1aad99e891c73963b417ac1e0fa1cada631ec75296cd8e5338129a3"
+            },
+            "config": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_transolver_pp_seed2026_600s/config.json",
+              "present": true,
+              "bytes": 424297,
+              "sha256": "ca82f22ab2b3f560f5a6a06afcd5d5a3b685b9aa90301a7e1a8883debe34aa95"
+            },
+            "errors": []
+          },
+          {
+            "method": "fno",
+            "seed": 2027,
+            "output": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s",
+            "status": "completed",
+            "identity_valid": true,
+            "summary": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/summary.json",
+              "present": true,
+              "bytes": 762487,
+              "sha256": "9da16460bcbc78200fe07a0dfe3e9911c074ca437f86ac4b66c826d83ceec5e1"
+            },
+            "config": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/config.json",
+              "present": true,
+              "bytes": 308167,
+              "sha256": "f06382a90a54419e7e7e763e754eef8f07c0fa098c7c2fc44041dadeb6be376b"
+            },
+            "errors": []
+          },
+          {
+            "method": "mlp",
+            "seed": 2027,
+            "output": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s",
+            "status": "completed",
+            "identity_valid": true,
+            "summary": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/summary.json",
+              "present": true,
+              "bytes": 1275588,
+              "sha256": "effd71bb7f9e0befd7dc10d702d1642400dcfdd7b46033e4d2346221b0772601"
+            },
+            "config": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/config.json",
+              "present": true,
+              "bytes": 307401,
+              "sha256": "cb9099726fc9647db07e350ab985ba18545d78c09cb703d335239e1764b4fea8"
+            },
+            "errors": []
+          },
+          {
+            "method": "transolver_pp",
+            "seed": 2027,
+            "output": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_transolver_pp_seed2027_600s",
+            "status": "completed",
+            "identity_valid": true,
+            "summary": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_transolver_pp_seed2027_600s/summary.json",
+              "present": true,
+              "bytes": 515608,
+              "sha256": "260b0b4414899e5933a62a8f3f3af44a1d6eb3446898d73c424f08598f376290"
+            },
+            "config": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_transolver_pp_seed2027_600s/config.json",
+              "present": true,
+              "bytes": 309667,
+              "sha256": "e9aeab9bf51afb3fa0d14b798e8ef034b73bfdf6c07f1b65a845b24ab8d4cac0"
+            },
+            "errors": []
+          }
+        ]
+      },
+      "source_sha256": {
+        "geobc/solver_final_eval_data.py": "e4d2d1af3c8c37f4913a9ef6de7dd90384014cdec4e2f912048ef98db91e8388",
+        "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+        "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+        "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+        "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+        "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+        "third_party/transformer_sources.json": "1a46270136d2f58e081ea7be050c46fca5378b9853fc3e703c945129769aefb6",
+        "geobc/solver_confirmation_train.py": "d8eb5fa0d6c0c30e8ed0fcb3a549be818581b83251af7417e98112ca6e2fb872"
+      },
+      "truth_access": "Input APIs never read displacement/stress members; evaluator may read aligned truth only after prediction"
+    },
+    "routes": [
+      {
+        "route_id": "fno_seed2026_endpoint_primary",
+        "method": "fno",
+        "seed": 2026,
+        "checkpoint_role": "endpoint_primary",
+        "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s",
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+        "checkpoint_stat": {
+          "bytes": 170464827,
+          "mtime_ns": 1791557354819071400
+        },
+        "selected_step": 2880,
+        "checkpoint_trained": true,
+        "budget_origin": {
+          "phase": "confirmation",
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+          "step": 2880
+        },
+        "confirmation_budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 99.78055045300016,
+          "incremental_train_seconds": 508.897330257999,
+          "total_train_seconds": 608.6778807109991,
+          "actual_seconds": 608.6778807109991,
+          "delta_seconds": 8.677880710999148,
+          "overshoot_seconds": 8.677880710999148,
+          "crossing_step": 2837,
+          "overshoot_updates": 43,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "selected_checkpoint_costs": {
+          "train_seconds": 608.6778807109991,
+          "inference_seconds": 10.998252616999672,
+          "evaluation_seconds": 106.24536973500014,
+          "train_case_exposures": 2880,
+          "train_node_exposures": 625917240,
+          "inference_case_exposures": 432,
+          "inference_node_exposures": 82715736
+        },
+        "selected_validation_score": 0.4636552251055052,
+        "expected_model_source_config": {
+          "method": "fno",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2026,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "in_channels": 61,
+            "out_channels": 4,
+            "width": 16,
+            "modes": 12,
+            "layers": 4,
+            "head_width": 128,
+            "padding": 0,
+            "checkpoint_blocks": true,
+            "layout": "B,C,X,Y,Z",
+            "xyz_channels": true,
+            "fft_norm": "backward",
+            "sources": {
+              "paper": "https://arxiv.org/abs/2010.08895v3",
+              "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+              "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+              "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+            },
+            "unknown_reference_details": [
+              "18 input channel definitions",
+              "padding",
+              "projection width",
+              "optimizer/scaling schedule"
+            ],
+            "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+            "resolution": 64
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "capabilities": {
+            "forward_points": false,
+            "forward_grid": true,
+            "pointwise_external_chunks": false,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 14160548,
+          "total": 14177284
+        },
+        "confirmation_config_sha256": "1f0a5a765179ceb814159b20491b5d2b9d0ad92a440ef9088ab4e259fd58121a",
+        "expected_checkpoint_config_sha256": "1f0a5a765179ceb814159b20491b5d2b9d0ad92a440ef9088ab4e259fd58121a",
+        "evaluation_id": "e12c3ff4fb3827a88974"
+      },
+      {
+        "route_id": "fno_seed2026_validation_best_secondary",
+        "method": "fno",
+        "seed": 2026,
+        "checkpoint_role": "validation_best_secondary",
+        "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s",
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/best.pt",
+        "checkpoint_stat": {
+          "bytes": 170457275,
+          "mtime_ns": 1791557288830591700
+        },
+        "selected_step": 2640,
+        "checkpoint_trained": true,
+        "budget_origin": {
+          "phase": "confirmation",
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2026_600s/best.pt",
+          "step": 2640
+        },
+        "confirmation_budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 99.78055045300016,
+          "incremental_train_seconds": 508.897330257999,
+          "total_train_seconds": 608.6778807109991,
+          "actual_seconds": 608.6778807109991,
+          "delta_seconds": 8.677880710999148,
+          "overshoot_seconds": 8.677880710999148,
+          "crossing_step": 2837,
+          "overshoot_updates": 43,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "selected_checkpoint_costs": {
+          "train_seconds": 558.2064868139995,
+          "inference_seconds": 10.07537619499984,
+          "evaluation_seconds": 97.37540885300015,
+          "train_case_exposures": 2640,
+          "train_node_exposures": 573757470,
+          "inference_case_exposures": 396,
+          "inference_node_exposures": 75822758
+        },
+        "selected_validation_score": 0.4025480856205039,
+        "expected_model_source_config": {
+          "method": "fno",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2026,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "in_channels": 61,
+            "out_channels": 4,
+            "width": 16,
+            "modes": 12,
+            "layers": 4,
+            "head_width": 128,
+            "padding": 0,
+            "checkpoint_blocks": true,
+            "layout": "B,C,X,Y,Z",
+            "xyz_channels": true,
+            "fft_norm": "backward",
+            "sources": {
+              "paper": "https://arxiv.org/abs/2010.08895v3",
+              "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+              "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+              "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+            },
+            "unknown_reference_details": [
+              "18 input channel definitions",
+              "padding",
+              "projection width",
+              "optimizer/scaling schedule"
+            ],
+            "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+            "resolution": 64
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "capabilities": {
+            "forward_points": false,
+            "forward_grid": true,
+            "pointwise_external_chunks": false,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 14160548,
+          "total": 14177284
+        },
+        "confirmation_config_sha256": "1f0a5a765179ceb814159b20491b5d2b9d0ad92a440ef9088ab4e259fd58121a",
+        "expected_checkpoint_config_sha256": "1f0a5a765179ceb814159b20491b5d2b9d0ad92a440ef9088ab4e259fd58121a",
+        "evaluation_id": "ce696d6a0c805c04b96a"
+      },
+      {
+        "route_id": "mlp_seed2026_endpoint_primary",
+        "method": "mlp",
+        "seed": 2026,
+        "checkpoint_role": "endpoint_primary",
+        "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s",
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/last.pt",
+        "checkpoint_stat": {
+          "bytes": 3211949,
+          "mtime_ns": 1791558076232772100
+        },
+        "selected_step": 7080,
+        "checkpoint_trained": true,
+        "budget_origin": {
+          "phase": "confirmation",
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/last.pt",
+          "step": 7080
+        },
+        "confirmation_budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 43.698551514,
+          "incremental_train_seconds": 560.5199380839956,
+          "total_train_seconds": 604.2184895979956,
+          "actual_seconds": 604.2184895979956,
+          "delta_seconds": 4.218489597995585,
+          "overshoot_seconds": 4.218489597995585,
+          "crossing_step": 7031,
+          "overshoot_updates": 49,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "selected_checkpoint_costs": {
+          "train_seconds": 604.2184895979956,
+          "inference_seconds": 3.3819160149985574,
+          "evaluation_seconds": 96.37422363700001,
+          "train_case_exposures": 7080,
+          "train_node_exposures": 1538713215,
+          "inference_case_exposures": 1062,
+          "inference_node_exposures": 203342851
+        },
+        "selected_validation_score": 0.6365627488707003,
+        "expected_model_source_config": {
+          "method": "mlp",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2026,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "family": "plain_coordinate_BC_global_MLP",
+            "hidden_width": 256,
+            "hidden_layers": 4,
+            "activation": "ReLU",
+            "input_dim": 60,
+            "output_dim": 4,
+            "hash_encoding": false,
+            "backend": "torch"
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "capabilities": {
+            "forward_points": true,
+            "forward_grid": false,
+            "pointwise_external_chunks": true,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 214020,
+          "total": 230756
+        },
+        "confirmation_config_sha256": "dcdd66b54138b2ad6999b7f5e5dc15ce5d2f5c9985f976121a8a7a93e14700b5",
+        "expected_checkpoint_config_sha256": "dcdd66b54138b2ad6999b7f5e5dc15ce5d2f5c9985f976121a8a7a93e14700b5",
+        "evaluation_id": "cd939157e7c5dfaa056e"
+      },
+      {
+        "route_id": "mlp_seed2026_validation_best_secondary",
+        "method": "mlp",
+        "seed": 2026,
+        "checkpoint_role": "validation_best_secondary",
+        "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s",
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/best.pt",
+        "checkpoint_stat": {
+          "bytes": 3193133,
+          "mtime_ns": 1791558011660619000
+        },
+        "selected_step": 6480,
+        "checkpoint_trained": true,
+        "budget_origin": {
+          "phase": "confirmation",
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/best.pt",
+          "step": 6480
+        },
+        "confirmation_budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 43.698551514,
+          "incremental_train_seconds": 560.5199380839956,
+          "total_train_seconds": 604.2184895979956,
+          "actual_seconds": 604.2184895979956,
+          "delta_seconds": 4.218489597995585,
+          "overshoot_seconds": 4.218489597995585,
+          "crossing_step": 7031,
+          "overshoot_updates": 49,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "selected_checkpoint_costs": {
+          "train_seconds": 553.6983433319979,
+          "inference_seconds": 3.132379795998565,
+          "evaluation_seconds": 88.3211098559997,
+          "train_case_exposures": 6480,
+          "train_node_exposures": 1408313790,
+          "inference_case_exposures": 972,
+          "inference_node_exposures": 186110406
+        },
+        "selected_validation_score": 0.5740664415870731,
+        "expected_model_source_config": {
+          "method": "mlp",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2026,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "family": "plain_coordinate_BC_global_MLP",
+            "hidden_width": 256,
+            "hidden_layers": 4,
+            "activation": "ReLU",
+            "input_dim": 60,
+            "output_dim": 4,
+            "hash_encoding": false,
+            "backend": "torch"
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "capabilities": {
+            "forward_points": true,
+            "forward_grid": false,
+            "pointwise_external_chunks": true,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 214020,
+          "total": 230756
+        },
+        "confirmation_config_sha256": "dcdd66b54138b2ad6999b7f5e5dc15ce5d2f5c9985f976121a8a7a93e14700b5",
+        "expected_checkpoint_config_sha256": "dcdd66b54138b2ad6999b7f5e5dc15ce5d2f5c9985f976121a8a7a93e14700b5",
+        "evaluation_id": "02923171d038b5cbd6e9"
+      },
+      {
+        "route_id": "fno_seed2027_endpoint_primary",
+        "method": "fno",
+        "seed": 2027,
+        "checkpoint_role": "endpoint_primary",
+        "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s",
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/last.pt",
+        "checkpoint_stat": {
+          "bytes": 170389755,
+          "mtime_ns": 1791559209160787100
+        },
+        "selected_step": 2880,
+        "checkpoint_trained": true,
+        "budget_origin": {
+          "phase": "confirmation",
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/last.pt",
+          "step": 2880
+        },
+        "confirmation_budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 0.0,
+          "incremental_train_seconds": 601.5754067829937,
+          "total_train_seconds": 601.5754067829937,
+          "actual_seconds": 601.5754067829937,
+          "delta_seconds": 1.5754067829936957,
+          "overshoot_seconds": 1.5754067829936957,
+          "crossing_step": 2873,
+          "overshoot_updates": 7,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "selected_checkpoint_costs": {
+          "train_seconds": 601.5754067829937,
+          "inference_seconds": 10.8375944170009,
+          "evaluation_seconds": 111.11184850500058,
+          "train_case_exposures": 2880,
+          "train_node_exposures": 625917240,
+          "inference_case_exposures": 450,
+          "inference_node_exposures": 86162225
+        },
+        "selected_validation_score": 0.46145639897227986,
+        "expected_model_source_config": {
+          "method": "fno",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2027,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "in_channels": 61,
+            "out_channels": 4,
+            "width": 16,
+            "modes": 12,
+            "layers": 4,
+            "head_width": 128,
+            "padding": 0,
+            "checkpoint_blocks": true,
+            "layout": "B,C,X,Y,Z",
+            "xyz_channels": true,
+            "fft_norm": "backward",
+            "sources": {
+              "paper": "https://arxiv.org/abs/2010.08895v3",
+              "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+              "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+              "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+            },
+            "unknown_reference_details": [
+              "18 input channel definitions",
+              "padding",
+              "projection width",
+              "optimizer/scaling schedule"
+            ],
+            "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+            "resolution": 64
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "capabilities": {
+            "forward_points": false,
+            "forward_grid": true,
+            "pointwise_external_chunks": false,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 14160548,
+          "total": 14177284
+        },
+        "confirmation_config_sha256": "232d989da0a5649d5a69ffc619e649216db0df4162f3ca917b78026ceb15c539",
+        "expected_checkpoint_config_sha256": "232d989da0a5649d5a69ffc619e649216db0df4162f3ca917b78026ceb15c539",
+        "evaluation_id": "a339d718f9b3558cde52"
+      },
+      {
+        "route_id": "fno_seed2027_validation_best_secondary",
+        "method": "fno",
+        "seed": 2027,
+        "checkpoint_role": "validation_best_secondary",
+        "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s",
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/best.pt",
+        "checkpoint_stat": {
+          "bytes": 170382203,
+          "mtime_ns": 1791559142208022700
+        },
+        "selected_step": 2640,
+        "checkpoint_trained": true,
+        "budget_origin": {
+          "phase": "confirmation",
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_fno_seed2027_600s/best.pt",
+          "step": 2640
+        },
+        "confirmation_budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 0.0,
+          "incremental_train_seconds": 601.5754067829937,
+          "total_train_seconds": 601.5754067829937,
+          "actual_seconds": 601.5754067829937,
+          "delta_seconds": 1.5754067829936957,
+          "overshoot_seconds": 1.5754067829936957,
+          "crossing_step": 2873,
+          "overshoot_updates": 7,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "selected_checkpoint_costs": {
+          "train_seconds": 550.3076184349977,
+          "inference_seconds": 9.959201475000327,
+          "evaluation_seconds": 102.17510621600059,
+          "train_case_exposures": 2640,
+          "train_node_exposures": 573757470,
+          "inference_case_exposures": 414,
+          "inference_node_exposures": 79269247
+        },
+        "selected_validation_score": 0.4066675254785964,
+        "expected_model_source_config": {
+          "method": "fno",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2027,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "in_channels": 61,
+            "out_channels": 4,
+            "width": 16,
+            "modes": 12,
+            "layers": 4,
+            "head_width": 128,
+            "padding": 0,
+            "checkpoint_blocks": true,
+            "layout": "B,C,X,Y,Z",
+            "xyz_channels": true,
+            "fft_norm": "backward",
+            "sources": {
+              "paper": "https://arxiv.org/abs/2010.08895v3",
+              "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+              "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+              "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+            },
+            "unknown_reference_details": [
+              "18 input channel definitions",
+              "padding",
+              "projection width",
+              "optimizer/scaling schedule"
+            ],
+            "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+            "resolution": 64
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "capabilities": {
+            "forward_points": false,
+            "forward_grid": true,
+            "pointwise_external_chunks": false,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 14160548,
+          "total": 14177284
+        },
+        "confirmation_config_sha256": "232d989da0a5649d5a69ffc619e649216db0df4162f3ca917b78026ceb15c539",
+        "expected_checkpoint_config_sha256": "232d989da0a5649d5a69ffc619e649216db0df4162f3ca917b78026ceb15c539",
+        "evaluation_id": "3267d196aea16b4392f1"
+      },
+      {
+        "route_id": "mlp_seed2027_endpoint_primary",
+        "method": "mlp",
+        "seed": 2027,
+        "checkpoint_role": "endpoint_primary",
+        "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s",
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/last.pt",
+        "checkpoint_stat": {
+          "bytes": 3137517,
+          "mtime_ns": 1791559989776779600
+        },
+        "selected_step": 7080,
+        "checkpoint_trained": true,
+        "budget_origin": {
+          "phase": "confirmation",
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/last.pt",
+          "step": 7080
+        },
+        "confirmation_budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 0.0,
+          "incremental_train_seconds": 607.661245224986,
+          "total_train_seconds": 607.661245224986,
+          "actual_seconds": 607.661245224986,
+          "delta_seconds": 7.6612452249860326,
+          "overshoot_seconds": 7.6612452249860326,
+          "crossing_step": 6989,
+          "overshoot_updates": 91,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "selected_checkpoint_costs": {
+          "train_seconds": 607.661245224986,
+          "inference_seconds": 3.2921985889993266,
+          "evaluation_seconds": 97.19536424700073,
+          "train_case_exposures": 7080,
+          "train_node_exposures": 1538713215,
+          "inference_case_exposures": 1080,
+          "inference_node_exposures": 206789340
+        },
+        "selected_validation_score": 0.5812728495759812,
+        "expected_model_source_config": {
+          "method": "mlp",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2027,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "family": "plain_coordinate_BC_global_MLP",
+            "hidden_width": 256,
+            "hidden_layers": 4,
+            "activation": "ReLU",
+            "input_dim": 60,
+            "output_dim": 4,
+            "hash_encoding": false,
+            "backend": "torch"
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "capabilities": {
+            "forward_points": true,
+            "forward_grid": false,
+            "pointwise_external_chunks": true,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 214020,
+          "total": 230756
+        },
+        "confirmation_config_sha256": "6541014f85b067a12d7ead832d334f0136e119d6efd5008fd3b827a1433889e2",
+        "expected_checkpoint_config_sha256": "6541014f85b067a12d7ead832d334f0136e119d6efd5008fd3b827a1433889e2",
+        "evaluation_id": "262c1c8144afd880d5d9"
+      },
+      {
+        "route_id": "mlp_seed2027_validation_best_secondary",
+        "method": "mlp",
+        "seed": 2027,
+        "checkpoint_role": "validation_best_secondary",
+        "confirmation_run": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s",
+        "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/best.pt",
+        "checkpoint_stat": {
+          "bytes": 3129965,
+          "mtime_ns": 1791559963933521900
+        },
+        "selected_step": 6840,
+        "checkpoint_trained": true,
+        "budget_origin": {
+          "phase": "confirmation",
+          "checkpoint": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/best.pt",
+          "step": 6840
+        },
+        "confirmation_budget": {
+          "mode": "total_training_seconds",
+          "requested_seconds": 600,
+          "parent_train_seconds": 0.0,
+          "incremental_train_seconds": 607.661245224986,
+          "total_train_seconds": 607.661245224986,
+          "actual_seconds": 607.661245224986,
+          "delta_seconds": 7.6612452249860326,
+          "overshoot_seconds": 7.6612452249860326,
+          "crossing_step": 6989,
+          "overshoot_updates": 91,
+          "complete_pass": true,
+          "max_steps": 12000
+        },
+        "selected_checkpoint_costs": {
+          "train_seconds": 587.445381278987,
+          "inference_seconds": 3.192356504000145,
+          "evaluation_seconds": 93.96557091900058,
+          "train_case_exposures": 6840,
+          "train_node_exposures": 1486553445,
+          "inference_case_exposures": 1044,
+          "inference_node_exposures": 199896362
+        },
+        "selected_validation_score": 0.5784745847402475,
+        "expected_model_source_config": {
+          "method": "mlp",
+          "purpose": "New six-family geometry/BC solver selection",
+          "exact_slides_reproduction": false,
+          "seed": 2027,
+          "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+          "geometry_encoder": {
+            "class": "PointNetGeometryEncoder",
+            "source": "geobc/conditioned_field.py",
+            "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "cloud_shape": [
+              "B",
+              1024,
+              3
+            ],
+            "mask_shape": [
+              "B",
+              1024
+            ],
+            "mask_dtype": "bool",
+            "point_width": 64,
+            "descriptor_dim": 32,
+            "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+            "shared_architecture_and_seed_across_all_families": true
+          },
+          "input_schema": {
+            "xyz": [
+              "N",
+              3
+            ],
+            "BC_material": [
+              "N",
+              25
+            ],
+            "context": [
+              1,
+              32
+            ],
+            "points": "xyz3 + original25 + global32; total60",
+            "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+            "FNO_grid_supplied": [
+              1,
+              29,
+              64,
+              64,
+              64
+            ],
+            "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+            "FNO_internal": [
+              1,
+              61,
+              64,
+              64,
+              64
+            ],
+            "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+          },
+          "output_schema": {
+            "points": [
+              "N",
+              4
+            ],
+            "grid": [
+              1,
+              4,
+              64,
+              64,
+              64
+            ],
+            "channel_order": [
+              "ux_mm",
+              "uy_mm",
+              "uz_mm",
+              "signed_stress_MPa"
+            ],
+            "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+            "activation": "Unrestricted output; no abs, clipping or stress replacement"
+          },
+          "backbone": {
+            "family": "plain_coordinate_BC_global_MLP",
+            "hidden_width": 256,
+            "hidden_layers": 4,
+            "activation": "ReLU",
+            "input_dim": 60,
+            "output_dim": 4,
+            "hash_encoding": false,
+            "backend": "torch"
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "capabilities": {
+            "forward_points": true,
+            "forward_grid": false,
+            "pointwise_external_chunks": true,
+            "whole_case_point_context": false,
+            "native_global_chunks": false,
+            "eval_stochastic": false,
+            "native_continuous_query_implemented": false
+          },
+          "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+          "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+          "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+          "no_target_scaler_or_case_identity_in_model": true
+        },
+        "parameter_counts": {
+          "encoder": 16736,
+          "solver": 214020,
+          "total": 230756
+        },
+        "confirmation_config_sha256": "6541014f85b067a12d7ead832d334f0136e119d6efd5008fd3b827a1433889e2",
+        "expected_checkpoint_config_sha256": "6541014f85b067a12d7ead832d334f0136e119d6efd5008fd3b827a1433889e2",
+        "evaluation_id": "3de7c1da4b75f29222d6"
+      }
+    ],
+    "source_sha256": {
+      "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+      "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+      "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+      "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+      "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+      "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+      "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+      "third_party/transformer_sources.json": "1a46270136d2f58e081ea7be050c46fca5378b9853fc3e703c945129769aefb6",
+      "geobc/solver_final_eval.py": "8f81b8e9fb049d79541dab14328a9a3c30d3b489ad2be66d4c0681def348636b",
+      "geobc/solver_final_eval_data.py": "e4d2d1af3c8c37f4913a9ef6de7dd90384014cdec4e2f912048ef98db91e8388",
+      "geobc/solver_confirmation_train.py": "d8eb5fa0d6c0c30e8ed0fcb3a549be818581b83251af7417e98112ca6e2fb872"
+    },
+    "rules": {
+      "known_loads": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "combination_loads": [
+        "dia"
+      ],
+      "max_methods": 2,
+      "seeds": [
+        2026,
+        2027
+      ],
+      "checkpoint_roles": [
+        "endpoint_primary",
+        "validation_best_secondary"
+      ],
+      "max_case_predictions": 160,
+      "label_access": "after full encoded prediction and physical decode",
+      "final_selection_performed": false
+    }
+  },
+  "label_policy": "input-only case -> complete prediction -> physical decode -> signed source labels",
+  "groups": {
+    "known": "final5 x ver/hor/tor",
+    "combination": "final5 x dia, separate transfer readout"
+  },
+  "selection": "frozen routes/seeds/roles; no final-data reranking or checkpoint selection",
+  "training_updates": 0,
+  "scaler_fits": 0,
+  "cache_preparation": "external input-only helper only"
+}

@@ -49,7 +49,8 @@ def read_json_if_exists(path: Path) -> dict[str, Any] | None:
 
 
 def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
-    summary = read_json_if_exists(ROOT / job["output"] / "summary.json")
+    filename = "manifest.json" if "geobc.solver_final_eval_data" in job["command"] else "summary.json"
+    summary = read_json_if_exists(ROOT / job["output"] / filename)
     if not summary or summary.get("status") != "completed":
         return None
     command = job["command"]
@@ -60,6 +61,23 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             parsed.steps = 2000
         if summary["config"].get("request_digest") != identity_digest(request_identity(parsed)):
             raise ValueError(f"Completed output for {job['name']} differs from current plan")
+    elif "geobc.solver_final_eval_data" in command:
+        from geobc.solver_final_eval_data import request_contract, read_cache_metadata
+        requested_plan = command[command.index("--plan") + 1]
+        contract, requested = request_contract(requested_plan)
+        if (ROOT / job["output"]).resolve() != (ROOT / requested["eval_cache"]).resolve():
+            raise ValueError(f"Final cache output differs from frozen plan: {job['name']}")
+        verified = read_cache_metadata(requested_plan, contract=contract)
+        if summary != verified:
+            raise ValueError(f"Completed final input cache differs from frozen metadata: {job['name']}")
+    elif "geobc.solver_final_eval" in command:
+        from geobc.solver_final_eval import request_contract
+        requested_plan = command[command.index("--plan") + 1]
+        contract, _ = request_contract(requested_plan)
+        if summary.get("config", {}).get("contract") != contract:
+            raise ValueError(f"Completed final evaluation differs from frozen routes/input/checkpoint contract: {job['name']}")
+        if summary.get("training_updates") != 0 or summary.get("scaler_fits") != 0:
+            raise ValueError(f"Final evaluation unexpectedly trained or refit scalers: {job['name']}")
     elif "geobc.solver_confirmation_train" in command:
         from geobc.solver_confirmation_train import request_contract
         requested_plan = command[command.index("--plan") + 1]
@@ -149,6 +167,18 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
         for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
             if not (ROOT / job["output"] / filename).is_file():
                 raise ValueError(f"Completed output for {job['name']} lacks {filename}")
+    elif "tools/diagnose_solver_bc_representation.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("solver_bc_representation", ROOT / "tools/diagnose_solver_bc_representation.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        if summary.get("contract") != module.request_contract():
+            raise ValueError(f"Completed BC-role replay differs from fixed TRAIN input contract: {job['name']}")
+        if not (ROOT / job["output"] / "config.json").is_file():
+            raise ValueError(f"Completed BC-role replay lacks config.json: {job['name']}")
+        if summary.get("input_read_receipt", {}).get("input_only") is not True:
+            raise ValueError(f"BC-role replay unexpectedly read non-input data: {job['name']}")
     elif "tools/diagnose_query_learning.py" in command:
         # Frozen diagnostics have no optimizer/checkpoint outputs. Compare their
         # small request/source/last-checkpoint metadata before allowing reuse.
@@ -341,6 +371,8 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
 def stage_command(job: dict[str, Any]) -> list[str]:
     command = job["command"].copy()
     output = ROOT / job["output"]
+    if "geobc.solver_final_eval" in command and "--resume" not in command and (output / "config.json").is_file():
+        command.append("--resume")
     fitting = ("geobc.exploration" in command and "--mode" in command
                and command[command.index("--mode") + 1] == "fit")
     if ((fitting or "geobc.conditional_train" in command or "geobc.physics_train" in command

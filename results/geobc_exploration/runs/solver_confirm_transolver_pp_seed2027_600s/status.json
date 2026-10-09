@@ -1,0 +1,56 @@
+{
+  "method": "transolver_pp",
+  "seed": 2027,
+  "started_at_utc": "2026-10-09T15:33:22.337409+00:00",
+  "step": 840,
+  "max_steps": 12000,
+  "budget_mode": "total_training_seconds",
+  "train_budget_seconds": 600,
+  "evaluated_steps": [
+    0,
+    120,
+    240,
+    360,
+    480,
+    600,
+    720,
+    840
+  ],
+  "phase": "completed",
+  "updated_at_utc": "2026-10-09T15:46:04.482917+00:00",
+  "elapsed_seconds": 697.1125008109998,
+  "eta_seconds": 0.0,
+  "estimated_completion_utc": "2026-10-09T15:46:04.482926+00:00",
+  "costs": {
+    "train_seconds": 656.4656240139952,
+    "inference_seconds": 20.762083408998024,
+    "evaluation_seconds": 35.23250448299905,
+    "train_case_exposures": 840,
+    "train_node_exposures": 182559195,
+    "inference_case_exposures": 144,
+    "inference_node_exposures": 27571912
+  },
+  "budget": {
+    "mode": "total_training_seconds",
+    "requested_seconds": 600,
+    "parent_train_seconds": 0.0,
+    "incremental_train_seconds": 656.4656240139952,
+    "total_train_seconds": 656.4656240139952,
+    "actual_seconds": 656.4656240139952,
+    "delta_seconds": 56.46562401399524,
+    "overshoot_seconds": 56.46562401399524,
+    "crossing_step": 769,
+    "overshoot_updates": 71,
+    "complete_pass": true,
+    "max_steps": 12000
+  },
+  "memory": {
+    "peak_allocated_bytes": 11284322816,
+    "peak_reserved_bytes": 18266193920
+  },
+  "best_step": 720,
+  "selection_score": 1.01059592183358,
+  "case": "113_129/ver",
+  "training_loss": 1.6412036418914795,
+  "stop_reason": "train_budget_seconds"
+}

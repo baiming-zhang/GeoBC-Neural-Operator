@@ -121,7 +121,7 @@ def main():
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
-        path=source/'summary.json'
+        path=source/('manifest.json' if job.get('kind')=='solver_final_input_cache' else 'summary.json')
         if not path.exists(): continue
         summary=json.loads(path.read_text())
         if summary.get('status')!='completed': continue
@@ -138,7 +138,8 @@ def main():
                                       'selection':summary.get('config',{}).get('checkpoint_selection')}
         target=dest/'runs'/job['name']; target.mkdir(parents=True,exist_ok=True)
         filenames=('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json','metrics_step0000.json','metrics_step1000.json','first_backward_check.json')
-        if job.get('kind') in ('real_geometry_interface_acceptance','frozen_field_diagnostic','solver_screen','solver_confirmation'):filenames+=('status.json',)
+        if job.get('kind') in ('real_geometry_interface_acceptance','frozen_field_diagnostic','solver_screen','solver_confirmation','solver_final_input_cache','solver_final_evaluation'):filenames+=('status.json',)
+        if job.get('kind')=='solver_final_input_cache':filenames+=('manifest.json',)
         if job.get('kind') in ('solver_screen','solver_confirmation'):filenames+=('first_update_gradient_check.json',)
         for filename in filenames:
             if (source/filename).exists(): shutil.copyfile(source/filename,target/filename)
@@ -150,7 +151,7 @@ def main():
                                             'identity_policy':'paths/bytes/mtime plus small config source hashes; no redundant checkpoint scans',
                                             'runs':checkpoints})
     manifests=dest/'data_manifests'; manifests.mkdir(exist_ok=True)
-    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response','geobc_frozen_strain_response','geobc_gradient_supervision','geobc_graph_context','geobc_solver_selection'):
+    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response','geobc_frozen_strain_response','geobc_gradient_supervision','geobc_graph_context','geobc_solver_selection','geobc_solver_final_eval'):
         source=ROOT/'data'/directory/'manifest.json'
         if source.is_file():shutil.copyfile(source,manifests/(directory+'.json'))
     lines=['# GeoBC 探索：当前结论与下一步','',
@@ -642,6 +643,15 @@ def main():
                '- **决策标准：**未见CAD平均与最差精度、稳定性、训练及推理成本。短预算结果用于筛选，下降明显的慢路线保留确认机会。','',
                '最终测试继续保留；自主研究与30分钟监视继续。',
                '配置见 [选型计划](../../notes/geobc_solver_selection_plan.json)，历史证据见 [探索报告](REPORT.md)。','']
+    if summaries.get('solver_final_validation', {}).get('status') == 'completed':
+        brief=['# GeoBC：一分钟结果','',
+               '**六家族筛选、双种子固定成本确认及一次冻结最终验证已完成。FNO是主候选，MLP是低成本对照；尚未证明工程可用。**','',
+               f'- **完成：**原30项slides复现；后续{len(summaries)}个阶段包含训练、诊断、输入准备和最终评估，并非求解器种数。',
+               '- **新CAD：**FNO的应力误差较低且两seed稳定；MLP一个seed位移误差更低，另一个明显退化，不能称FNO所有指标都胜出。',
+               '- **组合载荷：**两条路线都明显变差，且seed波动较大。节点拟合或known-load结果不足以证明GeoBC泛化。',
+               '- **下一步：**固定TRAIN范围检查原生连续查询和完整十节点运动学代理，节点重建与原生查询分栏；不据最终结果调参、选择seed或重训本轮模型。','',
+               '凝练结果见[求解器简报](../SOLVER_BRIEF.md)，完整冻结known3／dia结果见[最终评估](../solver_final_eval/BRIEF.md)。',
+               '当前选型限于共同数据、配方与预算；自主研究与30分钟监视继续。','']
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
