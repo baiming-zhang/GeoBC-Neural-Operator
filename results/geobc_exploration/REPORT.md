@@ -231,9 +231,20 @@
 | 101_78 | 192,353 | 2,048/128 | 1,109,522 |
 正式记录见notes/geobc_topology_balanced_feasibility_result.json；节点排序依赖、P1代理质量、任意坐标连续查询与重网格泛化仍未验证。
 
+## 四TRAIN几何：学习邻居消息的固定预算试验
+
+两个fresh模型均使用coarse8 Hash、同一完整网格聚合／平滑、Euclidean43与整体BC；唯一差异为消息层使用自身或真实邻居加权平均。12个TRAIN案例，固定1000步端点，无验证选模。自身组也含共同R/P空间混合，不能称为无拓扑基线。
+
+| 消息 | TRAIN位移均值／最差 | TRAIN全节点P1均值 | 物理P1误差RMS案例均值 | 耗时 |
+|---|---:|---:|---:|---:|
+| 自身 | 10.591%／14.091% | 218.754% | 0.00124915 | 27.8s |
+| 邻居 | 12.867%／16.966% | 219.221% | 0.00126336 | 28.8s |
+
+完整初始化、采样和配置匹配核对通过；联合门限未通过（0/4）。P1为位移导出的corner-FE代理，其物理误差RMS含shear平方权重2且不除以6。这里只检验四TRAIN拟合效用，不能推断跨几何或任意坐标连续查询。结果见notes/geobc_topology_message_pair_result.json。
+
 ## 主计划中的下一阶段
 
-当前主计划：topology_message_self_only_train4_1k（等待／排队）；topology_message_neighbors_train4_1k（等待／排队）。 计划阶段：matched_topology_message_train4_pilot。 设计：notes/geobc_topology_message_plan.json。 完成后：Root interprets fixed4gate result and selects one bounded next task; continuous all10 query remains source/math-only future proposal.。
+当前正在设计下一阶段，尚未放行数据或训练。 计划阶段：continuous_query_geometry_contract_preparation。 设计：notes/geobc_continuous_query_contract_draft.json。 完成后：Root freezes one geometry-only acceptance tool after physical XYZ source and bounded scope are established; no40/5 expansion or training sweep.。
 
 ## 解释边界
 
@@ -241,4 +252,4 @@
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成43/45项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成45/45项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "matched_topology_message_train4_pilot",
+  "stage": "continuous_query_geometry_contract_preparation",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -197,6 +197,14 @@
       "mechanism": "A1/A2 learned message operator only; commonR/P topology is retained in self_only",
       "four_gates_frozen_before_fit": true,
       "no_automatic_scaling": true
+    },
+    {
+      "evidence": "notes/geobc_topology_message_pair_result.json",
+      "result": "MatchedcontrolsPASS/0of4utilitygatesPASS; TRAIN U10.59to12.87%,P1near219%,bothfirstnative/gradPASS",
+      "interpretation": "Learned extra neighbor aggregation has no joint fitting gain under this one1000-update recipe. Not evidence against all topology or longer-budget generalization.",
+      "selected_next": "Input-only all10 continuous query geometry adapter feasibility/gate on fixedTRAIN101_479",
+      "reason": "Whole-field continuous coordinate interface remains an unresolved GeoBC requirement; close geometry/locator gaps before derivative or cross-CAD expansion.",
+      "forbidden_automatic_expansions": "No step/width/seed/radius/lambda or40train/5val expansion"
     }
   ],
   "future_hypotheses_not_launched": [

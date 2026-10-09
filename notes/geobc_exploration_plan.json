@@ -3,7 +3,7 @@
   "objective": "Learn a geometry- and boundary-conditioned continuous field that fits multiple DeepJEB cases and transfers across held-out CAD/load conditions.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "matched_topology_message_train4_pilot",
+  "stage": "continuous_query_geometry_contract_preparation",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,71 +21,14 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "matched_topology_message_train4_pilot",
-    "design": "notes/geobc_topology_message_plan.json",
-    "design_sha256": "05fd5a5afba10871c58d18fde2e31997b85b1c1aa695b828e4ee416c43e43e68",
-    "scope": "4TRAIN CADs ×3known loads,1000fixed endpoint each self_only/neighbors; noVAL/DIA/final/stress",
-    "brief_action": "四几何输入13秒通过：现在实现同预算的自身／邻居消息配对；同时要求位移与P1改善，结果出来后再决定扩大或改方向。",
-    "after": "Root interprets fixed4gate result and selects one bounded next task; continuous all10 query remains source/math-only future proposal."
+    "stage": "continuous_query_geometry_contract_preparation",
+    "design": "notes/geobc_continuous_query_contract_draft.json",
+    "status": "source_and_metadata_feasibility_preparation",
+    "scope": "One fixed TRAIN101_479, input-only geometry; proposed max32cells/8faces/512queries, noGT/models/GPU",
+    "brief_action": "邻居消息配对没有联合收益。下一步验证二次单元连续查询：原节点回放、共享面的衔接与明确定位失败；先固定物理坐标来源和几何门限。",
+    "after": "Root freezes one geometry-only acceptance tool after physical XYZ source and bounded scope are established; no40/5 expansion or training sweep."
   },
-  "jobs": [
-    {
-      "name": "topology_message_self_only_train4_1k",
-      "kind": "real_training_pilot",
-      "stage": "matched_topology_message_train4_pilot",
-      "output": "runs/geobc_exploration/topology_message_self_only_train4_1k",
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "-m",
-        "geobc.topology_message_train",
-        "--plan",
-        "notes/geobc_topology_message_plan.json",
-        "--message-mode",
-        "self_only",
-        "--output",
-        "runs/geobc_exploration/topology_message_self_only_train4_1k"
-      ],
-      "requires": [
-        "geobc/topology_message_field.py",
-        "geobc/topology_message_train.py",
-        "notes/geobc_topology_message_plan.json",
-        "notes/topology_message_design_review.json",
-        "notes/topology_message_field_ready.json",
-        "notes/topology_message_train_ready.json",
-        "notes/topology_message_parent_review.json",
-        "data/geobc_topology_balanced_train4/manifest.json",
-        "notes/geobc_topology_balanced_feasibility_result.json"
-      ]
-    },
-    {
-      "name": "topology_message_neighbors_train4_1k",
-      "kind": "real_training_pilot",
-      "stage": "matched_topology_message_train4_pilot",
-      "output": "runs/geobc_exploration/topology_message_neighbors_train4_1k",
-      "command": [
-        "/home/research/.venvs/geobc/bin/python",
-        "-m",
-        "geobc.topology_message_train",
-        "--plan",
-        "notes/geobc_topology_message_plan.json",
-        "--message-mode",
-        "neighbors",
-        "--output",
-        "runs/geobc_exploration/topology_message_neighbors_train4_1k"
-      ],
-      "requires": [
-        "geobc/topology_message_field.py",
-        "geobc/topology_message_train.py",
-        "notes/geobc_topology_message_plan.json",
-        "notes/topology_message_design_review.json",
-        "notes/topology_message_field_ready.json",
-        "notes/topology_message_train_ready.json",
-        "notes/topology_message_parent_review.json",
-        "data/geobc_topology_balanced_train4/manifest.json",
-        "notes/geobc_topology_balanced_feasibility_result.json"
-      ]
-    }
-  ],
+  "jobs": [],
   "historical_jobs": [
     {
       "name": "hash50_unseen_geometry_pilot",
@@ -2268,6 +2211,62 @@
         "data/geobc_gradient_supervision/101_78.npz",
         "data/geobc_graph_context/101_78.npz"
       ]
+    },
+    {
+      "name": "topology_message_self_only_train4_1k",
+      "kind": "real_training_pilot",
+      "stage": "matched_topology_message_train4_pilot",
+      "output": "runs/geobc_exploration/topology_message_self_only_train4_1k",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.topology_message_train",
+        "--plan",
+        "notes/geobc_topology_message_plan.json",
+        "--message-mode",
+        "self_only",
+        "--output",
+        "runs/geobc_exploration/topology_message_self_only_train4_1k"
+      ],
+      "requires": [
+        "geobc/topology_message_field.py",
+        "geobc/topology_message_train.py",
+        "notes/geobc_topology_message_plan.json",
+        "notes/topology_message_design_review.json",
+        "notes/topology_message_field_ready.json",
+        "notes/topology_message_train_ready.json",
+        "notes/topology_message_parent_review.json",
+        "data/geobc_topology_balanced_train4/manifest.json",
+        "notes/geobc_topology_balanced_feasibility_result.json"
+      ]
+    },
+    {
+      "name": "topology_message_neighbors_train4_1k",
+      "kind": "real_training_pilot",
+      "stage": "matched_topology_message_train4_pilot",
+      "output": "runs/geobc_exploration/topology_message_neighbors_train4_1k",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.topology_message_train",
+        "--plan",
+        "notes/geobc_topology_message_plan.json",
+        "--message-mode",
+        "neighbors",
+        "--output",
+        "runs/geobc_exploration/topology_message_neighbors_train4_1k"
+      ],
+      "requires": [
+        "geobc/topology_message_field.py",
+        "geobc/topology_message_train.py",
+        "notes/geobc_topology_message_plan.json",
+        "notes/topology_message_design_review.json",
+        "notes/topology_message_field_ready.json",
+        "notes/topology_message_train_ready.json",
+        "notes/topology_message_parent_review.json",
+        "data/geobc_topology_balanced_train4/manifest.json",
+        "notes/geobc_topology_balanced_feasibility_result.json"
+      ]
     }
   ],
   "phase_history": [
@@ -2435,6 +2434,16 @@
       "elapsed_seconds": 13.101552986999991,
       "cache_bytes": 342364814,
       "next_formal_plan": "notes/geobc_topology_message_plan.json"
+    },
+    {
+      "stage": "matched_topology_message_train4_pilot",
+      "result": "notes/geobc_topology_message_pair_result.json",
+      "matched_controls_passed": true,
+      "clear_gain_gate_passed": false,
+      "gates_passed": 0,
+      "paired_elapsed_seconds": 56.634747132999905,
+      "decision": "One input-only geometry continuity check, no budget expansion",
+      "completed_at_utc": "2026-10-09T11:55:27.066171+00:00"
     }
   ],
   "scope_rule": "historical_jobs are immutable completed evidence and are never dispatched; jobs contains only the currently authorized stage. Source SHA and weights remain in each historical run and the frozen Git commit.",
@@ -2461,15 +2470,10 @@
     }
   },
   "active_design_preparation": {
-    "status": "completed_sources_released",
-    "design": "notes/geobc_topology_message_plan.json",
-    "design_sha256": "05fd5a5afba10871c58d18fde2e31997b85b1c1aa695b828e4ee416c43e43e68",
-    "field_author": "hashgrid_impl",
-    "trainer_author": "topology_train_impl",
-    "release": "Root focusedreview passed, solePID422 released1000fixedupdates each",
-    "source_sha256": {
-      "geobc/topology_message_field.py": "d9d853e0deae66eb1e146480e111d85c68de790119ff0ab82f5f4dbf082c49be",
-      "geobc/topology_message_train.py": "843abf30618800c9cad4377789d59fb1fc36349e841ca63e05a9dbde1096de15"
-    }
+    "status": "source_metadata_only",
+    "author": "continuous_query_contract",
+    "draft": "notes/geobc_continuous_query_contract_draft.json",
+    "feasibility": "notes/geobc_continuous_geometry_feasibility.json",
+    "no_real_array_or_GPU_execution_yet": true
   }
 }

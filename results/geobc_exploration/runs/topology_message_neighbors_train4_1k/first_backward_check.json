@@ -1,0 +1,83 @@
+{
+  "step": 1,
+  "message_mode": "neighbors",
+  "passed": true,
+  "checked_after_backward_before_optimizer_step": true,
+  "groups": {
+    "PointNet": {
+      "gradient_l1": 78.62510306275931,
+      "parameter_count": 16800,
+      "gradients_present_and_finite": true
+    },
+    "embed": {
+      "gradient_l1": 58.902841227391036,
+      "parameter_count": 1536,
+      "gradients_present_and_finite": true
+    },
+    "coarse0": {
+      "gradient_l1": 19.53391183633903,
+      "parameter_count": 2080,
+      "gradients_present_and_finite": true
+    },
+    "coarse1": {
+      "gradient_l1": 18.258183696649212,
+      "parameter_count": 2080,
+      "gradients_present_and_finite": true
+    },
+    "fine0": {
+      "gradient_l1": 35.33800889811391,
+      "parameter_count": 2080,
+      "gradients_present_and_finite": true
+    },
+    "fine1": {
+      "gradient_l1": 36.265167889465374,
+      "parameter_count": 2080,
+      "gradients_present_and_finite": true
+    }
+  },
+  "global_context": {
+    "gradient_l1_by_tensor": [
+      1.978915867395699
+    ],
+    "present_finite_nonzero": true
+  },
+  "fine_tokens": {
+    "gradient_l1_by_tensor": [
+      0.6085968010478446,
+      1.0983665303053487
+    ],
+    "present_finite_nonzero": true
+  },
+  "full_node_Q": {
+    "gradient_l1_by_tensor": [
+      1.4638348291628063,
+      1.7920941794291139
+    ],
+    "present_finite_nonzero": true
+  },
+  "bandwidth_mode": "coarse8",
+  "native_parameter_groups": {
+    "encoding": {
+      "gradient_l1": 1.1999478936195374,
+      "parameters": 7733632,
+      "parameter_tensors": 1,
+      "gradients_present_and_finite": true
+    },
+    "network": {
+      "gradient_l1": 566.7451298236847,
+      "parameters": 36864,
+      "parameter_tensors": 1,
+      "gradients_present_and_finite": true
+    }
+  },
+  "native_gradient_scope": "Two entire public Encoding/Network buffers; no flat-offset partitions",
+  "bandwidth_activation_gradient": {
+    "pre_mask_first16_gradient_l1": 1.6472217589616776,
+    "pre_mask_last8_gradient_l1": 0.0,
+    "post_mask_last8_activation_max_abs": 0.0,
+    "pre_mask_last8_activation_max_abs": 9.816884994506836e-05,
+    "expected_last8_gradient": "exact_zero",
+    "pre_mask_gradient_not_post_mask_gradient": true,
+    "checked_after_backward_before_optimizer_step": true
+  }
+}

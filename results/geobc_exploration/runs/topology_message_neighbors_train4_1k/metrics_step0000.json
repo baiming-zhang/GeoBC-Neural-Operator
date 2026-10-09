@@ -1,0 +1,297 @@
+{
+  "step": 0,
+  "message_mode": "neighbors",
+  "train": {
+    "per_case": {
+      "101_428/ver": {
+        "nodes": 270276,
+        "relative_l2": 1.3401553738295404,
+        "rmse_mm": 0.06175189126801549,
+        "mae_component_mm": 0.04353595767606137,
+        "max_vector_error_mm": 0.2819228042577827,
+        "relative_case_u_loss": 1.7960164260041924
+      },
+      "101_428/hor": {
+        "nodes": 270276,
+        "relative_l2": 1.0484985970976128,
+        "rmse_mm": 0.034147934971992845,
+        "mae_component_mm": 0.026044420105327818,
+        "max_vector_error_mm": 0.18187436998193768,
+        "relative_case_u_loss": 1.0993493081156587
+      },
+      "101_428/tor": {
+        "nodes": 270276,
+        "relative_l2": 3.020054775234363,
+        "rmse_mm": 0.02724150933209096,
+        "mae_component_mm": 0.02468776176764784,
+        "max_vector_error_mm": 0.1400700706893938,
+        "relative_case_u_loss": 9.120730845415876
+      },
+      "101_479/ver": {
+        "nodes": 179316,
+        "relative_l2": 1.1518142781117293,
+        "rmse_mm": 0.10888263975158895,
+        "mae_component_mm": 0.07032023516734057,
+        "max_vector_error_mm": 0.4735544633568972,
+        "relative_case_u_loss": 1.326676131262041
+      },
+      "101_479/hor": {
+        "nodes": 179316,
+        "relative_l2": 0.9795564384618831,
+        "rmse_mm": 0.08284870299708418,
+        "mae_component_mm": 0.048939709959402486,
+        "max_vector_error_mm": 0.4985912352198229,
+        "relative_case_u_loss": 0.9595308161321271
+      },
+      "101_479/tor": {
+        "nodes": 179316,
+        "relative_l2": 1.6304432403259772,
+        "rmse_mm": 0.03363035574613507,
+        "mae_component_mm": 0.02743341238245205,
+        "max_vector_error_mm": 0.21415567450544598,
+        "relative_case_u_loss": 2.6583451599246697
+      },
+      "101_56/ver": {
+        "nodes": 221213,
+        "relative_l2": 1.323530615256177,
+        "rmse_mm": 0.06100087918169841,
+        "mae_component_mm": 0.04383528600585188,
+        "max_vector_error_mm": 0.27006757663448655,
+        "relative_case_u_loss": 1.7517332895203916
+      },
+      "101_56/hor": {
+        "nodes": 221213,
+        "relative_l2": 1.0285504562328736,
+        "rmse_mm": 0.0366758707363642,
+        "mae_component_mm": 0.026586136642411485,
+        "max_vector_error_mm": 0.1938414545639469,
+        "relative_case_u_loss": 1.0579160410168509
+      },
+      "101_56/tor": {
+        "nodes": 221213,
+        "relative_l2": 3.1018317436991074,
+        "rmse_mm": 0.02710317231662446,
+        "mae_component_mm": 0.024510574638844904,
+        "max_vector_error_mm": 0.13339894084627776,
+        "relative_case_u_loss": 9.621360166219421
+      },
+      "101_78/ver": {
+        "nodes": 192353,
+        "relative_l2": 1.2264463839747877,
+        "rmse_mm": 0.07614192919855253,
+        "mae_component_mm": 0.051813558499968035,
+        "max_vector_error_mm": 0.33960621939275437,
+        "relative_case_u_loss": 1.5041707327648282
+      },
+      "101_78/hor": {
+        "nodes": 192353,
+        "relative_l2": 0.9953836512645158,
+        "rmse_mm": 0.05061229727843308,
+        "mae_component_mm": 0.03333971965155459,
+        "max_vector_error_mm": 0.27583399991718993,
+        "relative_case_u_loss": 0.9907886132046767
+      },
+      "101_78/tor": {
+        "nodes": 192353,
+        "relative_l2": 2.4606261573918773,
+        "rmse_mm": 0.02781577163037329,
+        "mae_component_mm": 0.02452468581724415,
+        "max_vector_error_mm": 0.1465043592769997,
+        "relative_case_u_loss": 6.054681086441116
+      }
+    },
+    "case_mean_relative_l2": 1.6089076425733706,
+    "worst_case_key": "101_56/tor",
+    "worst_case_relative_l2": 3.1018317436991074,
+    "case_mean_physical_u_RMS_mm": 0.05232107953407946,
+    "strain": {
+      "per_case": {
+        "101_428/ver": {
+          "nodes": 270276,
+          "relative_l2": 3.0097841171801343,
+          "symmetric_Frobenius_relative_l2": 3.0097841171801343,
+          "error_energy": 0.734094420255146,
+          "truth_energy": 0.08103660366107192,
+          "physical_tensor_error_RMS": 0.00164805696922116,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 13.4628942840546
+        },
+        "101_428/hor": {
+          "nodes": 270276,
+          "relative_l2": 4.863755942400738,
+          "symmetric_Frobenius_relative_l2": 4.863755942400738,
+          "error_energy": 1.370697072733643,
+          "truth_energy": 0.05794259432827531,
+          "physical_tensor_error_RMS": 0.002251992818353428,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 40.15462990867805
+        },
+        "101_428/tor": {
+          "nodes": 270276,
+          "relative_l2": 5.0161421151003145,
+          "symmetric_Frobenius_relative_l2": 5.0161421151003145,
+          "error_energy": 0.5630494665356809,
+          "truth_energy": 0.02237725891402282,
+          "physical_tensor_error_RMS": 0.0014433429466062994,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 52.24276766915579
+        },
+        "101_479/ver": {
+          "nodes": 179316,
+          "relative_l2": 2.3272024454153715,
+          "symmetric_Frobenius_relative_l2": 2.3272024454153715,
+          "error_energy": 0.7293727253535798,
+          "truth_energy": 0.13467320315849987,
+          "physical_tensor_error_RMS": 0.0020168111711683233,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 6.697612621046714
+        },
+        "101_479/hor": {
+          "nodes": 179316,
+          "relative_l2": 2.935960098089358,
+          "symmetric_Frobenius_relative_l2": 2.935960098089358,
+          "error_energy": 1.2657722118876071,
+          "truth_energy": 0.14684367989848554,
+          "physical_tensor_error_RMS": 0.0026568574730349618,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 10.825597038317389
+        },
+        "101_479/tor": {
+          "nodes": 179316,
+          "relative_l2": 3.254670418006758,
+          "symmetric_Frobenius_relative_l2": 3.254670418006758,
+          "error_energy": 0.4851765462795145,
+          "truth_energy": 0.04580213953273037,
+          "physical_tensor_error_RMS": 0.0016449033234490378,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 16.62863477913048
+        },
+        "101_56/ver": {
+          "nodes": 221213,
+          "relative_l2": 3.250554601333533,
+          "symmetric_Frobenius_relative_l2": 3.250554601333533,
+          "error_energy": 0.6832047312373541,
+          "truth_energy": 0.06466003482405132,
+          "physical_tensor_error_RMS": 0.001757397927270538,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 16.40842256166569
+        },
+        "101_56/hor": {
+          "nodes": 221213,
+          "relative_l2": 5.498436683036176,
+          "symmetric_Frobenius_relative_l2": 5.498436683036176,
+          "error_energy": 1.4773539694770088,
+          "truth_energy": 0.04886592304931127,
+          "physical_tensor_error_RMS": 0.0025842644834341666,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 47.04386648645643
+        },
+        "101_56/tor": {
+          "nodes": 221213,
+          "relative_l2": 5.258809090048223,
+          "symmetric_Frobenius_relative_l2": 5.258809090048223,
+          "error_energy": 0.5470962470882442,
+          "truth_energy": 0.019782853084013338,
+          "physical_tensor_error_RMS": 0.0015726299598768853,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 69.98792002135431
+        },
+        "101_78/ver": {
+          "nodes": 192353,
+          "relative_l2": 2.8023239227937395,
+          "symmetric_Frobenius_relative_l2": 2.8023239227937395,
+          "error_energy": 0.6361948923875039,
+          "truth_energy": 0.08101277515737193,
+          "physical_tensor_error_RMS": 0.0018186352600000363,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 11.257649638114176
+        },
+        "101_78/hor": {
+          "nodes": 192353,
+          "relative_l2": 4.326163837624764,
+          "symmetric_Frobenius_relative_l2": 4.326163837624764,
+          "error_energy": 1.3131679819368107,
+          "truth_energy": 0.07016400318965255,
+          "physical_tensor_error_RMS": 0.0026128270315224932,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 27.860809605594188
+        },
+        "101_78/tor": {
+          "nodes": 192353,
+          "relative_l2": 4.607571620776036,
+          "symmetric_Frobenius_relative_l2": 4.607571620776036,
+          "error_energy": 0.45266357176292926,
+          "truth_energy": 0.021322167787511948,
+          "physical_tensor_error_RMS": 0.001534045676177033,
+          "physical_RMS_definition": "sqrt(Frobenius error energy / Nnodes); shear weight2; no /6",
+          "raw_relative_cell_strain_loss": 49.53660960242607
+        }
+      },
+      "case_mean_relative_l2": 3.929281240983762,
+      "worst_case_key": "101_56/hor",
+      "worst_case_relative_l2": 5.498436683036176,
+      "mean_case_physical_tensor_error_RMS": 0.001961813753342864,
+      "pooled": {
+        "relative_l2": 3.59323542395378,
+        "error_energy": 10.257843836935022,
+        "truth_energy": 0.7944832365849982,
+        "physical_tensor_error_RMS": 0.001990317053702759
+      },
+      "selection_used": false,
+      "scope": "all original nodes; incident-volume-recovered corner-P1 tensor proxy"
+    }
+  },
+  "selection_used": false,
+  "training_loss_components": null,
+  "evaluation_loss_components": {
+    "relative_case_u_loss": 3.161774884668487,
+    "unweighted_relative_cell_strain_loss": 30.175617851332827,
+    "gradient_weight": 0.0004106650618638651,
+    "weighted_strain_loss": 0.012392071971697947,
+    "total": 3.1741669566401853,
+    "scope": "exact full-node u and full-volume cell P1 case means"
+  },
+  "elapsed_seconds": 6.401226099999803,
+  "eval_seconds": 0.7129011189999801,
+  "context_seconds": 0.2912739949999832,
+  "context_phase_timings": {
+    "per_CAD": {
+      "101_428": {
+        "embedding_seconds": 0.00015942400693893431,
+        "method": "synchronized CUDA events only when requested",
+        "restriction_and_coarse_messages_seconds": 0.03359302520751953,
+        "fusion_and_fine_messages_seconds": 0.0002866879999637604,
+        "fullnode_prolongation_and_normalization_seconds": 0.0018292160034179686
+      },
+      "101_479": {
+        "embedding_seconds": 7.772800326347351e-05,
+        "method": "synchronized CUDA events only when requested",
+        "restriction_and_coarse_messages_seconds": 0.00022371199727058412,
+        "fusion_and_fine_messages_seconds": 0.00018505600094795226,
+        "fullnode_prolongation_and_normalization_seconds": 0.0007885439991950989
+      },
+      "101_56": {
+        "embedding_seconds": 0.00027587199211120603,
+        "method": "synchronized CUDA events only when requested",
+        "restriction_and_coarse_messages_seconds": 0.0007804800271987915,
+        "fusion_and_fine_messages_seconds": 0.0006596159934997559,
+        "fullnode_prolongation_and_normalization_seconds": 0.0008317760229110718
+      },
+      "101_78": {
+        "embedding_seconds": 4.9375999718904496e-05,
+        "method": "synchronized CUDA events only when requested",
+        "restriction_and_coarse_messages_seconds": 0.0002067839950323105,
+        "fusion_and_fine_messages_seconds": 0.0001761920005083084,
+        "fullnode_prolongation_and_normalization_seconds": 0.0007511360049247741
+      }
+    },
+    "global_encoder_seconds": 0.28129522705078125,
+    "method": "synchronized CUDA events only when requested"
+  },
+  "first_backward_check": null,
+  "memory": {
+    "cpu_peak_rss_bytes": 2298773504,
+    "cuda_peak_allocated_bytes": 1061178368,
+    "cuda_peak_reserved_bytes": 1101004800
+  }
+}
