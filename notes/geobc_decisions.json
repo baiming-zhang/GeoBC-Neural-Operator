@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "frozen_u_conditioned_stress",
+  "stage": "fixed_train_strain_quality_diagnosis",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -45,6 +45,20 @@
       "conclusion": "Amplitude imbalance contributed but does not resolve unseen-CAD transfer. Freeze the eligible load-linear relative-loss teacher by known-load validation only.",
       "next": "Matched stress student41 local channels: original25+actual geometry13+zero/predictedu3. Same10k seed2026 budget and stress objective; report teacher auxiliary supervision and preprocessing costs. No dia or finaltest opens.",
       "source_local_commit": "ac2247683896eeeade7b7c310ba1ff003417ae8e"
+    },
+    {
+      "decision_id": "p1strain6",
+      "evidence": "Matchedu3 mean64.4973%->62.6921%,worst82.3312%->75.4101%,hotspot38.8960%->43.6509%,two training times85.626s+81.667s; initialization/sampling/nativeencodergrad controls passed.",
+      "conclusion": "Mixed small gain; predeclared2pp gain+hotspot gate not passed. Pointdisplacement does not fully encode local deformation needed forstress.",
+      "next": "Both students fixedu3actual; compare47+32 inputs with predictedP1strain6 vszero6, same stressloss/budget. Rawdimensionlessstrain recovered from frozenbasis and originalgeometry only, commonzero-center predictedtrainRMS; noGTtensor/Hooke/labelsinput.",
+      "source_local_commit": "8af33985bdbde5d68a4a4b26f2be7ce9dc0aa2a3",
+      "limitations": "P1 proxy fromTETRA10corners, volume-averagedto10nodes; not exactquadratic strain or source stress export semantics."
+    },
+    {
+      "decision_id": "strain_negative_train_quality",
+      "evidence": "MatchedP1strain6: validationmean62.1116%->62.7799%,worst74.8289%->74.8708%,hotspot43.1336%->42.2994%; initialparameters/scaler/sampling/nativegrad controls passed, training89.65+87.15s, cache8.28s.",
+      "conclusion": "No overallvalidation gain. Do not infer that exact strain is uninformative from this approximate noisy frozenproxy.",
+      "next": "Only fixedTRAIN101_479 ver/hor/tor: comparefrozenpredictedu andcachedP1strain againstsameP1recovery ofpreviouslyused alignedtrainingu. No GTstraininput/targetstress/val/dia/finaltest; CPU diagnostic before next model change."
     }
   ],
   "future_hypotheses_not_launched": [

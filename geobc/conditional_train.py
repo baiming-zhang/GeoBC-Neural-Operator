@@ -189,15 +189,65 @@ def _scope(args):
             "feature_definition": "predicted u_xyz / frozen teacher train common zero-centered RMS; zero control zeros same slots",
             "extra_u_supervision": True, "teacher_is_frozen_and_not_in_student_optimizer": True,
             "final_test_and_dia_excluded": True}
+    strain_mode = getattr(args, "strain_condition", "none")
+    strain_directory_arg = getattr(args, "strain_response_cache", None)
+    requested["strain_condition"] = strain_mode
+    requested["strain_response_cache"] = None
+    strain_contract = None
+    if strain_mode == "none":
+        if strain_directory_arg is not None:
+            raise ValueError("--strain-response-cache requires explicit --strain-condition zero or actual")
+    else:
+        if strain_mode not in ("zero", "actual") or strain_directory_arg is None:
+            raise ValueError("--strain-condition zero/actual requires --strain-response-cache")
+        if u_mode != "actual" or args.hidden_dim != 128:
+            raise ValueError("The strain6 control keeps --u-condition actual and width128: 47+32 inputs")
+        from .strain_condition import load_strain_manifest
+        directory = _path(strain_directory_arg)
+        requested["strain_response_cache"] = str(directory)
+        manifest_path = directory / "manifest.json"
+        manifest_bytes = manifest_path.read_bytes()
+        manifest = load_strain_manifest(directory, expected_parent=response_contract["teacher_fingerprint"])
+        if not math.isfinite(float(manifest["scale"])) or float(manifest["scale"]) <= 0:
+            raise ValueError("Frozen predicted-strain common RMS must be finite and positive")
+        parent = manifest["parent_u_manifest"]
+        if (_path(parent["path"]) != _path(response_contract["manifest"])
+                or parent["sha256"] != response_contract["manifest_sha256"]
+                or manifest["parent_response_fingerprint"] != response_contract["teacher_fingerprint"]
+                or manifest["groups"] != groups
+                or set(manifest["CADs"]) != set(groups["train"] + groups["validation"])):
+            raise ValueError("Frozen strain and current actual-u parent cache/split identities differ")
+        cache_sources = []
+        for cad in groups["train"] + groups["validation"]:
+            record = manifest["CADs"][cad]
+            path = directory / f"{cad}.npz"
+            stat = path.stat()
+            if (record["file"] != path.name or record["bytes"] != stat.st_size
+                    or record["mtime_ns"] != stat.st_mtime_ns):
+                raise ValueError(f"{cad}: frozen strain cache identity changed")
+            cache_sources.append({"cad_id": cad, "path": str(path), "bytes": stat.st_size,
+                                  "mtime_ns": stat.st_mtime_ns, "node_count": record["node_count"],
+                                  "xyz_sha256": record["xyz_sha256"]})
+        strain_contract = {
+            "manifest": str(manifest_path), "manifest_sha256": _sha(manifest_bytes),
+            "metadata": {k: v for k, v in manifest.items() if k != "CADs"},
+            "selected_cache_sources": cache_sources,
+            "feature_definition": "sum(alpha * raw predicted physical tensor strain basis) / fixed train-only predicted-strain common RMS; zero control zeros same six slots",
+            "teacher_is_frozen_and_not_in_student_optimizer": True,
+            "GT_strain_or_displacement_inputs": False, "constitutive_stress_replacement": False,
+            "final_test_and_dia_excluded": True}
     contract = {"version": 1, "requested": requested, "split_sha256": _sha(split_bytes),
                 "selected_sources": identities, "selected_local_sources": local_sources,
-                "u_response": response_contract,
+                "u_response": response_contract, "strain_response": strain_contract,
                 "source_identity_policy": "path/size/mtime; no multi-GB label/checkpoint SHA scans",
                 "code_sha256": {name: _sha((ROOT / "geobc" / name).read_bytes()) for name in
                                 ("conditional_train.py", "conditioned_field.py", "tcnn_fields.py", "local_geometry.py")}}
     if response_contract is not None:
         contract["version"] = 2
         contract["code_sha256"]["displacement_condition.py"] = _sha((ROOT / "geobc" / "displacement_condition.py").read_bytes())
+    if strain_contract is not None:
+        contract["version"] = 3
+        contract["code_sha256"]["strain_condition.py"] = _sha((ROOT / "geobc" / "strain_condition.py").read_bytes())
     return split, split_path, keys, files, contract
 
 
@@ -274,6 +324,10 @@ def run(args):
                         or _json(output / "u_response_metadata.json") != summary["config"]["u_condition"]
                         or not summary["config"].get("initial_parameters", {}).get("all_parameter_sha256")):
                     raise ValueError("Completed frozen-u provenance/configuration witness differs")
+            if getattr(args, "strain_condition", "none") != "none":
+                if (not (output / "strain_response_metadata.json").is_file()
+                        or _json(output / "strain_response_metadata.json") != summary["config"]["strain_condition"]):
+                    raise ValueError("Completed frozen-strain provenance/configuration differs")
             print(json.dumps({"status": "completed", "reused": True, "output": str(output),
                               "best_step": summary["best_step"]}), flush=True)
             return summary
@@ -286,7 +340,8 @@ def run(args):
         raise ValueError("Resume contract differs; data, model, budget, sampling and LR must be unchanged")
     status = {"phase": "loading", "step": 0, "total_steps": args.steps,
               "started_at_utc": utc_now(), "variant": args.variant,
-              "u_condition": getattr(args, "u_condition", "none")}
+              "u_condition": getattr(args, "u_condition", "none"),
+              "strain_condition": getattr(args, "strain_condition", "none")}
     prior_elapsed, start_step = 0.0, 0
 
     def elapsed():
@@ -370,7 +425,30 @@ def run(args):
                 del basis, predicted_u, cache
         response_load_seconds = time.monotonic() - response_began if u_mode != "none" else 0.0
         u_dim = 3 if u_mode != "none" else 0
-        condition_dim = 25 + local_dim + u_dim
+        strain_mode = getattr(args, "strain_condition", "none")
+        strain_records, strain_manifest = {}, None
+        strain_began = time.monotonic()
+        if strain_mode != "none":
+            from .strain_condition import (load_strain_manifest, load_strain_cache,
+                                            strain_condition, FEATURE_NAMES as STRAIN_NAMES)
+            strain_manifest = load_strain_manifest(_path(args.strain_response_cache),
+                expected_parent=contract["u_response"]["teacher_fingerprint"])
+            for cad in cad_keys:
+                cache = load_strain_cache(_path(args.strain_response_cache), cad,
+                    expected_parent=contract["u_response"]["teacher_fingerprint"], manifest=strain_manifest)
+                basis = cache.tensor(device=device)
+                for case in by_cad[cad]:
+                    cache.verify_xyz(case.xyz)
+                    predicted_strain = strain_condition(basis, None, u_alphas[case.key],
+                                                        scale=cache.scale, mode=strain_mode)
+                    if predicted_strain.shape != (case.count, 6) or not torch.isfinite(predicted_strain).all():
+                        raise ValueError(f"{case.key}: frozen strain feature shape/finite check failed")
+                    case.features = torch.cat((case.features, predicted_strain), dim=-1)
+                strain_records[cad] = cache.record()
+                del basis, predicted_strain, cache
+        strain_load_seconds = time.monotonic() - strain_began if strain_mode != "none" else 0.0
+        strain_dim = 6 if strain_mode != "none" else 0
+        condition_dim = 25 + local_dim + u_dim + strain_dim
         clouds = [load_geometry_cloud(files[f"{cad}/ver"], cloud_points=args.cloud_points,
                                       seed=args.seed, cad_key=cad) for cad in cad_keys]
         cloud_array = np.stack([c.points for c in clouds])
@@ -397,7 +475,7 @@ def run(args):
             "local_geometry": {"mode": args.local_mode, "channels": local_dim,
                                "directory": str(_path(args.local_geometry)) if args.local_geometry is not None else None,
                                "feature_names": list(LOCAL_NAMES) if local_dim else [], "CADs": local_records,
-                               "input_order": "25 existing BC/material" + (" + 13 local geometry" if local_dim else "") + (" + 3 frozen predicted u" if u_dim else "") + ", followed by global context in decoder",
+                               "input_order": "25 existing BC/material" + (" + 13 local geometry" if local_dim else "") + (" + 3 frozen predicted u" if u_dim else "") + (" + 6 frozen predicted tensor strain" if strain_dim else "") + ", followed by global context in decoder",
                                "target_independent": True, "all_load_xyz_hash_verified": args.local_mode != "none",
                                "limitations": "Discrete boundary-node KNN/PCA, mesh-density dependent; unsigned node distance, not exact SDF"},
             "arguments": {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()},
@@ -446,6 +524,30 @@ def run(args):
                 "cache_feature_load_seconds": response_load_seconds,
                 "comparison": "zero and actual share teacher provenance, 41 condition slots, initialization, and student sampling",
                 "stress_loss_and_scaler_unchanged": True, "final_test_and_dia_excluded": True}
+        if strain_dim:
+            config["u_condition"]["comparison"] = "fixed actual predicted-u3 in both47+32 strain zero/actual controls"
+            config["strain_condition"] = {
+                "mode": strain_mode, "channels": strain_dim, "input_columns": list(range(41, 47)),
+                "feature_names": list(STRAIN_NAMES), "feature_definition": contract["strain_response"]["feature_definition"],
+                "directory": str(_path(args.strain_response_cache)),
+                "manifest_sha256": contract["strain_response"]["manifest_sha256"],
+                "parent_teacher_fingerprint": strain_manifest["parent_teacher_fingerprint"],
+                "parent_response_fingerprint": strain_manifest["parent_response_fingerprint"],
+                "parent_u_manifest": strain_manifest["parent_u_manifest"],
+                "scale": strain_manifest["scale"], "center": 0.0,
+                "basis_order": strain_manifest["basis_order"], "component_order": strain_manifest["component_order"],
+                "shear": "tensor strain; xy/xz/yz are not engineering shear times2",
+                "metadata": contract["strain_response"]["metadata"], "CADs": strain_records,
+                "all_load_xyz_hash_verified": True,
+                "alpha_source": config["u_condition"]["alpha_source"],
+                "student_input": "current-load predicted six-component physical tensor strain divided by frozen train-only predicted-strain RMS; no GT strain/u input",
+                "sampling": "compose scaled six features once per original node; unchanged uniform sampler gathers features",
+                "teacher_in_optimizer": False, "teacher_online_forward": False,
+                "constitutive_stress_replacement": False, "stress_scalar_linearly_combined": False,
+                "cache_generation_cost": strain_manifest.get("cost", strain_manifest.get("elapsed_seconds")),
+                "cache_feature_load_seconds": strain_load_seconds,
+                "comparison": "zero and actual share47 condition slots, teacher/parent/scaler, initialization and sampling; both keep actual-u3",
+                "stress_loss_and_scaler_unchanged": True, "final_test_and_dia_excluded": True}
         best_score, best_step, best_metrics, gradient_check = float("inf"), None, None, None
         if resume is not None:
             stored_config = _json(output / "config.json")
@@ -458,6 +560,12 @@ def run(args):
                 new_u.pop("cache_feature_load_seconds", None)
                 if old_u != new_u or stored_config["initial_parameters"] != initial_parameters:
                     raise ValueError("Resume frozen-u provenance/layout or paired initial parameters differ")
+            if strain_dim:
+                old_strain, new_strain = dict(stored_config["strain_condition"]), dict(config["strain_condition"])
+                old_strain.pop("cache_feature_load_seconds", None)
+                new_strain.pop("cache_feature_load_seconds", None)
+                if old_strain != new_strain:
+                    raise ValueError("Resume frozen-strain parent/cache/scaler/provenance differs")
             saved = torch.load(resume, map_location=device, weights_only=False)
             if saved["config"] != stored_config:
                 raise ValueError("last.pt and config.json disagree")
@@ -498,6 +606,8 @@ def run(args):
                 write_json(output / "local_geometry_metadata.json", config["local_geometry"])
             if u_dim:
                 write_json(output / "u_response_metadata.json", config["u_condition"])
+            if strain_dim:
+                write_json(output / "strain_response_metadata.json", config["strain_condition"])
             np.savez(output / "geometry_clouds.npz", points=cloud_array, mask=mask_array,
                      node_indices=np.stack([c.node_indices for c in clouds]), cad_keys=np.asarray(cad_keys))
 
@@ -647,6 +757,10 @@ def parser():
                    help="Completed frozen displacement response cache; never a GT field input")
     p.add_argument("--u-condition", choices=("none", "zero", "actual"), default="none",
                    help="zero/actual share three frozen predicted-u slots after actual local geometry; none preserves prior layout")
+    p.add_argument("--strain-response-cache", type=Path, default=None,
+                   help="Completed frozen physical strain basis cache with fixed train-only predicted-strain RMS")
+    p.add_argument("--strain-condition", choices=("none", "zero", "actual"), default="none",
+                   help="zero/actual share six strain slots after fixed actual-u3; none preserves the previous input layout")
     p.add_argument("--device", default="cuda")
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--resume", nargs="?", const="last", default=None,

@@ -1,0 +1,66 @@
+{
+  "status": "ready",
+  "created_at_utc": "2026-10-09T04:29:41.469499+00:00",
+  "sources_frozen": true,
+  "parent_20_source_commit": "8af33985bdbde5d68a4a4b26f2be7ce9dc0aa2a3",
+  "source_sha256": {
+    "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+    "geobc/strain_condition.py": "af8b2db3c068d65d1fa5e7920760b35ffeb6383f0a255a698eae67a9b64fc44e",
+    "tools/prepare_frozen_strain_response.py": "364e90ffb858d79b8011707418f3125ea49a59517c14a0e2cef13b1371592d91",
+    "geobc/displacement_condition.py": "d82b4f627ddfbe3bf8c217667bf411b4ebf66ada98736e59580721489cf9289a",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "geobc/local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+    "geobc/train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7"
+  },
+  "changed_source_files": [
+    "geobc/conditional_train.py"
+  ],
+  "old_ready_files_preserved": true,
+  "cache_ready": "notes/frozen_strain_ready.json",
+  "parent_u_manifest": "data/geobc_frozen_u_response/manifest.json",
+  "CLI": "--strain-response-cache data/geobc_frozen_strain_response --strain-condition none(default)|zero|actual; both strain controls require --u-condition actual",
+  "jobs": [
+    "stress_u_actual_strain_zero_width128_10k",
+    "stress_u_actual_strain_actual_width128_10k"
+  ],
+  "condition_layout": {
+    "original_BC_material": 25,
+    "actual_local_geometry": 13,
+    "fixed_actual_predicted_u": 3,
+    "zero_actual_predicted_strain": 6,
+    "student_condition_dim": 47,
+    "PointNet_global_dim": 32,
+    "TCNN_identity_condition_dim": 79
+  },
+  "feature_definition": "sum_l alpha[l]*raw physical dimensionless corner-P1 recovered strain_basis[n,l,c] / fixed positive train-only predicted-strain RMS; zero center, six tensor components xx yy zz xy xz yz, shear not doubled",
+  "strain_RMS_fit": "train40 frozen predicted raw strain only, pooled unique nodes x3known loads x6tensor components; denominator=fit_nodes*18, no validation/dia/finaltest statistics, no percase scaling or clipping",
+  "fit_scope": "unchanged stress-only scaler fit train120; val15 known-load physical signed stress case-mean relativeL2 selects best; final5/dia excluded",
+  "frozen_teacher_policy": "only cached predicted u and P1 recovered strain, no GT u/strain inputs or online teacher in optimizer; no Hooke/constitutive stress replacement or scalar stress linear combination; extra teacher/cache costs recorded",
+  "matched_pair": "same47+32 PointNet/width128/seed2026/10k/eval1k/batch51200/4cases/lr.003; decoder+PointNet initial parameterSHA, independent case(seed+23)/node(seed+17) sampling and firstbatchwitness",
+  "contract": "_scope five-tuple stays JSON/stat only; strict same actual-u parent path/SHA/fingerprint and full strain scaler/recovery/sourcemetadata/cache45 identities; resume uses unchanged last/best/RNG with fixed metadata and scaler",
+  "checks": {
+    "actual_plan_two_commands_parse": true,
+    "default_strain_none_preserves_previous_path": true,
+    "training_loop_AST_loss_optimizer_sampler_first_batch_unchanged": true,
+    "CPU_injected_47plus32_shape": true,
+    "same_seed_initial_parameter_SHA": true,
+    "CPU_PointNet_context_gradient_finite_nonzero": true,
+    "metadata_scope_JSON_stat_only_fixed_train120_validation15": true,
+    "paired_scope_same_parent_u_manifest_strain_scale_provenance": true,
+    "raw_physical_strain_basis_divided_by_scale_once": true,
+    "zero_six_exact_and_original_node_gather": true,
+    "cache_combination_sampling_RNG_unchanged": true,
+    "XYZ_order_mismatch_rejected": true,
+    "different_frozen_parent_rejected": true,
+    "completed_reuse_no_arrays_models_CUDA": true,
+    "changed_completed_strain_scaler_metadata_rejected": true,
+    "latest_train_only_RMS_sumsq_denominator_sqrt_contract": true,
+    "CUDA_initialized": false,
+    "GPU_training_started_by_child": false,
+    "real_target_arrays_or_weights_opened_in_checks": false
+  },
+  "native_GPU_validation": "Only root formalqueue first backward; original finite nonzero PointNet gradient check retained, no extra GPU smoke",
+  "limitations": "Four-corner P1 constant-gradient/volume-averaged-to-all10 strain proxy, not exact quadratic TETRA10 recovery; signed scalar stress remains independently supervised",
+  "freeze_policy": "No source edits after this receipt until both strain student summaries complete or root requests direct repair"
+}

@@ -3,7 +3,7 @@
   "objective": "Learn a geometry- and boundary-conditioned continuous field that fits multiple DeepJEB cases and transfers across held-out CAD/load conditions.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "frozen_u_conditioned_stress",
+  "stage": "frozen_p1_strain_conditioned_stress",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -56,9 +56,9 @@
   ],
   "jobs": [
     {
-      "name": "stress_u_condition_zero_width128_10k",
-      "stage": "frozen_u_conditioned_stress",
-      "hypothesis": "Does frozen predicted displacement provide useful stress conditioning beyond matched zero slots, holding the stress objective/decoder/layout/RNG/budget fixed?",
+      "name": "stress_u_actual_strain_zero_width128_10k",
+      "stage": "frozen_p1_strain_conditioned_stress",
+      "hypothesis": "With frozen predictedu fixed in both sides, does corner-P1 mesh-recovered predictedstrain6 improve stress and hotspots beyond identicalzero6slots?",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
@@ -78,6 +78,10 @@
         "--u-response-cache",
         "data/geobc_frozen_u_response",
         "--u-condition",
+        "actual",
+        "--strain-response-cache",
+        "data/geobc_frozen_strain_response",
+        "--strain-condition",
         "zero",
         "--steps",
         "10000",
@@ -92,25 +96,24 @@
         "--seed",
         "2026",
         "--output",
-        "runs/geobc_exploration/stress_u_condition_zero_width128_10k"
+        "runs/geobc_exploration/stress_u_actual_strain_zero_width128_10k"
       ],
       "requires": [
         "geobc/conditional_train.py",
-        "geobc/displacement_condition.py",
-        "notes/u_conditioned_stress_ready.json",
-        "notes/frozen_u_response_ready.json",
-        "notes/geobc_u_stress_teacher_frozen.json",
-        "notes/geobc_split.json",
-        "data/geobc_frozen_u_response/manifest.json",
-        "data/prepared_geobc_multiload/manifest.json",
-        "data/geobc_local_geometry/manifest.json"
+        "geobc/strain_condition.py",
+        "notes/frozen_strain_ready.json",
+        "notes/strain_conditioned_stress_ready.json",
+        "notes/geobc_after_u_stress_options.json",
+        "notes/geobc_u_stress_pair_result.json",
+        "data/geobc_frozen_strain_response/manifest.json",
+        "data/geobc_frozen_u_response/manifest.json"
       ],
-      "output": "runs/geobc_exploration/stress_u_condition_zero_width128_10k"
+      "output": "runs/geobc_exploration/stress_u_actual_strain_zero_width128_10k"
     },
     {
-      "name": "stress_u_condition_actual_width128_10k",
-      "stage": "frozen_u_conditioned_stress",
-      "hypothesis": "Does frozen predicted displacement provide useful stress conditioning beyond matched zero slots, holding the stress objective/decoder/layout/RNG/budget fixed?",
+      "name": "stress_u_actual_strain_actual_width128_10k",
+      "stage": "frozen_p1_strain_conditioned_stress",
+      "hypothesis": "With frozen predictedu fixed in both sides, does corner-P1 mesh-recovered predictedstrain6 improve stress and hotspots beyond identicalzero6slots?",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
         "-m",
@@ -131,6 +134,10 @@
         "data/geobc_frozen_u_response",
         "--u-condition",
         "actual",
+        "--strain-response-cache",
+        "data/geobc_frozen_strain_response",
+        "--strain-condition",
+        "actual",
         "--steps",
         "10000",
         "--batch-size",
@@ -144,20 +151,19 @@
         "--seed",
         "2026",
         "--output",
-        "runs/geobc_exploration/stress_u_condition_actual_width128_10k"
+        "runs/geobc_exploration/stress_u_actual_strain_actual_width128_10k"
       ],
       "requires": [
         "geobc/conditional_train.py",
-        "geobc/displacement_condition.py",
-        "notes/u_conditioned_stress_ready.json",
-        "notes/frozen_u_response_ready.json",
-        "notes/geobc_u_stress_teacher_frozen.json",
-        "notes/geobc_split.json",
-        "data/geobc_frozen_u_response/manifest.json",
-        "data/prepared_geobc_multiload/manifest.json",
-        "data/geobc_local_geometry/manifest.json"
+        "geobc/strain_condition.py",
+        "notes/frozen_strain_ready.json",
+        "notes/strain_conditioned_stress_ready.json",
+        "notes/geobc_after_u_stress_options.json",
+        "notes/geobc_u_stress_pair_result.json",
+        "data/geobc_frozen_strain_response/manifest.json",
+        "data/geobc_frozen_u_response/manifest.json"
       ],
-      "output": "runs/geobc_exploration/stress_u_condition_actual_width128_10k"
+      "output": "runs/geobc_exploration/stress_u_actual_strain_actual_width128_10k"
     }
   ],
   "historical_jobs": [
@@ -919,6 +925,110 @@
         "runs/geobc_exploration/hash_bc_pointnet_local_actual_width128_10k/best.pt"
       ],
       "output": "runs/geobc_exploration/displacement_load_dependent_basis_relative_case_10k"
+    },
+    {
+      "name": "stress_u_condition_zero_width128_10k",
+      "stage": "frozen_u_conditioned_stress",
+      "hypothesis": "Does frozen predicted displacement provide useful stress conditioning beyond matched zero slots, holding the stress objective/decoder/layout/RNG/budget fixed?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.conditional_train",
+        "--split",
+        "notes/geobc_split.json",
+        "--data",
+        "data/prepared_geobc_multiload",
+        "--variant",
+        "geometry_pointnet",
+        "--hidden-dim",
+        "128",
+        "--local-geometry",
+        "data/geobc_local_geometry",
+        "--local-mode",
+        "actual",
+        "--u-response-cache",
+        "data/geobc_frozen_u_response",
+        "--u-condition",
+        "zero",
+        "--steps",
+        "10000",
+        "--batch-size",
+        "51200",
+        "--cases-per-batch",
+        "4",
+        "--eval-every",
+        "1000",
+        "--learning-rate",
+        "0.003",
+        "--seed",
+        "2026",
+        "--output",
+        "runs/geobc_exploration/stress_u_condition_zero_width128_10k"
+      ],
+      "requires": [
+        "geobc/conditional_train.py",
+        "geobc/displacement_condition.py",
+        "notes/u_conditioned_stress_ready.json",
+        "notes/frozen_u_response_ready.json",
+        "notes/geobc_u_stress_teacher_frozen.json",
+        "notes/geobc_split.json",
+        "data/geobc_frozen_u_response/manifest.json",
+        "data/prepared_geobc_multiload/manifest.json",
+        "data/geobc_local_geometry/manifest.json"
+      ],
+      "output": "runs/geobc_exploration/stress_u_condition_zero_width128_10k"
+    },
+    {
+      "name": "stress_u_condition_actual_width128_10k",
+      "stage": "frozen_u_conditioned_stress",
+      "hypothesis": "Does frozen predicted displacement provide useful stress conditioning beyond matched zero slots, holding the stress objective/decoder/layout/RNG/budget fixed?",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.conditional_train",
+        "--split",
+        "notes/geobc_split.json",
+        "--data",
+        "data/prepared_geobc_multiload",
+        "--variant",
+        "geometry_pointnet",
+        "--hidden-dim",
+        "128",
+        "--local-geometry",
+        "data/geobc_local_geometry",
+        "--local-mode",
+        "actual",
+        "--u-response-cache",
+        "data/geobc_frozen_u_response",
+        "--u-condition",
+        "actual",
+        "--steps",
+        "10000",
+        "--batch-size",
+        "51200",
+        "--cases-per-batch",
+        "4",
+        "--eval-every",
+        "1000",
+        "--learning-rate",
+        "0.003",
+        "--seed",
+        "2026",
+        "--output",
+        "runs/geobc_exploration/stress_u_condition_actual_width128_10k"
+      ],
+      "requires": [
+        "geobc/conditional_train.py",
+        "geobc/displacement_condition.py",
+        "notes/u_conditioned_stress_ready.json",
+        "notes/frozen_u_response_ready.json",
+        "notes/geobc_u_stress_teacher_frozen.json",
+        "notes/geobc_split.json",
+        "data/geobc_frozen_u_response/manifest.json",
+        "data/prepared_geobc_multiload/manifest.json",
+        "data/geobc_local_geometry/manifest.json"
+      ],
+      "output": "runs/geobc_exploration/stress_u_condition_actual_width128_10k"
     }
   ],
   "phase_history": [
@@ -963,6 +1073,13 @@
       "completed": 2,
       "source_local_commit": "ac2247683896eeeade7b7c310ba1ff003417ae8e",
       "completed_at_utc": "2026-10-09T03:49:31.674091+00:00"
+    },
+    {
+      "stage": "frozen_u_conditioned_stress",
+      "completed": 2,
+      "source_local_commit": "8af33985bdbde5d68a4a4b26f2be7ce9dc0aa2a3",
+      "result": "notes/geobc_u_stress_pair_result.json",
+      "completed_at_utc": "2026-10-09T04:14:05.030305+00:00"
     }
   ],
   "scope_rule": "historical_jobs are immutable completed evidence and are never dispatched; jobs contains only the currently authorized stage. Source SHA and weights remain in each historical run and the frozen Git commit."

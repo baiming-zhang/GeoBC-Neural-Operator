@@ -1,0 +1,80 @@
+{
+  "status": "ready",
+  "created_at_utc": "2026-10-09T04:27:52.585721+00:00",
+  "sources_frozen": true,
+  "source_sha256": {
+    "strain_condition.py": "af8b2db3c068d65d1fa5e7920760b35ffeb6383f0a255a698eae67a9b64fc44e",
+    "prepare_frozen_strain_response.py": "364e90ffb858d79b8011707418f3125ea49a59517c14a0e2cef13b1371592d91"
+  },
+  "parent_source_commit": "8af33985bdbde5d68a4a4b26f2be7ce9dc0aa2a3",
+  "files": [
+    "geobc/strain_condition.py",
+    "tools/prepare_frozen_strain_response.py"
+  ],
+  "CLI": "python tools/prepare_frozen_strain_response.py --u-response-cache data/geobc_frozen_u_response --output data/geobc_frozen_strain_response --batch-size 262144",
+  "parent_u_manifest": "data/geobc_frozen_u_response/manifest.json",
+  "parent_response_fingerprint": "37e9f3493e7eea1be322ae26c82d51c8b049c2ad775a729d31d1a9e0a38d35f8",
+  "scope": "45 train+validation CAD only; raw H5 vertices/cells and frozen predicted-u response basis; no GT u/stress/dia/finaltest",
+  "recovery": "four-corner P1 proxy constant gradient, tensor epsilon=sym(G), six xx yy zz xy xz yz; incident abs corner-tetra volume averaging to all10 originalnodes; FP64 solve/scatter, final float32 raw physical strain cache",
+  "scale": "one positive train40-only predicted raw-strain RMS sqrt(sum basis_strain^2/(train_unique_nodes*3*6)); center0, no floor/clipping/percase transforms; helper division exactly once",
+  "helper_API": {
+    "load_strain_manifest": "(directory,*,expected_parent=None)->dict; only JSON/stat/smallSHA, validates parent U identity/split/scaler/groups",
+    "load_strain_cache": "(directory,cad_id,*,xyz=None,expected_parent=None,manifest=None)->StrainResponseCache; basis_strain float32[N,3,6] RAW physical dimensionless, .scale commonRMS, .tensor(device) raw, .record()",
+    "strain_condition": "(basis_strain,node_indices,alpha,*,scale,mode=zero|actual)->[Q,6], np/torch; compose then divide byfixedscale once",
+    "feature_layout": "student original25+local13+u3actual+zero/actualstrain6 =47; PointNet global32 follows"
+  },
+  "CPU_actual_train_geometry_acceptance": {
+    "CAD": "101_479",
+    "geometry_only_H5_members": [
+      "vertices",
+      "cells"
+    ],
+    "nodes": 179316,
+    "tetrahedra": 111754,
+    "GPU_used": false,
+    "GT_fields_read": 0,
+    "elapsed_seconds": 0.5470000000204891,
+    "errors": {
+      "translation_maxabs": 0.0,
+      "affine_maxabs": 1.899898051382909e-10,
+      "infinitesimal_rotation_maxabs": 3.0576100038779168e-16
+    },
+    "diagnostics": {
+      "nodes": 179316,
+      "tetrahedra": 111754,
+      "uncovered_nodes": 0,
+      "minimum_abs_corner_volume_mm3": 0.0055762132398960605,
+      "maximum_abs_corner_volume_mm3": 23.92861305565349,
+      "solve_precision": "float64",
+      "scatter_precision": "float64",
+      "output_precision": "float32",
+      "physical_gradient_factor": 0.0002994312800270726,
+      "engineering_shear": false,
+      "recovery": "four-corner P1 constant gradient; symmetric tensor; absolute corner-tetra volume average to all original10 nodes"
+    }
+  },
+  "additional_CPU_checks": [
+    "syntax AST",
+    "unequal-volume two-tetra test: volume1:2, strains1:3 ->sharednode7/3; all10 originalnode scatter",
+    "NumPy vsCPU-torch FP64 recovery parity",
+    "tensor6/threebasis/alpha query shape; zeroexact6; single common scale; np vs CPUtorch condition parity",
+    "Windows+WSL metadata-only dry-run (no H5 arrays/u arrays/GT/CUDA)",
+    "trainer agent independent read-only shape/gradient-axis/units/commonRMS main path review"
+  ],
+  "dry_run": {
+    "Windows": "passed",
+    "WSL": "passed",
+    "CADs": 45,
+    "raw_geometry_arrays_read": 0,
+    "u_basis_arrays_read": 0,
+    "GT_fields_read": 0,
+    "GPU_used": false
+  },
+  "resume_contract": "Explicit --resume only; same metadata config/source SHA,parentU stat/SHA,raw geometry stat,normalization/nodeidentity required. Atomic CAD npz adoption reads small record_json only. No automatic deletion/overwriting of mismatched data.",
+  "manifest": "data/geobc_frozen_strain_response/manifest.json; complete only after all45 cached, commontrainRMS fit, CUDA refs released/synchronize/empty_cache",
+  "actual_45CAD_generation_executed": false,
+  "GPU_used": false,
+  "teacher_prediction_arrays_opened_in_CPU_acceptance": 0,
+  "GT_fields_read": 0,
+  "scientific_limit": "CornerP1 ignores midside displacement and curved quadratic geometry in gradient, then smooths incident cell values; not exact TETRA10 strain or source stress recovery. Additional u supervision remains disclosed; no constitutive scalar equation or generalization claim."
+}

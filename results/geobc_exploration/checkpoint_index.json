@@ -371,6 +371,54 @@
         "displacement_condition.py": "d82b4f627ddfbe3bf8c217667bf411b4ebf66ada98736e59580721489cf9289a"
       },
       "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "stress_u_actual_strain_zero_width128_10k": {
+      "best_step": 1000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/stress_u_actual_strain_zero_width128_10k/best.pt",
+          "bytes": 93950358,
+          "mtime_ns": 1791520212682800500
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/stress_u_actual_strain_zero_width128_10k/last.pt",
+          "bytes": 93972054,
+          "mtime_ns": 1791520279023620800
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+        "displacement_condition.py": "d82b4f627ddfbe3bf8c217667bf411b4ebf66ada98736e59580721489cf9289a",
+        "strain_condition.py": "af8b2db3c068d65d1fa5e7920760b35ffeb6383f0a255a698eae67a9b64fc44e"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
+    },
+    "stress_u_actual_strain_actual_width128_10k": {
+      "best_step": 3000,
+      "files": {
+        "best.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/stress_u_actual_strain_actual_width128_10k/best.pt",
+          "bytes": 93950358,
+          "mtime_ns": 1791520334098502400
+        },
+        "last.pt": {
+          "local_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/stress_u_actual_strain_actual_width128_10k/last.pt",
+          "bytes": 93972054,
+          "mtime_ns": 1791520383223028300
+        }
+      },
+      "code_sha256": {
+        "conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+        "conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+        "displacement_condition.py": "d82b4f627ddfbe3bf8c217667bf411b4ebf66ada98736e59580721489cf9289a",
+        "strain_condition.py": "af8b2db3c068d65d1fa5e7920760b35ffeb6383f0a255a698eae67a9b64fc44e"
+      },
+      "selection": "minimum validation case_mean_relative_l2; train/test/dia do not select"
     }
   }
 }

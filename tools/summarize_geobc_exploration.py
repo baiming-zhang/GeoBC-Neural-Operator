@@ -44,7 +44,7 @@ def main():
                                             'identity_policy':'paths/bytes/mtime plus small config source hashes; no redundant checkpoint scans',
                                             'runs':checkpoints})
     manifests=dest/'data_manifests'; manifests.mkdir(exist_ok=True)
-    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response'):
+    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response','geobc_frozen_strain_response'):
         source=ROOT/'data'/directory/'manifest.json'
         if source.is_file():shutil.copyfile(source,manifests/(directory+'.json'))
     lines=['# GeoBC 探索：当前结论与下一步','',
@@ -140,6 +140,18 @@ def main():
         lines += ['成对实验已排队，等待实现及共享响应缓存。此轮不打开dia或最终测试CAD。']
     if uz and ua:
         lines += ['位移条件改善了均值与最差案例，但热点变差；未通过预定的复验门。下一轮固定预测u3，比较廉价mesh恢复应变六槽与同布局全零槽，检验局部变形变化是否提供不同的信息。它是corner-P1离散代理，不是精确TETRA10应变，也不以本构公式替换源应力标签。']
+    sz=summaries.get('stress_u_actual_strain_zero_width128_10k')
+    sa=summaries.get('stress_u_actual_strain_actual_width128_10k')
+    if sz or sa:
+        lines += ['', '## 固定预测位移，增加局部应变条件','',
+                  '双方保持同一预测u3、几何、应力loss、采样和预算。TETRA10前四角点计算cell常梯度，以体积向原十节点平均；六个tensor应变分量只使用训练CAD预测应变的共同零中心RMS缩放。47维局部条件加32维整体描述，zero/actual布局和初始化匹配。该代理忽略二次单元内应变变化。',
+                  '', '| 应变条件 | 验证应力均值 | 最差案例 | 热点均值 | 训练耗时 |','|---|---:|---:|---:|---:|']
+        for mode,summary in [('零槽',sz),('预测P1应变',sa)]:
+            if summary:
+                v=summary['best_metrics']['validation']
+                lines += [f"| {mode} | {percent(v['case_mean_relative_l2'])} | {percent(v['worst_case_relative_l2'])} | {percent(v['case_mean_hotspot_relative_l2'])} | {summary['elapsed_seconds']:.1f}s |"]
+            else:
+                lines += [f'| {mode} | 待完成 | — | — | — |']
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
@@ -154,7 +166,10 @@ def main():
         brief += ['  局部几何收益在两个种子上重复，但最差案例变差，不能称为全面改善。']
     if probe:
         brief += ['- 组合载荷诊断：强制位移线性响应优于对照（28.4% vs 33.0%），但应力仍约87%；位移物理结构有用，应力迁移仍未解决。']
-    if uz and ua:
+    if sz and sa:
+        z=sz['best_metrics']['validation'];a=sa['best_metrics']['validation']
+        brief += ['', f"最新对照：固定预测位移后，增加局部应变条件，应力验证均值{percent(z['case_mean_relative_l2'])} → {percent(a['case_mean_relative_l2'])}，热点{percent(z['case_mean_hotspot_relative_l2'])} → {percent(a['case_mean_hotspot_relative_l2'])}。只是开发验证结果，最终测试继续保留。"]
+    elif uz and ua:
         z=uz['best_metrics']['validation'];a=ua['best_metrics']['validation']
         brief += ['', f"最新对照：预测位移条件将应力验证均值{percent(z['case_mean_relative_l2'])} → {percent(a['case_mean_relative_l2'])}，最差也改善；热点{percent(z['case_mean_hotspot_relative_l2'])} → {percent(a['case_mean_hotspot_relative_l2'])}，反而变差。下一步检验局部应变条件，最终测试继续保留。"]
     else:

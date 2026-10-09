@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "status": "feasibility_design_only_not_started",
+  "execution_authorized_by_this_note": false,
+  "candidate_count": 1,
+  "decision_timing": "Consider only after the current matched P1-strain6 tasks complete and root judges their known-load validation gain inadequate. This note does not replace, modify or enqueue those tasks.",
+  "scope": "Read feature-builder, deck parser, PointNet/trainer source and existing metadata only. No prepared field/target arrays, raw CSV rows, prediction arrays, weights, dia/final-test fields or GPU work. Only this new note is written; no cache or model implementation is started.",
+  "evidence": {
+    "feature_builder": "tools/prepare_deepjeb.py",
+    "global_encoder_and_sampling": "geobc/conditioned_field.py",
+    "preserved_node_ids": "tools/prepare_geobc_exploration.py",
+    "deck_interface_parser": "tools/parse_deepjeb_deck.py",
+    "saved_cloud_contract": "geobc/conditional_train.py and geobc/physics_train.py write geometry_clouds.npz with points,mask,cad_keys,node_indices; cloud_metadata records source/pool/seed.",
+    "existing_scope": "notes/geobc_data_plan.json and notes/geobc_local_geometry_ready.json establish aligned input preservation and target-independent local13 for train40+validation5.",
+    "actual_arrays_inspected_in_this_task": []
+  },
+  "current_query25": [
+    {
+      "zero_based_slots": "0:6",
+      "meaning": "Six support-reference constrained-DOF indicator slots are propagated to mapped support RBE2 member nodes; other query nodes have zero. The builder marks the union of all four support interfaces, not individual patch IDs. This is the existing conditioning representation, not six independently observed nodal SPC cards."
+    },
+    {
+      "zero_based_slots": "6",
+      "meaning": "Membership of the mapped loaded RBE3 interface; all other query nodes have zero."
+    },
+    {
+      "zero_based_slots": "7:13",
+      "meaning": "Total Fx,Fy,Fz/42300N and Mx,My,Mz/565000Nmm, broadcast to every query of a load. No patch distribution or RBE member geometry is encoded in these six scalars."
+    },
+    {
+      "zero_based_slots": "13:16",
+      "meaning": "Broadcast E/113800MPa, Poisson ratio, density/4.47e-9 t/mm3."
+    },
+    {
+      "zero_based_slots": "16:19",
+      "meaning": "Vector from loaded reference/master center to query, divided by the characteristic length."
+    },
+    {
+      "zero_based_slots": "19:23",
+      "meaning": "Four scalar distances from query to support reference/master centers, ordered by master GRID ID; these are center distances, not nearest-support-member distances or patch shapes."
+    },
+    {
+      "zero_based_slots": "23",
+      "meaning": "Nearest distance from query to an actual loaded-interface member node, divided by the characteristic length. This retains one local geometric relation to the patch, not its full extent, orientation, member count or distribution."
+    },
+    {
+      "zero_based_slots": "24",
+      "meaning": "Characteristic length/200mm."
+    }
+  ],
+  "current_global_cloud": {
+    "coordinates": "Normalized isotropic xyz only, float32[B,1024,3].",
+    "candidate_pool": "Unique original quadratic-boundary FEM node IDs from corrected global faces; deterministic CAD-key/seed sample without replacement. No uniform area resampling.",
+    "sampling_identity": "Existing selected node_indices,xyz and padding mask are persisted. Same CAD cloud is shared across ver/hor/tor; no role-stratified sampling currently occurs.",
+    "point_encoder": "3 ->32 ->64 ->64 ReLU point MLP; concatenated masked max/mean; head128 ->64 ->32, non-affine LayerNorm+tanh. Global context32 is appended to the query conditions.",
+    "missing_input": "PointNet has no support/load membership, DOFs, loaded reference, force or moment roles on its cloud points. Its geometry context is identical if BC-role assignment changes while xyz stays fixed."
+  },
+  "representation_judgment": {
+    "limitation_exists": true,
+    "precise_statement": "The current encoder cannot explicitly pool the geometry of marked support/load patches. Original25 transmits important BC information at each query, but its patch description is member bits at that query, four support-center distances, loaded-center vector and one nearest loaded-member distance. These summaries do not in general uniquely determine the remote patch membership/distribution.",
+    "constructive_information_argument": "At a non-interface query, changing distant interface members while preserving the load/support reference centers and nearest loaded-member distance can leave all25 query features unchanged. An xyz-only global encoder also remains unchanged. Marked cloud nodes can distinguish some such patch arrangements. This is a structural information argument, not an observed ambiguous pair or an audit of the current45 CADs.",
+    "existing_information_not_ignored": "Query25 already contains interface membership and nonlocal reference/load information; local13 and the global xyz cloud contain geometry. The entire model is not BC-blind, and geometry may correlate strongly with interface roles in this particular dataset.",
+    "causality_limit": "The source inspection establishes a representation limitation, not that it causes the current stress validation error or that adding role bits will help. Only a matched experiment can test utility; poor teacher/stress transfer can persist.",
+    "novelty_limit": "Role-aware point conditioning is an experimental candidate, not a novel-algorithm claim. No new physical law or constitutive scalar definition follows."
+  },
+  "single_minimal_candidate": {
+    "name": "Same-cloud role2 PointNet zero/actual control",
+    "role_channels": ["support_interface_member", "loaded_interface_member"],
+    "role_definition": "Two binary multi-hot indicators on each already selected cloud node. A free boundary point has both zero; an overlapping interface node retains both bits. Support is the union of four RBE2 support member sets; load is the RBE3 member set. Do not label master/reference nodes as patch members unless the deck actually includes them.",
+    "why_two": "This tests explicit global support/load roles with the smallest extra information. Query25 keeps actual DOF, force/moment and reference summaries. Do not additionally encode four arbitrary support-group IDs, directions, normals, counts, weights or a separate branch in the first experiment.",
+    "cloud_layout_both_variants": "[normalized_xyz3,role2] float32[B,1024,5]. Exactly reuse existing points, node_indices, mask, point ordering, cloud size, candidate pool and seed. zero writes both role channels zero; actual writes deck-derived role bits. Padding remains masked with role zeros.",
+    "encoder_layout_both_variants": "5 ->32 ->64 ->64, same ReLU and masked max+mean pooling, same128 ->64 ->32 head, same bounded32 global descriptor. Only the first-layer input layout changes; both controls have the identical5-input architecture/parameters/initialization. The old3-input xyz model is context, not the matched control.",
+    "parameter_delta_vs_old_xyz_encoder": "64 additional first-layer weights =2*32; zero and actual have identical total parameter counts. Decoder/global context width and hidden widths do not increase.",
+    "query_and_teacher_policy": "Proposed common starting configuration is original25 + actual local13 + the same fixed u3actual from the completed u3 pair (41 query channels), then global32. Do not add strain6 in this candidate if it was unhelpful, or change teacher/cache/u scaling across variants. The frozen u teacher and its original xyz-only encoder are unchanged; this candidate affects the stress student's global encoder alone. If root chooses another common query layout, lock it before either run and change it identically.",
+    "decoder": "Native TCNN hash12levels x2features, cap19/base8/growth1.6, width128/two ReLU hidden layers, unrestricted signed scalar output. Same decoder condition dimension73 =41query+32global for the proposed common layout.",
+    "paired_initialization": "Two fresh students, seed2026, identical role5-input PointNet and native decoder parameter SHA before optimization. Do not reuse oldxyz weights for only one side or compare to an earlier run as the control.",
+    "paired_budget": "Each10k sampled updates, total batch51200/four distinct cases, same independent case/node RNGs and witness, Adam/lr0.003, original centered standardized-asinh stress MSE and strict120 train-only stress scaler. Evaluation every1000 with the same all-original-node known-validation15 case-mean physical L2 selection. No new sampling or loss change.",
+    "training_context": "Re-encode once per unique CAD per optimizer step with gradients; share that context across its loads. Do not detach/cache learned contexts between optimizer steps. All static role clouds are reused across loads.",
+    "role_cache_cost": "Only45*1024*2 float32 values =368640 bytes (0.3515625 MiB), plus metadata; reuse existing xyz/mask/index artifacts. First-layer arithmetic adds1024*2*32 products per encoded CAD. Two same-budget student runs dominate cost; no new full-node geometry neighborhood or neural-teacher inference is needed. Runtime has not been measured."
+  },
+  "target_independent_role_recovery": {
+    "allowlist": "Only split train40+validation5; canonical ver prepared input and local SolverDeck geometry/constraints. No final-test or dia arrays, no CSV target rows, no stress/u targets. Existing load-basis45 compatibility metadata establishes that support/load interfaces stay static across the four subcases, so roles can be reused for known-load training.",
+    "preferred_GRID_to_vertex_mapping": "Prepared grid_node_ids[n] already stores the CSV GRID ID aligned to H5 vertex order. Read only grid_node_ids,xyz/xyz_mm,feature_names/sample_key/label_alignment and needed0:7 conditioning slices. Require grid_node_ids unique, build exact GRID-ID -> prepared node-index dictionary/searchsorted map, and map each deck member ID through it. Verify deck GRID coordinates against corresponding prepared xyz_mm within the established2e-4mm tolerance. Never use GRID ID-1.",
+    "parser_contract": "parse_deck returns node_coordinates{GRID:[xyz_mm]}, fixed_groups[{master_node_id,master_coords,member_node_ids,dofs,...}], loaded_group{master_node_id,master_coords,member_node_ids,...}. Use the actual member lists, not proximity to reference centers or arbitrary inferred holes.",
+    "coordinate_fallback": "If GRID IDs are unavailable, explicitly use a unique coordinate-match map from deck member GRID coordinates to prepared xyz_mm, with the existing distance/bijectivity checks; reject ambiguous/missing matches. Do not silently fall back to array index arithmetic or nearest-center patch inference.",
+    "cloud_alignment": "Use saved geometry_clouds.npz node_indices to gather role bits in the original order; verify points equal canonical normalized xyz at those indices, and preserve mask/hash/CAD ordering. Padding index-1 must not index the final real node. Require source alignment string official CSV GRID coordinates -> H5 vertices.",
+    "existing_feature_crosscheck": "Deck-derived support union should agree with any nonzero canonical original25 slots0:6; loaded member set should agree with slot6. This crosscheck reads inputs only, not labels. Role cache provenance records deck stat/source identity, node count, xyz/GRID mapping identity and cloud selected-index identity.",
+    "boundary_and_coverage_guard": "Record that sampled nodes are original boundary-node candidates and how many sampled support/load role nodes each CAD receives. Do not assume every interface member lies in the boundary pool, or that uniform1024 sampling guarantees patch coverage. If any CAD's role is absent from its fixed cloud, declare that coverage limitation before training; do not silently stratify/oversample onlyactual. If coverage makes the experiment uninformative, stop and ask root to design a separately matched sampling change.",
+    "input_not_true_patch_reconstruction": "The global encoder sees the marked subset of existing FEM boundary nodes, not the full continuous patch, exact surface area or full RBE stiffness/load-distribution operator. Loaded membership is the coupled RBE interface role, not direct applied force at every member."
+  },
+  "selection_and_interpretation": {
+    "selection": "Strict known-load validation15 only, grouped by CAD; final-test and dia remain closed. Same selected/final mean,worst,hotspot and per-load physical stress metrics in both variants.",
+    "planned_success_gate": "Root should lock a meaningful paired gain gate before any run, with CAD-wise consistency and hotspot/worst tradeoffs; repeat a promising result with a second matched seed before extending. This note does not retroactively set thresholds using strain results.",
+    "positive": "Would support utility of explicit sampled global interface roles in this architecture/budget. It does not establish exact BC physics, solve stress export semantics, or prove final held-out generalization.",
+    "negative": "Would limit this particular two-role, fixed1024-node encoding. Sparse patch coverage, global pooling bottlenecks or remaining task limitations can make it ineffective; do not conclude all BC-aware geometry is useless.",
+    "no_extra_suite": "No simultaneous decoder widening, role-stratified resampling, cloud increase, additional encoder, objective change, source scalar reconstruction or new downstream method is proposed."
+  },
+  "root_action": "Wait for the two current strain tasks and make one next-experiment decision. The candidate is feasible from existing aligned inputs and saved point-cloud indices, subject to a small input-only role/coverage contract check; nothing is implemented or launched by this note."
+}
