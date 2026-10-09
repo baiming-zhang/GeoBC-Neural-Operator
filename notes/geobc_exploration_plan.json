@@ -1,9 +1,9 @@
 {
   "project": "GeoBC Neural Operator",
-  "objective": "Learn a geometry- and boundary-conditioned continuous field that fits multiple DeepJEB cases and transfers across held-out CAD/load conditions.",
+  "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
+  "stage": "solver_family_selection",
   "parent_model": "runs/slides_reproduction/hash50_full1000ep/best.pt",
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,36 +21,167 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "singleCAD_P1_full10_supervision_pilot_design",
-    "scope": "Oneboundedfreshmatchedpilot only; exactcase/normalizer/recipe remain source-only design untilrootformalplan",
-    "basis": "FullsameCADquadrature confirmsP1/P2error22.39/187.31%; no longer only32sample",
-    "brief_action": "设计P1／完整十节点梯度监督的匹配拟合对照，固定相同前向节点与预算，先冻结损失尺度。",
-    "after": "No automatictraining/GT/caseexpansion; root freezesfinalscope after source feasibility."
+    "stage": "bounded_cross_solver_screen",
+    "scope": "Six-family fresh TRAIN40/VAL5, common signed four-field prediction and train-only scaler; 480 complete-case updates per family with full-node validation.",
+    "basis": "User correction: solver has not been selected, and prior overfitting results are insufficient for generalization ranking.",
+    "brief_action": "启动六家族统一协议广筛，根据未见CAD精度、最差案例和成本推进2–3个候选。",
+    "after": "Evidence-driven shortlist confirmation; no automatic return to Hash-only optimization."
   },
   "jobs": [
     {
-      "name": "fullcad_quadratic_kinematics_specialist101_479_ver",
-      "kind": "frozen_field_diagnostic",
-      "stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
-      "output": "runs/geobc_exploration/fullcad_quadratic_kinematics_specialist101_479_ver",
+      "name": "solver_screen_transolver_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "transolver",
+      "output": "runs/geobc_exploration/solver_screen_transolver_480",
       "command": [
         "/home/research/.venvs/geobc/bin/python",
-        "tools/diagnose_fullcad_quadratic_kinematics.py",
+        "-m",
+        "geobc.solver_selection_train",
         "--plan",
-        "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "transolver",
         "--output",
-        "runs/geobc_exploration/fullcad_quadratic_kinematics_specialist101_479_ver"
+        "runs/geobc_exploration/solver_screen_transolver_480"
       ],
       "requires": [
-        "tools/diagnose_fullcad_quadratic_kinematics.py",
-        "notes/geobc_fullcad_quadratic_kinematics_plan.json",
-        "notes/fullcad_quadratic_kinematics_ready.json",
-        "notes/fullcad_quadratic_kinematics_source_review.json",
-        "notes/fullcad_quadratic_kinematics_parent_review.json",
-        "notes/geobc_quadratic_kinematics_result.json",
-        "data/raw/FieldMesh/101_479.h5",
-        "data/geobc_gradient_supervision/101_479.npz",
-        "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/case_000.npz"
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_mlp_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "mlp",
+      "output": "runs/geobc_exploration/solver_screen_mlp_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "mlp",
+        "--output",
+        "runs/geobc_exploration/solver_screen_mlp_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_fno_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "fno",
+      "output": "runs/geobc_exploration/solver_screen_fno_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "fno",
+        "--output",
+        "runs/geobc_exploration/solver_screen_fno_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_transolver_pp_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "transolver_pp",
+      "output": "runs/geobc_exploration/solver_screen_transolver_pp_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "transolver_pp",
+        "--output",
+        "runs/geobc_exploration/solver_screen_transolver_pp_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_ts3_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "ts3",
+      "output": "runs/geobc_exploration/solver_screen_ts3_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "ts3",
+        "--output",
+        "runs/geobc_exploration/solver_screen_ts3_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
+      ]
+    },
+    {
+      "name": "solver_screen_hashgrid_480",
+      "kind": "solver_screen",
+      "stage": "solver_family_selection",
+      "method": "hashgrid",
+      "output": "runs/geobc_exploration/solver_screen_hashgrid_480",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.solver_selection_train",
+        "--plan",
+        "notes/geobc_solver_selection_plan.json",
+        "--method",
+        "hashgrid",
+        "--output",
+        "runs/geobc_exploration/solver_screen_hashgrid_480"
+      ],
+      "requires": [
+        "geobc/solver_selection_train.py",
+        "geobc/solver_selection_models.py",
+        "geobc/solver_selection_data.py",
+        "notes/geobc_solver_selection_plan.json",
+        "notes/solver_selection_source_review.md",
+        "data/geobc_solver_selection/manifest.json"
       ]
     }
   ],
@@ -2347,6 +2478,31 @@
         "data/geobc_gradient_supervision/101_479.npz",
         "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/case_000.npz"
       ]
+    },
+    {
+      "name": "fullcad_quadratic_kinematics_specialist101_479_ver",
+      "kind": "frozen_field_diagnostic",
+      "stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
+      "output": "runs/geobc_exploration/fullcad_quadratic_kinematics_specialist101_479_ver",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "tools/diagnose_fullcad_quadratic_kinematics.py",
+        "--plan",
+        "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+        "--output",
+        "runs/geobc_exploration/fullcad_quadratic_kinematics_specialist101_479_ver"
+      ],
+      "requires": [
+        "tools/diagnose_fullcad_quadratic_kinematics.py",
+        "notes/geobc_fullcad_quadratic_kinematics_plan.json",
+        "notes/fullcad_quadratic_kinematics_ready.json",
+        "notes/fullcad_quadratic_kinematics_source_review.json",
+        "notes/fullcad_quadratic_kinematics_parent_review.json",
+        "notes/geobc_quadratic_kinematics_result.json",
+        "data/raw/FieldMesh/101_479.h5",
+        "data/geobc_gradient_supervision/101_479.npz",
+        "runs/geobc_exploration/specialist_101_479_joint_u_P1_10k/predictions_endpoint_10000/case_000.npz"
+      ]
     }
   ],
   "phase_history": [
@@ -2544,7 +2700,7 @@
       "basis": "Same32cellquad P1/P2error15.9/173.1%; confirm sameCADallcells before any objective/training change."
     },
     {
-      "at_utc": "2026-10-09T13:27:47.5050680Z",
+      "at_utc": "2026-10-09T13:27:47.505068Z",
       "completed_stage": "single_TRAIN_fullCAD_quadratic_kinematic_proxy_confirmation",
       "elapsed_seconds": 3.093471364000038,
       "gate_pass": true,
@@ -2577,12 +2733,10 @@
     }
   },
   "active_design_preparation": {
-    "status": "selected_next_source_feasibility",
-    "authors": [
-      "continuous_query_contract",
-      "deepjeb_research"
-    ],
-    "design": "singleCAD_P1_full10_supervision_pilot_design",
-    "scientific_arrays_or_training_authorized_in_current_design": false
+    "status": "solver_screen_recipe_frozen",
+    "previous": "singleCAD_P1_full10_supervision_pilot",
+    "training_launched": false,
+    "reason": "Explicit user correction on 2026-10-09",
+    "new_plan": "notes/geobc_solver_selection_plan.json"
   }
 }

@@ -60,6 +60,17 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             parsed.steps = 2000
         if summary["config"].get("request_digest") != identity_digest(request_identity(parsed)):
             raise ValueError(f"Completed output for {job['name']} differs from current plan")
+    elif "geobc.solver_selection_train" in command:
+        from geobc.solver_selection_train import request_contract, contracts_compatible
+        requested_plan = command[command.index("--plan") + 1]
+        requested_method = command[command.index("--method") + 1]
+        contract, _ = request_contract(requested_plan, requested_method)
+        previous = summary.get("config", {}).get("contract")
+        if not contracts_compatible(previous, contract):
+            raise ValueError(f"Completed solver screen {job['name']} differs from requested protocol/data")
+        for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed solver screen {job['name']} lacks {filename}")
     elif "geobc.conditional_train" in command:
         # The trainer's own strict contract uses only small source/config
         # metadata here; no labels, checkpoints, models or CUDA are loaded.
@@ -325,7 +336,7 @@ def stage_command(job: dict[str, Any]) -> list[str]:
          or "geobc.bc_role_train" in command or "geobc.specialist_train" in command
          or "geobc.query_context_train" in command or "geobc.hash_modulation_train" in command
          or "geobc.graph_context_train" in command or "geobc.hash_bandwidth_train" in command
-         or "geobc.topology_message_train" in command)
+         or "geobc.topology_message_train" in command or "geobc.solver_selection_train" in command)
             and "--resume" not in command and (output / "last.pt").exists()):
         command.extend(["--resume", str(output / "last.pt")])
     return command

@@ -1,0 +1,115 @@
+{
+  "project": "GeoBC Neural Operator",
+  "status": "recipe_frozen_ready",
+  "user_direction": "The solver is not selected. Prioritize a broad, bounded comparison of suitable solvers before architecture-specific refinement.",
+  "supersedes": "Unlaunched single-CAD Hash P1/full10-supervision pilot; retained only as a deferred diagnostic hypothesis.",
+  "candidate_families": [
+    "MLP",
+    "Hash",
+    "Transolver",
+    "Transolver++",
+    "Transolver-3",
+    "FNO"
+  ],
+  "dataset": "original DeepJEB v1.0; official CSV GRID coordinates aligned to H5 vertices",
+  "existing_split": "notes/geobc_split.json",
+  "prepared_data": "data/prepared_geobc_multiload",
+  "data_cache": "data/geobc_solver_selection",
+  "recipe": {
+    "methods": [
+      "mlp",
+      "hashgrid",
+      "transolver",
+      "transolver_pp",
+      "ts3",
+      "fno"
+    ],
+    "train_loads": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "seed": 2026,
+    "cloud_seed": 2026,
+    "device": "cuda",
+    "steps": 480,
+    "passes": 4,
+    "eval_steps": [
+      0,
+      120,
+      240,
+      480
+    ],
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "optimizer": "Adam",
+    "cloud_points": 1024,
+    "geometry_dim": 32,
+    "grid_resolution": 64,
+    "microbatch_nodes": 32768,
+    "eval_batch_size": 32768,
+    "stress_transform": "asinh",
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "training_readout_keys": [
+      "101_479/ver",
+      "107_320/hor",
+      "10_58/tor"
+    ],
+    "loss": "Complete-case mean MSE in common TRAIN-only four-channel encoding; pointwise chunks weighted by their node counts before one optimizer step",
+    "sampling": "Four independently shuffled passes of all TRAIN120 cases using Python Random(seed); identical stored order for every family, independent of model RNG",
+    "selection_score": "0.5 * (validation case-mean physical U-vector relative L2 + validation case-mean signed-stress relative L2)",
+    "selection": "One common validation score; report fixed endpoint and full accuracy-cost curve as primary screening evidence",
+    "outputs": "Original signed uXYZ [mm] and source signed scalar stress [MPa]; no teacher or gradient-loss preference for one family",
+    "shared_geometry": "Same target-independent per-CAD boundary-node cloud, PointNet global32 for every family; re-encoded with gradient at each update",
+    "point_input": "xyz3 + original25 BC/material + global32",
+    "fno_frontend": "Target-free trilinear node-splat feature means: occupancy1 + normalized xyz3 + all original25 features; append differentiable global32 in model",
+    "fno_query": "Standard differentiable trilinear query of encoded4 grid at every original node, then physical decode; no voxel-label training",
+    "fno_limitation": "Point-to-grid candidate, not historical TETRA10 volume-occupancy FNO. Report TRAIN3/VAL15 encoded-label roundtrip separately as representation diagnostic, not error lower bound.",
+    "transformer_context": "Every original case node contributes; only official TS3 global two-pass chunks, never independent spatial blocks",
+    "transolver_pp_eval": "Pinned upstream stochastic Gumbel behavior retained; fixed per-case evaluation RNG isolated from training RNG",
+    "scope_limit": "Single recipe and seed, four passes is early screening rather than convergence or architecture elimination"
+  },
+  "selection_data": "TRAIN and development-validation CADs only; final test CADs and dia stay reserved",
+  "common_observables": "Geometry, physical scale, material, load and constraints; no target fields or learned case ID in inputs",
+  "primary_criteria": [
+    "Unseen-CAD physical displacement and signed-stress error",
+    "Worst-case error and training stability",
+    "Training and full-node inference time and peak GPU memory"
+  ],
+  "report_separately": [
+    "Training-case fitting",
+    "Model capacity and effective exposure",
+    "Discretization / grid roundtrip / context limitations",
+    "Compact screening versus original slides configurations"
+  ],
+  "stages": [
+    {
+      "name": "evidence_and_reusable_adapters",
+      "status": "completed",
+      "purpose": "Use existing results and sources to define a lean comparison without repeating old experiments or audits."
+    },
+    {
+      "name": "bounded_six_family_screen",
+      "status": "ready_to_train",
+      "purpose": "Compare candidate families on one common train/validation protocol and record accuracy-versus-cost. Recipe frozen before data preparation or training."
+    },
+    {
+      "name": "shortlist_confirmation",
+      "status": "not_started",
+      "purpose": "Give the best two or three routes a matched additional budget and necessary robustness checks before selecting a solver."
+    }
+  ],
+  "scope_notes": [
+    "Different architectures need not have identical initial tensors or parameter counts; disclose capacity and budget.",
+    "Do not assume Hash is the winner.",
+    "Avoid parameter sweeps and repeated source/parent audits.",
+    "Use a single GPU queue; reuse prepared data and official implementations.",
+    "An incomplete screen or one local milestone does not complete the autonomous research goal."
+  ],
+  "jobs": []
+}

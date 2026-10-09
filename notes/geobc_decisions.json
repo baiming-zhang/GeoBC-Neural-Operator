@@ -1,6 +1,6 @@
 {
   "project": "GeoBC Neural Operator",
-  "stage": "continuous_query_geometry_contract_preparation",
+  "stage": "solver_family_selection",
   "decisions": [
     {
       "evidence": "Frozen shared50 all-original-node stress case mean: training16.1666%, unseen2CAD92.1330%, seenCAD/unseen-load-combinations92.8747%.",
@@ -232,6 +232,13 @@
       "next": "OnefreshmatchedsingleCAD P1vsfull10 gradient-supervisionbudgetpilot; source-only feasibility now, fullformalrecipe before newtraining",
       "controls": "Same10nodeforwards onboth sides,node/cell/seed/initialstate/u loss/fixed1000budget; commonphysicalreference denominator/λ predeclared",
       "no_training_or_extra_GT_in_design": true
+    },
+    {
+      "at": "2026-10-09T13:40:00Z",
+      "decision": "Prioritize broad solver selection; defer unlaunched Hash-only gradient-supervision pilot",
+      "basis": "User explicitly has not chosen Hash or another solver and requests meaningful broad exploration.",
+      "next": "Compare six solver families with common observable inputs, train-only normalization, CAD-isolated development validation and accuracy/cost reporting.",
+      "evidence_limit": "Existing slides experiments are primarily overfitting and do not establish a cross-CAD solver ranking."
     }
   ],
   "future_hypotheses_not_launched": [

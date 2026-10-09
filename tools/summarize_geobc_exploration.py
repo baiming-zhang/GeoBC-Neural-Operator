@@ -138,7 +138,8 @@ def main():
                                       'selection':summary.get('config',{}).get('checkpoint_selection')}
         target=dest/'runs'/job['name']; target.mkdir(parents=True,exist_ok=True)
         filenames=('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json','metrics_step0000.json','metrics_step1000.json','first_backward_check.json')
-        if job.get('kind') in ('real_geometry_interface_acceptance','frozen_field_diagnostic'):filenames+=('status.json',)
+        if job.get('kind') in ('real_geometry_interface_acceptance','frozen_field_diagnostic','solver_screen'):filenames+=('status.json',)
+        if job.get('kind')=='solver_screen':filenames+=('first_update_gradient_check.json',)
         for filename in filenames:
             if (source/filename).exists(): shutil.copyfile(source/filename,target/filename)
     counts=stage_counts(jobs,summaries)
@@ -149,13 +150,16 @@ def main():
                                             'identity_policy':'paths/bytes/mtime plus small config source hashes; no redundant checkpoint scans',
                                             'runs':checkpoints})
     manifests=dest/'data_manifests'; manifests.mkdir(exist_ok=True)
-    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response','geobc_frozen_strain_response','geobc_gradient_supervision','geobc_graph_context'):
+    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response','geobc_frozen_strain_response','geobc_gradient_supervision','geobc_graph_context','geobc_solver_selection'):
         source=ROOT/'data'/directory/'manifest.json'
         if source.is_file():shutil.copyfile(source,manifests/(directory+'.json'))
     lines=['# GeoBC 探索：当前结论与下一步','',
            '研究对象：原版 DeepJEB；使用逐节点坐标对齐的原始有符号应力。原30项slides复现已完成，本页的后续自主研究仍在继续。','',
            '## 当前结论','',
            '**Hash 的单案例表示能力很强；当前共享模型的跨几何、跨载荷组合迁移很差。**','']
+    if plan.get('stage','').startswith('solver_'):
+        lines += ['**选型状态：尚未确定求解器，优先六家族跨CAD广筛，暂缓Hash局部优化。**',
+                  '当前共同协议与简洁结果见 [选型计划](../../notes/geobc_solver_selection_plan.json)；下文保留此前Hash探索证据，不代表跨求解器排名。','']
     geo=summaries.get('hash50_unseen_geometry_pilot')
     load=summaries.get('hash50_unseen_load_combinations')
     parent=json.loads((ROOT/'runs/slides_reproduction/hash50_full1000ep/metrics_best.json').read_text())
@@ -628,6 +632,16 @@ def main():
     brief += ['',f'下一步（来自主计划）：{brief_next_text} 最终测试继续保留。',
               '',f"科学训练／评估／冻结诊断完成{counts['scientific_completed']}/{counts['scientific_planned']}项，合成验收完成{counts['synthetic_acceptance_completed']}/{counts['synthetic_acceptance_planned']}项；原30项slides复现已完成。自主研究与30分钟监视继续。",'',
               '完整指标、控制变量和解释范围见 [探索报告](REPORT.md)。','']
+    if plan.get('stage','').startswith('solver_'):
+        brief=['# GeoBC：一分钟结果','',
+               '**尚未选定求解器。当前优先做跨架构泛化筛选，暂缓Hash局部优化。**','',
+               '- **完成：**原30项slides复现与私人仓库交付；后续探索已完成51个阶段。这些阶段包含训练、诊断和输入准备，不是51种方法。',
+               '- **已知：**Hash小样本节点拟合强；已有跨CAD结果仍不足以证明它适合GeoBC。Transformer历史结果主要是overfit，也不足以淘汰这些路线。',
+               '- **评价问题：**一个保存训练场的全CAD四角／十节点应变代理误差22.4%／187.3%，说明仅看位移或四角梯度会漏掉问题；它不是solver应变GT。',
+               f'- **当前方向：**{brief_next_text} 六个候选为MLP、Hash、Transolver、++、3和FNO；共同几何/BC输入、训练集归一化和全原节点物理指标。',
+               '- **决策标准：**未见CAD平均与最差精度、稳定性、训练及推理成本。短预算结果用于筛选，下降明显的慢路线保留确认机会。','',
+               '最终测试继续保留；自主研究与30分钟监视继续。',
+               '配置见 [选型计划](../../notes/geobc_solver_selection_plan.json)，历史证据见 [探索报告](REPORT.md)。','']
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),

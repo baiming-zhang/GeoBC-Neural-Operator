@@ -6,6 +6,9 @@
 
 **Hash 的单案例表示能力很强；当前共享模型的跨几何、跨载荷组合迁移很差。**
 
+**选型状态：尚未确定求解器，优先六家族跨CAD广筛，暂缓Hash局部优化。**
+当前共同协议与简洁结果见 [选型计划](../../notes/geobc_solver_selection_plan.json)；下文保留此前Hash探索证据，不代表跨求解器排名。
+
 - 原共享模型训练集平均应力 L2：16.167%。
 - 两个未参与该模型训练的 CAD：平均 92.133%。
 - 三个已见 CAD 的九个新载荷组合：平均 92.875%。
@@ -256,7 +259,7 @@ GPU FP64确认：同一TRAIN101_479/ver保存的专用模型10000步场，覆盖
 
 ## 主计划中的下一阶段
 
-当前计划阶段已完成，后续决策仍由主计划确定。 计划阶段：singleCAD_P1_full10_supervision_pilot_design。 完成后：No automatictraining/GT/caseexpansion; root freezesfinalscope after source feasibility.。
+当前主计划：solver_screen_transolver_480（已完成）；solver_screen_mlp_480（已完成）；solver_screen_fno_480（已完成）；solver_screen_transolver_pp_480（失败，等待主协调器处理）；solver_screen_ts3_480（等待／排队）；solver_screen_hashgrid_480（等待／排队）。 计划阶段：bounded_cross_solver_screen。 完成后：Evidence-driven shortlist confirmation; no automatic return to Hash-only optimization.。
 
 ## 解释边界
 
@@ -264,4 +267,4 @@ GPU FP64确认：同一TRAIN101_479/ver保存的专用模型10000步场，覆盖
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成48/48项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成51/54项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

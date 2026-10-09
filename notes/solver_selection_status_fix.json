@@ -1,0 +1,12 @@
+{
+  "scope": "Final-status metadata repair and recognition of known inactive upstream ++ tensors; no training loss, prediction, evaluation, data, optimizer, model or sampling change",
+  "old_trainer_sha256": "108ffc71c4d359b1420d9bea7b5cd4f441799fab8cd61272f5dfae0dede02129",
+  "new_trainer_sha256": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+  "compatible_trainer_sha256": ["108ffc71c4d359b1420d9bea7b5cd4f441799fab8cd61272f5dfae0dede02129", "b51a3fe6bb9606e01636199ea74573ea141a1636033d4f45a621d31711af0ca9"],
+  "change": "Remove redundant elapsed_seconds keyword from final status(completed, step=480); status already computes cumulative elapsed",
+  "gradient_acceptance_fix": "Only transolver_pp solver.backbone.embedding.weight/bias may have no gradient: pinned upstream executes that optional embedding only if condition is not None, while this adapter supplies all BC/material/global inputs directly and passes None. Active encoder/solver aggregate gradients and all other tensor presence/finite checks remain required. No TS3 exception.",
+  "affected_completed_run": "solver_screen_transolver_480",
+  "scientific_status": "summary.json completed, all 480 updates and all four evaluation endpoints saved before status-recording exception",
+  "compatibility": "Only trainer source SHA may change from an explicitly listed version to exactly new. All other recipe/model/data/scaler/order fields and source hashes must remain equal. Completed original configs and checkpoints retain their true source hashes. Incomplete ++ resumes saved step0/RNG with the corrected acceptance check.",
+  "repeat_training": false
+}
