@@ -1,0 +1,62 @@
+{
+  "status": "ready",
+  "source_sha256": {
+    "geobc/graph_context_field.py": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+    "tools/validate_graph_context_native.py": "54b0cc27dc53c9b1d5f9a2fe6ba200cbd6e06a0df1125d157ae138547159666d",
+    "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+    "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+    "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+    "tools/validate_hash_modulation_native.py": "2554b5859c6af8d059da560e5c4ec32a8b522eb8142247668f4c15ee529c8583"
+  },
+  "plan_sha256": "cf2a68f0fd09b487bb05092443c01e94ea808a8e9dd366d2b7d519425f5ed273",
+  "summary": "runs/geobc_exploration/graph_context_native_smoke/summary.json",
+  "summary_sha256": "ddc1aa5b002d27c87ea283b7f6c78b92d0a1312a7ba9b83999ca5f686943f231",
+  "native_layout": {
+    "euclidean": {
+      "raw_public_input_dims": 110,
+      "raw_native_input_dims": 110,
+      "public_output_dims": 9,
+      "native_padded_output_dims": 16,
+      "combined_public_parameter_count": 7770496,
+      "combined_public_parameter": "field.decoder.native.params",
+      "master_dtype": "torch.float32",
+      "compute_dtype": "torch.float16",
+      "Identity_conditions": 107,
+      "nominal_encoded_channels": 131,
+      "source_derived_padded_encoded_channels": 144,
+      "Identity_source_derived_padding_count": 13,
+      "Identity_source_derived_padding_value": 1,
+      "encoded_width_proof": "official Composite/Encoding alignment source plus measured total7770496 consistent with36864 MLP weights; internal encoded width not independently exposed/measured by this public API",
+      "flat_buffer_offsets_inferred": false
+    },
+    "graph": {
+      "raw_public_input_dims": 110,
+      "raw_native_input_dims": 110,
+      "public_output_dims": 9,
+      "native_padded_output_dims": 16,
+      "combined_public_parameter_count": 7770496,
+      "combined_public_parameter": "field.decoder.native.params",
+      "master_dtype": "torch.float32",
+      "compute_dtype": "torch.float16",
+      "Identity_conditions": 107,
+      "nominal_encoded_channels": 131,
+      "source_derived_padded_encoded_channels": 144,
+      "Identity_source_derived_padding_count": 13,
+      "Identity_source_derived_padding_value": 1,
+      "encoded_width_proof": "official Composite/Encoding alignment source plus measured total7770496 consistent with36864 MLP weights; internal encoded width not independently exposed/measured by this public API",
+      "flat_buffer_offsets_inferred": false
+    }
+  },
+  "paired_complete_parameters_exact_equal": true,
+  "common_fixture_forward_exact_equal": true,
+  "force_mask_and_native_encoder_query_gradients_passed": true,
+  "natural_forward_equality_not_required": true,
+  "actual_CUDA_passed": true,
+  "no_GT": true,
+  "optimizer_updates": 0,
+  "completed_at_utc": "2026-10-09T08:43:14.477466+00:00"
+}

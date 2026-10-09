@@ -13,6 +13,45 @@ def percent(value):
     if not math.isfinite(float(value)): raise ValueError('Nonfinite metric')
     return f'{100*value:.3f}%'
 
+def stage_counts(jobs,summaries):
+    synthetic={job['name'] for job in jobs if job.get('kind','').startswith('synthetic_')}
+    scientific={job['name'] for job in jobs}-synthetic
+    completed=set(summaries)
+    return {'scientific_completed':len(scientific&completed),'scientific_planned':len(scientific),
+            'synthetic_acceptance_completed':len(synthetic&completed),'synthetic_acceptance_planned':len(synthetic)}
+
+def job_state(job,summaries):
+    if job['name'] in summaries:return '已完成'
+    path=ROOT/job['output']/'status.json'
+    status=json.loads(path.read_text()) if path.is_file() else {}
+    phase=status.get('status',status.get('phase',''))
+    if phase=='failed':return '失败，等待主协调器处理'
+    if status:return '进行中' if phase!='completed' else '等待完成摘要'
+    return '等待／排队'
+
+def plan_next_text(plan,summaries,*,compact=False):
+    current_jobs=plan.get('jobs',[])
+    complete=bool(current_jobs) and all(job['name'] in summaries for job in current_jobs)
+    text=('当前计划阶段已完成，后续决策仍由主计划确定。' if complete else
+          '当前主计划：'+ '；'.join(f"{job['name']}（{job_state(job,summaries)}）" for job in current_jobs)+'。')
+    stages=plan.get('next_stages',[])
+    if isinstance(stages,dict):stages=[stages]
+    if compact:
+        if stages and isinstance(stages[0],dict) and stages[0].get('brief_action'):
+            return stages[0]['brief_action']
+        name=stages[0].get('stage',plan.get('stage','未指定')) if stages and isinstance(stages[0],dict) else plan.get('stage','未指定')
+        completed=sum(job['name'] in summaries for job in current_jobs)
+        return f"主计划阶段{plan.get('stage','未指定')}已完成{completed}/{len(current_jobs)}项；"+('当前阶段已完成，' if complete else '其余等待主协调器完成，')+f"后续计划阶段为{name}，具体动作以notes/geobc_exploration_plan.json的证据规则为准。"
+    if stages:
+        stage=stages[0]
+        if isinstance(stage,str):return text+' 下一阶段：'+stage+'。'
+        text+=f" 计划阶段：{stage.get('stage',plan.get('stage','未指定'))}。"
+        if stage.get('design'):text+=f" 设计：{stage['design']}。"
+        if stage.get('if_pass'):text+=f" 若通过：{stage['if_pass']}。"
+        if stage.get('if_fail'):text+=f" 若未通过：{stage['if_fail']}。"
+        if stage.get('after'):text+=f" 完成后：{stage['after']}。"
+    return text
+
 def main():
     plan=json.loads((ROOT/'notes/geobc_exploration_plan.json').read_text())
     dest=ROOT/'results/geobc_exploration'
@@ -40,15 +79,19 @@ def main():
         target=dest/'runs'/job['name']; target.mkdir(parents=True,exist_ok=True)
         for filename in ('summary.json','config.json','metrics_best.json','metrics_latest.json','metrics.jsonl','parent_comparison.json','metrics_endpoint_250.json','metrics_endpoint_10000.json'):
             if (source/filename).exists(): shutil.copyfile(source/filename,target/filename)
+    counts=stage_counts(jobs,summaries)
+    next_text=plan_next_text(plan,summaries)
+    brief_next_text=plan_next_text(plan,summaries,compact=True)
+    current_stage_complete=bool(plan['jobs']) and all(job['name'] in summaries for job in plan['jobs'])
     write_json(dest/'checkpoint_index.json',{'weights_published':False,'weights_location':'local training directories',
                                             'identity_policy':'paths/bytes/mtime plus small config source hashes; no redundant checkpoint scans',
                                             'runs':checkpoints})
     manifests=dest/'data_manifests'; manifests.mkdir(exist_ok=True)
-    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response','geobc_frozen_strain_response','geobc_gradient_supervision'):
+    for directory in ('prepared_geobc_transfer','prepared_geobc_multiload','geobc_local_geometry','geobc_frozen_u_response','geobc_frozen_strain_response','geobc_gradient_supervision','geobc_graph_context'):
         source=ROOT/'data'/directory/'manifest.json'
         if source.is_file():shutil.copyfile(source,manifests/(directory+'.json'))
     lines=['# GeoBC 探索：当前结论与下一步','',
-           '研究对象：原版 DeepJEB；使用逐节点坐标对齐的原始有符号应力。','',
+           '研究对象：原版 DeepJEB；使用逐节点坐标对齐的原始有符号应力。原30项slides复现已完成，本页的后续自主研究仍在继续。','',
            '## 当前结论','',
            '**Hash 的单案例表示能力很强；当前共享模型的跨几何、跨载荷组合迁移很差。**','']
     geo=summaries.get('hash50_unseen_geometry_pilot')
@@ -277,12 +320,88 @@ def main():
                   f"固定两个最终10000步checkpoint，在4个已见训练CAD的三种载荷上使用同一12800行查询witness；{learning['case_backwards']}次backward、{learning['optimizer_updates']}次参数更新，计算耗时{learning['elapsed_seconds']:.1f}s。不使用验证、dia或最终测试字段。",
                   f"实际模型只将最终query32置零，保留权重、整体描述与其他输入：12/12案例的位移损失及P1损失都升高，平均分别为完整输入的{masked['relative_Lu']/intact['relative_Lu']:.2f}倍和{masked['normalized_volume_P1_Frobenius_loss']/intact['normalized_volume_P1_Frobenius_loss']:.2f}倍。该分支在这些训练查询上有实际作用；遮蔽可能离开训练分布，不能据此证明信息充分或泛化。",
                   f"实际模型的6个CAD梯度对中有{readout['actual']['full_model_negative_CAD_pairs']}对反向，零分支模型有{readout['zero']['full_model_negative_CAD_pairs']}对；双方均没有CAD与四CAD平均梯度点积为负。部分方向竞争存在，但这个探针未显示共同平均方向会立即增大某个CAD损失。它也不是Adam实际更新或泛化失败的因果证明。",
-                  '此处P1损失是原训练配方的体积加权、归一化cell平方损失，不能与前文全节点P1相对L2百分比直接比较。已据此转向一个共享Hash特征调制候选，而不自动做梯度手术或参数扫描。']
+                  '此处P1损失是原训练配方的体积加权、归一化cell平方损失，不能与前文全节点P1相对L2百分比直接比较。这一冻结诊断提供了后续候选的设计依据，没有执行梯度手术或参数扫描。']
+    native=summaries.get('hash_modulation_native_smoke')
+    native_passed=False
+    if native:
+        checks=native['native_and_gate_checks']
+        native_passed=(native['paired_initial_state_exact_equal'] and native['paired_step0_prediction_exact_equal'] and
+                       native['no_GT'] and native['dataset_or_checkpoint_files_opened']==0 and native['optimizer_updates']==0 and
+                       all(checks[mode][group]['present_and_finite'] and checks[mode][group]['gradient_L1']>0
+                           for mode in ('zero','actual') for group in ('native_encoding_gradient','native_network_gradient')) and
+                       all(checks[mode]['gate_head_gradient']['present_and_finite'] for mode in ('zero','actual')) and
+                       checks['zero']['gate_head_gradient']['gradient_L1']==0 and checks['actual']['gate_head_gradient']['gradient_L1']>0)
+        evidence=('两侧初始参数与step0输出严格相同；独立Hash编码和MLP的两个native参数buffer有有限非零梯度，调制头的零组梯度精确为零、实际组非零。' if native_passed else '该记录没有通过完整的配对初始化、native梯度与调制头梯度检查。')
+        lines += ['', '## Hash调制的native合成验收','',
+                  f"合成接口验收{'通过' if native_passed else '未通过'}，耗时{native['elapsed_seconds']:.2f}s，{native['backwards']}次backward、{native['optimizer_updates']}次参数更新。{evidence}",
+                  '使用共享合成输入，没有读取数据集或checkpoint，也没有GT标签。这只证明新split-native接口和梯度可用；没有物理精度、泛化或有效学习结论。它单独计作合成验收，不计入科学数据实验。']
+    hash_result_path=ROOT/'notes/geobc_hash_modulation_pair_result.json'
+    hash_result=json.loads(hash_result_path.read_text()) if hash_result_path.is_file() else None
+    if hash_result and hash_result.get('status')!='completed':hash_result=None
+    hash_jobs=[job for job in plan['jobs'] if job['name'].startswith('displacement_hash_modulation_')]
+    if hash_result or hash_jobs:
+        lines += ['', '## 几何与BC条件直接调制共享Hash特征','',
+                  '两侧均保留实际query32和整体BC32，用共同64→24调制头生成1+tanh倍率；W/b零初始化。原生编码与MLP拆成两个模块，两侧从同一新布局初始化。对照只改变是否启用Hash倍率，旧查询模型不能作为匹配基线；分支激活仍改变有效容量，不能当作纯信息因果控制。']
+        if hash_result:
+            hz=hash_result['runs']['zero'];ha=hash_result['runs']['actual']
+            lines += [f"按已完成配对分析，开发验证位移均值{percent(hz['validation_u_mean_relative_l2'])} → {percent(ha['validation_u_mean_relative_l2'])}，最差位移{percent(hz['validation_u_worst_relative_l2'])} → {percent(ha['validation_u_worst_relative_l2'])}，P1代理均值{percent(hz['validation_P1_mean_relative_l2'])} → {percent(ha['validation_P1_mean_relative_l2'])}。两侧均按位移验证均值选模，所报P1来自同一checkpoint；选择步分别{hz['best_step']}／{ha['best_step']}。",
+                      f"匹配检查{'通过' if hash_result['matched_controls_passed'] else '未通过'}；预定综合门槛{'通过' if hash_result['clear_gain_gate_passed'] else '未通过'}。位移均值改善{hash_result['validation_u_mean_improvement_percentage_points']:.2f}个百分点，最差变化{hash_result['validation_u_worst_deterioration_percentage_points']:+.2f}个百分点（正数为退步），P1误差相对改善{100*hash_result['validation_P1_relative_error_reduction']:.1f}%。",
+                      f"训练位移均值{percent(hz['train_u_mean_relative_l2'])} → {percent(ha['train_u_mean_relative_l2'])}，训练P1均值{percent(hz['train_P1_mean_relative_l2'])} → {percent(ha['train_P1_mean_relative_l2'])}；计算耗时{hz['elapsed_seconds']:.1f}s／{ha['elapsed_seconds']:.1f}s。结果来源notes/geobc_hash_modulation_pair_result.json；最终测试未用于本轮。"]
+        else:
+            lines += ['主计划阶段状态：'+'；'.join(f"{job['name']}（{job_state(job,summaries)}）" for job in hash_jobs)+'。配对分析尚未完成，此处不引用单侧物理指标。']
+        if hash_result and (dest/'hash_modulation_comparison.png').is_file():
+            lines += ['', '![新split匹配对照的位移和P1验证结果](hash_modulation_comparison.png)',
+                      '只比较本组新split布局的零／实际调制模型；位移与P1均来自同一个u-selected checkpoint。两侧纵轴从零起，P1的100%虚线表示预测全零应变；没有混入历史Composite模型。']
+    hash_use_path=ROOT/'notes/geobc_hash_modulation_use_result.json'
+    hash_use=json.loads(hash_use_path.read_text()) if hash_use_path.is_file() else None
+    if hash_use and (hash_use.get('status')!='completed' or not hash_use.get('formal_checks_passed')):hash_use=None
+    if hash_use:
+        use=hash_use['actual']
+        lines += ['', '## 冻结模型中的Hash调制使用','',
+                  f"固定两个最终{hash_use['fixed_step']}步模型，在4个已见TRAIN CAD×3载荷的相同混合查询witness上执行{hash_use['basis_forward_calls']}次basis forward、{hash_use['backwards']}次backward、{hash_use['optimizer_updates']}次更新，耗时{hash_use['elapsed_seconds']:.2f}s；没有读取验证、dia或最终测试字段。这不是前述u-selected checkpoint的全节点评估。",
+                  f"对实际模型保持权重和其他输入，仅把γ设为1关闭Hash调制：{use['cases_Lu_masking_harms']}/{use['sampled_cases']}个采样案例的位移损失上升，平均Lu为原来的{use['Lu_masked_to_natural_ratio']:.2f}倍；{use['cases_P1_cell_loss_masking_improves']}/{use['sampled_cases']}个案例的P1 cell平方损失下降，平均为原来的{use['P1_cell_squared_loss_masked_to_natural_ratio']:.4f}倍。这里的P1是体积加权、归一化cell平方损失，不是全节点P1相对L2百分比，也不是solver GT应变。",
+                  f"相同训练查询上的γ≤0.05或≥1.95占{100*use['near_endpoint_fraction_mean4']:.2f}%，精确为0或2的比例{100*use['exact_endpoint_fraction_mean4']:.2f}%；四CAD平均的空间中心化RMS为{use['gamma_spatial_centered_RMS_mean4']:.5f}。接近端点不等于硬数值饱和，混合查询也不代表全节点分布。调制已被拟合位移场使用，但没有改善本轮共享开发验证；关闭是可能离分布的同权重干预，不能据此确定泛化失败原因。结果来源notes/geobc_hash_modulation_use_result.json。"]
+    graph_ready_path=ROOT/'notes/graph_context_data_ready.json'
+    graph_ready=json.loads(graph_ready_path.read_text()) if graph_ready_path.is_file() else None
+    graph_native=summaries.get('graph_context_native_smoke')
+    graph_result_path=ROOT/'notes/geobc_graph_context_pair_result.json'
+    graph_result=json.loads(graph_result_path.read_text()) if graph_result_path.is_file() else None
+    if graph_result and not (graph_result.get('status')=='completed' and graph_result.get('matched_controls_passed')):graph_result=None
+    if graph_ready and graph_ready.get('complete'):
+        lines += ['', '## 同一边界界面的距离表示对照','',
+                  '用相同的四个支撑member组和实际loaded member组，比较到界面的欧氏距离与沿原四面体网格边的最短路径距离。两组五通道均启用，使用同一长度归一化、完整初始化、fused容量、query32/global32、训练损失和采样；历史小容量模型不作匹配对照。不同距离分布也改变数值条件，因此该对照检验表示效用，不能单独证明拓扑的因果作用。',
+                  '45个TRAIN／开发验证几何的双距离缓存已准备完成，没有读取位移或应力标签、拟合scaler或打开最终测试。固定网格路径依赖原离散网格，不是弹性刚度或精确连续测地距离。缓存准备不计作训练实验。']
+        if graph_native:
+            lines += [f"真实native合成验收完成，耗时{graph_native['elapsed_seconds']:.2f}s，{graph_native['basis_forward_calls']}次basis forward、{graph_native['backwards']}次backward、零参数更新。两组完整初始参数和同距离fixture输出相同；自然输入不同，不要求初始输出相等。实测每组公共native参数7770496、完整模型7789376；没有推断flat buffer分区。这只验证接口和梯度，物理收益依据后续配对数据实验。"]
+        if graph_result:
+            e=graph_result['runs']['euclidean'];g=graph_result['runs']['graph']
+            lines += [f"在相同15个known-load开发验证案例上，欧氏／网格路径的位移均值{percent(e['validation_u_mean_relative_l2'])} → {percent(g['validation_u_mean_relative_l2'])}、最差位移{percent(e['validation_u_worst_relative_l2'])} → {percent(g['validation_u_worst_relative_l2'])}、P1代理均值{percent(e['validation_P1_mean_relative_l2'])} → {percent(g['validation_P1_mean_relative_l2'])}；选择步{e['best_step']}／{g['best_step']}，P1来自同一位移选模checkpoint。",
+                      f"匹配控制通过，预先声明的综合门槛{'通过' if graph_result['clear_gain_gate_passed'] else '未通过'}。位移均值改善{graph_result['validation_u_mean_improvement_percentage_points']:.2f}个百分点，最差退步{graph_result['validation_u_worst_deterioration_percentage_points']:+.2f}个百分点，P1误差相对改善{100*graph_result['validation_P1_relative_error_reduction']:.1f}%；两组计算共{(e['elapsed_seconds']+g['elapsed_seconds'])/60:.1f}分钟。最终测试和dia未用于本轮。正式结果见notes/geobc_graph_context_pair_result.json。"]
+            if (dest/'graph_context_comparison.png').is_file():
+                lines += ['', '![相同边界界面的两种距离表示](graph_context_comparison.png)']
+        else:
+            lines += ['两侧数据实验和正式配对分析尚未全部完成，此处不使用单侧结果作为结论。']
+    error_gradient_path=ROOT/'notes/geobc_error_gradient_result.json'
+    error_gradient=json.loads(error_gradient_path.read_text(encoding='utf8')) if error_gradient_path.is_file() else None
+    if error_gradient and error_gradient.get('status')!='completed':error_gradient=None
+    if error_gradient:
+        if (error_gradient['case_key']!='10_58/tor' or error_gradient['group']!='train'
+                or error_gradient['selected_step_both']!=10000):
+            raise ValueError('Error-gradient report requires the frozen TRAIN10_58/tor pair at10000 steps')
+        de=error_gradient['models']['euclidean'];dg=error_gradient['models']['graph']
+        ep=de['all_node_P1'];gp=dg['all_node_P1']
+        energy_share=lambda record,key:100*record[key]/record['raw_error_energy']
+        lines += ['', '## 固定训练代表的误差与梯度分解','',
+                  '只分析两组当前距离模型已导出的TRAIN10_58/tor、10000步checkpoint。用真实误差拟合并扣除整体仿射项，是依赖GT的描述诊断，不能作为可部署修正，也不代表全体验证结果。',
+                  f"欧氏／网格路径模型的位移参考RMS为{de['u']['reference_RMS']:.6g}／{dg['u']['reference_RMS']:.6g}mm；原始／仿射／残余误差RMS分别为{de['u']['raw_error_RMS']:.6g}／{de['u']['affine_error_RMS']:.6g}／{de['u']['residual_error_RMS']:.6g}mm与{dg['u']['raw_error_RMS']:.6g}／{dg['u']['affine_error_RMS']:.6g}／{dg['u']['residual_error_RMS']:.6g}mm。全节点P1参考Frobenius RMS为{ep['reference_RMS']:.6g}／{gp['reference_RMS']:.6g}，原始误差RMS为{ep['raw_error_RMS']:.6g}／{gp['raw_error_RMS']:.6g}（均无量纲）。",
+                  f"去除仿射误差后，保留的全节点P1误差能量为原来的{100*ep['residual_over_raw_error_energy']:.2f}%／{100*gp['residual_over_raw_error_energy']:.2f}%；仿射能量／原始能量为{energy_share(ep,'affine_error_energy'):.2f}%／{energy_share(gp,'affine_error_energy'):.2f}%，有符号两倍交叉项／原始能量为{energy_share(ep,'signed_two_affine_residual_cross'):+.2f}%／{energy_share(gp,'signed_two_affine_residual_cross'):+.2f}%。这些项包含交叉作用，不能当作互相独立的因果贡献。",
+                  f"预先声明的非仿射保留标记{'达到' if error_gradient['readout']['non_affine_dominance_flag'] else '未达到'}，小单元集中标记{'达到' if error_gradient['readout']['small_cell_concentration_flag'] else '未达到'}；后者只描述最小输入h四分位中的体积加权cell误差集中，与全节点能量不能混加。它不证明Hash频率振荡、全体验证瓶颈或新的精度收益。P1仍是角节点恢复代理，不是solver应变GT。正式结果见notes/geobc_error_gradient_result.json。"]
+    lines += ['', '## 主计划中的下一阶段','',next_text]
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
               '迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。',
               '候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。','',
-              f"本页随实验更新；累计完成 {len(summaries)}/{len(jobs)} 项，自主研究继续。",'']
+              f"本页随实验更新；科学训练／评估／冻结诊断完成{counts['scientific_completed']}/{counts['scientific_planned']}项，合成验收完成{counts['synthetic_acceptance_completed']}/{counts['synthetic_acceptance_planned']}项。原30项slides复现已完成，自主研究继续。",'']
     (dest/'REPORT.md').write_text('\n'.join(lines),encoding='utf8')
     brief=['# GeoBC：一分钟结果','',
            '**Hash能拟合单个几何，当前难点是让一个共享模型可靠地预测新几何。**','']
@@ -291,26 +410,48 @@ def main():
         brief += [f"- **已有能力：**一个训练CAD的位移／P1应变代理误差{100*f['case_mean_relative_l2']:.2f}%／{100*f['strain']['case_mean_relative_l2']:.1f}%。这是专用拟合，不能代表泛化。"]
     else:
         brief += ['- **已有能力：**难例单独训练的应力误差约0.1%；共享预测新几何仍很差。']
-    if qz and qa and query_result:
+    if graph_result:
+        e=graph_result['runs']['euclidean'];g=graph_result['runs']['graph']
+        brief += [f"- **最新进展：**同边界欧氏／网格路径距离的验证位移{100*e['validation_u_mean_relative_l2']:.2f}% → {100*g['validation_u_mean_relative_l2']:.2f}%，{'达到' if graph_result['clear_gain_gate_passed'] else '未达到'}预定综合门槛；两组计算共{(e['elapsed_seconds']+g['elapsed_seconds'])/60:.1f}分钟。",
+                  f"- **当前瓶颈：**网格路径模型的P1应变代理误差{100*g['validation_P1_mean_relative_l2']:.0f}%，最差位移{100*g['validation_u_worst_relative_l2']:.1f}%。这是一个种子的开发验证；距离表示的帮助须结合全项门槛判断，尚未使用最终测试。"]
+        if error_gradient:
+            brief[-1]=f"- **当前瓶颈：**固定训练代表10_58/tor去除整体仿射误差后，欧氏／网格路径模型仍保留{100*ep['residual_over_raw_error_energy']:.1f}%／{100*gp['residual_over_raw_error_energy']:.1f}%的P1误差能量。这是依赖GT的单案例描述，不能据此断定频率原因或全体验证瓶颈。"
+    elif hash_result:
+        hz=hash_result['runs']['zero'];ha=hash_result['runs']['actual']
+        brief += [f"- **最新进展：**Hash调制配对的验证位移{100*hz['validation_u_mean_relative_l2']:.2f}% → {100*ha['validation_u_mean_relative_l2']:.2f}%，{'达到' if hash_result['clear_gain_gate_passed'] else '未达到'}预定综合门槛；两组计算合计{(hz['elapsed_seconds']+ha['elapsed_seconds'])/60:.1f}分钟。"]
+        if hash_use:
+            brief += [f"- **当前瓶颈：**调制已被模型使用，但共享验证没有改善。约{100*hash_use['actual']['near_endpoint_fraction_mean4']:.0f}%的采样通道倍率接近范围端点；关闭调制可能离分布，不能用该诊断确定泛化失败原因。"]
+        else:
+            brief += [f"- **当前瓶颈：**实际分支的P1代理误差{100*ha['validation_P1_mean_relative_l2']:.0f}%，最差位移{100*ha['validation_u_worst_relative_l2']:.1f}%；预定综合门槛{'通过' if hash_result['clear_gain_gate_passed'] else '未通过'}。这是开发验证，跨几何可靠性尚需按主计划判断。"]
+    elif qz and qa and query_result:
         z=qz['best_metrics']['validation'];a=qa['best_metrics']['validation']
         brief += [f"- **最新进展：**局部查询上下文将验证位移误差{100*z['case_mean_relative_l2']:.1f}% → {100*a['case_mean_relative_l2']:.1f}%；两组计算合计{(qz['elapsed_seconds']+qa['elapsed_seconds'])/60:.1f}分钟。",
                   f"- **当前瓶颈：**P1应变代理虽下降{100*query_result['validation_P1_relative_error_reduction']:.0f}%，仍有{100*a['strain']['case_mean_relative_l2']:.0f}%误差。预定综合标准{'通过' if query_result['clear_gain_gate_passed'] else '未通过'}，跨几何可靠性仍未解决。"]
-        next_action='同配置第二种子验证' if query_result['clear_gain_gate_passed'] else '固定已有模型，检查局部上下文的实际作用与训练几何间的梯度冲突'
-        if learning:
-            brief += ['', '诊断确认局部上下文有实际作用；尚不能把泛化问题归因于梯度冲突。下一步检验几何条件直接调制Hash特征，做一个新的匹配对照。最终测试继续保留。']
-        else:
-            brief += ['',f'下一步：{next_action}，再按证据选一项改进。最终测试继续保留。']
     else:
         brief += ['- **当前瓶颈：**共享模型的位移验证约24%，P1代理仍约584%。',
-                  '- **正在验证：**局部几何／BC上下文是否有额外收益；与相同参数布局和预算的零上下文对照。','',
-                  '下一步：按位移、P1代理和计算成本判断，继续定位瓶颈。最终测试保留。']
-    brief += ['',f"完成{len(summaries)}/{len(jobs)}项探索；原30项slides复现已完成。自主研究与30分钟监视继续。",'',
+                  '- **当前证据：**科学结果以已完成配对分析为准，阶段状态见主计划；合成接口验收没有泛化指标。']
+    if graph_native:
+        brief += ['',f"本轮两组共用的距离缓存已准备；native接口验收已通过（{graph_native['elapsed_seconds']:.2f}s、零参数更新），训练结果仍须独立判断。"]
+    elif native:
+        brief += ['',f"新native合成验收{'已通过' if native_passed else '未通过'}（{native['elapsed_seconds']:.2f}s、零参数更新），不代表物理表现。"]
+    brief += ['',f'下一步（来自主计划）：{brief_next_text} 最终测试继续保留。',
+              '',f"科学训练／评估／冻结诊断完成{counts['scientific_completed']}/{counts['scientific_planned']}项，合成验收完成{counts['synthetic_acceptance_completed']}/{counts['synthetic_acceptance_planned']}项；原30项slides复现已完成。自主研究与30分钟监视继续。",'',
               '完整指标、控制变量和解释范围见 [探索报告](REPORT.md)。','']
     (dest/'BRIEF.md').write_text('\n'.join(brief),encoding='utf8')
     write_json(dest/'manifest.json',{'scope':'GeoBC exploration; independent of the completed slides suite',
                                    'completed':len(summaries),'planned':len(jobs),
+                                   **counts,
                                    'phase':'ongoing' if len(summaries)<len(jobs) else 'stage_completed',
                                    'research_status':'ongoing','current_stage':plan['stage'],
+                                   'current_stage_complete':current_stage_complete,
+                                   'original_slides_completed':plan.get('prior_completed_slides_experiments',30),
+                                   'original_slides_planned':30,'original_slides_status':'completed',
+                                   'counting_policy':'scientific counts include training/evaluation/frozen real-data diagnostics; synthetic native validation is separate and has no generalization result; completed/planned retain total stage counts',
+                                   'next_stage_source':'notes/geobc_exploration_plan.json',
+                                   'hash_modulation_pair_analysis':str(hash_result_path.relative_to(ROOT)) if hash_result else None,
+                                   'hash_modulation_use_analysis':str(hash_use_path.relative_to(ROOT)) if hash_use else None,
+                                   'graph_context_pair_analysis':str(graph_result_path.relative_to(ROOT)) if graph_result else None,
+                                   'error_gradient_analysis':str(error_gradient_path.relative_to(ROOT)) if error_gradient else None,
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',
                                    'updated_at_utc':utc_now()})
     if geo and load and comparisons:
@@ -337,6 +478,6 @@ def main():
         axes[1].set_ylabel('All-node stress relative L2 (%)')
         fig.savefig(dest/'diagnosis.png',dpi=180)
         plt.close(fig)
-    print(json.dumps({'completed':len(summaries),'planned':len(jobs),'report':str(dest/'REPORT.md')}))
+    print(json.dumps({'completed':len(summaries),'planned':len(jobs),**counts,'research_status':'ongoing','report':str(dest/'REPORT.md')}))
 
 if __name__=='__main__':main()

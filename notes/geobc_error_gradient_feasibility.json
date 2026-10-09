@@ -1,0 +1,207 @@
+{
+  "schema_version": 2,
+  "status": "feasible_metadata_only_draft_not_execution_release",
+  "created_at_utc": "2026-10-09T09:06:04.184246+00:00",
+  "scope": {
+    "one_case": "10_58/tor",
+    "group": "TRAIN",
+    "modes": [
+      "euclidean",
+      "graph"
+    ],
+    "selected_update": 10000,
+    "node_count_each": 254645,
+    "selection": "The sole intersection of the two existing predictions_best/index.json case lists; intersection determined from JSON, without looking at any prediction or GT array. Each model remains at its already u-only-validation-selected checkpoint.",
+    "sources": {
+      "euclidean": {
+        "run": "runs/geobc_exploration/displacement_interface_euclidean_10k",
+        "prediction_index": {
+          "path": "runs/geobc_exploration/displacement_interface_euclidean_10k/predictions_best/index.json",
+          "bytes": 977,
+          "mtime_ns": 1791535965809944700,
+          "sha256": "e2dff406dd1c9c474cadace14beeb9c12ea60316827672c450813c53442fe754"
+        },
+        "prediction": {
+          "path": "runs/geobc_exploration/displacement_interface_euclidean_10k/predictions_best/case_001.npz",
+          "bytes": 15280818,
+          "mtime_ns": 1791535965677756200,
+          "binary_contents_read": false
+        },
+        "selected_step": 10000,
+        "sample_key": "10_58/tor",
+        "group": "train",
+        "nodes_from_index": 254645,
+        "exported_representative_case_keys": [
+          "101_78/ver",
+          "10_58/tor",
+          "107_91/hor",
+          "114_202/tor"
+        ],
+        "index_policy": "at most4 train/validation representatives; no dia/test"
+      },
+      "graph": {
+        "run": "runs/geobc_exploration/displacement_interface_graph_10k",
+        "prediction_index": {
+          "path": "runs/geobc_exploration/displacement_interface_graph_10k/predictions_best/index.json",
+          "bytes": 979,
+          "mtime_ns": 1791536265160700700,
+          "sha256": "adc536e9af1555349b500481976c2f7970905cbf9aff0ffaf28b2e931c709035"
+        },
+        "prediction": {
+          "path": "runs/geobc_exploration/displacement_interface_graph_10k/predictions_best/case_001.npz",
+          "bytes": 15280818,
+          "mtime_ns": 1791536265000370900,
+          "binary_contents_read": false
+        },
+        "selected_step": 10000,
+        "sample_key": "10_58/tor",
+        "group": "train",
+        "nodes_from_index": 254645,
+        "exported_representative_case_keys": [
+          "10_492/hor",
+          "10_58/tor",
+          "116_440/ver",
+          "102_249/tor"
+        ],
+        "index_policy": "at most4 train/validation representatives; no dia/test"
+      }
+    },
+    "intersection": [
+      "10_58/tor"
+    ],
+    "historical_sources_included": false,
+    "no_new_inference": true,
+    "no_validation_dia_finaltest_arrays": true,
+    "arrays_weights_GPU_read_during_feasibility": false,
+    "selection_limit": "The exporter chooses at most4 train/validation representatives. Its selection is not random or a complete group. The shared exported TRAIN hard case is a bounded descriptive diagnostic, not evidence about all TRAIN cases, all validation cases, causal mechanisms, or generalization. This replaces the earlier historical-four-case suggestion."
+  },
+  "prediction_schema_source_evidence": {
+    "source": {
+      "path": "geobc/graph_context_train.py",
+      "bytes": 73289,
+      "mtime_ns": 1791535327469793600,
+      "sha256": "52c7f6cc53a7f46fcb250d2815b092d472f94fe411cf68f66ea04560db26e35f"
+    },
+    "one_based_line": 918,
+    "snippet": "                np.savez(folder / filename, xyz=case.xyz.cpu().numpy(), u_true_mm=case.physical_u, u_pred_mm=pred,\n                         alpha=case.alpha.cpu().numpy(), sample_key=np.asarray(key), step=np.asarray(best_step),\n                         channels=np.asarray([\"ux_mm\", \"uy_mm\", \"uz_mm\"]), u_scale_mm=np.asarray(scaler.scale_mm))\n                index[key] = {\"file\": filename, \"source\": str(case.source), \"group\": group, \"nodes\": case.count}",
+    "binary_schema_inspected": false,
+    "expected_fields": {
+      "xyz": "[N,3], original isotropic normalized coordinates",
+      "u_true_mm": "[N,3], signed physical displacement in mm",
+      "u_pred_mm": "[N,3], signed physical displacement in mm",
+      "alpha": "[3], ver/hor/tor basis coefficients",
+      "sample_key": "scalar string",
+      "step": "scalar update",
+      "channels": "[ux_mm,uy_mm,uz_mm]",
+      "u_scale_mm": "scalar; true/pred are already physically decoded, do not decode again"
+    },
+    "implementation_first_check": "Verify both exports have the same all-node xyz and u_true_mm, expected key/step/channels/N, finite fields and XYZ hash against the existing cache. If inconsistent or absent, fail; do not create replacement fields."
+  },
+  "cache_and_operator": {
+    "manifest": {
+      "path": "data/geobc_gradient_supervision/manifest.json",
+      "bytes": 201503,
+      "mtime_ns": 1791521803497653200,
+      "sha256": "052df4057186e37b129f8a44bb2c3e7279b24024a72a8b947d76239a984ac018"
+    },
+    "complete": true,
+    "CAD": "10_58",
+    "cache": {
+      "path": "data/geobc_gradient_supervision/10_58.npz",
+      "bytes": 42567178,
+      "mtime_ns": 1791521786418816500,
+      "binary_contents_read": false
+    },
+    "manifest_metadata": {
+      "node_count": 254645,
+      "cell_count": 161200,
+      "xyz_sha256": "b557b1d12fe26ad1989296a23993f6006b229edbc55468b90ee7e2e075818c59",
+      "normalization": {
+        "status": "known",
+        "characteristic_length_mm": 184.18731689453125,
+        "bbox_min_mm": [
+          -38.691001892089844,
+          -163.6320037841797,
+          0.22682300209999084
+        ],
+        "source": "only existing canonical prepared geometry metadata; no H5/raw geometry scan",
+        "definition": "existing isotropic xyz=(xyz_mm-bbox_min_mm)/characteristic_length_mm"
+      },
+      "mean_volume_mm3": 2.078309563213172,
+      "sum_volume_mm3": 335023.5015899633,
+      "reference_squared_rms_by_load": {
+        "ver": 2.6812719516624726e-07,
+        "hor": 1.763114313873699e-07,
+        "tor": 5.979890147333297e-08
+      },
+      "reference_dtype": "float32",
+      "geometry_dtype": "float64",
+      "role": "train_loss_and_diagnostic"
+    },
+    "helper": {
+      "path": "geobc/gradient_supervision.py",
+      "bytes": 15084,
+      "mtime_ns": 1791521730503114100,
+      "sha256": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389"
+    },
+    "NPZ_keys_from_loader_source": {
+      "corner_ids": "int64[T,4]",
+      "cells10": "int64[T,10]",
+      "inverse_physical_edge_mm": "FP64[T,3,3]",
+      "volumes_mm3": "FP64[T] positive",
+      "reference_cell_tensor_strain": "float32[T,3load,6], ver/hor/tor"
+    },
+    "APIs": [
+      "load_gradient_manifest(directory): JSON/stat only",
+      "load_gradient_cache(directory,cad_id,xyz=...,manifest=...): selected cache array load",
+      "cell_tensor_strain(u_mm[T,4,3],inverse_physical_edge_mm[T,3,3]): FP64 symmetric corner P1 tensor",
+      "recover_node_tensor_strain(cell_strain,volumes,cells,node_count,batch_size=262144): FP64 incident-volume average to ALL10 original node IDs",
+      "node_tensor_metrics(reference,prediction): unweighted all-node symmetric Frobenius relativeL2 with truth/error energy"
+    ],
+    "tensor_order": [
+      "xx",
+      "yy",
+      "zz",
+      "xy",
+      "xz",
+      "yz"
+    ],
+    "Frobenius_weights": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2
+    ],
+    "physical_xyz": "xyz_mm=xyz*characteristic_length_mm+bbox_min_mm using manifest normalization; no rawH5 or original prepared GT is needed. Cached inverse edges already use physical mm."
+  },
+  "bounded_design_draft": {
+    "one_descriptive_question": "On this same exported TRAIN case, does the recovered P1 residual remain large after oracle affine displacement-error removal, and how is that residual associated with input-only corner-edge length?",
+    "affine_oracle": "For each model, fit e=u_pred-u_true in FP64 unweighted all-node least squares to physical affine coordinates X=[1,xyz_mm-centered_mean], with coordinate columns scaled by the common characteristic_length_mm for conditioning. This is equivalent to subtracting affine projections of true and predicted displacement. Define e_aff=P(e),e_res=e-e_aff. Report the true displacement affine/non-affine descriptors too. The GT-based fit is an oracle description, not deployable correction, boundary enforcement, or model selection.",
+    "same_reference": "A=unchanged physical corner P1 plus full-cell incident-volume recovery. S_ref is the existing cached float32 tor reference, cast FP64 and recovered using the same full mesh. Retain S_ref in all comparisons.",
+    "tensor_partition": "s_total=A(u_pred)-S_ref; s_aff=A(e_aff); s_res=A(u_pred-e_aff)-S_ref; then s_total=s_aff+s_res. Record A(u_true)-S_ref once as cache-reference rounding discrepancy; never silently replace the immutable reference.",
+    "cross_terms": "For u and recovered tensor strain, compute actual E_total, E_aff, E_res and signed 2<aff,res>, plus closure error. Tensor inner product weights are [1,1,1,2,2,2]. Do not assume strain orthogonality, force positive shares to sum to100%, or clip cancellation/reinforcement.",
+    "physical_RMS_and_denominators": {
+      "u": "Use original full-case truth energy sum ||u_true||^2 mm^2. Component RMSE=sqrt(error_energy/(3N)) mm; vector RMS=sqrt(error_energy/N) mm; relativeL2=sqrt(error_energy/truth_energy). Name the two RMS conventions separately.",
+      "strain": "Use original full-case recovered S_ref Frobenius truth energy. RMS=sqrt(error_energy/N), dimensionless, no divide by6; relativeL2=sqrt(error_energy/truth_energy).",
+      "fixed_denominator": "All affine/residual/bin relative energy contributions use this same original complete-case truth denominator, with denominator values printed. No renormalization by the remaining affine-removed truth or bin truth.",
+      "cell_measure": "Full-volume-weighted cell tensor RMS/loss is a separate diagnostic, never called all-node recovered P1 relativeL2."
+    },
+    "single_input_only_bin_protocol": {
+      "length": "h_mm=min of six physical TETRA corner-edge lengths, h=h_mm/characteristic_length_mm. Recover three physical edge rows by inverting the cached inverse edge matrix; derive the other three pair edges. No other length definition or cutoff sweep.",
+      "partition": "Four fixed geometry quartile bins from this one CAD h array only, computed once and shared by both models. They use no prediction or GT. Collapse and explicitly report duplicate quartile boundaries deterministically.",
+      "cell_readout": "Cell count and physical volume fraction; volume-weighted cell residual Frobenius RMS, with full-case cell truth denominator separately named.",
+      "all_node_attribution": "Zero residual cell tensors outside a bin and recover using ALL cells and ALL original positive volumes. Never restrict incident-volume denominators to a bin. The sum of bin-recovered fields equals the total recovered residual.",
+      "node_cross_terms": "Include diagonal bin energies plus all six signed pair cross terms for four bins. Disjoint cells share recovered nodes and are not orthogonal; verify numeric energy closure."
+    },
+    "minimum_next_implementation": "One CPU-only tool loading exactly the two fixed prediction NPZ files and the one10_58 gradient cache; no new inference/optimizer/weights, no other case or cutoff. Write one bounded machine-readable readout with descriptive units, source/selection identities and limits. Root owns formal protocol/release.",
+    "interpretation_boundary": "P1/u relative-error amplification alone does not establish high spatial frequency. Oracle-affine removal and geometry-length associations can weaken or motivate a representation hypothesis, but do not establish causality, describe full validation performance, or choose future architecture/loss from this sample.",
+    "not_yet_measured": [
+      "No affine coefficients, bin thresholds, errors/cross terms, runtime or memory",
+      "No binary NPZ member/dtype inspection",
+      "No formal experiment or execution release"
+    ]
+  },
+  "only_written_file": "notes/geobc_error_gradient_feasibility.json"
+}

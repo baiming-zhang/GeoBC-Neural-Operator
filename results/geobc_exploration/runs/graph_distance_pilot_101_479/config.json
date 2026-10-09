@@ -1,0 +1,79 @@
+{
+  "contract": {
+    "schema_version": 1,
+    "plan": {
+      "path": "notes/geobc_graph_distance_pilot_plan.json",
+      "bytes": 3284,
+      "mtime_ns": 1791533382217920700,
+      "sha256": "e9f6c5a3523be2c264469f1b76cde83ff5276e6dbfde28cf96a075e8b9e7f84d"
+    },
+    "CAD": "101_479",
+    "split": {
+      "path": "notes/geobc_split.json",
+      "bytes": 25283,
+      "mtime_ns": 1791512131944894800,
+      "sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859"
+    },
+    "inputs": {
+      "H5": {
+        "path": "data/raw/FieldMesh/101_479.h5",
+        "bytes": 33320128,
+        "mtime_ns": 1791453885401115600,
+        "sha256": null
+      },
+      "SolverDeck": {
+        "path": "data/raw/SolverDeck/101_479.fem",
+        "bytes": 25331873,
+        "mtime_ns": 1791454662926453500,
+        "sha256": null
+      },
+      "canonical_prepared": {
+        "path": "data/prepared_geobc_multiload/101_479_ver.npz",
+        "bytes": 30122690,
+        "mtime_ns": 1791511974286089700,
+        "sha256": null
+      }
+    },
+    "sources_sha256": {
+      "tools/parse_deepjeb_deck.py": "e9408ebb11a86235bf68cfc6b6c018e8954904a1a7ba7c472b667e0db072ee11",
+      "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+      "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b"
+    },
+    "tool_sha256": "b4f744cd3a806a1c7221a526df4d449948585f976002c8648c7f71713ab58dec",
+    "edge_order": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "mapping_tolerance_mm": 0.0002,
+    "normalization": "original float32 vertices; xyz=(xyz_mm-min)/max_bbox_extent",
+    "CPU_only": true,
+    "fields_read": [],
+    "model_or_weights_loaded": false
+  },
+  "scope": "one fixed TRAIN geometry, no fields/weights/fit",
+  "algorithm": "unique undirected12 corner-mid subedges/tet; five member-set multi-source Dijkstra distances/L",
+  "comparison": "nearestEuclid to the identical member set, not master reference distance",
+  "limitation": "Mesh-edge path length is mesh dependent, uses straight subedge chords, and is neither exact continuous geodesic nor stiffness/elasticity. Non-redundant distances alone do not establish predictive benefit or generalization. Parent must separately authorize any extension to45CAD or matched training."
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "status": "proposal_only",
+  "stage": "conditional_hash_bandwidth_feasibility",
+  "selection": {
+    "experiment_selected": false,
+    "training_selected": false,
+    "experiment_run": false,
+    "native_instantiated_for_this_review": false,
+    "priority": "Complete the predeclared fixed field-error/gradient diagnostic first. This note authorizes no implementation, training, new jobs, or cutoff sweep."
+  },
+  "review_scope": {
+    "local_official_source_only": true,
+    "network_access": false,
+    "target_arrays_or_weights_read": false,
+    "GPU_used": false,
+    "runtime_support_or_performance_validated": false
+  },
+  "official_source": {
+    "repository": "NVlabs/tiny-cuda-nn",
+    "local_checkout": "/home/research/src/tiny-cuda-nn",
+    "commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+    "references": [
+      {
+        "path": "include/tiny-cuda-nn/encodings/multi_level_interface.h",
+        "lines": [105, 127],
+        "supports": "C++ max_level and set_max_level plus per-element GPU pointer; default 1000 disables cutoff."
+      },
+      {
+        "path": "bindings/torch/tinycudann/bindings.cpp",
+        "lines": [327, 341],
+        "supports": "Current Python-bound native Module exposes no max_level setter."
+      },
+      {
+        "path": "include/tiny-cuda-nn/encodings/grid.h",
+        "lines": [1731, 1759],
+        "supports": "HashGrid factory does not parse max_level from JSON; adding that key does not activate this control."
+      },
+      {
+        "path": "src/encoding.cu",
+        "lines": [80, 88],
+        "supports": "Official MultiLevelEncodingLoD is registered through the public encoding factory when forward/backward support is compiled."
+      },
+      {
+        "path": "include/tiny-cuda-nn/encodings/multi_level_lod.h",
+        "lines": [89, 118],
+        "supports": "Hard LoD wrapper uses one extra input dimension and a multi-level base encoding."
+      },
+      {
+        "path": "include/tiny-cuda-nn/encodings/multi_level_lod.h",
+        "lines": [134, 161],
+        "supports": "Last input channel supplies per-element level control to the base encoder."
+      },
+      {
+        "path": "include/tiny-cuda-nn/encodings/multi_level_lod.h",
+        "lines": [316, 344],
+        "supports": "Output dimensions, parameter count and initialization are delegated to the base encoder; wrapper adds no learned parameters."
+      },
+      {
+        "path": "include/tiny-cuda-nn/encodings/grid.h",
+        "lines": [67, 91],
+        "supports": "Cutoff compares level against LOD times number of levels plus 1e-3; inactive outputs and coordinate derivatives are zero and lookup returns early."
+      },
+      {
+        "path": "include/tiny-cuda-nn/encodings/grid.h",
+        "lines": [233, 246],
+        "supports": "Native parameter backward skips inactive levels."
+      },
+      {
+        "path": "bindings/torch/tinycudann/modules.py",
+        "lines": [203, 233],
+        "supports": "Public native parameter initialization uses the supplied module seed; forward is differentiable through public output and parameter tensors."
+      },
+      {
+        "path": "bindings/torch/tinycudann/modules.py",
+        "lines": [351, 394],
+        "supports": "Public Encoding accepts a JSON encoding configuration and reports output dimensions."
+      },
+      {
+        "path": "include/tiny-cuda-nn/common_device.h",
+        "lines": [886, 894],
+        "supports": "Grid scale/resolution use base grid vertex resolution and per-level growth; no inferred Composite parameter offsets are needed."
+      }
+    ]
+  },
+  "single_conditional_candidate": {
+    "comparison": "full12 versus fixed coarse8",
+    "n_levels_allocated_both": 12,
+    "features_per_level": 2,
+    "hash_output_dims_both": 24,
+    "active_levels_full": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "active_levels_coarse": [0, 1, 2, 3, 4, 5, 6, 7],
+    "unchanged_requirements": "Both groups must use the same fresh constructor, seed, complete stored parameter tensors, decoder input width, common geometry/query/BC conditions and training recipe. Existing fused checkpoints are not a matched split-encoding control.",
+    "runtime_paths_for_the_same_candidate": {
+      "official_hard_LoD": {
+        "public_call_shape": "Encoding(4, {otype: MultiLevelEncodingLoD, lod_type: Hard, base: original 12-level HashGrid}); input is xyz plus one fixed nonlearned control scalar",
+        "full_fixed_control": 1.0,
+        "coarse_fixed_control": 0.625,
+        "threshold_reason": "0.625*12=7.5: levels0..7 remain active; levels8..11 satisfy level>=7.5+1e-3 and are zeroed. Using 8/12 would retain level8 because of the 1e-3 tolerance.",
+        "installed_binary_support": "Not instantiated or tested in this source-only review. A future root-authorized single native smoke must verify this public path."
+      },
+      "public_output_mask": {
+        "operation": "Encoding(xyz) * fixed mask24",
+        "full_mask": "24 ones",
+        "coarse_mask": "16 ones followed by 8 zeros",
+        "parameter_offsets_used": false,
+        "encoding_forward_cost": "All12 levels are still evaluated; a post-output mask does not provide the native lookup savings of Hard LoD."
+      }
+    }
+  },
+  "initialization_and_capacity_limits": [
+    "Identical stored parameter count and initialization do not imply identical active/effective capacity; four fine levels are deliberately unavailable in coarse8.",
+    "Both groups must retain the same full24 hash output and decoder layout; reducing n_levels to8 would change storage/initialization and is a different comparison.",
+    "Natural full/coarse predictions need not be equal at initialization because their encoded inputs differ; parity applies to a common identical cutoff/input fixture.",
+    "Separate Encoding and Network initialize public parameter tensors independently using supplied seeds; no equivalence to an old NetworkWithInputEncoding flat buffer or RNG sequence is assumed."
+  ],
+  "continuity_and_gradient_limits": [
+    "Linear grid interpolation is spatially continuous and piecewise differentiable. A constant mask or constant Hard LoD does not introduce position-dependent level switching.",
+    "Inactive fine-level parameter gradients are zero; active levels retain first-order parameter gradients through the public encoder output.",
+    "This is a representation-bandwidth control, not a guarantee of a band-limited or low-gradient displacement field: nonlinear decoder, query context and local geometry inputs can still vary at short scales.",
+    "It provides no proof of the cause of current P1 errors, physical correctness, or generalization."
+  ],
+  "performance_limits": [
+    "Hard LoD has a source-level early return for disabled grid lookups/backward, but still launches level work and wrapper operations; speedup is unmeasured.",
+    "Split Encoding plus Network adds public tensor materialization/casts/mask or LoD input preparation and a separate native call compared with the existing fused interface.",
+    "No performance numbers, native backward acceptance, or training benefit have been established by this note."
+  ]
+}

@@ -1,0 +1,1182 @@
+{
+  "status": "ready",
+  "file": "tools/diagnose_hash_modulation_use.py",
+  "source_sha256": "bed13c7180b2328272929205123c78c7ed00ad82574af444cd202f575ac79ff3",
+  "plan": "notes/geobc_hash_modulation_use_plan.json",
+  "plan_sha256": "7cf072f9f25e5243765ff1c4d28484017ffb75c23f137ba8cb4f97bf8c71fdaa",
+  "created_at_utc": "2026-10-09T07:53:33.553834+00:00",
+  "interface": {
+    "CLI": "python tools/diagnose_hash_modulation_use.py --plan notes/geobc_hash_modulation_use_plan.json --output runs/geobc_exploration/hash_modulation_use_frozen_10k",
+    "metadata_only": "request_contract(plan_path); CLI --dry-run",
+    "output_contract": "summary.config.contract exactly equals request_contract(plan_path)"
+  },
+  "checks": {
+    "CPU_synthetic_forward_basis_exact_direct_parity": true,
+    "force_slots_masked": true,
+    "single_transparent_gate_hook": true,
+    "only_gate_mask_effect_and_mode_restore": true,
+    "zero_natural_masked_exact": true,
+    "gamma_endpoint_centered_statistics": true,
+    "frozen_synthetic_witness_reuse_and_duplicates": true,
+    "backwards": 0,
+    "optimizer_updates": 0,
+    "CUDA_used": false,
+    "real_arrays_weights_labels_opened": false,
+    "metadata_request_imported_numpy_or_torch": false,
+    "AST_parse": true
+  },
+  "metadata_dry_run": {
+    "status": "metadata_preflight_passed",
+    "contract": {
+      "version": 1,
+      "plan": {
+        "path": "notes/geobc_hash_modulation_use_plan.json",
+        "bytes": 4758,
+        "mtime_ns": 1791532050718451100,
+        "sha256": "7cf072f9f25e5243765ff1c4d28484017ffb75c23f137ba8cb4f97bf8c71fdaa"
+      },
+      "sources_sha256": {
+        "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+        "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+        "geobc/gradient_train.py": "a27c3845507b60b86b7792a5f1cdcec184f969b26edc83d454665ce5e54eb393",
+        "geobc/gradient_supervision.py": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389",
+        "geobc/physics_train.py": "3105cacc364b65950eec2b1901376c8b9f8b1edae1019fbfadcc9662339c8b16",
+        "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+        "geobc/bc_role_condition.py": "a9adee5a0fcbf7f408a4199ca1b4a87d676a43d56f4b18c1a91ff02cc6a3a232",
+        "geobc/local_geometry.py": "13977c84261f3fb4a296d6b0e18de6ab30664871c09e4827d51620708e54c091",
+        "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+        "geobc/displacement_condition.py": "d82b4f627ddfbe3bf8c217667bf411b4ebf66ada98736e59580721489cf9289a",
+        "geobc/hash_modulation_field.py": "f3e51d7bb5a26660f73a9db9b90daa1d94581e89d45c94808d894f8394cbc765",
+        "geobc/hash_modulation_train.py": "61a6c271daec7e527b15753323819ce2a0ad8b7ad946e705a7f519988c078450",
+        "tools/diagnose_query_learning.py": "30bbb32864f28f6bb37be23cf7be6f919a257bc0689f0d85f6dd7e6deaff8009",
+        "tools/analyze_hash_modulation_pair.py": "1a2a599e8547614dddd25c8cc6752f34a458fd791c7c62be34c75f58cc4859d5",
+        "tools/diagnose_hash_modulation_use.py": "bed13c7180b2328272929205123c78c7ed00ad82574af444cd202f575ac79ff3"
+      },
+      "matched_pair_result": {
+        "path": "notes/geobc_hash_modulation_pair_result.json",
+        "bytes": 409732,
+        "mtime_ns": 1791531900732343900,
+        "sha256": "0882c544d6e0684d76af60abcc8b5a802ba661a854beb5c80c0dbecdbb247969"
+      },
+      "hash_plan": {
+        "path": "notes/geobc_hash_modulation_plan.json",
+        "bytes": 11406,
+        "mtime_ns": 1791530361152645100,
+        "sha256": "f56fe7a2d741a0bf088ac51064b72254fac559a6496cf65bf88c7bb32bbcf940"
+      },
+      "prior_sampling_plan": {
+        "path": "notes/geobc_query_learning_plan.json",
+        "bytes": 13266,
+        "mtime_ns": 1791528343571779100,
+        "sha256": "04fdcc45e36953412e91a8bf3b753c2df2f8d0d4d9763d0e1e5d511ea572c4f9"
+      },
+      "frozen_checkpoints": {
+        "zero": {
+          "checkpoint": {
+            "path": "runs/geobc_exploration/displacement_hash_modulation_zero_10k/last.pt",
+            "bytes": 93974423,
+            "mtime_ns": 1791531541999105500,
+            "sha256": null
+          },
+          "required_step": 10000,
+          "config": {
+            "path": "runs/geobc_exploration/displacement_hash_modulation_zero_10k/config.json",
+            "bytes": 917670,
+            "mtime_ns": 1791531285138935100,
+            "sha256": "38dc08dba958e9b52fd9861721fb69f0e822ed9b3f8becf346d6da0dc56cdfaf"
+          },
+          "summary": {
+            "path": "runs/geobc_exploration/displacement_hash_modulation_zero_10k/summary.json",
+            "bytes": 1221740,
+            "mtime_ns": 1791531542621626800,
+            "sha256": "8d094b9cb4802fc005a4eae76526bae648242fc212d61ad1d67816554feaeeb2"
+          },
+          "last_metrics": {
+            "path": "runs/geobc_exploration/displacement_hash_modulation_zero_10k/metrics_latest.json",
+            "bytes": 89208,
+            "mtime_ns": 1791531542010130500,
+            "sha256": "98a9f3c89a5bd6281c62834280a721eea1052fd73b513b28b8950764ad508519"
+          },
+          "selection": "fixed last.pt at10000, not validation-selected best"
+        },
+        "actual": {
+          "checkpoint": {
+            "path": "runs/geobc_exploration/displacement_hash_modulation_actual_10k/last.pt",
+            "bytes": 93974423,
+            "mtime_ns": 1791531835423181600,
+            "sha256": null
+          },
+          "required_step": 10000,
+          "config": {
+            "path": "runs/geobc_exploration/displacement_hash_modulation_actual_10k/config.json",
+            "bytes": 917688,
+            "mtime_ns": 1791531583166825800,
+            "sha256": "5a2da7ab653a9be11ab0740c8eb9e8a7a0f723b3ca66d80bf5e2cc8cbdb3da79"
+          },
+          "summary": {
+            "path": "runs/geobc_exploration/displacement_hash_modulation_actual_10k/summary.json",
+            "bytes": 1221691,
+            "mtime_ns": 1791531836032988400,
+            "sha256": "6a90735452efc6d7041be08c921bd6c820c4aa62e2ea831b68846a19a0d77bff"
+          },
+          "last_metrics": {
+            "path": "runs/geobc_exploration/displacement_hash_modulation_actual_10k/metrics_latest.json",
+            "bytes": 89163,
+            "mtime_ns": 1791531835434326400,
+            "sha256": "f93fd75f06fffb3a3fc774648b14e7a6d8367070b0d172b74056ae74c7d31988"
+          },
+          "selection": "fixed last.pt at10000, not validation-selected best"
+        }
+      },
+      "split": {
+        "path": "notes/geobc_split.json",
+        "bytes": 25283,
+        "mtime_ns": 1791512131944894800,
+        "sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859"
+      },
+      "load_basis": {
+        "path": "notes/geobc_load_basis_45.json",
+        "bytes": 360389,
+        "mtime_ns": 1791514706494235900,
+        "sha256": "d2560829a07a20f30071f49f4bb694127b0e8d3ddb4724e3a4b0b795795c4991"
+      },
+      "CADs": [
+        "101_479",
+        "101_428",
+        "101_56",
+        "101_78"
+      ],
+      "cases": [
+        "101_479/ver",
+        "101_479/hor",
+        "101_479/tor",
+        "101_428/ver",
+        "101_428/hor",
+        "101_428/tor",
+        "101_56/ver",
+        "101_56/hor",
+        "101_56/tor",
+        "101_78/ver",
+        "101_78/hor",
+        "101_78/tor"
+      ],
+      "known_loads": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "selected_sources": {
+        "101_479/ver": {
+          "path": "data/prepared_geobc_multiload/101_479_ver.npz",
+          "bytes": 30122690,
+          "mtime_ns": 1791511974286089700,
+          "sha256": null
+        },
+        "101_479/hor": {
+          "path": "data/prepared_geobc_multiload/101_479_hor.npz",
+          "bytes": 30122690,
+          "mtime_ns": 1791511974332227500,
+          "sha256": null
+        },
+        "101_479/tor": {
+          "path": "data/prepared_geobc_multiload/101_479_tor.npz",
+          "bytes": 30122690,
+          "mtime_ns": 1791454714889689800,
+          "sha256": null
+        },
+        "101_428/ver": {
+          "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+          "bytes": 45320930,
+          "mtime_ns": 1791511980352062400,
+          "sha256": null
+        },
+        "101_428/hor": {
+          "path": "data/prepared_geobc_multiload/101_428_hor.npz",
+          "bytes": 45320930,
+          "mtime_ns": 1791511980433203300,
+          "sha256": null
+        },
+        "101_428/tor": {
+          "path": "data/prepared_geobc_multiload/101_428_tor.npz",
+          "bytes": 45320930,
+          "mtime_ns": 1791511980507933000,
+          "sha256": null
+        },
+        "101_56/ver": {
+          "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+          "bytes": 37050462,
+          "mtime_ns": 1791454716033307500,
+          "sha256": null
+        },
+        "101_56/hor": {
+          "path": "data/prepared_geobc_multiload/101_56_hor.npz",
+          "bytes": 37050462,
+          "mtime_ns": 1791511980752979100,
+          "sha256": null
+        },
+        "101_56/tor": {
+          "path": "data/prepared_geobc_multiload/101_56_tor.npz",
+          "bytes": 37050462,
+          "mtime_ns": 1791511980877995700,
+          "sha256": null
+        },
+        "101_78/ver": {
+          "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+          "bytes": 32255262,
+          "mtime_ns": 1791511981517772800,
+          "sha256": null
+        },
+        "101_78/hor": {
+          "path": "data/prepared_geobc_multiload/101_78_hor.npz",
+          "bytes": 32255262,
+          "mtime_ns": 1791454716418884700,
+          "sha256": null
+        },
+        "101_78/tor": {
+          "path": "data/prepared_geobc_multiload/101_78_tor.npz",
+          "bytes": 32255262,
+          "mtime_ns": 1791511981631939300,
+          "sha256": null
+        }
+      },
+      "gradient_manifest": {
+        "path": "data/geobc_gradient_supervision/manifest.json",
+        "bytes": 201503,
+        "mtime_ns": 1791521803497653200,
+        "sha256": "052df4057186e37b129f8a44bb2c3e7279b24024a72a8b947d76239a984ac018"
+      },
+      "geometry": {
+        "101_479": {
+          "gradient": {
+            "path": "data/geobc_gradient_supervision/101_479.npz",
+            "bytes": 29513502,
+            "mtime_ns": 1791521769276959500,
+            "sha256": null
+          },
+          "gradient_metadata": {
+            "file": "101_479.npz",
+            "bytes": 29513502,
+            "mtime_ns": 1791521769276959500,
+            "sha256": null,
+            "cad_id": "101_479",
+            "node_count": 179316,
+            "xyz_sha256": "0fa3d59a49993b65a207ec0eafb94f655c6ffd7e75a28e651e6dc1684e929d52",
+            "normalization": {
+              "status": "known",
+              "characteristic_length_mm": 184.05270385742188,
+              "bbox_min_mm": [
+                -38.72420120239258,
+                -163.60699462890625,
+                0.2465403974056244
+              ],
+              "source": "only existing canonical prepared geometry metadata; no H5/raw geometry scan",
+              "definition": "existing isotropic xyz=(xyz_mm-bbox_min_mm)/characteristic_length_mm"
+            },
+            "cell_count": 111754,
+            "grid_node_ids_sha256": "8726a62393bcd00a085faf83cd2d3c013a28c1b639df9bedcc28d8d48b3ac7af",
+            "raw_geometry_source": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw/FieldMesh/101_479.h5",
+              "bytes": 33320128,
+              "mtime_ns": 1791453885401115600,
+              "sha256": null
+            },
+            "displacement_sources": [
+              {
+                "key": "101_479/ver",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_ver.npz",
+                "bytes": 30122690,
+                "mtime_ns": 1791511974286089700,
+                "sha256": null
+              },
+              {
+                "key": "101_479/hor",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_hor.npz",
+                "bytes": 30122690,
+                "mtime_ns": 1791511974332227500,
+                "sha256": null
+              },
+              {
+                "key": "101_479/tor",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_tor.npz",
+                "bytes": 30122690,
+                "mtime_ns": 1791454714889689800,
+                "sha256": null
+              }
+            ],
+            "mean_volume_mm3": 1.7267500585215283,
+            "sum_volume_mm3": 192971.22604001488,
+            "min_volume_mm3": 0.005576213239896055,
+            "max_volume_mm3": 23.92861305565347,
+            "reference_squared_rms_by_load": {
+              "ver": 5.873015346046047e-07,
+              "hor": 6.702965248982123e-07,
+              "tor": 1.9198021621449473e-07
+            },
+            "loss_normalization_by_load": {
+              "ver": 5.873015346046047e-07,
+              "hor": 6.702965248982123e-07,
+              "tor": 1.9198021621449473e-07
+            },
+            "floor_active_by_load": {
+              "ver": false,
+              "hor": false,
+              "tor": false
+            },
+            "role": "train_loss_and_diagnostic",
+            "finite": true,
+            "geometry_dtype": "float64",
+            "reference_dtype": "float32",
+            "reference": "reference corner-P1 tensor strain from signed known-load displacement",
+            "strain_units": "dimensionless"
+          },
+          "local": {
+            "path": "data/geobc_local_geometry/101_479.npz",
+            "bytes": 9336931,
+            "mtime_ns": 1791513743390124000,
+            "sha256": null
+          },
+          "local_metadata": {
+            "cad_id": "101_479",
+            "cache": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_local_geometry/101_479.npz",
+            "bytes": 9336931,
+            "mtime_ns": 1791513743390124000,
+            "node_count": 179316,
+            "xyz_sha256": "0fa3d59a49993b65a207ec0eafb94f655c6ffd7e75a28e651e6dc1684e929d52",
+            "canonical_case": "101_479/ver",
+            "source_canonical_npz": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\prepared_geobc_multiload\\101_479_ver.npz",
+            "boundary_node_count": 59314,
+            "feature_names": [
+              "nearest_boundary_offset_x_over_0.05",
+              "nearest_boundary_offset_y_over_0.05",
+              "nearest_boundary_offset_z_over_0.05",
+              "nearest_boundary_distance_over_0.05",
+              "neighbor_cov_xx_over_trace",
+              "neighbor_cov_yy_over_trace",
+              "neighbor_cov_zz_over_trace",
+              "neighbor_cov_xy_over_trace",
+              "neighbor_cov_xz_over_trace",
+              "neighbor_cov_yz_over_trace",
+              "neighbor_eigen_min_over_trace",
+              "neighbor_eigen_mid_over_trace",
+              "kth_boundary_distance_over_0.05"
+            ],
+            "feature_dim": 13,
+            "schema_version": 1,
+            "K": 32,
+            "geometry_scale": 0.05,
+            "schema_sha256": "d359387ec611eeab11daceacb6793981dc2ad955307a4b114d565889fa867eb6",
+            "target_independent": true,
+            "all_loads_share_cache": true,
+            "limitations": "Discrete KNN/PCA depends on mesh-node density. Distance is to boundary nodes, not the continuous triangle surface; no sign or exact SDF is inferred. No uniform surface sampling is used."
+          },
+          "cloud": {
+            "cad_key": "101_479",
+            "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_ver.npz",
+            "pool": "unique original quadratic-boundary node IDs",
+            "candidate_nodes": 59314,
+            "selected_nodes": 1024,
+            "cloud_points": 1024,
+            "seed": 2026,
+            "coordinate_system": "prepared normalized xyz; isotropic and aspect-ratio preserving",
+            "target_independent": true,
+            "all_loads_share_one_cad_cloud": true,
+            "sampling": "uniform unique FEM nodes, not uniform surface area",
+            "canonical_sample_key": "101_479/ver",
+            "role_source": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_479_ver.npz",
+              "bytes": 30122690,
+              "mtime_ns": 1791511974286089700,
+              "sha256": null
+            },
+            "original_node_count": 179316,
+            "source_xyz_sha256": "0fa3d59a49993b65a207ec0eafb94f655c6ffd7e75a28e651e6dc1684e929d52",
+            "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+            "global_cloud_input_dimension": 5,
+            "role_order": [
+              "support_union_original_DOF0_to5",
+              "load_member_original_feature6"
+            ],
+            "points5_sha256": "9a871befa8c163ee0247835a47d0efb968b01a2580466f9db149a4b5a43e716b",
+            "coordinates_sha256": "098386bd2ca80f6a40b9cbeb29ee4ebafed04e6cedf3a24990f6865988d81a9d",
+            "roles_sha256": "4e808d62dd3e974e00220e7be45610f47a9edbaa74d6a103e8b4bf1257069071",
+            "mask_sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69",
+            "node_indices_sha256": "6a4c2f33cfe95681bf24d7d4194a0a40b22e2e7cd0c4ab79b042aef3e72bfab2",
+            "role_support_selected_nodes": 28,
+            "role_load_selected_nodes": 10,
+            "role_support_and_load_selected_nodes": 0,
+            "role_policy": "supportUnion=any originalfeatures0:6; loadMember=originalfeatures6; canonical ver only, same existing sampled indices",
+            "geometry_target_independent": true,
+            "geometry_load_independent": true,
+            "targets_read": false,
+            "role_members_read": [
+              "features (only0:7 used)",
+              "xyz",
+              "sample_key",
+              "label_alignment"
+            ]
+          }
+        },
+        "101_428": {
+          "gradient": {
+            "path": "data/geobc_gradient_supervision/101_428.npz",
+            "bytes": 44851374,
+            "mtime_ns": 1791521768458162100,
+            "sha256": null
+          },
+          "gradient_metadata": {
+            "file": "101_428.npz",
+            "bytes": 44851374,
+            "mtime_ns": 1791521768458162100,
+            "sha256": null,
+            "cad_id": "101_428",
+            "node_count": 270276,
+            "xyz_sha256": "c9f54a43f045d4729147dbb4ab4ed4f85bd5b46e8aab72228d5d46c2d2121228",
+            "normalization": {
+              "status": "known",
+              "characteristic_length_mm": 185.13168334960938,
+              "bbox_min_mm": [
+                -38.653900146484375,
+                -164.1840057373047,
+                0.24787600338459015
+              ],
+              "source": "only existing canonical prepared geometry metadata; no H5/raw geometry scan",
+              "definition": "existing isotropic xyz=(xyz_mm-bbox_min_mm)/characteristic_length_mm"
+            },
+            "cell_count": 169852,
+            "grid_node_ids_sha256": "65f935b3245149b5098845c7a2ff0dc69dd7bc833d2668519deddfbd235228f2",
+            "raw_geometry_source": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw/FieldMesh/101_428.h5",
+              "bytes": 50172448,
+              "mtime_ns": 1791453879531543300,
+              "sha256": null
+            },
+            "displacement_sources": [
+              {
+                "key": "101_428/ver",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_ver.npz",
+                "bytes": 45320930,
+                "mtime_ns": 1791511980352062400,
+                "sha256": null
+              },
+              {
+                "key": "101_428/hor",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_hor.npz",
+                "bytes": 45320930,
+                "mtime_ns": 1791511980433203300,
+                "sha256": null
+              },
+              {
+                "key": "101_428/tor",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_tor.npz",
+                "bytes": 45320930,
+                "mtime_ns": 1791511980507933000,
+                "sha256": null
+              }
+            ],
+            "mean_volume_mm3": 1.9277164669524107,
+            "sum_volume_mm3": 327426.49734480085,
+            "min_volume_mm3": 0.007062265005315164,
+            "max_volume_mm3": 48.036912711124856,
+            "reference_squared_rms_by_load": {
+              "ver": 2.185276118392245e-07,
+              "hor": 1.535922412902025e-07,
+              "tor": 5.414321374117296e-08
+            },
+            "loss_normalization_by_load": {
+              "ver": 2.185276118392245e-07,
+              "hor": 1.535922412902025e-07,
+              "tor": 5.414321374117296e-08
+            },
+            "floor_active_by_load": {
+              "ver": false,
+              "hor": false,
+              "tor": false
+            },
+            "role": "train_loss_and_diagnostic",
+            "finite": true,
+            "geometry_dtype": "float64",
+            "reference_dtype": "float32",
+            "reference": "reference corner-P1 tensor strain from signed known-load displacement",
+            "strain_units": "dimensionless"
+          },
+          "local": {
+            "path": "data/geobc_local_geometry/101_428.npz",
+            "bytes": 14066851,
+            "mtime_ns": 1791513743900080600,
+            "sha256": null
+          },
+          "local_metadata": {
+            "cad_id": "101_428",
+            "cache": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_local_geometry/101_428.npz",
+            "bytes": 14066851,
+            "mtime_ns": 1791513743900080600,
+            "node_count": 270276,
+            "xyz_sha256": "c9f54a43f045d4729147dbb4ab4ed4f85bd5b46e8aab72228d5d46c2d2121228",
+            "canonical_case": "101_428/ver",
+            "source_canonical_npz": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\prepared_geobc_multiload\\101_428_ver.npz",
+            "boundary_node_count": 86168,
+            "feature_names": [
+              "nearest_boundary_offset_x_over_0.05",
+              "nearest_boundary_offset_y_over_0.05",
+              "nearest_boundary_offset_z_over_0.05",
+              "nearest_boundary_distance_over_0.05",
+              "neighbor_cov_xx_over_trace",
+              "neighbor_cov_yy_over_trace",
+              "neighbor_cov_zz_over_trace",
+              "neighbor_cov_xy_over_trace",
+              "neighbor_cov_xz_over_trace",
+              "neighbor_cov_yz_over_trace",
+              "neighbor_eigen_min_over_trace",
+              "neighbor_eigen_mid_over_trace",
+              "kth_boundary_distance_over_0.05"
+            ],
+            "feature_dim": 13,
+            "schema_version": 1,
+            "K": 32,
+            "geometry_scale": 0.05,
+            "schema_sha256": "d359387ec611eeab11daceacb6793981dc2ad955307a4b114d565889fa867eb6",
+            "target_independent": true,
+            "all_loads_share_cache": true,
+            "limitations": "Discrete KNN/PCA depends on mesh-node density. Distance is to boundary nodes, not the continuous triangle surface; no sign or exact SDF is inferred. No uniform surface sampling is used."
+          },
+          "cloud": {
+            "cad_key": "101_428",
+            "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_ver.npz",
+            "pool": "unique original quadratic-boundary node IDs",
+            "candidate_nodes": 86168,
+            "selected_nodes": 1024,
+            "cloud_points": 1024,
+            "seed": 2026,
+            "coordinate_system": "prepared normalized xyz; isotropic and aspect-ratio preserving",
+            "target_independent": true,
+            "all_loads_share_one_cad_cloud": true,
+            "sampling": "uniform unique FEM nodes, not uniform surface area",
+            "canonical_sample_key": "101_428/ver",
+            "role_source": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_428_ver.npz",
+              "bytes": 45320930,
+              "mtime_ns": 1791511980352062400,
+              "sha256": null
+            },
+            "original_node_count": 270276,
+            "source_xyz_sha256": "c9f54a43f045d4729147dbb4ab4ed4f85bd5b46e8aab72228d5d46c2d2121228",
+            "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+            "global_cloud_input_dimension": 5,
+            "role_order": [
+              "support_union_original_DOF0_to5",
+              "load_member_original_feature6"
+            ],
+            "points5_sha256": "a175261444d24d525f558818d96611d0cb6aff75328bbd617797ae6df10471c1",
+            "coordinates_sha256": "09064629480569ca68ff7a878270a72e224dfdd0094d3f195d9e9f5c3d2fb449",
+            "roles_sha256": "0bac11543f18c44821921eb2aa5366d789e36488728d6ce24dc0ccba21f76a7d",
+            "mask_sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69",
+            "node_indices_sha256": "57c8dd36308b1bf8594f28d75d49a2cb3b133c6a6c688711f623ae9ec47db073",
+            "role_support_selected_nodes": 18,
+            "role_load_selected_nodes": 9,
+            "role_support_and_load_selected_nodes": 0,
+            "role_policy": "supportUnion=any originalfeatures0:6; loadMember=originalfeatures6; canonical ver only, same existing sampled indices",
+            "geometry_target_independent": true,
+            "geometry_load_independent": true,
+            "targets_read": false,
+            "role_members_read": [
+              "features (only0:7 used)",
+              "xyz",
+              "sample_key",
+              "label_alignment"
+            ]
+          }
+        },
+        "101_56": {
+          "gradient": {
+            "path": "data/geobc_gradient_supervision/101_56.npz",
+            "bytes": 36850566,
+            "mtime_ns": 1791521770181870400,
+            "sha256": null
+          },
+          "gradient_metadata": {
+            "file": "101_56.npz",
+            "bytes": 36850566,
+            "mtime_ns": 1791521770181870400,
+            "sha256": null,
+            "cad_id": "101_56",
+            "node_count": 221213,
+            "xyz_sha256": "12de6dd49683cbfdab56501c8873e94eb8e4efe8f6553138b67e812c0e9c236a",
+            "normalization": {
+              "status": "known",
+              "characteristic_length_mm": 184.96849060058594,
+              "bbox_min_mm": [
+                -38.55189895629883,
+                -164.052001953125,
+                0.19492770731449127
+              ],
+              "source": "only existing canonical prepared geometry metadata; no H5/raw geometry scan",
+              "definition": "existing isotropic xyz=(xyz_mm-bbox_min_mm)/characteristic_length_mm"
+            },
+            "cell_count": 139546,
+            "grid_node_ids_sha256": "b908e54d906255e2dcf5e737ce6a12ec9b89c32af6a40dd400c3ca089ddbcf94",
+            "raw_geometry_source": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw/FieldMesh/101_56.h5",
+              "bytes": 41019640,
+              "mtime_ns": 1791453892971287300,
+              "sha256": null
+            },
+            "displacement_sources": [
+              {
+                "key": "101_56/ver",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_ver.npz",
+                "bytes": 37050462,
+                "mtime_ns": 1791454716033307500,
+                "sha256": null
+              },
+              {
+                "key": "101_56/hor",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_hor.npz",
+                "bytes": 37050462,
+                "mtime_ns": 1791511980752979100,
+                "sha256": null
+              },
+              {
+                "key": "101_56/tor",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_tor.npz",
+                "bytes": 37050462,
+                "mtime_ns": 1791511980877995700,
+                "sha256": null
+              }
+            ],
+            "mean_volume_mm3": 2.6797174894038136,
+            "sum_volume_mm3": 373943.8567763446,
+            "min_volume_mm3": 0.013945956920878974,
+            "max_volume_mm3": 88.82286144990965,
+            "reference_squared_rms_by_load": {
+              "ver": 1.7850429701940308e-07,
+              "hor": 1.3745726217827278e-07,
+              "tor": 4.4034035726773264e-08
+            },
+            "loss_normalization_by_load": {
+              "ver": 1.7850429701940308e-07,
+              "hor": 1.3745726217827278e-07,
+              "tor": 4.4034035726773264e-08
+            },
+            "floor_active_by_load": {
+              "ver": false,
+              "hor": false,
+              "tor": false
+            },
+            "role": "train_loss_and_diagnostic",
+            "finite": true,
+            "geometry_dtype": "float64",
+            "reference_dtype": "float32",
+            "reference": "reference corner-P1 tensor strain from signed known-load displacement",
+            "strain_units": "dimensionless"
+          },
+          "local": {
+            "path": "data/geobc_local_geometry/101_56.npz",
+            "bytes": 11515563,
+            "mtime_ns": 1791513744606146200,
+            "sha256": null
+          },
+          "local_metadata": {
+            "cad_id": "101_56",
+            "cache": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_local_geometry/101_56.npz",
+            "bytes": 11515563,
+            "mtime_ns": 1791513744606146200,
+            "node_count": 221213,
+            "xyz_sha256": "12de6dd49683cbfdab56501c8873e94eb8e4efe8f6553138b67e812c0e9c236a",
+            "canonical_case": "101_56/ver",
+            "source_canonical_npz": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\prepared_geobc_multiload\\101_56_ver.npz",
+            "boundary_node_count": 68656,
+            "feature_names": [
+              "nearest_boundary_offset_x_over_0.05",
+              "nearest_boundary_offset_y_over_0.05",
+              "nearest_boundary_offset_z_over_0.05",
+              "nearest_boundary_distance_over_0.05",
+              "neighbor_cov_xx_over_trace",
+              "neighbor_cov_yy_over_trace",
+              "neighbor_cov_zz_over_trace",
+              "neighbor_cov_xy_over_trace",
+              "neighbor_cov_xz_over_trace",
+              "neighbor_cov_yz_over_trace",
+              "neighbor_eigen_min_over_trace",
+              "neighbor_eigen_mid_over_trace",
+              "kth_boundary_distance_over_0.05"
+            ],
+            "feature_dim": 13,
+            "schema_version": 1,
+            "K": 32,
+            "geometry_scale": 0.05,
+            "schema_sha256": "d359387ec611eeab11daceacb6793981dc2ad955307a4b114d565889fa867eb6",
+            "target_independent": true,
+            "all_loads_share_cache": true,
+            "limitations": "Discrete KNN/PCA depends on mesh-node density. Distance is to boundary nodes, not the continuous triangle surface; no sign or exact SDF is inferred. No uniform surface sampling is used."
+          },
+          "cloud": {
+            "cad_key": "101_56",
+            "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_ver.npz",
+            "pool": "unique original quadratic-boundary node IDs",
+            "candidate_nodes": 68656,
+            "selected_nodes": 1024,
+            "cloud_points": 1024,
+            "seed": 2026,
+            "coordinate_system": "prepared normalized xyz; isotropic and aspect-ratio preserving",
+            "target_independent": true,
+            "all_loads_share_one_cad_cloud": true,
+            "sampling": "uniform unique FEM nodes, not uniform surface area",
+            "canonical_sample_key": "101_56/ver",
+            "role_source": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_56_ver.npz",
+              "bytes": 37050462,
+              "mtime_ns": 1791454716033307500,
+              "sha256": null
+            },
+            "original_node_count": 221213,
+            "source_xyz_sha256": "12de6dd49683cbfdab56501c8873e94eb8e4efe8f6553138b67e812c0e9c236a",
+            "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+            "global_cloud_input_dimension": 5,
+            "role_order": [
+              "support_union_original_DOF0_to5",
+              "load_member_original_feature6"
+            ],
+            "points5_sha256": "36285bcba61e97ecc5f2bf807d7646f13d9ffa28ccfa026be4acbd162f703a6e",
+            "coordinates_sha256": "7b5cac028ece882664d0801708fd90dbaa864e23c009bdb040706f8aaef490da",
+            "roles_sha256": "3714acd1bf2a4b5d0e57ee38d82c2108f85211b73634c5c5263d47033bcb8dba",
+            "mask_sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69",
+            "node_indices_sha256": "15a1993b90d879b0049377edcf3ae264ac62f803cbca90cdbb4a7d48728a4c66",
+            "role_support_selected_nodes": 25,
+            "role_load_selected_nodes": 8,
+            "role_support_and_load_selected_nodes": 0,
+            "role_policy": "supportUnion=any originalfeatures0:6; loadMember=originalfeatures6; canonical ver only, same existing sampled indices",
+            "geometry_target_independent": true,
+            "geometry_load_independent": true,
+            "targets_read": false,
+            "role_members_read": [
+              "features (only0:7 used)",
+              "xyz",
+              "sample_key",
+              "label_alignment"
+            ]
+          }
+        },
+        "101_78": {
+          "gradient": {
+            "path": "data/geobc_gradient_supervision/101_78.npz",
+            "bytes": 31859106,
+            "mtime_ns": 1791521770828456400,
+            "sha256": null
+          },
+          "gradient_metadata": {
+            "file": "101_78.npz",
+            "bytes": 31859106,
+            "mtime_ns": 1791521770828456400,
+            "sha256": null,
+            "cad_id": "101_78",
+            "node_count": 192353,
+            "xyz_sha256": "00c7c8f8f08e04ada2b91abf6501e3fe2bd76f59d8492bf955b7faa2ba09ebc2",
+            "normalization": {
+              "status": "known",
+              "characteristic_length_mm": 185.1586456298828,
+              "bbox_min_mm": [
+                -38.932098388671875,
+                -164.20399475097656,
+                0.23825310170650482
+              ],
+              "source": "only existing canonical prepared geometry metadata; no H5/raw geometry scan",
+              "definition": "existing isotropic xyz=(xyz_mm-bbox_min_mm)/characteristic_length_mm"
+            },
+            "cell_count": 120639,
+            "grid_node_ids_sha256": "d40d02715d19f440fa2ddc8a2614153994f828fe846cbbf065e8e3f3e3967db6",
+            "raw_geometry_source": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/raw/FieldMesh/101_78.h5",
+              "bytes": 35688680,
+              "mtime_ns": 1791453901460313900,
+              "sha256": null
+            },
+            "displacement_sources": [
+              {
+                "key": "101_78/ver",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_ver.npz",
+                "bytes": 32255262,
+                "mtime_ns": 1791511981517772800,
+                "sha256": null
+              },
+              {
+                "key": "101_78/hor",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_hor.npz",
+                "bytes": 32255262,
+                "mtime_ns": 1791454716418884700,
+                "sha256": null
+              },
+              {
+                "key": "101_78/tor",
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_tor.npz",
+                "bytes": 32255262,
+                "mtime_ns": 1791511981631939300,
+                "sha256": null
+              }
+            ],
+            "mean_volume_mm3": 2.605683927190447,
+            "sum_volume_mm3": 314347.10329232836,
+            "min_volume_mm3": 0.02516056531350708,
+            "max_volume_mm3": 85.60252912782121,
+            "reference_squared_rms_by_load": {
+              "ver": 2.689773163356135e-07,
+              "hor": 2.2904488014949947e-07,
+              "tor": 6.153656787501127e-08
+            },
+            "loss_normalization_by_load": {
+              "ver": 2.689773163356135e-07,
+              "hor": 2.2904488014949947e-07,
+              "tor": 6.153656787501127e-08
+            },
+            "floor_active_by_load": {
+              "ver": false,
+              "hor": false,
+              "tor": false
+            },
+            "role": "train_loss_and_diagnostic",
+            "finite": true,
+            "geometry_dtype": "float64",
+            "reference_dtype": "float32",
+            "reference": "reference corner-P1 tensor strain from signed known-load displacement",
+            "strain_units": "dimensionless"
+          },
+          "local": {
+            "path": "data/geobc_local_geometry/101_78.npz",
+            "bytes": 10014843,
+            "mtime_ns": 1791513744934522600,
+            "sha256": null
+          },
+          "local_metadata": {
+            "cad_id": "101_78",
+            "cache": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_local_geometry/101_78.npz",
+            "bytes": 10014843,
+            "mtime_ns": 1791513744934522600,
+            "node_count": 192353,
+            "xyz_sha256": "00c7c8f8f08e04ada2b91abf6501e3fe2bd76f59d8492bf955b7faa2ba09ebc2",
+            "canonical_case": "101_78/ver",
+            "source_canonical_npz": "C:\\Users\\ASUS\\Desktop\\GeoBC Neural Operator\\data\\prepared_geobc_multiload\\101_78_ver.npz",
+            "boundary_node_count": 61258,
+            "feature_names": [
+              "nearest_boundary_offset_x_over_0.05",
+              "nearest_boundary_offset_y_over_0.05",
+              "nearest_boundary_offset_z_over_0.05",
+              "nearest_boundary_distance_over_0.05",
+              "neighbor_cov_xx_over_trace",
+              "neighbor_cov_yy_over_trace",
+              "neighbor_cov_zz_over_trace",
+              "neighbor_cov_xy_over_trace",
+              "neighbor_cov_xz_over_trace",
+              "neighbor_cov_yz_over_trace",
+              "neighbor_eigen_min_over_trace",
+              "neighbor_eigen_mid_over_trace",
+              "kth_boundary_distance_over_0.05"
+            ],
+            "feature_dim": 13,
+            "schema_version": 1,
+            "K": 32,
+            "geometry_scale": 0.05,
+            "schema_sha256": "d359387ec611eeab11daceacb6793981dc2ad955307a4b114d565889fa867eb6",
+            "target_independent": true,
+            "all_loads_share_cache": true,
+            "limitations": "Discrete KNN/PCA depends on mesh-node density. Distance is to boundary nodes, not the continuous triangle surface; no sign or exact SDF is inferred. No uniform surface sampling is used."
+          },
+          "cloud": {
+            "cad_key": "101_78",
+            "source": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_ver.npz",
+            "pool": "unique original quadratic-boundary node IDs",
+            "candidate_nodes": 61258,
+            "selected_nodes": 1024,
+            "cloud_points": 1024,
+            "seed": 2026,
+            "coordinate_system": "prepared normalized xyz; isotropic and aspect-ratio preserving",
+            "target_independent": true,
+            "all_loads_share_one_cad_cloud": true,
+            "sampling": "uniform unique FEM nodes, not uniform surface area",
+            "canonical_sample_key": "101_78/ver",
+            "role_source": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/prepared_geobc_multiload/101_78_ver.npz",
+              "bytes": 32255262,
+              "mtime_ns": 1791511981517772800,
+              "sha256": null
+            },
+            "original_node_count": 192353,
+            "source_xyz_sha256": "00c7c8f8f08e04ada2b91abf6501e3fe2bd76f59d8492bf955b7faa2ba09ebc2",
+            "label_alignment": "official CSV GRID coordinates -> H5 vertices",
+            "global_cloud_input_dimension": 5,
+            "role_order": [
+              "support_union_original_DOF0_to5",
+              "load_member_original_feature6"
+            ],
+            "points5_sha256": "b821a14b2b3ffc76222be73d41c4d9659b1284c0214e714fd5b70f357d278a56",
+            "coordinates_sha256": "174e62a46d9cdeee6ab1c018d53704270f44111b015ba0ce1d414e06d2734e2f",
+            "roles_sha256": "dfb8e53fc1bc56eeeb97b8b7a642fb12cf81071138a27bf9e8472035babf23dd",
+            "mask_sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69",
+            "node_indices_sha256": "77bde3eb76f6bb5c68e56dcca80dc5ec922e8f1180f3ca2eea99c281b6199ca0",
+            "role_support_selected_nodes": 37,
+            "role_load_selected_nodes": 9,
+            "role_support_and_load_selected_nodes": 0,
+            "role_policy": "supportUnion=any originalfeatures0:6; loadMember=originalfeatures6; canonical ver only, same existing sampled indices",
+            "geometry_target_independent": true,
+            "geometry_load_independent": true,
+            "targets_read": false,
+            "role_members_read": [
+              "features (only0:7 used)",
+              "xyz",
+              "sample_key",
+              "label_alignment"
+            ]
+          }
+        }
+      },
+      "scaler": {
+        "scale_mm": 0.05511113670847156,
+        "center_mm": 0.0,
+        "transform": "linear_zero_center_common_scalar",
+        "fit_nodes": 26079885,
+        "fit_case_keys": [
+          "101_428/ver",
+          "101_428/hor",
+          "101_428/tor",
+          "101_479/ver",
+          "101_479/hor",
+          "101_479/tor",
+          "101_56/ver",
+          "101_56/hor",
+          "101_56/tor",
+          "101_78/ver",
+          "101_78/hor",
+          "101_78/tor",
+          "101_86/ver",
+          "101_86/hor",
+          "101_86/tor",
+          "102_240/ver",
+          "102_240/hor",
+          "102_240/tor",
+          "102_79/ver",
+          "102_79/hor",
+          "102_79/tor",
+          "107_113/ver",
+          "107_113/hor",
+          "107_113/tor",
+          "107_147/ver",
+          "107_147/hor",
+          "107_147/tor",
+          "107_150/ver",
+          "107_150/hor",
+          "107_150/tor",
+          "107_186/ver",
+          "107_186/hor",
+          "107_186/tor",
+          "107_233/ver",
+          "107_233/hor",
+          "107_233/tor",
+          "107_240/ver",
+          "107_240/hor",
+          "107_240/tor",
+          "107_248/ver",
+          "107_248/hor",
+          "107_248/tor",
+          "107_291/ver",
+          "107_291/hor",
+          "107_291/tor",
+          "107_320/ver",
+          "107_320/hor",
+          "107_320/tor",
+          "107_342/ver",
+          "107_342/hor",
+          "107_342/tor",
+          "107_459/ver",
+          "107_459/hor",
+          "107_459/tor",
+          "10_30/ver",
+          "10_30/hor",
+          "10_30/tor",
+          "10_421/ver",
+          "10_421/hor",
+          "10_421/tor",
+          "10_460/ver",
+          "10_460/hor",
+          "10_460/tor",
+          "10_492/ver",
+          "10_492/hor",
+          "10_492/tor",
+          "10_58/ver",
+          "10_58/hor",
+          "10_58/tor",
+          "10_80/ver",
+          "10_80/hor",
+          "10_80/tor",
+          "113_129/ver",
+          "113_129/hor",
+          "113_129/tor",
+          "113_170/ver",
+          "113_170/hor",
+          "113_170/tor",
+          "113_390/ver",
+          "113_390/hor",
+          "113_390/tor",
+          "113_86/ver",
+          "113_86/hor",
+          "113_86/tor",
+          "113_95/ver",
+          "113_95/hor",
+          "113_95/tor",
+          "114_28/ver",
+          "114_28/hor",
+          "114_28/tor",
+          "114_456/ver",
+          "114_456/hor",
+          "114_456/tor",
+          "114_525/ver",
+          "114_525/hor",
+          "114_525/tor",
+          "114_91/ver",
+          "114_91/hor",
+          "114_91/tor",
+          "116_102/ver",
+          "116_102/hor",
+          "116_102/tor",
+          "116_113/ver",
+          "116_113/hor",
+          "116_113/tor",
+          "116_30/ver",
+          "116_30/hor",
+          "116_30/tor",
+          "116_348/ver",
+          "116_348/hor",
+          "116_348/tor",
+          "119_221/ver",
+          "119_221/hor",
+          "119_221/tor",
+          "119_322/ver",
+          "119_322/hor",
+          "119_322/tor",
+          "119_559/ver",
+          "119_559/hor",
+          "119_559/tor"
+        ],
+        "channels": [
+          "ux_mm",
+          "uy_mm",
+          "uz_mm"
+        ],
+        "definition": "max(sqrt(sum_train_u_squared/(3*N_train_case_nodes)),1e-12 mm)",
+        "fit_scope": "strict40 training CADs x ver/hor/tor; validation/dia/finaltest excluded"
+      },
+      "u_loss": {
+        "name": "relative_case_mse",
+        "case_records": {
+          "101_479/ver": {
+            "nodes": 179316,
+            "truth_RMS_mm": 0.09453142040406895,
+            "weight": 0.3398805954669412,
+            "floor_active": false
+          },
+          "101_479/hor": {
+            "nodes": 179316,
+            "truth_RMS_mm": 0.0845777739230368,
+            "weight": 0.42458655415319807,
+            "floor_active": false
+          },
+          "101_479/tor": {
+            "nodes": 179316,
+            "truth_RMS_mm": 0.02062651119300008,
+            "weight": 7.13883236534659,
+            "floor_active": false
+          },
+          "101_428/ver": {
+            "nodes": 270276,
+            "truth_RMS_mm": 0.046078158155316996,
+            "weight": 1.4305021517647778,
+            "floor_active": false
+          },
+          "101_428/hor": {
+            "nodes": 270276,
+            "truth_RMS_mm": 0.032568412648828565,
+            "weight": 2.8634232932104724,
+            "floor_active": false
+          },
+          "101_428/tor": {
+            "nodes": 270276,
+            "truth_RMS_mm": 0.00902020372460859,
+            "weight": 37.32897326720258,
+            "floor_active": false
+          },
+          "101_56/ver": {
+            "nodes": 221213,
+            "truth_RMS_mm": 0.04608951125009782,
+            "weight": 1.4297974957239716,
+            "floor_active": false
+          },
+          "101_56/hor": {
+            "nodes": 221213,
+            "truth_RMS_mm": 0.03565782360419318,
+            "weight": 2.388741051038771,
+            "floor_active": false
+          },
+          "101_56/tor": {
+            "nodes": 221213,
+            "truth_RMS_mm": 0.008737795778794386,
+            "weight": 39.780932335315335,
+            "floor_active": false
+          },
+          "101_78/ver": {
+            "nodes": 192353,
+            "truth_RMS_mm": 0.062083373715681234,
+            "weight": 0.7880034504604889,
+            "floor_active": false
+          },
+          "101_78/hor": {
+            "nodes": 192353,
+            "truth_RMS_mm": 0.050847024877429196,
+            "weight": 1.1747559240254921,
+            "floor_active": false
+          },
+          "101_78/tor": {
+            "nodes": 192353,
+            "truth_RMS_mm": 0.011304346882118987,
+            "weight": 23.767734427129078,
+            "floor_active": false
+          }
+        }
+      },
+      "sampling": {
+        "seed": 2026,
+        "node_entropy": [
+          2026,
+          1701,
+          "CAD_rank"
+        ],
+        "tet_entropy": [
+          2026,
+          1702,
+          "CAD_rank"
+        ],
+        "uniform_nodes": 6400,
+        "uniform_tets": 1600,
+        "corners_per_tet": 4,
+        "rows": 12800,
+        "with_replacement": true,
+        "shared_per_CAD_across_loads_models_intervention": true
+      },
+      "gradient_weight": 0.0004106650618638651,
+      "checkpoint_step": 10000,
+      "max_basis_forward_calls": 16,
+      "backwards": 0,
+      "optimizer_updates": 0,
+      "normalizers_refitted": false,
+      "forbidden_fields": [
+        "stress",
+        "validation",
+        "dia",
+        "finaltest"
+      ]
+    },
+    "arrays_or_weights_opened": false,
+    "GPU_used": false
+  },
+  "runtime_acceptance": "Not executed by author. CPU injected components only check helper interface/masking/statistics; official native inference requires parent-scheduled job after review.",
+  "scientific_limit": "TRAIN mixed-query squared Lu/P1cell sensitivity and gamma distribution; not full-node relativeL2, validation cause, retraining or generalization."
+}

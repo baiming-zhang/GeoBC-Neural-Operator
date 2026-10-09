@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "release": "synthetic_native_smoke_only",
+  "reviewed_at_utc": "2026-10-09T07:32:29+00:00",
+  "field": "geobc/hash_modulation_field.py",
+  "field_sha256": "f3e51d7bb5a26660f73a9db9b90daa1d94581e89d45c94808d894f8394cbc765",
+  "smoke": "tools/validate_hash_modulation_native.py",
+  "smoke_sha256": "2554b5859c6af8d059da560e5c4ec32a8b522eb8142247668f4c15ee529c8583",
+  "plan": "notes/geobc_hash_modulation_plan.json",
+  "plan_sha256": "f56fe7a2d741a0bf088ac51064b72254fac559a6496cf65bf88c7bb32bbcf940",
+  "checks": [
+    "Gamma equals one plus tanh of one zero-initialized Linear(64,24), without a strength factor or additive branch.",
+    "Both modes use identical actual query/global context, construction, parameters and declared input layout; only gamma activation differs.",
+    "Inherited force/moment masking and external nine-basis load composition preserve declared load linearity.",
+    "Source metadata records separate Encoding/Network buffers, 126 public inputs and two native padding ones; no Composite or flat buffer alias.",
+    "Synthetic smoke uses no dataset, checkpoint or optimizer and checks both real native buffers, paired initial state/forward and backward.",
+    "CPU evidence is separated from the pending CUDA native verification."
+  ],
+  "limitations": [
+    "The active gate adds effective trainable capacity; this is not a pure information-only control.",
+    "This new split native architecture must be compared using its own paired zero control, not an old Composite checkpoint.",
+    "Gate-to-context derivatives are zero at initialization; the common concatenated context path is still active."
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "status": "predeclared",
+  "stage": "label_free_mesh_edge_BC_distance_feasibility_pilot",
+  "question": "真实tet连接关系到实际接口成员的mesh-edge距离，是否提供区别于同源组最近欧氏距离的输入信息？",
+  "CAD": "101_479",
+  "selection": "此前已固定和观察的TRAIN CAD；不按新误差选case。仅输入可行性，不创建训练或45CAD任务。",
+  "split": "notes/geobc_split.json",
+  "inputs": {
+    "H5": "data/raw/FieldMesh/101_479.h5",
+    "SolverDeck": "data/raw/SolverDeck/101_479.fem",
+    "canonical_prepared": "data/prepared_geobc_multiload/101_479_ver.npz"
+  },
+  "data_access": {
+    "H5_members": ["vertices", "cells"],
+    "prepared_members": ["xyz", "features", "sample_key", "bbox_min_mm", "characteristic_length_mm"],
+    "SolverDeck": "GRID coordinates, actual RBE/SPC membership and input metadata only",
+    "u_or_stress_members": false,
+    "validation_or_dia_or_final_test_arrays": false,
+    "weights_or_models": false
+  },
+  "graph": {
+    "element": "VTK_QUADRATIC_TETRA",
+    "corner_slots": [0, 1, 2, 3],
+    "midside_edges_in_slots_4_to_9": [[0,1], [1,2], [2,0], [0,3], [1,3], [2,3]],
+    "edges_per_tet": 12,
+    "construction": "Each of six original edges contributes cornerA-mid and mid-cornerB; canonical unique undirected pairs before CSR",
+    "weight": "physical chord length in mm divided by existing isotropic characteristic_length_mm",
+    "RBE_rigid_shortcuts": false,
+    "corner_clique_or_face_diagonal_edges": false,
+    "directed": false,
+    "solver": "scipy.sparse.csgraph.dijkstra(indices=actual member indices,min_only=True)",
+    "missing_distance_policy": "blocked; never clip, cap, infill, or change sources"
+  },
+  "sources": {
+    "channel_order": "four actual support member groups sorted by master_node_id, then the actual loaded member group",
+    "mapping": "Reuse parse_deck and prepare_deepjeb coordinate-to-H5 mapping policy (2e-4mm); additionally reject multiple H5 candidates within tolerance. Master coordinates never replace member sets.",
+    "type_note": "Original parser identifies support RBE2 and the one loaded RBE3 interface; record actual card type without inventing a loaded RBE2."
+  },
+  "readout": {
+    "all_original_nodes": "isolated/component counts and exact reachability masks; per-source unreachable counts",
+    "five_channels": "node count, source IDs/count/hash, finite/min/max/std, edge/node/geometry identities",
+    "comparison": "nearestEuclid to the same actual member set divided by L; non-source detour=graphDistance/nearestEuclid, plus correlation and excess-distance RMS",
+    "input_parity": "Once: exact normalized XYZ/bbox/L and original seven support/load membership slots; loaded-member Euclidean slot23 parity"
+  },
+  "execution": {
+    "CPU_only": true,
+    "training_updates": 0,
+    "GPU_calls": 0,
+    "download": false,
+    "output": "runs/geobc_exploration/graph_distance_pilot_101_479"
+  },
+  "limits": "Mesh-edge path length is mesh dependent, uses straight subedge chords, and is neither exact continuous geodesic nor stiffness/elasticity. Non-redundant distances alone do not establish predictive benefit or generalization. Parent must separately authorize any extension to45CAD or matched training."
+}

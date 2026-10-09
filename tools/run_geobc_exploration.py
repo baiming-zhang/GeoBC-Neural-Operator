@@ -141,6 +141,71 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
             raise ValueError(f"Completed output for {job['name']} differs from its frozen diagnostic contract")
         if not (ROOT / job["output"] / "config.json").is_file():
             raise ValueError(f"Completed output for {job['name']} lacks config.json")
+    elif "tools/diagnose_hash_modulation_use.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("hash_modulation_use_diagnostic", ROOT / "tools/diagnose_hash_modulation_use.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed output for {job['name']} differs from its frozen hash gate-use diagnostic contract")
+        if not (ROOT / job["output"] / "config.json").is_file():
+            raise ValueError(f"Completed output for {job['name']} lacks config.json")
+    elif "tools/diagnose_field_error_gradient.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("field_error_gradient_diagnostic", ROOT / "tools/diagnose_field_error_gradient.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed output for {job['name']} differs from its frozen field-error contract")
+        for path in (ROOT / job["output"] / "config.json", ROOT / "notes/geobc_error_gradient_result.json"):
+            if not path.is_file():
+                raise ValueError(f"Completed output for {job['name']} lacks {path}")
+    elif "tools/validate_hash_modulation_native.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("hash_modulation_native_check", ROOT / "tools/validate_hash_modulation_native.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed output for {job['name']} differs from its native interface check")
+        if not (ROOT / "notes/hash_modulation_native_ready.json").is_file():
+            raise ValueError(f"Completed native check for {job['name']} lacks readiness record")
+    elif "tools/validate_graph_context_native.py" in command:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("graph_context_native_check", ROOT / "tools/validate_graph_context_native.py")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+        requested_plan = Path(command[command.index("--plan") + 1])
+        if not requested_plan.is_absolute(): requested_plan = ROOT / requested_plan
+        if summary.get("config", {}).get("contract") != module.request_contract(requested_plan):
+            raise ValueError(f"Completed output for {job['name']} differs from its graph-context native check")
+        if not (ROOT / "notes/graph_context_native_ready.json").is_file():
+            raise ValueError(f"Completed native check for {job['name']} lacks readiness record")
+    elif "geobc.graph_context_train" in command:
+        from geobc.graph_context_train import parser as graph_parser, _scope
+        parsed = graph_parser().parse_args(command[command.index("geobc.graph_context_train") + 1:])
+        if summary.get("config", {}).get("contract") != _scope(parsed)[4]:
+            raise ValueError(f"Completed output for {job['name']} differs from its graph-context contract")
+        for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed output for {job['name']} lacks {filename}")
+    elif "geobc.hash_modulation_train" in command:
+        from geobc.hash_modulation_train import parser as modulation_parser, _scope
+        parsed = modulation_parser().parse_args(command[command.index("geobc.hash_modulation_train") + 1:])
+        if summary.get("config", {}).get("contract") != _scope(parsed)[4]:
+            raise ValueError(f"Completed output for {job['name']} differs from its hash modulation contract")
+        for filename in ("best.pt", "last.pt", "metrics_best.json", "metrics_latest.json", "config.json"):
+            if not (ROOT / job["output"] / filename).is_file():
+                raise ValueError(f"Completed output for {job['name']} lacks {filename}")
     return summary
 
 
@@ -152,7 +217,8 @@ def stage_command(job: dict[str, Any]) -> list[str]:
     if ((fitting or "geobc.conditional_train" in command or "geobc.physics_train" in command
          or "geobc.gradient_train" in command or "geobc.gradient_balance_train" in command
          or "geobc.bc_role_train" in command or "geobc.specialist_train" in command
-         or "geobc.query_context_train" in command)
+         or "geobc.query_context_train" in command or "geobc.hash_modulation_train" in command
+         or "geobc.graph_context_train" in command)
             and "--resume" not in command and (output / "last.pt").exists()):
         command.extend(["--resume", str(output / "last.pt")])
     return command

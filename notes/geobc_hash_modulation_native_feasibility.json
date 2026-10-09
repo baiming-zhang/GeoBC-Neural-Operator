@@ -1,0 +1,140 @@
+{
+  "status": "CPU_API_feasibility_checked_no_model_implementation",
+  "created_at_utc": "2026-10-09T07:10:29.851857+00:00",
+  "source": {
+    "official_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+    "local_checkout": "/home/research/src/tiny-cuda-nn",
+    "only_git_modified_file": "bindings/torch/setup.py; inference/encoding files unmodified",
+    "files": {
+      "bindings/torch/tinycudann/modules.py": {
+        "sha256": "bbf32288e176611eb16595bce06f530e7c4f2ad4ac767b8acc822d1485418905",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/bindings/torch/tinycudann/modules.py"
+      },
+      "bindings/torch/tinycudann/bindings.cpp": {
+        "sha256": "d9818e85cff4234e0f489fc3d54cb94a794cedde58ba3e97a360c9d92bdb6b65",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/bindings/torch/tinycudann/bindings.cpp"
+      },
+      "src/cpp_api.cu": {
+        "sha256": "9bb05413466c7e95670a2c5ac3318c86e451a72800a8c2783843012b15a85421",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/src/cpp_api.cu"
+      },
+      "src/encoding.cu": {
+        "sha256": "259093e57647047b01d53ab939d7ce04cb0cf0e569f5e18b3c70bc6760e3761d",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/src/encoding.cu"
+      },
+      "include/tiny-cuda-nn/encoding.h": {
+        "sha256": "e1e3fee42f6cb2de2b2a39221b18b7c653ffe77d95262c6cfe0cbc3b47413299",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/encoding.h"
+      },
+      "include/tiny-cuda-nn/encodings/grid.h": {
+        "sha256": "db6283eb74d029a662d0bb4c76db19645f9a4f6725c3bd6c2980de97109b3c44",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/encodings/grid.h"
+      },
+      "include/tiny-cuda-nn/encodings/identity.h": {
+        "sha256": "b1126d49827246157ac9cd7fc707953d0b31ed29b760e1ff8b01340127b222df",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/encodings/identity.h"
+      },
+      "include/tiny-cuda-nn/network_with_input_encoding.h": {
+        "sha256": "a025439d42dff96379713c1c07226bee647aeb2217ca21611a81282bdc58224f",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/network_with_input_encoding.h"
+      },
+      "include/tiny-cuda-nn/networks/fully_fused_mlp.h": {
+        "sha256": "96de9dccffa7b9160732d3b8913b916597ed2850ca15134ec80dbfa9db3e50ed",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/networks/fully_fused_mlp.h"
+      },
+      "src/fully_fused_mlp.cu": {
+        "sha256": "d8f3da4d621086990dee0a69b5692930bed7d0c53c01d6bbf79bc7446b2d9566",
+        "official_url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/src/fully_fused_mlp.cu"
+      }
+    }
+  },
+  "public_API": {
+    "encoding": "tcnn.Encoding(n_input_dims=3,encoding_config=HashGrid12x2,seed=2026,dtype=torch.float16)",
+    "network": "tcnn.Network(n_input_dims=126,n_output_dims=9,network_config={FullyFusedMLP,128neurons,2hidden,ReLU,NoneOutput},seed=2026)",
+    "jit_fusion": false,
+    "hash_output_dims": {
+      "nominal": 24,
+      "standalone_API_output": 24,
+      "proof": "cpp create_encoding passes alignment0; factory only changes alignment if>0; grid n_output_dims=n_levels*n_features_per_level"
+    },
+    "network_padding": {
+      "public_input": 126,
+      "internal_input": 128,
+      "input_padding_value": 1,
+      "requested_output": 9,
+      "internal_output": 16,
+      "Python_returned_output": 9,
+      "proof": "create_network uses an Identity encoding then FullyFusedMLP required_alignment16; Identity padding writes1; Module.forward slices requested outputs"
+    },
+    "master_parameters": "two separate publicly exposed FP32 nn.Parameters: encoding.params and network.params; native compute FP16; no flat-buffer offsets or old fused parameter slicing",
+    "gradient_route": "Network first-order input gradient -> Torch concat/multiply -> geometry gate and encoding output -> Encoding parameter gradient; xyz may be detached, no coordinate derivative or second derivative required",
+    "batch_padding": "each Module.forward pads batch to native public batch_size_granularity, then slices original rows; native integer is to be recorded by scheduled smoke rather than assumed",
+    "initializers": {
+      "MLP": "official Xavier uniform",
+      "hash": "official uniform[-1e-4,1e-4]",
+      "gate": "nn.Linear64->24 with W,b explicitly0, both branches same construction/RNG calls"
+    },
+    "seed_caveat": "Split Encoding/Network initialize from their supplied seeds independently. Old fused initializer initializes MLP before grid using one RNG. Fresh zero/actual split pair is matched; exact equality to old fused initialization is not claimed."
+  },
+  "single_candidate_draft_handoff": {
+    "owner": "deepjeb_research writes notes/geobc_hash_modulation_plan.json; root freezes before implementation",
+    "base": "both retain actual BC-role5 PointNet, query32 Gaussian sigma.15,global32,masked query38; width128x2 and9loadbasis unchanged",
+    "external_decoder_interface": "forward(xyz[N,3],features[N,102])->[N,9]; features=[masked38,query32,global32]",
+    "gate_input_order": [
+      "query32",
+      "global32"
+    ],
+    "gate_feature_slices": "features[:,38:102]",
+    "formula": "h_mod = h * (1 + tanh(Linear64to24(context64)))",
+    "zero_control": "compute same gate activation then multiply activation by0; both groups have identical parameters/layout/initial state",
+    "no_shift": "multiplicative gate only; no additive hash offset",
+    "load_linearity": "gate only uses geometry/BC context; original force/moment7:13 cleared upstream, current alpha does not enter gate; same basis network for all3loads",
+    "integration": "inject split decoder through frozen QueryContextPhysicsField; new wrapper must replace inherited Composite source_config with truthful split module implementation metadata",
+    "trainer_interface_gap": "existing decoder.native.params single-buffer count/SHA checks need explicit encoding.params/network.params/gate blocks; no fabricated combined Parameter",
+    "not_information_only": "active modulation changes effective function class/capacity; generic feature modulation is established, no new-algorithm claim",
+    "scale_bounds_open": [
+      0,
+      2
+    ],
+    "gain_choice": "root selected standard near-identity multiplicative gate with no extra strength coefficient; no GPU/results or amplitude sweep occurred"
+  },
+  "source_derived_counts_not_CUDA_measured": {
+    "hash": 7733632,
+    "MLP": 34816,
+    "native_total": 7768448,
+    "gate": 1560,
+    "encoder": 16800,
+    "query_projection": 2080,
+    "whole_model_expected": 7788888,
+    "MLP_formula": "128*128 +128*128 +16*128 (native input128,2hidden,output16)",
+    "hash_formula": "2*sum_level min(next_multiple(resolution^3,8),2^19)",
+    "runtime_guard": "scheduled native smoke must assert public n_output_dims and params.numel; abort on discrepancy"
+  },
+  "CPU_synthetic_check": {
+    "status": "PASS",
+    "rows": 32,
+    "targets_or_weights_opened": false,
+    "CUDA_used": false,
+    "step0_output_pair_exact_equal": true,
+    "step0_multiplier_exact1": true,
+    "zero_gate_gradient_L1": 0.0,
+    "actual_gate_gradient_L1": 9.460372467628986e-06,
+    "hash_and_common_context_gradient_finite_nonzero": true,
+    "parameter_count_gate": 1560,
+    "parameter_count_padded_stub_MLP": 34816,
+    "gate_context_derivative_at_W0": "gate-specific ctx derivative0 initially; common concat path still gives encoder/query-projection gradients",
+    "formula": "gain1, gamma=1+tanh(a), no extra coefficient"
+  },
+  "native_GPU_status": "not run; root must release one synthetic construction/forward/backward smoke before training",
+  "precision_cost_limits": [
+    "Separation adds materialized hash24 and an extra native invocation/autograd boundary; official documentation says fused Encoding+Network is more efficient. No runtime latency claimed.",
+    "Initial hash magnitudes are about1e-4, so multiplicative gate parameter gradients can be small; CPU availability does not prove native learning strength.",
+    "FP16 encoding/network roundtrips remain; keep frozen precision recipe, record actual native gradients without changing design from smoke outputs."
+  ],
+  "scope": {
+    "new_model_files_written": false,
+    "frozen_sources_modified": false,
+    "GPU_used": false,
+    "field_arrays_or_checkpoints_opened": false
+  }
+}

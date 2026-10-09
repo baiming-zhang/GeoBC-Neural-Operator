@@ -1,0 +1,74 @@
+{
+  "status": "ready",
+  "file": "geobc/hash_modulation_field.py",
+  "source_sha256": "f3e51d7bb5a26660f73a9db9b90daa1d94581e89d45c94808d894f8394cbc765",
+  "smoke_file": "tools/validate_hash_modulation_native.py",
+  "smoke_source_sha256": "2554b5859c6af8d059da560e5c4ec32a8b522eb8142247668f4c15ee529c8583",
+  "plan": "notes/geobc_hash_modulation_plan.json",
+  "plan_sha256": "f56fe7a2d741a0bf088ac51064b72254fac559a6496cf65bf88c7bb32bbcf940",
+  "interfaces": {
+    "config": "HashModulationFieldConfig(hash_modulation_mode=zero|actual), query_mode actual/4096 on both",
+    "model": "HashModulationPhysicsField(config,device,decoder=None); inherited encode_geometry/response_basis/forward bundle API",
+    "gate": "model.gate_head => decoder.gate",
+    "native_groups": "decoder.native_parameter_groups() => encoding/network lists of public params; no fakeflat/native.params alias",
+    "source_record": "actual split decoder_implementation, condition102/network126/internalIdentity128+two1s,9output/native16",
+    "smoke_CLI": "python tools/validate_hash_modulation_native.py --plan notes/geobc_hash_modulation_plan.json --output runs/geobc_exploration/hash_modulation_native_smoke",
+    "smoke_metadata": "request_contract(plan_path) or --dry-run, without numpy/torch import"
+  },
+  "CPU_checks": {
+    "status": "passed",
+    "paired_initial_state_and_forward_exact": true,
+    "both_actual_query_projection_gradients": true,
+    "records": {
+      "zero": {
+        "gate_gradient_l1": 0.0,
+        "query_projection_gradient_l1": 0.18315485274536591,
+        "native_interface_gradients_l1": {
+          "encoding": 0.00661358330398798,
+          "network": 4.427451550960541
+        },
+        "encoder_gradient_check": "passed",
+        "actual_source_record_split": true,
+        "force_moment_mask_invariant": true,
+        "stub_full_parameters": 55328
+      },
+      "actual": {
+        "gate_gradient_l1": 8.108463475764438e-06,
+        "query_projection_gradient_l1": 0.18315485274536591,
+        "native_interface_gradients_l1": {
+          "encoding": 0.00661358330398798,
+          "network": 4.427451550960541
+        },
+        "encoder_gradient_check": "passed",
+        "actual_source_record_split": true,
+        "force_moment_mask_invariant": true,
+        "stub_full_parameters": 55328
+      }
+    },
+    "native_CUDA_certified": false,
+    "real_arrays_or_weights_read": false,
+    "GPU_used": false
+  },
+  "smoke_metadata_preflight": {
+    "status": "passed",
+    "arrays_or_weights_read": false,
+    "torch_numpy_tinycudann_imported": false
+  },
+  "native_GPU": "not executed; root coordinator must release synthetic smoke",
+  "native_ready_policy": "notes/hash_modulation_native_ready.json is written only after native pairedinit/forward/backward succeeds",
+  "planned_native_counts": {
+    "hash": 7733632,
+    "network": 34816,
+    "native_total": 7768448,
+    "PointNet": 16800,
+    "query_projection": 2080,
+    "gate_head": 1560,
+    "total_expected_each_model": 7788888
+  },
+  "scope": {
+    "frozen_modules_modified": false,
+    "data_labels_or_weights_read": false,
+    "optimizer_or_GPU_used": false
+  },
+  "created_at_utc": "2026-10-09T07:24:45.945858+00:00"
+}

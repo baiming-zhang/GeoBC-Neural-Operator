@@ -1,0 +1,50 @@
+{
+  "status": "ready",
+  "source_sha256": {
+    "geobc/hash_modulation_field.py": "f3e51d7bb5a26660f73a9db9b90daa1d94581e89d45c94808d894f8394cbc765",
+    "tools/validate_hash_modulation_native.py": "2554b5859c6af8d059da560e5c4ec32a8b522eb8142247668f4c15ee529c8583",
+    "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+    "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+    "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12"
+  },
+  "plan_sha256": "f56fe7a2d741a0bf088ac51064b72254fac559a6496cf65bf88c7bb32bbcf940",
+  "summary": "runs/geobc_exploration/hash_modulation_native_smoke/summary.json",
+  "summary_sha256": "48ca8ae302598741dc932c549f4258e0d69d9aa2f4e39c7d5d25a21f16a0d1e3",
+  "native_layout": {
+    "zero": {
+      "encoding_public_output": 24,
+      "encoding_native_output": 24,
+      "network_public_input": 126,
+      "network_native_input": 126,
+      "network_internal_MLP_input": 128,
+      "network_internal_MLP_input_proof": "official Identity alignment16 and measured34816 MLP parameters",
+      "network_public_output": 9,
+      "network_native_padded_output": 16,
+      "encoding_parameters": 7733632,
+      "network_parameters": 34816,
+      "gate_parameters": 1560
+    },
+    "actual": {
+      "encoding_public_output": 24,
+      "encoding_native_output": 24,
+      "network_public_input": 126,
+      "network_native_input": 126,
+      "network_internal_MLP_input": 128,
+      "network_internal_MLP_input_proof": "official Identity alignment16 and measured34816 MLP parameters",
+      "network_public_output": 9,
+      "network_native_padded_output": 16,
+      "encoding_parameters": 7733632,
+      "network_parameters": 34816,
+      "gate_parameters": 1560
+    }
+  },
+  "paired_init_and_forward_exact": true,
+  "all_native_gate_encoder_projection_gradient_policies_passed": true,
+  "no_GT": true,
+  "optimizer_updates": 0,
+  "completed_at_utc": "2026-10-09T07:32:32.896235+00:00"
+}

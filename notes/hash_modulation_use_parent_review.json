@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "release": "one_frozen_TRAIN_hash_gate_use_probe",
+  "reviewed_at_utc": "2026-10-09 07:56:08 UTC",
+  "source": "tools/diagnose_hash_modulation_use.py",
+  "source_sha256": "bed13c7180b2328272929205123c78c7ed00ad82574af444cd202f575ac79ff3",
+  "plan_sha256": "7cf072f9f25e5243765ff1c4d28484017ffb75c23f137ba8cb4f97bf8c71fdaa",
+  "scope": "Fixed last10000 zero/actual models; four previously fixed TRAIN CADs and three known signed-u loads only.",
+  "checks": [
+    "Exactly sixteen nine-basis forwards; no backward, optimizer or model update.",
+    "Only decoder.mode is masked and restored; query/global/parameters/sampling are retained.",
+    "Canonical features clear force/moment slots upstream, and the nine basis output is reused for all three known loads.",
+    "Gamma statistics use a transparent actual head hook with explicit near/exact endpoint definitions.",
+    "Zero gate weights/bias stay zero; natural/masked basis and sampled losses must be identical.",
+    "Frozen relative-case MSE and volume-normalized squared corner-P1 objective are reported with appropriate units; no validation or full-node performance claim."
+  ],
+  "limits": [
+    "Inference masking is OOD; local use and saturation do not establish the cause of generalization failure.",
+    "The TRAIN-only mixed-query probe is not the all-node P1 relativeL2 percentage.",
+    "Original source/checkpoints and dataset labels remain frozen."
+  ]
+}

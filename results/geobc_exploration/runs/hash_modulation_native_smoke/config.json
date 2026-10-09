@@ -1,0 +1,53 @@
+{
+  "contract": {
+    "version": 1,
+    "plan": {
+      "path": "notes/geobc_hash_modulation_plan.json",
+      "sha256": "f56fe7a2d741a0bf088ac51064b72254fac559a6496cf65bf88c7bb32bbcf940"
+    },
+    "sources_sha256": {
+      "geobc/hash_modulation_field.py": "f3e51d7bb5a26660f73a9db9b90daa1d94581e89d45c94808d894f8394cbc765",
+      "tools/validate_hash_modulation_native.py": "2554b5859c6af8d059da560e5c4ec32a8b522eb8142247668f4c15ee529c8583",
+      "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+      "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+      "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+      "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+      "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+      "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12"
+    },
+    "formula": "gamma = 1 + tanh(Linear64to24(context64))",
+    "gate_context_order": [
+      "query32",
+      "global32"
+    ],
+    "modes": [
+      "zero",
+      "actual"
+    ],
+    "seed": 2026,
+    "rows": 512,
+    "synthetic_CADs": 2,
+    "cloud_points": 1024,
+    "query_chunk": 4096,
+    "native_counts_expected": {
+      "hash": 7733632,
+      "network": 34816,
+      "native_total": 7768448,
+      "PointNet": 16800,
+      "query_projection": 2080,
+      "gate_head": 1560,
+      "total_expected_each_model": 7788888
+    },
+    "no_GT": true,
+    "dataset_files_opened": 0,
+    "checkpoint_files_opened": 0,
+    "optimizer_updates": 0,
+    "backwards": 2,
+    "scope": "synthetic native interface validation, not a data experiment"
+  },
+  "started_at_utc": "2026-10-09T07:32:31.721586+00:00",
+  "no_GT": true,
+  "optimizer": null,
+  "precision": "FP32/highTF32 PointNet/query/gate, nativeFP16/FP32master, first-order backward only"
+}

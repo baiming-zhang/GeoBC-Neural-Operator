@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "status": "ready",
+  "ready": true,
+  "created_at_utc": "2026-10-09T09:24:22.245125+00:00",
+  "tool": "tools/diagnose_field_error_gradient.py",
+  "source_sha256": "b70b4af14424c16a1158e72fd95fd3e786ffbb2b5bac828096d1f4694a4b48c4",
+  "plan": {
+    "path": "notes/geobc_error_gradient_plan.json",
+    "sha256": "fa7cfbacf81b4ee11ef906e86b57f483426ed1f6c29c37bf975515104db5c7fa"
+  },
+  "frozen_helper": {
+    "path": "geobc/gradient_supervision.py",
+    "sha256": "6215a7856cb2093ea2cb6a18de848e861829939a6600e03e8c7675148e8f1389"
+  },
+  "CLI": "python tools/diagnose_field_error_gradient.py --plan notes/geobc_error_gradient_plan.json --output OUTPUT [--dry-run]",
+  "API": "request_contract(plan_path): stdlib JSON/source SHA/stat only",
+  "fixed_scope": {
+    "case_key": "10_58/tor",
+    "group": "train",
+    "modes": [
+      "euclidean",
+      "graph"
+    ],
+    "selected_step_both": 10000,
+    "nodes_each": 254645,
+    "cells": 161200,
+    "prediction_NPZ_files": 2,
+    "gradient_NPZ_files": 1,
+    "raw_prepared_GT_or_mesh_files": 0,
+    "dia_finaltest_validation_files": 0,
+    "models_weights": 0,
+    "model_forwards": 0,
+    "backwards": 0,
+    "optimizer_updates": 0
+  },
+  "runtime": "Prefer Torch CUDA FP64 reductions/corner-P1/frozen node recovery; explicit CPU fallback. Both input geometry measures computed once, and each input NPZ read once. Only tor reference used.",
+  "checks": {
+    "syntax": "passed",
+    "metadata_contract": "passed: no numpy/torch imports, NPZ/pt binary read guard, exact current exported intersection, immutable helper/cache provenance",
+    "mathematical_fixture": {
+      "status": "passed",
+      "fixture": "single synthetic two-tetra all10-node mesh, volume ratio1:2",
+      "CPU_float64": true,
+      "real_arrays_read": 0,
+      "CUDA_initialized": false,
+      "normal_equation_residual_max_abs": 2.498001805406602e-16,
+      "u_signed_two_cross": 7.216449660063518e-16,
+      "cell_signed_two_cross": 0.006935267854488396,
+      "node_signed_two_cross": 0.18178906674595163,
+      "maximum_energy_identity_relative_closure": 2.7463727735559044e-16,
+      "two_geometry_bin_energy_additivity": "passed including empty tied bins",
+      "FP32_cached_reference_rounding_relation_max_abs": 2.905661822099593e-17
+    },
+    "static_helper_API_correction": "Use cache.metadata[normalization], not nonexistent cache.normalization property. Other used arrays/properties are declared in frozen GradientCache.",
+    "nominal_affine_gradient": "LScoef/L is marked descriptive approximation for rounded xyz; actual affine P1 uses frozen inverse edges.",
+    "parent_requested_ratio": "models.mode.operator_P1_over_u_relative_error_ratio uses operator raw node P1/u, null when uerror or denominator is zero; no frequency/causal claim."
+  },
+  "metric_matching_tolerance": {
+    "relative": 2e-05,
+    "absolute": 1e-08
+  },
+  "result_schema": {
+    "formal_result": "notes/geobc_error_gradient_result.json only written after successful runtime completed summary",
+    "artifacts": [
+      "config.json",
+      "status.json",
+      "summary.json"
+    ],
+    "models": "models.euclidean|graph.u/cell_P1/all_node_P1 contain physical RMS, original case reference energy, raw/affine/residual energies, signed2cross, residual/raw ratio",
+    "bin_energies": "models.mode.geometry_cell_bins.minimum_corner_edge_mm|volume_length_mm: four shared input quantile bins, cell energies only",
+    "reference_rounding": "cached_reference_consistency and separate stored_reference_metrics preserve A(error) vs A(pred)-cachedRef distinction",
+    "readout": "non_affine_dominance_flag + smallest h quartile cell concentration flag, descriptive and no automatic training"
+  },
+  "source_frozen_after_ready": true,
+  "GPU_validation": "Not run here; root owns unique actual execution after parent review."
+}

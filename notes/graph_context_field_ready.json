@@ -1,0 +1,128 @@
+{
+  "status": "ready",
+  "file": "geobc/graph_context_field.py",
+  "source_sha256": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+  "smoke_file": "tools/validate_graph_context_native.py",
+  "smoke_sha256": "54b0cc27dc53c9b1d5f9a2fe6ba200cbd6e06a0df1125d157ae138547159666d",
+  "plan": "notes/geobc_graph_context_candidate_plan.json",
+  "plan_sha256": "cf2a68f0fd09b487bb05092443c01e94ea808a8e9dd366d2b7d519425f5ed273",
+  "created_at_utc": "2026-10-09T08:37:11.555327+00:00",
+  "interface": {
+    "config": "GraphContextFieldConfig(distance_mode=euclidean|graph,condition_dim43,query_modeactual,bc_role_modeactual,geometry_modeshape,linear_basis)",
+    "field": "GraphContextPhysicsField; same encode_geometry/response_basis/forward/condition_features API",
+    "native_parameter": "model.decoder.native.params, one actual combined public FP32 buffer; no guessed sub-buffer offsets",
+    "native_check": "model.validate_native_layout()",
+    "CLI": "python tools/validate_graph_context_native.py --plan notes/geobc_graph_context_candidate_plan.json --output runs/geobc_exploration/graph_context_native_smoke",
+    "metadata_only": "request_contract(plan_path); CLI --dry-run",
+    "output_contract": "summary.config.contract exactly equals request_contract(plan_path)"
+  },
+  "native_counts_expected": {
+    "hash": 7733632,
+    "network": 36864,
+    "native_total": 7770496,
+    "PointNet": 16800,
+    "query_projection": 2080,
+    "total_expected_each_model": 7789376
+  },
+  "dimensions": {
+    "outer_query": 43,
+    "inner_before_global": 75,
+    "Identity_conditions": 107,
+    "raw_native_input": 110,
+    "nominal_encoded": 131,
+    "source_derived_padded_encoded": 144,
+    "source_derived_Identity_padding": 13,
+    "source_derived_padding_value": 1,
+    "requested_output": 9,
+    "padded_output": 16
+  },
+  "checks": {
+    "CPU_injected_pair_states_exact_equal": true,
+    "CPU_common_distance_fixture_prediction_exact_equal": true,
+    "CPU_force7to13_exact_basis_invariant": true,
+    "CPU_positive_finite_decoder_encoder_projection_projectedtokens_global_gradients_both": true,
+    "CPU_truthful43_75_107_source_metadata": true,
+    "CPU_injected_components_reject_native_layout_certification": true,
+    "invalid_narrow_configs_rejected": true,
+    "AST_parse": true,
+    "CUDA_used": false,
+    "real_arrays_weights_labels_opened": false,
+    "native_counts_measured_by_author": false,
+    "new_head_parameters": 0
+  },
+  "metadata_dry_run": {
+    "status": "metadata_preflight_passed",
+    "contract": {
+      "version": 1,
+      "plan": {
+        "path": "notes/geobc_graph_context_candidate_plan.json",
+        "sha256": "cf2a68f0fd09b487bb05092443c01e94ea808a8e9dd366d2b7d519425f5ed273"
+      },
+      "sources_sha256": {
+        "geobc/graph_context_field.py": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+        "tools/validate_graph_context_native.py": "54b0cc27dc53c9b1d5f9a2fe6ba200cbd6e06a0df1125d157ae138547159666d",
+        "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+        "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+        "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+        "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+        "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+        "tools/validate_hash_modulation_native.py": "2554b5859c6af8d059da560e5c4ec32a8b522eb8142247668f4c15ee529c8583"
+      },
+      "distance_modes": [
+        "euclidean",
+        "graph"
+      ],
+      "seed": 2026,
+      "synthetic_rows": 512,
+      "synthetic_CADs": 2,
+      "cloud_points": 1024,
+      "model_config": {
+        "condition_dim": 43,
+        "query_mode": "actual",
+        "bc_role_mode": "actual",
+        "mode": "linear_basis",
+        "geometry_mode": "shape",
+        "descriptor_dim": 32,
+        "query_dim": 32,
+        "sigma": 0.15,
+        "query_chunk": 4096,
+        "hidden_dim": 128,
+        "hidden_layers": 2,
+        "seed": 2026,
+        "cloud_points": 1024
+      },
+      "native_counts_expected": {
+        "hash": 7733632,
+        "network": 36864,
+        "native_total": 7770496,
+        "PointNet": 16800,
+        "query_projection": 2080,
+        "total_expected_each_model": 7789376
+      },
+      "native_combined_public_parameter": "field.decoder.native.params",
+      "encoded_layout_source_derived": {
+        "conditions": 107,
+        "nominal": 131,
+        "padded": 144,
+        "Identity_padding": 13,
+        "padding_value": 1
+      },
+      "natural_step0_prediction_equality_required": false,
+      "common_identical_distance_fixture_prediction_equality_required": true,
+      "basis_forward_calls": 6,
+      "backwards": 2,
+      "optimizer_updates": 0,
+      "no_GT": true,
+      "dataset_files_opened": 0,
+      "checkpoint_files_opened": 0,
+      "scope": "synthetic native API/layout/gradient check, not a scientific data experiment"
+    },
+    "NumPy_Torch_imported": false,
+    "arrays_or_weights_opened": false,
+    "GPU_used": false
+  },
+  "runtime_acceptance": "Actual native CUDA is pending root-exclusive scheduled synthetic smoke; CPU injected interfaces do not certify actual native counts/layout. Only that successful job writes notes/graph_context_native_ready.json.",
+  "initialization_limit": "Fresh whole-parameter states must match; natural inputs differ and their step0 outputs need not match. Common identical distance5 fixture forward must match. No artificial zerohead or thirdzero training group."
+}

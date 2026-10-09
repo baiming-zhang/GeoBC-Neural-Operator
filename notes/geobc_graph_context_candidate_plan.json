@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "status": "predeclared",
+  "stage": "matched_label_free_mesh_graph_distance_context",
+  "selection": "Parent selected this single Euclidean-interface5 versus mesh-edge-path5 matched pair after the fixed TRAIN pilot confirmed exact inputs and finite nonidentical distances; all gain rules were frozen before model implementation/results.",
+  "question": "Does shortest mesh-edge distance5 improve the shared displacement/P1 field over nearest-member Euclidean distance5 for the same four support patches and loaded patch, with matched new capacity and actual PointNet query/global context?",
+  "prerequisite": {
+    "pilot": "notes/graph_distance_pilot_ready.json",
+    "require": "Actual source-group GRID-to-vertex mapping and original-input parity verified; all original query nodes have five finite graph distances with no invented shortcuts or silently imputed unreachable values.",
+    "pilot_owner_report": "Fixed TRAIN101_479 pilot reportedly completed in2.042s:179316 nodes,305906 unique corner-midpoint subedges,one connected component,five fully reachable channels. This draft did not open its data or rerun it.",
+    "full45_not_ready": true,
+    "if_blocked": "Stop at the draft and report the exact mapping/disconnected-node failure; do not automatically prepare more data or train."
+  },
+  "scope": {
+    "split": "notes/geobc_split.json",
+    "seed": 2026,
+    "train_CADs": 40,
+    "validation_CADs": 5,
+    "train_cases": 120,
+    "validation_cases": 15,
+    "known_loads": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "dia_enabled": false,
+    "final_test_enabled": false,
+    "stress_targets_enabled": false,
+    "cache_CADs": "Only the existing40train+5validation groups. Canonical ver geometry and BC input metadata; no displacement/stress labels are read to build the graph.",
+    "validation_geometry": "Target-independent validation geometry/BC may be cached. No validation label is used to fit a normalizer or define graph features."
+  },
+  "graph_features": {
+    "dimension": 5,
+    "names": [
+      "support0_interface_distance_over_L",
+      "support1_interface_distance_over_L",
+      "support2_interface_distance_over_L",
+      "support3_interface_distance_over_L",
+      "load_interface_distance_over_L"
+    ],
+    "distance_modes": [
+      "euclidean",
+      "graph"
+    ],
+    "support_order": "Sort the four actual fixed interface groups by master_node_id ascending, exactly as original25 support-ref distance slots19:23 in tools/prepare_deepjeb.py:97. Store each CAD's master IDs and physical coordinates; do not replace this with coordinate lexicographic order.",
+    "load_sources": "Actual loaded-interface member GRIDs from the canonical SolverDeck, including the actual RBE2/RBE3 type as metadata. Do not insert the reference master as a mesh source or add rigid-element graph shortcuts. The reported101_479 load interface is RBE3.",
+    "GRID_alignment": "Reuse verified coordinate matching to H5 vertex order with explicit match tolerance and member mapping evidence. Never assume nodeID-1 or CSV row order.",
+    "graph": "Original quadratic TETRA10 topology;12 undirected corner-to-midside subedges per cell, deduplicated into CSR. No remeshing/resampling.",
+    "weights": "Physical endpoint Euclidean edge length in mm divided by that CAD's existing characteristic_length_mm L. Use physical coordinates and FP64 distance arithmetic; no target-derived weighting.",
+    "distance": "graph: multi-source Dijkstra minimum edge-path distance to any member. euclidean: minimum physical Euclidean distance to any member of exactly the same source group. Both yield five active channels for every original FEM node in the same prepared order and use the same L.",
+    "Euclidean_control": "Use the same actual four support-member groups and loaded-member group; original25 slots19:23 are distances to reference masters and cannot substitute for this matched nearest-member distance5.",
+    "normalization": "Divide edge lengths by existing L only. No fitted scale, clipping, log transform, extra strength, or hyperparameter sweep.",
+    "cache": "Two float32[N,5] arrays for Euclidean-interface and mesh-edge-path distance, plus original-node/xyz/order hashes,L,the identical group master/member mapping,source identities,graph edge/component counts and finite/reachability checks; one cache per CAD reused across known loads.",
+    "proposed_cache_directory": "data/geobc_graph_context",
+    "proposed_cache_array_keys": {
+      "euclidean": "euclidean",
+      "graph": "graph"
+    },
+    "cache_owner_handoff": "hashgrid_impl prepares tools/prepare_graph_context.py separately after root authorization; this note neither creates nor verifies its45 caches.",
+    "acceptance": "All45 caches must match original query order and five exact source groups, contain only finite nonnegative distances, and have no unresolved disconnected queries. Report failure instead of filling inf with0. Verify d_graph is not below same-group nearest Euclidean distance except declared arithmetic tolerance.",
+    "limits": "This is distance in the fixed tetrahedral edge graph, not elasticity stiffness, exact continuous geodesic, a constitutive law, or remeshing-invariant geometry. Group union omits DOF/weights/patch topology; the graph omits material-dependent stiffness."
+  },
+  "architecture": {
+    "backend": "Official tiny-cuda-nn NetworkWithInputEncoding with HashGrid+Identity Composite and FullyFusedMLP; return to fused query-context mechanism, no learned hash gate.",
+    "implementation_boundary": "Frozen QueryContextFieldConfig.__post_init__ currently requires condition_dim38. If selected, use a new isolated compatible config/wrapper for43 and truthful source_config, keeping existing sources/checkpoints unchanged; direct construction with43 currently fails.",
+    "outer_query_input_order": [
+      "original25",
+      "local13",
+      "interface_distance5"
+    ],
+    "condition_dim": 43,
+    "interface_distance_slice": [
+      38,
+      43
+    ],
+    "force_moment_mask": "Clear original slots7:13 upstream before predicting the common9-response basis; graph/context carry no alpha or force/moment values.",
+    "query_context_mode": "actual",
+    "bc_role_mode": "actual",
+    "query32": "Same fixed Gaussian sigma.15, chunk4096, shared PointNet5->point64->Linear32, nonaffine LayerNorm+tanh; no learned attention/radius change.",
+    "global32": "Same actual PointNet5 xyz+support_union+load_member, saved1024 cloud/mask/node_indices and encoder layout; no resampling.",
+    "native_Identity_input_order": [
+      "masked_original38",
+      "active_interface_distance5",
+      "actual_query32",
+      "actual_global32"
+    ],
+    "native_condition_dim": 107,
+    "raw_Composite_input_dim": 110,
+    "hash": {
+      "n_levels": 12,
+      "n_features_per_level": 2,
+      "log2_hashmap_size": 19,
+      "base_resolution": 8,
+      "per_level_scale": 1.6,
+      "interpolation": "Linear",
+      "hash": "CoherentPrime"
+    },
+    "network": {
+      "otype": "FullyFusedMLP",
+      "n_neurons": 128,
+      "n_hidden_layers": 2,
+      "activation": "ReLU",
+      "output_activation": "None"
+    },
+    "output": "9 response components in [ver,hor,tor] x [ux,uy,uz], combined with the unchanged external source-metadata alpha; common linear physical u decode.",
+    "JIT_fusion": false,
+    "hash_modulation_enabled": false
+  },
+  "native_source_derivation": {
+    "official_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+    "status": "CPU source-only derivation; no native model constructed or GPU acceptance run in this draft",
+    "nominal_encoded_channels": 131,
+    "derived_padded_encoded_channels": 144,
+    "Identity_nominal_channels": 107,
+    "Identity_derived_padded_channels": 120,
+    "Identity_padding_count": 13,
+    "Identity_padding_value": 1,
+    "proof": "HashGrid contributes24. Identity required alignment1 preserves prefix24. Composite initially sums24+107=131; NetworkWithInputEncoding sets the network's minimum16 alignment; Encoding::set_alignment rounds total width to144 and Composite pads the last Identity child to120. Identity writes constant1 padding. FullyFused output9 pads to16.",
+    "source_derived_expected_MLP_parameters": 36864,
+    "MLP_count_formula": "144*128 +128*128 +128*16, two hidden layers with no biases",
+    "additional_MLP_parameters_vs_old_query": 2048,
+    "actual_numel_status": "Must measure the actual public native.params numel and native dimensions in one synthetic check before release; source arithmetic is not a measured layout or a flat-buffer map.",
+    "no_flat_offset_guess": true,
+    "primary_source_files": [
+      {
+        "file": "include/tiny-cuda-nn/network_with_input_encoding.h",
+        "lines": [
+          46,
+          50
+        ],
+        "sha256": "a025439d42dff96379713c1c07226bee647aeb2217ca21611a81282bdc58224f",
+        "url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/network_with_input_encoding.h"
+      },
+      {
+        "file": "include/tiny-cuda-nn/encoding.h",
+        "lines": [
+          70,
+          71
+        ],
+        "url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/encoding.h"
+      },
+      {
+        "file": "include/tiny-cuda-nn/encodings/composite.h",
+        "lines": [
+          188,
+          197,
+          362,
+          386
+        ],
+        "sha256": "56437be013b2f33e23523ce4eee994e62d0e34a11369dd31b4e5aae766bcfed7",
+        "url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/encodings/composite.h"
+      },
+      {
+        "file": "include/tiny-cuda-nn/encodings/identity.h",
+        "lines": [
+          215,
+          236
+        ],
+        "url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/encodings/identity.h"
+      },
+      {
+        "file": "include/tiny-cuda-nn/networks/fully_fused_mlp.h",
+        "lines": [
+          122,
+          123
+        ],
+        "url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/include/tiny-cuda-nn/networks/fully_fused_mlp.h"
+      },
+      {
+        "file": "src/fully_fused_mlp.cu",
+        "lines": [
+          656,
+          659,
+          664,
+          669,
+          675
+        ],
+        "url": "https://github.com/NVlabs/tiny-cuda-nn/blob/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38/src/fully_fused_mlp.cu"
+      }
+    ],
+    "source_derived_counts": {
+      "hash": 7733632,
+      "network": 36864,
+      "native_total": 7770496,
+      "PointNet": 16800,
+      "query_projection": 2080,
+      "total_expected_each_model": 7789376
+    }
+  },
+  "pair": {
+    "distance_modes": [
+      "euclidean",
+      "graph"
+    ],
+    "only_difference": "Append nearest-member Euclidean-interface5 in euclidean or shortest mesh-edge-path5 in graph, both in slice38:43 and both active. Source groups,L,original38/query32/global32/BC roles and all training controls are identical.",
+    "third_zero_group_enabled": false,
+    "fresh_complete_initialization": true,
+    "seed": 2026,
+    "same_constructor_order": true,
+    "complete_parameter_and_native_buffer_initial_hashes_equal": true,
+    "historical_control_reused": false,
+    "warmstart": false,
+    "step0_output_policy": "Natural Euclidean and graph input values differ, so their initial predictions need not be equal. Check exact states/layout and equal outputs on an explicitly identical distance5 fixture. Do not add a zero head or artificial initialization device to force natural-output equality.",
+    "capacity_limit": "Both instantiate the same enlarged Composite/MLP and five active interface features. This controls the added patch geometry and capacity better than zero5 versus graph5, but distance value distributions/conditioning also differ, so a gain is utility of this distance representation, not proof of a stiffness/topology causal mechanism. Historical smaller query models are contextual only."
+  },
+  "recipe": {
+    "steps": 10000,
+    "batch_size": 51200,
+    "case_slots": 4,
+    "queries_per_case": "6400 uniform original nodes +1600 uniform tetra sets x4corners; duplicates retained",
+    "sampling_rng": {
+      "case": "NumPy default_rng(seed+23)",
+      "node": "torch.Generator(device),seed+17",
+      "tet": "torch.Generator(device),seed+41"
+    },
+    "optimizer": {
+      "name": "Adam",
+      "fused": true,
+      "learning_rate": 0.003,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "epsilon": 1E-08,
+      "weight_decay": 0.0
+    },
+    "gradient_weight": 0.0004106650618638651,
+    "u_scale_mm": 0.05511113670847156,
+    "u_center_mm": 0.0,
+    "normalizer_reference": "runs/geobc_exploration/displacement_query_context_actual_10k/config.json TRAIN120 scaler/u_loss records; direct reuse, no refit or recalibration",
+    "P1_reference": "Existing TRAIN-only full-volume true-u cornerP1 denominators and unchanged45 CAD geometry caches; no stress/solver-strain constitutive scalar target",
+    "precision": "FP32/high-TF32 PointNet/query; native FP16 compute/FP32 master; FP64 physical-mm cornerP1 losses and physical metrics",
+    "eval_every": 1000,
+    "checkpoint_selection": "Known-load validation15 all-original-node physical signed-u vector case-mean relativeL2 only; P1 at the same checkpoint",
+    "evaluation": "Report train120/validation15 all-original-node physical U and incident-volume-averaged P1 tensor metrics, separately from sampled squared optimization losses",
+    "seed": 2026
+  },
+  "required_single_native_check": [
+    "Same new parameter architecture/seeds and complete initial state hashes; actual measured native dims/counts/padding and truthful107/131/144 source_config.",
+    "Common identical-distance5 fixture forward equality, while natural Euclidean/graph input differences are expected.",
+    "Finite nonzero native/global encoder/query projection input gradients in both groups; five active distance channels and exact same source-group/order/L alignment checked; force7:13 perturbations cannot alter common basis.",
+    "Original saved cloud/mask/node_indices/roles and sampler witnesses identical; no loss/normalizer/selection drift or old Composite checkpoint substitution."
+  ],
+  "clear_gain_gate": {
+    "comparator": "Only this new mesh-edge-path5 versus matched nearest-member Euclidean-interface5 pair, each at its own u-only-selected checkpoint; graph is the candidate and euclidean the control",
+    "validation_u_mean_improvement_percentage_points_at_least": 2.0,
+    "validation_u_worst_deterioration_percentage_points_at_most": 2.0,
+    "validation_P1_relative_error_reduction_at_least": 0.3,
+    "validation_P1_case_mean_relative_L2_at_most": 1.0,
+    "P1_definition": "Known validation15 case-mean all-original-node incident-volume-averaged cornerP1 symmetric-Frobenius relativeL2, squared shear weight2; not optimization cell squared loss or solver GT strain.",
+    "P1_zero_tensor_baseline": "RelativeL2=1 for the zero tensor on nonzero reference cases, independent of distance_mode; there is no zero-input training branch.",
+    "all_conditions_required": true,
+    "no_threshold_adjustment": true,
+    "if_pass": "Same matched pair seed2027 replication, subject to root selection/freeze; no retrospective threshold tuning.",
+    "if_fail": "Root selects one bounded diagnosis from train/validation/representation evidence; no automatic second seed, third zero group, graph/loss/radius/width sweep."
+  },
+  "scientific_limits": [
+    "Shortest mesh-edge paths expose one fixed connectivity summary; they do not solve elastic load paths or stiffness.",
+    "No new algorithm, physical law, arbitrary-BC generalization or statistical significance is claimed.",
+    "Development validation is adaptively reused; final5 CAD and dia targets remain closed.",
+    "Raw absolute L already exists in original25 slot24; graph distance/L is an added path descriptor, not repair of a missing-size feature.",
+    "No prepared data, code implementation, native model, optimizer or GPU task was created by this draft."
+  ],
+  "parent_predeclaration": {
+    "selected_at_utc": "2026-10-09T08:22:19.4555621Z",
+    "pilot_summary": "runs/geobc_exploration/graph_distance_pilot_101_479/summary.json",
+    "pilot_sha256": "10725acbb808adb00cfe9cd5bc5305abe61642ace551dc660cecdd485448082c",
+    "decision": "Same actual interfaces, same5active channels, Euclidean baseline versus graph metric only; nozero third group, new loss, gate or width sweep.",
+    "scope": "Train40/validation5 geometry inputs; all native/model/optimizer/checkpoint controls recorded, finaltest/dia excluded."
+  }
+}

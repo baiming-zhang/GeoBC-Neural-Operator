@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "status": "proposal_conditional_strict_interior_only",
+  "question": "节点拟合是否掩盖冻结位移场在TETRA10内部偏离二次FEM插值的行为？",
+  "conclusion": "二次插值可实现；任意查询点的完整输入仅条件可行。前7维是离散RBE2接口成员标记，并无连续patch定义。先通过input-only边界归属与节点输入重建检查，才能采用严格内部点的零标记扩展；否则保留阻塞，不执行模型比较。",
+  "execution": {
+    "design_only": true,
+    "read": "仅现有Python源码及split小JSON",
+    "raw_geometry_or_labels_opened": false,
+    "weights_opened": false,
+    "GPU_used": false,
+    "training_or_new_jobs_created": false,
+    "frozen_sources_modified": false
+  },
+  "scope_proposal": {
+    "CAD": "101_479",
+    "reason": "固定已观察TRAIN CAD；不根据新误差选case",
+    "loads": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "exclude": "所有validation、dia、final test及stress字段",
+    "checkpoint": "由parent在实际probe前声明一个已完成冻结u checkpoint及step；不按内部点结果选模型、不更新参数或scaler",
+    "sampling": "建议512个原始tet，无放回、仅由geometry选择，NumPy SeedSequence([2026,1901])；每tet用以下5个固定参考点，共2560点。数量尚未作为新实验预声明。",
+    "barycentric_points": "(0.25,0.25,0.25,0.25)及(0.4,0.2,0.2,0.2)的4个排列；所有Li>=0.2",
+    "node_witness": "相同被采样tet的原10节点，保留连接关系；独立报告节点指标，不称全CAD或全验证集性能"
+  },
+  "quadratic_reference": {
+    "corner_slots": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "midside_edges_in_slots_4_to_9": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "shape_functions": "Ni=Li*(2*Li-1), i=0..3；N4..N9=4*Li*Lj，严格使用上述VTK_QUADRATIC_TETRA边序",
+    "geometry": "x_mm(L)=sum_i Ni(L)*x_mm_i，使用全部10节点的等参二次映射；不采用直边四角点映射。参考点已给定，无需最近cell猜测或Newton反求。",
+    "reference_u": "u_reference_mm(L)=sum_i Ni(L)*u_true_mm_i，保留signed XYZ；称‘aligned nodal displacement的二次FEM插值参考’，不是解析连续真解或solver tensor标签",
+    "precision": "现有interpolate_nodal会强制FP32；正式probe应使用同Ni公式做FP64收缩，记录源prepared u本为float32及query最终float32舍入。FP64不恢复原标签已丢失精度。",
+    "geometry_guards": "核对原TETRA10顺序、GRID/XYZ对齐、单位、canonical bbox及L；拒绝退化/已知折叠元素并核验查询位置Jacobian。正barycentric内部点的物理内部语义依赖有效非折叠等参元素，几个Jacobian样点并不构成全元素非折叠证明。",
+    "overshoot_caution": "二次角点Ni可以为负；参考值超出节点分量极值不自动证明神经场振荡。"
+  },
+  "query_input_25": {
+    "slots_0_to_6": "0:6为support RBE2成员的SPC DOF标记，6为loaded RBE2 member；现有source只有离散成员集合，未定义任意边界点patch classifier。不得最近节点复制或插值这些flags。",
+    "strict_interior_extension": "先仅用输入核实该CAD所有标记成员属于重建真实boundary，并排除采样节点/边界点；通过后明确声明严格内部flags全0的受限扩展。当前未做该归属检查，不能断言必通过；若有内部成员或语义不明则本proposal阻塞。任意边界点不在可行范围。",
+    "slots_7_to_15_and_24": "从原deck/冻结metadata广播真实force、moment、E、nu、rho和L；保持源归一化常数。basis网络仍按冻结PhysicsField清零7:13，external alpha只取三known loads。",
+    "slots_16_to_22": "用同loaded master及按master_node_id排序的4 support master精确坐标，在query x_mm重算offset/L和distance/L；不得从最近节点feature行猜reference位置。",
+    "slot_23": "用原loaded member节点集合建立树，在query x_mm重算最近member-node距离/L；忠实保留node-set distance，不把它称连续interface表面距离。",
+    "pre_model_check": "仅输入的少量原节点witness重建25维，与原prepared对应行比较并记录容差/差异；不允许静默换schema、假造continuous patch或通过labels修正输入。"
+  },
+  "local_13_and_context": {
+    "boundary_set": "从同canonical original boundary faces取排序unique node IDs，包含真实二次边界节点；不是均匀surface采样或连续SDF",
+    "formula": "query normalizedXYZ先按模型float32舍入再promote FP64；同cKDTree查32边界邻居。nearest(boundary-query)xyz/.05、nearestDistance/.05、population cov[xx,yy,zz,xy,xz,yz]/trace、eig_min/trace、eig_mid/trace、32ndDistance/.05；最后cast float32。",
+    "reuse": "只复用boundary tree和固定参数；任意点全部重算local13，不插值节点cache。三载荷共享一次几何计算。复用同saved PointNet cloud/roles/mask，query context在新xyz计算。",
+    "parity": "同边界坐标、node order、SciPy/NumPy、worker=1和树构造可重现原配方；KNN等距tie及浮点实现使未验证的bitwise完全一致不能承诺。先用少量节点witness与原cache记录maxabs差；不静默替换输入。",
+    "cost": "树构造+2560点K32/PCA预计是小型CPU工作，当前未实测；正式probe分别记录建树、query/eig、特征、模型、I/O耗时。这里不新增性能运行。",
+    "limitation": "KNN邻域/PCA随位置可离散跳变；网络偏离二次插值可能包含输入描述符不连续的贡献，不能唯一归因为hash空间振荡。"
+  },
+  "paired_readout": {
+    "same_field": "节点与内部点使用同冻结checkpoint、common zero-centered u_scale_mm、cloud/context规则和known alpha；仅位置相关输入按同schema重算，不fit或补GT条件。",
+    "physical_metrics": "每load报告vector relative L2、各分量RMSE(mm)、max vector error(mm)、reference/pred vector RMS；明确这是固定5点/tet的witness采样度量，不是全体积或泛化指标。",
+    "self_consistency": "同时计算delta(q)=u_model(q)-sum_i Ni(q)*u_model(node_i)。总内部误差=delta(q)+sum_i Ni(q)*(u_model(node_i)-u_true(node_i))，分离节点误差传递与冻结场对自身节点二次插值的不一致。",
+    "interpretation": "可发现离开节点后的表示不一致；单个TRAIN pilot、离散输入及FEM参考假设不足以证明全空间振荡机制、因果或泛化。此次不引入u导数、本构或stress解释。"
+  },
+  "decision_needed": "当前pair结束后parent决定是否先通过input-only schema/geometry条件再授权一个冻结probe；本note不自动推进新阶段。",
+  "source_files": [
+    "tools/prepare_grids.py:quadratic_shape,interpolate_nodal",
+    "tools/mesh_boundary.py:TETRA10_EDGES",
+    "tools/prepare_local_geometry.py:build_one,SCHEMA",
+    "tools/prepare_deepjeb.py:FEATURE_NAMES,prepare",
+    "tools/prepare_multifield.py:_build_one",
+    "notes/geobc_split.json"
+  ],
+  "source_identities": [
+    {
+      "path": "tools/prepare_grids.py",
+      "sha256": "34b033aa63bef6b363bfe907bb8c3d4d31f0d8f6fbba4d6efc61e6c2b7b8c2ef"
+    },
+    {
+      "path": "tools/mesh_boundary.py",
+      "sha256": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b"
+    },
+    {
+      "path": "tools/prepare_local_geometry.py",
+      "sha256": "96880d5af4c8e60bbe72f6063c62f6c3eb24bea3f5730e10fb724913aeb2fb04"
+    },
+    {
+      "path": "tools/prepare_deepjeb.py",
+      "sha256": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22"
+    },
+    {
+      "path": "tools/prepare_multifield.py",
+      "sha256": "81ebc98ff3b42896ca18761f17ecca07fef4517a86f797d500674fba2493fb83"
+    },
+    {
+      "path": "notes/geobc_split.json",
+      "sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859"
+    }
+  ],
+  "checks": [
+    "JSON parses; source references exist; fixed CAD found in TRAIN split small JSON; no fields/weights/GPU opened"
+  ]
+}

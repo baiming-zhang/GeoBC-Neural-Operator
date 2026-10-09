@@ -1,10 +1,24 @@
 {
   "scope": "GeoBC exploration; independent of the completed slides suite",
-  "completed": 31,
-  "planned": 31,
+  "completed": 40,
+  "planned": 40,
+  "scientific_completed": 38,
+  "scientific_planned": 38,
+  "synthetic_acceptance_completed": 2,
+  "synthetic_acceptance_planned": 2,
   "phase": "stage_completed",
   "research_status": "ongoing",
-  "current_stage": "frozen_query_learning_and_CAD_gradient_conflict",
+  "current_stage": "fixed_field_error_gradient_decomposition",
+  "current_stage_complete": true,
+  "original_slides_completed": 30,
+  "original_slides_planned": 30,
+  "original_slides_status": "completed",
+  "counting_policy": "scientific counts include training/evaluation/frozen real-data diagnostics; synthetic native validation is separate and has no generalization result; completed/planned retain total stage counts",
+  "next_stage_source": "notes/geobc_exploration_plan.json",
+  "hash_modulation_pair_analysis": "notes/geobc_hash_modulation_pair_result.json",
+  "hash_modulation_use_analysis": "notes/geobc_hash_modulation_use_result.json",
+  "graph_context_pair_analysis": "notes/geobc_graph_context_pair_result.json",
+  "error_gradient_analysis": "notes/geobc_error_gradient_result.json",
   "summaries": [
     "hash50_unseen_geometry_pilot",
     "independent_101_479_tor",
@@ -36,8 +50,17 @@
     "specialist_101_479_joint_u_P1_10k",
     "displacement_query_context_zero_10k",
     "displacement_query_context_actual_10k",
-    "query_learning_frozen_10k"
+    "query_learning_frozen_10k",
+    "hash_modulation_native_smoke",
+    "displacement_hash_modulation_zero_10k",
+    "displacement_hash_modulation_actual_10k",
+    "hash_modulation_use_frozen_10k",
+    "graph_distance_pilot_101_479",
+    "graph_context_native_smoke",
+    "displacement_interface_euclidean_10k",
+    "displacement_interface_graph_10k",
+    "field_error_gradient_10_58"
   ],
   "raw_data_checkpoints_predictions": "retained locally; not included in Git payload",
-  "updated_at_utc": "2026-10-09T07:04:43.977021+00:00"
+  "updated_at_utc": "2026-10-09T09:28:22.069455+00:00"
 }

@@ -1,0 +1,73 @@
+{
+  "contract": {
+    "version": 1,
+    "plan": {
+      "path": "notes/geobc_graph_context_candidate_plan.json",
+      "sha256": "cf2a68f0fd09b487bb05092443c01e94ea808a8e9dd366d2b7d519425f5ed273"
+    },
+    "sources_sha256": {
+      "geobc/graph_context_field.py": "8e88a11b360a4a8d937bdaeec0111d9132aa1c7c05c384fe7fc0ab60449d3194",
+      "tools/validate_graph_context_native.py": "54b0cc27dc53c9b1d5f9a2fe6ba200cbd6e06a0df1125d157ae138547159666d",
+      "geobc/query_context_field.py": "47526d5642c1c3b08d18ca9c32806f910c635cf1c4857194a16dbb2d5ee3d39c",
+      "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "geobc/physics_field.py": "6a9aee3594ad7a327873bc4e3a675d1d6ca7905e74d4179ce2673fbe41a1a08c",
+      "geobc/bc_role_field.py": "99083455b935a040ed8968908a290566ba0cf6bba78387cdab54374955e925c3",
+      "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+      "geobc/query_context_train.py": "aa13d487202d9744ae6f60fdad1e9a761963de23dd48832f0ae9d0de50a1b3b5",
+      "geobc/conditional_train.py": "c26ee1a67157b36eeb953f1c95a9a35172cbe0f82854d71ccbb60f523c7eca12",
+      "tools/validate_hash_modulation_native.py": "2554b5859c6af8d059da560e5c4ec32a8b522eb8142247668f4c15ee529c8583"
+    },
+    "distance_modes": [
+      "euclidean",
+      "graph"
+    ],
+    "seed": 2026,
+    "synthetic_rows": 512,
+    "synthetic_CADs": 2,
+    "cloud_points": 1024,
+    "model_config": {
+      "condition_dim": 43,
+      "query_mode": "actual",
+      "bc_role_mode": "actual",
+      "mode": "linear_basis",
+      "geometry_mode": "shape",
+      "descriptor_dim": 32,
+      "query_dim": 32,
+      "sigma": 0.15,
+      "query_chunk": 4096,
+      "hidden_dim": 128,
+      "hidden_layers": 2,
+      "seed": 2026,
+      "cloud_points": 1024
+    },
+    "native_counts_expected": {
+      "hash": 7733632,
+      "network": 36864,
+      "native_total": 7770496,
+      "PointNet": 16800,
+      "query_projection": 2080,
+      "total_expected_each_model": 7789376
+    },
+    "native_combined_public_parameter": "field.decoder.native.params",
+    "encoded_layout_source_derived": {
+      "conditions": 107,
+      "nominal": 131,
+      "padded": 144,
+      "Identity_padding": 13,
+      "padding_value": 1
+    },
+    "natural_step0_prediction_equality_required": false,
+    "common_identical_distance_fixture_prediction_equality_required": true,
+    "basis_forward_calls": 6,
+    "backwards": 2,
+    "optimizer_updates": 0,
+    "no_GT": true,
+    "dataset_files_opened": 0,
+    "checkpoint_files_opened": 0,
+    "scope": "synthetic native API/layout/gradient check, not a scientific data experiment"
+  },
+  "started_at_utc": "2026-10-09T08:43:13.206368+00:00",
+  "no_GT": true,
+  "optimizer": null,
+  "precision": "frozen high/TF32 FP32 PointNet/query; native FP16 compute/FP32 masters"
+}
