@@ -4,11 +4,11 @@
   "status": "source_only_ready_not_actual_export_release",
   "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
   "source": "tools/export_available_cad_pilot.py",
-  "source_sha256": "00da303bb4363a0fb845b54ad3022d4fe98843b28d09f08ef809a2300ff28532",
-  "source_bytes": 47159,
+  "source_sha256": "e192beb0d4465012b2daa4ffcd2b0a5d9199550aade801c1fbf06a5e141a3d4c",
+  "source_bytes": 51870,
   "sole_AST_parse_calls": 1,
   "sole_AST_parse_passed": true,
-  "AST_elapsed_seconds": 0.004690298999776132,
+  "AST_elapsed_seconds": 0.005564700113609433,
   "static_default_immediate_return_verified": true,
   "source_phase": {
     "project_modules_imported_or_executed": 0,
@@ -54,7 +54,8 @@
     "True pilot summary/status terminal and both native clocks closed inactive with actual execution identities",
     "Both external stage and campaign receipts terminal with matching clock/process/source identities",
     "Exact common-WSL child and guard PID/startticks/argv exits; no native-inflight export",
-    "No project modules, contracts, models, raw files, arrays, PT or numeric GT opened by exporter"
+    "No project modules, contracts, models, raw files, arrays, PT or numeric GT opened by exporter",
+    "Saved external stage/campaign epoch and monotonic spans and epoch-minus-monotonic differences are finite consistent; qualification requires both axes within original 3600/7200 second budgets"
   ],
   "negative_export_policy": {
     "true_closed_protocol_or_cost_negative_can_export": true,
@@ -99,7 +100,7 @@
   },
   "metadata_scope": "Saved small JSON/scalars and source byte identities only; checkpoint/input/raw paths and recorded hashes indexed without opening bodies",
   "actual_export_and_render_not_verified": true,
-  "AST_parse_calls_total_including_superseded_source": 2,
+  "AST_parse_calls_total_including_superseded_source": 3,
   "AST_history": [
     {
       "source_sha256": "fff6621667c6419a49deb5a04d150c7154e2ea12c17e67db426533b76eaddf66",
@@ -108,6 +109,14 @@
       "AST_parse_calls_this_revision": 1,
       "passed": true,
       "reason_superseded": "User requested compact readable BRIEF: <=3 deduplicated role rows and five columns"
+    },
+    {
+      "source_sha256": "00da303bb4363a0fb845b54ad3022d4fe98843b28d09f08ef809a2300ff28532",
+      "source_bytes": 47159,
+      "AST_elapsed_seconds": 0.004690298999776132,
+      "AST_parse_calls_this_revision": 1,
+      "passed": true,
+      "reason_superseded": "Report genuine guard epoch and monotonic spans separately; both axes must satisfy unchanged stage/campaign budgets; no phase rescaling"
     }
   ],
   "BRIEF_contract": {
@@ -129,5 +138,23 @@
     "ties": "retain all candidate labels; display ranges of each tied model full60 scalar, never arbitrary winner or subset-case mean",
     "no_leader": "brief explicit null/input or protocol negative; link complete nine-row CSV without a large main table",
     "details": "Full nine rows, worst/hot/failure/parameters/exposure and perload20/paired20 remain in CSV/JSON/scalar figures"
+  },
+  "source_revision_finalized_at_utc": "2026-10-10T15:10:40.221785+00:00",
+  "time_axis_contract": {
+    "guard_elapsed_seconds": "monotonic",
+    "guard_elapsed_epoch_seconds": "epoch",
+    "clock_axis_difference_seconds": "epoch elapsed minus monotonic elapsed; consistency checked to 1e-6 seconds absolute tolerance",
+    "stage_budget_seconds": 3600,
+    "campaign_budget_seconds": 7200,
+    "budget_qualification": "both recorded axes must be nonnegative, consistent and within unchanged stage/campaign limits; stage absolute ends also checked against campaign deadlines",
+    "UTC_span": "guard entry_epoch plus recorded elapsed_epoch_seconds, recorded start/end UTC retained separately",
+    "native_phase_seconds": "original monotonic fields retained without scaling or allocation",
+    "epoch_phase_seconds": null,
+    "epoch_phase_cost_status": "unrecorded, explicitly null",
+    "clock_axis_divergence_cause": "not inferred",
+    "source_guard_field_compatibility_checked": true,
+    "scientific_rules_changed": false,
+    "cases_candidates_or_endpoints_changed": false,
+    "actual_source_runtime_calls": 0
   }
 }

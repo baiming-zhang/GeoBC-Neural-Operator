@@ -1,23 +1,18 @@
 {
   "schema": 1,
-  "status": "source_ready_not_released_not_executed",
-  "created_at_utc": "2026-10-10T11:33:57.500901+00:00",
+  "status": "source_ready_new_time_axes_revision_not_root_released_not_executed",
+  "created_at_utc": "2026-10-10T15:10:32.442424+00:00",
   "source": "tools/run_geobc_available_pilot_guard.py",
-  "final_source_sha256": "ab58950909501402c7ef9114e482e5571271806a1669a904c627d3cd32563a2b",
+  "final_source_sha256": "78099936f0704153c655e55f4c832ccccad363c50aeab6be6a416c9eb323489f",
   "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
-  "whole_source_reviewed_by_root": true,
+  "whole_source_reviewed_by_root": false,
   "independent_readonly_review": {
-    "agent": "solver_choice_review",
-    "passed_after_two_repairs": true,
-    "repairs": [
-      "Capture terminate/kill/wait errors and preserve true nonexited stage failure receipt",
-      "Recheck stage/campaign budgets after normal receipt persistence, boundary overrun cannot pass"
-    ]
+    "new_time_axes_revision": "pending root source review; previous review applies only to archived source hash"
   },
   "AST": {
     "passed": true,
     "parse_count": 1,
-    "seconds": 0.001471600029617548,
+    "seconds": 0.0014115001540631056,
     "module_imported_or_executed": false
   },
   "actual_release": false,
@@ -44,7 +39,7 @@
     "preparation_seconds": 3600,
     "evaluation_seconds": 3600,
     "campaign_seconds": 7200,
-    "deadline": "min(stage deadline,campaign deadline)",
+    "deadline": "min(stage epoch deadline,campaign epoch deadline,stage monotonic deadline,campaign monotonic deadline), with same-axis comparisons",
     "entry": "before project metadata imports/hash/gates; covers child initialization/IO/transfers/persistence/exit/failure; inter-stage guard overhead separately charged in campaign"
   },
   "phases": [
@@ -63,5 +58,46 @@
   ],
   "campaign_terminal": "runs/geobc_exploration/available_CAD20_candidate9/campaign_external_terminal.json",
   "identity": "actual /proc pid/start_ticks/argv/ppid for guard and direct children",
-  "input_negative_policy": "Authentic completed input-negative exit0 -> evaluator fixed540 true failure entries and numericGT0; failed/timeout/unclosed/no-exit -> stop for root technical review, no implicit replay"
+  "input_negative_policy": "Authentic completed input-negative exit0 -> evaluator fixed540 true failure entries and numericGT0; failed/timeout/unclosed/no-exit -> stop for root technical review, no implicit replay",
+  "source_bytes": 17201,
+  "previous_revisions": [
+    {
+      "final_source_sha256": "ab58950909501402c7ef9114e482e5571271806a1669a904c627d3cd32563a2b",
+      "AST": {
+        "passed": true,
+        "parse_count": 1,
+        "seconds": 0.001471600029617548,
+        "module_imported_or_executed": false
+      },
+      "whole_source_reviewed_by_root": true,
+      "independent_readonly_review": {
+        "agent": "solver_choice_review",
+        "passed_after_two_repairs": true,
+        "repairs": [
+          "Capture terminate/kill/wait errors and preserve true nonexited stage failure receipt",
+          "Recheck stage/campaign budgets after normal receipt persistence, boundary overrun cannot pass"
+        ]
+      },
+      "receipt_created_at_utc": "2026-10-10T11:33:57.500901+00:00"
+    }
+  ],
+  "revision_count": 2,
+  "time_axes_revision": {
+    "scientific_budget_or_endpoint_changed": false,
+    "preserve_legacy_monotonic_elapsed_fields": true,
+    "epoch_is_separate_observed_axis_not_replacement_or_rescaled_phase_cost": true,
+    "deadline_rule": "earlier of fixed original epoch and monotonic deadlines; 1-second bounded child waits recheck both axes",
+    "pre_Popen_budget_rechecked": true,
+    "after_normal_persistence_budget_rechecked": true,
+    "within_external_budget_requires_both_nonnegative_elapsed_axes_and_real_exit": true,
+    "cause_of_axis_difference_inferred": false,
+    "termination": "terminate grace 5s then kill/reap 5s preserves actual error class and nonexit evidence; cleanup may exceed budget but cannot qualify as within budget"
+  },
+  "fields": {
+    "legacy_monotonic_elapsed": "elapsed_seconds",
+    "actual_epoch_elapsed": "elapsed_epoch_seconds",
+    "difference_epoch_minus_monotonic": "clock_axis_difference_seconds",
+    "campaign_overhead_epoch": "between_stage_and_guard_overhead_epoch_seconds",
+    "campaign_overhead_monotonic": "between_stage_and_guard_overhead_seconds"
+  }
 }

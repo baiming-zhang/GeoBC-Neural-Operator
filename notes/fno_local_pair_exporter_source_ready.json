@@ -3,14 +3,14 @@
   "status": "source_ready_not_released_not_executed",
   "created_at_utc": "2026-10-10T12:08:39.076672+00:00",
   "source": "tools/export_fno_local_pair.py",
-  "final_source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+  "final_source_sha256": "266ef9390098e8dd649127e09246ae2347004ba2b1d4d85685c82f839f16728b",
   "scientific_digest": "192ccffe2a79bf63cdd2e8199dd2b9fab79dd29ad8eb10ed689c78dd10e26b51",
   "plan": "notes/geobc_fno_local_condition_pair_plan.json",
   "AST": {
     "passed": true,
     "parse_count": 1,
-    "seconds": 0.004850875000556698,
-    "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+    "seconds": 0.0045314050003071316,
+    "source_sha256": "266ef9390098e8dd649127e09246ae2347004ba2b1d4d85685c82f839f16728b",
     "module_imported_or_executed": false,
     "stdlib_top_level_imports": [
       "__future__",
@@ -60,7 +60,7 @@
   "required_export_root_review": {
     "path": "notes/fno_local_pair_exporter_root_review.json",
     "passed": true,
-    "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+    "source_sha256": "266ef9390098e8dd649127e09246ae2347004ba2b1d4d85685c82f839f16728b",
     "scientific_digest": "192ccffe2a79bf63cdd2e8199dd2b9fab79dd29ad8eb10ed689c78dd10e26b51",
     "actual_export_released": true
   },
@@ -106,7 +106,7 @@
   "report_policy": [
     "native25 versus grid25 is the single local25 origin factor inside the matched new decoder",
     "old FNO absolute U/signedS/hot mean+worst, real saved train/attempt wall and parameter differences are explicit",
-    "actual closed inner clock and observed external launch-to-child-exit wall reported separately",
+    "Native closed monotonic inner/train/arm/phase values and guard genuine monotonic plus epoch/UTC launch-to-child-exit totals and epoch-minus-monotonic difference are reported separately; phase UTC duration is null/not_recorded, never scaled",
     "unknown cost intervals and timeout are nonexact; CPU export approval does not imply experimental PASS",
     "actual first complete TRAIN gradient metadata and exact named initial tensor pairing reported",
     "relative pair gate does not automatically choose a new decoder with larger old-reference errors",
@@ -135,17 +135,113 @@
       "default_export_is_False": true,
       "source_sha256": "1adff6409fc32005cc133b1f349c81b6a21c61c31e32769ec282aac7f0c029a0",
       "created_at_utc": "2026-10-10T12:08:39.076672+00:00"
+    },
+    {
+      "passed": true,
+      "parse_count": 1,
+      "seconds": 0.004850875000556698,
+      "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+      "module_imported_or_executed": false,
+      "stdlib_top_level_imports": [
+        "__future__",
+        "argparse",
+        "csv",
+        "datetime",
+        "hashlib",
+        "json",
+        "math",
+        "os",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "default_export_is_False": true,
+      "source_bytes": 44448,
+      "created_at_utc": "2026-10-10T12:33:51.552556+00:00"
+    },
+    {
+      "passed": true,
+      "parse_count": 1,
+      "seconds": 0.005571416000748286,
+      "source_sha256": "74e994b1f47af9c4194cf1bab36d9437fd219524f838bf8292d2d6f0a6425547",
+      "module_imported_or_executed": false,
+      "stdlib_top_level_imports": [
+        "__future__",
+        "argparse",
+        "csv",
+        "datetime",
+        "hashlib",
+        "json",
+        "math",
+        "os",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "default_export_is_False": true,
+      "source_bytes": 47070,
+      "created_at_utc": "2026-10-10T14:43:18.956669+00:00"
     }
   ],
-  "AST_revision_count": 2,
-  "updated_at_utc": "2026-10-10T12:33:51.552556+00:00",
-  "source_bytes": 44448,
+  "AST_revision_count": 4,
+  "updated_at_utc": "2026-10-10T14:50:13.908003+00:00",
+  "source_bytes": 47071,
   "revision_fixes": {
     "scope": "Only owned exporter source and ready JSON changed; original science/source/plans/pins/rootmarkers untouched",
     "artifact_completion": "Both loss and aggregate plot statuses must be saved; otherwise completed_incomplete with persistent reasons and CLI exit1. Genuine scientific-negative report can have completed artifacts without experiment PASS.",
     "cost_qualification": "Requires cost_accounting_exact, finite external wall >= finite closed inner wall, explicit finite nonnegative unknown_interruption_charge_seconds == 0, launch exit0/no timeout/within budget and exact in-flight costs. Missing interruption field no longer defaults0.",
     "writer_field_evidence": "geobc/fno_local_condition_pair.py:243-246 initializes and persists unknown_interruption_charge_seconds=0; line255 increments observed interruption gap",
     "new_final_AST_only": true,
-    "actual_entrypoint_calls": 0
+    "actual_entrypoint_calls": 0,
+    "dual_clock_axis_budget": "Preserves elapsed_launch_to_exit_seconds as monotonic, separately reads genuine elapsed_epoch_launch_to_exit_seconds and clock_axis_difference_seconds=epoch-minus-monotonic. Scientific/protocol eligibility requires both finite nonnegative external axes <=9000 seconds, difference consistency, original native<9000 and each TRAIN<=3600; all prior gates and fixed120 denominator remain unchanged.",
+    "native_phase_timing": "Original native cumulative/phase/arm/training monotonic values are preserved without scaling; corresponding epoch/UTC phase/arm/training seconds are null with not_recorded status. Guard total epoch duration never fabricates per-phase UTC measurements.",
+    "final_text_only_fix": "BRIEF cost column header is monotonic训练秒 / arm秒; no other source logic changed"
+  },
+  "revision_history": [
+    {
+      "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+      "source_bytes": 44448,
+      "updated_at_utc": "2026-10-10T12:33:51.552556+00:00",
+      "revision_fixes": {
+        "scope": "Only owned exporter source and ready JSON changed; original science/source/plans/pins/rootmarkers untouched",
+        "artifact_completion": "Both loss and aggregate plot statuses must be saved; otherwise completed_incomplete with persistent reasons and CLI exit1. Genuine scientific-negative report can have completed artifacts without experiment PASS.",
+        "cost_qualification": "Requires cost_accounting_exact, finite external wall >= finite closed inner wall, explicit finite nonnegative unknown_interruption_charge_seconds == 0, launch exit0/no timeout/within budget and exact in-flight costs. Missing interruption field no longer defaults0.",
+        "writer_field_evidence": "geobc/fno_local_condition_pair.py:243-246 initializes and persists unknown_interruption_charge_seconds=0; line255 increments observed interruption gap",
+        "new_final_AST_only": true,
+        "actual_entrypoint_calls": 0,
+        "dual_clock_axis_budget": "Preserves elapsed_launch_to_exit_seconds as monotonic, separately reads genuine elapsed_epoch_launch_to_exit_seconds and clock_axis_difference_seconds=epoch-minus-monotonic. Scientific/protocol eligibility requires both finite nonnegative external axes <=9000 seconds, difference consistency, original native<9000 and each TRAIN<=3600; all prior gates and fixed120 denominator remain unchanged.",
+        "native_phase_timing": "Original native cumulative/phase/arm/training monotonic values are preserved without scaling; corresponding epoch/UTC phase/arm/training seconds are null with not_recorded status. Guard total epoch duration never fabricates per-phase UTC measurements."
+      }
+    },
+    {
+      "source_sha256": "74e994b1f47af9c4194cf1bab36d9437fd219524f838bf8292d2d6f0a6425547",
+      "source_bytes": 47070,
+      "updated_at_utc": "2026-10-10T14:43:18.956669+00:00",
+      "revision_fixes": {
+        "scope": "Only owned exporter source and ready JSON changed; original science/source/plans/pins/rootmarkers untouched",
+        "artifact_completion": "Both loss and aggregate plot statuses must be saved; otherwise completed_incomplete with persistent reasons and CLI exit1. Genuine scientific-negative report can have completed artifacts without experiment PASS.",
+        "cost_qualification": "Requires cost_accounting_exact, finite external wall >= finite closed inner wall, explicit finite nonnegative unknown_interruption_charge_seconds == 0, launch exit0/no timeout/within budget and exact in-flight costs. Missing interruption field no longer defaults0.",
+        "writer_field_evidence": "geobc/fno_local_condition_pair.py:243-246 initializes and persists unknown_interruption_charge_seconds=0; line255 increments observed interruption gap",
+        "new_final_AST_only": true,
+        "actual_entrypoint_calls": 0,
+        "dual_clock_axis_budget": "Preserves elapsed_launch_to_exit_seconds as monotonic, separately reads genuine elapsed_epoch_launch_to_exit_seconds and clock_axis_difference_seconds=epoch-minus-monotonic. Scientific/protocol eligibility requires both finite nonnegative external axes <=9000 seconds, difference consistency, original native<9000 and each TRAIN<=3600; all prior gates and fixed120 denominator remain unchanged.",
+        "native_phase_timing": "Original native cumulative/phase/arm/training monotonic values are preserved without scaling; corresponding epoch/UTC phase/arm/training seconds are null with not_recorded status. Guard total epoch duration never fabricates per-phase UTC measurements."
+      }
+    }
+  ],
+  "clock_axis_contract": {
+    "guard_input_fields": {
+      "elapsed_launch_to_exit_seconds": "saved actual time.monotonic launch-to-child-exit duration",
+      "elapsed_epoch_launch_to_exit_seconds": "saved actual epoch/UTC launch-to-child-exit duration",
+      "clock_axis_difference_seconds": "saved epoch elapsed minus saved monotonic elapsed"
+    },
+    "difference_consistency_absolute_tolerance_seconds": 1e-06,
+    "external_whole_budget_each_axis_seconds": 9000,
+    "native_inner_budget_seconds_strict_less_than": 9000,
+    "native_each_arm_TRAIN_budget_seconds_max": 3600,
+    "no_native_timing_rewrite_or_phase_scaling": true,
+    "phase_arm_training_epoch_UTC_values": null,
+    "phase_arm_training_epoch_UTC_status": "not_recorded",
+    "missing_invalid_or_overbudget_external_axis": "Saved genuine closed/exited negative can be reported; cost/protocol/scientific qualification false, unknown values null, no synthetic clock axis"
   }
 }

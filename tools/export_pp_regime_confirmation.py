@@ -27,6 +27,8 @@ DRIVER = "geobc/transolver_pp_regime_confirmation.py"
 DRIVER_SHA = "7b35c294495727ef8b117841046c3d31fda980147769a44ec00f06346cb2956e"
 SCIENCE_SHA = "dad6be58506fd5079470e8d31d231ff8cf52234c23cece4007740f812164dc89"
 GUARD_SHA = "dce73a03ac4ced3d68be7a22ba1e5f1dbd9893d018808631dcad67db87cdfea6"
+RECOVERY_GUARD = "tools/run_geobc_pp_recovery_guard.py"
+RECOVERY_REVIEW = "notes/pp_checkpoint_resume_root_review.json"
 REFERENCE_SHA = "f20f2d68d1a277e05c42b05a9440572a8dd32b051b6445417c04d7d69e75e161"
 MAX_JSON_BYTES = 2 * 1024 * 1024
 MAX_LOSS_BYTES = 16 * 1024 * 1024
@@ -64,6 +66,19 @@ def finite(value):
 
 def mapping(value):
     return value if isinstance(value, dict) else {}
+
+
+def utc_span(start, end):
+    """Keep the recorded UTC axis distinct from monotonic duration."""
+    try:
+        first, last = (datetime.fromisoformat(value.replace("Z", "+00:00"))
+                       for value in (start, end))
+        if first.tzinfo is None or last.tzinfo is None:
+            return None
+        duration = (last - first).total_seconds()
+        return duration if finite(duration) and duration >= 0 else None
+    except (TypeError, ValueError, AttributeError, OverflowError):
+        return None
 
 
 def digest(value):
@@ -134,7 +149,28 @@ def closure(index):
         raise NotReady("Explicit export requires the original WSL Linux process namespace")
     records = {name: json_record(f"{RUN}/{name}.json", index)
                for name in ("status", "clock", "execution", "external_launch")}
-    status, clock, execution, guard = (records[k] for k in records)
+    status, clock, execution, guard = (records[k] for k in ("status", "clock", "execution", "external_launch"))
+    recovered = local(f"{RUN}/recovery_external_launch.json").exists()
+    guard_identity_valid = guard.get("guard_source_sha256") == GUARD_SHA
+    if recovered:
+        original = guard
+        guard = json_record(f"{RUN}/recovery_external_launch.json", index)
+        review = json_record(RECOVERY_REVIEW, index)
+        helper_sha = hashlib.sha256(local(RECOVERY_GUARD).read_bytes()).hexdigest()
+        guard_identity_valid = (review.get("passed") is True and review.get("recovery_released") is True
+            and review.get("scientific_digest") == SCIENCE_SHA
+            and review.get("guard_source_sha256") == guard.get("guard_source_sha256") == helper_sha
+            and guard.get("kind") == "one_shot_PP_original_checkpoint_recovery_guard"
+            and guard.get("scientific_digest") == SCIENCE_SHA
+            and mapping(guard.get("root_review_identity")).get("path") == RECOVERY_REVIEW
+            and mapping(guard.get("root_review_identity")).get("sha256") == index[RECOVERY_REVIEW]["sha256"]
+            and guard.get("original_launch_sha256") == index[f"{RUN}/external_launch.json"]["sha256"]
+            and original.get("guard_source_sha256") == GUARD_SHA
+            and guard.get("original_guard_source_sha256") == GUARD_SHA
+            and guard.get("actual_child_exited") is True
+            and guard.get("native_clock_closed_at_guard_exit") is True)
+        records["original_external_launch"] = original
+        records["external_launch"] = guard
     if not (status.get("phase") == "terminal" and status.get("status") in ("completed", "failed")
             and status.get("kind") == KIND and status.get("TRAIN_only") is True
             and clock.get("closed") is True and clock.get("active") is False
@@ -149,9 +185,11 @@ def closure(index):
         raise NotReady("Terminal/execution/clock/external-child identities do not agree")
     if not (guard.get("status") == "terminal" and guard.get("ended_at_utc")
             and type(guard.get("exit_code")) is int and guard.get("external_budget_seconds") == 30000
-            and guard.get("guard_source_sha256") == GUARD_SHA and guard.get("automatic_replay") is False):
+            and guard_identity_valid and guard.get("automatic_replay") is False):
         raise NotReady("Authentic external guard terminal evidence is required")
     proof = exact_process_exited(identity)
+    if recovered:
+        proof["recovery_guard_exact_exit"] = exact_process_exited(mapping(guard.get("guard_process")))
     return records, proof
 
 
@@ -322,9 +360,11 @@ def percentage(value):
 
 def brief(report):
     qualified = report["qualification"]["passed"]
-    state = "满足本轮TRAIN进展门槛" if qualified else "未满足本轮TRAIN进展门槛"
+    state = "通过完整实验资格" if qualified else "未通过完整实验资格"
+    physical_gate = report["paired_comparisons"]["24000"]["passed"]
     lines = [f"++ 作者训练制度确认：{state}。实际更新 {report['native_summary'].get('endpoint_step', '缺失')}/24000；"
              f"原生状态 {report['native_summary'].get('status', '缺失')} / {report['native_summary'].get('stop_reason', '缺失')}。",
+             f"完整TRAIN120物理指标改善幅度门：{'通过' if physical_gate else '未通过'}；它与成本/过程完整性资格分别报告。",
              "原DeepJEB，原40CAD×ver/hor/tor=120；signed UXYZ(mm)/S(MPa)，seed2026。下表相对L2均为无量纲，热点使用原top1% |S|。",
              "", "| 固定TRAIN120端点 | U均值 | S均值 | 热点均值 | 最坏S | 最坏热点S | 完整finite |",
              "|---|---:|---:|---:|---:|---:|---|"]
@@ -336,10 +376,17 @@ def brief(report):
         lines.append(f"| {label} | " + " | ".join(percentage(a.get(f)) for f in fields)
                      + f" | {block['validation']['passed']} |")
     c, outer = report["authoritative_clock"], report["external_guard"]
+    axes = report["recorded_time_axes"]
     seconds = lambda value: f"{value:.1f}s" if finite(value) else "缺失"
-    lines += ["", f"闭合实际clock：训练 {seconds(c.get('training_seconds'))}/28800s，非训练 "
+    lines += ["", f"闭合monotonic clock：训练 {seconds(c.get('training_seconds'))}/28800s，非训练 "
               f"{seconds(c.get('nontraining_seconds'))}/1200s，总计 {seconds(c.get('total_seconds'))}/30000s；"
-              f"外部launch→exit {seconds(outer.get('elapsed_launch_to_exit_seconds'))}/30000s。",
+              f"守卫monotonic launch→exit {seconds(outer.get('elapsed_launch_to_exit_seconds'))}/30000s。",
+              f"守卫记录UTC起止跨度 {seconds(axes.get('external_UTC_launch_to_exit_seconds'))}/30000s；"
+              f"UTC减守卫monotonic {seconds(axes.get('external_UTC_minus_monotonic_seconds'))}。"
+              "分phase的UTC耗时未记录，保留原monotonic值，不按比例补算；两轴差异原因未确定。",
+              "检查点恢复后，原未闭合guard记录保持原样；整段守卫monotonic及精确计算次数无法恢复。"
+              "回滚更新、已记录额外计算与unknown区间单列；只展示实际完整的固定端点，24000缺失时列为空，严格成本资格不强行通过。"
+              if report.get("checkpoint_recovery") else "本次未使用检查点中断恢复。",
               "最终24000门槛：S均值≤0.8×old、U均值≤1.05×old、最坏S及最坏热点S≤old；并须完整120、有限、原生完成gate、预算、24GiB峰值及零禁读receipt全部通过。",
               f"未通过项：{', '.join(k for k,v in report['qualification']['checks'].items() if not v) or '无'}。",
               "新4800对旧constant4800是同曝光制度组合比较；新24000同时改变制度与曝光，不能作单独scheduler因果结论。FNO4800仅作原fullTRAIN参考，容量和时间不同。",
@@ -440,6 +487,39 @@ def run(export=False):
                                              clock["total_seconds"], rel_tol=1e-10, abs_tol=1e-6)
     outer_budget = guard.get("within_external_budget") is True and guard.get("external_timeout") is False
     outer_budget &= finite(guard.get("elapsed_launch_to_exit_seconds")) and 0 <= guard.get("elapsed_launch_to_exit_seconds", -1) <= 30000
+    outer_utc = utc_span(guard.get("started_at_utc"), guard.get("ended_at_utc"))
+    native_utc = clock["last_epoch"] - clock["started_epoch"] if (
+        finite(clock.get("last_epoch")) and finite(clock.get("started_epoch"))
+        and clock["last_epoch"] >= clock["started_epoch"]) else None
+    outer_utc_budget = finite(outer_utc) and 0 <= outer_utc <= 30000
+    time_axes = {
+        "external_UTC_launch_to_exit_seconds": outer_utc,
+        "external_monotonic_launch_to_exit_seconds": guard.get("elapsed_launch_to_exit_seconds"),
+        "external_UTC_minus_monotonic_seconds": outer_utc - guard["elapsed_launch_to_exit_seconds"]
+            if finite(outer_utc) and finite(guard.get("elapsed_launch_to_exit_seconds")) else None,
+        "native_latest_attempt_epoch_start_to_last_update_seconds": native_utc,
+        "native_monotonic_total_seconds": clock.get("total_seconds"),
+        "native_UTC_minus_monotonic_seconds": native_utc - clock["total_seconds"]
+            if finite(native_utc) and finite(clock.get("total_seconds")) and clock.get("attempts") == 1 else None,
+        "native_axis_comparability": "latest-attempt epoch cannot be subtracted from multi-attempt cumulative monotonic"
+            if clock.get("attempts") != 1 else "single attempt",
+        "native_training_UTC_seconds": None, "native_nontraining_UTC_seconds": None,
+        "phase_UTC_status": "not_recorded; monotonic phase costs retained without rescaling",
+        "difference_cause": "undetermined",
+        "live_guard_source_modified": False,
+        "whole_budget_requires_both_external_axes": True,
+    }
+    recovery = None
+    if "original_external_launch" in terminal:
+        preparation = optional_json("notes/pp_checkpoint_resume_preparation.json", index, issues)
+        recovery = {"original_external_launch": terminal["original_external_launch"],
+            "actual_recovery_guard": guard, "preparation": preparation,
+            "native_cumulative_unknown_interruption_charge_seconds": clock.get("unknown_interruption_charge_seconds"),
+            "whole_campaign_monotonic_elapsed_seconds": None,
+            "strict_whole_campaign_cost_accounting_exact": False,
+            "actual_computation_counts_exact": False,
+            "fixed_endpoint_all120_validation_rules_unchanged": True,
+            "actual_fixed24000_all120_metrics_complete": packed["new_bundle24000"]["validation"]["passed"]}
     memory = mapping(summary.get("memory"))
     memory_gate = summary.get("memory_measurement_available") is True and all(
         type(memory.get(k)) is int and 0 < memory[k] <= 24*1024**3
@@ -469,6 +549,7 @@ def run(export=False):
         "actual_closed_clock_budget": budget and clock_accounting,
         "actual_outer_guard_budget_and_success": bool(outer_budget and guard.get("exit_code") == 0
             and guard.get("in_flight_costs_exact") is True and guard.get("summary_present") is True),
+        "actual_external_UTC_whole_budget": bool(outer_utc_budget),
         "native_cost_authority_flags": costs.get("closed_clock_is_authoritative") is True
             and costs.get("external30000_guard_is_authoritative") is True,
         "native_memory24GiB": memory_gate, "native_TRAIN_only_read_receipt": bool(receipt_gate),
@@ -497,7 +578,9 @@ def run(export=False):
         "paired_comparisons": comparisons, "endpoints": packed,
         "native_summary": {k: summary.get(k) for k in ("status", "terminal", "kind", "endpoint_step", "completed24000",
             "stop_reason", "error_type", "error_message", "completion_gate", "case_exposure_counts")},
-        "authoritative_clock": clock, "external_guard": guard, "exact_process_exit_proof": exit_proof,
+        "authoritative_clock": clock, "external_guard": guard, "recorded_time_axes": time_axes,
+        "checkpoint_recovery": recovery,
+        "exact_process_exit_proof": exit_proof,
         "native_costs": costs, "native_memory": memory, "native_read_receipt": receipt,
         "first_actual_gradient_check": gradient, "loss_log": loss_gate,
         "native_config": config, "checkpoint_metadata_index": metadata,
@@ -507,6 +590,7 @@ def run(export=False):
         "reference_native_costs": reference.get("costs", {}), "reference_native_read_receipt": reference.get("read_receipt", {}),
         "limitations": ["4800 compares equal-exposure training bundles; not an isolated scheduler effect",
             "24000 changes both regime and exposure", "FNO4800 differs in capacity/time and is reference only",
+            "Native and guard durations are monotonic; external UTC span is separately budget-checked; phase UTC costs were not recorded",
             "Stored training loss is not a full120 physical accuracy curve", "No DEV/held5 or generalization/final-family selection"],
         "evidence_issues": issues}
     report = clean(report, "metrics", issues)
@@ -518,6 +602,7 @@ def run(export=False):
     destination = local(DESTINATION)
     destination.mkdir(parents=True, exist_ok=False)
     plots, plot_status = scalar_plots(rows, issues, destination)
+    artifact_complete = set(plots) == {"optimizer_traces.png", "optimizer_traces.svg"}
     report["plot_status"] = plot_status
     report["evidence_issues"] = dict(issues)
     def save(name, content):
@@ -538,6 +623,8 @@ def run(export=False):
         raw = (destination / name).read_bytes()
         artifacts[name] = {"bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
     manifest = {"schema": 1, "kind": "PP_regime_confirmation_export_manifest", "created_at_utc": utc(),
+        "status": "completed" if artifact_complete else "completed_incomplete",
+        "artifact_complete": artifact_complete,
         "source_SHA256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "source": "tools/export_pp_regime_confirmation.py",
         "scientific_digest": SCIENCE_SHA, "read_files": index, "artifacts": artifacts,
         "native_evidence_modified": False, "PT_or_weight_content_reads": 0, "scientific_array_reads": 0,
@@ -547,7 +634,8 @@ def run(export=False):
         "qualification_passed": report["qualification"]["passed"], "plot_status": plot_status,
         "missing_or_invalid_evidence": issues}
     save("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
-    return {"status": "exported", "destination": str(destination), "qualification_passed": report["qualification"]["passed"]}
+    return {"status": "exported" if artifact_complete else "completed_incomplete",
+            "destination": str(destination), "qualification_passed": report["qualification"]["passed"]}
 
 
 def main():
@@ -555,7 +643,10 @@ def main():
     parser.add_argument("--export", action="store_true", help="Explicitly export only after genuine terminal/clock/process/guard closure")
     arguments = parser.parse_args()
     try:
-        print(json.dumps(run(arguments.export), ensure_ascii=False, allow_nan=False))
+        result = run(arguments.export)
+        print(json.dumps(result, ensure_ascii=False, allow_nan=False))
+        if result.get("status") == "completed_incomplete":
+            raise SystemExit(1)
     except (NotReady, OSError, ValueError) as error:
         raise SystemExit(f"No export: {type(error).__name__}: {error}") from error
 

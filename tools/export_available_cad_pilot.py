@@ -128,6 +128,34 @@ def _module_argv(record, module, plan_path):
         and "--plan" in argv and path(argv[argv.index("--plan") + 1]) == path(plan_path), "Recorded child argv differs")
 
 
+def _clock_axes(receipt, entry_epoch, entry_monotonic):
+    monotonic = receipt.get("elapsed_seconds"); epoch = receipt.get("elapsed_epoch_seconds")
+    difference = receipt.get("clock_axis_difference_seconds")
+    consistent = (finite(monotonic, True) and finite(epoch, True) and finite(difference)
+        and math.isclose(difference, epoch - monotonic, rel_tol=1e-12, abs_tol=1e-6))
+    epoch_end = entry_epoch + epoch if finite(epoch) else None
+    def timestamp(value):
+        if not finite(value):
+            return None
+        try:
+            return datetime.fromtimestamp(value, timezone.utc).isoformat()
+        except (OverflowError, OSError, ValueError):
+            return None
+    return {"elapsed_seconds": monotonic if finite(monotonic, True) else None,
+        "elapsed_seconds_clock": "monotonic",
+        "elapsed_epoch_seconds": epoch if finite(epoch) else None,
+        "clock_axis_difference_seconds": difference if finite(difference) else None,
+        "difference_definition": "recorded epoch span minus recorded monotonic span",
+        "both_axes_recorded_and_consistent": consistent,
+        "entry_epoch": entry_epoch, "end_epoch": epoch_end,
+        "entry_monotonic": entry_monotonic,
+        "end_monotonic": entry_monotonic + monotonic if finite(monotonic, True) else None,
+        "epoch_span_start_utc": timestamp(entry_epoch), "epoch_span_end_utc": timestamp(epoch_end),
+        "UTC_span_source": "guard entry_epoch and external elapsed_epoch_seconds; no phase allocation",
+        "receipt_started_at_utc": receipt.get("started_at_utc"),
+        "receipt_ended_at_utc": receipt.get("ended_at_utc")}
+
+
 def _stage(receipt, native, execution, purpose, plan_path, source_pins):
     require(receipt.get("schema") == 1 and receipt.get("kind") == GUARD_KIND
         and receipt.get("purpose") == purpose and receipt.get("scientific_digest") == SCI
@@ -157,16 +185,28 @@ def _stage(receipt, native, execution, purpose, plan_path, source_pins):
         and abs(guard["campaign_deadline_epoch"] - guard["campaign_entry_epoch"] - 7200) < .001
         and abs(guard["campaign_deadline_monotonic"] - guard["campaign_entry_monotonic"] - 7200) < .001,
         "Recorded stage/campaign guard clock schema differs")
-    elapsed = receipt.get("elapsed_seconds"); inner = native.get("cumulative_wall_seconds")
-    exact = finite(elapsed, True) and finite(inner, True) and elapsed + 1e-6 >= inner
+    axes = _clock_axes(receipt, guard["entry_epoch"], guard["entry_monotonic"])
+    elapsed = axes["elapsed_seconds"]; epoch_elapsed = axes["elapsed_epoch_seconds"]
+    inner = native.get("cumulative_wall_seconds")
+    exact = axes["both_axes_recorded_and_consistent"] and finite(inner, True) and elapsed + 1e-6 >= inner
+    within_both = (axes["both_axes_recorded_and_consistent"] and elapsed <= 3600 and epoch_elapsed <= 3600
+        and guard["entry_monotonic"] + elapsed <= guard["campaign_deadline_monotonic"]
+        and guard["entry_epoch"] + epoch_elapsed <= guard["campaign_deadline_epoch"])
     normal = (receipt.get("exit_code") == 0 and receipt.get("external_timeout") is False
         and receipt.get("interrupted") is False and receipt.get("within_external_budget") is True
-        and "termination_error_class" not in receipt and exact and elapsed <= 3600)
-    return {"authoritative_seconds": elapsed if finite(elapsed, True) else None,
+        and "termination_error_class" not in receipt and exact and within_both)
+    return {"authoritative_seconds": elapsed, "authoritative_seconds_clock": "monotonic",
+        "authoritative_epoch_seconds": epoch_elapsed,
+        "clock_axis_difference_seconds": axes["clock_axis_difference_seconds"], "clock_axes": axes,
+        "both_axes_within_stage_and_campaign_budget": within_both,
         "native_seconds": inner if finite(inner, True) else None, "cost_exact": exact,
+        "native_seconds_clock": "monotonic", "native_entry_epoch": native.get("entry_epoch"),
+        "native_entry_monotonic": native.get("entry_monotonic"), "native_closed_at_utc": native.get("closed_at_utc"),
         "normal_within_budget": normal, "exit_code": receipt.get("exit_code"),
         "external_timeout": receipt.get("external_timeout"), "within_external_budget": receipt.get("within_external_budget"),
-        "phase_seconds": native.get("phase_seconds", {}), "guard": guard, "child_process": child}
+        "phase_seconds": native.get("phase_seconds"), "phase_seconds_clock": "monotonic",
+        "epoch_phase_seconds": None, "epoch_phase_cost_status": "unrecorded; not scaled or allocated from total epoch span",
+        "guard": guard, "child_process": child}
 
 
 def _gate(plan_path, index):
@@ -249,15 +289,26 @@ def _gate(plan_path, index):
         and campaign.get("deadline_monotonic") == evaluation_external["guard"]["campaign_deadline_monotonic"]
         == preparation_external["guard"]["campaign_deadline_monotonic"] and campaign.get("budget_seconds") == 7200,
         "External campaign/stage clock identity differs")
-    elapsed = campaign.get("elapsed_seconds")
-    exact = finite(elapsed, True) and all(s["cost_exact"] for s in stages.values()) and elapsed + 1e-6 >= sum(
-        s["authoritative_seconds"] for s in stages.values())
-    normal = (exact and elapsed <= 7200 and campaign.get("within_external_budget") is True
+    axes = _clock_axes(campaign, campaign["entry_epoch"], campaign["entry_monotonic"])
+    elapsed = axes["elapsed_seconds"]; epoch_elapsed = axes["elapsed_epoch_seconds"]
+    exact = (axes["both_axes_recorded_and_consistent"] and all(s["cost_exact"] for s in stages.values())
+        and elapsed + 1e-6 >= sum(s["authoritative_seconds"] for s in stages.values())
+        and epoch_elapsed + 1e-6 >= sum(s["authoritative_epoch_seconds"] for s in stages.values()))
+    within_both = axes["both_axes_recorded_and_consistent"] and elapsed <= 7200 and epoch_elapsed <= 7200
+    normal = (exact and within_both and campaign.get("within_external_budget") is True
         and campaign.get("all_requested_stages_exited_normally") is True
         and all(s["normal_within_budget"] for s in stages.values()))
-    costs = {"stages": stages, "campaign_authoritative_seconds": elapsed if finite(elapsed, True) else None,
+    costs = {"stages": stages, "campaign_authoritative_seconds": elapsed,
+        "campaign_authoritative_seconds_clock": "monotonic", "campaign_authoritative_epoch_seconds": epoch_elapsed,
+        "campaign_clock_axis_difference_seconds": axes["clock_axis_difference_seconds"], "campaign_clock_axes": axes,
+        "campaign_both_axes_within_budget": within_both,
         "campaign_cost_exact": exact, "campaign_normal_within_budget": normal,
         "guard_overhead_seconds": campaign.get("between_stage_and_guard_overhead_seconds"),
+        "guard_overhead_seconds_clock": "monotonic",
+        "calculated_guard_overhead_monotonic_seconds": elapsed - sum(s["authoritative_seconds"] for s in stages.values()) if exact else None,
+        "calculated_guard_overhead_epoch_seconds": epoch_elapsed - sum(s["authoritative_epoch_seconds"] for s in stages.values()) if exact else None,
+        "budget_seconds": {"preparation": 3600, "evaluation": 3600, "campaign": 7200},
+        "qualification_clock_policy": "Both recorded epoch and monotonic spans must satisfy unchanged budgets; missing or inconsistent axes cannot qualify",
         "campaign_within_external_budget": campaign.get("within_external_budget")}
     if review.get("experiment_summary_sha256") is not None:
         require(review["experiment_summary_sha256"] == index[str((base / "summary.json").relative_to(root()))]["sha256"],
@@ -521,9 +572,18 @@ def _brief(metrics, plot):
         if len(best) > 1 or len(best_ts) > 1:
             lines.append("同分组的范围来自各候选完整60例指标；保留全部同分候选，单种子不作显著性声明。")
     costs = metrics["costs"]; receipt = metrics["receipt"]
-    lines.extend(["", f"真实准备/独立readout/整campaign外成本：{_number(costs['stages']['preparation']['authoritative_seconds'])}/"
-        f"{_number(costs['stages']['evaluation']['authoritative_seconds'])}/{_number(costs['campaign_authoritative_seconds'])}秒；"
-        f"成本exact={costs['campaign_cost_exact']}，协议scientific qualification={metrics['scientific_qualification']}。",
+    lines.extend(["", "真实准备/readout/campaign外跨度（epoch / monotonic / 两轴差，秒）："
+        + "；".join(name + " " + _number(axis["elapsed_epoch_seconds"]) + " / " + _number(axis["elapsed_seconds"])
+            + " / " + _number(axis["clock_axis_difference_seconds"]) for name, axis in (
+                ("准备", costs["stages"]["preparation"]["clock_axes"]),
+                ("readout", costs["stages"]["evaluation"]["clock_axes"]), ("campaign", costs["campaign_clock_axes"])))
+        + f"。成本exact={costs['campaign_cost_exact']}，协议scientific qualification={metrics['scientific_qualification']}。",
+        "UTC全阶段区间：" + "；".join(name + " " + (axis["epoch_span_start_utc"] or "unknown") + " → "
+            + (axis["epoch_span_end_utc"] or "unknown") for name, axis in (
+                ("准备", costs["stages"]["preparation"]["clock_axes"]),
+                ("readout", costs["stages"]["evaluation"]["clock_axes"]), ("campaign", costs["campaign_clock_axes"]))) + "。",
+        "固定准备/readout各3600秒、campaign7200秒，epoch与monotonic均未超限才有预算资格。"
+        "native各phase仅保留原monotonic耗时；未记录phase UTC成本，不按总跨度缩放或分摊。",
         f"输入negative={receipt['input_negative']}；真实终态清单{receipt['prediction_terminal_entries']}/540；"
         f"共享GT原CSV解析{receipt['GT_actual']['source_GT_parses']}/20次，U/S病例读取"
         f"{receipt['GT_actual']['U_target_case_reads']}/{receipt['GT_actual']['S_target_case_reads']}（期望各60）；"

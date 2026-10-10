@@ -80,6 +80,44 @@ def terminate(child):
         return child.returncode, type(error).__name__
 
 
+def remaining_budget(deadline_epoch, deadline_monotonic):
+    return min(deadline_epoch - time.time(), deadline_monotonic - time.monotonic())
+
+
+def wait_dual_deadline(child, deadline_epoch, deadline_monotonic):
+    """A clock-axis divergence cannot hide inside a long monotonic wait."""
+    while True:
+        remaining = remaining_budget(deadline_epoch, deadline_monotonic)
+        if remaining <= 0:
+            raise subprocess.TimeoutExpired(child.args, 0)
+        try:
+            return child.wait(timeout=min(1., remaining))
+        except subprocess.TimeoutExpired:
+            pass
+
+
+def elapsed(record, entry_epoch, entry_monotonic):
+    ended_epoch = time.time(); ended_monotonic = time.monotonic()
+    mono = ended_monotonic - entry_monotonic
+    epoch = ended_epoch - entry_epoch
+    record.update(ended_at_utc=datetime.fromtimestamp(ended_epoch, timezone.utc).isoformat(),
+                  ended_epoch=ended_epoch, ended_monotonic=ended_monotonic,
+                  elapsed_seconds=mono, elapsed_epoch_seconds=epoch,
+                  clock_axis_difference_seconds=epoch - mono)
+    if "stages" in record:
+        record["between_stage_and_guard_overhead_seconds"] = max(
+            0., mono - sum(item.get("elapsed_seconds", 0.) for item in record["stages"].values()))
+        record["between_stage_and_guard_overhead_epoch_seconds"] = (
+            epoch - sum(item.get("elapsed_epoch_seconds", 0.) for item in record["stages"].values()))
+
+
+def within_budget(record, seconds, deadline_epoch, deadline_monotonic):
+    return (0 <= record["elapsed_seconds"] <= seconds
+            and 0 <= record["elapsed_epoch_seconds"] <= seconds
+            and record["ended_epoch"] <= deadline_epoch
+            and record["ended_monotonic"] <= deadline_monotonic)
+
+
 def run(plan_path=PLAN, start=False):
     if not start:
         return {"status": "source_only", "actual_execution": False,
@@ -99,7 +137,7 @@ def run(plan_path=PLAN, start=False):
         release(contract, plan, purpose)
     require(contract["source_sha256"].get(OWN) == sha(OWN), "Guard source is not root-pinned")
     proof = predecessor_gate(plan)
-    require(time.monotonic() - ENTRY_MONOTONIC < STAGE_SECONDS,
+    require(remaining_budget(ENTRY_EPOCH + STAGE_SECONDS, ENTRY_MONOTONIC + STAGE_SECONDS) > 0,
             "Preparation budget exhausted before launch")
     outputs = plan["scientific"]["outputs"]
     preparation = owned(outputs["input_cache"])
@@ -117,7 +155,8 @@ def run(plan_path=PLAN, start=False):
     campaign = {"schema": 1, "kind": KIND, "scientific_digest": SCIENCE,
         "status": "starting", "actual_execution": True, "attempts": 1,
         "automatic_replay": False, "source_sha256": contract["source_sha256"],
-        "guard_process": own_process, "started_at_utc": utc(),
+        "guard_process": own_process,
+        "started_at_utc": datetime.fromtimestamp(ENTRY_EPOCH, timezone.utc).isoformat(),
         "entry_epoch": ENTRY_EPOCH, "entry_monotonic": ENTRY_MONOTONIC,
         "deadline_epoch": ENTRY_EPOCH + CAMPAIGN_SECONDS,
         "deadline_monotonic": ENTRY_MONOTONIC + CAMPAIGN_SECONDS,
@@ -140,8 +179,10 @@ def run(plan_path=PLAN, start=False):
             "campaign_entry_monotonic": ENTRY_MONOTONIC,
             "campaign_deadline_epoch": campaign["deadline_epoch"],
             "campaign_deadline_monotonic": campaign["deadline_monotonic"]}
-        deadline = min(guard["deadline_monotonic"], campaign["deadline_monotonic"])
-        require(time.monotonic() < deadline, "External stage/campaign budget exhausted")
+        deadline_epoch = min(guard["deadline_epoch"], campaign["deadline_epoch"])
+        deadline_monotonic = min(guard["deadline_monotonic"], campaign["deadline_monotonic"])
+        require(remaining_budget(deadline_epoch, deadline_monotonic) > 0,
+                "External stage/campaign budget exhausted")
         output.mkdir(parents=True, exist_ok=True)
         env = os.environ.copy()
         env.pop("GEOBC_AVAILABLE20_PREP_GUARD", None)
@@ -151,7 +192,8 @@ def run(plan_path=PLAN, start=False):
         argv = [sys.executable, "-u", "-m", module, "--plan", str(plan_path), "--start"]
         record = {"schema": 1, "kind": KIND, "purpose": purpose,
             "scientific_digest": SCIENCE, "guard": guard, "status": "starting",
-            "started_at_utc": utc(), "automatic_replay": False,
+            "started_at_utc": datetime.fromtimestamp(stage_epoch, timezone.utc).isoformat(),
+            "automatic_replay": False,
             "external_timeout": False, "child_argv": argv}
         launch = output / (purpose + "_external_launch.json")
         terminal = output / (purpose + "_external_terminal.json")
@@ -163,6 +205,9 @@ def run(plan_path=PLAN, start=False):
         interrupted = False
         try:
             with (output / (purpose + "_process.log")).open("x", encoding="utf-8") as log:
+                if remaining_budget(deadline_epoch, deadline_monotonic) <= 0:
+                    record["external_timeout"] = True
+                    raise subprocess.TimeoutExpired(argv, 0)
                 child = subprocess.Popen(argv, cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
                 child_process = process_snapshot(child.pid)
                 require(child_process is not None and child_process["ppid"] == own_process["pid"]
@@ -174,7 +219,7 @@ def run(plan_path=PLAN, start=False):
                 campaign["stages"][purpose] = record
                 write(launchfile, campaign)
                 try:
-                    code = child.wait(timeout=max(0., deadline - time.monotonic()))
+                    code = wait_dual_deadline(child, deadline_epoch, deadline_monotonic)
                 except subprocess.TimeoutExpired:
                     record["external_timeout"] = True
                     code, stop_error = terminate(child)
@@ -193,34 +238,34 @@ def run(plan_path=PLAN, start=False):
                 code, stop_error = terminate(child)
                 if stop_error:
                     record["termination_error_class"] = stop_error
-            record.update(status="terminal", exit_code=code, interrupted=interrupted,
-                          ended_at_utc=utc(), elapsed_seconds=time.monotonic() - stage_monotonic)
+            record.update(status="terminal", exit_code=code, interrupted=interrupted)
+            elapsed(record, stage_epoch, stage_monotonic)
             record["actual_child_exited"] = (
                 "child_process" in record and exact_process_exited(record["child_process"]))
             record["within_external_budget"] = (
                 not record["external_timeout"] and not interrupted
                 and record["actual_child_exited"] and code is not None
                 and "termination_error_class" not in record
-                and record["elapsed_seconds"] <= STAGE_SECONDS and time.monotonic() <= deadline)
+                and within_budget(record, STAGE_SECONDS, deadline_epoch, deadline_monotonic))
             write(terminal, record)
             # Include actual terminal persistence in the authoritative elapsed time.
-            record["elapsed_seconds"] = time.monotonic() - stage_monotonic
+            elapsed(record, stage_epoch, stage_monotonic)
             record["within_external_budget"] = (
-                record["within_external_budget"] and record["elapsed_seconds"] <= STAGE_SECONDS
-                and time.monotonic() <= deadline)
+                record["within_external_budget"]
+                and within_budget(record, STAGE_SECONDS, deadline_epoch, deadline_monotonic))
             write(terminal, record)
             campaign["stages"][purpose] = record
             write(launchfile, campaign)
-            record["elapsed_seconds"] = time.monotonic() - stage_monotonic
+            elapsed(record, stage_epoch, stage_monotonic)
             record["within_external_budget"] = (
-                record["within_external_budget"] and record["elapsed_seconds"] <= STAGE_SECONDS
-                and time.monotonic() <= deadline)
+                record["within_external_budget"]
+                and within_budget(record, STAGE_SECONDS, deadline_epoch, deadline_monotonic))
             write(terminal, record)
             # The acceptance check follows all normal receipt writes.  A final
             # boundary overrun stays negative even if its failure receipt is slow.
-            if time.monotonic() > deadline:
-                record.update(within_external_budget=False,
-                              elapsed_seconds=time.monotonic() - stage_monotonic)
+            if remaining_budget(deadline_epoch, deadline_monotonic) < 0:
+                elapsed(record, stage_epoch, stage_monotonic)
+                record["within_external_budget"] = False
                 write(terminal, record)
         return record
 
@@ -256,29 +301,30 @@ def run(plan_path=PLAN, start=False):
         raise
     finally:
         campaign.update(status="terminal", all_requested_stages_exited_normally=success,
-                        closed=True, active=False, ended_at_utc=utc(),
-                        elapsed_seconds=time.monotonic() - ENTRY_MONOTONIC)
-        campaign["between_stage_and_guard_overhead_seconds"] = max(
-            0., campaign["elapsed_seconds"] - sum(
-                item.get("elapsed_seconds", 0.) for item in campaign["stages"].values()))
+                        closed=True, active=False)
+        elapsed(campaign, ENTRY_EPOCH, ENTRY_MONOTONIC)
         campaign["within_external_budget"] = (
-            success and campaign["elapsed_seconds"] <= CAMPAIGN_SECONDS
+            success and within_budget(campaign, CAMPAIGN_SECONDS,
+                                      campaign["deadline_epoch"], campaign["deadline_monotonic"])
             and all(item.get("within_external_budget") is True for item in campaign["stages"].values()))
         write(terminalfile, campaign)
-        campaign["elapsed_seconds"] = time.monotonic() - ENTRY_MONOTONIC
+        elapsed(campaign, ENTRY_EPOCH, ENTRY_MONOTONIC)
         campaign["within_external_budget"] = (
-            campaign["within_external_budget"] and campaign["elapsed_seconds"] <= CAMPAIGN_SECONDS)
+            campaign["within_external_budget"] and within_budget(
+                campaign, CAMPAIGN_SECONDS, campaign["deadline_epoch"], campaign["deadline_monotonic"]))
         write(terminalfile, campaign)
         write(launchfile, campaign)
-        if time.monotonic() > campaign["deadline_monotonic"]:
-            campaign.update(within_external_budget=False,
-                            elapsed_seconds=time.monotonic() - ENTRY_MONOTONIC)
+        if remaining_budget(campaign["deadline_epoch"], campaign["deadline_monotonic"]) < 0:
+            elapsed(campaign, ENTRY_EPOCH, ENTRY_MONOTONIC)
+            campaign["within_external_budget"] = False
             write(terminalfile, campaign)
             write(launchfile, campaign)
     return {"status": "terminal", "actual_execution": True,
             "within_external_budget": campaign["within_external_budget"],
             "scientific_outcome": campaign.get("scientific_outcome"),
-            "elapsed_seconds": campaign["elapsed_seconds"]}
+            "elapsed_seconds": campaign["elapsed_seconds"],
+            "elapsed_epoch_seconds": campaign["elapsed_epoch_seconds"],
+            "clock_axis_difference_seconds": campaign["clock_axis_difference_seconds"]}
 
 
 def main():

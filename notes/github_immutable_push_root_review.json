@@ -1,12 +1,12 @@
 {
   "passed": true,
   "reviewer": "root",
-  "reviewed_at_utc": "2026-10-10T10:10:26.534402+00:00",
+  "reviewed_at_utc": "2026-10-10T12:40:40.256557+00:00",
   "source": "tools/push_reviewed_snapshot.ps1",
   "source_sha256": "e1e7251f74ce2f02851b2bc621c128eb0cdc39e85b02b8178b56fb767c877e3d",
   "whole_source_reviewed": true,
   "decision": "one_bounded_direct_HTTP11_immutable_private_snapshot_attempt",
-  "target_commit": "d31e7996ca011bcb6a3dc77b06cfcaa4e323615f",
+  "target_commit": "e40e38cd10aa375bab80637dc9248a40c75bce93",
   "ordinary_fast_forward_only": true,
   "preserve_existing_user_authorization": true,
   "required_identity": {
@@ -17,15 +17,15 @@
   },
   "local_snapshot_review": {
     "prepared_by": "tools/publish_private_repo.ps1 -PrepareSnapshot",
-    "elapsed_seconds": 5.9029206,
+    "elapsed_seconds": 5.9279645,
     "exit_code": 0,
-    "file_count": 2283,
-    "bytes": 245420583,
+    "file_count": 2304,
+    "bytes": 245864474,
     "metadata_reviewed": true,
-    "local_ancestor_f621_verified_exit0": true,
-    "tracked_delta_files": 31,
+    "local_ancestor_d31_verified_exit0": true,
+    "tracked_delta_files": 32,
     "untracked_publication_receipt_excluded": true,
-    "contents": "frozen reviewed PP/FNO/report/guards; explicit running/queued status and genuine input-negative; no new PP/FNO results, no arrays/PT/raw data"
+    "contents": "frozen reviewed CAD20 preparation/evaluation/one-shot guard and CPU exporters; PP14080 running plus genuine saved4800/loss diagnostics; no PP24k/FNO/new20 results, no arrays/PT/raw data"
   },
   "AST": {
     "parse_count": 1,
@@ -43,5 +43,6 @@
     "Failure after mutation remains unknown until remote verification"
   ],
   "actual_new_target_push_executed": false,
-  "historical_verified_f621_receipt": "notes/github_immutable_push_f621_receipt.json"
+  "historical_verified_f621_receipt": "notes/github_immutable_push_f621_receipt.json",
+  "historical_verified_d31_receipt": "notes/github_immutable_push_d31_receipt.json"
 }

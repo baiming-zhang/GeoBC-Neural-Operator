@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "kind": "root_actual_FNO_pair_guard_child_capture",
+  "observed_at_utc": "2026-10-10T15:50:59.885446+00:00",
+  "guard_process": {
+    "pid": 287,
+    "ppid": 286,
+    "start_ticks": 7239,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_fno_pair_guard"
+    ]
+  },
+  "child_process": {
+    "pid": 380,
+    "ppid": 287,
+    "start_ticks": 7296,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "geobc.fno_local_condition_pair",
+      "--plan",
+      "notes/geobc_fno_local_condition_pair_plan.json",
+      "--start"
+    ]
+  },
+  "actual_guard_and_child_exact_alive": true,
+  "guard_source_sha256": "2667cde14afa4761e8b79fdd5e2c077f9d4923fd9921faaf2674f3f028302cda",
+  "started_at_utc": "2026-10-10T15:49:45.299558+00:00",
+  "original_deadline_epoch": 1791656385.2995582,
+  "PP_real_terminal_before_launch": true,
+  "scientific_outcome_not_claimed": true
+}

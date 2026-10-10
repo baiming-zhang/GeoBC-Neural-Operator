@@ -30,7 +30,7 @@
     "geobc/fno_local_condition_pair.py": "c1d5884bd5ab704856d0677fa00c6234477985cd4a324791997e3f6f52bc2ff5",
     "geobc/available_cad_pilot_data.py": "1fbc7e7b82009fa8086d12a37f91cc624d8b634cb314715be74cfd3fa80dba1e",
     "geobc/available_cad_pilot_eval.py": "8272c72ed09ec62309d31abff54eafb1762fa7a4434e809f1975064849c7bb15",
-    "tools/run_geobc_available_pilot_guard.py": "ab58950909501402c7ef9114e482e5571271806a1669a904c627d3cd32563a2b"
+    "tools/run_geobc_available_pilot_guard.py": "78099936f0704153c655e55f4c832ccccad363c50aeab6be6a416c9eb323489f"
   },
   "source_files_fully_reviewed": [
     "geobc/available_cad_pilot_data.py",
@@ -78,5 +78,26 @@
     "Only then20 original CSV12-column parses shared once; signed mm/MPa, original nodes, exact complete60/perload20 denominators; no original20DEV/final test access"
   ],
   "final_solver_selected": false,
-  "original_protocol_status_unchanged": "source540/input660/prediction2400 original fixed protocol remains acquisition input-negative317/540, not resized by this separate conditional pilot"
+  "original_protocol_status_unchanged": "source540/input660/prediction2400 original fixed protocol remains acquisition input-negative317/540, not resized by this separate conditional pilot",
+  "guard_time_axis_revisions": [
+    {
+      "prior_source_sha256": "ab58950909501402c7ef9114e482e5571271806a1669a904c627d3cd32563a2b",
+      "source_sha256": "78099936f0704153c655e55f4c832ccccad363c50aeab6be6a416c9eb323489f",
+      "reviewer": "root",
+      "reviewed_at_utc": "2026-10-10T15:15:48.477107+00:00",
+      "whole_changed_guard_source_reviewed": true,
+      "AST": {
+        "passed": true,
+        "parse_count": 1,
+        "seconds": 0.0014115001540631056,
+        "module_imported_or_executed": false
+      },
+      "science_and_original_budgets_unchanged": true,
+      "dual_epoch_monotonic_budget_checks": true,
+      "original_monotonic_fields_preserved": true,
+      "new_epoch_fields_and_difference_recorded": true,
+      "true_nonexit_and_timeout_negative_preserved": true,
+      "actual_execution_started": false
+    }
+  ]
 }

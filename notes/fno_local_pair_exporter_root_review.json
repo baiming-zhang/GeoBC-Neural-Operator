@@ -1,12 +1,12 @@
 {
   "passed": true,
   "reviewer": "root",
-  "reviewed_at_utc": "2026-10-10T12:35:30.553670+00:00",
+  "reviewed_at_utc": "2026-10-10T15:15:48.477107+00:00",
   "source": "tools/export_fno_local_pair.py",
-  "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+  "source_sha256": "266ef9390098e8dd649127e09246ae2347004ba2b1d4d85685c82f839f16728b",
   "scientific_digest": "192ccffe2a79bf63cdd2e8199dd2b9fab79dd29ad8eb10ed689c78dd10e26b51",
   "whole_source_reviewed": true,
-  "source_ready_sha256": "55c3d0b3553730373ca6659640b3cbd89a1f9d8104819de67c24d598b72a8cf3",
+  "source_ready_sha256": "da157d66ac0f4027e884c33bb547f2739e1e78ac495b96f8de3f7b5a90a2c934",
   "independent_source_schema_review_by": "solver_choice_review",
   "actual_export_released": true,
   "release_is_conditional_on_authentic_FNO_terminal_closed_clock_exact_guard_child_exit": true,
@@ -16,8 +16,8 @@
   "AST": {
     "passed": true,
     "parse_count": 1,
-    "seconds": 0.004850875000556698,
-    "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+    "seconds": 0.0045314050003071316,
+    "source_sha256": "266ef9390098e8dd649127e09246ae2347004ba2b1d4d85685c82f839f16728b",
     "module_imported_or_executed": false,
     "stdlib_top_level_imports": [
       "__future__",
@@ -43,5 +43,42 @@
     "nonexact costs/timeouts/budget/exit failures cannot qualify",
     "scientific-negative distinct from artifact completion; missing plots completed_incomplete and exit1",
     "no array/PT/raw/GT/model/inference or experiment API calls; lazy CPU Agg plots only"
-  ]
+  ],
+  "revision_history": [
+    {
+      "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+      "source_ready_sha256": "55c3d0b3553730373ca6659640b3cbd89a1f9d8104819de67c24d598b72a8cf3",
+      "reviewed_at_utc": "2026-10-10T12:35:30.553670+00:00",
+      "AST": {
+        "passed": true,
+        "parse_count": 1,
+        "seconds": 0.004850875000556698,
+        "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+        "module_imported_or_executed": false,
+        "stdlib_top_level_imports": [
+          "__future__",
+          "argparse",
+          "csv",
+          "datetime",
+          "hashlib",
+          "json",
+          "math",
+          "os",
+          "pathlib",
+          "re",
+          "time"
+        ],
+        "default_export_is_False": true
+      }
+    }
+  ],
+  "clock_axis_revision_review": {
+    "changed_sections_reviewed": true,
+    "both_axes_budget_qualified": true,
+    "recorded_monotonic_retained": true,
+    "phase_UTC_null_not_rescaled": true,
+    "difference_cause_not_inferred": true,
+    "scientific_rules_unchanged": true,
+    "source_only_no_experiment_calls": true
+  }
 }

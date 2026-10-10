@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "kind": "root_PP_actual_interruption_checkpoint_inspection",
+  "observed_at_utc": "2026-10-10T15:11:04.056841+00:00",
+  "original_attempt_id": "1791622838087995693",
+  "exact_process_exit_proofs": {
+    "child": {
+      "pid": 364,
+      "start_ticks": 5381,
+      "observed_at_utc": "2026-10-10T15:11:02.047463+00:00",
+      "exact_process_exited": true,
+      "observation": "PID absent"
+    },
+    "guard": {
+      "pid": 282,
+      "start_ticks": 5350,
+      "observed_at_utc": "2026-10-10T15:11:02.047504+00:00",
+      "exact_process_exited": true,
+      "observation": "PID absent"
+    }
+  },
+  "first_observed_absence_UTC": "2026-10-10T14:59:31.106495+00:00",
+  "absence_epoch_is_upper_bound_not_exact_exit": true,
+  "original_external_guard_terminal_missing": true,
+  "original_status_step": 23425,
+  "original_loss_rows": 23444,
+  "checkpoint_metadata": {
+    "step": 23161,
+    "next_case_position": 23161,
+    "scheduler_last_epoch": 23161,
+    "case_exposure_sum": 23161,
+    "case_count": 120,
+    "min_exposure": 193,
+    "max_exposure": 194,
+    "rng_sections": [
+      "python",
+      "numpy",
+      "torch",
+      "cuda"
+    ],
+    "optimizer_state_entries": 371,
+    "optimizer_groups": 1,
+    "checkpoint_read_receipt": {
+      "optimizer_steps": 23161,
+      "backward_calls": 23161,
+      "scheduler_steps": 23161,
+      "gradient_clip_calls": 23161
+    },
+    "checkpoint": {
+      "path": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION/last.pt",
+      "bytes": 54491143,
+      "mtime_ns": 1791643630169834900,
+      "sha256": "162851f262c2bbc9ba42356b03c82a8577490fec41ad17433b5fbb86203bf296"
+    }
+  },
+  "rollback_uncommitted_updates": 283,
+  "immutable_history": {
+    "status.json": {
+      "bytes": 603,
+      "sha256": "9e2a5c226856c6495e257699f543c2c29766569d7d76dbc6e8ee68d58061da37"
+    },
+    "clock.json": {
+      "bytes": 378,
+      "sha256": "3f68ff0c348ac08dfcff4696d08a9ee51fbdd8e203b73a63d621703612059cc5"
+    },
+    "execution.json": {
+      "bytes": 377,
+      "sha256": "c336430c70c4bb4eda4979d8a1732d70c4741b61f694f528a62c2423bb882ac2"
+    },
+    "external_launch.json": {
+      "bytes": 474,
+      "sha256": "59fb552430d662bb201b611a9829cf4b4c2ed7fa2aba652adc2983f7830aeac8"
+    },
+    "costs.json": {
+      "bytes": 264,
+      "sha256": "18b59a4adf122bf37b9e76cf7385cfdb406045256490383719579bfb0a65797b"
+    },
+    "read_receipt.json": {
+      "bytes": 858,
+      "sha256": "7baf814be674b685a68ec1716285f7d00afbbae3ed18f3a5c0b16ae25c8a9961"
+    },
+    "loss.jsonl": {
+      "bytes": 6087988,
+      "sha256": "7b5bc0bcadb879287330d283e940e019cfe32f95531ce12c3d38a52cb670fdad"
+    },
+    "process.log": {
+      "bytes": 607,
+      "sha256": "4ebac282a32aad750f4e0dfc2db3afa3c2f8ffc22bf1ea1d9502de010e1dedb5"
+    }
+  },
+  "inspection_elapsed_monotonic_seconds": 2.0128256950000005,
+  "scientific_raw_or_GT_reads": 0,
+  "GPU_operations": 0,
+  "own_PT_CPU_read": true,
+  "original_checkpoint_modified": false,
+  "resume_started": false
+}

@@ -1,0 +1,54 @@
+{
+  "observed_at_utc": "2026-10-10T15:50:59.885446+00:00",
+  "external_launch_present": true,
+  "status": "running",
+  "guard_source_sha256": "2667cde14afa4761e8b79fdd5e2c077f9d4923fd9921faaf2674f3f028302cda",
+  "child_pid": 380,
+  "child_process": {
+    "pid": 380,
+    "ppid": 287,
+    "start_ticks": 7296,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "geobc.fno_local_condition_pair",
+      "--plan",
+      "notes/geobc_fno_local_condition_pair_plan.json",
+      "--start"
+    ]
+  },
+  "guard_process": {
+    "pid": 287,
+    "ppid": 286,
+    "start_ticks": 7239,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_fno_pair_guard"
+    ]
+  },
+  "started_at_utc": "2026-10-10T15:49:45.299558+00:00",
+  "deadline_epoch": 1791656385.2995582,
+  "exit_code": null,
+  "child_process_exact_alive": true,
+  "guard_process_exact_alive": true,
+  "native_status": {
+    "status": "running",
+    "phase": "training",
+    "arm": "FNO_latent_query_grid25",
+    "step": 64
+  },
+  "native_clock": {
+    "phase": "training",
+    "arm": "FNO_latent_query_grid25",
+    "closed": false,
+    "active": true,
+    "cumulative_wall_seconds": 69.12985958900002,
+    "training_seconds": {
+      "FNO_latent_query_grid25": 18.796610447999868,
+      "FNO_latent_query_native25": 0.0
+    }
+  }
+}

@@ -27,7 +27,7 @@
     "tools/start_geobc_coverage_comparison.ps1": "4d1cdf1675c5f7d38d6a7ba2b2c3bdf4dcafbb1e6b0808f712e32ced3cea9905",
     "tools/start_geobc_coverage_fetch.ps1": "7f90ffd8a758c2f3b7f5248370aa1e1f8631af9b56ca7fdc1a19070b17caba9a",
     "geobc/coverage_train_fit_diagnostic.py": "b8a398c540f778f4467d5fea834ca215fd800798808b671b9c554b4da5fed2fe",
-    "tools/run_geobc_fno_pair_guard.py": "62f2a854e1c79a72af2776a06b20341e1944a0d43673a8d52c5bd37c690b06a8",
+    "tools/run_geobc_fno_pair_guard.py": "2667cde14afa4761e8b79fdd5e2c077f9d4923fd9921faaf2674f3f028302cda",
     "geobc/fno_local_condition_pair.py": "c1d5884bd5ab704856d0677fa00c6234477985cd4a324791997e3f6f52bc2ff5"
   },
   "reviewer": "root",
@@ -44,7 +44,7 @@
     "actual_scientific_execution": 0
   },
   "metadata_review_seconds": 2.9129917740001474,
-  "actual_FNO_execution_started": false,
+  "actual_FNO_execution_started": true,
   "scientific_array_or_GT_reads": 0,
   "model_constructions": 0,
   "GPU_calls": 0,
@@ -65,5 +65,29 @@
     "scientific_digest_unchanged": true,
     "actual_FNO_execution_started": false,
     "raw_array_checkpoint_GT_GPU_reads": 0
-  }
+  },
+  "guard_time_axis_revisions": [
+    {
+      "prior_source_sha256": "62f2a854e1c79a72af2776a06b20341e1944a0d43673a8d52c5bd37c690b06a8",
+      "source_sha256": "2667cde14afa4761e8b79fdd5e2c077f9d4923fd9921faaf2674f3f028302cda",
+      "reviewer": "root",
+      "reviewed_at_utc": "2026-10-10T15:15:48.477107+00:00",
+      "whole_changed_guard_source_reviewed": true,
+      "AST": {
+        "passed": true,
+        "parse_count": 1,
+        "seconds": 0.0008378000929951668,
+        "module_imported_or_executed": false
+      },
+      "science_and_original_budgets_unchanged": true,
+      "dual_epoch_monotonic_budget_checks": true,
+      "original_monotonic_fields_preserved": true,
+      "new_epoch_fields_and_difference_recorded": true,
+      "true_nonexit_and_timeout_negative_preserved": true,
+      "actual_execution_started": false
+    }
+  ],
+  "actual_execution_identity": "notes/fno_local_pair_actual_identity.json",
+  "first_actual_fullN_gradient_passed": true,
+  "actual_started_UTC": "2026-10-10T15:49:45.299558+00:00"
 }

@@ -153,7 +153,7 @@
     "actual_FNO_execution_started": false,
     "raw_array_checkpoint_GT_GPU_reads": 0
   },
-  "root_final_guard_source_sha256": "62f2a854e1c79a72af2776a06b20341e1944a0d43673a8d52c5bd37c690b06a8",
+  "root_final_guard_source_sha256": "2667cde14afa4761e8b79fdd5e2c077f9d4923fd9921faaf2674f3f028302cda",
   "root_final_source_pins": {
     "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
     "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
@@ -178,5 +178,26 @@
     "geobc/coverage_train_fit_diagnostic.py": "b8a398c540f778f4467d5fea834ca215fd800798808b671b9c554b4da5fed2fe",
     "tools/run_geobc_fno_pair_guard.py": "62f2a854e1c79a72af2776a06b20341e1944a0d43673a8d52c5bd37c690b06a8",
     "geobc/fno_local_condition_pair.py": "c1d5884bd5ab704856d0677fa00c6234477985cd4a324791997e3f6f52bc2ff5"
-  }
+  },
+  "root_guard_time_axis_revisions": [
+    {
+      "prior_source_sha256": "62f2a854e1c79a72af2776a06b20341e1944a0d43673a8d52c5bd37c690b06a8",
+      "source_sha256": "2667cde14afa4761e8b79fdd5e2c077f9d4923fd9921faaf2674f3f028302cda",
+      "reviewer": "root",
+      "reviewed_at_utc": "2026-10-10T15:15:48.477107+00:00",
+      "whole_changed_guard_source_reviewed": true,
+      "AST": {
+        "passed": true,
+        "parse_count": 1,
+        "seconds": 0.0008378000929951668,
+        "module_imported_or_executed": false
+      },
+      "science_and_original_budgets_unchanged": true,
+      "dual_epoch_monotonic_budget_checks": true,
+      "original_monotonic_fields_preserved": true,
+      "new_epoch_fields_and_difference_recorded": true,
+      "true_nonexit_and_timeout_negative_preserved": true,
+      "actual_execution_started": false
+    }
+  ]
 }

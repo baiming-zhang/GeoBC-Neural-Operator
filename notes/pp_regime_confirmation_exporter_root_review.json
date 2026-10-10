@@ -1,13 +1,13 @@
 {
   "passed": true,
   "reviewer": "root",
-  "reviewed_at_utc": "2026-10-10T10:03:28.101286+00:00",
+  "reviewed_at_utc": "2026-10-10T15:50:27.736543+00:00",
   "source": "tools/export_pp_regime_confirmation.py",
-  "source_sha256": "9ba88f662a6faa04a6c255ef52b12e139835b3288b6c9e317425151a035843fb",
+  "source_sha256": "54e7daa76d1ac16f683fe3872d7d2cf11e50bd58bedbb6f7e1051ee3bcdf14e2",
   "whole_source_reviewed": true,
-  "source_ready_sha256": "a0d03c22f68856baedc29c8380f5f3268e2c183cc3569f9a15cef4fa51659fe7",
+  "source_ready_sha256": "2561319e7eefde86572773b14f5f9423119ec3c02159e752c4a549844cf81750",
   "decision": "CPU_saved_scalar_export_only_after_genuine_native_terminal_closed_clock_exact_process_exit_and_guard_terminal",
-  "actual_export_executed": false,
+  "actual_export_executed": true,
   "default_executed": false,
   "arrays_GT_PT_GPU_reads": 0,
   "reviewed_properties": [
@@ -19,5 +19,78 @@
     "PNG/SVG standard delayed Matplotlib/Agg",
     "saved scalars only, JSON checkpoint index without PT reads",
     "recheck exact exit and closure hashes immediately before output creation"
-  ]
+  ],
+  "revision_history": [
+    {
+      "source_sha256": "9ba88f662a6faa04a6c255ef52b12e139835b3288b6c9e317425151a035843fb",
+      "source_ready_sha256": "a0d03c22f68856baedc29c8380f5f3268e2c183cc3569f9a15cef4fa51659fe7",
+      "reviewed_at_utc": "2026-10-10T10:03:28.101286+00:00",
+      "decision": "CPU_saved_scalar_export_only_after_genuine_native_terminal_closed_clock_exact_process_exit_and_guard_terminal"
+    },
+    {
+      "source_sha256": "5e522bb670bc7be6a125f35d1a1097eb1d0c289fd8146c7606afbd589e5f726c",
+      "source_ready_sha256": "3035a5aab27917654d56261bd4b91890f6a539161cb82f7b15bccdde072ffa9e",
+      "reviewed_at_utc": "2026-10-10T14:49:40.717180+00:00",
+      "AST": {
+        "parsed": true,
+        "parse_count": 1,
+        "source_executed": false,
+        "elapsed_seconds": 0.004670899827033281
+      }
+    },
+    {
+      "source_sha256": "e6aeef606022a93923cf9bd8e818bcd216cf4c0bb37546653eed38d495c9fe4b",
+      "source_ready_sha256": "fd229bfb5516769024ed46bbcd7b945523e5b5b6e656686ef5dfa092886638ce",
+      "reviewed_at_utc": "2026-10-10T15:46:05.043205+00:00",
+      "AST": {
+        "parsed": true,
+        "parse_count": 1,
+        "source_executed": false,
+        "elapsed_seconds": 0.004924699896946549
+      }
+    }
+  ],
+  "actual_export_released": true,
+  "AST": {
+    "parsed": true,
+    "parse_count": 1,
+    "source_executed": false,
+    "elapsed_seconds": 0.005447200033813715
+  },
+  "time_axis_revision_review": {
+    "changed_sections_reviewed": true,
+    "UTC_external_span_separately_computed_from_authentic_original_start_end": true,
+    "native_and_guard_monotonic_retained": true,
+    "phase_UTC_not_recorded_not_rescaled": true,
+    "whole_budget_both_axes_required": true,
+    "difference_cause_undetermined": true,
+    "live_PP_sources_unchanged": true,
+    "missing_plots_completed_incomplete_exit1": true,
+    "science_endpoint_cases_budgets_unchanged": true
+  },
+  "checkpoint_recovery_support_review": {
+    "original_launch_preserved_and_hashed": true,
+    "actual_new_guard_helper_and_immutable_root_approval_bound": true,
+    "original_and_recovery_process_exit_verified": true,
+    "unknown_whole_monotonic_and_extra_computation_do_not_qualify_exact": true,
+    "all120_physical_thresholds_separately_reported": true,
+    "phase_UTC_not_rescaled": true
+  },
+  "actual_export_completed_UTC": "2026-10-10T15:48:49.659860+00:00",
+  "actual_artifact_manifest_SHA": "fc5103177a011c8810e81791f10a43e92149c20f4aede300e821e0d9ee05cc74",
+  "actual_scientific_qualification_passed": false,
+  "optimizer_plot_visual_QA": "root viewed actual PNG: four saved-scalar panels legible, fixed24000 axis and missing endpoint explicit",
+  "saved_report_correction": {
+    "schema": 1,
+    "kind": "root_saved_PP_negative_report_correction",
+    "corrected_at_utc": "2026-10-10T15:50:27.736543+00:00",
+    "prior_manifest_sha256": "b1a2b310fae6bc9d3640fd9d52b0bfe52b76469a12d59fba327bf73533fa66c8",
+    "prior_BRIEF_sha256": "7dcdf4aa8daf737f1fd0ff8c52d62bc5551c214a283c1dede75d24581da17c95",
+    "manifest_sha256": "fc5103177a011c8810e81791f10a43e92149c20f4aede300e821e0d9ee05cc74",
+    "source_sha256": "54e7daa76d1ac16f683fe3872d7d2cf11e50bd58bedbb6f7e1051ee3bcdf14e2",
+    "actual_final24000_metrics_complete": false,
+    "optimizer_traces_and_other_native_metrics_unchanged": true,
+    "new_inference_or_GPU_operations": 0
+  },
+  "actual_export_source_revision": "e6aeef606022a93923cf9bd8e818bcd216cf4c0bb37546653eed38d495c9fe4b"
 }

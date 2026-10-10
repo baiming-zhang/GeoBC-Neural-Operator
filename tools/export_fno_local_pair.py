@@ -310,6 +310,11 @@ def build_metrics(inputs):
         costs["training_seconds"] = clock.get("training_seconds", {}).get(name)
         costs["arm_wall_seconds"] = clock.get("arm_wall_seconds", {}).get(name)
         costs["authoritative_closed_clock"] = True
+        costs["native_clock_axis"] = "monotonic; any unknown interruption charge is disclosed separately"
+        costs["training_epoch_UTC_seconds"] = None
+        costs["arm_wall_epoch_UTC_seconds"] = None
+        costs["phase_epoch_UTC_seconds"] = None
+        costs["epoch_UTC_phase_status"] = "not_recorded"
         arms[name] = {"status": record.get("status", "missing"), "actual_endpoint_step": record.get("endpoint_step"),
             "completed4800": fixed, "balanced40_exposures_each_case": balanced,
             "fixed0": full120_metrics(endpoints.get("0"), keys, expected_step=0),
@@ -346,15 +351,28 @@ def build_metrics(inputs):
                              and finite(arms[name]["fixed4800"]["aggregate"][metric], True) else None for name in ARMS}
     inner_wall = clock.get("cumulative_wall_seconds")
     external_wall = launch["elapsed_launch_to_exit_seconds"]
+    external_epoch_wall = launch.get("elapsed_epoch_launch_to_exit_seconds")
+    axis_difference = launch.get("clock_axis_difference_seconds")
+    axes_consistent = (finite(external_wall, True) and finite(external_epoch_wall, True)
+                       and finite(axis_difference)
+                       and abs(axis_difference - (external_epoch_wall - external_wall)) <= 1e-6)
+    external_axes_within = (axes_consistent and external_wall <= 9000 and external_epoch_wall <= 9000)
     unknown_charge = clock.get("unknown_interruption_charge_seconds")
     wall_ordered = (finite(inner_wall, True) and finite(external_wall, True)
                     and external_wall >= inner_wall)
     cost_exact = (launch.get("in_flight_costs_exact") is True and launch["external_timeout"] is False
                   and launch["exit_code"] == 0 and launch["within_external_budget"] is True
-                  and wall_ordered and finite(unknown_charge, True) and unknown_charge == 0.)
+                  and wall_ordered and external_axes_within
+                  and finite(unknown_charge, True) and unknown_charge == 0.)
     budgets = {"each_training_seconds_max": 3600, "whole_inner_wall_seconds_max": 9000,
                "actual_inner_wall_seconds": inner_wall,
                "actual_guard_launch_to_child_exit_seconds": external_wall,
+               "actual_guard_epoch_launch_to_child_exit_seconds": external_epoch_wall,
+               "clock_axis_difference_seconds": axis_difference,
+               "clock_axis_difference_consistent": axes_consistent,
+               "both_guard_clock_axes_within_9000_seconds": external_axes_within,
+               "conservative_guard_launch_to_child_exit_seconds": max(external_wall, external_epoch_wall)
+                   if finite(external_wall, True) and finite(external_epoch_wall, True) else None,
                "external_timeout": launch["external_timeout"], "within_external_budget": launch["within_external_budget"],
                "external_exit_code": launch["exit_code"],
                "in_flight_costs_exact": launch.get("in_flight_costs_exact") is True,
@@ -363,14 +381,24 @@ def build_metrics(inputs):
                "unknown_interruption_charge_seconds": unknown_charge,
                "arm_training_seconds": clean(clock.get("training_seconds", {})),
                "arm_wall_seconds": clean(clock.get("arm_wall_seconds", {})),
-               "phase_seconds": clean(clock.get("phase_seconds", {}))}
+               "phase_seconds": clean(clock.get("phase_seconds", {})),
+               "native_clock_axis": "monotonic; unknown interruption epoch charge remains separate",
+               "guard_elapsed_clock_axis": "monotonic",
+               "guard_epoch_elapsed_clock_axis": "epoch/UTC",
+               "clock_axis_difference_definition": "epoch elapsed minus monotonic elapsed",
+               "phase_epoch_UTC_seconds": None, "arm_epoch_UTC_seconds": None,
+               "training_epoch_UTC_seconds": None, "epoch_UTC_phase_status": "not_recorded"}
     within = (finite(budgets["actual_inner_wall_seconds"], True) and budgets["actual_inner_wall_seconds"] < 9000
               and launch["within_external_budget"] is True and launch["external_timeout"] is False
               and budgets["cost_accounting_exact"] and budgets["external_wall_covers_inner_closed_clock"]
+              and finite(external_wall, True) and external_wall <= 9000
+              and finite(external_epoch_wall, True) and external_epoch_wall <= 9000
+              and budgets["both_guard_clock_axes_within_9000_seconds"]
               and finite(budgets["unknown_interruption_charge_seconds"], True)
               and budgets["unknown_interruption_charge_seconds"] == 0.
               and all(finite(clock.get("training_seconds", {}).get(name), True)
                       and clock["training_seconds"][name] <= 3600 for name in ARMS))
+    budgets["within_frozen_training_and_both_wall_axes_budget"] = bool(within)
     qualified = (summary["status"] == "completed" and named_equal and within
                  and left["parameters"] is not None and left["parameters"] == right["parameters"]
                  and all(arms[name]["completed4800"] and arms[name]["balanced40_exposures_each_case"]
@@ -534,7 +562,7 @@ def brief(metrics, plot_status):
     gate = "通过" if metrics["reproduced_TRAIN_representation_gate_passed"] else "未通过"
     lines = ["# FNO局部条件表示配对：保存标量导出", "", opening + " native25与grid25的唯一局部因子是原节点features25或同一输入网格的roundtrip features25；新decoder其余结构、初始张量、曝光规则和scaler相同。", "",
              "TRAIN表示推进门" + gate + "，该相对结果不自动选择新decoder。应同时对照旧FNO4800的绝对U、signed S、top1%abs原S hotspot误差、最坏病例、成本与参数数。TRAIN120不是held20结果，也不提供总体泛化、家族上限或工程资格。", "",
-             "| 固定4800参考 | U均值 / 最坏 | signed S均值 / 最坏 | hotspot均值 / 最坏 | 参数 | 真训练秒 / arm wall秒 |",
+             "| 固定4800参考 | U均值 / 最坏 | signed S均值 / 最坏 | hotspot均值 / 最坏 | 参数 | monotonic训练秒 / arm秒 |",
              "|---|---:|---:|---:|---:|---:|"]
     rows = [("新grid25", left["fixed4800"], left["parameters"], left["costs"].get("training_seconds"), left["costs"].get("arm_wall_seconds")),
             ("新native25", right["fixed4800"], right["parameters"], right["costs"].get("training_seconds"), right["costs"].get("arm_wall_seconds")),
@@ -551,11 +579,13 @@ def brief(metrics, plot_status):
     if worse:
         lines += ["", "新native25仍高于旧FNO的完整120指标：" + "、".join(metrics["metric_labels"][name] for name in worse)
                   + "；即使配对门通过，也须保留旧FNO作为绝对参考，不能据此自动替换decoder。"]
-    lines += ["", "新pair真实总wall：内部闭合时钟 " + format_value(costs["actual_inner_wall_seconds"], 7)
-              + " 秒；外guard launch至child退出 " + format_value(costs["actual_guard_launch_to_child_exit_seconds"], 7)
-              + " 秒。预算为每臂训练3600秒、整体9000秒；外timeout=" + str(costs["external_timeout"])
+    lines += ["", "新pair保存计时：native闭合monotonic累计 " + format_value(costs["actual_inner_wall_seconds"], 7)
+              + " 秒；外guard launch至child退出monotonic " + format_value(costs["actual_guard_launch_to_child_exit_seconds"], 7)
+              + " 秒，真实epoch/UTC " + format_value(costs["actual_guard_epoch_launch_to_child_exit_seconds"], 7)
+              + " 秒，两轴差(epoch−monotonic) " + format_value(costs["clock_axis_difference_seconds"], 7)
+              + " 秒。预算要求两条外轴各≤9000秒、native累计<9000秒，各臂原monotonic训练≤3600秒；外timeout=" + str(costs["external_timeout"])
               + "，exit=" + str(costs["external_exit_code"]) + "，cost accounting exact=" + str(costs["cost_accounting_exact"])
-              + "。未知区间保留为nonexact成本。旧FNO表中wall是其保存的原训练attempt，读出成本单列于metrics，二者不冒充相同总计算预算。", "",
+              + "。未知区间保留为nonexact成本。native各phase/arm/训练保留原monotonic值；phase/arm/训练的epoch/UTC耗时未记录，均为null，不按总轴差缩放。旧FNO表中wall是其保存的原训练attempt，读出成本单列于metrics，二者不冒充相同总计算预算。", "",
               "同名初始张量完全一致=" + str(metrics["named_initial_pair"]["exact_named_tensor_identity_equal"])
               + "；真实首个完整TRAIN反传通过（grid/native）=" + str(left["first_actual_gradient_passed"])
               + "/" + str(right["first_actual_gradient_passed"]) + "。具体梯度、参数组、曝光、停止原因、预算和缺失原因见[metrics.json](metrics.json)。",
@@ -655,6 +685,7 @@ def export_saved(plan_path=PLAN, export=False):
     binding["inputs"] = inputs["input_receipt"]
     manifest = {"kind": EXPORT_KIND, "status": artifact_status, "binding": binding, "files": files,
                 "created_at_utc": datetime.now(timezone.utc).isoformat(), "CPU_export_seconds": time.monotonic() - began,
+                "CPU_export_clock_axis": "monotonic",
                 "actual_export": True, "fixed_TRAIN_denominator": 120, "fixed_update": 4800,
                 "export_artifacts_complete": not incomplete_reasons, "incomplete_reasons": incomplete_reasons,
                 "both_fixed4800_qualified": metrics["both_fixed4800_qualified"],

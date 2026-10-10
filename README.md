@@ -30,7 +30,7 @@
 
 扩展数据恢复的原绝对6小时预算已在北京时间2026-10-10 16:15:02截止，16:18:27实际finalize为budget_exhausted：完整317/540、缺223。Drive/HF连接故障未恢复，父协调器16:18:56报告输入失败并真实退出；不换CAD、不开新DEV、不将该失败解释为方法效果。五个40-CAD模型和已完成读出全部保留。见[输入负结果](results/geobc_coverage_input_negative/BRIEF.md)。
 
-Transolver++作者制度移植已于北京时间17:00实际启动并通过首个全节点样本的梯度检查：保留模型/原数据/尺度，fresh2026，Adam+OneCycle+clip，固定24000更新/200遍；20:32观察14080/24000步、已训练193.5分钟，按实测预计22:52左右结束，8小时训练/30000秒整体上限。仅原TRAIN120，固定4800与24000读出；首4800全120读出已完成，U/S为44.2%/80.1%，未优于旧4800的37.6%/77.6%，不据此改端点或宣称24k结论；FNO局部条件表示配对源码已通过根审，排队等待PP真实结束退出后运行；当前尚未开始FNO训练。仅在真实终态与进程退出后，一页TRAIN对比导出器才读取保存的标量；不重跑推理。见[两条宏观设计](notes/geobc_after_fixed4800_solver_design.md)。
+Transolver++制度确认中断后完整检查点恢复触发原24GiB reserved上限，真实终态23166/24000；最终24000指标缺失，不以中途checkpoint替代，不重置预算。实际UTC跨度6小时33分、native训练328.6分钟，两种时间轴与未知区间分别记录。[本轮负结果和已保存端点](results/geobc_pp_regime_confirmation/BRIEF.md)已完成CPU导出与图验收。新4800全120例U/S44.2%/80.1%，旧4800为37.6%/77.6%，同曝光未改善；资源负结果不是Transolver家族泛化失败。FNO局部25条件配对于23:49真实启动，首个全节点PointNet/FNO/head及两leaf梯度通过；暂估10月11日00:45结束，整体9000秒原上限。之后继续固定20新CAD×三载荷、九候选比较，缺失PP24000保留为真实固定端点失败。见[两条宏观设计](notes/geobc_after_fixed4800_solver_design.md)。
 
 
 原新增160TRAIN中已有102个CAD的FieldMesh/Field/SolverDeck源收据齐全。另立[独立缓存候选协议](notes/geobc_available_cad_pilot_plan.json)，固定字符串排序前20CAD×三载荷，对九个既有/计划固定端点先提交全部540份预测或真实失败，再共享读取标签。当前仅SOURCE实现，输入字段、GRID对齐与缓存未验证，准备与评估均未释放；源准备含CUDA，等待++及FNO真实退出后运行。该数据可用性条件pilot不替代原封存20DEV/540源协议，病例以后进入200TRAIN即不再held。

@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "status": "source_ready_new_time_axes_revision_not_root_released_not_executed",
+  "created_at_utc": "2026-10-10T15:10:32.440425+00:00",
+  "source": "tools/run_geobc_fno_pair_guard.py",
+  "final_source_sha256": "2667cde14afa4761e8b79fdd5e2c077f9d4923fd9921faaf2674f3f028302cda",
+  "source_bytes": 7432,
+  "scientific_digest": "192ccffe2a79bf63cdd2e8199dd2b9fab79dd29ad8eb10ed689c78dd10e26b51",
+  "whole_source_reviewed_by_root": false,
+  "actual_release": false,
+  "actual_execution_started": false,
+  "root_marker_written": false,
+  "AST": {
+    "passed": true,
+    "parse_count": 1,
+    "seconds": 0.0008378000929951668,
+    "module_imported_or_executed": false
+  },
+  "previous_revisions": [],
+  "revision_count": 1,
+  "independent_readonly_review": {
+    "new_time_axes_revision": "pending root source review; previous review applies only to archived source hash"
+  },
+  "source_phase_read_receipt": {
+    "raw_header_reads": 0,
+    "array_reads": 0,
+    "checkpoint_reads": 0,
+    "numeric_GT_reads": 0,
+    "GPU_calls": 0,
+    "contract_calls": 0,
+    "default_entry_calls": 0,
+    "child_launches": 0
+  },
+  "time_axes_revision": {
+    "scientific_budget_or_endpoint_changed": false,
+    "preserve_legacy_monotonic_elapsed_fields": true,
+    "epoch_is_separate_observed_axis_not_replacement_or_rescaled_phase_cost": true,
+    "deadline_rule": "earlier of fixed original epoch and monotonic deadlines; 1-second bounded child waits recheck both axes",
+    "pre_Popen_budget_rechecked": true,
+    "after_normal_persistence_budget_rechecked": true,
+    "within_external_budget_requires_both_nonnegative_elapsed_axes_and_real_exit": true,
+    "cause_of_axis_difference_inferred": false,
+    "termination": "terminate grace 5s then kill/reap 5s preserves actual error class and nonexit evidence; cleanup may exceed budget but cannot qualify as within budget"
+  },
+  "budgets": {
+    "whole_seconds": 9000,
+    "deadline_epoch": "ENTRY_EPOCH+9000",
+    "deadline_monotonic": "ENTRY_MONOTONIC+9000",
+    "native_training_arm_budget_is_owned_by_native_module": true
+  },
+  "fields": {
+    "legacy_monotonic_elapsed": "elapsed_launch_to_exit_seconds",
+    "actual_epoch_elapsed": "elapsed_epoch_launch_to_exit_seconds",
+    "difference_epoch_minus_monotonic": "clock_axis_difference_seconds"
+  },
+  "actual_command": "python -u tools/run_geobc_fno_pair_guard.py"
+}
