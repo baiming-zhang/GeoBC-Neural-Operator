@@ -1,0 +1,28 @@
+{
+  "status": "root_source_review_passed_one_bounded_actual_probe_released",
+  "reviewed_at_UTC": "2026-10-10T05:28:35.897972+00:00",
+  "source": "tools/probe_geobc_hf_dotnet.ps1",
+  "actual_source_sha256": "87c1b679a3cb2f3349fb8f178e1821717449f88431a45a0de65d374e6b2166fd",
+  "root_full_source_read": true,
+  "author_AST_check_reused": "passed; no redundant script test or network pre-run",
+  "scope": "one .NET/SChannel existing-proxy HEAD; HEAD200/exact archive length then at most206 exact2MiB next-prefix body",
+  "TLS_validation_preserved": true,
+  "global_proxy_changes_authorized": false,
+  "original20_science_or_original_recovery_sources_modified": false,
+  "external_process_wall_cap_seconds": 90,
+  "priorHF_supplemental_reservations_bytes": 4194304,
+  "additional_preflight_reservation_bytes": 2097152,
+  "historical_cost_exact": false,
+  "new_DEV_or_scientific_reads_authorized": false,
+  "full_archive_release": false,
+  "actual_probe_completed": true,
+  "actual_probe_status": "failed_at_HEAD",
+  "actual_receipt": "notes/geobc_hf_dotnet_probe_receipt.json",
+  "actual_new_body_bytes": 0,
+  "actual_elapsed_seconds": 20.1149927,
+  "launcher_parse_repair_before_execution": {
+    "first_attempt": "parent_launcher_parse_failed_before_child_launch_or_network",
+    "repair": "assign boolean value to emitted cap-report property",
+    "second_attempt": "bounded_child_executed_once"
+  }
+}

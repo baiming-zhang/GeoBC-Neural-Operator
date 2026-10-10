@@ -6,26 +6,37 @@
 
 ## 最新结果（2026-10-10）
 
-全新五CAD/ver盲验实际用时3分13秒，十个独立进程完整预测后才共享读取原CSV位移标签：
+五种方法都在相同40个CAD、120个载荷病例上完成4800次全案例更新。随后固定五个未参与本轮训练的CAD/ver，比较全部1,080,435个原节点；先提交25份预测，再共享读取五份原signed应力，历史位移缓存另行评估：
 
-| 路线 | 五CAD节点位移平均／最差相对L2 | 独立完整请求耗时 |
-|---|---:|---:|
-| 完整FE物理U | 0.01623%／0.01623% | 20.2–33.5秒 |
-| 冻结FNO参考 | 23.51%／30.38% | 8.7–10.5秒 |
+| 方法 | 五CAD位移误差 | 五CAD应力误差 | 原训练分钟 |
+|---|---:|---:|---:|
+| **FNO** | **20.6%** | **55.1%** | **20.11** |
+| Transolver++ | 25.9% | 74.5% | 68.55 |
+| 原版Transolver | 28.0% | 81.1% | 23.34 |
+| Transolver-3 | 29.2% | 83.0% | 73.37 |
+| MLP | 30.9% | 73.6% | 9.84 |
 
-五例物理U门均通过，原signed应力标签仍封存。物理native P2梯度误差0.022%–0.040%，参考为原节点U的同P2派生代理，**非源应变GT**。物理路线需要完整TET10网格、材料、真实约束和载荷，FNO使用xyz／当前25条件schema／点云；输入信息不同，不能宣称架构因果排名。完整请求计入本地raw→输入→场与物理查询，数据获取和上游网格生成另计；FNO离线训练608.7秒另报。见[盲验短报告](results/blind_solver_service/BRIEF.md)。
+**当前配方首选FNO，Transolver系列首选++。** 表中为五例相对L2均值；FNO的位移最差27.9%、应力最差64.1%，++分别39.7%、77.8%。应力热点误差FNO47.4%、++80.5%，FNO应力在五例上全部领先，绝对应力精度仍不足。应力阶段实际19.95秒，已知位移读出2.07秒，不是服务请求速度基准。
 
-Hash单／五样本应力拟合约0.4%／1.5%，这不是跨CAD泛化证据。FNO当前学习配方较有依据，但旧final已知载荷signed应力仍约49–50%，组合载荷更差；物理信息应力读出候选也未达固定门，完整U/S任务仍未解决。
+五例包含两例官方TRAIN与三例官方TEST，但均与本轮TRAIN40、新增TRAIN160、DEV20互斥。历史U已知、CSV字节/坐标曾读，只称U-known/S-field-blind；不是全局未观察文件或最终测试。单seed、ver单载荷、容量及输入表达不同，不能断言家族上限。Hash单／五样本应力拟合约0.4%／1.5%，不作为跨CAD赢家证据。完整FE物理路线此前U为0.01623%，需要更多完整网格/材料/真实BC输入，原CSV signed S的导出语义仍未绑定，不能据位移准确宣称完整U/S已解决。见[五方法简报](results/geobc_fixed4800_pilot/BRIEF.md)、[Transolver对比](results/TRANSOLVER_COMPARISON.md)与[物理U历史报告](results/blind_solver_service/BRIEF.md)。
 
 ## 下一阶段
 
-当前学习训练集只有40CAD×三载荷。下一步做FNO／MLP的40对200CAD覆盖对照，保留各结构、输入、原signed目标与原TRAIN40-only scaler；新增160TRAIN和20DEV按CAD隔离，固定端点完整预测后再共享读取DEV标签。新增540原始文件尚未获取，下载时间粗估2.5小时，新增存储约73GiB。见[数据获取可行性](notes/geobc_coverage_data_delivery_feasibility.json)。没有设计族谱，只声明CAD ID互斥。
+40／200 CAD × Transolver、Transolver++、Transolver-3、FNO、MLP的10臂[科学协议](notes/geobc_coverage_comparison_plan.json)已经冻结。每臂fresh seed2026、4800次全案例更新（40 CAD为40轮，200 CAD为8轮），保持原结构、25条件、signed目标和TRAIN40-only scaler；容量差异单列。新增160TRAIN与20DEV按metadata冻结，不能按标签或下载成功替换。全部固定端点预测／明确终态失败提交后，才共享读取DEV标签。没有设计族谱，只声明CAD ID互斥。
+
+五种40-CAD臂均完成4800更新，总训练约3小时15分钟。全部TRAIN120的统一读出已完成600／600次全节点预测，用时4分43秒，没有重训或读取DEV。FNO的U／S平均误差14.0%／34.9%，MLP为35.6%／73.8%，Transolver++为37.6%／77.6%；原版与3的应力误差均约86%。FNO当前配方拟合优势普遍，++是三个Transolver版本中更好的候选，仍未选择最终泛化赢家。见[完整TRAIN紧凑结果](results/geobc_train_fit/BRIEF.md)与[Transolver对比](results/TRANSOLVER_COMPARISON.md)。
+
+上述独立五CAD评估已完成，不替代冻结的新20DEV。同ver载荷的TRAIN40参照：FNO位移／应力7.9%／35.1%，五CAD20.6%／55.1%，拟合残差与CAD外差距并存；++应力74.6%与五CAD74.5%相近且均偏高，末段loss仍下降，当前首要证据是拟合不足。两组CAD难度未控制，不能作泛化的因果估计。下一步只设计FNO与++两个宏观候选，检查作者训练制度与应力泛化，不继续Hash微调，也不按已打开五例选最佳端点。
+
+新增数据目前完整校验317/540文件，剩余223个固定文件；首批连接器恢复36.69分钟补齐117个。后续发生MCP客户端HTTP发送错误，下载队列已停止；HF直连HEAD在21.109秒超时，现有代理路径HEAD在22.062秒发生TLS错误，均未下载新body；Windows.NET客户端经同代理HEAD也在20.115秒失败，GET为0。旧失败、partial与历史未知成本保留；不换CAD，不改signed标签。下载完成时间未知，原13:40估计撤回。已完成的40-CAD模型与读出保留，原20源pins不变，新DEV仍封存。见[下载恢复决定](notes/geobc_drive_quota_recovery_decision.json)及[真实故障记录](notes/geobc_drive_transport_incident.json)。
+
+本轮比较当前训练配方，不代表家族效果上限；40／200 CAD的覆盖面与每例训练次数同时变化，不能单独归因于数据量。已经核对三版官方示例的训练制度；实际十臂读出后，按拟合与泛化证据决定独立资格验证或一次完整训练制度确认，见[后续选择范围](notes/transolver_recipe_scope_next.md)。当前实验配置不变。
 
 ## 复现与数据边界
 
 使用原版DeepJEB，所有有效指标来自官方Field CSV按GRID坐标对齐H5 vertices。旧H5-only结果已撤回。保留原signed uXYZ与stress，不伪造符号。原实验目录、部分配置、slides的25特征schema、网格原点及50样本名单缺失，当前复现不能称为原run的精确数值重放。
 
-[Slides复现总表](ALL_METHODS_RESULTS.md) · [正式结果包](results/REPORT.md) · [研究过程记录](results/RESEARCH_HISTORY.md) · [执行计划](notes/geobc_exploration_plan.json)
+[Slides复现总表](ALL_METHODS_RESULTS.md) · [正式结果包](results/REPORT.md) · [Transolver对比](results/TRANSOLVER_COMPARISON.md) · [研究过程记录](results/RESEARCH_HISTORY.md) · [执行计划](notes/geobc_exploration_plan.json)
 
 ## 实验范围
 

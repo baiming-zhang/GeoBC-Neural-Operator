@@ -1,0 +1,4394 @@
+{
+  "status": "completed",
+  "terminal": true,
+  "kind": "coverage_cad40_fixed4800_U_known_S_field_blind5",
+  "config": {
+    "contract": {
+      "schema": "S_field_blind_fixed4800_v1",
+      "kind": "coverage_cad40_fixed4800_U_known_S_field_blind5",
+      "scientific_digest": "5eadc8408a1287ffc8e6a2d17a9d544884d960ef51accea215a5c97e4966d2e0",
+      "source_sha256": {
+        "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+        "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196",
+        "geobc/coverage_comparison_train.py": "bbf3832d144a689d0c8c32d27673953dd9a1d24b5976313e3e6a966d08f55e00",
+        "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+        "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+        "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+        "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+        "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+        "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+        "third_party/transformer_sources.json": "1a46270136d2f58e081ea7be050c46fca5378b9853fc3e703c945129769aefb6",
+        "tools/fetch_exact_deepjeb.py": "ff01bffff639cf007cc9c97969b3210db0bca2375f674709238105d6e59002f2",
+        "tools/fetch_geobc_coverage.py": "81b88675120c9ef7f9c07f139be45bc8a5f8196fb095d07a20ab6b5be7b2adeb",
+        "tools/fetch_next_cycle_test.py": "92eba989a7c0b17ab8a5084cf9d761116ab4ace32b01b5b0e70e1375ad3edfae",
+        "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+        "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+        "tools/run_geobc_coverage_comparison.py": "f39c9b01efd45dbe7d4ae66dc1807dcd865eae2c170aa63e60b157dfc0ae1196",
+        "tools/start_geobc_coverage_comparison.ps1": "4d1cdf1675c5f7d38d6a7ba2b2c3bdf4dcafbb1e6b0808f712e32ced3cea9905",
+        "tools/start_geobc_coverage_fetch.ps1": "7f90ffd8a758c2f3b7f5248370aa1e1f8631af9b56ca7fdc1a19070b17caba9a",
+        "geobc/coverage_train_fit_diagnostic.py": "b8a398c540f778f4467d5fea834ca215fd800798808b671b9c554b4da5fed2fe",
+        "geobc/coverage_s_blind_eval.py": "05740be3b58b4cf4998f3dec9643fa4c82ba1cb335034c63dea747c430659e4c"
+      },
+      "historical_U_summary": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/summary.json",
+        "bytes": 3632741,
+        "mtime_ns": 1791596252006895300,
+        "sha256": "433c549622b2785361d83f7dc25dc3bd2280cf2c6b0f74d367b9116b0f47b24a"
+      },
+      "coverage_plan_science": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+      "case_keys": [
+        "489_12/ver",
+        "616_205/ver",
+        "416_282/ver",
+        "247_50/ver",
+        "142_454/ver"
+      ],
+      "methods": [
+        "transolver",
+        "transolver_pp",
+        "ts3",
+        "fno",
+        "mlp"
+      ],
+      "scaler": {
+        "mean": [
+          -0.006059544265096125,
+          -0.0005008273527146082,
+          0.015260029003479832,
+          0.09629744183585241
+        ],
+        "std": [
+          0.05393032209940291,
+          0.011291299669602316,
+          0.07619646768716026,
+          0.5232191238243877
+        ],
+        "stress_scale": 90.46589813232424,
+        "channels": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "inputs": {
+        "489_12/ver": {
+          "manifest": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/489_12_ver/input/manifest.json",
+            "bytes": 34863,
+            "mtime_ns": 1791596187973404400,
+            "sha256": "a55662f43a526a086fe054bac91b7b5022a07d3acf89b9fb22c2c39cf27743c3"
+          },
+          "cache": {
+            "path": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/489_12_ver/input/input.npz",
+            "bytes": 45309846,
+            "mtime_ns": 1791596187835218700,
+            "sha256": "f411df454537ab2862323de7699e6bb498ac576c020bc9b7100e0dc4d34f0f08"
+          },
+          "node_count": 166790,
+          "arrays": {
+            "vertices_mm": {
+              "shape": [
+                166790,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "694133b7ba4a2cba03ae5c56a7d5a25f7525639e86ced0750061b88fc5889d51"
+            },
+            "cells10": {
+              "shape": [
+                104017,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "9ce04b9d7a5ae9f413486c17cf346315aa45b68f8fa7a88d3da88c9bb07136b3"
+            },
+            "grid_node_ids": {
+              "shape": [
+                166790
+              ],
+              "dtype": "int64",
+              "sha256": "f4e982ecb6fcb4738a0f46f62c2b16759a94d20a0bcab0cd8479d2c6d9b4145c"
+            },
+            "free_node_ids": {
+              "shape": [
+                165030
+              ],
+              "dtype": "int64",
+              "sha256": "efc80d83de2582470dbb10bd6bce991977545b8f8faad8249f67211b11690e17"
+            },
+            "fixed_node_ids": {
+              "shape": [
+                1760
+              ],
+              "dtype": "int64",
+              "sha256": "2cdc41e8f63530bfb00b1d9868b01c9f56260afa8f8d0016c1e9cb5ff0f9dd98"
+            },
+            "force": {
+              "shape": [
+                166790,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "2e454407a8341723917a3c6a334c9cce0530a52053d0d4a82c1cdfb10e8e6464"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                104017
+              ],
+              "dtype": "int64",
+              "sha256": "f8a391b1d9b172ab00949ce69fe641f4de6c78c4ea7b026b3e21daab7ae6c0ec"
+            },
+            "derived_node_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_source_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_rowptr": {
+              "shape": [
+                1
+              ],
+              "dtype": "int64",
+              "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+            },
+            "derived_blocks": {
+              "shape": [
+                0,
+                3,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "rbe3_member_node_ids": {
+              "shape": [
+                805
+              ],
+              "dtype": "int64",
+              "sha256": "e5cf7b85cb41fe8035740c78749090d0e53c294846e5b2dc9dbfe6b6abb14a38"
+            },
+            "rbe3_Hbar": {
+              "shape": [
+                6,
+                2415
+              ],
+              "dtype": "float64",
+              "sha256": "2029990d3c0c77403b3992d880424a9d9d765073624155a6f80c9aaadf3519f3"
+            },
+            "rbe3_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "ca0eecf5681aa0323c169d4583562a333ed4ed96191c13e678a6efd66a665c7a"
+            },
+            "reference_xyz_mm": {
+              "shape": [
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "3e6a28962d1cbcc56cecf0f1f6137f95f75baef28dcb4544a36b723dad710664"
+            },
+            "reference_load6": {
+              "shape": [
+                6
+              ],
+              "dtype": "float64",
+              "sha256": "b150fde4988f727cb5feb74253a0bc4fa0955523e6e20c2807c1bc376e2d3bc5"
+            },
+            "characteristic_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "b492889a74b697add6ddb4803a0962614be7fa6029402531f96dfd3d43f82a3b"
+            },
+            "region_support_0": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "f794df8ad90cb9be1ab99da9f5f820c732c3d9129f12cb079458b39066d6fac9"
+            },
+            "region_support_1": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "6c21287a98efe9b7bc90614a3433bc6be5decb66e6568186a522ee1d66484f81"
+            },
+            "region_support_2": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "1e7eeba1533091dc479c9859b59c558caaa894a0f9c2330b0c7ca4930aa1e865"
+            },
+            "region_support_3": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "7b8d14f6896c73e0231fd57374ade31c66a9f769f7b3ee1ab2a09c1be19fcb7e"
+            },
+            "region_load": {
+              "shape": [
+                805
+              ],
+              "dtype": "int64",
+              "sha256": "8d63d585ee0bcf9041cc7d2c3e9cb75871a1ef4216833212d39e594a76d15cfa"
+            },
+            "region_interior": {
+              "shape": [
+                164225
+              ],
+              "dtype": "int64",
+              "sha256": "4c93f676a57aee568677c1a462d6b1864fb8b5f72f8a61b8de2c5f88463f24f5"
+            },
+            "xyz": {
+              "shape": [
+                166790,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "9e33dfa751019597a08a4e9f5b570c723b7e60466ef07741903b641b79d70516"
+            },
+            "features": {
+              "shape": [
+                166790,
+                25
+              ],
+              "dtype": "float32",
+              "sha256": "b140b0a1be16bfbbf4e854742d0dbdd0f0f64ecbbcaf5e05c61b19929698cba0"
+            },
+            "faces": {
+              "shape": [
+                109296,
+                3
+              ],
+              "dtype": "int32",
+              "sha256": "2e9e7078c9610345efe56c7b0eafd5a0a73f4cb40ac197295a3f1501e4dfc2a6"
+            },
+            "cloud": {
+              "shape": [
+                1,
+                1024,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "f3055f1fcf0bfc877d4b54f220a1bb9fab5256a25f6d19c8f7a267ac7cf74701"
+            },
+            "mask": {
+              "shape": [
+                1,
+                1024
+              ],
+              "dtype": "bool",
+              "sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+            },
+            "cloud_node_ids": {
+              "shape": [
+                1024
+              ],
+              "dtype": "int64",
+              "sha256": "9426165e5d558da05d9b3075ed285c8d6502f466f31cf51a1be30916fa5b2543"
+            },
+            "h5_row_to_csv": {
+              "shape": [
+                166790
+              ],
+              "dtype": "int64",
+              "sha256": "c0bc6242998c2401e612e918f28ae1d88e10d0caeb5a8ac4a1565b4d07a438b2"
+            },
+            "csv_row_to_h5": {
+              "shape": [
+                166790
+              ],
+              "dtype": "int64",
+              "sha256": "66da77146b53b0111aade0e44a6200e0c282629961e51638472bff93546b21e4"
+            },
+            "csv_node_ids": {
+              "shape": [
+                166790
+              ],
+              "dtype": "int64",
+              "sha256": "b2bd652f40a848c993903ea6b21800db2bc8b77bd2deeecd0348980f50c458ee"
+            }
+          },
+          "CSV_source": {
+            "path": "data/raw_next_cycle/Field/489_12.csv",
+            "bytes": 52145231,
+            "mtime_ns": 1791564111331626000,
+            "sha256": "9a3c70b15bbd4cf5354d0ab96f10e192b8bacb93924bc07a7be2859996c760d9",
+            "source_url": "https://drive.google.com/file/d/1fVY2n5fFi6cfhMSRS7Q_UnYsyKaa-P1n/view?usp=drive_web",
+            "checksum_origin": "Locally calculated from received bytes, not an independent upstream checksum"
+          }
+        },
+        "616_205/ver": {
+          "manifest": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/616_205_ver/input/manifest.json",
+            "bytes": 34886,
+            "mtime_ns": 1791596198941505600,
+            "sha256": "cfa6e88129aec1adf01013a217e2d5a634e717918f4f98d274f4d2a382ed110f"
+          },
+          "cache": {
+            "path": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/616_205_ver/input/input.npz",
+            "bytes": 64728894,
+            "mtime_ns": 1791596198758935100,
+            "sha256": "658fbbb8a5d520830e7c0b7e7ae2e40489a40c3ca85a21a6d2d6de6ce392e4e5"
+          },
+          "node_count": 238303,
+          "arrays": {
+            "vertices_mm": {
+              "shape": [
+                238303,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "868bbfd51c370802cef7710ecbe1f1912384f325146a196a21ed67f3324a35c4"
+            },
+            "cells10": {
+              "shape": [
+                150551,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "e77447d8c51017b4c400d1d4f389afbff3df3a2a98196363dc5f07ee48ffd28b"
+            },
+            "grid_node_ids": {
+              "shape": [
+                238303
+              ],
+              "dtype": "int64",
+              "sha256": "eec57c605f3e56e9ad939285582a803c210a7e9a6095d397a25568c34a0f8664"
+            },
+            "free_node_ids": {
+              "shape": [
+                236543
+              ],
+              "dtype": "int64",
+              "sha256": "d0fbc6db502c6981e2d146725360b15f4efd005347abd5abb14284d9acd23699"
+            },
+            "fixed_node_ids": {
+              "shape": [
+                1760
+              ],
+              "dtype": "int64",
+              "sha256": "bfc10b6a70d02953bcf3c7becc12d413fcbcb119736699203e5c341e67555ecb"
+            },
+            "force": {
+              "shape": [
+                238303,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "ddc3416f7a12dc6954fc8713a077fe9b36be37864bc4b521ce8016e87573e7ff"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                150551
+              ],
+              "dtype": "int64",
+              "sha256": "a2efba7a48deeea937a4111f1acd95dd30d17985c09e86d25dc53ad42372143d"
+            },
+            "derived_node_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_source_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_rowptr": {
+              "shape": [
+                1
+              ],
+              "dtype": "int64",
+              "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+            },
+            "derived_blocks": {
+              "shape": [
+                0,
+                3,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "rbe3_member_node_ids": {
+              "shape": [
+                796
+              ],
+              "dtype": "int64",
+              "sha256": "f311073a38b0b5875e9f6f2ce6a97300b5c984b39c01da5fdb35007f5ae3d836"
+            },
+            "rbe3_Hbar": {
+              "shape": [
+                6,
+                2388
+              ],
+              "dtype": "float64",
+              "sha256": "db433f79d07cc7c18018cd34e827ce2e1bc708d480429e7ec8511801a7a91524"
+            },
+            "rbe3_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "8e37286afddf0f4795c0e703d0fe2fe20659e4d3bc6849a4f8dbb5b6b5db4209"
+            },
+            "reference_xyz_mm": {
+              "shape": [
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "3e6a28962d1cbcc56cecf0f1f6137f95f75baef28dcb4544a36b723dad710664"
+            },
+            "reference_load6": {
+              "shape": [
+                6
+              ],
+              "dtype": "float64",
+              "sha256": "b150fde4988f727cb5feb74253a0bc4fa0955523e6e20c2807c1bc376e2d3bc5"
+            },
+            "characteristic_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "fb9f1046ea21bb3ad32844dffadd3411dd12a021d2578ed0e61a670b4b17d3d1"
+            },
+            "region_support_0": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "f50ed8572c3cac5ea05e15fef13d3533313c751652a676877f7f4dc3973e32ef"
+            },
+            "region_support_1": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "e86efc29c1d1ae8757f7dc9114f039fe00aecb8be5614d5d1e4b83f6339fa7e4"
+            },
+            "region_support_2": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "982331f23ec5bce6f73990762fda9a6a485b7ab58867b0dae58982419e80500b"
+            },
+            "region_support_3": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "7ab8dd329042a72a7d5051bab89e3a8ccf2462485840d6b34f49e12826582506"
+            },
+            "region_load": {
+              "shape": [
+                796
+              ],
+              "dtype": "int64",
+              "sha256": "c2197fbdb6e8db8cdce3ec4809ab8844c90fb318c73443faf32a72f88fc03aea"
+            },
+            "region_interior": {
+              "shape": [
+                235747
+              ],
+              "dtype": "int64",
+              "sha256": "6d0841b4d2b7fe7fae3f37c949e9a30fa1531095edc89bac70d4b4de07c225f5"
+            },
+            "xyz": {
+              "shape": [
+                238303,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "082173774665063032a475e511e01790b1a6c621ad2bd6e51076e474ad3c0b60"
+            },
+            "features": {
+              "shape": [
+                238303,
+                25
+              ],
+              "dtype": "float32",
+              "sha256": "19536d624b9dd9fa541a2af80ea5d41cac23e7a5415226c84b98cccac065c839"
+            },
+            "faces": {
+              "shape": [
+                146856,
+                3
+              ],
+              "dtype": "int32",
+              "sha256": "e3de06a7789958c54a5e10c4fa5b883abeb4cb05075666cc0ee94acaf4b04ded"
+            },
+            "cloud": {
+              "shape": [
+                1,
+                1024,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "5009a4e1f1880ef298ed6ace6d77e890bce13daa1e1beddfb79ef371025198d4"
+            },
+            "mask": {
+              "shape": [
+                1,
+                1024
+              ],
+              "dtype": "bool",
+              "sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+            },
+            "cloud_node_ids": {
+              "shape": [
+                1024
+              ],
+              "dtype": "int64",
+              "sha256": "cebf5636c8ddd540eb60deb6fb372acda945da4e3b15c66b5d8adbcf459a47c1"
+            },
+            "h5_row_to_csv": {
+              "shape": [
+                238303
+              ],
+              "dtype": "int64",
+              "sha256": "c2773f3b0f304dc14a1e5d89952ccf52f910b37d5c84ce7900434f39a2512bdb"
+            },
+            "csv_row_to_h5": {
+              "shape": [
+                238303
+              ],
+              "dtype": "int64",
+              "sha256": "ce4a12b0eaa6bbcf21d187e4842ca8ea52c6147a66647238a2eba8739fbee227"
+            },
+            "csv_node_ids": {
+              "shape": [
+                238303
+              ],
+              "dtype": "int64",
+              "sha256": "1e5d7c36094d377d4239c37f90f3139f84034657fff8353d4f66af33c9f6b369"
+            }
+          },
+          "CSV_source": {
+            "path": "data/raw_next_cycle/Field/616_205.csv",
+            "bytes": 73998884,
+            "mtime_ns": 1791564160430245000,
+            "sha256": "e9ad0ce277c7f2f99c6293a606e32a365430ecf746dc068958f059ba52439442",
+            "source_url": "https://drive.google.com/file/d/1sMKoqXptx1L1or5GegsTE_D_5e17S4rU/view?usp=drive_web",
+            "checksum_origin": "Locally calculated from received bytes, not an independent upstream checksum"
+          }
+        },
+        "416_282/ver": {
+          "manifest": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/416_282_ver/input/manifest.json",
+            "bytes": 34881,
+            "mtime_ns": 1791596211019501800,
+            "sha256": "c07d883ec855856d6747e038c2efaecf1e03896c336a7b5787949eec9de41dbb"
+          },
+          "cache": {
+            "path": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/416_282_ver/input/input.npz",
+            "bytes": 82249118,
+            "mtime_ns": 1791596210731313500,
+            "sha256": "2437f74dada073fe5dc080daf6d2740ed050e00222f0b099ad1c835d5083140c"
+          },
+          "node_count": 302979,
+          "arrays": {
+            "vertices_mm": {
+              "shape": [
+                302979,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "67d86a2f1f611be817fe2026260d7afcdc5b859e999d7c0d1cefad77641cc52c"
+            },
+            "cells10": {
+              "shape": [
+                190214,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "f56c86a1f33a5dee0c7e7e92be5f848648e1593fece657433c8dccecc96a61d9"
+            },
+            "grid_node_ids": {
+              "shape": [
+                302979
+              ],
+              "dtype": "int64",
+              "sha256": "5150d32a003cc15d72a1b3de68f19bd2e798f2207de21c36b6bf97b75e14cc95"
+            },
+            "free_node_ids": {
+              "shape": [
+                301219
+              ],
+              "dtype": "int64",
+              "sha256": "7794c89acce745665fe7eff260570dfb8d4eb927c8b0c714bf127bda38c58521"
+            },
+            "fixed_node_ids": {
+              "shape": [
+                1760
+              ],
+              "dtype": "int64",
+              "sha256": "0ce4f21c7bd153bcd0fa9769752b0c60ccd704bd2be2b279df2c811627f0a556"
+            },
+            "force": {
+              "shape": [
+                302979,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "187b2c414051b4257a580ece79295250164519ebfaaecbcc8f5321877937622b"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                190214
+              ],
+              "dtype": "int64",
+              "sha256": "cf685b5f5b25c35c322c7bd1d8baff9607cde9f344fa586e55a0ae5120457103"
+            },
+            "derived_node_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_source_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_rowptr": {
+              "shape": [
+                1
+              ],
+              "dtype": "int64",
+              "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+            },
+            "derived_blocks": {
+              "shape": [
+                0,
+                3,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "rbe3_member_node_ids": {
+              "shape": [
+                805
+              ],
+              "dtype": "int64",
+              "sha256": "5f03dc6ae9b3d2aacb670e9463298e4650b4479b7b3cddb063c6c8c622219ad5"
+            },
+            "rbe3_Hbar": {
+              "shape": [
+                6,
+                2415
+              ],
+              "dtype": "float64",
+              "sha256": "d0020f1463aa90a67a721f7b8361e82e47ada2f1aec4d4ac1213567ee7fad044"
+            },
+            "rbe3_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "22d882a5b7128fc45ca016af0481f9de408adb42abef80fac7b3181698bd40bb"
+            },
+            "reference_xyz_mm": {
+              "shape": [
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "3e6a28962d1cbcc56cecf0f1f6137f95f75baef28dcb4544a36b723dad710664"
+            },
+            "reference_load6": {
+              "shape": [
+                6
+              ],
+              "dtype": "float64",
+              "sha256": "b150fde4988f727cb5feb74253a0bc4fa0955523e6e20c2807c1bc376e2d3bc5"
+            },
+            "characteristic_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "f482347a0bbdb4c9aba96b219faf923cee8c61510d1cc64de0ca26e7c5227a0c"
+            },
+            "region_support_0": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "81422f944b64b66923c651051c554783275371937ee1dd39db73df8c9df0b144"
+            },
+            "region_support_1": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "b95b54b4431e467864ffdac2acdf444bdcdf3cab85ccb4a4a187e5e10c732eb7"
+            },
+            "region_support_2": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "475e42db94803e73dc1a77dca65fe93a5b0c87dcdf0dd87076c4508c4c6670a8"
+            },
+            "region_support_3": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "675321a22036eb2ee0db73dc324c0f890f89d5e13702a1b1ce9c4c0df85fc177"
+            },
+            "region_load": {
+              "shape": [
+                805
+              ],
+              "dtype": "int64",
+              "sha256": "4acd2f9fe44b5619927a80ad745aba917c7efdcb6253a090c8b123819433c5f0"
+            },
+            "region_interior": {
+              "shape": [
+                300414
+              ],
+              "dtype": "int64",
+              "sha256": "03d169959c492d8d52632cc86849aba788598b80080c3938599c82f7dafa78d5"
+            },
+            "xyz": {
+              "shape": [
+                302979,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "500102c1c50a8a88c8a7e9b286061843806cb032ebcf630366f55c37117c2211"
+            },
+            "features": {
+              "shape": [
+                302979,
+                25
+              ],
+              "dtype": "float32",
+              "sha256": "30733b8827f5aad9b331a228df4fd717e91d7687ef362434f5815aab6ccf91b5"
+            },
+            "faces": {
+              "shape": [
+                194848,
+                3
+              ],
+              "dtype": "int32",
+              "sha256": "0c9a2ffdc42f46f0b1d80f01513e1fde357d31982b02c5b8c94f756fac792262"
+            },
+            "cloud": {
+              "shape": [
+                1,
+                1024,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "e81e251a03d71010c1fdaf092fd37d51f5511039df99b172e73f5c8fb9282e4b"
+            },
+            "mask": {
+              "shape": [
+                1,
+                1024
+              ],
+              "dtype": "bool",
+              "sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+            },
+            "cloud_node_ids": {
+              "shape": [
+                1024
+              ],
+              "dtype": "int64",
+              "sha256": "96a7b27d8e05261f9fb36640236bc1e948055020e3984516cf6b55dff248d7be"
+            },
+            "h5_row_to_csv": {
+              "shape": [
+                302979
+              ],
+              "dtype": "int64",
+              "sha256": "35be7dd4c625fdad4ae073784ba26d1482622327bd57726ec60788dca9c8a3bb"
+            },
+            "csv_row_to_h5": {
+              "shape": [
+                302979
+              ],
+              "dtype": "int64",
+              "sha256": "d0712ae73c57b6322ecfad446978569485611cf9472e2dd467a3f04bcf43fb69"
+            },
+            "csv_node_ids": {
+              "shape": [
+                302979
+              ],
+              "dtype": "int64",
+              "sha256": "7d75c1b8414958a1a704299b7cdb574e4448e372c104f7c9c0250575faeb2e17"
+            }
+          },
+          "CSV_source": {
+            "path": "data/raw_next_cycle/Field/416_282.csv",
+            "bytes": 94097707,
+            "mtime_ns": 1791564234008440500,
+            "sha256": "7278ad4a37f2ded937c7d11e624e76a49593f77e5dc6eed40f16d05b9e6340d3",
+            "source_url": "https://drive.google.com/file/d/1sM5PY_TO8JB76dydoQf0m20EzXeuO9qo/view?usp=drive_web",
+            "checksum_origin": "Locally calculated from received bytes, not an independent upstream checksum"
+          }
+        },
+        "247_50/ver": {
+          "manifest": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/247_50_ver/input/manifest.json",
+            "bytes": 34862,
+            "mtime_ns": 1791596219508657900,
+            "sha256": "35ea89b0ae21ce83175311a47703188e5b7c63bd16f324021fa05080186b9038"
+          },
+          "cache": {
+            "path": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/247_50_ver/input/input.npz",
+            "bytes": 44209662,
+            "mtime_ns": 1791596219392156100,
+            "sha256": "73585eb65c96746507bab3672c40bb56b3e662331210d3ee2031f892bb58801f"
+          },
+          "node_count": 162864,
+          "arrays": {
+            "vertices_mm": {
+              "shape": [
+                162864,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "eed4f40463c4d132293e3be3cb59b0c3e6aa58e8ecdbb0f7b2134431e417d8d4"
+            },
+            "cells10": {
+              "shape": [
+                100209,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "8cd0cb1c5fba0256f7460d8492ea4f58ea07a67ed6db246829a79488e59d0080"
+            },
+            "grid_node_ids": {
+              "shape": [
+                162864
+              ],
+              "dtype": "int64",
+              "sha256": "c615b4f2fdf23d7da08f98588b6ce6291bf7dd01c51843d243c9c13a219ca80f"
+            },
+            "free_node_ids": {
+              "shape": [
+                161104
+              ],
+              "dtype": "int64",
+              "sha256": "034138e14833b9eece15603beed99a7a51955291e5f7f9a7a0c45250a776a16e"
+            },
+            "fixed_node_ids": {
+              "shape": [
+                1760
+              ],
+              "dtype": "int64",
+              "sha256": "4ec1d1823da0899a3fa637e7da176cfe45c02fc7ae6fc519a74b8a275ca2163b"
+            },
+            "force": {
+              "shape": [
+                162864,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "87e7c2d843cf36dd8f7413be95935db4028e807ada17974245e95af9c60b82d1"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                100209
+              ],
+              "dtype": "int64",
+              "sha256": "f0eb7e3cfdbc9ba35b3ec55bd12db0237f27083937071a6eee5a2b0f618b6bf7"
+            },
+            "derived_node_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_source_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_rowptr": {
+              "shape": [
+                1
+              ],
+              "dtype": "int64",
+              "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+            },
+            "derived_blocks": {
+              "shape": [
+                0,
+                3,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "rbe3_member_node_ids": {
+              "shape": [
+                808
+              ],
+              "dtype": "int64",
+              "sha256": "96322c3613440c578aff4464e36809f31252be3958f3170a91bca3f0430a92d0"
+            },
+            "rbe3_Hbar": {
+              "shape": [
+                6,
+                2424
+              ],
+              "dtype": "float64",
+              "sha256": "d81fe9297f7627bb4991228e4339e1c963ffcad7a540aaaeeb52e77f04952f9a"
+            },
+            "rbe3_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "722057af8eff2370a64e8ea90aa34cd41a4197fcdf4c4b8f1f0a0932ec4f9617"
+            },
+            "reference_xyz_mm": {
+              "shape": [
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "3e6a28962d1cbcc56cecf0f1f6137f95f75baef28dcb4544a36b723dad710664"
+            },
+            "reference_load6": {
+              "shape": [
+                6
+              ],
+              "dtype": "float64",
+              "sha256": "b150fde4988f727cb5feb74253a0bc4fa0955523e6e20c2807c1bc376e2d3bc5"
+            },
+            "characteristic_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "9f3b482002975cd8f9e26d9b1f4a5529ae5aee0c95bd1b8787287456b8432436"
+            },
+            "region_support_0": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "3b0e85c241e4ae291a47a54cd2e9fa026b5a1e7339244bdb8dc82b10376fef18"
+            },
+            "region_support_1": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "da2a7f94da377c708cbc640df356f2c8068584c465488a0295b382d03c4f40e6"
+            },
+            "region_support_2": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "d9f8bf3375efd10893b376ee1e3d6d5e1f2f765d09ca4f2d3d5a510871b64093"
+            },
+            "region_support_3": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "38682f9bd9590a8e8be8eee961af27ec02d279a3f306711a8034062b61febf48"
+            },
+            "region_load": {
+              "shape": [
+                808
+              ],
+              "dtype": "int64",
+              "sha256": "8e60848080c3d4e97de98c868ffd7b5529ab565daf1e8833dd7aa84e1e5bd2fe"
+            },
+            "region_interior": {
+              "shape": [
+                160296
+              ],
+              "dtype": "int64",
+              "sha256": "45c9a1c960a358adf0288ddda666f7d3bf3320b02ea6d15425779a50a962b10f"
+            },
+            "xyz": {
+              "shape": [
+                162864,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "b2aae9f9ef69ce6a726eac96925c1c486274a1c241aea3a597d94ae4c163a6b4"
+            },
+            "features": {
+              "shape": [
+                162864,
+                25
+              ],
+              "dtype": "float32",
+              "sha256": "c10188365a1e04fed650a6edacc3f71076b800f250a7feb3ff7eb36c93910b7b"
+            },
+            "faces": {
+              "shape": [
+                113552,
+                3
+              ],
+              "dtype": "int32",
+              "sha256": "35cec6c784943a321bc286354a2d1e8bf1139f6c9acb988dfab6ae67a43cf927"
+            },
+            "cloud": {
+              "shape": [
+                1,
+                1024,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "2bc982e7e198fa1be3c7bcd546d7cc082c9e8a2371a78e6f3c05364d3b7e6c23"
+            },
+            "mask": {
+              "shape": [
+                1,
+                1024
+              ],
+              "dtype": "bool",
+              "sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+            },
+            "cloud_node_ids": {
+              "shape": [
+                1024
+              ],
+              "dtype": "int64",
+              "sha256": "3e51818762daa7bd01b904a92c80eeea6f0640aade9486ada82ef5c1f7c298de"
+            },
+            "h5_row_to_csv": {
+              "shape": [
+                162864
+              ],
+              "dtype": "int64",
+              "sha256": "d93c8bfa375a57d8065022738b7654aca7918db5d36188c5ba62b38ba09454be"
+            },
+            "csv_row_to_h5": {
+              "shape": [
+                162864
+              ],
+              "dtype": "int64",
+              "sha256": "68d5ab8a16e786f57b2257b046a2fe1e1251fd1f2f3f9dbe69de089f87ad8a5a"
+            },
+            "csv_node_ids": {
+              "shape": [
+                162864
+              ],
+              "dtype": "int64",
+              "sha256": "6ab48317318ed06928c6486e6a548f9f5166a62a91f4dd9729c244356c95cb65"
+            }
+          },
+          "CSV_source": {
+            "path": "data/raw_next_cycle/Field/247_50.csv",
+            "bytes": 50924213,
+            "mtime_ns": 1791564314367608600,
+            "sha256": "ee70693667f611d2304c07d35eb9bdec966b97248de6df35962191fa440f761b",
+            "source_url": "https://drive.google.com/file/d/1V-hZ-_rrixDni-j_-QoipjbpiE9IvngV/view?usp=drive_web",
+            "checksum_origin": "Locally calculated from received bytes, not an independent upstream checksum"
+          }
+        },
+        "142_454/ver": {
+          "manifest": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/142_454_ver/input/manifest.json",
+            "bytes": 34885,
+            "mtime_ns": 1791596229505495300,
+            "sha256": "7562b7979bf53e9bcb29935988880ca90ead0358426e281349cb75c5511d146a"
+          },
+          "cache": {
+            "path": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/142_454_ver/input/input.npz",
+            "bytes": 56890638,
+            "mtime_ns": 1791596229339426700,
+            "sha256": "cafa005a997f974a36fb7b655f64c86de1da633531a188d88834069c52fb4fd3"
+          },
+          "node_count": 209499,
+          "arrays": {
+            "vertices_mm": {
+              "shape": [
+                209499,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "32ac84a642a0bb74e3cd9a3cd11f0c05a856461a91e7fbb5e54c97eec372be53"
+            },
+            "cells10": {
+              "shape": [
+                131088,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "232abcb2d54cc11c83c073333fa86c045a03f8d198ef9ee1d68cd06b31878c63"
+            },
+            "grid_node_ids": {
+              "shape": [
+                209499
+              ],
+              "dtype": "int64",
+              "sha256": "fa0845c7ab2289b35911a8323f8a7632fed51d32e9aa0e58a51f5de7dab832cb"
+            },
+            "free_node_ids": {
+              "shape": [
+                207739
+              ],
+              "dtype": "int64",
+              "sha256": "e493d0a92723e2ce0e88e9714f559a170528016346ac161b5cc0615803fc0703"
+            },
+            "fixed_node_ids": {
+              "shape": [
+                1760
+              ],
+              "dtype": "int64",
+              "sha256": "be6267f4e22d937c7148db8ab72099cfa1c75957bf9bbffdfe673a674f159347"
+            },
+            "force": {
+              "shape": [
+                209499,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "8819687d6e94f65109a5d03c356f9b4ff3bdddd3dab026a39f74f8a060b5e399"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                131088
+              ],
+              "dtype": "int64",
+              "sha256": "bd131dcc3052bba3102cbb86a665c0c43c9dcbdff76008d1dc485f6bfdbe999d"
+            },
+            "derived_node_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_source_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_rowptr": {
+              "shape": [
+                1
+              ],
+              "dtype": "int64",
+              "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+            },
+            "derived_blocks": {
+              "shape": [
+                0,
+                3,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "rbe3_member_node_ids": {
+              "shape": [
+                805
+              ],
+              "dtype": "int64",
+              "sha256": "d025134cb71a4c9ba28d805f4022a3e73f656f5f6b6d77f73ca73660b9944b33"
+            },
+            "rbe3_Hbar": {
+              "shape": [
+                6,
+                2415
+              ],
+              "dtype": "float64",
+              "sha256": "7521318dd635b273d6a1c048f1c848e8c3b23b3ddb3e5166ccb9f4432e957e28"
+            },
+            "rbe3_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "c54402dc855bfdab233386fcf4d1d84d447284a7e73ee78a96c7d636cb7a9278"
+            },
+            "reference_xyz_mm": {
+              "shape": [
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "3e6a28962d1cbcc56cecf0f1f6137f95f75baef28dcb4544a36b723dad710664"
+            },
+            "reference_load6": {
+              "shape": [
+                6
+              ],
+              "dtype": "float64",
+              "sha256": "b150fde4988f727cb5feb74253a0bc4fa0955523e6e20c2807c1bc376e2d3bc5"
+            },
+            "characteristic_length_mm": {
+              "shape": [
+                1
+              ],
+              "dtype": "float64",
+              "sha256": "fae171825f0943ed111ad2559a1d7f6fd16e1d33ac164e3b3bdb95e8485dd770"
+            },
+            "region_support_0": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "45a4e5380f66405d99a82b0caa7a80f1b8d0783fb542e606e9f43be3d3931917"
+            },
+            "region_support_1": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "db756ce8ca3b492bc32a5c4cae779c80a5b94dda4abe6af2e6202f44c3a7a158"
+            },
+            "region_support_2": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "7e38b3e79341e48ad64e2349466a9507b1a874c10089daa4814e5d4694a45a3c"
+            },
+            "region_support_3": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "626f425f946374cea192cb0874d6c4300508ed0bb49701e09ae2275973c832eb"
+            },
+            "region_load": {
+              "shape": [
+                805
+              ],
+              "dtype": "int64",
+              "sha256": "1d262f3b21aed7688940df382a343d29855928ce85e166db5afea7d42e1fd2c9"
+            },
+            "region_interior": {
+              "shape": [
+                206934
+              ],
+              "dtype": "int64",
+              "sha256": "fc0fe852b45d50a755a0b6a332da8db4cd03a2182aefde693f2d6c2e417d1264"
+            },
+            "xyz": {
+              "shape": [
+                209499,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "0b1aa3b9ad870885adae9f7cf2b464aaec6d494a861058ba1576161fc9371e0c"
+            },
+            "features": {
+              "shape": [
+                209499,
+                25
+              ],
+              "dtype": "float32",
+              "sha256": "161388150e83bf26c955203866932fa0d6fbbfffc20a6a2aa85a7d4d47d306c4"
+            },
+            "faces": {
+              "shape": [
+                135552,
+                3
+              ],
+              "dtype": "int32",
+              "sha256": "be5354784f8d91d4f3f8da7c735c141547e961211841703ef8c545a658c84cb0"
+            },
+            "cloud": {
+              "shape": [
+                1,
+                1024,
+                3
+              ],
+              "dtype": "float32",
+              "sha256": "4641a9b008961ba60351d2c26dc782c4849e4eb3f56dac138e8d9d33994d8ff6"
+            },
+            "mask": {
+              "shape": [
+                1,
+                1024
+              ],
+              "dtype": "bool",
+              "sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+            },
+            "cloud_node_ids": {
+              "shape": [
+                1024
+              ],
+              "dtype": "int64",
+              "sha256": "b78b10fd5d255eab7c934095512fc66b4be77bd21aa7437f60158b6813c50842"
+            },
+            "h5_row_to_csv": {
+              "shape": [
+                209499
+              ],
+              "dtype": "int64",
+              "sha256": "35692860c4e205f0792275b839ccc8f1e198c88e6b85f10d3d0a5185467ef372"
+            },
+            "csv_row_to_h5": {
+              "shape": [
+                209499
+              ],
+              "dtype": "int64",
+              "sha256": "218536b0b46c0d420ef4e98bb8b15ef1b9b47dc588abb31cf538ba8751f3fbe4"
+            },
+            "csv_node_ids": {
+              "shape": [
+                209499
+              ],
+              "dtype": "int64",
+              "sha256": "105c591a8ed6dbd0a8710865130b2dc6c7f4f04ca3e1dc8e01886854d06175fc"
+            }
+          },
+          "CSV_source": {
+            "path": "data/raw_next_cycle/Field/142_454.csv",
+            "bytes": 65280031,
+            "mtime_ns": 1791564313218761700,
+            "sha256": "17dae992c08a74ade539c960425f990f72b25e35cd638f1f295283283bd72274",
+            "source_url": "https://drive.google.com/file/d/1WWEK7XQgjtOUFhrBVjFDnOY8R6mWF9BV/view?usp=drive_web",
+            "checksum_origin": "Locally calculated from received bytes, not an independent upstream checksum"
+          }
+        }
+      },
+      "routes": {
+        "transolver": {
+          "method": "transolver",
+          "arm_id": "transolver_cad40_fresh4800",
+          "available": true,
+          "checkpoint_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+          "config": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/config.json",
+            "bytes": 460829,
+            "mtime_ns": 1791599699338007700,
+            "sha256": "f306c75a556029fb37a7902b06637990107df22bcabad867f66e9f705b471169"
+          },
+          "summary": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/summary.json",
+            "bytes": 499580,
+            "mtime_ns": 1791601230429261900,
+            "sha256": "880838063a0f9862e5f8db87f9a448966fa2614ed63ff1536f3cb0c8b2b54d47"
+          },
+          "endpoint_metadata": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.json",
+            "bytes": 486289,
+            "mtime_ns": 1791601230294139000,
+            "sha256": "d199401c09bbb99f254a8dc1a5e02cbf7131f55f39605fde79fc92486fcaa241"
+          },
+          "checkpoint": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+            "bytes": 22619411,
+            "mtime_ns": 1791601230285300100
+          },
+          "source_model": {
+            "method": "transolver",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2026,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "method": "transolver",
+              "repository": "https://github.com/thuml/Transolver",
+              "commit": "75e0f67643806a81cd1d3f6adc88dd8c02416fe7",
+              "model_file": "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py",
+              "file_sha256": {
+                "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py": "d1420f8176c73fac024d1f57cb816653e0ffb41580c954c1497d2ba914e71943",
+                "PDE-Solving-StandardBenchmark/model/Embedding.py": "e3a4f71c4378b7cce09a43b8c306d6d8a17edb4cd69db5eb069e55a57d2affe2",
+                "PDE-Solving-StandardBenchmark/model/Physics_Attention.py": "d746cd641f9c81313e205126bac6e0a9bb5bdbe5a9ef107e093a4fe065dbe0f5"
+              },
+              "license": "MIT; upstream LICENSE retained",
+              "constructor_kwargs": {
+                "n_layers": 5,
+                "n_hidden": 256,
+                "n_head": 8,
+                "slice_num": 32,
+                "mlp_ratio": 1,
+                "dropout": 0.0,
+                "space_dim": 3,
+                "fun_dim": 57,
+                "out_dim": 4,
+                "act": "gelu",
+                "unified_pos": false,
+                "ref": 8
+              },
+              "preset_source": "Model constructor defaults in the pinned irregular-mesh model: 5 layers, width 256, 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+              "slide_explicit": {},
+              "reference_gaps": [
+                "Original Transolver baseline was newly requested; the slides do not provide its run configuration.",
+                "The source-server commit and exact 25-feature schema are unavailable."
+              ],
+              "architecture_overrides": {},
+              "input": "canonical xyz3 + original BC/material25 + shared PointNet global32",
+              "output": "Four trainer-encoded signed physical field channels",
+              "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+              "checkpoint_blocks": true,
+              "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+              "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+              "chunk_size": null,
+              "eval_stochastic": false,
+              "gumbel_note": null,
+              "distributed": null,
+              "parameter_count": 1834956
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 1834956,
+              "total": 1851692
+            },
+            "capabilities": {
+              "forward_points": true,
+              "forward_grid": false,
+              "pointwise_external_chunks": false,
+              "whole_case_point_context": true,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 1834956,
+            "total": 1851692
+          },
+          "training_cost_context": {
+            "train_seconds": 1400.2458318130045,
+            "initialization_seconds": 2.7605229320000007,
+            "checkpoint_seconds": 21.74360073900003,
+            "TRAIN_readout_seconds": 3.167054362999977,
+            "train_case_exposures_committed": 4800,
+            "train_node_exposures_committed": 1043195400
+          },
+          "training_exposure_context": {
+            "101_428/ver": 40,
+            "101_428/hor": 40,
+            "101_428/tor": 40,
+            "101_479/ver": 40,
+            "101_479/hor": 40,
+            "101_479/tor": 40,
+            "101_56/ver": 40,
+            "101_56/hor": 40,
+            "101_56/tor": 40,
+            "101_78/ver": 40,
+            "101_78/hor": 40,
+            "101_78/tor": 40,
+            "101_86/ver": 40,
+            "101_86/hor": 40,
+            "101_86/tor": 40,
+            "102_240/ver": 40,
+            "102_240/hor": 40,
+            "102_240/tor": 40,
+            "102_79/ver": 40,
+            "102_79/hor": 40,
+            "102_79/tor": 40,
+            "107_113/ver": 40,
+            "107_113/hor": 40,
+            "107_113/tor": 40,
+            "107_147/ver": 40,
+            "107_147/hor": 40,
+            "107_147/tor": 40,
+            "107_150/ver": 40,
+            "107_150/hor": 40,
+            "107_150/tor": 40,
+            "107_186/ver": 40,
+            "107_186/hor": 40,
+            "107_186/tor": 40,
+            "107_233/ver": 40,
+            "107_233/hor": 40,
+            "107_233/tor": 40,
+            "107_240/ver": 40,
+            "107_240/hor": 40,
+            "107_240/tor": 40,
+            "107_248/ver": 40,
+            "107_248/hor": 40,
+            "107_248/tor": 40,
+            "107_291/ver": 40,
+            "107_291/hor": 40,
+            "107_291/tor": 40,
+            "107_320/ver": 40,
+            "107_320/hor": 40,
+            "107_320/tor": 40,
+            "107_342/ver": 40,
+            "107_342/hor": 40,
+            "107_342/tor": 40,
+            "107_459/ver": 40,
+            "107_459/hor": 40,
+            "107_459/tor": 40,
+            "10_30/ver": 40,
+            "10_30/hor": 40,
+            "10_30/tor": 40,
+            "10_421/ver": 40,
+            "10_421/hor": 40,
+            "10_421/tor": 40,
+            "10_460/ver": 40,
+            "10_460/hor": 40,
+            "10_460/tor": 40,
+            "10_492/ver": 40,
+            "10_492/hor": 40,
+            "10_492/tor": 40,
+            "10_58/ver": 40,
+            "10_58/hor": 40,
+            "10_58/tor": 40,
+            "10_80/ver": 40,
+            "10_80/hor": 40,
+            "10_80/tor": 40,
+            "113_129/ver": 40,
+            "113_129/hor": 40,
+            "113_129/tor": 40,
+            "113_170/ver": 40,
+            "113_170/hor": 40,
+            "113_170/tor": 40,
+            "113_390/ver": 40,
+            "113_390/hor": 40,
+            "113_390/tor": 40,
+            "113_86/ver": 40,
+            "113_86/hor": 40,
+            "113_86/tor": 40,
+            "113_95/ver": 40,
+            "113_95/hor": 40,
+            "113_95/tor": 40,
+            "114_28/ver": 40,
+            "114_28/hor": 40,
+            "114_28/tor": 40,
+            "114_456/ver": 40,
+            "114_456/hor": 40,
+            "114_456/tor": 40,
+            "114_525/ver": 40,
+            "114_525/hor": 40,
+            "114_525/tor": 40,
+            "114_91/ver": 40,
+            "114_91/hor": 40,
+            "114_91/tor": 40,
+            "116_102/ver": 40,
+            "116_102/hor": 40,
+            "116_102/tor": 40,
+            "116_113/ver": 40,
+            "116_113/hor": 40,
+            "116_113/tor": 40,
+            "116_30/ver": 40,
+            "116_30/hor": 40,
+            "116_30/tor": 40,
+            "116_348/ver": 40,
+            "116_348/hor": 40,
+            "116_348/tor": 40,
+            "119_221/ver": 40,
+            "119_221/hor": 40,
+            "119_221/tor": 40,
+            "119_322/ver": 40,
+            "119_322/hor": 40,
+            "119_322/tor": 40,
+            "119_559/ver": 40,
+            "119_559/hor": 40,
+            "119_559/tor": 40
+          }
+        },
+        "transolver_pp": {
+          "method": "transolver_pp",
+          "arm_id": "transolver_pp_cad40_fresh4800",
+          "available": true,
+          "checkpoint_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+          "config": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/config.json",
+            "bytes": 527069,
+            "mtime_ns": 1791601263018512100,
+            "sha256": "b461673ce5eacfc03e7a04f21c04fd61231d3100118eb43e381a89cd64de0ecf"
+          },
+          "summary": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/summary.json",
+            "bytes": 570439,
+            "mtime_ns": 1791605660817647300,
+            "sha256": "02ef353e5cf6c328a4941b15e4610ce01f4aea6215d29ce9d0482061188d6ce0"
+          },
+          "endpoint_metadata": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.json",
+            "bytes": 556916,
+            "mtime_ns": 1791605660363775900,
+            "sha256": "44742043099d6fc08cd7cd58eb167fe15704ca0d958d7769a6e98954720bff5a"
+          },
+          "checkpoint": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+            "bytes": 54688735,
+            "mtime_ns": 1791605660352707300
+          },
+          "source_model": {
+            "method": "transolver_pp",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2026,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "method": "transolver_pp",
+              "repository": "https://github.com/thuml/Transolver_plus",
+              "commit": "d5a23bc734a0ebac56384cf72049a26af9673452",
+              "model_file": "models/Transolver_plus.py",
+              "file_sha256": {
+                "models/Transolver_plus.py": "7104ad5b90294d1d97b1e7e86b3eeb2ccbe11eec93d2e7bf566bcb3a8ab6e858"
+              },
+              "license": "MIT; upstream LICENSE retained",
+              "constructor_kwargs": {
+                "n_layers": 16,
+                "n_hidden": 256,
+                "n_head": 8,
+                "slice_num": 32,
+                "mlp_ratio": 1,
+                "dropout": 0.0,
+                "space_dim": 3,
+                "fun_dim": 57,
+                "out_dim": 4,
+                "act": "gelu",
+                "unified_pos": false,
+                "ref": 8
+              },
+              "preset_source": "Slide 5 fixes 16 layers / width 256; other settings are official Model constructor defaults: 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+              "slide_explicit": {
+                "output_scaling": [
+                  "linear",
+                  "invertible asinh stress"
+                ],
+                "updates": 1000,
+                "n_layers": 16,
+                "epochs": 500,
+                "n_hidden": 256,
+                "selection": "decoded physical normalized MSE",
+                "learning_rate": 0.003
+              },
+              "reference_gaps": [
+                "Head count, slice count, MLP ratio and dropout are not present in slide notes; official constructor defaults are used and are not claimed as exact reference settings.",
+                "Official Airplane launcher instead uses 4 layers, MLP ratio 2 and dropout 0.1; those task-specific settings are not substituted.",
+                "The source-server commit and exact target normalization constants are unavailable."
+              ],
+              "architecture_overrides": {},
+              "input": "canonical xyz3 + original BC/material25 + shared PointNet global32",
+              "output": "Four trainer-encoded signed physical field channels",
+              "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+              "checkpoint_blocks": true,
+              "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+              "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+              "chunk_size": null,
+              "eval_stochastic": true,
+              "gumbel_note": "Upstream ++ draws Gumbel noise during both train and eval; no guard or replacement added.",
+              "distributed": "world_size=1 process group for unchanged official all_reduce calls",
+              "parameter_count": 4476052
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 4476052,
+              "total": 4492788
+            },
+            "capabilities": {
+              "forward_points": true,
+              "forward_grid": false,
+              "pointwise_external_chunks": false,
+              "whole_case_point_context": true,
+              "native_global_chunks": false,
+              "eval_stochastic": true,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 4476052,
+            "total": 4492788
+          },
+          "training_cost_context": {
+            "train_seconds": 4112.766923008952,
+            "initialization_seconds": 1.6324970279999889,
+            "checkpoint_seconds": 53.74973160599143,
+            "TRAIN_readout_seconds": 4.7789580019996265,
+            "train_case_exposures_committed": 4800,
+            "train_node_exposures_committed": 1043195400
+          },
+          "training_exposure_context": {
+            "101_428/ver": 40,
+            "101_428/hor": 40,
+            "101_428/tor": 40,
+            "101_479/ver": 40,
+            "101_479/hor": 40,
+            "101_479/tor": 40,
+            "101_56/ver": 40,
+            "101_56/hor": 40,
+            "101_56/tor": 40,
+            "101_78/ver": 40,
+            "101_78/hor": 40,
+            "101_78/tor": 40,
+            "101_86/ver": 40,
+            "101_86/hor": 40,
+            "101_86/tor": 40,
+            "102_240/ver": 40,
+            "102_240/hor": 40,
+            "102_240/tor": 40,
+            "102_79/ver": 40,
+            "102_79/hor": 40,
+            "102_79/tor": 40,
+            "107_113/ver": 40,
+            "107_113/hor": 40,
+            "107_113/tor": 40,
+            "107_147/ver": 40,
+            "107_147/hor": 40,
+            "107_147/tor": 40,
+            "107_150/ver": 40,
+            "107_150/hor": 40,
+            "107_150/tor": 40,
+            "107_186/ver": 40,
+            "107_186/hor": 40,
+            "107_186/tor": 40,
+            "107_233/ver": 40,
+            "107_233/hor": 40,
+            "107_233/tor": 40,
+            "107_240/ver": 40,
+            "107_240/hor": 40,
+            "107_240/tor": 40,
+            "107_248/ver": 40,
+            "107_248/hor": 40,
+            "107_248/tor": 40,
+            "107_291/ver": 40,
+            "107_291/hor": 40,
+            "107_291/tor": 40,
+            "107_320/ver": 40,
+            "107_320/hor": 40,
+            "107_320/tor": 40,
+            "107_342/ver": 40,
+            "107_342/hor": 40,
+            "107_342/tor": 40,
+            "107_459/ver": 40,
+            "107_459/hor": 40,
+            "107_459/tor": 40,
+            "10_30/ver": 40,
+            "10_30/hor": 40,
+            "10_30/tor": 40,
+            "10_421/ver": 40,
+            "10_421/hor": 40,
+            "10_421/tor": 40,
+            "10_460/ver": 40,
+            "10_460/hor": 40,
+            "10_460/tor": 40,
+            "10_492/ver": 40,
+            "10_492/hor": 40,
+            "10_492/tor": 40,
+            "10_58/ver": 40,
+            "10_58/hor": 40,
+            "10_58/tor": 40,
+            "10_80/ver": 40,
+            "10_80/hor": 40,
+            "10_80/tor": 40,
+            "113_129/ver": 40,
+            "113_129/hor": 40,
+            "113_129/tor": 40,
+            "113_170/ver": 40,
+            "113_170/hor": 40,
+            "113_170/tor": 40,
+            "113_390/ver": 40,
+            "113_390/hor": 40,
+            "113_390/tor": 40,
+            "113_86/ver": 40,
+            "113_86/hor": 40,
+            "113_86/tor": 40,
+            "113_95/ver": 40,
+            "113_95/hor": 40,
+            "113_95/tor": 40,
+            "114_28/ver": 40,
+            "114_28/hor": 40,
+            "114_28/tor": 40,
+            "114_456/ver": 40,
+            "114_456/hor": 40,
+            "114_456/tor": 40,
+            "114_525/ver": 40,
+            "114_525/hor": 40,
+            "114_525/tor": 40,
+            "114_91/ver": 40,
+            "114_91/hor": 40,
+            "114_91/tor": 40,
+            "116_102/ver": 40,
+            "116_102/hor": 40,
+            "116_102/tor": 40,
+            "116_113/ver": 40,
+            "116_113/hor": 40,
+            "116_113/tor": 40,
+            "116_30/ver": 40,
+            "116_30/hor": 40,
+            "116_30/tor": 40,
+            "116_348/ver": 40,
+            "116_348/hor": 40,
+            "116_348/tor": 40,
+            "119_221/ver": 40,
+            "119_221/hor": 40,
+            "119_221/tor": 40,
+            "119_322/ver": 40,
+            "119_322/hor": 40,
+            "119_322/tor": 40,
+            "119_559/ver": 40,
+            "119_559/hor": 40,
+            "119_559/tor": 40
+          }
+        },
+        "ts3": {
+          "method": "ts3",
+          "arm_id": "ts3_cad40_fresh4800",
+          "available": true,
+          "checkpoint_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+          "config": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/config.json",
+            "bytes": 509802,
+            "mtime_ns": 1791605690160713100,
+            "sha256": "06c605f597a0caf590c754a585c0384ab1ddd872692c11587041c33e5ec2ee45"
+          },
+          "summary": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/summary.json",
+            "bytes": 551783,
+            "mtime_ns": 1791610473169370000,
+            "sha256": "8391b79a951abd6d6ef7a727df2ab86632f9a8873a4a2dad0b8e77fa01cfb7ce"
+          },
+          "endpoint_metadata": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.json",
+            "bytes": 538510,
+            "mtime_ns": 1791610472806405600,
+            "sha256": "878175e0f91fef1a88e41506d71aeba473d537b073033dd65e74357f37287116"
+          },
+          "checkpoint": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+            "bytes": 92423129,
+            "mtime_ns": 1791610472796897300
+          },
+          "source_model": {
+            "method": "ts3",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2026,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "method": "ts3",
+              "repository": "https://github.com/thuml/Transolver-3",
+              "commit": "ef4fee9fa08dbfc5af13f9d9b42202dfb34dba37",
+              "model_file": "models/Transolver_chunk_opt_matrix_mul.py",
+              "file_sha256": {
+                "models/Transolver_chunk_opt_matrix_mul.py": "49292aa1ee7be2e143db5b9c75d0128f8767f8a2ae74479cdc06aeb9d41fb71a"
+              },
+              "license": "No LICENSE file present at pinned upstream commit; no license inferred",
+              "constructor_kwargs": {
+                "n_layers": 16,
+                "n_hidden": 256,
+                "n_head": 8,
+                "slice_num": 64,
+                "mlp_ratio": 2,
+                "dropout": 0.0,
+                "space_dim": 3,
+                "fun_dim": 57,
+                "out_dim": 4,
+                "act": "gelu",
+                "unified_pos": false,
+                "ref": 8
+              },
+              "preset_source": "Official main_drivaerml_volume.py MODEL_KWARGS: 16 layers, width 256, 8 heads, 64 slices, MLP ratio 2, dropout 0, GELU, unified_pos false",
+              "slide_explicit": {
+                "long_epochs": 5000,
+                "short_stopped_update": 897,
+                "short_reported_update": 800,
+                "input_channels": 28,
+                "long_updates": 10000,
+                "output_channels": 4
+              },
+              "reference_gaps": [
+                "TS3 is identified as the official Transolver-3 family, but the exact server model file/commit cannot be verified.",
+                "Slide 4 does not specify depth, heads, slices, width, MLP ratio or optimizer settings; the official volume preset is a stated substitute.",
+                "Model constructor defaults are 5 layers / 32 slices / MLP ratio 1; official surface preset uses 24 layers. The chosen volume preset is explicit rather than silently treating either as slide settings.",
+                "The exact 25-feature schema and long-run target scaling constants are unavailable."
+              ],
+              "architecture_overrides": {},
+              "input": "canonical xyz3 + original BC/material25 + shared PointNet global32",
+              "output": "Four trainer-encoded signed physical field channels",
+              "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+              "checkpoint_blocks": true,
+              "checkpoint_strategy": "official global chunk stats and chunk deslice/MLP",
+              "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+              "chunk_size": 32768,
+              "eval_stochastic": false,
+              "gumbel_note": null,
+              "distributed": null,
+              "parameter_count": 7628420
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 7628420,
+              "total": 7645156
+            },
+            "capabilities": {
+              "forward_points": true,
+              "forward_grid": false,
+              "pointwise_external_chunks": false,
+              "whole_case_point_context": true,
+              "native_global_chunks": true,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 7628420,
+            "total": 7645156
+          },
+          "training_cost_context": {
+            "train_seconds": 4402.4433507700405,
+            "initialization_seconds": 1.6017140399999334,
+            "checkpoint_seconds": 68.74680156699378,
+            "TRAIN_readout_seconds": 4.572885541999312,
+            "train_case_exposures_committed": 4800,
+            "train_node_exposures_committed": 1043195400
+          },
+          "training_exposure_context": {
+            "101_428/ver": 40,
+            "101_428/hor": 40,
+            "101_428/tor": 40,
+            "101_479/ver": 40,
+            "101_479/hor": 40,
+            "101_479/tor": 40,
+            "101_56/ver": 40,
+            "101_56/hor": 40,
+            "101_56/tor": 40,
+            "101_78/ver": 40,
+            "101_78/hor": 40,
+            "101_78/tor": 40,
+            "101_86/ver": 40,
+            "101_86/hor": 40,
+            "101_86/tor": 40,
+            "102_240/ver": 40,
+            "102_240/hor": 40,
+            "102_240/tor": 40,
+            "102_79/ver": 40,
+            "102_79/hor": 40,
+            "102_79/tor": 40,
+            "107_113/ver": 40,
+            "107_113/hor": 40,
+            "107_113/tor": 40,
+            "107_147/ver": 40,
+            "107_147/hor": 40,
+            "107_147/tor": 40,
+            "107_150/ver": 40,
+            "107_150/hor": 40,
+            "107_150/tor": 40,
+            "107_186/ver": 40,
+            "107_186/hor": 40,
+            "107_186/tor": 40,
+            "107_233/ver": 40,
+            "107_233/hor": 40,
+            "107_233/tor": 40,
+            "107_240/ver": 40,
+            "107_240/hor": 40,
+            "107_240/tor": 40,
+            "107_248/ver": 40,
+            "107_248/hor": 40,
+            "107_248/tor": 40,
+            "107_291/ver": 40,
+            "107_291/hor": 40,
+            "107_291/tor": 40,
+            "107_320/ver": 40,
+            "107_320/hor": 40,
+            "107_320/tor": 40,
+            "107_342/ver": 40,
+            "107_342/hor": 40,
+            "107_342/tor": 40,
+            "107_459/ver": 40,
+            "107_459/hor": 40,
+            "107_459/tor": 40,
+            "10_30/ver": 40,
+            "10_30/hor": 40,
+            "10_30/tor": 40,
+            "10_421/ver": 40,
+            "10_421/hor": 40,
+            "10_421/tor": 40,
+            "10_460/ver": 40,
+            "10_460/hor": 40,
+            "10_460/tor": 40,
+            "10_492/ver": 40,
+            "10_492/hor": 40,
+            "10_492/tor": 40,
+            "10_58/ver": 40,
+            "10_58/hor": 40,
+            "10_58/tor": 40,
+            "10_80/ver": 40,
+            "10_80/hor": 40,
+            "10_80/tor": 40,
+            "113_129/ver": 40,
+            "113_129/hor": 40,
+            "113_129/tor": 40,
+            "113_170/ver": 40,
+            "113_170/hor": 40,
+            "113_170/tor": 40,
+            "113_390/ver": 40,
+            "113_390/hor": 40,
+            "113_390/tor": 40,
+            "113_86/ver": 40,
+            "113_86/hor": 40,
+            "113_86/tor": 40,
+            "113_95/ver": 40,
+            "113_95/hor": 40,
+            "113_95/tor": 40,
+            "114_28/ver": 40,
+            "114_28/hor": 40,
+            "114_28/tor": 40,
+            "114_456/ver": 40,
+            "114_456/hor": 40,
+            "114_456/tor": 40,
+            "114_525/ver": 40,
+            "114_525/hor": 40,
+            "114_525/tor": 40,
+            "114_91/ver": 40,
+            "114_91/hor": 40,
+            "114_91/tor": 40,
+            "116_102/ver": 40,
+            "116_102/hor": 40,
+            "116_102/tor": 40,
+            "116_113/ver": 40,
+            "116_113/hor": 40,
+            "116_113/tor": 40,
+            "116_30/ver": 40,
+            "116_30/hor": 40,
+            "116_30/tor": 40,
+            "116_348/ver": 40,
+            "116_348/hor": 40,
+            "116_348/tor": 40,
+            "119_221/ver": 40,
+            "119_221/hor": 40,
+            "119_221/tor": 40,
+            "119_322/ver": 40,
+            "119_322/hor": 40,
+            "119_322/tor": 40,
+            "119_559/ver": 40,
+            "119_559/hor": 40,
+            "119_559/tor": 40
+          }
+        },
+        "fno": {
+          "method": "fno",
+          "arm_id": "fno_cad40_fresh4800",
+          "available": true,
+          "checkpoint_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+          "config": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/config.json",
+            "bytes": 439791,
+            "mtime_ns": 1791610503963619400,
+            "sha256": "88be47ad1848b2ae3778019116e8585e29553ea88fb5915dd2b0a1e0c9224753"
+          },
+          "summary": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/summary.json",
+            "bytes": 477355,
+            "mtime_ns": 1791611924320128600,
+            "sha256": "d7749f67427d7e5a8a91f2d04d95fa62d83e4b6bdc7ee89a5a2ca531d5afe3bb"
+          },
+          "endpoint_metadata": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.json",
+            "bytes": 464010,
+            "mtime_ns": 1791611923868185000,
+            "sha256": "8947ec6d970d2584ddcf3f6ab8d925a9784efee6956318246a188c216adcbda5"
+          },
+          "checkpoint": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+            "bytes": 170405851,
+            "mtime_ns": 1791611923859036500
+          },
+          "source_model": {
+            "method": "fno",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2026,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "in_channels": 61,
+              "out_channels": 4,
+              "width": 16,
+              "modes": 12,
+              "layers": 4,
+              "head_width": 128,
+              "padding": 0,
+              "checkpoint_blocks": true,
+              "layout": "B,C,X,Y,Z",
+              "xyz_channels": true,
+              "fft_norm": "backward",
+              "sources": {
+                "paper": "https://arxiv.org/abs/2010.08895v3",
+                "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+                "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+                "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+              },
+              "unknown_reference_details": [
+                "18 input channel definitions",
+                "padding",
+                "projection width",
+                "optimizer/scaling schedule"
+              ],
+              "input_schema": "occupancy1 + canonical xyz3 + BC/material25 + shared global32",
+              "resolution": 64
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 14160548,
+              "total": 14177284
+            },
+            "capabilities": {
+              "forward_points": false,
+              "forward_grid": true,
+              "pointwise_external_chunks": false,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 14160548,
+            "total": 14177284
+          },
+          "training_cost_context": {
+            "train_seconds": 1206.3672752220318,
+            "initialization_seconds": 1.5306268439999258,
+            "checkpoint_seconds": 78.10097795598449,
+            "TRAIN_readout_seconds": 3.8214305370001966,
+            "train_case_exposures_committed": 4800,
+            "train_node_exposures_committed": 1043195400
+          },
+          "training_exposure_context": {
+            "101_428/ver": 40,
+            "101_428/hor": 40,
+            "101_428/tor": 40,
+            "101_479/ver": 40,
+            "101_479/hor": 40,
+            "101_479/tor": 40,
+            "101_56/ver": 40,
+            "101_56/hor": 40,
+            "101_56/tor": 40,
+            "101_78/ver": 40,
+            "101_78/hor": 40,
+            "101_78/tor": 40,
+            "101_86/ver": 40,
+            "101_86/hor": 40,
+            "101_86/tor": 40,
+            "102_240/ver": 40,
+            "102_240/hor": 40,
+            "102_240/tor": 40,
+            "102_79/ver": 40,
+            "102_79/hor": 40,
+            "102_79/tor": 40,
+            "107_113/ver": 40,
+            "107_113/hor": 40,
+            "107_113/tor": 40,
+            "107_147/ver": 40,
+            "107_147/hor": 40,
+            "107_147/tor": 40,
+            "107_150/ver": 40,
+            "107_150/hor": 40,
+            "107_150/tor": 40,
+            "107_186/ver": 40,
+            "107_186/hor": 40,
+            "107_186/tor": 40,
+            "107_233/ver": 40,
+            "107_233/hor": 40,
+            "107_233/tor": 40,
+            "107_240/ver": 40,
+            "107_240/hor": 40,
+            "107_240/tor": 40,
+            "107_248/ver": 40,
+            "107_248/hor": 40,
+            "107_248/tor": 40,
+            "107_291/ver": 40,
+            "107_291/hor": 40,
+            "107_291/tor": 40,
+            "107_320/ver": 40,
+            "107_320/hor": 40,
+            "107_320/tor": 40,
+            "107_342/ver": 40,
+            "107_342/hor": 40,
+            "107_342/tor": 40,
+            "107_459/ver": 40,
+            "107_459/hor": 40,
+            "107_459/tor": 40,
+            "10_30/ver": 40,
+            "10_30/hor": 40,
+            "10_30/tor": 40,
+            "10_421/ver": 40,
+            "10_421/hor": 40,
+            "10_421/tor": 40,
+            "10_460/ver": 40,
+            "10_460/hor": 40,
+            "10_460/tor": 40,
+            "10_492/ver": 40,
+            "10_492/hor": 40,
+            "10_492/tor": 40,
+            "10_58/ver": 40,
+            "10_58/hor": 40,
+            "10_58/tor": 40,
+            "10_80/ver": 40,
+            "10_80/hor": 40,
+            "10_80/tor": 40,
+            "113_129/ver": 40,
+            "113_129/hor": 40,
+            "113_129/tor": 40,
+            "113_170/ver": 40,
+            "113_170/hor": 40,
+            "113_170/tor": 40,
+            "113_390/ver": 40,
+            "113_390/hor": 40,
+            "113_390/tor": 40,
+            "113_86/ver": 40,
+            "113_86/hor": 40,
+            "113_86/tor": 40,
+            "113_95/ver": 40,
+            "113_95/hor": 40,
+            "113_95/tor": 40,
+            "114_28/ver": 40,
+            "114_28/hor": 40,
+            "114_28/tor": 40,
+            "114_456/ver": 40,
+            "114_456/hor": 40,
+            "114_456/tor": 40,
+            "114_525/ver": 40,
+            "114_525/hor": 40,
+            "114_525/tor": 40,
+            "114_91/ver": 40,
+            "114_91/hor": 40,
+            "114_91/tor": 40,
+            "116_102/ver": 40,
+            "116_102/hor": 40,
+            "116_102/tor": 40,
+            "116_113/ver": 40,
+            "116_113/hor": 40,
+            "116_113/tor": 40,
+            "116_30/ver": 40,
+            "116_30/hor": 40,
+            "116_30/tor": 40,
+            "116_348/ver": 40,
+            "116_348/hor": 40,
+            "116_348/tor": 40,
+            "119_221/ver": 40,
+            "119_221/hor": 40,
+            "119_221/tor": 40,
+            "119_322/ver": 40,
+            "119_322/hor": 40,
+            "119_322/tor": 40,
+            "119_559/ver": 40,
+            "119_559/hor": 40,
+            "119_559/tor": 40
+          }
+        },
+        "mlp": {
+          "method": "mlp",
+          "arm_id": "mlp_cad40_fresh4800",
+          "available": true,
+          "checkpoint_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+          "config": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/config.json",
+            "bytes": 433074,
+            "mtime_ns": 1791611954907481800,
+            "sha256": "3395e362800c014d689716959b5e28fa3915546ea8772dcf7fc61b73fa4a8e82"
+          },
+          "summary": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/summary.json",
+            "bytes": 470052,
+            "mtime_ns": 1791612636643959200,
+            "sha256": "586a35e662aceaf600dfa6d638368b9317e883fa9a18b88632828d3d15ff87b9"
+          },
+          "endpoint_metadata": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.json",
+            "bytes": 456759,
+            "mtime_ns": 1791612636593519100,
+            "sha256": "2268527715b4accf3cda9a840f9356c1cf088c762f6c135b6ca5d9c6399cea61"
+          },
+          "checkpoint": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+            "bytes": 3016845,
+            "mtime_ns": 1791612636585517600
+          },
+          "source_model": {
+            "method": "mlp",
+            "purpose": "New six-family geometry/BC solver selection",
+            "exact_slides_reproduction": false,
+            "seed": 2026,
+            "adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geometry_encoder": {
+              "class": "PointNetGeometryEncoder",
+              "source": "geobc/conditioned_field.py",
+              "source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+              "cloud_shape": [
+                "B",
+                1024,
+                3
+              ],
+              "mask_shape": [
+                "B",
+                1024
+              ],
+              "mask_dtype": "bool",
+              "point_width": 64,
+              "descriptor_dim": 32,
+              "coordinates": "Prepared canonical xyz only; no role channels, targets or case ID",
+              "shared_architecture_and_seed_across_all_families": true
+            },
+            "input_schema": {
+              "xyz": [
+                "N",
+                3
+              ],
+              "BC_material": [
+                "N",
+                25
+              ],
+              "context": [
+                1,
+                32
+              ],
+              "points": "xyz3 + original25 + global32; total60",
+              "hash": "xyz3 encoded by native Hash12; original25+global32 identity condition_dim57",
+              "FNO_grid_supplied": [
+                1,
+                29,
+                64,
+                64,
+                64
+              ],
+              "FNO_grid_channels": "occupancy0; xyz1:4; original25 BC/material4:29",
+              "FNO_internal": [
+                1,
+                61,
+                64,
+                64,
+                64
+              ],
+              "FNO_global_broadcast": "Append32 to every cube voxel, including occupancy0 voxels"
+            },
+            "output_schema": {
+              "points": [
+                "N",
+                4
+              ],
+              "grid": [
+                1,
+                4,
+                64,
+                64,
+                64
+              ],
+              "channel_order": [
+                "ux_mm",
+                "uy_mm",
+                "uz_mm",
+                "signed_stress_MPa"
+              ],
+              "scaling": "Encoded signed fields; trainer owns common train-only scaler/decode",
+              "activation": "Unrestricted output; no abs, clipping or stress replacement"
+            },
+            "backbone": {
+              "family": "plain_coordinate_BC_global_MLP",
+              "hidden_width": 256,
+              "hidden_layers": 4,
+              "activation": "ReLU",
+              "input_dim": 60,
+              "output_dim": 4,
+              "hash_encoding": false,
+              "backend": "torch"
+            },
+            "parameter_counts": {
+              "encoder": 16736,
+              "solver": 214020,
+              "total": 230756
+            },
+            "capabilities": {
+              "forward_points": true,
+              "forward_grid": false,
+              "pointwise_external_chunks": true,
+              "whole_case_point_context": false,
+              "native_global_chunks": false,
+              "eval_stochastic": false,
+              "native_continuous_query_implemented": false
+            },
+            "precision": "PointNet/torch solvers float32 inputs; Hash native FP16 compute/FP32 master/float32 output; trainer owns autocast/TF32 policy",
+            "context_lifetime": "Recompute encoder each optimizer update; reuse same live context across point chunks and accumulate its gradients",
+            "distributed_cleanup": "Trainer finally calls close_selection_process_group; closes only adapter-owned ++ group",
+            "no_target_scaler_or_case_identity_in_model": true
+          },
+          "parameter_counts": {
+            "encoder": 16736,
+            "solver": 214020,
+            "total": 230756
+          },
+          "training_cost_context": {
+            "train_seconds": 590.1087509259269,
+            "initialization_seconds": 1.9619028170000092,
+            "checkpoint_seconds": 4.111809016992993,
+            "TRAIN_readout_seconds": 1.893316338002478,
+            "train_case_exposures_committed": 4800,
+            "train_node_exposures_committed": 1043195400
+          },
+          "training_exposure_context": {
+            "101_428/ver": 40,
+            "101_428/hor": 40,
+            "101_428/tor": 40,
+            "101_479/ver": 40,
+            "101_479/hor": 40,
+            "101_479/tor": 40,
+            "101_56/ver": 40,
+            "101_56/hor": 40,
+            "101_56/tor": 40,
+            "101_78/ver": 40,
+            "101_78/hor": 40,
+            "101_78/tor": 40,
+            "101_86/ver": 40,
+            "101_86/hor": 40,
+            "101_86/tor": 40,
+            "102_240/ver": 40,
+            "102_240/hor": 40,
+            "102_240/tor": 40,
+            "102_79/ver": 40,
+            "102_79/hor": 40,
+            "102_79/tor": 40,
+            "107_113/ver": 40,
+            "107_113/hor": 40,
+            "107_113/tor": 40,
+            "107_147/ver": 40,
+            "107_147/hor": 40,
+            "107_147/tor": 40,
+            "107_150/ver": 40,
+            "107_150/hor": 40,
+            "107_150/tor": 40,
+            "107_186/ver": 40,
+            "107_186/hor": 40,
+            "107_186/tor": 40,
+            "107_233/ver": 40,
+            "107_233/hor": 40,
+            "107_233/tor": 40,
+            "107_240/ver": 40,
+            "107_240/hor": 40,
+            "107_240/tor": 40,
+            "107_248/ver": 40,
+            "107_248/hor": 40,
+            "107_248/tor": 40,
+            "107_291/ver": 40,
+            "107_291/hor": 40,
+            "107_291/tor": 40,
+            "107_320/ver": 40,
+            "107_320/hor": 40,
+            "107_320/tor": 40,
+            "107_342/ver": 40,
+            "107_342/hor": 40,
+            "107_342/tor": 40,
+            "107_459/ver": 40,
+            "107_459/hor": 40,
+            "107_459/tor": 40,
+            "10_30/ver": 40,
+            "10_30/hor": 40,
+            "10_30/tor": 40,
+            "10_421/ver": 40,
+            "10_421/hor": 40,
+            "10_421/tor": 40,
+            "10_460/ver": 40,
+            "10_460/hor": 40,
+            "10_460/tor": 40,
+            "10_492/ver": 40,
+            "10_492/hor": 40,
+            "10_492/tor": 40,
+            "10_58/ver": 40,
+            "10_58/hor": 40,
+            "10_58/tor": 40,
+            "10_80/ver": 40,
+            "10_80/hor": 40,
+            "10_80/tor": 40,
+            "113_129/ver": 40,
+            "113_129/hor": 40,
+            "113_129/tor": 40,
+            "113_170/ver": 40,
+            "113_170/hor": 40,
+            "113_170/tor": 40,
+            "113_390/ver": 40,
+            "113_390/hor": 40,
+            "113_390/tor": 40,
+            "113_86/ver": 40,
+            "113_86/hor": 40,
+            "113_86/tor": 40,
+            "113_95/ver": 40,
+            "113_95/hor": 40,
+            "113_95/tor": 40,
+            "114_28/ver": 40,
+            "114_28/hor": 40,
+            "114_28/tor": 40,
+            "114_456/ver": 40,
+            "114_456/hor": 40,
+            "114_456/tor": 40,
+            "114_525/ver": 40,
+            "114_525/hor": 40,
+            "114_525/tor": 40,
+            "114_91/ver": 40,
+            "114_91/hor": 40,
+            "114_91/tor": 40,
+            "116_102/ver": 40,
+            "116_102/hor": 40,
+            "116_102/tor": 40,
+            "116_113/ver": 40,
+            "116_113/hor": 40,
+            "116_113/tor": 40,
+            "116_30/ver": 40,
+            "116_30/hor": 40,
+            "116_30/tor": 40,
+            "116_348/ver": 40,
+            "116_348/hor": 40,
+            "116_348/tor": 40,
+            "119_221/ver": 40,
+            "119_221/hor": 40,
+            "119_221/tor": 40,
+            "119_322/ver": 40,
+            "119_322/hor": 40,
+            "119_322/tor": 40,
+            "119_559/ver": 40,
+            "119_559/hor": 40,
+            "119_559/tor": 40
+          }
+        }
+      },
+      "all_fixed_endpoints_ready": true
+    },
+    "plan_science": {
+      "case_keys": [
+        "489_12/ver",
+        "616_205/ver",
+        "416_282/ver",
+        "247_50/ver",
+        "142_454/ver"
+      ],
+      "methods": [
+        "transolver",
+        "transolver_pp",
+        "ts3",
+        "fno",
+        "mlp"
+      ],
+      "checkpoint_step": 4800,
+      "seed": 2026,
+      "fixed_denominator": 5,
+      "coverage_plan": "notes/geobc_coverage_comparison_plan.json",
+      "coverage_scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+      "original_twenty_source_pins": {
+        "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+        "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196",
+        "geobc/coverage_comparison_train.py": "bbf3832d144a689d0c8c32d27673953dd9a1d24b5976313e3e6a966d08f55e00",
+        "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+        "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+        "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+        "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+        "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+        "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+        "third_party/transformer_sources.json": "1a46270136d2f58e081ea7be050c46fca5378b9853fc3e703c945129769aefb6",
+        "tools/fetch_exact_deepjeb.py": "ff01bffff639cf007cc9c97969b3210db0bca2375f674709238105d6e59002f2",
+        "tools/fetch_geobc_coverage.py": "81b88675120c9ef7f9c07f139be45bc8a5f8196fb095d07a20ab6b5be7b2adeb",
+        "tools/fetch_next_cycle_test.py": "92eba989a7c0b17ab8a5084cf9d761116ab4ace32b01b5b0e70e1375ad3edfae",
+        "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+        "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+        "tools/run_geobc_coverage_comparison.py": "f39c9b01efd45dbe7d4ae66dc1807dcd865eae2c170aa63e60b157dfc0ae1196",
+        "tools/start_geobc_coverage_comparison.ps1": "4d1cdf1675c5f7d38d6a7ba2b2c3bdf4dcafbb1e6b0808f712e32ced3cea9905",
+        "tools/start_geobc_coverage_fetch.ps1": "7f90ffd8a758c2f3b7f5248370aa1e1f8631af9b56ca7fdc1a19070b17caba9a"
+      },
+      "additional_source_pins": {
+        "geobc/coverage_train_fit_diagnostic.py": "b8a398c540f778f4467d5fea834ca215fd800798808b671b9c554b4da5fed2fe"
+      },
+      "historical_U_summary": "runs/geobc_exploration/blind_solver_full5_ver_U/summary.json",
+      "input_manifests": {
+        "489_12/ver": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/489_12_ver/input/manifest.json",
+        "616_205/ver": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/616_205_ver/input/manifest.json",
+        "416_282/ver": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/416_282_ver/input/manifest.json",
+        "247_50/ver": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/247_50_ver/input/manifest.json",
+        "142_454/ver": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/142_454_ver/input/manifest.json"
+      },
+      "routes": [
+        {
+          "method": "transolver",
+          "arm_id": "transolver_cad40_fresh4800",
+          "training_output": "runs/geobc_coverage_comparison/transolver_cad40_fresh4800"
+        },
+        {
+          "method": "transolver_pp",
+          "arm_id": "transolver_pp_cad40_fresh4800",
+          "training_output": "runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800"
+        },
+        {
+          "method": "ts3",
+          "arm_id": "ts3_cad40_fresh4800",
+          "training_output": "runs/geobc_coverage_comparison/ts3_cad40_fresh4800"
+        },
+        {
+          "method": "fno",
+          "arm_id": "fno_cad40_fresh4800",
+          "training_output": "runs/geobc_coverage_comparison/fno_cad40_fresh4800"
+        },
+        {
+          "method": "mlp",
+          "arm_id": "mlp_cad40_fresh4800",
+          "training_output": "runs/geobc_coverage_comparison/mlp_cad40_fresh4800"
+        }
+      ],
+      "scaler": {
+        "mean": [
+          -0.006059544265096125,
+          -0.0005008273527146082,
+          0.015260029003479832,
+          0.09629744183585241
+        ],
+        "std": [
+          0.05393032209940291,
+          0.011291299669602316,
+          0.07619646768716026,
+          0.5232191238243877
+        ],
+        "stress_scale": 90.46589813232424,
+        "channels": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "prediction_budget_seconds": 600,
+      "readout_budget_seconds": 120,
+      "stress_column": "ver_stress(MPa)",
+      "task_identity": {
+        "U_known": true,
+        "S_field_blind_in_controlled_pipeline": true,
+        "untouched_CSV_file_blind": false,
+        "official_split": {
+          "489_12": "TRAIN",
+          "247_50": "TRAIN",
+          "616_205": "TEST",
+          "416_282": "TEST",
+          "142_454": "TEST"
+        },
+        "not_substitute_for_20DEV_10arm": true,
+        "no_final_solver_selection": true
+      },
+      "model_inputs": {
+        "NPZ_members_only": [
+          "xyz",
+          "features",
+          "cloud",
+          "mask"
+        ],
+        "xyz_shape": [
+          "N",
+          3
+        ],
+        "features_shape": [
+          "N",
+          25
+        ],
+        "cloud_shape": [
+          1,
+          1024,
+          3
+        ],
+        "mask_shape": [
+          1,
+          1024
+        ],
+        "no_target_loader": true,
+        "full_original_H5_node_order": true,
+        "FNO_only": {
+          "rebuild": true,
+          "resolution": 64,
+          "supplied_channels": 29,
+          "channels": "occupancy1 + latticeXYZ3 + splatted original25; model appends common global32",
+          "helpers": "frozen solver_selection_data._stencil/_splat/query_grid"
+        },
+        "non_FNO_no_grid_reads_or_builds": true,
+        "PointNet": "original xyz-only 1024 boundary cloud+mask; same frozen input cache, encoder once per case",
+        "MLP": "external node chunks32768 reuse same full-case context",
+        "Transolver_families": "full-N forward preserving global/mesh context, no external point chunk approximations"
+      },
+      "inference": {
+        "model_constructor_seed": 2026,
+        "eval_rng": "torch fork_rng; 2026+int(SHA256(DEV:4800:case)[:8],16), frozen current endpoint evaluation convention",
+        "model_eval": true,
+        "autocast": false,
+        "float32_matmul_precision": "high",
+        "matmul_TF32": true,
+        "cudnn_TF32": true,
+        "output_channels": [
+          "ux_mm",
+          "uy_mm",
+          "uz_mm",
+          "original_signed_S_MPa"
+        ],
+        "decode": "float64 FieldScaler inverse mean/std then signed stress_scale*sinh; no abs/clamp/sign replacement"
+      },
+      "prediction_barrier": {
+        "required_predictions": 25,
+        "finite_full_N_encoded4_and_physical4": true,
+        "atomic_files_and_manifest": true,
+        "file_sha_and_separate_value_sha": true,
+        "all25_required_before_any_S_values": true,
+        "terminal_failure_does_not_authorize_S": true,
+        "no_missing_case_substitution": true
+      },
+      "label_protocol": {
+        "only_original_csv_column": "ver_stress(MPa)",
+        "dtype": "float64",
+        "units": "MPa",
+        "sign_preserved": true,
+        "independent_shared_read_per_CAD": 1,
+        "once_claim_before_semantic_parse": true,
+        "no_auto_replay_after_open_claim": true,
+        "alignment": "existing input.npz h5_row_to_csv one-to-one GRID->H5 mapping; .0002mm source alignment evidence unchanged",
+        "permutation_read_only_after_barrier": true,
+        "CSV_byte_hash_and_header_reads": "separate input/header accesses; CSV bytes may include all fields but only selected S column semantically materialized",
+        "GT_read_accounting": "source parse attempt and completed return separately; all five successful original S parses count GT_reads=stress_target_reads=5; partial uncommitted attempts never inferred zero"
+      },
+      "metrics": {
+        "physical_signed_S": "all-original-node relativeL2, RMSE_MPa, MAE_MPa, max_abs_error_MPa",
+        "hotspot": "max(1,ceil(.01*N)) top abs(original signed S), existing np.argpartition convention",
+        "zero_reference": "relative=null, absolute metrics retained, cannot satisfy complete valid relative readout",
+        "aggregation": "five case mean/worst only when all five finite non-null; missing outcomes remain null/five denominator",
+        "no_U_GT_or_U_metrics": true,
+        "no_best_seed_endpoint_selection": true,
+        "completion_gate": "only all25 finite persisted predictions + shared S5 read +25 metric cases+closed budgets; no new performance acceptance threshold"
+      },
+      "costs": {
+        "prediction_phase": "scientific imports/CUDA init, model/checkpoint IO+hash, input IO+hash/grid, inference/decode/persistence/barrier",
+        "readout_phase": "original CSV identity+shared single-column parse/permutation/cache, prediction reread+metrics, cleanup and first full terminal publication",
+        "closed_clock": "separate cumulative600/120, no budget reset; closed-cost identity amendment is separately timed metadata-only publication tail",
+        "actual_peak_memory": true,
+        "no_invented_memory_cap": true,
+        "unequal_family_capacity_and_actual_training_cost": "reported fixed training config/counts; not a pure architecture causal/capacity-matched ranking"
+      },
+      "failures": {
+        "budget_or_nonfinite": "terminal scientific negative; fixed null cases/receipts and overshoot retained",
+        "technical_exception": "failed terminal with real ledger; no automatic retry",
+        "hard_stop_open_clock_or_claim": "refuse automatic replay/resume; root must preserve unknown downtime/partial read and authorize any separate necessary recovery",
+        "completed_output": "immutable same-contract reuse only"
+      },
+      "forbidden": [
+        "U source targets",
+        "other-load targets",
+        "new DEV20 targets",
+        "old DEV/final targets",
+        "H5 nodal_variables",
+        "strain labels",
+        "training/backward/optimizer",
+        "scaler fits",
+        "test-driven endpoint/seed/case changes"
+      ]
+    },
+    "readout_process": {
+      "pid": 1463,
+      "start_ticks": 1700069,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "geobc.coverage_s_blind_eval",
+        "--plan",
+        "notes/geobc_s_field_blind_plan.json",
+        "--start"
+      ]
+    }
+  },
+  "case_keys": [
+    "489_12/ver",
+    "616_205/ver",
+    "416_282/ver",
+    "247_50/ver",
+    "142_454/ver"
+  ],
+  "fixed_denominator": 5,
+  "readout_process": {
+    "pid": 1463,
+    "start_ticks": 1700069,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "geobc.coverage_s_blind_eval",
+      "--plan",
+      "notes/geobc_s_field_blind_plan.json",
+      "--start"
+    ]
+  },
+  "methods": [
+    "transolver",
+    "transolver_pp",
+    "ts3",
+    "fno",
+    "mlp"
+  ],
+  "arms": {
+    "transolver": {
+      "validation": {
+        "fixed_denominator": 5,
+        "per_case": {
+          "489_12/ver": {
+            "num_nodes": 166790,
+            "stress_relative_l2": 0.8006842047870788,
+            "stress_hotspot_relative_l2": 0.9200281061594627,
+            "stress_RMSE_MPa": 72.31055269197829,
+            "stress_MAE_MPa": 51.70294487077435,
+            "stress_max_abs_error_MPa": 1268.874016635045,
+            "stress_hotspot_nodes": 1668,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "616_205/ver": {
+            "num_nodes": 238303,
+            "stress_relative_l2": 0.8192098023777924,
+            "stress_hotspot_relative_l2": 0.8605337031706863,
+            "stress_RMSE_MPa": 45.556326094299216,
+            "stress_MAE_MPa": 31.4591487174214,
+            "stress_max_abs_error_MPa": 728.17921030971,
+            "stress_hotspot_nodes": 2384,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "416_282/ver": {
+            "num_nodes": 302979,
+            "stress_relative_l2": 0.8042112943779309,
+            "stress_hotspot_relative_l2": 0.8888402164775877,
+            "stress_RMSE_MPa": 50.303122693435704,
+            "stress_MAE_MPa": 34.4466346833677,
+            "stress_max_abs_error_MPa": 845.3361651784007,
+            "stress_hotspot_nodes": 3030,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "247_50/ver": {
+            "num_nodes": 162864,
+            "stress_relative_l2": 0.8110527116574491,
+            "stress_hotspot_relative_l2": 0.8858452108142242,
+            "stress_RMSE_MPa": 86.13066943155728,
+            "stress_MAE_MPa": 63.698387685166125,
+            "stress_max_abs_error_MPa": 1013.481222327342,
+            "stress_hotspot_nodes": 1629,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "142_454/ver": {
+            "num_nodes": 209499,
+            "stress_relative_l2": 0.8185951829687166,
+            "stress_hotspot_relative_l2": 0.8790733766172237,
+            "stress_RMSE_MPa": 49.59938033474206,
+            "stress_MAE_MPa": 35.606830421995596,
+            "stress_max_abs_error_MPa": 761.7752289152726,
+            "stress_hotspot_nodes": 2095,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          }
+        },
+        "metrics_available_cases": 5,
+        "case_mean_stress_relative_l2": 0.8107506392337935,
+        "worst_case_stress_relative_l2": 0.8192098023777924,
+        "case_mean_stress_hotspot_relative_l2": 0.8868641226478369,
+        "worst_case_stress_hotspot_relative_l2": 0.9200281061594627,
+        "case_mean_stress_RMSE_MPa": 60.780010249202505,
+        "worst_case_stress_RMSE_MPa": 86.13066943155728,
+        "case_mean_stress_MAE_MPa": 43.38278927574503,
+        "worst_case_stress_MAE_MPa": 63.698387685166125,
+        "case_mean_stress_max_abs_error_MPa": 923.5291686731541,
+        "worst_case_stress_max_abs_error_MPa": 1268.874016635045
+      },
+      "checkpoint_step": 4800,
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 1834956,
+        "total": 1851692
+      },
+      "costs": {
+        "model_checkpoint_seconds": 0.36758891600038623,
+        "input_and_grid_seconds": 1.369012039998779,
+        "forward_decode_seconds": 0.6825942229988868,
+        "persistence_seconds": 0.47348395199878723
+      },
+      "training_cost_context": {
+        "train_seconds": 1400.2458318130045,
+        "initialization_seconds": 2.7605229320000007,
+        "checkpoint_seconds": 21.74360073900003,
+        "TRAIN_readout_seconds": 3.167054362999977,
+        "train_case_exposures_committed": 4800,
+        "train_node_exposures_committed": 1043195400
+      },
+      "training_exposure_context": {
+        "101_428/ver": 40,
+        "101_428/hor": 40,
+        "101_428/tor": 40,
+        "101_479/ver": 40,
+        "101_479/hor": 40,
+        "101_479/tor": 40,
+        "101_56/ver": 40,
+        "101_56/hor": 40,
+        "101_56/tor": 40,
+        "101_78/ver": 40,
+        "101_78/hor": 40,
+        "101_78/tor": 40,
+        "101_86/ver": 40,
+        "101_86/hor": 40,
+        "101_86/tor": 40,
+        "102_240/ver": 40,
+        "102_240/hor": 40,
+        "102_240/tor": 40,
+        "102_79/ver": 40,
+        "102_79/hor": 40,
+        "102_79/tor": 40,
+        "107_113/ver": 40,
+        "107_113/hor": 40,
+        "107_113/tor": 40,
+        "107_147/ver": 40,
+        "107_147/hor": 40,
+        "107_147/tor": 40,
+        "107_150/ver": 40,
+        "107_150/hor": 40,
+        "107_150/tor": 40,
+        "107_186/ver": 40,
+        "107_186/hor": 40,
+        "107_186/tor": 40,
+        "107_233/ver": 40,
+        "107_233/hor": 40,
+        "107_233/tor": 40,
+        "107_240/ver": 40,
+        "107_240/hor": 40,
+        "107_240/tor": 40,
+        "107_248/ver": 40,
+        "107_248/hor": 40,
+        "107_248/tor": 40,
+        "107_291/ver": 40,
+        "107_291/hor": 40,
+        "107_291/tor": 40,
+        "107_320/ver": 40,
+        "107_320/hor": 40,
+        "107_320/tor": 40,
+        "107_342/ver": 40,
+        "107_342/hor": 40,
+        "107_342/tor": 40,
+        "107_459/ver": 40,
+        "107_459/hor": 40,
+        "107_459/tor": 40,
+        "10_30/ver": 40,
+        "10_30/hor": 40,
+        "10_30/tor": 40,
+        "10_421/ver": 40,
+        "10_421/hor": 40,
+        "10_421/tor": 40,
+        "10_460/ver": 40,
+        "10_460/hor": 40,
+        "10_460/tor": 40,
+        "10_492/ver": 40,
+        "10_492/hor": 40,
+        "10_492/tor": 40,
+        "10_58/ver": 40,
+        "10_58/hor": 40,
+        "10_58/tor": 40,
+        "10_80/ver": 40,
+        "10_80/hor": 40,
+        "10_80/tor": 40,
+        "113_129/ver": 40,
+        "113_129/hor": 40,
+        "113_129/tor": 40,
+        "113_170/ver": 40,
+        "113_170/hor": 40,
+        "113_170/tor": 40,
+        "113_390/ver": 40,
+        "113_390/hor": 40,
+        "113_390/tor": 40,
+        "113_86/ver": 40,
+        "113_86/hor": 40,
+        "113_86/tor": 40,
+        "113_95/ver": 40,
+        "113_95/hor": 40,
+        "113_95/tor": 40,
+        "114_28/ver": 40,
+        "114_28/hor": 40,
+        "114_28/tor": 40,
+        "114_456/ver": 40,
+        "114_456/hor": 40,
+        "114_456/tor": 40,
+        "114_525/ver": 40,
+        "114_525/hor": 40,
+        "114_525/tor": 40,
+        "114_91/ver": 40,
+        "114_91/hor": 40,
+        "114_91/tor": 40,
+        "116_102/ver": 40,
+        "116_102/hor": 40,
+        "116_102/tor": 40,
+        "116_113/ver": 40,
+        "116_113/hor": 40,
+        "116_113/tor": 40,
+        "116_30/ver": 40,
+        "116_30/hor": 40,
+        "116_30/tor": 40,
+        "116_348/ver": 40,
+        "116_348/hor": 40,
+        "116_348/tor": 40,
+        "119_221/ver": 40,
+        "119_221/hor": 40,
+        "119_221/tor": 40,
+        "119_322/ver": 40,
+        "119_322/hor": 40,
+        "119_322/tor": 40,
+        "119_559/ver": 40,
+        "119_559/hor": 40,
+        "119_559/tor": 40
+      }
+    },
+    "transolver_pp": {
+      "validation": {
+        "fixed_denominator": 5,
+        "per_case": {
+          "489_12/ver": {
+            "num_nodes": 166790,
+            "stress_relative_l2": 0.7379703477145042,
+            "stress_hotspot_relative_l2": 0.8456552174948355,
+            "stress_RMSE_MPa": 66.64680456350168,
+            "stress_MAE_MPa": 46.954607656498276,
+            "stress_max_abs_error_MPa": 1206.497001848896,
+            "stress_hotspot_nodes": 1668,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "616_205/ver": {
+            "num_nodes": 238303,
+            "stress_relative_l2": 0.7486979959813249,
+            "stress_hotspot_relative_l2": 0.7780999114701856,
+            "stress_RMSE_MPa": 41.63515860292906,
+            "stress_MAE_MPa": 28.527415657382594,
+            "stress_max_abs_error_MPa": 672.4079156046143,
+            "stress_hotspot_nodes": 2384,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "416_282/ver": {
+            "num_nodes": 302979,
+            "stress_relative_l2": 0.7779489810330162,
+            "stress_hotspot_relative_l2": 0.833670477779348,
+            "stress_RMSE_MPa": 48.66042458705737,
+            "stress_MAE_MPa": 33.31883868660483,
+            "stress_max_abs_error_MPa": 804.23081240996,
+            "stress_hotspot_nodes": 3030,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "247_50/ver": {
+            "num_nodes": 162864,
+            "stress_relative_l2": 0.7311630868526187,
+            "stress_hotspot_relative_l2": 0.7821786033215262,
+            "stress_RMSE_MPa": 77.6466994427088,
+            "stress_MAE_MPa": 56.007696032935705,
+            "stress_max_abs_error_MPa": 929.4234828946908,
+            "stress_hotspot_nodes": 1629,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "142_454/ver": {
+            "num_nodes": 209499,
+            "stress_relative_l2": 0.7272554801327731,
+            "stress_hotspot_relative_l2": 0.7844281342311132,
+            "stress_RMSE_MPa": 44.065029834177956,
+            "stress_MAE_MPa": 30.29867834953869,
+            "stress_max_abs_error_MPa": 717.2060027339879,
+            "stress_hotspot_nodes": 2095,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          }
+        },
+        "metrics_available_cases": 5,
+        "case_mean_stress_relative_l2": 0.7446071783428474,
+        "worst_case_stress_relative_l2": 0.7779489810330162,
+        "case_mean_stress_hotspot_relative_l2": 0.8048064688594018,
+        "worst_case_stress_hotspot_relative_l2": 0.8456552174948355,
+        "case_mean_stress_RMSE_MPa": 55.73082340607497,
+        "worst_case_stress_RMSE_MPa": 77.6466994427088,
+        "case_mean_stress_MAE_MPa": 39.02144727659201,
+        "worst_case_stress_MAE_MPa": 56.007696032935705,
+        "case_mean_stress_max_abs_error_MPa": 865.9530430984298,
+        "worst_case_stress_max_abs_error_MPa": 1206.497001848896
+      },
+      "checkpoint_step": 4800,
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 4476052,
+        "total": 4492788
+      },
+      "costs": {
+        "model_checkpoint_seconds": 0.43518848399980925,
+        "input_and_grid_seconds": 0.4613454029968125,
+        "forward_decode_seconds": 1.3766523749982298,
+        "persistence_seconds": 0.4832273149986577
+      },
+      "training_cost_context": {
+        "train_seconds": 4112.766923008952,
+        "initialization_seconds": 1.6324970279999889,
+        "checkpoint_seconds": 53.74973160599143,
+        "TRAIN_readout_seconds": 4.7789580019996265,
+        "train_case_exposures_committed": 4800,
+        "train_node_exposures_committed": 1043195400
+      },
+      "training_exposure_context": {
+        "101_428/ver": 40,
+        "101_428/hor": 40,
+        "101_428/tor": 40,
+        "101_479/ver": 40,
+        "101_479/hor": 40,
+        "101_479/tor": 40,
+        "101_56/ver": 40,
+        "101_56/hor": 40,
+        "101_56/tor": 40,
+        "101_78/ver": 40,
+        "101_78/hor": 40,
+        "101_78/tor": 40,
+        "101_86/ver": 40,
+        "101_86/hor": 40,
+        "101_86/tor": 40,
+        "102_240/ver": 40,
+        "102_240/hor": 40,
+        "102_240/tor": 40,
+        "102_79/ver": 40,
+        "102_79/hor": 40,
+        "102_79/tor": 40,
+        "107_113/ver": 40,
+        "107_113/hor": 40,
+        "107_113/tor": 40,
+        "107_147/ver": 40,
+        "107_147/hor": 40,
+        "107_147/tor": 40,
+        "107_150/ver": 40,
+        "107_150/hor": 40,
+        "107_150/tor": 40,
+        "107_186/ver": 40,
+        "107_186/hor": 40,
+        "107_186/tor": 40,
+        "107_233/ver": 40,
+        "107_233/hor": 40,
+        "107_233/tor": 40,
+        "107_240/ver": 40,
+        "107_240/hor": 40,
+        "107_240/tor": 40,
+        "107_248/ver": 40,
+        "107_248/hor": 40,
+        "107_248/tor": 40,
+        "107_291/ver": 40,
+        "107_291/hor": 40,
+        "107_291/tor": 40,
+        "107_320/ver": 40,
+        "107_320/hor": 40,
+        "107_320/tor": 40,
+        "107_342/ver": 40,
+        "107_342/hor": 40,
+        "107_342/tor": 40,
+        "107_459/ver": 40,
+        "107_459/hor": 40,
+        "107_459/tor": 40,
+        "10_30/ver": 40,
+        "10_30/hor": 40,
+        "10_30/tor": 40,
+        "10_421/ver": 40,
+        "10_421/hor": 40,
+        "10_421/tor": 40,
+        "10_460/ver": 40,
+        "10_460/hor": 40,
+        "10_460/tor": 40,
+        "10_492/ver": 40,
+        "10_492/hor": 40,
+        "10_492/tor": 40,
+        "10_58/ver": 40,
+        "10_58/hor": 40,
+        "10_58/tor": 40,
+        "10_80/ver": 40,
+        "10_80/hor": 40,
+        "10_80/tor": 40,
+        "113_129/ver": 40,
+        "113_129/hor": 40,
+        "113_129/tor": 40,
+        "113_170/ver": 40,
+        "113_170/hor": 40,
+        "113_170/tor": 40,
+        "113_390/ver": 40,
+        "113_390/hor": 40,
+        "113_390/tor": 40,
+        "113_86/ver": 40,
+        "113_86/hor": 40,
+        "113_86/tor": 40,
+        "113_95/ver": 40,
+        "113_95/hor": 40,
+        "113_95/tor": 40,
+        "114_28/ver": 40,
+        "114_28/hor": 40,
+        "114_28/tor": 40,
+        "114_456/ver": 40,
+        "114_456/hor": 40,
+        "114_456/tor": 40,
+        "114_525/ver": 40,
+        "114_525/hor": 40,
+        "114_525/tor": 40,
+        "114_91/ver": 40,
+        "114_91/hor": 40,
+        "114_91/tor": 40,
+        "116_102/ver": 40,
+        "116_102/hor": 40,
+        "116_102/tor": 40,
+        "116_113/ver": 40,
+        "116_113/hor": 40,
+        "116_113/tor": 40,
+        "116_30/ver": 40,
+        "116_30/hor": 40,
+        "116_30/tor": 40,
+        "116_348/ver": 40,
+        "116_348/hor": 40,
+        "116_348/tor": 40,
+        "119_221/ver": 40,
+        "119_221/hor": 40,
+        "119_221/tor": 40,
+        "119_322/ver": 40,
+        "119_322/hor": 40,
+        "119_322/tor": 40,
+        "119_559/ver": 40,
+        "119_559/hor": 40,
+        "119_559/tor": 40
+      }
+    },
+    "ts3": {
+      "validation": {
+        "fixed_denominator": 5,
+        "per_case": {
+          "489_12/ver": {
+            "num_nodes": 166790,
+            "stress_relative_l2": 0.8217200861425352,
+            "stress_hotspot_relative_l2": 0.9267043038927008,
+            "stress_RMSE_MPa": 74.21032316088673,
+            "stress_MAE_MPa": 54.02411471852679,
+            "stress_max_abs_error_MPa": 1264.0125141846986,
+            "stress_hotspot_nodes": 1668,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "616_205/ver": {
+            "num_nodes": 238303,
+            "stress_relative_l2": 0.8433646652938525,
+            "stress_hotspot_relative_l2": 0.8920932155041318,
+            "stress_RMSE_MPa": 46.89958005509551,
+            "stress_MAE_MPa": 32.42969467891027,
+            "stress_max_abs_error_MPa": 737.1842915270903,
+            "stress_hotspot_nodes": 2384,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "416_282/ver": {
+            "num_nodes": 302979,
+            "stress_relative_l2": 0.8198795264936882,
+            "stress_hotspot_relative_l2": 0.9107018613747488,
+            "stress_RMSE_MPa": 51.28316488883639,
+            "stress_MAE_MPa": 35.923641397746735,
+            "stress_max_abs_error_MPa": 850.2493087677291,
+            "stress_hotspot_nodes": 3030,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "247_50/ver": {
+            "num_nodes": 162864,
+            "stress_relative_l2": 0.8414551632947869,
+            "stress_hotspot_relative_l2": 0.9230145046461159,
+            "stress_RMSE_MPa": 89.35929252133548,
+            "stress_MAE_MPa": 65.86341735386462,
+            "stress_max_abs_error_MPa": 1038.5756153812463,
+            "stress_hotspot_nodes": 1629,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "142_454/ver": {
+            "num_nodes": 209499,
+            "stress_relative_l2": 0.8213201493747273,
+            "stress_hotspot_relative_l2": 0.9023702286195766,
+            "stress_RMSE_MPa": 49.7644883734688,
+            "stress_MAE_MPa": 35.36474212854358,
+            "stress_max_abs_error_MPa": 787.30629680349,
+            "stress_hotspot_nodes": 2095,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          }
+        },
+        "metrics_available_cases": 5,
+        "case_mean_stress_relative_l2": 0.829547918119918,
+        "worst_case_stress_relative_l2": 0.8433646652938525,
+        "case_mean_stress_hotspot_relative_l2": 0.9109768228074548,
+        "worst_case_stress_hotspot_relative_l2": 0.9267043038927008,
+        "case_mean_stress_RMSE_MPa": 62.303369799924575,
+        "worst_case_stress_RMSE_MPa": 89.35929252133548,
+        "case_mean_stress_MAE_MPa": 44.7211220555184,
+        "worst_case_stress_MAE_MPa": 65.86341735386462,
+        "case_mean_stress_max_abs_error_MPa": 935.4656053328508,
+        "worst_case_stress_max_abs_error_MPa": 1264.0125141846986
+      },
+      "checkpoint_step": 4800,
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 7628420,
+        "total": 7645156
+      },
+      "costs": {
+        "model_checkpoint_seconds": 0.5828971089977131,
+        "input_and_grid_seconds": 0.48105548799503595,
+        "forward_decode_seconds": 0.8940482170037285,
+        "persistence_seconds": 0.3911429150030017
+      },
+      "training_cost_context": {
+        "train_seconds": 4402.4433507700405,
+        "initialization_seconds": 1.6017140399999334,
+        "checkpoint_seconds": 68.74680156699378,
+        "TRAIN_readout_seconds": 4.572885541999312,
+        "train_case_exposures_committed": 4800,
+        "train_node_exposures_committed": 1043195400
+      },
+      "training_exposure_context": {
+        "101_428/ver": 40,
+        "101_428/hor": 40,
+        "101_428/tor": 40,
+        "101_479/ver": 40,
+        "101_479/hor": 40,
+        "101_479/tor": 40,
+        "101_56/ver": 40,
+        "101_56/hor": 40,
+        "101_56/tor": 40,
+        "101_78/ver": 40,
+        "101_78/hor": 40,
+        "101_78/tor": 40,
+        "101_86/ver": 40,
+        "101_86/hor": 40,
+        "101_86/tor": 40,
+        "102_240/ver": 40,
+        "102_240/hor": 40,
+        "102_240/tor": 40,
+        "102_79/ver": 40,
+        "102_79/hor": 40,
+        "102_79/tor": 40,
+        "107_113/ver": 40,
+        "107_113/hor": 40,
+        "107_113/tor": 40,
+        "107_147/ver": 40,
+        "107_147/hor": 40,
+        "107_147/tor": 40,
+        "107_150/ver": 40,
+        "107_150/hor": 40,
+        "107_150/tor": 40,
+        "107_186/ver": 40,
+        "107_186/hor": 40,
+        "107_186/tor": 40,
+        "107_233/ver": 40,
+        "107_233/hor": 40,
+        "107_233/tor": 40,
+        "107_240/ver": 40,
+        "107_240/hor": 40,
+        "107_240/tor": 40,
+        "107_248/ver": 40,
+        "107_248/hor": 40,
+        "107_248/tor": 40,
+        "107_291/ver": 40,
+        "107_291/hor": 40,
+        "107_291/tor": 40,
+        "107_320/ver": 40,
+        "107_320/hor": 40,
+        "107_320/tor": 40,
+        "107_342/ver": 40,
+        "107_342/hor": 40,
+        "107_342/tor": 40,
+        "107_459/ver": 40,
+        "107_459/hor": 40,
+        "107_459/tor": 40,
+        "10_30/ver": 40,
+        "10_30/hor": 40,
+        "10_30/tor": 40,
+        "10_421/ver": 40,
+        "10_421/hor": 40,
+        "10_421/tor": 40,
+        "10_460/ver": 40,
+        "10_460/hor": 40,
+        "10_460/tor": 40,
+        "10_492/ver": 40,
+        "10_492/hor": 40,
+        "10_492/tor": 40,
+        "10_58/ver": 40,
+        "10_58/hor": 40,
+        "10_58/tor": 40,
+        "10_80/ver": 40,
+        "10_80/hor": 40,
+        "10_80/tor": 40,
+        "113_129/ver": 40,
+        "113_129/hor": 40,
+        "113_129/tor": 40,
+        "113_170/ver": 40,
+        "113_170/hor": 40,
+        "113_170/tor": 40,
+        "113_390/ver": 40,
+        "113_390/hor": 40,
+        "113_390/tor": 40,
+        "113_86/ver": 40,
+        "113_86/hor": 40,
+        "113_86/tor": 40,
+        "113_95/ver": 40,
+        "113_95/hor": 40,
+        "113_95/tor": 40,
+        "114_28/ver": 40,
+        "114_28/hor": 40,
+        "114_28/tor": 40,
+        "114_456/ver": 40,
+        "114_456/hor": 40,
+        "114_456/tor": 40,
+        "114_525/ver": 40,
+        "114_525/hor": 40,
+        "114_525/tor": 40,
+        "114_91/ver": 40,
+        "114_91/hor": 40,
+        "114_91/tor": 40,
+        "116_102/ver": 40,
+        "116_102/hor": 40,
+        "116_102/tor": 40,
+        "116_113/ver": 40,
+        "116_113/hor": 40,
+        "116_113/tor": 40,
+        "116_30/ver": 40,
+        "116_30/hor": 40,
+        "116_30/tor": 40,
+        "116_348/ver": 40,
+        "116_348/hor": 40,
+        "116_348/tor": 40,
+        "119_221/ver": 40,
+        "119_221/hor": 40,
+        "119_221/tor": 40,
+        "119_322/ver": 40,
+        "119_322/hor": 40,
+        "119_322/tor": 40,
+        "119_559/ver": 40,
+        "119_559/hor": 40,
+        "119_559/tor": 40
+      }
+    },
+    "fno": {
+      "validation": {
+        "fixed_denominator": 5,
+        "per_case": {
+          "489_12/ver": {
+            "num_nodes": 166790,
+            "stress_relative_l2": 0.5346114398904979,
+            "stress_hotspot_relative_l2": 0.4522998287553003,
+            "stress_RMSE_MPa": 48.28126802403494,
+            "stress_MAE_MPa": 31.684941742244575,
+            "stress_max_abs_error_MPa": 740.1288163224986,
+            "stress_hotspot_nodes": 1668,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "616_205/ver": {
+            "num_nodes": 238303,
+            "stress_relative_l2": 0.5648072166876205,
+            "stress_hotspot_relative_l2": 0.4455552848219339,
+            "stress_RMSE_MPa": 31.408976881319937,
+            "stress_MAE_MPa": 20.764153556560878,
+            "stress_max_abs_error_MPa": 525.2771573262303,
+            "stress_hotspot_nodes": 2384,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "416_282/ver": {
+            "num_nodes": 302979,
+            "stress_relative_l2": 0.6405349945132857,
+            "stress_hotspot_relative_l2": 0.5489748457011219,
+            "stress_RMSE_MPa": 40.065229926128204,
+            "stress_MAE_MPa": 27.055308193675145,
+            "stress_max_abs_error_MPa": 687.5873087490626,
+            "stress_hotspot_nodes": 3030,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "247_50/ver": {
+            "num_nodes": 162864,
+            "stress_relative_l2": 0.515117278113969,
+            "stress_hotspot_relative_l2": 0.4879458177820275,
+            "stress_RMSE_MPa": 54.70346792756492,
+            "stress_MAE_MPa": 35.746612285976845,
+            "stress_max_abs_error_MPa": 803.9102499557852,
+            "stress_hotspot_nodes": 1629,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "142_454/ver": {
+            "num_nodes": 209499,
+            "stress_relative_l2": 0.49805286961264106,
+            "stress_hotspot_relative_l2": 0.43633041604693784,
+            "stress_RMSE_MPa": 30.177448170582664,
+            "stress_MAE_MPa": 20.483800910046916,
+            "stress_max_abs_error_MPa": 510.1871939553675,
+            "stress_hotspot_nodes": 2095,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          }
+        },
+        "metrics_available_cases": 5,
+        "case_mean_stress_relative_l2": 0.5506247597636028,
+        "worst_case_stress_relative_l2": 0.6405349945132857,
+        "case_mean_stress_hotspot_relative_l2": 0.47422123862146426,
+        "worst_case_stress_hotspot_relative_l2": 0.5489748457011219,
+        "case_mean_stress_RMSE_MPa": 40.927278185926134,
+        "worst_case_stress_RMSE_MPa": 54.70346792756492,
+        "case_mean_stress_MAE_MPa": 27.146963337700875,
+        "worst_case_stress_MAE_MPa": 35.746612285976845,
+        "case_mean_stress_max_abs_error_MPa": 653.4181452617888,
+        "worst_case_stress_max_abs_error_MPa": 803.9102499557852
+      },
+      "checkpoint_step": 4800,
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 14160548,
+        "total": 14177284
+      },
+      "costs": {
+        "model_checkpoint_seconds": 0.8049593480027397,
+        "input_and_grid_seconds": 0.5533854870009236,
+        "forward_decode_seconds": 0.305386809999618,
+        "persistence_seconds": 0.37874185100008617
+      },
+      "training_cost_context": {
+        "train_seconds": 1206.3672752220318,
+        "initialization_seconds": 1.5306268439999258,
+        "checkpoint_seconds": 78.10097795598449,
+        "TRAIN_readout_seconds": 3.8214305370001966,
+        "train_case_exposures_committed": 4800,
+        "train_node_exposures_committed": 1043195400
+      },
+      "training_exposure_context": {
+        "101_428/ver": 40,
+        "101_428/hor": 40,
+        "101_428/tor": 40,
+        "101_479/ver": 40,
+        "101_479/hor": 40,
+        "101_479/tor": 40,
+        "101_56/ver": 40,
+        "101_56/hor": 40,
+        "101_56/tor": 40,
+        "101_78/ver": 40,
+        "101_78/hor": 40,
+        "101_78/tor": 40,
+        "101_86/ver": 40,
+        "101_86/hor": 40,
+        "101_86/tor": 40,
+        "102_240/ver": 40,
+        "102_240/hor": 40,
+        "102_240/tor": 40,
+        "102_79/ver": 40,
+        "102_79/hor": 40,
+        "102_79/tor": 40,
+        "107_113/ver": 40,
+        "107_113/hor": 40,
+        "107_113/tor": 40,
+        "107_147/ver": 40,
+        "107_147/hor": 40,
+        "107_147/tor": 40,
+        "107_150/ver": 40,
+        "107_150/hor": 40,
+        "107_150/tor": 40,
+        "107_186/ver": 40,
+        "107_186/hor": 40,
+        "107_186/tor": 40,
+        "107_233/ver": 40,
+        "107_233/hor": 40,
+        "107_233/tor": 40,
+        "107_240/ver": 40,
+        "107_240/hor": 40,
+        "107_240/tor": 40,
+        "107_248/ver": 40,
+        "107_248/hor": 40,
+        "107_248/tor": 40,
+        "107_291/ver": 40,
+        "107_291/hor": 40,
+        "107_291/tor": 40,
+        "107_320/ver": 40,
+        "107_320/hor": 40,
+        "107_320/tor": 40,
+        "107_342/ver": 40,
+        "107_342/hor": 40,
+        "107_342/tor": 40,
+        "107_459/ver": 40,
+        "107_459/hor": 40,
+        "107_459/tor": 40,
+        "10_30/ver": 40,
+        "10_30/hor": 40,
+        "10_30/tor": 40,
+        "10_421/ver": 40,
+        "10_421/hor": 40,
+        "10_421/tor": 40,
+        "10_460/ver": 40,
+        "10_460/hor": 40,
+        "10_460/tor": 40,
+        "10_492/ver": 40,
+        "10_492/hor": 40,
+        "10_492/tor": 40,
+        "10_58/ver": 40,
+        "10_58/hor": 40,
+        "10_58/tor": 40,
+        "10_80/ver": 40,
+        "10_80/hor": 40,
+        "10_80/tor": 40,
+        "113_129/ver": 40,
+        "113_129/hor": 40,
+        "113_129/tor": 40,
+        "113_170/ver": 40,
+        "113_170/hor": 40,
+        "113_170/tor": 40,
+        "113_390/ver": 40,
+        "113_390/hor": 40,
+        "113_390/tor": 40,
+        "113_86/ver": 40,
+        "113_86/hor": 40,
+        "113_86/tor": 40,
+        "113_95/ver": 40,
+        "113_95/hor": 40,
+        "113_95/tor": 40,
+        "114_28/ver": 40,
+        "114_28/hor": 40,
+        "114_28/tor": 40,
+        "114_456/ver": 40,
+        "114_456/hor": 40,
+        "114_456/tor": 40,
+        "114_525/ver": 40,
+        "114_525/hor": 40,
+        "114_525/tor": 40,
+        "114_91/ver": 40,
+        "114_91/hor": 40,
+        "114_91/tor": 40,
+        "116_102/ver": 40,
+        "116_102/hor": 40,
+        "116_102/tor": 40,
+        "116_113/ver": 40,
+        "116_113/hor": 40,
+        "116_113/tor": 40,
+        "116_30/ver": 40,
+        "116_30/hor": 40,
+        "116_30/tor": 40,
+        "116_348/ver": 40,
+        "116_348/hor": 40,
+        "116_348/tor": 40,
+        "119_221/ver": 40,
+        "119_221/hor": 40,
+        "119_221/tor": 40,
+        "119_322/ver": 40,
+        "119_322/hor": 40,
+        "119_322/tor": 40,
+        "119_559/ver": 40,
+        "119_559/hor": 40,
+        "119_559/tor": 40
+      }
+    },
+    "mlp": {
+      "validation": {
+        "fixed_denominator": 5,
+        "per_case": {
+          "489_12/ver": {
+            "num_nodes": 166790,
+            "stress_relative_l2": 0.7215094102570104,
+            "stress_hotspot_relative_l2": 0.7424098796063819,
+            "stress_RMSE_MPa": 65.16020163282941,
+            "stress_MAE_MPa": 47.46655598629685,
+            "stress_max_abs_error_MPa": 894.9224820167819,
+            "stress_hotspot_nodes": 1668,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "616_205/ver": {
+            "num_nodes": 238303,
+            "stress_relative_l2": 0.7301732911702179,
+            "stress_hotspot_relative_l2": 0.6811530312229107,
+            "stress_RMSE_MPa": 40.6049982084539,
+            "stress_MAE_MPa": 28.47410288343001,
+            "stress_max_abs_error_MPa": 585.4992029028272,
+            "stress_hotspot_nodes": 2384,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "416_282/ver": {
+            "num_nodes": 302979,
+            "stress_relative_l2": 0.7611269481308399,
+            "stress_hotspot_relative_l2": 0.7350448729970191,
+            "stress_RMSE_MPa": 47.60821257393744,
+            "stress_MAE_MPa": 32.40521183405222,
+            "stress_max_abs_error_MPa": 718.629805765768,
+            "stress_hotspot_nodes": 3030,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "247_50/ver": {
+            "num_nodes": 162864,
+            "stress_relative_l2": 0.7471349089100707,
+            "stress_hotspot_relative_l2": 0.7369984536837033,
+            "stress_RMSE_MPa": 79.34284533566658,
+            "stress_MAE_MPa": 58.48047912005639,
+            "stress_max_abs_error_MPa": 756.3460045730278,
+            "stress_hotspot_nodes": 1629,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          },
+          "142_454/ver": {
+            "num_nodes": 209499,
+            "stress_relative_l2": 0.717864830573931,
+            "stress_hotspot_relative_l2": 0.6828098898635958,
+            "stress_RMSE_MPa": 43.496042367906625,
+            "stress_MAE_MPa": 31.312496999812996,
+            "stress_max_abs_error_MPa": 578.0246637896604,
+            "stress_hotspot_nodes": 2095,
+            "stress_zero_reference": false,
+            "hotspot_zero_reference": false,
+            "hotspot_definition": "ceil1% largest abs(original signed S), identical existing argpartition convention"
+          }
+        },
+        "metrics_available_cases": 5,
+        "case_mean_stress_relative_l2": 0.735561877808414,
+        "worst_case_stress_relative_l2": 0.7611269481308399,
+        "case_mean_stress_hotspot_relative_l2": 0.7156832254747222,
+        "worst_case_stress_hotspot_relative_l2": 0.7424098796063819,
+        "case_mean_stress_RMSE_MPa": 55.242460023758795,
+        "worst_case_stress_RMSE_MPa": 79.34284533566658,
+        "case_mean_stress_MAE_MPa": 39.627769364729694,
+        "worst_case_stress_MAE_MPa": 58.48047912005639,
+        "case_mean_stress_max_abs_error_MPa": 706.684431809613,
+        "worst_case_stress_max_abs_error_MPa": 894.9224820167819
+      },
+      "checkpoint_step": 4800,
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 214020,
+        "total": 230756
+      },
+      "costs": {
+        "model_checkpoint_seconds": 0.037790514001244446,
+        "input_and_grid_seconds": 0.4235411509980622,
+        "forward_decode_seconds": 0.04278053400412318,
+        "persistence_seconds": 0.3994416010027635
+      },
+      "training_cost_context": {
+        "train_seconds": 590.1087509259269,
+        "initialization_seconds": 1.9619028170000092,
+        "checkpoint_seconds": 4.111809016992993,
+        "TRAIN_readout_seconds": 1.893316338002478,
+        "train_case_exposures_committed": 4800,
+        "train_node_exposures_committed": 1043195400
+      },
+      "training_exposure_context": {
+        "101_428/ver": 40,
+        "101_428/hor": 40,
+        "101_428/tor": 40,
+        "101_479/ver": 40,
+        "101_479/hor": 40,
+        "101_479/tor": 40,
+        "101_56/ver": 40,
+        "101_56/hor": 40,
+        "101_56/tor": 40,
+        "101_78/ver": 40,
+        "101_78/hor": 40,
+        "101_78/tor": 40,
+        "101_86/ver": 40,
+        "101_86/hor": 40,
+        "101_86/tor": 40,
+        "102_240/ver": 40,
+        "102_240/hor": 40,
+        "102_240/tor": 40,
+        "102_79/ver": 40,
+        "102_79/hor": 40,
+        "102_79/tor": 40,
+        "107_113/ver": 40,
+        "107_113/hor": 40,
+        "107_113/tor": 40,
+        "107_147/ver": 40,
+        "107_147/hor": 40,
+        "107_147/tor": 40,
+        "107_150/ver": 40,
+        "107_150/hor": 40,
+        "107_150/tor": 40,
+        "107_186/ver": 40,
+        "107_186/hor": 40,
+        "107_186/tor": 40,
+        "107_233/ver": 40,
+        "107_233/hor": 40,
+        "107_233/tor": 40,
+        "107_240/ver": 40,
+        "107_240/hor": 40,
+        "107_240/tor": 40,
+        "107_248/ver": 40,
+        "107_248/hor": 40,
+        "107_248/tor": 40,
+        "107_291/ver": 40,
+        "107_291/hor": 40,
+        "107_291/tor": 40,
+        "107_320/ver": 40,
+        "107_320/hor": 40,
+        "107_320/tor": 40,
+        "107_342/ver": 40,
+        "107_342/hor": 40,
+        "107_342/tor": 40,
+        "107_459/ver": 40,
+        "107_459/hor": 40,
+        "107_459/tor": 40,
+        "10_30/ver": 40,
+        "10_30/hor": 40,
+        "10_30/tor": 40,
+        "10_421/ver": 40,
+        "10_421/hor": 40,
+        "10_421/tor": 40,
+        "10_460/ver": 40,
+        "10_460/hor": 40,
+        "10_460/tor": 40,
+        "10_492/ver": 40,
+        "10_492/hor": 40,
+        "10_492/tor": 40,
+        "10_58/ver": 40,
+        "10_58/hor": 40,
+        "10_58/tor": 40,
+        "10_80/ver": 40,
+        "10_80/hor": 40,
+        "10_80/tor": 40,
+        "113_129/ver": 40,
+        "113_129/hor": 40,
+        "113_129/tor": 40,
+        "113_170/ver": 40,
+        "113_170/hor": 40,
+        "113_170/tor": 40,
+        "113_390/ver": 40,
+        "113_390/hor": 40,
+        "113_390/tor": 40,
+        "113_86/ver": 40,
+        "113_86/hor": 40,
+        "113_86/tor": 40,
+        "113_95/ver": 40,
+        "113_95/hor": 40,
+        "113_95/tor": 40,
+        "114_28/ver": 40,
+        "114_28/hor": 40,
+        "114_28/tor": 40,
+        "114_456/ver": 40,
+        "114_456/hor": 40,
+        "114_456/tor": 40,
+        "114_525/ver": 40,
+        "114_525/hor": 40,
+        "114_525/tor": 40,
+        "114_91/ver": 40,
+        "114_91/hor": 40,
+        "114_91/tor": 40,
+        "116_102/ver": 40,
+        "116_102/hor": 40,
+        "116_102/tor": 40,
+        "116_113/ver": 40,
+        "116_113/hor": 40,
+        "116_113/tor": 40,
+        "116_30/ver": 40,
+        "116_30/hor": 40,
+        "116_30/tor": 40,
+        "116_348/ver": 40,
+        "116_348/hor": 40,
+        "116_348/tor": 40,
+        "119_221/ver": 40,
+        "119_221/hor": 40,
+        "119_221/tor": 40,
+        "119_322/ver": 40,
+        "119_322/hor": 40,
+        "119_322/tor": 40,
+        "119_559/ver": 40,
+        "119_559/hor": 40,
+        "119_559/tor": 40
+      }
+    }
+  },
+  "completion_gate": {
+    "passed": true,
+    "all25_finite_prediction_barrier": true,
+    "shared_S_reads_complete": true,
+    "fixed_5_denominator": true,
+    "parent_20DEV_or_10arm_gate_claimed": false,
+    "final_solver_selection": false
+  },
+  "read_receipt": {
+    "U_target_reads": 0,
+    "H5_nodal_variable_reads": 0,
+    "strain_target_reads": 0,
+    "hor_tor_dia_target_reads": 0,
+    "new_DEV20_target_reads": 0,
+    "old_DEV_target_reads": 0,
+    "old_final_target_reads": 0,
+    "training_updates": 0,
+    "optimizer_steps": 0,
+    "backward_calls": 0,
+    "optimizer_state_restores": 0,
+    "scaler_fits": 0,
+    "endpoint_selection": 0,
+    "seed_selection": 0,
+    "case_replacements": 0,
+    "model_initializations": 5,
+    "checkpoint_read_attempts": 5,
+    "checkpoint_reads": 5,
+    "serialized_optimizer_payloads_loaded_on_CPU": 5,
+    "checkpoint_byte_hash_reads": 5,
+    "input_cache_byte_hash_reads": 5,
+    "input_cache_read_attempts": 25,
+    "input_cache_reads": 25,
+    "input_member_reads": 105,
+    "grid_builds": 5,
+    "prediction_attempts": 25,
+    "fullN_predictions": 25,
+    "prediction_array_writes": 50,
+    "prediction_array_hash_reads": 75,
+    "source_CSV_byte_hash_reads": 5,
+    "source_S_target_parse_attempts": 5,
+    "source_S_target_parses": 5,
+    "GT_read_attempts": 5,
+    "GT_reads": 5,
+    "stress_target_reads": 5,
+    "S_target_values_read": 1080435,
+    "label_cache_writes": 5,
+    "permutation_cache_reads": 5,
+    "prediction_array_reads": 25,
+    "physical_metric_cases": 25,
+    "serialized_optimizer_payload_loaded_on_CPU": true,
+    "optimizer_state_used": false
+  },
+  "uncommitted_S_read_claims": [],
+  "uncommitted_read_scope": "A claimed parse that did not return may have consumed unknown partial S values; never infer zero or replay",
+  "costs": {
+    "per_method": {
+      "transolver": {
+        "model_checkpoint_seconds": 0.36758891600038623,
+        "input_and_grid_seconds": 1.369012039998779,
+        "forward_decode_seconds": 0.6825942229988868,
+        "persistence_seconds": 0.47348395199878723
+      },
+      "transolver_pp": {
+        "model_checkpoint_seconds": 0.43518848399980925,
+        "input_and_grid_seconds": 0.4613454029968125,
+        "forward_decode_seconds": 1.3766523749982298,
+        "persistence_seconds": 0.4832273149986577
+      },
+      "ts3": {
+        "model_checkpoint_seconds": 0.5828971089977131,
+        "input_and_grid_seconds": 0.48105548799503595,
+        "forward_decode_seconds": 0.8940482170037285,
+        "persistence_seconds": 0.3911429150030017
+      },
+      "fno": {
+        "model_checkpoint_seconds": 0.8049593480027397,
+        "input_and_grid_seconds": 0.5533854870009236,
+        "forward_decode_seconds": 0.305386809999618,
+        "persistence_seconds": 0.37874185100008617
+      },
+      "mlp": {
+        "model_checkpoint_seconds": 0.037790514001244446,
+        "input_and_grid_seconds": 0.4235411509980622,
+        "forward_decode_seconds": 0.04278053400412318,
+        "persistence_seconds": 0.3994416010027635
+      }
+    },
+    "prediction_seconds": 13.433851992998825,
+    "readout_seconds": 5.482043498999701,
+    "phase_overshoot_seconds": {
+      "prediction": 0.0,
+      "readout": 0.0
+    },
+    "closed_clock_definition": "Phases include first complete terminal publication; subsequent final identity/closed-cost amendment is explicit metadata-only tail"
+  },
+  "memory": {
+    "peak_allocated_bytes": 2719516672,
+    "peak_reserved_bytes": 4410310656
+  },
+  "failure": null,
+  "completed_at_utc": "2026-10-10T07:31:03.618758+00:00",
+  "interpretation": [
+    "U-known/S-field-blind pilot; S values were not semantically materialized in prior controlled pipeline",
+    "CSV bytes/header/coordinates/U were previously read; this is not untouched-file blindness",
+    "Fixed4800 single-seed current presets, unequal capacity/cost; no family ceiling or engineering qualification",
+    "No substitute for frozen20DEV or ten-arm coverage comparison; no U GT/metric readout or endpoint choice",
+    "Missing/nonfinite/incomplete outcomes remain null with all five CADs; no automatic replay"
+  ]
+}

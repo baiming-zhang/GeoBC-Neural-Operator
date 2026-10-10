@@ -1,0 +1,160 @@
+{
+  "kind": "fixed540_original_DeepJEB_quota_recovery_options",
+  "status": "authenticated_same_Drive_ID_route_pending_materialization_with_HF_backup",
+  "actual_download_started": false,
+  "scientific_source_pins_changed": false,
+  "scope": "Keep the frozen160 additionalTRAIN/20DEV CADs and all540 component identities. Recover binary delivery only; no field/label/array content or model change.",
+  "decision": "优先由root验证同一原DriveID的authenticated connector raw-fetch是否能安全、快速本地materialize；若成功，再授权按固定缺344名单补齐，预计只需缺失原文件字节，避免HF约127.365GB压缩suffix。当前只得到一个API级成功证据，不能声称本地下载或批量通道已通过。官方原版HF固定revision三tar.gz保留作已确认公开备选，支持Range续传压缩前缀但需顺序扫描。两路线均不得更换CAD、改科学pins、打开科学字段或覆盖196已成功文件。",
+  "direct_blocker_evidence": {
+    "path": "notes/geobc_download_http_diagnostic.json",
+    "status": "Google Drive - Quota exceeded",
+    "diagnostic_repeated_by_this_agent": false,
+    "existing_fetch_stopped_by_root": true,
+    "Drive_recovery_delay_is_not_guaranteed": true
+  },
+  "authenticated_same_Drive_ID_candidate": {
+    "evidence_origin": "Trusted parent/root message; this investigator did not invoke connector or materialize its download URI.",
+    "root_reported_test_file": "SolverDeck/275_400.fem",
+    "root_reported_API_fetch_success": true,
+    "root_reported_original_Drive_ID_match": true,
+    "root_reported_API_size_bytes": 24178652,
+    "root_reported_original_modifiedTime_year": 2024,
+    "direct_uc_for_same_ID_still_returns_quota_HTML": true,
+    "authenticated_top_level_file_uri_returned": true,
+    "local_binary_materialization_verified": false,
+    "binary_size_SHA_and_canonical_receipt_verified": false,
+    "batch_344_throughput_or_quota_limit_verified": false,
+    "signed_URI_or_download_URL_stored_or_printed": false,
+    "preferred_if_verified": "Same original DriveIDs, bounded binary materialization into atomic canonical receipts, at most two workers, actual bytes/SHA/stat and cumulative failed-phase budgets. This would avoid the much larger HF compressed archives.",
+    "remaining_original_file_bytes_planning_estimate": 15632488373,
+    "claim_limit": "The size estimate uses the older50-CAD average; connector success is one API response only. Parent owns the one bounded materialization test. No large transfer or batch fetch was started by this investigator."
+  },
+  "official_HF": {
+    "repository": "KAIST-SmartDesignLab/DeepJEB",
+    "revision": "160424ca2a5095315ff9ead8a5fc36d2667fd3c6",
+    "dataset_card": "https://huggingface.co/datasets/KAIST-SmartDesignLab/DeepJEB",
+    "official_statement": "The publisher identifies this repository as the mirror of the original DeepJEB v1.0 release,2138 designs, original directory layout. This is not DeepJEB-PP.",
+    "tree_metadata": "https://huggingface.co/api/datasets/KAIST-SmartDesignLab/DeepJEB/tree/160424ca2a5095315ff9ead8a5fc36d2667fd3c6",
+    "metadata_http_200_verified_at_UTC": "2026-10-10T03:17:25.626638+00:00",
+    "archives": {
+      "FieldMesh": {
+        "URL": "https://huggingface.co/datasets/KAIST-SmartDesignLab/DeepJEB/resolve/160424ca2a5095315ff9ead8a5fc36d2667fd3c6/FieldMesh.tar.gz",
+        "bytes": 53817481481,
+        "upstream_archive_LFS_SHA256": "87351216876be5a6007f73cf562a07293cbf0beee0724dd2fda1a4ca29dda059",
+        "cached_prefix_path": "data/raw/.download_cache/160424ca2a50_FieldMesh.tar.gz.part",
+        "cached_prefix_bytes": 1277224960,
+        "worst_additional_compressed_bytes": 52540256521
+      },
+      "Field": {
+        "URL": "https://huggingface.co/datasets/KAIST-SmartDesignLab/DeepJEB/resolve/160424ca2a5095315ff9ead8a5fc36d2667fd3c6/Field.tar.gz",
+        "bytes": 59811001592,
+        "upstream_archive_LFS_SHA256": "570a9d6db968fd37a27d82820e07dae17fd06455bb9c88a7075fb7a70d1d8b7f",
+        "cached_prefix_path": "data/raw/.download_cache/160424ca2a50_Field.tar.gz.part",
+        "cached_prefix_bytes": 1420544000,
+        "worst_additional_compressed_bytes": 58390457592
+      },
+      "SolverDeck": {
+        "URL": "https://huggingface.co/datasets/KAIST-SmartDesignLab/DeepJEB/resolve/160424ca2a5095315ff9ead8a5fc36d2667fd3c6/SolverDeck.tar.gz",
+        "bytes": 16837587126,
+        "upstream_archive_LFS_SHA256": "ecec03c8867dba5b8643489c8f8d2c3639ec03259c32b680a1fff321aeab4087",
+        "cached_prefix_path": "data/raw/.download_cache/160424ca2a50_SolverDeck.tar.gz.part",
+        "cached_prefix_bytes": 402841600,
+        "worst_additional_compressed_bytes": 16434745526
+      }
+    },
+    "three_archives_total_bytes": 130466070199,
+    "existing_prefix_total_bytes": 3100610560,
+    "worst_additional_network_bytes_with_prefix_reuse": 127365459639,
+    "one_bounded_HEAD": {
+      "archive": "FieldMesh.tar.gz",
+      "status": 200,
+      "final_host": "cas-bridge.xethub.hf.co",
+      "Content_Length": 53817481481,
+      "Accept_Ranges": "bytes",
+      "Content_Type": "application/gzip",
+      "body_bytes": 0,
+      "claim_limit": "Advertised Range support; no new GET206 range/binary/throughput probe was performed. Existing CachedHTTPStream requires exact206 Content-Range before appending."
+    }
+  },
+  "member_access": {
+    "fixed_member_names": "FieldMesh/<CAD>.h5, Field/<CAD>.csv, SolverDeck/<CAD>.fem",
+    "selective_extraction_supported": true,
+    "selective_network_random_access_proven": false,
+    "reason": "Official files are gzip-compressed tar streams with no published member/gzip seek index in the pinned file tree. HTTP Range continues a known compressed prefix; it cannot independently locate or decompress an arbitrary tar member. All preceding compressed bytes must be scanned. Exact final wanted-member positions/required prefixes remain unknown.",
+    "primary_format_reference": "https://www.rfc-editor.org/rfc/rfc1952",
+    "primary_stream_reference": "https://docs.python.org/3/library/tarfile.html",
+    "existing_reusable_source": "tools/fetch_deepjeb.py CachedHTTPStream + safe_destination + save_member, not its old main/output/provenance scope",
+    "archive_SHA_vs_member_SHA": "Published SHA authenticates an entire fully received archive. It is not a per-member upstream SHA. A partial compressed prefix cannot claim the full archive SHA was verified."
+  },
+  "other_public_route_checks": {
+    "publisher_site": {
+      "URL": "https://dataset.narnia.ai/deepjeb.html",
+      "result": "The original publisher dataset page points to the existing Drive distribution; no additional per-file mirror was identified there."
+    },
+    "HF_auto_parquet": {
+      "metadata_URL": "https://datasets-server.huggingface.co/parquet?dataset=KAIST-SmartDesignLab%2FDeepJEB",
+      "info_URL": "https://datasets-server.huggingface.co/info?dataset=KAIST-SmartDesignLab%2FDeepJEB",
+      "metadata_status": 200,
+      "partial": true,
+      "converted_rows": 300,
+      "feature_names": ["step", "__key__", "__url__"],
+      "parquet_files": 3,
+      "result": "This is a partial STEP preview, not a complete H5/CSV/FEM distribution. It cannot deliver the frozen540 component files. No row or Parquet-body request was made."
+    },
+    "unofficial_mirrors_used": false,
+    "dataset_version_or_CAD_substitution": false
+  },
+  "current_reusable_binary_receipts": {
+    "observation_UTC": "2026-10-10T03:17:31.127373+00:00",
+    "output": "data/raw_geobc_coverage",
+    "canonical_completed_files": 196,
+    "actual_completed_bytes": 8924386358,
+    "components": {"FieldMesh": 66, "Field": 66, "SolverDeck": 64},
+    "remaining_fixed_members": 344,
+    "historical_HF_extracted_files_overlap_fixed540": 0,
+    "reuse_policy": "196 files remain untouched under their original Drive provenance. Successful old prefix extraction covered excluded older CADs, so only its compressed caches help the new frozen selection.",
+    "no_existing_binary_was_read_or_rehashed_by_this_investigation": true
+  },
+  "transport_and_storage_planning": {
+    "aggregate_transfer_rate_scenarios_MBps": [
+      {"MBps": 5, "worst_network_hours": 7.076},
+      {"MBps": 10, "worst_network_hours": 3.538},
+      {"MBps": 20, "worst_network_hours": 1.769},
+      {"MBps": 50, "worst_network_hours": 0.708}
+    ],
+    "rates_measured_now": false,
+    "time_limits": "These divide remaining compressed bytes by assumed aggregate rate; gzip scan, binary extraction/hash, localIO and retry overhead are additional. A HEAD response gives no throughput ETA.",
+    "estimated_remaining_extracted_raw_bytes_using_old50_average": 15632488373,
+    "estimated_new_disk_for_compressed_suffix_plus_missing_raw_bytes": 142997948012,
+    "extra_isolation_prefix_copy_if_used_bytes": 3100610560,
+    "combined_completed_Drive_plus_worst_new_HF_network_bytes": 136289845997,
+    "existing_acquisition_received_byte_ceiling": 161061273600,
+    "byte_budget_interpretation": "Combined nominal bytes fit150GiB, before failed transfers/overshoot. Full original six-hour wall budget may be infeasible at5MBps and depends on already charged Drive wall plus actual HF throughput; do not reset clocks or promise completion under an unverified rate.",
+    "storage_interpretation": "Compressed archives plus344 extracted members add roughly143GB, with optional3.1GB isolated prefix copies. Shared660 preparation and later weights need additional space. Root actual release must use real remaining disk/wall budgets; old feasibility note's free-space sample is not a new current probe."
+  },
+  "minimum_necessary_followup": [
+    "First let root finish the single same-DriveID connector binary materialization test. Confirm actual binary size/SHA and original-ID metadata, retaining signed URI only in memory. Do not infer batch capability or throughput from API metadata success.",
+    "If that test passes and bounded batch delivery is viable, root may authorize connector materialization for the immutable remaining344 original DriveIDs, keeping196 completed receipts untouched and preserving actual cumulative byte/wall/failure accounting. No scientific input/target parsing is part of acquisition.",
+    "Only if authenticated delivery is unavailable or cannot complete within the explicit remaining budget, adopt the following HF backup scope; do not initiate the three large archives while the cheaper same-ID route is still being verified.",
+    "Root authorizes one separate binary-only HF fallback scope and actual transport provenance without changing frozen CADs, loads, labels, scaler, model sources, checkpoints or DEV barrier.",
+    "Reuse or copy only the three known pinned-revision cached compressed prefixes, and continue through verified HTTP206/Content-Range; no full redownload if Range is ignored. Persist cumulative received bytes/wall/attempts including failed Drive phase.",
+    "Stream the three components with at most two CPU transport workers. Inspect only archive member names/sizes for path-safe exact fixed540 selection; do not parse H5/CSV/deck fields, extract unrelated members or open DEV targets.",
+    "For every wanted member already present under a completed Drive receipt, hash incoming member bytes and compare exact size/SHA, keep the existing file. Any mismatch closes compatibility negative and never overwrites/substitutes.",
+    "Atomically commit only missing members and explicitly record actual archive URL/revision/member path plus observed member bytes/SHA. Preserve frozen official indexed Drive URL as logical identity only if receipts clearly distinguish it from actual HF transport; do not falsely claim a Drive transfer or upstream member checksum.",
+    "Emit an honest merged fixed540 completed-file inventory only when all wanted members and overlap compatibility checks are complete. Existing coverage data helper requires exact canonical officialURL/bytes/SHA/stat fields; direct use of old prefix-fetch main in the coverage folder would bypass these receipts or overwrite files and is not a safe drop-in.",
+    "Keep existing GPU40-arm training independent while binary fallback runs. Prepare200 only after the original complete acquisition/data gate, and keep all newDEV targets sealed until the fixed2400 terminal prediction barrier."
+  ],
+  "evidence_metadata_file": "notes/geobc_official_alternate_source_metadata.json",
+  "read_receipt": {
+    "official_metadata_GETs": 3,
+    "official_archive_HEADs": 1,
+    "archive_or_raw_field_body_bytes": 0,
+    "Parquet_row_or_body_reads": 0,
+    "local_metadata_and_prefix_file_stats_only": true,
+    "scientific_array_or_GT_or_weight_reads": 0,
+    "download_or_preparation_function_executions": 0,
+    "GPU_calls": 0,
+    "scientific_source_or_plan_edits": 0,
+    "fixed_case_replacements": 0
+  }
+}

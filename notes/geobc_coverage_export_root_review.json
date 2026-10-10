@@ -1,0 +1,38 @@
+{
+  "status": "passed_source_review_deferred_actual_export",
+  "passed": true,
+  "reviewer": "root",
+  "updated_UTC": "2026-10-10T02:53:21.531300+00:00",
+  "source_sha256": {
+    "tools/export_geobc_coverage_results.py": "bb48146f058808b0e6003b0973ab42cc65bb26706005211063f1a9b5af83df75",
+    "tools/plot_geobc_coverage_fields.py": "a8d873c44ee292ff3ba48140fef8c7c7dfb488ef70633f67836fdb910945d380"
+  },
+  "author_ready_path": "notes/geobc_coverage_export_source_ready.json",
+  "author_ready_sha256": "736c4bff105e2173d450443f689c04ba286d24fd38126ff8f0a95d98e6b47215",
+  "scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+  "scientific_sources_modified": false,
+  "source_read_scope": {
+    "exporter_all_lines": 356,
+    "field_renderer_all_lines": 127,
+    "necessary_existing_interfaces": [
+      "completed train/evaluate/prediction-barrier metadata keys",
+      "input/DEVtarget manifest identities",
+      "actual xyz normalization formula and units",
+      "frozen10arm train_cases/complete_passes spec"
+    ]
+  },
+  "review_findings": [
+    "Metadata-only exporter and gated independent field renderer; no scientific import/model/weights/GPU",
+    "Formal completed10arm/60DEV/closed2400/input and shared DEVtarget identities required before actual array read",
+    "Rank only completed4800/full60 fixed endpoint by declared0.5(Umean+Smean), no DEV-best/checkpoint/seed selection",
+    "Partial or failed endpoints retain null/explicit incomplete qualification; fixed3 TRAIN progress not used as DEV",
+    "Train updates/init/checkpoint/readout/inference costs distinct; no cold-service claim",
+    "Fixed firstDEV/ver originalTS200 andFNO200 illustrations, signedS MPa and U-vector/error norms mm, deterministic20k display only; metrics allN",
+    "Coordinates restored by real bbox_min_mm/characteristic_length_mm normalization; output ownership confined to results/geobc_coverage_comparison",
+    "No raw/GT/prediction/checkpoint arrays copied into repository; JSON/Markdown/PNG and local checkpoint metadata only"
+  ],
+  "actual_execution_released_after_gate": true,
+  "actual_execution_launched": false,
+  "actual_sci_or_GT_array_reads": 0,
+  "test_policy": "Author sole AST already passed; root source/interface review only. No redundant AST, gate probe, toy or scientific execution."
+}

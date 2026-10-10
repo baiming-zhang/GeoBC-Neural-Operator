@@ -1,0 +1,66 @@
+{
+  "status": "completed",
+  "kind": "TRAIN120_fixed4800_fit_diagnostic_export",
+  "completed_predictions": 600,
+  "all600_metrics_complete": true,
+  "TRAIN_only": true,
+  "new_DEV_read": false,
+  "final_solver_selected": false,
+  "created_UTC": "2026-10-10T06:37:24.208096+00:00",
+  "files": {
+    "summary.json": {
+      "bytes": 1281915,
+      "sha256": "f20f2d68d1a277e05c42b05a9440572a8dd32b051b6445417c04d7d69e75e161",
+      "source": "runs/geobc_coverage_comparison/TRAIN_FIT_DIAGNOSTIC/summary.json"
+    },
+    "config.json": {
+      "bytes": 12732,
+      "sha256": "c0146def6baa9f253e598e801436945ccaaaf25c7addb3615345845c504ae1f8",
+      "source": "runs/geobc_coverage_comparison/TRAIN_FIT_DIAGNOSTIC/config.json"
+    },
+    "clock.json": {
+      "bytes": 321,
+      "sha256": "13fc854584e5079f75314b5fbe51bc9646ba1b367a10cf4649e844bac5b0bd09",
+      "source": "runs/geobc_coverage_comparison/TRAIN_FIT_DIAGNOSTIC/clock.json"
+    },
+    "read_receipt.json": {
+      "bytes": 870,
+      "sha256": "b4b7cd078f85f35d88f4fd807492dfaa8ed350d952cf1a1e1bb15b4cdcdc63d5",
+      "source": "runs/geobc_coverage_comparison/TRAIN_FIT_DIAGNOSTIC/read_receipt.json"
+    },
+    "external_launch.json": {
+      "bytes": 659,
+      "sha256": "4f5a5baa37c2fdf64910ee0b56c8eea4c5fccfd6d6edf86b7fc8f235528de790",
+      "source": "runs/geobc_coverage_comparison/TRAIN_FIT_DIAGNOSTIC/external_launch.json"
+    },
+    "case_records.jsonl": {
+      "bytes": 398606,
+      "sha256": "5e84d5d3dbfc05d613f8f3329e8a11a947a3457ba30970927bc7c06f60d01ec6",
+      "source": "runs/geobc_coverage_comparison/TRAIN_FIT_DIAGNOSTIC/case_records.jsonl"
+    },
+    "coordinator_wait_proof.json": {
+      "bytes": 1430,
+      "sha256": "6c9f3cbf2cefb2a7539327a7f4fa52c266e1e920a2564e5c47776680cf64c987",
+      "source": "runs/geobc_coverage_comparison/TRAIN_FIT_DIAGNOSTIC/coordinator_wait_proof.json"
+    },
+    "comparison.png": {
+      "bytes": 164944,
+      "sha256": "4c78513dec7ff5a7e827d0fbac1df841b299d8e0dd69dd04726ce0c1664aee8c",
+      "source": "tools/plot_geobc_train_fit.py; completed TRAIN summary scalars only"
+    },
+    "comparison.pdf": {
+      "bytes": 34108,
+      "sha256": "31db029a5b6f7a65f0764ca7a189618be53770856e78a1fb9885d178bec894cc",
+      "source": "tools/plot_geobc_train_fit.py; completed TRAIN summary scalars only"
+    },
+    "comparison_plot_metadata.json": {
+      "bytes": 1878,
+      "sha256": "493c56bbbfa6b6d9ed7ded3391f06ed9044a382a479105170ef88dcd4dc5c1af",
+      "source": "tools/plot_geobc_train_fit.py; completed TRAIN summary scalars only"
+    }
+  },
+  "helper_source_sha256": "b8a398c540f778f4467d5fea834ca215fd800798808b671b9c554b4da5fed2fe",
+  "parent_scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+  "elapsed_export_seconds": 0.014999999897554517,
+  "plot_root_visual_review": "passed2026-10-10"
+}

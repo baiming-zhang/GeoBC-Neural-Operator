@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "kind": "coverage_fixed4800_known_U5_CPU_readout",
+  "status": "completed_actual_once_readout",
+  "created_UTC": "2026-10-10T07:27:31.527726+00:00",
+  "scientific_rules_frozen": true,
+  "actual_execution_released": true,
+  "scientific": {
+    "methods": [
+      "transolver",
+      "transolver_pp",
+      "ts3",
+      "fno",
+      "mlp"
+    ],
+    "case_keys": [
+      "489_12/ver",
+      "616_205/ver",
+      "416_282/ver",
+      "247_50/ver",
+      "142_454/ver"
+    ],
+    "node_counts": [
+      166790,
+      238303,
+      302979,
+      162864,
+      209499
+    ],
+    "fixed_step": 4800,
+    "seed": 2026,
+    "budget_seconds": 120,
+    "fixed_prediction_denominator": 25,
+    "fixed_case_denominator_each_method": 5,
+    "S_scientific_digest": "5eadc8408a1287ffc8e6a2d17a9d544884d960ef51accea215a5c97e4966d2e0",
+    "U_is_blind": false,
+    "purpose": "U-known / S-field-blind joint interpretation: known-U generalization readout at fixed fresh4800 checkpoints; not a new blind-U claim or model selection",
+    "candidate_source": "Only already persisted physical4 predictions; numerically access [:,:3] only, no rerun or scaler",
+    "reference_source": "Five historical already-known U-only flat caches, FP64 original mm and H5 row order, identical byte/value identities to accepted U_mm.npy helper outputs",
+    "metrics": "Full original-node vector U relativeL2, vector error RMS mm and max mm; equal five-case mean and worst, fixed25 inventory; undefined zero-reference relativeL2 stays null with explicit reason",
+    "failures": "Missing/nonfinite/identity/budget failure remains null and explicit, no filtering/replacement/replay/reset",
+    "read_scope": "No new/source CSV U or S; no cached S labels, prediction S evaluation, H5, strain, weights, model prediction, optimizer/training/scaler or GPU",
+    "gates": "Authentic independent root CPU release; S terminal summary and closed clock; actual S process exited; 25 immutable finite fullN prediction manifests and exact contract barrier",
+    "budget_accounting": "One actual CPU120s including metadata/body identities, known-cache IO,25 prediction IO,U metrics and persistence; once claim/clock preserves failed or interrupted attempt; root adds external120s process guard",
+    "units": {
+      "U": "mm",
+      "relativeL2": "dimensionless"
+    },
+    "known_U_metadata": {
+      "489_12/ver": {
+        "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/489_12_ver.json",
+        "sha256": "b923fa672948a0fc0e307b26665f1a1b42894ee11ad257506c8a5824ae62cf6c"
+      },
+      "616_205/ver": {
+        "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/616_205_ver.json",
+        "sha256": "d3b475873776bd76df51aa61e920d776ec707e2564ac5df9ee22e55f303cbe85"
+      },
+      "416_282/ver": {
+        "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/416_282_ver.json",
+        "sha256": "309bd29eee5acd08ad340a913fbfd4d3065dcdc463a69c543418da65a9ff2875"
+      },
+      "247_50/ver": {
+        "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/247_50_ver.json",
+        "sha256": "7f50d01e0240b518ca8dba796a44c597abd2c17deefd9813b132cb8b4ffbf3fa"
+      },
+      "142_454/ver": {
+        "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/142_454_ver.json",
+        "sha256": "a86f9724591f7d86eaffe3744462a5cc70abf33ce82b4985f9f58cf66549c210"
+      }
+    },
+    "known_U_cache_root": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache",
+    "S_output": "runs/geobc_exploration/coverage_S_field_blind5_fixed4800"
+  },
+  "scientific_digest": "a9605c72839495bfb349a65cad841e744d8f1864bd32f2562c7891c661c6496e",
+  "S_plan": "notes/geobc_s_field_blind_plan.json",
+  "S_output": "runs/geobc_exploration/coverage_S_field_blind5_fixed4800",
+  "known_U_metadata": {
+    "489_12/ver": {
+      "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/489_12_ver.json",
+      "sha256": "b923fa672948a0fc0e307b26665f1a1b42894ee11ad257506c8a5824ae62cf6c"
+    },
+    "616_205/ver": {
+      "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/616_205_ver.json",
+      "sha256": "d3b475873776bd76df51aa61e920d776ec707e2564ac5df9ee22e55f303cbe85"
+    },
+    "416_282/ver": {
+      "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/416_282_ver.json",
+      "sha256": "309bd29eee5acd08ad340a913fbfd4d3065dcdc463a69c543418da65a9ff2875"
+    },
+    "247_50/ver": {
+      "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/247_50_ver.json",
+      "sha256": "7f50d01e0240b518ca8dba796a44c597abd2c17deefd9813b132cb8b4ffbf3fa"
+    },
+    "142_454/ver": {
+      "path": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/142_454_ver.json",
+      "sha256": "a86f9724591f7d86eaffe3744462a5cc70abf33ce82b4985f9f58cf66549c210"
+    }
+  },
+  "known_U_cache_root": "runs/geobc_exploration/blind_solver_full5_ver_U/label_cache",
+  "known_U_identity_summary": [
+    {
+      "case_key": "489_12/ver",
+      "shape": [
+        166790,
+        3
+      ],
+      "dtype": "float64",
+      "cache_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/489_12_ver.npy",
+      "file_sha256": "4f3d0901edab5958e2f9a53ac167ae3d1d93957ce35830f1da13259f54e9124b",
+      "helper_manifest": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/489_12_ver/manifest.json",
+        "sha256": "400d4647c018ffb921c4a465dc97b417ba4da162410c920025c8840e25e7ee57"
+      }
+    },
+    {
+      "case_key": "616_205/ver",
+      "shape": [
+        238303,
+        3
+      ],
+      "dtype": "float64",
+      "cache_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/616_205_ver.npy",
+      "file_sha256": "43ad168777033a2009def7542ab06ae91c5f1591d831ccfd3fef07eb2c23019a",
+      "helper_manifest": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/616_205_ver/manifest.json",
+        "sha256": "257a3256e7879d16c92815c2a9222cc0a958a6011459f8aee366d52d6c8819b5"
+      }
+    },
+    {
+      "case_key": "416_282/ver",
+      "shape": [
+        302979,
+        3
+      ],
+      "dtype": "float64",
+      "cache_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/416_282_ver.npy",
+      "file_sha256": "48c8400c6c4f16dc5b838bf9eadc9ab66cd0df48d476ebfa1002bed154dde007",
+      "helper_manifest": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/416_282_ver/manifest.json",
+        "sha256": "b22a31b6188713518ed09100c8eb1911b73f3792f711362c456c02b687ad24ea"
+      }
+    },
+    {
+      "case_key": "247_50/ver",
+      "shape": [
+        162864,
+        3
+      ],
+      "dtype": "float64",
+      "cache_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/247_50_ver.npy",
+      "file_sha256": "b718045d190dab54a920dd3869d9bb30557ca04b7975d5f3ba255967d950af41",
+      "helper_manifest": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/247_50_ver/manifest.json",
+        "sha256": "bd6fd0265fc96e59dedb76a64e3d3663615df5c58f9705460dc33f52fd9bb882"
+      }
+    },
+    {
+      "case_key": "142_454/ver",
+      "shape": [
+        209499,
+        3
+      ],
+      "dtype": "float64",
+      "cache_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/142_454_ver.npy",
+      "file_sha256": "a7a7c48f14c0de03c611713caaf085cead0494931a46962687955a7693c83abc",
+      "helper_manifest": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/blind_solver_full5_ver_U/label_cache/142_454_ver/manifest.json",
+        "sha256": "8463fc2bb01f8393683112d8d8c3c3215ebc70e5ad8d1fd8bc0d61863887f992"
+      }
+    }
+  ],
+  "output": "runs/geobc_exploration/coverage_known_U5_fixed4800",
+  "root_review": "notes/geobc_known_u_readout_root_review.json",
+  "root_decision": "proceed_known_U_readout_after_S_terminal",
+  "source_phase_execution": {
+    "arrays": 0,
+    "GT": 0,
+    "weights": 0,
+    "GPU": 0,
+    "network": 0,
+    "contracts": 0
+  },
+  "original20scientificpins_modified": false,
+  "root_release_UTC": "2026-10-10T07:34:37.549958+00:00",
+  "actual_execution_summary": "runs/geobc_exploration/coverage_known_U5_fixed4800/summary.json",
+  "actual_completion_gate": {
+    "all25_metrics_available": true,
+    "all25_relative_L2_defined": true,
+    "known_U_not_blind": true,
+    "within120s_precommit": true,
+    "passed": true
+  },
+  "actual_external_seconds": 2.072075264000887
+}

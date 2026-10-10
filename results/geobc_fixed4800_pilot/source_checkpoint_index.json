@@ -1,0 +1,1410 @@
+{
+  "sources": {
+    "TRAIN": {
+      "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+      "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+      "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196",
+      "geobc/coverage_comparison_train.py": "bbf3832d144a689d0c8c32d27673953dd9a1d24b5976313e3e6a966d08f55e00",
+      "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+      "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+      "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+      "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+      "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+      "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+      "third_party/transformer_sources.json": "1a46270136d2f58e081ea7be050c46fca5378b9853fc3e703c945129769aefb6",
+      "tools/fetch_exact_deepjeb.py": "ff01bffff639cf007cc9c97969b3210db0bca2375f674709238105d6e59002f2",
+      "tools/fetch_geobc_coverage.py": "81b88675120c9ef7f9c07f139be45bc8a5f8196fb095d07a20ab6b5be7b2adeb",
+      "tools/fetch_next_cycle_test.py": "92eba989a7c0b17ab8a5084cf9d761116ab4ace32b01b5b0e70e1375ad3edfae",
+      "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+      "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+      "tools/run_geobc_coverage_comparison.py": "f39c9b01efd45dbe7d4ae66dc1807dcd865eae2c170aa63e60b157dfc0ae1196",
+      "tools/start_geobc_coverage_comparison.ps1": "4d1cdf1675c5f7d38d6a7ba2b2c3bdf4dcafbb1e6b0808f712e32ced3cea9905",
+      "tools/start_geobc_coverage_fetch.ps1": "7f90ffd8a758c2f3b7f5248370aa1e1f8631af9b56ca7fdc1a19070b17caba9a",
+      "geobc/coverage_train_fit_diagnostic.py": "b8a398c540f778f4467d5fea834ca215fd800798808b671b9c554b4da5fed2fe"
+    },
+    "S": {
+      "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+      "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+      "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196",
+      "geobc/coverage_comparison_train.py": "bbf3832d144a689d0c8c32d27673953dd9a1d24b5976313e3e6a966d08f55e00",
+      "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+      "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+      "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+      "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+      "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+      "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+      "third_party/transformer_sources.json": "1a46270136d2f58e081ea7be050c46fca5378b9853fc3e703c945129769aefb6",
+      "tools/fetch_exact_deepjeb.py": "ff01bffff639cf007cc9c97969b3210db0bca2375f674709238105d6e59002f2",
+      "tools/fetch_geobc_coverage.py": "81b88675120c9ef7f9c07f139be45bc8a5f8196fb095d07a20ab6b5be7b2adeb",
+      "tools/fetch_next_cycle_test.py": "92eba989a7c0b17ab8a5084cf9d761116ab4ace32b01b5b0e70e1375ad3edfae",
+      "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+      "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+      "tools/run_geobc_coverage_comparison.py": "f39c9b01efd45dbe7d4ae66dc1807dcd865eae2c170aa63e60b157dfc0ae1196",
+      "tools/start_geobc_coverage_comparison.ps1": "4d1cdf1675c5f7d38d6a7ba2b2c3bdf4dcafbb1e6b0808f712e32ced3cea9905",
+      "tools/start_geobc_coverage_fetch.ps1": "7f90ffd8a758c2f3b7f5248370aa1e1f8631af9b56ca7fdc1a19070b17caba9a",
+      "geobc/coverage_train_fit_diagnostic.py": "b8a398c540f778f4467d5fea834ca215fd800798808b671b9c554b4da5fed2fe",
+      "geobc/coverage_s_blind_eval.py": "05740be3b58b4cf4998f3dec9643fa4c82ba1cb335034c63dea747c430659e4c"
+    },
+    "known_U": {
+      "geobc/coverage_known_u_readout.py": "bb694b0495226efc81d2535cda3a27bf57dc82ed02314c7d97b179998cdf4d0d"
+    }
+  },
+  "checkpoints": {
+    "transolver": {
+      "TRAIN_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+        "bytes": 22619411,
+        "mtime_ns": 1791601230285300100,
+        "sha256": "d5c42f0921aaabdc3a8cf17601ff8b32d5b0d67be39b819aa028b833c6cee3c9"
+      },
+      "S_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+        "bytes": 22619411,
+        "mtime_ns": 1791601230285300100,
+        "sha256": "d5c42f0921aaabdc3a8cf17601ff8b32d5b0d67be39b819aa028b833c6cee3c9",
+        "step": 4800
+      }
+    },
+    "transolver_pp": {
+      "TRAIN_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+        "bytes": 54688735,
+        "mtime_ns": 1791605660352707300,
+        "sha256": "5d20e9c9799d9cb08b45d44baddc5cf23c1cfeb4297ad6217b639300eb6565ff"
+      },
+      "S_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+        "bytes": 54688735,
+        "mtime_ns": 1791605660352707300,
+        "sha256": "5d20e9c9799d9cb08b45d44baddc5cf23c1cfeb4297ad6217b639300eb6565ff",
+        "step": 4800
+      }
+    },
+    "ts3": {
+      "TRAIN_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+        "bytes": 92423129,
+        "mtime_ns": 1791610472796897300,
+        "sha256": "d381cd0ac3b63996e40d85fbed012d9018d5a21598e1ad428894ffcf36383d98"
+      },
+      "S_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+        "bytes": 92423129,
+        "mtime_ns": 1791610472796897300,
+        "sha256": "d381cd0ac3b63996e40d85fbed012d9018d5a21598e1ad428894ffcf36383d98",
+        "step": 4800
+      }
+    },
+    "fno": {
+      "TRAIN_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+        "bytes": 170405851,
+        "mtime_ns": 1791611923859036500,
+        "sha256": "ca8a322e4cb6a1c3329c9ed0fc0fff71d366ecbad6735ece9e953c0e3165bb93"
+      },
+      "S_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+        "bytes": 170405851,
+        "mtime_ns": 1791611923859036500,
+        "sha256": "ca8a322e4cb6a1c3329c9ed0fc0fff71d366ecbad6735ece9e953c0e3165bb93",
+        "step": 4800
+      }
+    },
+    "mlp": {
+      "TRAIN_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+        "bytes": 3016845,
+        "mtime_ns": 1791612636585517600,
+        "sha256": "f0105f5739b0fe0e2063efb19b403375290f861773d34fdf587b96c54b8857b7"
+      },
+      "S_committed_identity": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+        "bytes": 3016845,
+        "mtime_ns": 1791612636585517600,
+        "sha256": "f0105f5739b0fe0e2063efb19b403375290f861773d34fdf587b96c54b8857b7",
+        "step": 4800
+      }
+    }
+  },
+  "predictions": {
+    "transolver:489_12/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver",
+      "key": "489_12/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 166790,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/489_12_ver/encoded4.npy",
+        "bytes": 2668768,
+        "mtime_ns": 1791617445587027900,
+        "sha256": "43bc5ffdc4c079f462e118b61cb9d2c008898a7722e9814d644ba691244f7fc9",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "94b3835b54359deba32c595b6fee1f6d43d0c94b9c01eedc23851071b0a611ea"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/489_12_ver/physical4.npy",
+        "bytes": 5337408,
+        "mtime_ns": 1791617445627014100,
+        "sha256": "b17d2752359234a343c07531fef9c54f347156dfd8d5c6419149c74228431902",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "a416ea2cd239a0ed9cd8d34e7c537f48c4f21279958dfb7388f2837d3a3fd009"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+        "bytes": 22619411,
+        "mtime_ns": 1791601230285300100,
+        "sha256": "d5c42f0921aaabdc3a8cf17601ff8b32d5b0d67be39b819aa028b833c6cee3c9",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2892030444,
+      "target_reads": 0
+    },
+    "transolver:616_205/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver",
+      "key": "616_205/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 238303,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/616_205_ver/encoded4.npy",
+        "bytes": 3812976,
+        "mtime_ns": 1791617446069336300,
+        "sha256": "21f42601812a28619b4d4fa73e091504fe8699b7a6a6415c2be04a401daf8b2b",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "71118f83caa6905dd1b0de528eb2aceaaec77924796a0551713f2d575857bbe9"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/616_205_ver/physical4.npy",
+        "bytes": 7625824,
+        "mtime_ns": 1791617446108946000,
+        "sha256": "3047710481a569e56a6b264c5f1beec390d560c53894c52e5f384b79b607e886",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "e98a090f678b19b0b94824a982c3c5dd517a68be618838b702023d9bab01e1f9"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+        "bytes": 22619411,
+        "mtime_ns": 1791601230285300100,
+        "sha256": "d5c42f0921aaabdc3a8cf17601ff8b32d5b0d67be39b819aa028b833c6cee3c9",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2923423544,
+      "target_reads": 0
+    },
+    "transolver:416_282/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver",
+      "key": "416_282/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 302979,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/416_282_ver/encoded4.npy",
+        "bytes": 4847792,
+        "mtime_ns": 1791617446721254100,
+        "sha256": "5abd388471ba3fa3615426a56bbea36320f426bb3e707b958f3294646064b804",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "09c3de68dc45b9bd0441e43f134f0d25b971ca2f80638b52a7810f6939448ddd"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/416_282_ver/physical4.npy",
+        "bytes": 9695456,
+        "mtime_ns": 1791617446785761300,
+        "sha256": "efa8cf42d2bbe1f009c4eacfaf8dd991323265357a9d194155149ca89b83ab05",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "d45b7027f62881f0ebd135e75480f1afd69967a97dc15df87ffa4b4eb3c2c6d0"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+        "bytes": 22619411,
+        "mtime_ns": 1791601230285300100,
+        "sha256": "d5c42f0921aaabdc3a8cf17601ff8b32d5b0d67be39b819aa028b833c6cee3c9",
+        "step": 4800
+      },
+      "isolated_eval_seed": 4172771530,
+      "target_reads": 0
+    },
+    "transolver:247_50/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver",
+      "key": "247_50/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 162864,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/247_50_ver/encoded4.npy",
+        "bytes": 2605952,
+        "mtime_ns": 1791617447157571100,
+        "sha256": "b69e7be17c3361fd52ccc85ad2fd0013c2648705bc4dd25b42a3feae8702885d",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "62fbe8026e1c4e856e472b231cc179e75047843b660f0dd52c17f4704811204a"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/247_50_ver/physical4.npy",
+        "bytes": 5211776,
+        "mtime_ns": 1791617447195864400,
+        "sha256": "1e6fa37c2ed634d3d4502a7c3d56d21d123b5e33700655d3bf53b354bdd8eaf8",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "8e2cad5538927d39393aa745ded11f8fdc60ac1f509c0ad4e988c7280672e4c8"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+        "bytes": 22619411,
+        "mtime_ns": 1791601230285300100,
+        "sha256": "d5c42f0921aaabdc3a8cf17601ff8b32d5b0d67be39b819aa028b833c6cee3c9",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1513246108,
+      "target_reads": 0
+    },
+    "transolver:142_454/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver",
+      "key": "142_454/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 209499,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/142_454_ver/encoded4.npy",
+        "bytes": 3352112,
+        "mtime_ns": 1791617447578820100,
+        "sha256": "4aa48680583909365f82154dbf2b2887b9d555e065a328974a9869f030c9f4f9",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "26b997417f2d4345d476ea3e3bcd177e9fa3c9080b34a9c7b77d0ecfff67873e"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver/142_454_ver/physical4.npy",
+        "bytes": 6704096,
+        "mtime_ns": 1791617447620819900,
+        "sha256": "84ab9120580070fd5472564938f4fd98704d4216f486e3de792d6b06338fe507",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "278e050eab6b348c133ce90fa4af840bf11772adc76e1627e99b210da8bfc200"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+        "bytes": 22619411,
+        "mtime_ns": 1791601230285300100,
+        "sha256": "d5c42f0921aaabdc3a8cf17601ff8b32d5b0d67be39b819aa028b833c6cee3c9",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1512171540,
+      "target_reads": 0
+    },
+    "transolver_pp:489_12/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver_pp",
+      "key": "489_12/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 166790,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/489_12_ver/encoded4.npy",
+        "bytes": 2668768,
+        "mtime_ns": 1791617448968998600,
+        "sha256": "7d471b4526abfa2292389182ca5a163e145d07861edadf873a5f0d2bf00a2778",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "2158ec6a4de0592461a16ac731772aec0b9cdaef879bd8475ad2d32c60c7451c"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/489_12_ver/physical4.npy",
+        "bytes": 5337408,
+        "mtime_ns": 1791617449013586700,
+        "sha256": "70133ee9af3ce2d97080c61ac9cb23f9696b83677abcb139f99d5b1502301d71",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "b701d7b26d8b151ec6854273fcb55773136626c33f864be4ae72feb1ede7ea16"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+        "bytes": 54688735,
+        "mtime_ns": 1791605660352707300,
+        "sha256": "5d20e9c9799d9cb08b45d44baddc5cf23c1cfeb4297ad6217b639300eb6565ff",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2892030444,
+      "target_reads": 0
+    },
+    "transolver_pp:616_205/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver_pp",
+      "key": "616_205/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 238303,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/616_205_ver/encoded4.npy",
+        "bytes": 3812976,
+        "mtime_ns": 1791617449382334200,
+        "sha256": "e36d542842e1e84c4ccc6f301231b7cd8e890026751a3a4696bb0a35beb245d0",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "626ff684189cc2b858b7a05415dfb837b9852e0c22577f2bba21f960d82421c7"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/616_205_ver/physical4.npy",
+        "bytes": 7625824,
+        "mtime_ns": 1791617449422021100,
+        "sha256": "2945940ebd3ae4cf9f715f17da879f531ebfe90074a737c071f23311a3724ea6",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "1e32bdc0bea3fd0eaee7fea778070ef454f99b8ddb58365f9e93c8b98f1d3eb6"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+        "bytes": 54688735,
+        "mtime_ns": 1791605660352707300,
+        "sha256": "5d20e9c9799d9cb08b45d44baddc5cf23c1cfeb4297ad6217b639300eb6565ff",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2923423544,
+      "target_reads": 0
+    },
+    "transolver_pp:416_282/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver_pp",
+      "key": "416_282/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 302979,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/416_282_ver/encoded4.npy",
+        "bytes": 4847792,
+        "mtime_ns": 1791617449888693600,
+        "sha256": "cc570b7d81a5dfb373c869de2128eeeae82f5e79b705d8f04ebd9f8ff98703e1",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "0c55126dfdcebc79f823e3a4a5cf38155cdb4641e7a2f69c9fb03ef5dd69d06f"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/416_282_ver/physical4.npy",
+        "bytes": 9695456,
+        "mtime_ns": 1791617449953647900,
+        "sha256": "7a93e5a18345ddfb1320059759f5b5418c0eb7ed380c0ced1f3dbb149de9054c",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "b7f14c965371ef65adbffa195b9802e497eb4966d643aff9f2e90c629b5f71a7"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+        "bytes": 54688735,
+        "mtime_ns": 1791605660352707300,
+        "sha256": "5d20e9c9799d9cb08b45d44baddc5cf23c1cfeb4297ad6217b639300eb6565ff",
+        "step": 4800
+      },
+      "isolated_eval_seed": 4172771530,
+      "target_reads": 0
+    },
+    "transolver_pp:247_50/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver_pp",
+      "key": "247_50/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 162864,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/247_50_ver/encoded4.npy",
+        "bytes": 2605952,
+        "mtime_ns": 1791617450265668500,
+        "sha256": "ef0955cb677daffccba695cf0dbfcc8840f80a344f032092b0aaa36e87595a17",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "91b7c525dec7245ac1a055ce533fffeac451a2d5e1c85b28655ba23822dc076a"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/247_50_ver/physical4.npy",
+        "bytes": 5211776,
+        "mtime_ns": 1791617450296670000,
+        "sha256": "493608f1555bafab57bee23c28bf94198d5b5d24d5399ada97effe4d0b8061cc",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "7a41c339357406e2a1a4a54de8f6876537f01244103496bb2c8561e9413c838f"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+        "bytes": 54688735,
+        "mtime_ns": 1791605660352707300,
+        "sha256": "5d20e9c9799d9cb08b45d44baddc5cf23c1cfeb4297ad6217b639300eb6565ff",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1513246108,
+      "target_reads": 0
+    },
+    "transolver_pp:142_454/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "transolver_pp",
+      "key": "142_454/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 209499,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/142_454_ver/encoded4.npy",
+        "bytes": 3352112,
+        "mtime_ns": 1791617450636923000,
+        "sha256": "06e8f8d7f68c5aae41168ee1de4183d3119991b28a9e10fdeda1269d01aad9a9",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "34864059da8208a11dc1d13fc34deb3ff2aebb84484021d9c6016025ff8c6220"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/transolver_pp/142_454_ver/physical4.npy",
+        "bytes": 6704096,
+        "mtime_ns": 1791617450690677200,
+        "sha256": "f7eee60fe71f8dab04e242726ac8328d2819d586f9306cb8d56ccd7b16f6e368",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "8e56ad2f1439f09488125f5bd6c0e03a19283ea61659f4aa84e4d33cdfe272f9"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+        "bytes": 54688735,
+        "mtime_ns": 1791605660352707300,
+        "sha256": "5d20e9c9799d9cb08b45d44baddc5cf23c1cfeb4297ad6217b639300eb6565ff",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1512171540,
+      "target_reads": 0
+    },
+    "ts3:489_12/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "ts3",
+      "key": "489_12/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 166790,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/489_12_ver/encoded4.npy",
+        "bytes": 2668768,
+        "mtime_ns": 1791617451752570300,
+        "sha256": "df939fa418f75a246cb1d845ed5073f35af2d418dd5882f16db2876798a859fc",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "986d5603fb8656aeb618c0734f918ccdb963a51fb46218b6267366ccf78d31f1"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/489_12_ver/physical4.npy",
+        "bytes": 5337408,
+        "mtime_ns": 1791617451783572500,
+        "sha256": "fb8798b362191356e70621ac26284b84cb305366549cefd766abcef8d0bf38e0",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "c4e5b69062ada994f77a8c9a554d2a4a83a35ac0386c804de9e323245ba621a0"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+        "bytes": 92423129,
+        "mtime_ns": 1791610472796897300,
+        "sha256": "d381cd0ac3b63996e40d85fbed012d9018d5a21598e1ad428894ffcf36383d98",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2892030444,
+      "target_reads": 0
+    },
+    "ts3:616_205/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "ts3",
+      "key": "616_205/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 238303,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/616_205_ver/encoded4.npy",
+        "bytes": 3812976,
+        "mtime_ns": 1791617452176066100,
+        "sha256": "0b4e3172b31493568019fece73ef7a449e0d17404e2262d8425e08fe3c94143f",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "809604f8958ebb7c4c23b20a089df707e50ee6e8c2a594733484416cb1e6c8b9"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/616_205_ver/physical4.npy",
+        "bytes": 7625824,
+        "mtime_ns": 1791617452217129900,
+        "sha256": "e37dc3c914a6685a83b42fc4fa80bcdb44daf82917f7b3cbe2c36d3acded9d39",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "af8416e3d8b6444ec72dd2fcef54e38eff0d2d1ebba3b153a95e3b5c0ebb71aa"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+        "bytes": 92423129,
+        "mtime_ns": 1791610472796897300,
+        "sha256": "d381cd0ac3b63996e40d85fbed012d9018d5a21598e1ad428894ffcf36383d98",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2923423544,
+      "target_reads": 0
+    },
+    "ts3:416_282/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "ts3",
+      "key": "416_282/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 302979,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/416_282_ver/encoded4.npy",
+        "bytes": 4847792,
+        "mtime_ns": 1791617452690922200,
+        "sha256": "f69d5b83bbbdbd17d79b05526ad55e258f111ba51440e44cb3efc5997a0ae947",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "5f2610fee1c01b60c4039768edd58334336d450559b1d089e053ee12cd86161e"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/416_282_ver/physical4.npy",
+        "bytes": 9695456,
+        "mtime_ns": 1791617452735921000,
+        "sha256": "5b67b7b4a305aab7c87ec10cb570b09ae904e7adcecb388d28828da0a38f2ff3",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "fcd4f8bedc69830107b50de50d097f2d5f4422c3b553dd89736781076ea7b739"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+        "bytes": 92423129,
+        "mtime_ns": 1791610472796897300,
+        "sha256": "d381cd0ac3b63996e40d85fbed012d9018d5a21598e1ad428894ffcf36383d98",
+        "step": 4800
+      },
+      "isolated_eval_seed": 4172771530,
+      "target_reads": 0
+    },
+    "ts3:247_50/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "ts3",
+      "key": "247_50/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 162864,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/247_50_ver/encoded4.npy",
+        "bytes": 2605952,
+        "mtime_ns": 1791617453026722900,
+        "sha256": "e446989128eebd9dc493aea875d5a16c7dc5e95ffa34420a70d35e97ba54540e",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "f51863c8768e43b7f2de637736f3f5533235791776a2623dfb8c77e6dd8b61a3"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/247_50_ver/physical4.npy",
+        "bytes": 5211776,
+        "mtime_ns": 1791617453058722900,
+        "sha256": "70a9964d1b00e38a6d35f7f2b470b6c537a4d81ae92fd62664365891e62dc2cf",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "4abced39dc7098cd6f9ad04c7d5ce8f6c59abd6eba75cb0fad4313f71e34d4da"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+        "bytes": 92423129,
+        "mtime_ns": 1791610472796897300,
+        "sha256": "d381cd0ac3b63996e40d85fbed012d9018d5a21598e1ad428894ffcf36383d98",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1513246108,
+      "target_reads": 0
+    },
+    "ts3:142_454/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "ts3",
+      "key": "142_454/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 209499,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/142_454_ver/encoded4.npy",
+        "bytes": 3352112,
+        "mtime_ns": 1791617453396919400,
+        "sha256": "8a322c0b0af016d39c9cf40de51f1243330db6a2407c8215fe63ece1fba9dcfa",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "a2827897895bf5e13b83a13ab4c20c1dfff9b09680ac634ffe323b2615d6d428"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/ts3/142_454_ver/physical4.npy",
+        "bytes": 6704096,
+        "mtime_ns": 1791617453432920800,
+        "sha256": "ab3528562a115e303c8c7a06044995d92e0f8c513615d141a45758955e9d5ba2",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "596759b299c419db0cfea31d94a6726164ccdb29b94ae862f558934c38ae6da5"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+        "bytes": 92423129,
+        "mtime_ns": 1791610472796897300,
+        "sha256": "d381cd0ac3b63996e40d85fbed012d9018d5a21598e1ad428894ffcf36383d98",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1512171540,
+      "target_reads": 0
+    },
+    "fno:489_12/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "fno",
+      "key": "489_12/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 166790,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/489_12_ver/encoded4.npy",
+        "bytes": 2668768,
+        "mtime_ns": 1791617454837953600,
+        "sha256": "f47479f8a94e496056ac8dc64317c8056b6bdb6b889ec7638fa4cc4c94b75f2e",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "03db47d2bc87475df32770b2b8207d72b196e2c78bdb598b9f483b804b6592d2"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/489_12_ver/physical4.npy",
+        "bytes": 5337408,
+        "mtime_ns": 1791617454868953700,
+        "sha256": "1f1fa7415bd3a5ff545d0bd6c242e0e52b90f3e4f8143976ca824d18f418ef97",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "eec9e08f85576fd6c658c231432734a195a9c437bc2bdb7324106f8814364fe9"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+        "bytes": 170405851,
+        "mtime_ns": 1791611923859036500,
+        "sha256": "ca8a322e4cb6a1c3329c9ed0fc0fff71d366ecbad6735ece9e953c0e3165bb93",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2892030444,
+      "target_reads": 0
+    },
+    "fno:616_205/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "fno",
+      "key": "616_205/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 238303,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/616_205_ver/encoded4.npy",
+        "bytes": 3812976,
+        "mtime_ns": 1791617455047541300,
+        "sha256": "f421c9f3eae911951f0e53f289ba37ca16585a5e49c55e5cbcfb3c1045878159",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "dde948f81325e4aed42cb109f29081d9acb656201fbedd17582ae06406e42db6"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/616_205_ver/physical4.npy",
+        "bytes": 7625824,
+        "mtime_ns": 1791617455085539900,
+        "sha256": "9b7b36a82d20d774046cacd712ff6b354c6d8d45b63d6ddc4a9a559ec99cb9c0",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "a3bced456fa4900cd9c2ece76b0d50f5a033629f4cf67fde813a2d2653c116c8"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+        "bytes": 170405851,
+        "mtime_ns": 1791611923859036500,
+        "sha256": "ca8a322e4cb6a1c3329c9ed0fc0fff71d366ecbad6735ece9e953c0e3165bb93",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2923423544,
+      "target_reads": 0
+    },
+    "fno:416_282/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "fno",
+      "key": "416_282/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 302979,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/416_282_ver/encoded4.npy",
+        "bytes": 4847792,
+        "mtime_ns": 1791617455294031000,
+        "sha256": "5ad556f516fa79b44b23f0594fd526e250615b3e1d8309c92fb0c580aaf9b9c3",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "d782ad1fc4eca39eae40bff9aef9bd69b7f472cca171067ffd8f4aedbdbba24b"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/416_282_ver/physical4.npy",
+        "bytes": 9695456,
+        "mtime_ns": 1791617455339031000,
+        "sha256": "61037414eb90eda1b8704ce16bfca49c1511e00f49dc2d9e8e6b6bb6bee8c0ae",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "34a2a01c85ea30125a3fd20d904608418cb33672ec5db36b7e5116997bf0e9f9"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+        "bytes": 170405851,
+        "mtime_ns": 1791611923859036500,
+        "sha256": "ca8a322e4cb6a1c3329c9ed0fc0fff71d366ecbad6735ece9e953c0e3165bb93",
+        "step": 4800
+      },
+      "isolated_eval_seed": 4172771530,
+      "target_reads": 0
+    },
+    "fno:247_50/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "fno",
+      "key": "247_50/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 162864,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/247_50_ver/encoded4.npy",
+        "bytes": 2605952,
+        "mtime_ns": 1791617455497164600,
+        "sha256": "54547a15be33df010029e9a29225a201e028bd5d46d4fd55806b780ef05214e4",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "d5d3be9451eb4c5375fbe99d5fd7a0c893c3d877793841aecf85297540b9221a"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/247_50_ver/physical4.npy",
+        "bytes": 5211776,
+        "mtime_ns": 1791617455527163400,
+        "sha256": "a0d630db126e02225cbcee1942fd1121d125094ef0a8b24ec004479ab26d68ff",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "794b9eff3ccf4cb2020c14434cab84ee66efae96097032a2f2093958d1a569c4"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+        "bytes": 170405851,
+        "mtime_ns": 1791611923859036500,
+        "sha256": "ca8a322e4cb6a1c3329c9ed0fc0fff71d366ecbad6735ece9e953c0e3165bb93",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1513246108,
+      "target_reads": 0
+    },
+    "fno:142_454/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "fno",
+      "key": "142_454/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 209499,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/142_454_ver/encoded4.npy",
+        "bytes": 3352112,
+        "mtime_ns": 1791617455687466100,
+        "sha256": "86e654e184aa3ac3065b479df2eb0d05c48507e5ecd2aeab7dd5ddada6ef01ef",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "49a7c8b9dbfe849cc64cf615d28f9cdf4f06fb114c9d4ae1b3f0461df5fdecc5"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/fno/142_454_ver/physical4.npy",
+        "bytes": 6704096,
+        "mtime_ns": 1791617455723466700,
+        "sha256": "e5d5ab90ba77fd9ce3196decf16f1c96900ff86b5a752fe4e03f5967c4db49a5",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "955a1c11d65176da7f7139f626533e2f6bde62603cfae36f17c404dcc4ebd70a"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+        "bytes": 170405851,
+        "mtime_ns": 1791611923859036500,
+        "sha256": "ca8a322e4cb6a1c3329c9ed0fc0fff71d366ecbad6735ece9e953c0e3165bb93",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1512171540,
+      "target_reads": 0
+    },
+    "mlp:489_12/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "mlp",
+      "key": "489_12/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 166790,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/489_12_ver/encoded4.npy",
+        "bytes": 2668768,
+        "mtime_ns": 1791617455913144600,
+        "sha256": "7c11504f5247b3af56bf70f3166ef94673273ea9e103deac49fd06b16bb1abeb",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "6733680b86bb0667302a9c8dddba009db1754e85bd4f68dcdfa078d72b384a17"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/489_12_ver/physical4.npy",
+        "bytes": 5337408,
+        "mtime_ns": 1791617455944201200,
+        "sha256": "3dc5ba99db8cc9bc1aa00859d596ef0536ed15233f12c9d6cbfb5de111310e7b",
+        "shape": [
+          166790,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "5325b3d60a2d296368959fb655bcd75e3d94eded8f2ba66c1caa16ff2d6272ad"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+        "bytes": 3016845,
+        "mtime_ns": 1791612636585517600,
+        "sha256": "f0105f5739b0fe0e2063efb19b403375290f861773d34fdf587b96c54b8857b7",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2892030444,
+      "target_reads": 0
+    },
+    "mlp:616_205/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "mlp",
+      "key": "616_205/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 238303,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/616_205_ver/encoded4.npy",
+        "bytes": 3812976,
+        "mtime_ns": 1791617456108777200,
+        "sha256": "c4f229d518bb1f782d93aad0b7ec6b3d4f974862efd49e531eb6b2519bac2a04",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "4535a9bab0eec84bc00c3014ffb7cdf58c0cf0ed00d4bbc7d36e774291a1c95f"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/616_205_ver/physical4.npy",
+        "bytes": 7625824,
+        "mtime_ns": 1791617456147952600,
+        "sha256": "d9dad0eb4859bac4ffcb88fbef39d55547f9b1c51cebbbaff0f95ba41dcdc67c",
+        "shape": [
+          238303,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "4d3f9ed9c1fa1ba985a53a05418d68e7cb6fcd23911173f1ff4175c6f7df6945"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+        "bytes": 3016845,
+        "mtime_ns": 1791612636585517600,
+        "sha256": "f0105f5739b0fe0e2063efb19b403375290f861773d34fdf587b96c54b8857b7",
+        "step": 4800
+      },
+      "isolated_eval_seed": 2923423544,
+      "target_reads": 0
+    },
+    "mlp:416_282/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "mlp",
+      "key": "416_282/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 302979,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/416_282_ver/encoded4.npy",
+        "bytes": 4847792,
+        "mtime_ns": 1791617456351606100,
+        "sha256": "04746539d0e44ce7737a6bd643580f6d45cb6da8a49b26f8a621c72f7cfe097d",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "0f6ddbfe555244a9794b30c4e23da5306661cba3901be08c8b2c5da4e529f236"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/416_282_ver/physical4.npy",
+        "bytes": 9695456,
+        "mtime_ns": 1791617456397606200,
+        "sha256": "ee7a16492ae5abcda5613eb74532e16c4e5788f0007deea79bd6307e7e6c5cec",
+        "shape": [
+          302979,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "37455f4f2193c3762a4eeda51758d3796e0f44d4c74092616654274e199aef3a"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+        "bytes": 3016845,
+        "mtime_ns": 1791612636585517600,
+        "sha256": "f0105f5739b0fe0e2063efb19b403375290f861773d34fdf587b96c54b8857b7",
+        "step": 4800
+      },
+      "isolated_eval_seed": 4172771530,
+      "target_reads": 0
+    },
+    "mlp:247_50/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "mlp",
+      "key": "247_50/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 162864,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/247_50_ver/encoded4.npy",
+        "bytes": 2605952,
+        "mtime_ns": 1791617456549775100,
+        "sha256": "f853b261be8aa96b029af1c53de9eba9d1ce9cec9a182831f42a6eae0beb5e0b",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "7b587b5fffccc946a5ed6841d885d82beb59469b224debf1dbdd46c92708ac01"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/247_50_ver/physical4.npy",
+        "bytes": 5211776,
+        "mtime_ns": 1791617456595760100,
+        "sha256": "53757f35817112b7d55e03dd65a0e0f32e3b50b3eaa5fda257e4645f5cb42a39",
+        "shape": [
+          162864,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "af50ebd14af5c4ec59d4c7eb1fdcacda6bcd41b484f71458a6250790991c98e0"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+        "bytes": 3016845,
+        "mtime_ns": 1791612636585517600,
+        "sha256": "f0105f5739b0fe0e2063efb19b403375290f861773d34fdf587b96c54b8857b7",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1513246108,
+      "target_reads": 0
+    },
+    "mlp:142_454/ver": {
+      "status": "completed",
+      "terminal": true,
+      "method": "mlp",
+      "key": "142_454/ver",
+      "contract_sha256": "bb77ca0e9745cd9a333f01500bcea104af58716bb1b66f35172846a45588a065",
+      "prediction_complete": true,
+      "reason": null,
+      "finite_allN": true,
+      "all_original_nodes": true,
+      "node_count": 209499,
+      "encoded": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/142_454_ver/encoded4.npy",
+        "bytes": 3352112,
+        "mtime_ns": 1791617456750692000,
+        "sha256": "502934b1f55ba1a4102e0c567cda91936632a3bdcd3febf1904e51833a00506b",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float32",
+        "values_sha256": "d70500510bf92e6bad31a25feea548d9f6bebfdca25a3eab202b7363e41b2e34"
+      },
+      "physical": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/coverage_S_field_blind5_fixed4800/predictions/mlp/142_454_ver/physical4.npy",
+        "bytes": 6704096,
+        "mtime_ns": 1791617456787691700,
+        "sha256": "1ee32df8ad0a756b54ae7b6b609638efdcdf1572813f99d1d7f395bbaa96a06a",
+        "shape": [
+          209499,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "fb17f470fc8b8f19ee96feae7e443e869ea9ab22ced32b793171f174c836ee01"
+      },
+      "units": [
+        "mm",
+        "mm",
+        "mm",
+        "MPa"
+      ],
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+        "bytes": 3016845,
+        "mtime_ns": 1791612636585517600,
+        "sha256": "f0105f5739b0fe0e2063efb19b403375290f861773d34fdf587b96c54b8857b7",
+        "step": 4800
+      },
+      "isolated_eval_seed": 1512171540,
+      "target_reads": 0
+    }
+  },
+  "binary_files_read_or_copied": 0,
+  "checkpoint_hash_origin": "Existing scientific-stage checkpoint byte hashes, never recalculated by exporter"
+}

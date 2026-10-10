@@ -1,0 +1,157 @@
+{
+  "kind": "same_original_Drive_ID_binary_connector_recovery_source_ready",
+  "status": "source_ready_only",
+  "created_at_utc": "2026-10-10T03:43:10.784407+00:00",
+  "actual_execution_started_by_authors": false,
+  "scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+  "scientific_source_pins_sha256": "a01dcc2576bff8b5bb409258bdbd94f9963fd93a7bdea75a1433087e80dfcab0",
+  "scientific_source_pin_count": 20,
+  "acquisition_inventory_sha256": "1818e8eb2c47f49abb5a66f5afb97edd26693cb24145cbc32a1a70590170bcd9",
+  "helper_source_sha256": {
+    "tools/prepare_geobc_drive_recovery.py": "7a293144079deff023ac6ba5f933959625136bdd8f62b382b0a0c5d3312498b2",
+    "tools/materialize_geobc_coverage_drive_ref.py": "07996f944ed6d222798483ee9c4e9ec995136e1659215768e46b756997ee1091"
+  },
+  "formal_plan": "notes/geobc_coverage_comparison_plan.json",
+  "root_budget_decision": "notes/geobc_drive_quota_recovery_decision.json",
+  "root_review": "notes/geobc_drive_recovery_root_review.json",
+  "root_release_fields": [
+    "passed",
+    "acquisition_recovery_released",
+    "scientific_digest",
+    "scientific_source_pins_sha256",
+    "acquisition_inventory_sha256",
+    "helper_source_sha256",
+    "decision",
+    "budget_decision"
+  ],
+  "root_decision": "release_same_Drive_ID_binary_connector_recovery",
+  "budget_decision": "explicit_recovery_accounting",
+  "API": {
+    "metadata_cli": "python -m tools.prepare_geobc_drive_recovery --plan notes/geobc_coverage_comparison_plan.json --action prepare|pending|reserve|fail|finalize",
+    "materialize_cli": "python -m tools.materialize_geobc_coverage_drive_ref --plan notes/geobc_coverage_comparison_plan.json",
+    "reservation_required_before_connector_fetch": true,
+    "reserve_stdin": {
+      "relative_path": "fixed inventory key",
+      "source_metadata": {
+        "id": "exact indexed DriveID",
+        "name": "exact filename",
+        "size": "positive official metadata bytes",
+        "modified_time": "timestamp with timezone",
+        "artifact_file_id": "optional unsigned sediment file ID"
+      }
+    },
+    "probe_reserve_stdin": {
+      "relative_path": "SolverDeck/275_400.fem",
+      "reuse_probe": true
+    },
+    "materialize_stdin": {
+      "reservation_id": "returned ID (attempt_id alias supported)",
+      "relative_path": "same fixed inventory key",
+      "file_uri": "ephemeral HTTPS signed reference; stdin only, never persisted or printed",
+      "source_metadata": {
+        "id": "same indexed DriveID",
+        "name": "same filename",
+        "size": "same reserved bytes",
+        "modified_time": "same reserved timestamp",
+        "artifact_file_id": "optional unsigned sediment file ID"
+      },
+      "fetch_elapsed_seconds": "caller observed actual duration; null only inherited probe",
+      "fetch_started_at_utc": "optional observed timestamp",
+      "fetched_at_utc": "optional observed timestamp"
+    },
+    "common_stdlib_helpers": [
+      "request_contract",
+      "context",
+      "LedgerLock",
+      "entry_for",
+      "receipt_path",
+      "target_path",
+      "load_attempt",
+      "update_attempt",
+      "recompute_clock",
+      "budget_check",
+      "read",
+      "write",
+      "path",
+      "now"
+    ],
+    "outputs": "data/raw_geobc_coverage/.connector_recovery contract/config/clock/status/attempts/manifest and canonical .receipts; final ordered540 summary producer mixed_transport_recovery"
+  },
+  "concurrency_and_persistence": {
+    "maximum_active_reservations": 2,
+    "cross_process_exclusive_ledger": true,
+    "Windows_named_mutex_and_PID_creation_tick_lease": true,
+    "atomic_JSON_writes": true,
+    "budget_reservation_includes_open_and_failed_attempts": true,
+    "clock_never_reset": true,
+    "one_MiB_binary_stream": true,
+    "metadata_progress_seconds": 3,
+    "absolute_deadline_checked_each_chunk": true,
+    "canonical_receipt_then_atomic_binary_commit": true,
+    "existing_complete_files_not_overwritten": true,
+    "failed_owned_partials_retained_with_receipt": true
+  },
+  "operational_budget": {
+    "absolute_deadline_Beijing": "2026-10-10 16:15:02",
+    "maximum_declared_charged_bytes": 161061273600,
+    "minimum_free_bytes": 161061273600,
+    "original_known_network_lower_bound_bytes": 8924647897,
+    "original_wall_seconds": 3219.561999999918,
+    "original_open_unknown_attempt_count": 2,
+    "conditional_original_open_source_size_reserve_bytes": 87421990,
+    "inherited_probe_charge_bytes": 48357304,
+    "new_attempt_declared_charge": "2 * official source size, covering API and local materialization hops; remains charged for failed/open attempts",
+    "actual_probe_local_materialization_seconds": 8.375,
+    "actual_probe_API_seconds": null,
+    "original_plus_API_transfer_cost_exact": false,
+    "unknown_cost_policy": "Declared source-size reservation is an explicit operational accounting policy, not measured bytes or proof of an exact historical upper total. Binary completeness and unknown transport cost are reported separately."
+  },
+  "secrets_policy": {
+    "stdin_signed_URI_only_in_memory": true,
+    "redirects_validated_against_actual_root_host_allowlist": true,
+    "HTTPS_only_no_userinfo_port443": true,
+    "no_unsanitized_exception_or_response_body_logging": true,
+    "API_source_metadata_persistence_allowlist": true,
+    "no_signed_URL_or_credentials_saved": true
+  },
+  "probe_reuse": {
+    "path": "data/raw_geobc_coverage/.connector_recovery/275_400.fem.bin",
+    "bytes": 24178652,
+    "observed_sha256": "73cabe1f7a6e65c4a51bb91802647220845c99024148c05fe7c8951824b4a4bd",
+    "copy_and_hash_into_canonical_only": true,
+    "network_redownload": false
+  },
+  "compatibility": {
+    "frozen540_inventory_and_logical_source_URL_preserved": true,
+    "old196_receipts_and_old_config_clock_attempts_unchanged": true,
+    "new_receipts_declare_connector_transport_source_ID_modifiedTime_artifact_and_helper_SHA": true,
+    "upstream_checksums_remain_unknown": true,
+    "finalize_metadata_only_original_file_SHA_fields_and_stat": true,
+    "first_scientific_data_prepare_performs_raw_byte_SHA_verification": true,
+    "scientific20_source_pins_unchanged": true,
+    "newDEV_labels_not_parsed": true
+  },
+  "author_checks": {
+    "prepare": {
+      "author": "topology_train_impl",
+      "AST_calls": 1,
+      "AST_seconds": 0.002816899912431836,
+      "source_lines": 434
+    },
+    "materialize": {
+      "author": "macro_solver_next",
+      "AST_calls": 1,
+      "AST_seconds": 0.002155900001525879,
+      "source_lines": 416
+    },
+    "small_plan_and_root_decision_metadata_only": true,
+    "module_imports": 0,
+    "contract_calls": 0,
+    "network_calls": 0,
+    "raw_or_header_or_scientific_array_or_GT_reads": 0,
+    "weights_reads": 0,
+    "GPU_calls": 0,
+    "toy_or_resource_checks": 0
+  },
+  "next_action": "Root necessary source review and authentic separate recovery release, then bounded real fixed-list connector delivery. No dummy marker or author-side actual."
+}

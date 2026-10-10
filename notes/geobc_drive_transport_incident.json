@@ -1,0 +1,176 @@
+{
+  "status": "all_download_sessions_terminal317of540_two_routes_unavailable_DotNet_also_failed",
+  "updated_UTC": "2026-10-10T05:32:01.016793+00:00",
+  "previous_cell_id": "1430",
+  "previous_cell_terminal": true,
+  "previous_session_success": 117,
+  "previous_session_failed": 10,
+  "failures": [
+    {
+      "attempt_id": "19d8f562823940709656d9ca3afe3600",
+      "relative_path": "Field/257_456.csv",
+      "error_code": "URLError",
+      "downstream_bytes_observed": 0,
+      "completed_at_utc": "2026-10-10T04:24:40.602367+00:00"
+    },
+    {
+      "attempt_id": "1b8179b81b4543528eb5268b01aa6c60",
+      "relative_path": "Field/492_475.csv",
+      "error_code": "URLError",
+      "downstream_bytes_observed": 0,
+      "completed_at_utc": "2026-10-10T04:24:08.807040+00:00"
+    },
+    {
+      "attempt_id": "3949a607408d40aa896018ef5d2f9575",
+      "relative_path": "SolverDeck/572_131.fem",
+      "error_code": "payload_truncated_or_empty",
+      "downstream_bytes_observed": 24887296,
+      "completed_at_utc": "2026-10-10T04:21:41.614106+00:00"
+    },
+    {
+      "attempt_id": "77ee79a7fcd24684bd49ce484acd5124",
+      "relative_path": "Field/418_400.csv",
+      "error_code": "URLError",
+      "downstream_bytes_observed": 0,
+      "completed_at_utc": "2026-10-10T04:22:46.341877+00:00"
+    },
+    {
+      "attempt_id": "82ea97becce84eccaa7f856629431878",
+      "relative_path": "SolverDeck/492_475.fem",
+      "error_code": "URLError",
+      "downstream_bytes_observed": 0,
+      "completed_at_utc": "2026-10-10T04:24:10.548851+00:00"
+    },
+    {
+      "attempt_id": "a99a3026fb6d407987144d996712ef47",
+      "relative_path": "SolverDeck/257_456.fem",
+      "error_code": "URLError",
+      "downstream_bytes_observed": 0,
+      "completed_at_utc": "2026-10-10T04:24:45.784946+00:00"
+    },
+    {
+      "attempt_id": "bda79ae9817645a393d3ec6934ed0a9e",
+      "relative_path": "FieldMesh/418_400.h5",
+      "error_code": "URLError",
+      "downstream_bytes_observed": 0,
+      "completed_at_utc": "2026-10-10T04:22:39.996089+00:00"
+    },
+    {
+      "attempt_id": "c52b17036c2e4572b65ef5d0c4ff549b",
+      "relative_path": "FieldMesh/72_225.h5",
+      "error_code": "URLError",
+      "downstream_bytes_observed": 0,
+      "completed_at_utc": "2026-10-10T04:24:50.476074+00:00"
+    },
+    {
+      "attempt_id": "d3736014c9824f15bbb59231b2c014fb",
+      "relative_path": "SolverDeck/564_523.fem",
+      "error_code": "URLError",
+      "downstream_bytes_observed": 0,
+      "completed_at_utc": "2026-10-10T04:23:37.727836+00:00"
+    },
+    {
+      "attempt_id": "f232d21a9bce4e3b8d136ec7158db843",
+      "relative_path": "Field/572_131.csv",
+      "error_code": "payload_truncated_or_empty",
+      "downstream_bytes_observed": 56137600,
+      "completed_at_utc": "2026-10-10T04:21:40.032273+00:00"
+    }
+  ],
+  "failure_counts": {
+    "URLError": 8,
+    "payload_truncated_or_empty": 2
+  },
+  "failure_interpretation": "Two premature EOFs, then8 URLError before body. Original failure log cannot distinguish DNS/TLS/socket. Fresh same-ID retry succeeded; transient transport issue supported, specific cause not proven. No change to solver inputs/training/source map.",
+  "successful_diagnostic": {
+    "relative_path": "SolverDeck/257_456.fem",
+    "actual_bytes": 24408603,
+    "observed_sha256": "c9517b586bbdc8152f6949c63e2969e39b44d572d837d97e8223db6476db58c3",
+    "download_elapsed_seconds": 8.219000000040978,
+    "fetch_elapsed_seconds": 5.686,
+    "completed_at_utc": "2026-10-10T04:28:41.104108+00:00",
+    "connector_recovery_attempt_id": "9e10cd37663a4fd09fa1ab1352067108",
+    "source_metadata": {
+      "id": "1NUIYVciE_fyewB846Wti81NxvBUPb9vg",
+      "name": "257_456.fem",
+      "size": 24408603,
+      "modified_time": "2024-05-24T10:12:29.000Z",
+      "artifact_file_id": "sediment://file_00000000e580820bb0582e3bc415d019",
+      "upstream_expected_sha256": null,
+      "wrapper_version_returned": false
+    }
+  },
+  "diagnostic_source_ready": "notes/geobc_drive_transport_diagnostic_ready.json",
+  "canonical_complete": 317,
+  "old_failures_and_partials_retained": true,
+  "open_new_reservations": 0,
+  "conditional_byte_charge": 21101843437,
+  "cost_exact": false,
+  "next_action": "Continue existing single GPU TRAIN40 queue; await optional new usable project proxy or external network recovery. No blind bulk/identical probes/full HF download. Absolute08:15:02UTC deadline and original budgets retained.",
+  "new_DEV_label_or_array_reads": 0,
+  "second_session": {
+    "cell_id": "1458",
+    "terminal": true,
+    "success": 1,
+    "failures": 4
+  },
+  "all_failed_attempts_retained": 16,
+  "slow_H5_probe": {
+    "relative_path": "FieldMesh/418_400.h5",
+    "actual_bytes": 46203608,
+    "observed_sha256": "e8fb9acdcf0561e9327831e13432474c115493c192acffe38423ecd181420a11",
+    "download_elapsed_seconds": 461.85899999993853,
+    "fetch_elapsed_seconds": 6.861,
+    "completed_at_utc": "2026-10-10T04:45:43.880001+00:00",
+    "connector_recovery_attempt_id": "c717ffbee10e4f1985fe36ff394bca1c"
+  },
+  "direct_local_trial_not_executed_due_upstream_tool_error": true,
+  "confirmed_current_client_fault": "codex_rmcp_client EventNotificationTransport -> StreamableHttpClientWorker: Client error HTTP request failed/http request failed/error sending request for url; URL redacted",
+  "fault_scope": "This establishes connector client HTTP send failure, not new Drive quota, specific DNS/TLS cause or completed direct-vs-proxy comparison. Local default-proxy slowH5 retry completed.",
+  "HF_direct_preflight": {
+    "status": "terminal_failed_direct_HEAD_socket_timeout",
+    "output": "notes/geobc_hf_fallback_preflight.json",
+    "elapsed_seconds": 21.108999999938533,
+    "HEAD_attempts": 1,
+    "GET_attempts": 0,
+    "new_body_bytes": 0,
+    "throughput_verified": false,
+    "full_archive_download_not_released": true,
+    "new_DEV_scientific_reads": 0
+  },
+  "HF_proxy_preflight": {
+    "status": "terminal_failed_proxy_HEAD_TLS_error",
+    "output": "notes/geobc_hf_proxy_preflight.json",
+    "elapsed_seconds": 22.062000000150874,
+    "proxy": "http://127.0.0.1:7877",
+    "local_TCP_listener_reachable": true,
+    "HEAD_attempts": 1,
+    "GET_attempts": 0,
+    "new_body_bytes": 0,
+    "throughput_verified": false,
+    "full_archive_download_not_released": true,
+    "global_proxy_changes": 0,
+    "new_DEV_scientific_reads": 0
+  },
+  "no_live_transfer": true,
+  "separate_HF_probe_side_reservations_bytes": 6291456,
+  "combined_conditional_byte_charge": 21108134893,
+  "network_cause_limit": "MCP client HTTP send error, HF direct socket timeout and current-proxy SSL-layer error are separate observations. Proxy listener TCP reachability does not prove external route health; specific TLS verification/reset cause not established.",
+  "HF_dotnet_preflight": {
+    "status": "terminal_failed_at_HEAD",
+    "receipt": "notes/geobc_hf_dotnet_probe_receipt.json",
+    "root_review": "notes/geobc_hf_dotnet_root_review.json",
+    "HEAD_attempts": 1,
+    "GET_attempts": 0,
+    "new_body_bytes": 0,
+    "elapsed_seconds": 20.1149927,
+    "exception_types": [
+      "System.Management.Automation.MethodInvocationException",
+      "System.Net.Http.HttpRequestException",
+      "System.IO.IOException"
+    ],
+    "no_specific_TLS_or_DNS_cause_proven": true,
+    "signed_URIs_saved": false,
+    "full_archive_download_not_released": true
+  }
+}

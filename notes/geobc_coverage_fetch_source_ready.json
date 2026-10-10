@@ -1,0 +1,83 @@
+{
+  "status": "source_ready_actual_not_launched",
+  "status_logging": "small status.json (counts+at most2active rows), clock.json cumulative wall; no growing540prefix logging",
+  "created_utc": "2026-10-10T02:13:49.250203+00:00",
+  "kind": "geobc_solver_coverage40vs200_transolver_all_versions",
+  "scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+  "acquisition_digest": "2a92c31babb39f871a993a24d447df5295e0b873e5af8420c5325d1bf2c3abf3",
+  "source_sha256": {
+    "tools/fetch_geobc_coverage.py": "81b88675120c9ef7f9c07f139be45bc8a5f8196fb095d07a20ab6b5be7b2adeb",
+    "tools/start_geobc_coverage_fetch.ps1": "7f90ffd8a758c2f3b7f5248370aa1e1f8631af9b56ca7fdc1a19070b17caba9a",
+    "tools/fetch_next_cycle_test.py": "92eba989a7c0b17ab8a5084cf9d761116ab4ace32b01b5b0e70e1375ad3edfae",
+    "tools/fetch_exact_deepjeb.py": "ff01bffff639cf007cc9c97969b3210db0bca2375f674709238105d6e59002f2"
+  },
+  "api": {
+    "request_contract": "request_contract(plan_path=PLAN)->contract; JSON/source identities only",
+    "run": "run(plan_path=PLAN, output=None)->summary; authentic release required before transport import",
+    "CLI": "python -u -m tools.fetch_geobc_coverage --plan notes/geobc_coverage_comparison_plan.json",
+    "launcher": "tools/start_geobc_coverage_fetch.ps1 -Start; hidden bundled WindowsPython, system proxy unchanged"
+  },
+  "root_release": {
+    "path": "notes/geobc_coverage_root_review.json",
+    "passed": true,
+    "scientific_digest": "exact plan scientific_digest",
+    "acquisition_released": true,
+    "source_pins": "exact current plan.source_sha256; must contain and match four fetch dependencies",
+    "preparation_and_training_flag_used": false
+  },
+  "contract_reuse": "Frozen scientific/acquisition digests + only four fetch sources; future data/train source additions excluded",
+  "output": "data/raw_geobc_coverage",
+  "file_inventory_count": 540,
+  "CAD_count": 180,
+  "workers": 2,
+  "summary_schema": {
+    "path": "summary.json",
+    "files": "ordered540 same original receipt fields plus cad_id/role",
+    "statuses": [
+      "completed",
+      "failed",
+      "budget_exhausted"
+    ],
+    "complete_requires": "all540 downloaded or existing complete files size+SHA reverified in this invocation"
+  },
+  "file_receipt": {
+    "path": ".receipts/<component>/<CAD.ext>.json",
+    "required": [
+      "status",
+      "relative_path",
+      "source_url",
+      "drive_file_id",
+      "path",
+      "actual_bytes",
+      "observed_sha256",
+      "file_stat",
+      "completed_at_utc"
+    ],
+    "checksum_origin": "first observed received bytes, no independent upstream checksum or HF identity"
+  },
+  "attempt_ledger": ".attempts/<runUUID>_<sequence>.json; real progress lower bounds/terminal results, open interruption retained",
+  "lock": ".fetch.lock O_EXCL; Windows PID + creation_tick + hostname; proven stale lock archived, unknown/alive refuses duplicate",
+  "resume": "Verify complete binary sizes/SHA; partial failed requests restart same source, no HTTP range resume claim; one attempt/file/invocation",
+  "budgets": {
+    "maximum_wall_seconds": 21600,
+    "maximum_received_bytes": 161061273600,
+    "minimum_initial_free_bytes": 161061273600,
+    "overshoot": "Existing in-flight chunks/requests may exceed nominal ceiling; actual bytes and wall reported, stop issuing new tasks once exceeded"
+  },
+  "budget_policy": "Stop new requests at cumulative ceiling, finish at most2 inflight, report observed overshoot; interrupted unknown bytes conservatively reserved, never invented exact",
+  "failure_policy": "Retain failures and continue remaining frozen files if within budgets, no auto retry loop or replacement",
+  "author_validation": {
+    "AST_passes": 1,
+    "AST_seconds": 0.0023115999065339565,
+    "small_JSON_static_passes": 1,
+    "PS_static_text_only": true,
+    "module_imports": 0,
+    "request_contract_executions": 0,
+    "network_requests": 0,
+    "raw_header_reads": 0,
+    "raw_arrays_labels_weights_reads": 0,
+    "GPU_or_resource_preflight": 0,
+    "actual_launches": 0
+  },
+  "actual_execution_released": false
+}

@@ -1,0 +1,103 @@
+{
+  "status": "source_ready_one_AST_and_small_metadata_only",
+  "kind": "coverage_cad40_fixed4800_U_known_S_field_blind5",
+  "source": "geobc/coverage_s_blind_eval.py",
+  "source_sha256": "05740be3b58b4cf4998f3dec9643fa4c82ba1cb335034c63dea747c430659e4c",
+  "source_bytes": 41141,
+  "plan": "notes/geobc_s_field_blind_plan.json",
+  "plan_sha256": "5626d94ff9e4570cb07d1ea087af56c9d50b5d3d20542221a4932604fb63c0c7",
+  "scientific_digest": "5eadc8408a1287ffc8e6a2d17a9d544884d960ef51accea215a5c97e4966d2e0",
+  "final_check": {
+    "AST_passed": true,
+    "AST_invocations": 1,
+    "small_metadata_passed": true,
+    "elapsed_seconds": 0.005708300042897463,
+    "source_imports": 0,
+    "contracts_executed": 0,
+    "scientific_arrays_read": 0,
+    "CSV_headers_or_values_read": 0,
+    "GT_reads": 0,
+    "weights_read": 0,
+    "model_initializations": 0,
+    "GPU_runs": 0,
+    "network_calls": 0,
+    "toy_or_resource_probes": 0,
+    "scientific_modules_in_author_check": []
+  },
+  "API": {
+    "request_contract": "request_contract(plan_path)->(contract,plan), stdlib metadata only",
+    "run": "run(plan_path,output=None), genuine root release + exact WSL/proc parent proof + commonGPUlock before scientific imports",
+    "CLI": "python -m geobc.coverage_s_blind_eval --plan notes/geobc_s_field_blind_plan.json --start"
+  },
+  "methods": [
+    "transolver",
+    "transolver_pp",
+    "ts3",
+    "fno",
+    "mlp"
+  ],
+  "case_keys": [
+    "489_12/ver",
+    "616_205/ver",
+    "416_282/ver",
+    "247_50/ver",
+    "142_454/ver"
+  ],
+  "input_records_metadata": {
+    "489_12/ver": {
+      "node_count": 166790,
+      "input_manifest": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/489_12_ver/input/manifest.json",
+      "input_NPZ": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/489_12_ver/input/input.npz",
+      "S_values_previously_read": 0
+    },
+    "616_205/ver": {
+      "node_count": 238303,
+      "input_manifest": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/616_205_ver/input/manifest.json",
+      "input_NPZ": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/616_205_ver/input/input.npz",
+      "S_values_previously_read": 0
+    },
+    "416_282/ver": {
+      "node_count": 302979,
+      "input_manifest": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/416_282_ver/input/manifest.json",
+      "input_NPZ": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/416_282_ver/input/input.npz",
+      "S_values_previously_read": 0
+    },
+    "247_50/ver": {
+      "node_count": 162864,
+      "input_manifest": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/247_50_ver/input/manifest.json",
+      "input_NPZ": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/247_50_ver/input/input.npz",
+      "S_values_previously_read": 0
+    },
+    "142_454/ver": {
+      "node_count": 209499,
+      "input_manifest": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/142_454_ver/input/manifest.json",
+      "input_NPZ": "runs/geobc_exploration/blind_solver_full5_ver_U/requests/FNO_frozen2880/142_454_ver/input/input.npz",
+      "S_values_previously_read": 0
+    }
+  },
+  "required_fullN_predictions": 25,
+  "fixed_denominator_each_method": 5,
+  "checkpoint_step": 4800,
+  "seed": 2026,
+  "prediction_budget_seconds": 600,
+  "readout_budget_seconds": 120,
+  "no_source_target_loader": "Only input NPZ xyz/features/cloud/mask; only FNO builds original29 R64 grid; no target/physical/U helper passed into model",
+  "source_S_reader": "After complete25 persisted finite full-N barrier; one selected ver_stress(MPa) column and existing h5_row_to_csv; original labels unchanged",
+  "ledger": "Open claim before S read; attempts/returns/GT/S values/cache reads separate; incomplete attempts have unknown partial scope, no automatic replay/reset",
+  "checkpoint_receipt": "Full original PT deserialized on CPU incl serialized optimizer; strict model load only; optimizer_state_used false and restores0",
+  "root_release_pending": true,
+  "root_marker_authored": false,
+  "actual_execution_released": false,
+  "root_actual_contract_requirement": "Generate request_contract in same WSL runtime as actual invocation; NT absolute-path digest is not a WSL release identity",
+  "additional_source_pin": {
+    "geobc/coverage_train_fit_diagnostic.py": "b8a398c540f778f4467d5fea834ca215fd800798808b671b9c554b4da5fed2fe"
+  },
+  "limitations": [
+    "U already revealed, only selected S field is blind under recorded pipeline",
+    "2 official TRAIN+3 official TEST but all5 excluded from this comparison train40/200 and20DEV",
+    "single seed fixed4800 current presets, capacities/costs differ",
+    "original scalar signed-stress definition/recovery remains unverified; preserve literal source label",
+    "does not replace or change frozen20DEV/10arm experiment; no solver-final-selection or engineering claim"
+  ],
+  "created_at_utc": "2026-10-10T07:20:03.275463+00:00"
+}
