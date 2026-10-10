@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "kind": "PP_regime_confirmation_exporter_source_ready",
+  "status": "source_only_ready_frozen",
+  "created_at_utc": "2026-10-10T09:55:27.362956+00:00",
+  "source": "tools/export_pp_regime_confirmation.py",
+  "source_sha256": "9ba88f662a6faa04a6c255ef52b12e139835b3288b6c9e317425151a035843fb",
+  "source_bytes": 35699,
+  "ast": {
+    "parsed": true,
+    "parse_count": 1,
+    "source_executed": false,
+    "top_level_imports": [
+      "__future__",
+      "argparse",
+      "csv",
+      "datetime",
+      "hashlib",
+      "io",
+      "json",
+      "math",
+      "os",
+      "pathlib",
+      "tempfile"
+    ],
+    "delayed_imports": [
+      "matplotlib",
+      "matplotlib"
+    ]
+  },
+  "actual_export_executed": false,
+  "default_invocation_executed": false,
+  "root_marker_created": false,
+  "scientific_digest": "dad6be58506fd5079470e8d31d231ff8cf52234c23cece4007740f812164dc89",
+  "PP_driver_sha256": "7b35c294495727ef8b117841046c3d31fda980147769a44ec00f06346cb2956e",
+  "default_behavior": "Immediate source-only return; zero training evidence reads/writes and no matplotlib/model imports",
+  "explicit_export_command": "/home/research/.venvs/geobc/bin/python -u tools/export_pp_regime_confirmation.py --export",
+  "required_WSL_distro": "cold-surge-ubuntu-24.04",
+  "destination": "results/geobc_pp_regime_confirmation",
+  "hard_closure_barrier": [
+    "terminal status in native JSON",
+    "authoritative clock.json closed=true active=false terminal phase",
+    "execution/status/clock/guard child PID identity agrees",
+    "exact Linux PID+start_ticks exited in original WSL namespace",
+    "authentic external guard terminal",
+    "recheck exact process exit and same closure record hashes before output creation"
+  ],
+  "qualification": {
+    "final_fixed_updates": 24000,
+    "full_TRAIN_case_denominator": 120,
+    "S_mean_ratio_max": 0.8,
+    "U_mean_ratio_max": 1.05,
+    "S_worst_ratio_max": 1.0,
+    "hotspot_S_worst_ratio_max": 1.0,
+    "training_seconds_max": 28800,
+    "nontraining_seconds_max": 1200,
+    "whole_seconds_max": 30000,
+    "peak_GPU_GiB_max": 24,
+    "native_gate_required": true,
+    "missing_technicalfailed_scientificnegative_are_false": true,
+    "summary_preclose_clock_used": false
+  },
+  "artifacts": [
+    "BRIEF.md (compact Chinese, at most one page)",
+    "metrics.json",
+    "manifest.json",
+    "optimizer_scalars.csv",
+    "optimizer_traces.png",
+    "optimizer_traces.svg"
+  ],
+  "plot_policy": "Delayed Matplotlib/Agg CPU rendering from saved loss/LR/beta1/preclip-gradient scalars only; missing plots explicitly marked; no inference rerun",
+  "interpretation": [
+    "new4800 vs constant4800 = equal-exposure bundle",
+    "new24000 = regime plus exposure; no isolated scheduler causal claim",
+    "FNO4800 fullTRAIN120 reference only; capacity/time differ",
+    "no subset or DEVbest selection; no solver generalization winner"
+  ],
+  "checkpoint_policy": "Hash JSON metadata only; preserve recorded PT hashes without opening or statting PT",
+  "native_evidence_modified": false,
+  "source_review": {
+    "limited_static_review_completed": true,
+    "fixed_findings": [
+      "native status/summary consistency gate",
+      "missing nested object schemas treated as incomplete evidence"
+    ]
+  },
+  "source_phase": {
+    "contracts_executed": 0,
+    "models_executed": 0,
+    "tests_executed": 0,
+    "GPU_operations": 0,
+    "scientific_arrays_read": 0,
+    "GT_or_raw_reads": 0,
+    "PT_or_weights_read": 0,
+    "PP_live_training_JSON_or_loss_reads": 0,
+    "old20_frozen_sources_modified": 0
+  }
+}

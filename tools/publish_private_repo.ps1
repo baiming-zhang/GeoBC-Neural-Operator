@@ -1,10 +1,14 @@
 [CmdletBinding()]
-param([switch]$Publish)
+param([switch]$Publish, [switch]$PrepareSnapshot)
 
 # Default is a read-only plan. No credential material is read until -Publish
 # has passed completion gates and prepared the isolated local commit.
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+if ($Publish -and $PrepareSnapshot) { throw 'Choose publication or local snapshot preparation, not both.' }
+if (($Publish -or $PrepareSnapshot) -and $PSVersionTable.PSVersion -lt [Version]'7.2') {
+    throw 'Actual snapshot/publication work requires PowerShell 7.2+ for bounded process-tree handling.'
+}
 $root = [IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot)).TrimEnd('\')
 $rootPrefix = $root + '\'
 $receiptPath = Join-Path $root 'notes/github_publish_receipt.json'
@@ -64,7 +68,14 @@ function Git-Run([string]$Directory, [string[]]$Arguments, [string]$InputText = 
         $process.StandardInput.Close()
         $outputTask = $process.StandardOutput.ReadToEndAsync()
         $errorTask = $process.StandardError.ReadToEndAsync()
-        $process.WaitForExit()
+        if (-not $process.WaitForExit(120000)) {
+            try { $process.Kill($true) } catch { }
+            [void]$process.WaitForExit(5000)
+            throw ('Git operation timed out: {0}; raw output withheld.' -f $Arguments[0])
+        }
+        if (-not $outputTask.Wait(5000) -or -not $errorTask.Wait(5000)) {
+            throw ('Git output collection timed out: {0}; raw output withheld.' -f $Arguments[0])
+        }
         $output = $outputTask.Result
         # Classify in memory; never expose raw helper/HTTP diagnostics.
         $safeErrorKind = 'unspecified'
@@ -154,7 +165,7 @@ function Assert-Repository($Repository, [long]$UserId) {
 
 $planPath = Join-Path $root 'notes/github_publish_plan.json'
 if (-not (Test-Path -LiteralPath $planPath)) {
-    if ($Publish) { throw 'Publication plan is missing; nothing was changed.' }
+    if ($Publish -or $PrepareSnapshot) { throw 'Publication plan is missing; nothing was changed.' }
     [pscustomobject]@{ mode = 'dry-run'; ready = $false; reasons = @('Publication plan is missing'); writes = $false; credentials_read = $false } | ConvertTo-Json
     exit 0
 }
@@ -193,14 +204,14 @@ $accountSaved = @($accounts | Where-Object { $_.Trim() -ieq $plan.owner }).Count
 if (-not $accountSaved) { $problems.Add('Expected Git Credential Manager account is not saved.') }
 $origin = 'https://github.com/' + $plan.owner + '/' + $plan.name + '.git'
 $totalBytes = ($files | Measure-Object Bytes -Sum).Sum
-$preview = [ordered]@{ mode = $(if ($Publish) { 'publish' } else { 'dry-run' }); ready = ($problems.Count -eq 0);
+$preview = [ordered]@{ mode = $(if ($Publish) { 'publish' } elseif ($PrepareSnapshot) { 'prepare-snapshot' } else { 'dry-run' }); ready = ($problems.Count -eq 0);
     repository = $plan.owner + '/' + $plan.name; private = $true; completed = $completed; expected = 30;
     results_manifest_complete = $manifestComplete; gcm_expected_account_saved = $accountSaved;
     snapshot = $snapshotRelative; snapshot_file_count = $files.Count; snapshot_bytes = $totalBytes;
     pruned_git_cache_or_link_paths = @($pruned); blocking_reasons = @($problems);
     local_commit_before_repository_creation = $true; credentials_read = $false; writes = $false }
 $preview | ConvertTo-Json -Depth 5
-if (-not $Publish) { exit 0 }
+if (-not $Publish -and -not $PrepareSnapshot) { exit 0 }
 if ($problems.Count) { throw 'Publication completion/content gates have not passed; no credentials or repository were accessed.' }
 
 $receipt = $null
@@ -248,8 +259,16 @@ if ($null -eq $receipt) {
 }
 $receipt.local_commit = $commit
 $receipt.phase = 'local-prepared'
+$receipt.snapshot_file_count = $files.Count
+$receipt.snapshot_bytes = $totalBytes
+$receipt.plan_sha256 = (Get-FileHash -LiteralPath $planPath -Algorithm SHA256).Hash
 Save-Receipt $receipt
 Write-Output ('Prepared isolated local commit ' + $commit + '; no remote repository has been changed yet.')
+if ($PrepareSnapshot) {
+    [pscustomobject]@{ mode = 'prepared-snapshot'; commit = $commit; snapshot_file_count = $files.Count;
+        snapshot_bytes = $totalBytes; remote_operations = 0; credentials_read = $false } | ConvertTo-Json
+    exit 0
+}
 
 $credential = @{}
 $script:apiHeaders = @{}

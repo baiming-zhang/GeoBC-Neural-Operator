@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "created_UTC": "2026-10-10T01:53:46.181383+00:00",
-  "status": "five40_TRAIN120_and_independent_knownU_fieldblindS5_completed_formal10arm_input_wait",
+  "status": "five40_TRAIN120_independent5_completed_formal_input_negative_PP_actual_running",
   "human_direction": "User wants comparison with continuing Transolver as advised by senior; do not preselect FNO or Hash",
   "current_empirical_neural_leader": "fno",
   "fixed480_endpoint_evidence": [
@@ -88,14 +88,14 @@
   "new_CAD_acquisition_not_started": false,
   "human_clarification": "Senior did not specify a version; user wants empirical best across methods, no preselected family/version",
   "no_family_selected_by_recommendation": true,
-  "updated_UTC": "2026-10-10T06:37:24.208096+00:00",
+  "updated_UTC": "2026-10-10T10:08:34.598731+00:00",
   "next_protocol": "notes/geobc_coverage_comparison_plan.json",
   "scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
   "actual_start_Beijing": "2026-10-10 10:34",
   "current_new_DEV_results_available": false,
   "no_final_family_selected": true,
   "recipe_scope_analysis": "notes/transolver_recipe_scope_next.md",
-  "current_status": "Five40 training, TRAIN120 diagnostic, fieldblind S5 and historical known-U5 all completed; formal200/DEV20 awaiting fixed raw540; no final family chosen.",
+  "current_status": "FNO current empirical leader; PP real TRAIN-only author regime running, first gradient passed; formal10 inputs negative, newDEV sealed; private f621 verified published",
   "latest_UTC": "2026-10-10T07:41:34.551509+00:00",
   "latest_user_clarification": "No specific Transolver version selected by senior advice; select by measured GeoBC effects",
   "final_solver_selected": false,
@@ -420,20 +420,84 @@
     "metric_cases": 25
   },
   "next_macro_design": {
-    "status": "root_selected_PP_first_SOURCE_only_pending_private_snapshot",
+    "status": "PP_actual_running_FNO_source_preparation_second",
     "owner": "macro_solver_next",
     "scope": "At most FNO and Transolver++ macro candidates; original data/scaler/allN, author regime confirmation and stress generalization. No held5 early stopping, no Hash tuning.",
     "design": "notes/geobc_after_fixed4800_solver_design.md",
     "draft": "notes/geobc_after_fixed4800_solver_plan_draft.json",
     "priority": "Transolver++ author-inspired optimizer/exposure qualification; FNO local25 representation pair remains second draft",
-    "new_scientific_execution_released": false,
+    "new_scientific_execution_released": true,
     "PP_fixed_updates": 24000,
     "PP_train_limit_seconds": 28800,
     "PP_whole_wall_seconds": 30000,
     "PP_estimated_train_hours": 5.712176281956878,
     "not_author_DeepJEB_config": true,
     "old_4800_constant_reference_immutable": true,
-    "held5_no_earlystop_or_parameter_selection": true
+    "held5_no_earlystop_or_parameter_selection": true,
+    "PP_actual": {
+      "status": "actual_training_running_first_gradient_passed",
+      "plan": "notes/geobc_transolver_pp_regime_plan.json",
+      "root_review": "notes/transolver_pp_regime_confirmation_root_review.json",
+      "output": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION",
+      "source_sha256": "7b35c294495727ef8b117841046c3d31fda980147769a44ec00f06346cb2956e",
+      "scientific_digest": "dad6be58506fd5079470e8d31d231ff8cf52234c23cece4007740f812164dc89",
+      "actual_started_UTC": "2026-10-10T09:00:22.535341+00:00",
+      "pid": 364,
+      "first_real_case": "107_150/tor",
+      "first_gradient_passed": true,
+      "last_observed_step": 4269,
+      "last_observed_UTC": "2026-10-10T10:04:53.814294+00:00",
+      "last_training_seconds": 3576.150732772,
+      "fixed_updates": 24000,
+      "estimated_finish_Beijing": "2026-10-10T22:44:22.516592+08:00",
+      "ETA_basis": "Actual4269 updates /3576.15 training seconds plus assumed240s future nontraining; provisional",
+      "train_limit_seconds": 28800,
+      "whole_limit_seconds": 30000,
+      "same_120_TRAIN_and_old_scaler": true,
+      "DEV_or_held5_reads_authorized": false,
+      "auto_resume": false,
+      "external_guard_session": 85631,
+      "last_total_seconds": 3617.0186955045792,
+      "estimated_remaining_training_seconds": 16528.702297569533,
+      "ETA_extra_nontrain_seconds_assumed": 240,
+      "exact_child_alive_at_last_observation": true
+    },
+    "FNO_parallel_source_preparation": {
+      "status": "root_source_review_passed_queued_after_PP_terminal",
+      "plan": "notes/geobc_fno_local_condition_pair_plan.json",
+      "source": "geobc/fno_local_condition_pair.py",
+      "source_sha256": "c1d5884bd5ab704856d0677fa00c6234477985cd4a324791997e3f6f52bc2ff5",
+      "scientific_digest": "192ccffe2a79bf63cdd2e8199dd2b9fab79dd29ad8eb10ed689c78dd10e26b51",
+      "source_ready": "notes/fno_local_condition_pair_source_ready.json",
+      "root_review": "notes/fno_local_condition_pair_root_review.json",
+      "guard": "tools/run_geobc_fno_pair_guard.py",
+      "actual_started": false,
+      "GPU_calls": 0,
+      "first_gradient_not_yet_measured": true,
+      "budget_training_seconds_per_arm": 3600,
+      "whole_wall_seconds": 9000,
+      "metadata_review_seconds": 2.9129917740001474,
+      "predecessor_condition": "Actual PP terminal/closed/exited; common GPU lock; independently enforced before scientific reads",
+      "root_budget_gate_repair": "Complete pair outside frozen training/wall budget cannot qualify; preserves SCI and original20 pins"
+    },
+    "PP_report_source_preparation": {
+      "status": "source_frozen_root_reviewed_no_export",
+      "owner": "pp_regime_report",
+      "source": "tools/export_pp_regime_confirmation.py",
+      "source_sha256": "9ba88f662a6faa04a6c255ef52b12e139835b3288b6c9e317425151a035843fb",
+      "ready": "notes/pp_regime_confirmation_exporter_source_ready.json",
+      "root_review": "notes/pp_regime_confirmation_exporter_root_review.json",
+      "output": "results/geobc_pp_regime_confirmation",
+      "actual_export_executed": false,
+      "actual_qualification_unavailable": true
+    },
+    "next_selection_logic": {
+      "PP_gate_pass": "qualifies independent generalization comparison only; no new held label reads yet",
+      "PP_gate_fail": "lower priority for this PP regime; retain existing FNO empirical leader",
+      "FNO_native25_gate_pass": "compare both arms against old FNO absolute U/S/hot metrics; cannot select an inferior new decoder merely from relative rescue",
+      "FNO_native25_gate_fail": "stop this modification without expanding hyperparameter search",
+      "final_solver_selection": "requires independently frozen broader CAD evaluation; five opened cases remain historical, sealed20 protocol preserved"
+    }
   },
   "same_ver_TRAIN_mean": {
     "transolver": {
@@ -461,5 +525,28 @@
       "stress_relative_l2": 0.7280565958655858,
       "stress_hotspot_relative_l2": 0.7215483872618965
     }
+  },
+  "input_negative_report": "results/geobc_coverage_input_negative/BRIEF.md",
+  "private_stage_publication": {
+    "status": "completed_verified_private_snapshot",
+    "commit": "f621a3bc5570cc1056d0ba24a4a18e90bf43a0c9",
+    "published_UTC": "2026-10-10T09:05:36.7508363Z",
+    "receipt": "notes/github_immutable_push_receipt.json",
+    "elapsed_seconds": 18.1734545,
+    "private": true,
+    "owner": "baiming-zhang",
+    "snapshot_scope": "Five fixed4800, allTRAIN120 diagnostic, independent5 S/knownU, compact export and earlier source design; new later PP/FNO source and inputnegative note pending next snapshot"
+  },
+  "latest_independent_HF_HEAD": {
+    "receipt": "notes/geobc_hf_direct_http11_HEAD_receipt.json",
+    "proposal": "notes/geobc_direct_transport_recovery_proposal.md",
+    "status": "failed_HEAD_only",
+    "elapsed_seconds": 20.0529611,
+    "HTTP_status": null,
+    "GET": 0,
+    "body_reads": 0,
+    "old_input_negative_preserved": true,
+    "repeat_probes_authorized": false,
+    "new_downloads_released": false
   }
 }

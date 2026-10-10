@@ -1,0 +1,77 @@
+{
+  "status": "source_ready",
+  "kind": "reviewed_immutable_private_snapshot_push_source",
+  "source_path": "tools/push_reviewed_snapshot.ps1",
+  "source_sha256": "e1e7251f74ce2f02851b2bc621c128eb0cdc39e85b02b8178b56fb767c877e3d",
+  "target_commit": "f621a3bc5570cc1056d0ba24a4a18e90bf43a0c9",
+  "expected_account": {
+    "login": "baiming-zhang",
+    "id": 174442095
+  },
+  "expected_repository": {
+    "id": 1410470321,
+    "private": true,
+    "name": "GeoBC-Neural-Operator"
+  },
+  "API": "pwsh -File tools/push_reviewed_snapshot.ps1 [-Push -TargetCommit <root-reviewed 40-hex SHA>]",
+  "default_source_only": true,
+  "actual_execution_authorized_by_this_receipt": false,
+  "actual_route_validation": "not_executed",
+  "route": {
+    "TLS_changes": 0,
+    "global_proxy_changes": 0,
+    "REST": "HttpClientHandler.UseProxy=false; RequestVersionExact HTTP/1.1",
+    "Git": "process-only http.proxy= and cleared child proxy environment; HTTP/1.1"
+  },
+  "validation": {
+    "network_calls": 0,
+    "scientific_imports": 0,
+    "GPU_tasks": 0,
+    "scientific_array_reads": 0,
+    "push_attempts": 0,
+    "source_executions": 0,
+    "elapsed_seconds": 0.0076254,
+    "kind": "sole final PowerShell AST parse",
+    "passed": true,
+    "credentials_reads": 0
+  },
+  "prior_authorized_probe": {
+    "stderr_category": "proxy_transport",
+    "operation": "read_only_ls_remote",
+    "exit_code": 128,
+    "remote_mutation_attempted": false,
+    "remote_main_sha": null,
+    "repeat_probe_performed": false,
+    "elapsed_seconds": 20.8277243,
+    "HTTP_codes": [],
+    "route": "inherited localhost proxy with HTTP/1.1"
+  },
+  "safety": {
+    "new_commits": false,
+    "unknown_or_nonancestor": "stop without push",
+    "secrets": "GCM helper stdout and REST Authorization only in process memory; not argv/env/log/files",
+    "minimum_PowerShell": "7.2",
+    "receipt_location": "notes/github_immutable_push_receipt.json outside publication checkout",
+    "post_verification": "live user/repo identity and exact remote main target",
+    "remote_main_precondition": "exact target, absent main, or locally known ancestor with merge-base --is-ancestor exit0",
+    "failed_push_outcome": "unknown until exact remote verification",
+    "fetch": false,
+    "snapshot_recopy": false,
+    "force_push": false,
+    "safe_error_output": "allowlisted category/HTTP code only"
+  },
+  "created_at_utc": "2026-10-10T09:00:05.0864544Z",
+  "historical_f621_author_source_sha256": "50621b18e590869d83c1a929bdcc771cb6e9c17bfe2ad32b551fd13d421476c4",
+  "root_final_at_utc": "2026-10-10T10:03:28.101286+00:00",
+  "root_change": "bind exact source and selected immutable target to genuine root review before local/credential/network operations; 40hex validation",
+  "root_current_final_validation": {
+    "kind": "sole parse after this source change",
+    "parse_count": 1,
+    "parse_errors": 0,
+    "elapsed_seconds": 0.002802,
+    "source_executions": 0,
+    "network_calls": 0,
+    "credential_reads": 0
+  },
+  "target_policy": "each target must match notes/github_immutable_push_root_review.json current source SHA and exact target; prior f621 receipt preserved separately"
+}

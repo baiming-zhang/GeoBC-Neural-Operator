@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-10-10T10:03:28.101286+00:00",
+  "source": "tools/publish_private_repo.ps1",
+  "source_sha256": "ed62f09d332e1f9175d670ecea1a5a52cdd3b2739cfb0bf0b80b9a637d4979ea",
+  "whole_source_reviewed": true,
+  "decision": "bounded_local_PrepareSnapshot_only_then_separately_review_exact_commit",
+  "actual_preparation_executed": false,
+  "AST": {
+    "parse_count": 1,
+    "parse_errors": 0,
+    "elapsed_seconds": 0.0787397
+  },
+  "properties": [
+    "prepare flag skips credentials/API/push after isolated commit",
+    "120s per Git child plus bounded output collection",
+    "existing project/account/content gates retained",
+    "no original training directory mutation",
+    "no snapshot until active source authors freeze"
+  ]
+}
