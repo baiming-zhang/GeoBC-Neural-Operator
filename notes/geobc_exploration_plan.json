@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_spatial_physical_recovery_selection",
+  "stage": "solver_selection_next_blind_interface_design",
   "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -262,6 +262,31 @@
         "geobc/elastic_continuous_capability.py"
       ],
       "output": "runs/geobc_exploration/elastic_continuous5_ver_capability"
+    },
+    {
+      "name": "elastic_nodal_tensor5_ver_pair",
+      "kind": "physical_nodal_tensor_signed_S_representation_pair",
+      "stage": "solver_nodal_tensor_representation_selection",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_nodal_tensor_pair",
+        "--plan",
+        "notes/geobc_nodal_tensor_pair_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_nodal_tensor5_ver_pair"
+      ],
+      "output": "runs/geobc_exploration/elastic_nodal_tensor5_ver_pair",
+      "requires": [
+        "notes/geobc_nodal_tensor_representation_design.json",
+        "notes/geobc_nodal_tensor_pair_plan.json",
+        "notes/elastic_nodal_tensor_pair_source_ready.json",
+        "notes/elastic_nodal_tensor_recovery_source_ready.json",
+        "notes/elastic_nodal_tensor_pair_root_review.json",
+        "notes/elastic_nodal_tensor_pair_queue_source_ready.json",
+        "geobc/elastic_nodal_tensor_pair.py",
+        "geobc/elastic_nodal_tensor.py"
+      ]
     }
   ],
   "historical_jobs": [
@@ -4306,7 +4331,7 @@
     },
     "decision": "close_fixed_factored_representation_no_seed_width_loss_training_rescue"
   },
-  "solver_selection_status": "No final solver selected; full signed stress and input-interface service requirements remain unresolved",
+  "solver_selection_status": "ongoing_no_final_solver_selected",
   "signed_output_interface_readout": {
     "report": "notes/geobc_signed_output_interface.md",
     "status": "completed_unknown",
@@ -4566,12 +4591,60 @@
     "not_final_solver_selection": true
   },
   "next_macro_representation_question": {
-    "status": "design_frozen_actual_not_released",
+    "status": "completed_scientific_negative",
     "file": "notes/geobc_nodal_tensor_representation_design.json",
     "owner": "macro_solver_next",
     "reason": "Full-P2 U and derivative proxy accurate on5 fixedCAD; investigate whether old4Q mean tensor recovery loses within-element variation before learning original signedS",
-    "actual_execution_released": false,
+    "actual_execution_released": true,
     "not_original_exporter_recovery_claim": true,
-    "scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
+    "scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8",
+    "implementation_job": "elastic_nodal_tensor5_ver_pair",
+    "source_preparation_authorized": true,
+    "started_UTC": "2026-10-10T00:43:38.265133+00:00",
+    "expected_source_minutes": 30,
+    "recovery_helper_status": "final_source_independent_math_review_passed_actual_pending",
+    "recovery_helper_source_sha256": "4ee83e08f630e80dacab45142aaa1e05a732b0ee03be1ecaf80d8eea7e64b2a5",
+    "recovery_helper_review": "notes/elastic_nodal_tensor_recovery_root_review.json",
+    "queue_source_status": "final_AST_static_metadata_ready",
+    "source_preparation_status": "final_source_and_disjoint_reviews_passed",
+    "source_ready": "notes/elastic_nodal_tensor_pair_source_ready.json",
+    "root_review": "notes/elastic_nodal_tensor_pair_root_review.json",
+    "source_sha256": "000d3aae8df49c176731d341539f6abc453c4ba0d7e9ed25d2e0a7149395d9d5",
+    "released_UTC": "2026-10-10T00:59:22.610968+00:00",
+    "maximum_new_actual_seconds": 300,
+    "completed_UTC": "2026-10-10T01:02:32.316334+00:00",
+    "new_actual_wall_seconds": 10.94807509200001,
+    "completion_gate": {
+      "passed": false,
+      "both_arms_complete120": true,
+      "all_four_DEV_predictions_persisted": true,
+      "full5_nodal_recovery_complete": true,
+      "fixed_DEV_denominator": 2,
+      "complete_service_accuracy_gate": false,
+      "representation_gain_gate": false,
+      "terminal_negative_reason": "fixed_representation_or_complete_signed_service_gate_failed",
+      "final_solver_selection": false,
+      "mean_signed_S_relative_improvement": -3.6186667993040755,
+      "each_DEV_S_and_hotspot_within_1p05_baseline": false,
+      "matched_baseline_has_same_fresh7_head": true,
+      "historical67_head_spliced_into_gate": false,
+      "metrics_available_DEV_cases": 2,
+      "partial_representation_improvement_only": false
+    },
+    "result_brief": "results/elastic_nodal_tensor_pair/BRIEF.md",
+    "decision": "close_this_frozen_representation_no_recipe_rescue"
+  },
+  "pending_future_designs": {
+    "blind_solver": {
+      "file": "notes/geobc_next_blind_solver_design.json",
+      "actual_execution_released": false,
+      "implementation_authorized": false
+    },
+    "fullcad_native_query": {
+      "file": "notes/geobc_fullcad_native_query_design.json",
+      "actual_execution_released": false,
+      "implementation_authorized": false
+    },
+    "policy": "Decide after frozen nodal representation actual; source-ready design is not implementation or execution authorization."
   }
 }

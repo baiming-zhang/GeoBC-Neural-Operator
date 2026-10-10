@@ -59,6 +59,51 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
     if not summary or summary.get("status") != "completed":
         return None
     command = job["command"]
+    # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
+    if "geobc.elastic_nodal_tensor_pair" in command:
+        from geobc.elastic_nodal_tensor_pair import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        fixed_train = ["101_428/ver", "101_56/ver", "101_78/ver"]
+        fixed_validation = ["102_249/ver", "102_38/ver"]
+        fixed_arms = {"fourQ_cellmean", "element_node"}
+        source_pins = contract.get("source_sha256")
+        own_source = source_pins.get("geobc/elastic_nodal_tensor_pair.py") if isinstance(source_pins, dict) else None
+        gate = summary.get("completion_gate", {})
+        if (job.get("kind") != "physical_nodal_tensor_signed_S_representation_pair"
+                or summary.get("kind") != "physical_nodal_tensor_signed_S_representation_pair"
+                or summary.get("config", {}).get("contract") != contract
+                or requested.get("train_keys") != fixed_train or requested.get("validation_keys") != fixed_validation
+                or summary.get("train_keys") != fixed_train or summary.get("validation_keys") != fixed_validation
+                or summary.get("case_keys") != fixed_train + fixed_validation
+                or set(summary.get("cases", {})) != set(fixed_train + fixed_validation)
+                or set(summary.get("arms", {})) != fixed_arms
+                or not isinstance(source_pins, dict) or not isinstance(own_source, str) or len(own_source) != 64
+                or not isinstance(contract.get("scientific_digest"), str) or not contract["scientific_digest"]
+                or type(gate.get("fixed_DEV_denominator")) is not int or gate["fixed_DEV_denominator"] != 2
+                or gate.get("final_solver_selection") is not False
+                or any(type(gate.get(name)) is not bool for name in
+                       ("passed", "both_arms_complete120", "all_four_DEV_predictions_persisted",
+                        "full5_nodal_recovery_complete", "complete_service_accuracy_gate", "representation_gain_gate"))
+                or (gate.get("terminal_negative_reason") is not None
+                    and not isinstance(gate["terminal_negative_reason"], str))):
+            raise ValueError(f"Nodal tensor representation pair differs from frozen arms/cases/source or terminal gate schema: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("displacement_target_reads", "source_canonical_stress_reads", "source_canonical_strain_reads",
+                    "source_canonical_CSV_reads", "external_learned_weight_reads", "new_physical_solves",
+                    "K_applications", "old_K_guard_repeats", "old_final_reads", "sealed_new_test_reads",
+                    "DEV_dia_reads", "DEV_reads_before_prediction_barrier", "DEV_scaler_fits", "source_formula_or_sign_trials"):
+            if type(receipt.get(key)) is not int or receipt[key] != 0:
+                raise ValueError(f"Nodal tensor representation pair unexpectedly accessed {key}: {job['name']}")
+        for key in ("physical_U_reads", "physical_U_byte_hash_reads", "input_cache_reads", "input_member_reads",
+                    "operator_weight_array_reads", "old_tensor_array_reads", "valid_array_reads", "new_nodal_tensor_recoveries",
+                    "TRAIN_cached_S_reads", "DEV_cached_S_reads", "GT_reads", "tensor_scaler_fits", "training_updates",
+                    "optimizer_updates", "own_checkpoint_reads", "own_checkpoint_writes", "own_prediction_array_reads", "original_U_byte_copies"):
+            if type(receipt.get(key)) is not int or receipt[key] < 0:
+                raise ValueError(f"Nodal tensor representation pair lacks actual nonnegative {key}: {job['name']}")
+        # Nodal recovery, supervised cached-S reads, updates and own checkpoints
+        # are allowed work. Completed budget/performance negatives are terminal.
+        return summary
+    # END NODAL_TENSOR_PAIR_INTEGRATION
     if "geobc.elastic_continuous_capability" in command:
         from geobc.elastic_continuous_capability import request_contract
         contract, requested = request_contract(command[command.index("--plan") + 1])

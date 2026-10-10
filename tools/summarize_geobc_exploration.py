@@ -222,6 +222,9 @@ def main(*, preserve_existing_plots=False):
     metadata_kinds.add('spatial_physical_signed_recovery_pair')
     metadata_kinds.add('budget_limited_spatial_pair_fixed_endpoint_readout')
     metadata_kinds.add('physical_TET10_continuous_U_gradient_capability')
+    # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
+    metadata_kinds.add('physical_nodal_tensor_signed_S_representation_pair')
+    # END NODAL_TENSOR_PAIR_INTEGRATION
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
@@ -251,6 +254,9 @@ def main(*, preserve_existing_plots=False):
         if job.get('kind')=='spatial_physical_signed_recovery_pair':filenames+=('clock.json','read_receipt.json','scalers.json','initial_common.json','prediction_barrier.json','evaluation_receipt.json','runtime_technical_repairs.json','BRIEF.md')
         if job.get('kind')=='budget_limited_spatial_pair_fixed_endpoint_readout':filenames+=('clock.json','read_receipt.json','scalers.json','endpoint_selection.json','prediction_barrier.json','evaluation_receipt.json','runtime_technical_repairs.json','BRIEF.md')
         if job.get('kind')=='physical_TET10_continuous_U_gradient_capability':filenames+=('clock.json','prediction_barrier.json','read_receipt.json','BRIEF.md')
+        # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
+        if job.get('kind')=='physical_nodal_tensor_signed_S_representation_pair':filenames+=('clock.json','read_receipt.json','scalers.json','initialization.json','prediction_barrier.json','runtime_technical_repairs.json','checkpoint_index.json','BRIEF.md','metrics.md')
+        # END NODAL_TENSOR_PAIR_INTEGRATION
         if job.get('kind')=='gino_training_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json')
         if job.get('kind')=='fno_response_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
         if job.get('kind')=='deeponet_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
@@ -298,6 +304,43 @@ def main(*, preserve_existing_plots=False):
                     if path.is_file():
                         case_dest.mkdir(exist_ok=True)
                         shutil.copyfile(path,case_dest/filename)
+        # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
+        if job.get('kind')=='physical_nodal_tensor_signed_S_representation_pair':
+            for case_key in summary.get('case_keys',[]):
+                case_stem=case_key.replace('/','_')
+                for filename in (case_stem+'.json',case_stem+'_read_started.json'):
+                    path=source/'label_cache'/filename
+                    if path.is_file():
+                        (target/'label_cache').mkdir(exist_ok=True)
+                        shutil.copyfile(path,target/'label_cache'/filename)
+                case_source=source/'input_cache'/case_key.replace('/','_')
+                case_dest=target/'input_cache'/case_key.replace('/','_')
+                for filename in ('config.json','manifest.json','costs.json','read_receipt.json',
+                                 'nodal_recovery_diagnostics.json','runtime_technical_repairs.json'):
+                    path=case_source/filename
+                    if path.is_file():
+                        case_dest.mkdir(parents=True,exist_ok=True)
+                        shutil.copyfile(path,case_dest/filename)
+            for arm_name in ('fourQ_cellmean','element_node'):
+                arm_source=source/arm_name
+                arm_dest=target/arm_name
+                for filename in ('config.json','status.json','summary.json','training_state.json',
+                                 'first_actual_gradient_check.json','read_receipt.json','checkpoint_index.json','checkpoint.json',
+                                 'runtime_technical_repairs.json'):
+                    path=arm_source/filename
+                    if path.is_file():
+                        arm_dest.mkdir(exist_ok=True)
+                        shutil.copyfile(path,arm_dest/filename)
+                for case_key in summary.get('case_keys',[]):
+                    prediction_source=arm_source/'predictions'/case_key.replace('/','_')
+                    prediction_dest=arm_dest/'predictions'/case_key.replace('/','_')
+                    for filename in ('prediction_manifest.json','costs.json','read_receipt.json',
+                                     'runtime_technical_repairs.json'):
+                        path=prediction_source/filename
+                        if path.is_file():
+                            prediction_dest.mkdir(parents=True,exist_ok=True)
+                            shutil.copyfile(path,prediction_dest/filename)
+        # END NODAL_TENSOR_PAIR_INTEGRATION
         if job.get('kind')=='physical_TET10_continuous_U_gradient_capability':
             for case_key in summary.get('case_keys',[]):
                 case_source=source/case_key.replace('/','_')
@@ -379,6 +422,19 @@ def main(*, preserve_existing_plots=False):
                 'exported_files':[str(Path('runs')/job['name']/name).replace('\\','/') for name in filenames if (source/name).exists()],
                 'export_policy':'Small JSON only; no NPY/CSR/raw/weights copied',
                 'cache_payloads_exported':False,'receipt_location':'summary.json:receipt or config.contract'}
+            # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
+            if job.get('kind')=='physical_nodal_tensor_signed_S_representation_pair':
+                observed_receipts[job['kind']].update({
+                    'train_keys':summary.get('train_keys',[]),'validation_keys':summary.get('validation_keys',[]),
+                    'case_keys':summary.get('case_keys',[]),'arms':list(summary.get('arms',{})),
+                    'read_receipt':summary.get('read_receipt',{}),'completion_gate':summary.get('completion_gate',{}),
+                    'metric_scope':'Original cached signed-S labels; fourQ cell-mean versus element-node physical tensor representation',
+                    'endpoint_policy':'Two fresh arms, fixed120 balanced TRAIN3 full-case updates; no DEV-best selection',
+                    'allowed_work_policy':'Actual nodal recovery, cached stress GT, TRAIN-only tensor scalers, optimizer updates and own checkpoints retained',
+                    'terminal_policy':'Completed numerical/performance/budget negatives terminate without rescue or replay',
+                    'prediction_export_policy':'Input/recovery, training/checkpoint-index and prediction receipt JSON only; no NPY/NPZ/PT/U/S arrays',
+                    'model_checkpoints_exported':False,'prediction_arrays_exported':False})
+            # END NODAL_TENSOR_PAIR_INTEGRATION
             if job.get('kind')=='physical_TET10_continuous_U_gradient_capability':
                 observed_receipts[job['kind']].update({
                     'case_keys':summary.get('case_keys',[]),'read_receipt':summary.get('read_receipt',{}),
@@ -1061,6 +1117,9 @@ def main(*, preserve_existing_plots=False):
                                    'spatial_physical_signed_recovery_receipt':observed_receipts.get('spatial_physical_signed_recovery_pair'),
                                    'spatial_budget_fixed_endpoint_readout_receipt':observed_receipts.get('budget_limited_spatial_pair_fixed_endpoint_readout'),
                                    'physical_continuous_U_gradient_capability_receipt':observed_receipts.get('physical_TET10_continuous_U_gradient_capability'),
+                                   # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
+                                   'physical_nodal_tensor_signed_S_representation_pair_receipt':observed_receipts.get('physical_nodal_tensor_signed_S_representation_pair'),
+                                   # END NODAL_TENSOR_PAIR_INTEGRATION
                                    'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
                                    'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',

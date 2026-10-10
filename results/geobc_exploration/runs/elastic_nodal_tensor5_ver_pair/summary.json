@@ -1,0 +1,4177 @@
+{
+  "status": "completed",
+  "kind": "physical_nodal_tensor_signed_S_representation_pair",
+  "config": {
+    "contract": {
+      "schema": "geobc_nodal_tensor_pair_v1",
+      "kind": "physical_nodal_tensor_signed_S_representation_pair",
+      "source_sha256": {
+        "geobc/elastic_nodal_tensor_pair.py": "000d3aae8df49c176731d341539f6abc453c4ba0d7e9ed25d2e0a7149395d9d5",
+        "geobc/elastic_nodal_tensor.py": "4ee83e08f630e80dacab45142aaa1e05a732b0ee03be1ecaf80d8eea7e64b2a5",
+        "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+        "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+        "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+        "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f",
+        "geobc/elastic_stress_readout.py": "c040688cb2cced43e57532bd0c2e691ce64e8d8df0c39349ba545a668fb2d386"
+      },
+      "scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8",
+      "case_keys": [
+        "101_428/ver",
+        "101_56/ver",
+        "101_78/ver",
+        "102_249/ver",
+        "102_38/ver"
+      ],
+      "train_keys": [
+        "101_428/ver",
+        "101_56/ver",
+        "101_78/ver"
+      ],
+      "validation_keys": [
+        "102_249/ver",
+        "102_38/ver"
+      ],
+      "arms": [
+        "fourQ_cellmean",
+        "element_node"
+      ],
+      "science": {
+        "question": "Does evaluating the original curved-P2 constitutive tensor at each cell's ten native nodes retain useful intra-element variation lost by fourQ cell-mean recovery, for supervised original signed scalar S?",
+        "scope": "One full-FE representation pair on existing TRAIN3/DEV2/ver; not a final solver selection, original H3D recovery or pointcloud-only architecture ranking.",
+        "train_keys": [
+          "101_428/ver",
+          "101_56/ver",
+          "101_78/ver"
+        ],
+        "validation_keys": [
+          "102_249/ver",
+          "102_38/ver"
+        ],
+        "case_keys": [
+          "101_428/ver",
+          "101_56/ver",
+          "101_78/ver",
+          "102_249/ver",
+          "102_38/ver"
+        ],
+        "arms": [
+          "fourQ_cellmean",
+          "element_node"
+        ],
+        "immutable_U": "Both reuse the same original zero-start true-converged FP64 physical_u_mm.npy; persist original U by byte copy and verify file/value identity, no normalized-FP32 roundtrip and no new GT-U metric.",
+        "units": {
+          "X": "mm",
+          "U": "mm",
+          "physical_gradient": "dimensionless",
+          "tensor6": "MPa",
+          "volume": "mm^3"
+        },
+        "representation": {
+          "node_order": "Existing cells10 is VTK order: corners0,1,2,3; mids(0,1),(1,2),(2,0),(0,3),(1,3),(2,3), from accepted GRID-aligned cache, never GRID_ID-1 or coordinate reassignment.",
+          "barycentric_nodes": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0.5,
+              0.5,
+              0,
+              0
+            ],
+            [
+              0,
+              0.5,
+              0.5,
+              0
+            ],
+            [
+              0.5,
+              0,
+              0.5,
+              0
+            ],
+            [
+              0.5,
+              0,
+              0,
+              0.5
+            ],
+            [
+              0,
+              0.5,
+              0,
+              0.5
+            ],
+            [
+              0,
+              0,
+              0.5,
+              0.5
+            ]
+          ],
+          "physical_gradient": "J[c,r]=sum_a X_a,c dN_a/dr_r at each of all10 native barycentric nodes; solve J^T grad_X_N_a=grad_r_N_a in FP64. G_i,j=sum_a U_a,i grad_X_j N_a. No straight-corner, P1, fourQ extrapolation or normalized-coordinate derivative.",
+          "tensor": "epsilon=(G+G^T)/2; sigma=2mu epsilon+lambda tr(epsilon)I. Slots xx,yy,zz,xy,xz,yz use tensor shear, not engineering shear.",
+          "aggregation": "For node n, sum incident cell w_c*sigma_c(local node n) / sum incident w_c, fixed positive w_c=V_c/10 and V_c=sum accepted fourQ physical weights. This is the only selected aggregation; no region/material/scalar/sign sweep.",
+          "baseline": "Reuse immutable accepted fourQ-cellmean\u2192same incident V_c/10 sigma_MPa.npy + valid.npy. No old recovery rerun. Train a fresh matched7-dimensional head, do not reuse the old67-dimensional endpoint.",
+          "valid": "Mass>0 coverage must exactly equal accepted old validity. Missing incident nodes retain valid0/zero slots explicitly; any reached singular/nonfinite node Jacobian invalidates the whole candidate, never disguise it as a missing node or drop a cell.",
+          "actual_new_geometry_guards": {
+            "full10_jacobians_finite": true,
+            "full10_solve_ex_info_zero": true,
+            "full10_determinant_strictly_positive": true,
+            "full10_gradients_tensors_finite": true,
+            "gradient_partition_and_affine_mapping_relative_tolerance": 1e-09,
+            "tensor_symmetry_relative_tolerance": 1e-12,
+            "old_fourQ_guards_are_not_node_J_guards": true,
+            "no_K_guard_repeat_or_separate_toy": true
+          },
+          "cell_chunk": 8192,
+          "precision": "FP64 CUDA field/Jacobian/constitutive/reduction; native all10 mapped physical evaluation; persist aggregated N\u00d76, validity and small guard/memory/cost manifests only.",
+          "claim": "An explicitly chosen geometry/constitutive proxy. Neither representation is asserted to be the original source solver's GPSTRESS/H3D/CSV exporter recovery or signed scalar formula."
+        },
+        "normalization": {
+          "tensor6": "For each representation independently, fit FP64 six means/population std on valid original TRAIN3 nodes only; std floor1e-8 MPa; force invalid normalized slots0. Persist both records before either arm trains, no DEV fit.",
+          "signed_S": "Reuse exact accepted TRAIN3-only signed-asinh scaler and provenance; (asinh(S/scale_MPa)-mean)/std. No new output fit or DEV information.",
+          "scaler_record": {
+            "scale_MPa": 81.8243003845215,
+            "mean": 0.17759611016359497,
+            "std": 0.5696497861955057,
+            "raw_std": 0.5696497861955057,
+            "std_floor": 1e-08,
+            "scale_floor_MPa": 1e-12,
+            "fit_keys": [
+              "101_428/ver",
+              "101_56/ver",
+              "101_78/ver"
+            ],
+            "signed_transform": "(asinh(S/scale)-mean)/std",
+            "TRAIN_nodes": 683842
+          },
+          "input_fits": 2,
+          "output_fits": 0
+        },
+        "neural": {
+          "model": "Fresh MLP7->64 ReLU->64 ReLU->1 direct unbounded encoded signed-S output; input only normalized tensor6+valid1. No xyz/cloud/25, global encoder, q*tanh, hand sign or external weights.",
+          "seed": 2026,
+          "identical_initialization": "Instantiate common head once and clone exact trainable state into both fresh arms before any update; save identity metadata. No historical pretrained endpoint.",
+          "optimizer": "Adam",
+          "learning_rate": 0.001,
+          "weight_decay": 0.0,
+          "fused_Adam": true,
+          "model_precision": "FP32 with TF32, no autocast; inverse signed-asinh decoding FP64 original MPa.",
+          "passes": 40,
+          "full_case_updates_per_arm": 120,
+          "case_order": [
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_56/ver",
+            "101_428/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver",
+            "101_428/ver",
+            "101_56/ver",
+            "101_78/ver"
+          ],
+          "case_order_sha256": "93edb11b4a1e65e8cb0c32f6efc156650797b203ab2a8272f51855dbb4611338",
+          "point_chunk": 32768,
+          "batch": "Each update is one full original TRAIN CAD. Sum squared encoded-S error/N across all node chunks, backward each weighted chunk, one Adam update. This is a new frozen7-head fullN exposure pair, not a historical7-head reproduction.",
+          "first_real_update": "Finite fullN loss and finite present active head gradients with nonzero total gradient norm; actual first frozen training update, no separate preflight.",
+          "fixed_endpoint": "Both exact120 endpoints only; no validation selection, extra step/seed/width/loss/normalizer/aggregation rescue."
+        },
+        "label_access": {
+          "TRAIN_cached_S_reads": 3,
+          "DEV_cached_S_reads": 2,
+          "source_canonical_csv_or_npz_stress_reads": 0,
+          "GT_U_reads": 0,
+          "barrier": "Persist both arms' allN original-row-order DEV2 signed-S predictions and exact original U outputs before either cached DEV S member is read; shared DEV read once/case, then fixed metrics.",
+          "no_new_solve_recovery_or_labels": "New tensor recovery5 is explicitly allowed; new physical solves0, K applications0, old guards0, source strain GT0, canonical source S0, displacement target0, sealed/final/dia0.",
+          "actual_receipts": "Count real attempts/completed cache-member/physical-U/tensor/valid/TRAIN-S/DEV-S reads, two TRAIN tensor fits, actual optimizer updates/checkpoint writes/own reads; forbidden counts native int0. Do not label cached supervision as GT-free.",
+          "resume": "Own committed prediction/scaler/tensor/label cache reuse; no repeat source label reads. Technical repair only with cumulative failed wall preserved, never restart science or retune."
+        },
+        "metrics_and_gates": {
+          "all_nodes": true,
+          "fixed_DEV_denominator": 2,
+          "signed_S": [
+            "relativeL2",
+            "RMSE_MPa",
+            "MAE_MPa",
+            "max_abs_error_MPa"
+          ],
+          "hotspot": "ceil(1%N) largest absolute original signed-S GT; descending abs then ascending original row stable tie rule; relative energy zero gives null and no automatic gate pass.",
+          "complete_service_accuracy_gate": "Both new element-node DEV signed-S relativeL2 and hotspot relativeL2 strictly<0.25, both arms complete120/allN/barrier/valid receipts.",
+          "representation_gain_gate": "Additionally element-node mean signed-S relativeL2 reduction>=20% vs matched fresh fourQ-cellmean arm; positive finite denominator required; each DEV S relativeL2 and hotspot relativeL2<=1.05\u00d7matched baseline. No comparison to unmatched historical67-head for this gate.",
+          "partial_positive": "If only representation gain passes, record improved recovery information but still incomplete GeoBC signed-S service; no final solver selection.",
+          "negative": "Close this one frozen node-tensor representation if geometry/coverage/budget/accuracy/gain fails. No other aggregation, scalar/sign formula, seed/width/loss/steps or node/P1 rescue."
+        },
+        "budgets": {
+          "maximum_new_actual_cumulative_wall_seconds": 300,
+          "maximum_new_nodal_recovery_seconds_per_case": 30,
+          "maximum_training_actual_wall_seconds_per_arm": 60,
+          "maximum_peak_GPU_bytes": 25769803776,
+          "inherited_original_GT_free_physics_seconds_once": 452.95435773400004,
+          "inherited_accepted_fourQ_recovery_seconds_once": 3.037279604000105,
+          "inherited_accepted_validity_seconds_once": 0.29939243699993767,
+          "maximum_campaign_composed_wall_seconds": 756.2910297750001,
+          "ledger": "New compact deterministic phase/case/arm/step cursor, ~60s or completedCAD/fullpass/checkpoint/barrier/failure journals. All metadata/cache IO/H2D/Jacobian/recovery/scalers/training/checkpoint/model/input/inference/decode/persist/metrics/failed/resume wall charged; original inherited costs once. No parent Clock/run or budget reset. Unknown process-exit gap conservatively counted until observed exit evidence. Float ledger consistency uses1e-8 tolerance.",
+          "checkpoints": "Own model+Adam+full RNG+exact ordered-pass cursor/clocks at completed fullCAD boundaries about60s and endpoint/failure, no per-step large history rewrite. No replay of a completed arm or committed predictions.",
+          "budget_negative": "Missing either fixed120 endpoint/fullN barrier is terminal budget-negative, not model-accuracy failure. Never read DEV labels to score a partial unpaired endpoint."
+        },
+        "cost_report": {
+          "campaign": "Original physics inherited once + accepted baseline4Q recovery/validity inherited once + new actual paired stage; one-off training/scalers/metric labels separate.",
+          "fourQ_arm_deployment": "Per CAD original GT-free physics + old accepted4Q recovery/validity + measured incremental head input/model load/fullN inference/decode/persist. Excludes new node recovery.",
+          "node_arm_deployment": "Per CAD original GT-free physics + measured new full10 physical-gradient/tensor/aggregation/input/persist + head input/model load/fullN inference/decode/persist. Do not add old4Q tensor recovery to node arm; accepted quadrature weight cache/source attribution remains explicit.",
+          "cost_claim": "Composed accounted cold with historical original setup/input/operator receipts, not fresh combined cold; cached latency separately measured, never splice faster newer coarse solver cost or call historical caches free."
+        }
+      },
+      "records": {
+        "101_428/ver": {
+          "group": "TRAIN",
+          "nodes": 270276,
+          "cells": 169852,
+          "element_node_queries": 1698520,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/101_428/input/manifest.json",
+            "sha256": "592764e00313aafd795d28ff183a6bdda94047433141ca66998c5abe112f4145"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/101_428/input/input.npz",
+            "bytes": 34537404,
+            "mtime_ns": 1791580306768265900,
+            "sha256": "ae66e77d0ddd437ee3690c2dde3336953ea6cbd3e002eb0be7067f4ea415bee7"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                270276,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "75866b719f9cd3f0d300d4c1bec2fb5b288d5b877cdd2884166cc5eaa74305f6"
+            },
+            "cells10": {
+              "shape": [
+                169852,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "c4e5f96cc88bf6d544b4f4123772827b137ac7ff12276ed315fdb04d77270e45"
+            },
+            "grid_node_ids": {
+              "shape": [
+                270276
+              ],
+              "dtype": "int64",
+              "sha256": "65f935b3245149b5098845c7a2ff0dc69dd7bc833d2668519deddfbd235228f2"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                169852
+              ],
+              "dtype": "int64",
+              "sha256": "58f16a6d5e7b1e8827143e2a7375e40e3c062f204c6e63231d5907f5bbe8c288"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            }
+          },
+          "material_from_accepted_input_manifest": {
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/101_428/operator/summary.json",
+            "sha256": "d58bbb938605bbcd293f8a335d13a46199dd5ccb1dfb1c5addb3a4ae66b71c1c"
+          },
+          "accepted_positive_fourQ_weights": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/quadrature_weights.npy",
+            "bytes": 5435392,
+            "mtime_ns": 1791580310167315700,
+            "shape": [
+              169852,
+              4
+            ],
+            "dtype": "torch.float64"
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/summary.json",
+            "sha256": "9b26bf439d1eca8da6a8102e11ea63856994800408e99310b1c811233e489a94"
+          },
+          "original_physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy",
+            "bytes": 6486752,
+            "mtime_ns": 1791580411614811300,
+            "shape": [
+              270276,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "9496a94be91e192080f31edcb87283e9c115634c643bb0c61c7d089d51a412fb"
+          },
+          "old_mean_tensor": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/sigma_MPa.npy",
+            "shape": [
+              270276,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 12973376,
+            "mtime_ns": 1791584133008547000,
+            "values_sha256": "2b220abc01b53ed3346c1355d9d535bbbfe842020f75494a2de9d2c245c3b122"
+          },
+          "same_valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/valid.npy",
+            "shape": [
+              270276
+            ],
+            "dtype": "bool",
+            "bytes": 270404,
+            "mtime_ns": 1791584131747790300,
+            "values_sha256": "3ce134176931bd11066ea520203deafa73adc9cd20c32ec16fa559055cc3397b"
+          },
+          "old_feature_manifest": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/manifest.json",
+            "sha256": "f060d6045f064ac08a12f0c93e863b978f96f4ee896582756184aef0b241cae3",
+            "bytes": 6369
+          },
+          "cached_original_signed_S": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_428_ver.npy",
+            "shape": [
+              270276
+            ],
+            "dtype": "float64",
+            "bytes": 2162336,
+            "mtime_ns": 1791584136282787900,
+            "values_sha256": "793da550e815bd0e27a06e65656dd1dd2267903744468d99e62148c2def3ee34"
+          },
+          "label_committed": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_428_ver.json",
+            "sha256": "66c04e84f3803501e84c2c8ae6af3fd3b31ea2f8f7302409274d6426ec8f45c8",
+            "bytes": 653
+          },
+          "label_identity": {
+            "key": "101_428/ver",
+            "scope": "TRAIN",
+            "source": {
+              "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+              "bytes": 45320930,
+              "mtime_ns": 1791511980352062400
+            },
+            "member": "stress"
+          },
+          "inherited_cost_components": {
+            "physical_GT_free_cold_seconds": 100.95741130100001,
+            "sigma_recovery_seconds": 1.1894837559999587,
+            "validity_incidence_seconds": 0.13639105400000062,
+            "excluded_unneeded_neural_input_preparation_seconds": 0.30215560400006325,
+            "source": "original zero-start completed physical solver + actual accepted sigma recovery; not fresh combined cold"
+          }
+        },
+        "101_56/ver": {
+          "group": "TRAIN",
+          "nodes": 221213,
+          "cells": 139546,
+          "element_node_queries": 1395460,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/101_56/input/manifest.json",
+            "sha256": "8a15a5662979b3c291b96bac7a2ddc316e5ea0bc51d1f372ed36a223d8bca6cf"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/101_56/input/input.npz",
+            "bytes": 28338396,
+            "mtime_ns": 1791580416400665100,
+            "sha256": "b3e4d4c47f573d267ba8c46a0259ab5c307d326a7cd643e61f1f3327be26dae0"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                221213,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "d3028c742caf61ce6957dbc03c1d05138667d1998404593f7588e50b0776cc99"
+            },
+            "cells10": {
+              "shape": [
+                139546,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "20a3d5fa85640874dd36b0e98a9516540c2144b357dbf02bad7041f421d1b2d7"
+            },
+            "grid_node_ids": {
+              "shape": [
+                221213
+              ],
+              "dtype": "int64",
+              "sha256": "b908e54d906255e2dcf5e737ce6a12ec9b89c32af6a40dd400c3ca089ddbcf94"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                139546
+              ],
+              "dtype": "int64",
+              "sha256": "bf4bfd79f43f7e2fa79ad5e5f18deaab80fadb0dfe6f6f4b545bef24e93ed444"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            }
+          },
+          "material_from_accepted_input_manifest": {
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/101_56/operator/summary.json",
+            "sha256": "5451566a5d269b5352373a3c900acf13f8c13a19dd95e980794e115a9b22666d"
+          },
+          "accepted_positive_fourQ_weights": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/quadrature_weights.npy",
+            "bytes": 4465600,
+            "mtime_ns": 1791580417849652700,
+            "shape": [
+              139546,
+              4
+            ],
+            "dtype": "torch.float64"
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/summary.json",
+            "sha256": "593d8a3131eda6014e176ca74e12b67828aa5e231bedcdff5a35da0f43dd007e"
+          },
+          "original_physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy",
+            "bytes": 5309240,
+            "mtime_ns": 1791580495841281900,
+            "shape": [
+              221213,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "7b76dfa12e5332b313ff7ffea1cbf24660e9dba7e03341c186c9f0532ee07b4a"
+          },
+          "old_mean_tensor": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/sigma_MPa.npy",
+            "shape": [
+              221213,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 10618352,
+            "mtime_ns": 1791584134032047800,
+            "values_sha256": "9ee0b27d2c953e5740811f91613178d1e751cc39df9bccbc272541a47faf6a04"
+          },
+          "same_valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/valid.npy",
+            "shape": [
+              221213
+            ],
+            "dtype": "bool",
+            "bytes": 221341,
+            "mtime_ns": 1791584133380260300,
+            "values_sha256": "c37030c5e67db1027bd95af33554f55790ebc5dffe0e576bf29b8b59ad1f4ad5"
+          },
+          "old_feature_manifest": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/manifest.json",
+            "sha256": "7ef9a27e8b8ca1431eaf0ade6a663b2e4d2c452bf0c84a3c5beb9b6bb5950b37",
+            "bytes": 6346
+          },
+          "cached_original_signed_S": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_56_ver.npy",
+            "shape": [
+              221213
+            ],
+            "dtype": "float64",
+            "bytes": 1769832,
+            "mtime_ns": 1791584136324931800,
+            "values_sha256": "b5f7d89dfc7d63579bc9561b999a5be4b049992fb99e406845615e3113ed7b91"
+          },
+          "label_committed": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_56_ver.json",
+            "sha256": "ff20f2ef9a83fd1709b56c94742fa18c9493083c524012e95cfa549fd5630f4b",
+            "bytes": 650
+          },
+          "label_identity": {
+            "key": "101_56/ver",
+            "scope": "TRAIN",
+            "source": {
+              "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+              "bytes": 37050462,
+              "mtime_ns": 1791454716033307500
+            },
+            "member": "stress"
+          },
+          "inherited_cost_components": {
+            "physical_GT_free_cold_seconds": 77.042284078,
+            "sigma_recovery_seconds": 0.6153826900000468,
+            "validity_incidence_seconds": 0.04256725899995217,
+            "excluded_unneeded_neural_input_preparation_seconds": 0.2251931879999347,
+            "source": "original zero-start completed physical solver + actual accepted sigma recovery; not fresh combined cold"
+          }
+        },
+        "101_78/ver": {
+          "group": "TRAIN",
+          "nodes": 192353,
+          "cells": 120639,
+          "element_node_queries": 1206390,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/101_78/input/manifest.json",
+            "sha256": "dc188bfaca90d155d2c38d947eb76aca9e98e866b33e251e03efa465ee066bf8"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/101_78/input/input.npz",
+            "bytes": 24599396,
+            "mtime_ns": 1791580499987754200,
+            "sha256": "549abbd70392df7bedd3c83128f259176be2fb73eb468333fc7349b640d0d8d5"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                192353,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "15c8dbb7af57380f096da1878412c924bf9e5dbf76ac2cd1041f661deb1fcafc"
+            },
+            "cells10": {
+              "shape": [
+                120639,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "dc614dce3463085a75d6c33c8a05d8154847c38a6cf7595478aee7eaee4f7a57"
+            },
+            "grid_node_ids": {
+              "shape": [
+                192353
+              ],
+              "dtype": "int64",
+              "sha256": "d40d02715d19f440fa2ddc8a2614153994f828fe846cbbf065e8e3f3e3967db6"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                120639
+              ],
+              "dtype": "int64",
+              "sha256": "38181ecb52b2ec6d278d7c1104c075eb9fe8c3c65b48086037b41ef73ae4d08b"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            }
+          },
+          "material_from_accepted_input_manifest": {
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/101_78/operator/summary.json",
+            "sha256": "02ba7d4ed4145199f991a38b5ccc00950403328bb801ce660ee86b6285e75468"
+          },
+          "accepted_positive_fourQ_weights": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/quadrature_weights.npy",
+            "bytes": 3860576,
+            "mtime_ns": 1791580501422478900,
+            "shape": [
+              120639,
+              4
+            ],
+            "dtype": "torch.float64"
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/summary.json",
+            "sha256": "9bb13704114b38fab5e8fefdaa66f676a50630c3e08c9d635f02660a095fd8ae"
+          },
+          "original_physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy",
+            "bytes": 4616600,
+            "mtime_ns": 1791580757923400300,
+            "shape": [
+              192353,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "5081a9667a3107df6508a60f03a173e008e30ca382ac898f31af22ce720fa85b"
+          },
+          "old_mean_tensor": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/sigma_MPa.npy",
+            "shape": [
+              192353,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 9233072,
+            "mtime_ns": 1791584134782315800,
+            "values_sha256": "b750b93633d4a729777c430b9f355aea2c6a10660911d4e28fb9c6f6c9ef9cd1"
+          },
+          "same_valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/valid.npy",
+            "shape": [
+              192353
+            ],
+            "dtype": "bool",
+            "bytes": 192481,
+            "mtime_ns": 1791584134311140300,
+            "values_sha256": "14e1e13fa6a3b5cb78a91f1b69ec28e2a60cd1501410e8a79a8e97902025a5e2"
+          },
+          "old_feature_manifest": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/manifest.json",
+            "sha256": "c83fc1b71a7db500605a733f101ac6aa8bd9082b9928c502c376a1690ead2b8e",
+            "bytes": 6353
+          },
+          "cached_original_signed_S": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_78_ver.npy",
+            "shape": [
+              192353
+            ],
+            "dtype": "float64",
+            "bytes": 1538952,
+            "mtime_ns": 1791584136366097000,
+            "values_sha256": "abc7ee662a8a662299b2101a0bea396a5400f087a0a55c809d685427a2b21342"
+          },
+          "label_committed": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_78_ver.json",
+            "sha256": "8c17ea1e4f06e6d3da4fc139466581184a5f738108a77c06983d9551b27e9617",
+            "bytes": 649
+          },
+          "label_identity": {
+            "key": "101_78/ver",
+            "scope": "TRAIN",
+            "source": {
+              "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+              "bytes": 32255262,
+              "mtime_ns": 1791511981517772800
+            },
+            "member": "stress"
+          },
+          "inherited_cost_components": {
+            "physical_GT_free_cold_seconds": 82.46914100800004,
+            "sigma_recovery_seconds": 0.4487234860000626,
+            "validity_incidence_seconds": 0.037456431000009616,
+            "excluded_unneeded_neural_input_preparation_seconds": 0.1647629159999724,
+            "source": "original zero-start completed physical solver + actual accepted sigma recovery; not fresh combined cold"
+          }
+        },
+        "102_249/ver": {
+          "group": "DEV",
+          "nodes": 211173,
+          "cells": 131480,
+          "element_node_queries": 1314800,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/102_249/input/manifest.json",
+            "sha256": "c763b0234124d98e86468bab7827564143462042a2ba5467460dce43fc6ca8d5"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/102_249/input/input.npz",
+            "bytes": 26903428,
+            "mtime_ns": 1791580762404912300,
+            "sha256": "edc37756b4f62a951398ce4b7d1beed2892e8d64cbde2f6e34ab471aa739b089"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                211173,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "8b6157e33a497beff171ee0b3d9728a24ae19cb5cdf97f88c4d257d673c914c8"
+            },
+            "cells10": {
+              "shape": [
+                131480,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "4de2f4369a4282c381c55eb3e9de9876bc2e0fba414eb5bb95733e712a8304b6"
+            },
+            "grid_node_ids": {
+              "shape": [
+                211173
+              ],
+              "dtype": "int64",
+              "sha256": "61beab4c5cc505e921a93141ae7d6341dd33eee327c4e513cd7d6e6a6cc957d7"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                131480
+              ],
+              "dtype": "int64",
+              "sha256": "dddce0c80ca7ff52cc93c324db1b9a81147980775b0cae9f6d6bd6085ad4c854"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            }
+          },
+          "material_from_accepted_input_manifest": {
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/102_249/operator/summary.json",
+            "sha256": "ac6cae9c7ed3fbb4553f9ee0ab396544f37fa0c988de6b130703f3dbd99dce0d"
+          },
+          "accepted_positive_fourQ_weights": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/quadrature_weights.npy",
+            "bytes": 4207488,
+            "mtime_ns": 1791580764029368300,
+            "shape": [
+              131480,
+              4
+            ],
+            "dtype": "torch.float64"
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/summary.json",
+            "sha256": "782614bbbbb9525ca8677f18d02a52e5dc07029fbf61d8b22f6e34c2ecf2d538"
+          },
+          "original_physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy",
+            "bytes": 5068280,
+            "mtime_ns": 1791580868309836200,
+            "shape": [
+              211173,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "8140c1cbf528f1f2db03c64c2baa90b352767471f9ceda92eed365d3f387356d"
+          },
+          "old_mean_tensor": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/sigma_MPa.npy",
+            "shape": [
+              211173,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 10136432,
+            "mtime_ns": 1791584135509249300,
+            "values_sha256": "839e0e5241e2cc63f03584f015dda5fcd4ca5b6a8d2d1d953221b3a5dc2715aa"
+          },
+          "same_valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/valid.npy",
+            "shape": [
+              211173
+            ],
+            "dtype": "bool",
+            "bytes": 211301,
+            "mtime_ns": 1791584135093420700,
+            "values_sha256": "ab097e179157c97851ee149218e7baa913b76ae846d2eab05aba80899703bef3"
+          },
+          "old_feature_manifest": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/manifest.json",
+            "sha256": "fb871b0cc7dd6db8a258f576b91284bc5a0dcdb7f3b00bf7a127930ce579c72f",
+            "bytes": 6363
+          },
+          "cached_original_signed_S": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/102_249_ver.npy",
+            "shape": [
+              211173
+            ],
+            "dtype": "float64",
+            "bytes": 1689512,
+            "mtime_ns": 1791584179557568100,
+            "values_sha256": "22c3b9fe6ffcbe1a1a262ab20abe9e556d1889b09ca8f910c411ee717c23e02b"
+          },
+          "label_committed": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/102_249_ver.json",
+            "sha256": "5dda02f4efb54fbcef73df32e9c0ff35a93d47d9c613e5de3e26c385dc676194",
+            "bytes": 651
+          },
+          "label_identity": {
+            "key": "102_249/ver",
+            "scope": "DEV",
+            "source": {
+              "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+              "bytes": 35482562,
+              "mtime_ns": 1791454718057858700
+            },
+            "member": "stress"
+          },
+          "inherited_cost_components": {
+            "physical_GT_free_cold_seconds": 101.030087958,
+            "sigma_recovery_seconds": 0.39644237000004523,
+            "validity_incidence_seconds": 0.03972044299996469,
+            "excluded_unneeded_neural_input_preparation_seconds": 0.193166347999977,
+            "source": "original zero-start completed physical solver + actual accepted sigma recovery; not fresh combined cold"
+          }
+        },
+        "102_38/ver": {
+          "group": "DEV",
+          "nodes": 197514,
+          "cells": 122953,
+          "element_node_queries": 1229530,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/102_38/input/manifest.json",
+            "sha256": "c97bd8d632a89b1bdb45f4aef160966dfc4ad89805c73b3183ee46e47a3ef3f0"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/102_38/input/input.npz",
+            "bytes": 25169148,
+            "mtime_ns": 1791580872358353600,
+            "sha256": "2cb905c61c696be7991e43999c845807f1c0401a6c82849e25032a34ccae4296"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                197514,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "cf4c40a26fac3b2a262cbf4e4730369f6607a0f887c3a380995197f328b4f8a7"
+            },
+            "cells10": {
+              "shape": [
+                122953,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "67132da00c6f807ecfed4619349231e50be05a0c3664be38025fb30ddab03eb8"
+            },
+            "grid_node_ids": {
+              "shape": [
+                197514
+              ],
+              "dtype": "int64",
+              "sha256": "3cd08b3d5349fe7948f1acff97c398e08d83ebdaaf060e861378bb27bf7dc8fb"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                122953
+              ],
+              "dtype": "int64",
+              "sha256": "cc4e75956b0e2af9162bc274f4434665a9204815896336863bca5fe354e2f67d"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            }
+          },
+          "material_from_accepted_input_manifest": {
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/102_38/operator/summary.json",
+            "sha256": "eec5f728e92e097ee6ec4e509502b0db3ff44f9c08d3f4662c433afb9eba8add"
+          },
+          "accepted_positive_fourQ_weights": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/quadrature_weights.npy",
+            "bytes": 3934624,
+            "mtime_ns": 1791580873662883100,
+            "shape": [
+              122953,
+              4
+            ],
+            "dtype": "torch.float64"
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/summary.json",
+            "sha256": "19ce243bd77f2cfe60687e8090121cadc363077ce832bf567c4f036f28a7ee29"
+          },
+          "original_physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy",
+            "bytes": 4740464,
+            "mtime_ns": 1791580968263212700,
+            "shape": [
+              197514,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c"
+          },
+          "old_mean_tensor": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/sigma_MPa.npy",
+            "shape": [
+              197514,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 9480800,
+            "mtime_ns": 1791584136209624300,
+            "values_sha256": "729c22f87982859871846306519bfc7ab7ba89ba45fb7d4f0c0b0ff374f1c5b4"
+          },
+          "same_valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/valid.npy",
+            "shape": [
+              197514
+            ],
+            "dtype": "bool",
+            "bytes": 197642,
+            "mtime_ns": 1791584135812489300,
+            "values_sha256": "ee00d5438d3fa4c5641ddd5cfa318375bb9a5ec9db5ab0b6539b413da76f8253"
+          },
+          "old_feature_manifest": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/manifest.json",
+            "sha256": "9a05455208c2a2cead2b519b4bef86cc34536625f275c755ecda0a6051fd776c",
+            "bytes": 6348
+          },
+          "cached_original_signed_S": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/102_38_ver.npy",
+            "shape": [
+              197514
+            ],
+            "dtype": "float64",
+            "bytes": 1580240,
+            "mtime_ns": 1791584179601899900,
+            "values_sha256": "d93a458c461063ee35b6e045fb39c8c2f797c0ce924467e1fcfa2e1c73b95519"
+          },
+          "label_committed": {
+            "path": "runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/102_38_ver.json",
+            "sha256": "4b71d9263437006e6b7d39da4f6a8cf25b327c445b066fafdcf17fef89c87a9e",
+            "bytes": 648
+          },
+          "label_identity": {
+            "key": "102_38/ver",
+            "scope": "DEV",
+            "source": {
+              "path": "data/prepared_geobc_multiload/102_38_ver.npz",
+              "bytes": 33185758,
+              "mtime_ns": 1791511983883164000
+            },
+            "member": "stress"
+          },
+          "inherited_cost_components": {
+            "physical_GT_free_cold_seconds": 91.455433389,
+            "sigma_recovery_seconds": 0.3872473019999916,
+            "validity_incidence_seconds": 0.04325725000001057,
+            "excluded_unneeded_neural_input_preparation_seconds": 0.17928211900004953,
+            "source": "original zero-start completed physical solver + actual accepted sigma recovery; not fresh combined cold"
+          }
+        }
+      },
+      "evidence_pins": {
+        "notes/geobc_stress_readout_plan.json": {
+          "path": "notes/geobc_stress_readout_plan.json",
+          "sha256": "ac8b66c67cdc898f6e6b8c1f1fa494f57157b83840c553a60b6ea0c27a36b65b",
+          "bytes": 9203
+        },
+        "notes/geobc_factored_stress_plan.json": {
+          "path": "notes/geobc_factored_stress_plan.json",
+          "sha256": "21f49115eb4df117211d0ce9cc950007235effceda73e59766be9914cebe8e8c",
+          "bytes": 21385
+        },
+        "notes/geobc_physical_continuous_candidate_design.json": {
+          "path": "notes/geobc_physical_continuous_candidate_design.json",
+          "sha256": "107df28b84117497b44a8db78ca0fb2712deeebc504f90027490345645eb246f",
+          "bytes": 20364
+        },
+        "runs/geobc_exploration/elastic_stress_readout5_ver/summary.json": {
+          "path": "runs/geobc_exploration/elastic_stress_readout5_ver/summary.json",
+          "sha256": "973bb7e37a76838592e75a47dd813e5c2113e1f6a6d43e9830b83c8cc2024c38",
+          "bytes": 285951
+        },
+        "frozen_design": {
+          "path": "notes/geobc_nodal_tensor_representation_design.json",
+          "sha256": "f54c58cf1205ac89aec7de46a71dcd47d9381b320ced775dba253c8e0ba5f0ad",
+          "bytes": 45924
+        },
+        "native_helper_source_ready": {
+          "path": "notes/elastic_nodal_tensor_recovery_source_ready.json",
+          "sha256": "975de4e84de59ea9ec09d2e23fec5f3b73b4f96824f2790b9eed37aa0b4f9e01",
+          "bytes": 5213
+        }
+      },
+      "output": "runs/geobc_exploration/elastic_nodal_tensor5_ver_pair",
+      "array_GT_weight_reads_in_request_contract": 0
+    }
+  },
+  "case_keys": [
+    "101_428/ver",
+    "101_56/ver",
+    "101_78/ver",
+    "102_249/ver",
+    "102_38/ver"
+  ],
+  "train_keys": [
+    "101_428/ver",
+    "101_56/ver",
+    "101_78/ver"
+  ],
+  "validation_keys": [
+    "102_249/ver",
+    "102_38/ver"
+  ],
+  "cases": {
+    "101_428/ver": {
+      "group": "TRAIN",
+      "status": "completed",
+      "node_count": 270276,
+      "input_manifest": {
+        "config": {
+          "contract_sha256": "47011ec6d1fd9411ba02180d4ae1cde24a7eaaff93874a3efc4a6dfebc2e68f6",
+          "key": "101_428/ver",
+          "science": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
+        },
+        "status": "completed",
+        "key": "101_428/ver",
+        "node_count": 270276,
+        "cell_count": 169852,
+        "arrays": {
+          "fourQ_cellmean": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_428_ver/fourQ_sigma_MPa.npy",
+            "shape": [
+              270276,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 12973376,
+            "file_sha256": "c06de23860eb8a3b2111dfcb07243ea63099cb05f9b82469581176633b6b09fd",
+            "values_sha256": "2b220abc01b53ed3346c1355d9d535bbbfe842020f75494a2de9d2c245c3b122"
+          },
+          "element_node": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_428_ver/node_sigma_MPa.npy",
+            "shape": [
+              270276,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 12973376,
+            "file_sha256": "1d678d65ca022567439b3d591a4c335bf82e1541526737b6e4f1999462aed4e8",
+            "values_sha256": "37113fde477e49f5ae63bdcaa6cbde7325497b8a24b545ccee3924085c57b5bd"
+          },
+          "valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_428_ver/valid.npy",
+            "shape": [
+              270276
+            ],
+            "dtype": "bool",
+            "bytes": 270404,
+            "file_sha256": "e7540d01d39da1b4095bcea54df118e356d67eb788324a441c7cc22971599757",
+            "values_sha256": "3ce134176931bd11066ea520203deafa73adc9cd20c32ec16fa559055cc3397b"
+          },
+          "original_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_428_ver/physical_u_mm.npy",
+            "bytes": 6486752,
+            "mtime_ns": 1791580411614811300,
+            "shape": [
+              270276,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "9496a94be91e192080f31edcb87283e9c115634c643bb0c61c7d089d51a412fb"
+          }
+        },
+        "costs": {
+          "cumulative_nodal_case_seconds": 1.3433967189999976,
+          "active": false,
+          "observed_unix_seconds": 1791593970.1812124,
+          "attempts": 1,
+          "new_native_tensor_recovery_seconds": 0.6690652379999733,
+          "baseline_fourQ_cache_IO_persist_seconds": 0.11515096399998015,
+          "actual_input_recovery_persistence_seconds": 1.2282457550000174,
+          "new_recovery_is_cached_actual": true,
+          "fresh_joint_cold_measurement": false
+        },
+        "diagnostics": {
+          "passed": true,
+          "scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8",
+          "representation": "element_node",
+          "all_cells": 169852,
+          "native_queries_per_cell": 10,
+          "all_native_element_node_queries": 1698520,
+          "checked_cells": 169852,
+          "checked_chunks": 21,
+          "cell_chunk": 8192,
+          "node_count": 270276,
+          "valid_node_count": 270276,
+          "invalid_node_count": 0,
+          "coverage_exactly_matches_old_valid": true,
+          "all10_J_finite_and_strictly_positive": true,
+          "all10_solve_ex_info_zero": true,
+          "minimum_native_detJ_mm3": 9.179007984566384e-05,
+          "minimum_positive_incident_weight_mm3": 0.000905850416758524,
+          "gradient_partition_relative_error": 6.267106577419889e-16,
+          "physical_affine_mapping_relative_error": 2.927797781136599e-13,
+          "tensor_symmetry_relative_error": 0.0,
+          "shape_cardinality_absolute_error": 0.0,
+          "shape_partition_absolute_error": 0.0,
+          "gradient_identity_relative_tolerance": 1e-09,
+          "tensor_symmetry_relative_tolerance": 1e-12,
+          "sigma_channels": [
+            "xx",
+            "yy",
+            "zz",
+            "xy",
+            "xz",
+            "yz"
+          ],
+          "sigma_units": "MPa",
+          "X_U_units": "mm",
+          "gradient_units": "dimensionless",
+          "positive_weight": "sum accepted4Q physical weights /10; one weight per incident native cellnode",
+          "invalid_nodes": "Zero tensor slots with explicit valid0; no failed reached node is hidden as invalid0",
+          "skipped_cells_or_queries": 0,
+          "fallbacks": 0,
+          "GT_reads": 0,
+          "solver_calls": 0,
+          "K_guard_repeats": 0,
+          "old_fourQ_tensor_recovery_runs": 0,
+          "clock_or_budget_resets": 0,
+          "cost_and_memory_measurement_owner": "Caller driver, including helper setup and checks",
+          "claim": "Constitutive/recovery proxy, not original nodal stress GT or source signed-scalar exporter"
+        },
+        "read_receipt": {
+          "displacement_target_reads": 0,
+          "source_canonical_stress_reads": 0,
+          "source_canonical_strain_reads": 0,
+          "source_canonical_CSV_reads": 0,
+          "external_learned_weight_reads": 0,
+          "new_physical_solves": 0,
+          "K_applications": 0,
+          "old_K_guard_repeats": 0,
+          "old_final_reads": 0,
+          "sealed_new_test_reads": 0,
+          "DEV_dia_reads": 0,
+          "DEV_reads_before_prediction_barrier": 0,
+          "DEV_scaler_fits": 0,
+          "source_formula_or_sign_trials": 0,
+          "physical_U_reads": 1,
+          "physical_U_byte_hash_reads": 2,
+          "input_cache_reads": 1,
+          "input_member_reads": 5,
+          "operator_weight_array_reads": 1,
+          "old_tensor_array_reads": 1,
+          "valid_array_reads": 1,
+          "new_nodal_tensor_recoveries": 1,
+          "TRAIN_cached_S_reads": 0,
+          "DEV_cached_S_reads": 0,
+          "GT_reads": 0,
+          "tensor_scaler_fits": 0,
+          "training_updates": 0,
+          "optimizer_updates": 0,
+          "own_checkpoint_reads": 0,
+          "own_checkpoint_writes": 0,
+          "own_prediction_array_reads": 0,
+          "original_U_byte_copies": 1
+        },
+        "exact_original_U_byte_identity": true,
+        "source_U": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy",
+          "bytes": 6486752,
+          "mtime_ns": 1791580411614811300,
+          "shape": [
+            270276,
+            3
+          ],
+          "dtype": "torch.float64",
+          "file_sha256": "9496a94be91e192080f31edcb87283e9c115634c643bb0c61c7d089d51a412fb"
+        },
+        "old_node_GT_U_metric_recomputed": false
+      },
+      "original_U_byte_identity_preserved": true
+    },
+    "101_56/ver": {
+      "group": "TRAIN",
+      "status": "completed",
+      "node_count": 221213,
+      "input_manifest": {
+        "config": {
+          "contract_sha256": "47011ec6d1fd9411ba02180d4ae1cde24a7eaaff93874a3efc4a6dfebc2e68f6",
+          "key": "101_56/ver",
+          "science": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
+        },
+        "status": "completed",
+        "key": "101_56/ver",
+        "node_count": 221213,
+        "cell_count": 139546,
+        "arrays": {
+          "fourQ_cellmean": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_56_ver/fourQ_sigma_MPa.npy",
+            "shape": [
+              221213,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 10618352,
+            "file_sha256": "41ec1fccae0452ffecc32f821747e9788bfb498a4f86e926160c7795b9600250",
+            "values_sha256": "9ee0b27d2c953e5740811f91613178d1e751cc39df9bccbc272541a47faf6a04"
+          },
+          "element_node": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_56_ver/node_sigma_MPa.npy",
+            "shape": [
+              221213,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 10618352,
+            "file_sha256": "405e006bdeac76f24c1370e046ba7553784d1baef20efa1e6503bebd7a7018b0",
+            "values_sha256": "3437c410ffbc5779ec38f634ddb0bf4d0dc4c8839b2bba011a36f84e353186fb"
+          },
+          "valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_56_ver/valid.npy",
+            "shape": [
+              221213
+            ],
+            "dtype": "bool",
+            "bytes": 221341,
+            "file_sha256": "b9bd71b575ad8fbbace575f1cc2d359b576203c7507c657d98d99f539a42564c",
+            "values_sha256": "c37030c5e67db1027bd95af33554f55790ebc5dffe0e576bf29b8b59ad1f4ad5"
+          },
+          "original_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_56_ver/physical_u_mm.npy",
+            "bytes": 5309240,
+            "mtime_ns": 1791580495841281900,
+            "shape": [
+              221213,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "7b76dfa12e5332b313ff7ffea1cbf24660e9dba7e03341c186c9f0532ee07b4a"
+          }
+        },
+        "costs": {
+          "cumulative_nodal_case_seconds": 0.4916874349999887,
+          "active": false,
+          "observed_unix_seconds": 1791593970.701151,
+          "attempts": 1,
+          "new_native_tensor_recovery_seconds": 0.08069187099999908,
+          "baseline_fourQ_cache_IO_persist_seconds": 0.07963641000000621,
+          "actual_input_recovery_persistence_seconds": 0.4120510249999825,
+          "new_recovery_is_cached_actual": true,
+          "fresh_joint_cold_measurement": false
+        },
+        "diagnostics": {
+          "passed": true,
+          "scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8",
+          "representation": "element_node",
+          "all_cells": 139546,
+          "native_queries_per_cell": 10,
+          "all_native_element_node_queries": 1395460,
+          "checked_cells": 139546,
+          "checked_chunks": 18,
+          "cell_chunk": 8192,
+          "node_count": 221213,
+          "valid_node_count": 221213,
+          "invalid_node_count": 0,
+          "coverage_exactly_matches_old_valid": true,
+          "all10_J_finite_and_strictly_positive": true,
+          "all10_solve_ex_info_zero": true,
+          "minimum_native_detJ_mm3": 0.0019299538216104796,
+          "minimum_positive_incident_weight_mm3": 0.001095307385470603,
+          "gradient_partition_relative_error": 6.389118934974e-16,
+          "physical_affine_mapping_relative_error": 3.038530281588752e-13,
+          "tensor_symmetry_relative_error": 0.0,
+          "shape_cardinality_absolute_error": 0.0,
+          "shape_partition_absolute_error": 0.0,
+          "gradient_identity_relative_tolerance": 1e-09,
+          "tensor_symmetry_relative_tolerance": 1e-12,
+          "sigma_channels": [
+            "xx",
+            "yy",
+            "zz",
+            "xy",
+            "xz",
+            "yz"
+          ],
+          "sigma_units": "MPa",
+          "X_U_units": "mm",
+          "gradient_units": "dimensionless",
+          "positive_weight": "sum accepted4Q physical weights /10; one weight per incident native cellnode",
+          "invalid_nodes": "Zero tensor slots with explicit valid0; no failed reached node is hidden as invalid0",
+          "skipped_cells_or_queries": 0,
+          "fallbacks": 0,
+          "GT_reads": 0,
+          "solver_calls": 0,
+          "K_guard_repeats": 0,
+          "old_fourQ_tensor_recovery_runs": 0,
+          "clock_or_budget_resets": 0,
+          "cost_and_memory_measurement_owner": "Caller driver, including helper setup and checks",
+          "claim": "Constitutive/recovery proxy, not original nodal stress GT or source signed-scalar exporter"
+        },
+        "read_receipt": {
+          "displacement_target_reads": 0,
+          "source_canonical_stress_reads": 0,
+          "source_canonical_strain_reads": 0,
+          "source_canonical_CSV_reads": 0,
+          "external_learned_weight_reads": 0,
+          "new_physical_solves": 0,
+          "K_applications": 0,
+          "old_K_guard_repeats": 0,
+          "old_final_reads": 0,
+          "sealed_new_test_reads": 0,
+          "DEV_dia_reads": 0,
+          "DEV_reads_before_prediction_barrier": 0,
+          "DEV_scaler_fits": 0,
+          "source_formula_or_sign_trials": 0,
+          "physical_U_reads": 1,
+          "physical_U_byte_hash_reads": 2,
+          "input_cache_reads": 1,
+          "input_member_reads": 5,
+          "operator_weight_array_reads": 1,
+          "old_tensor_array_reads": 1,
+          "valid_array_reads": 1,
+          "new_nodal_tensor_recoveries": 1,
+          "TRAIN_cached_S_reads": 0,
+          "DEV_cached_S_reads": 0,
+          "GT_reads": 0,
+          "tensor_scaler_fits": 0,
+          "training_updates": 0,
+          "optimizer_updates": 0,
+          "own_checkpoint_reads": 0,
+          "own_checkpoint_writes": 0,
+          "own_prediction_array_reads": 0,
+          "original_U_byte_copies": 1
+        },
+        "exact_original_U_byte_identity": true,
+        "source_U": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy",
+          "bytes": 5309240,
+          "mtime_ns": 1791580495841281900,
+          "shape": [
+            221213,
+            3
+          ],
+          "dtype": "torch.float64",
+          "file_sha256": "7b76dfa12e5332b313ff7ffea1cbf24660e9dba7e03341c186c9f0532ee07b4a"
+        },
+        "old_node_GT_U_metric_recomputed": false
+      },
+      "original_U_byte_identity_preserved": true
+    },
+    "101_78/ver": {
+      "group": "TRAIN",
+      "status": "completed",
+      "node_count": 192353,
+      "input_manifest": {
+        "config": {
+          "contract_sha256": "47011ec6d1fd9411ba02180d4ae1cde24a7eaaff93874a3efc4a6dfebc2e68f6",
+          "key": "101_78/ver",
+          "science": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
+        },
+        "status": "completed",
+        "key": "101_78/ver",
+        "node_count": 192353,
+        "cell_count": 120639,
+        "arrays": {
+          "fourQ_cellmean": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_78_ver/fourQ_sigma_MPa.npy",
+            "shape": [
+              192353,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 9233072,
+            "file_sha256": "03eb43c9f8c74cbc828ef89040eab785bfa39ab1040191ff5b768ed0eb730f5a",
+            "values_sha256": "b750b93633d4a729777c430b9f355aea2c6a10660911d4e28fb9c6f6c9ef9cd1"
+          },
+          "element_node": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_78_ver/node_sigma_MPa.npy",
+            "shape": [
+              192353,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 9233072,
+            "file_sha256": "fbf71f5d83f03c3f005f29538ae9d7dabcfebacaa4ff63b08cefaed6d30c8857",
+            "values_sha256": "df895fc4b55f4b39e1560786466ac9681a8f3a567e0f49845f2aefb9bd250836"
+          },
+          "valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_78_ver/valid.npy",
+            "shape": [
+              192353
+            ],
+            "dtype": "bool",
+            "bytes": 192481,
+            "file_sha256": "88bc5aa930aae9c70338051f33f94463c2263ea13fff13561c4cb41de773855e",
+            "values_sha256": "14e1e13fa6a3b5cb78a91f1b69ec28e2a60cd1501410e8a79a8e97902025a5e2"
+          },
+          "original_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/101_78_ver/physical_u_mm.npy",
+            "bytes": 4616600,
+            "mtime_ns": 1791580757923400300,
+            "shape": [
+              192353,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "5081a9667a3107df6508a60f03a173e008e30ca382ac898f31af22ce720fa85b"
+          }
+        },
+        "costs": {
+          "cumulative_nodal_case_seconds": 0.4282574719999843,
+          "active": false,
+          "observed_unix_seconds": 1791593971.1552222,
+          "attempts": 1,
+          "new_native_tensor_recovery_seconds": 0.06448530499997673,
+          "baseline_fourQ_cache_IO_persist_seconds": 0.06997949800000924,
+          "actual_input_recovery_persistence_seconds": 0.3582779739999751,
+          "new_recovery_is_cached_actual": true,
+          "fresh_joint_cold_measurement": false
+        },
+        "diagnostics": {
+          "passed": true,
+          "scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8",
+          "representation": "element_node",
+          "all_cells": 120639,
+          "native_queries_per_cell": 10,
+          "all_native_element_node_queries": 1206390,
+          "checked_cells": 120639,
+          "checked_chunks": 15,
+          "cell_chunk": 8192,
+          "node_count": 192353,
+          "valid_node_count": 192353,
+          "invalid_node_count": 0,
+          "coverage_exactly_matches_old_valid": true,
+          "all10_J_finite_and_strictly_positive": true,
+          "all10_solve_ex_info_zero": true,
+          "minimum_native_detJ_mm3": 0.030294807836355523,
+          "minimum_positive_incident_weight_mm3": 0.0025732307581623447,
+          "gradient_partition_relative_error": 6.920035075684786e-16,
+          "physical_affine_mapping_relative_error": 1.4900540347639388e-14,
+          "tensor_symmetry_relative_error": 0.0,
+          "shape_cardinality_absolute_error": 0.0,
+          "shape_partition_absolute_error": 0.0,
+          "gradient_identity_relative_tolerance": 1e-09,
+          "tensor_symmetry_relative_tolerance": 1e-12,
+          "sigma_channels": [
+            "xx",
+            "yy",
+            "zz",
+            "xy",
+            "xz",
+            "yz"
+          ],
+          "sigma_units": "MPa",
+          "X_U_units": "mm",
+          "gradient_units": "dimensionless",
+          "positive_weight": "sum accepted4Q physical weights /10; one weight per incident native cellnode",
+          "invalid_nodes": "Zero tensor slots with explicit valid0; no failed reached node is hidden as invalid0",
+          "skipped_cells_or_queries": 0,
+          "fallbacks": 0,
+          "GT_reads": 0,
+          "solver_calls": 0,
+          "K_guard_repeats": 0,
+          "old_fourQ_tensor_recovery_runs": 0,
+          "clock_or_budget_resets": 0,
+          "cost_and_memory_measurement_owner": "Caller driver, including helper setup and checks",
+          "claim": "Constitutive/recovery proxy, not original nodal stress GT or source signed-scalar exporter"
+        },
+        "read_receipt": {
+          "displacement_target_reads": 0,
+          "source_canonical_stress_reads": 0,
+          "source_canonical_strain_reads": 0,
+          "source_canonical_CSV_reads": 0,
+          "external_learned_weight_reads": 0,
+          "new_physical_solves": 0,
+          "K_applications": 0,
+          "old_K_guard_repeats": 0,
+          "old_final_reads": 0,
+          "sealed_new_test_reads": 0,
+          "DEV_dia_reads": 0,
+          "DEV_reads_before_prediction_barrier": 0,
+          "DEV_scaler_fits": 0,
+          "source_formula_or_sign_trials": 0,
+          "physical_U_reads": 1,
+          "physical_U_byte_hash_reads": 2,
+          "input_cache_reads": 1,
+          "input_member_reads": 5,
+          "operator_weight_array_reads": 1,
+          "old_tensor_array_reads": 1,
+          "valid_array_reads": 1,
+          "new_nodal_tensor_recoveries": 1,
+          "TRAIN_cached_S_reads": 0,
+          "DEV_cached_S_reads": 0,
+          "GT_reads": 0,
+          "tensor_scaler_fits": 0,
+          "training_updates": 0,
+          "optimizer_updates": 0,
+          "own_checkpoint_reads": 0,
+          "own_checkpoint_writes": 0,
+          "own_prediction_array_reads": 0,
+          "original_U_byte_copies": 1
+        },
+        "exact_original_U_byte_identity": true,
+        "source_U": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy",
+          "bytes": 4616600,
+          "mtime_ns": 1791580757923400300,
+          "shape": [
+            192353,
+            3
+          ],
+          "dtype": "torch.float64",
+          "file_sha256": "5081a9667a3107df6508a60f03a173e008e30ca382ac898f31af22ce720fa85b"
+        },
+        "old_node_GT_U_metric_recomputed": false
+      },
+      "original_U_byte_identity_preserved": true
+    },
+    "102_249/ver": {
+      "group": "DEV",
+      "status": "completed",
+      "node_count": 211173,
+      "input_manifest": {
+        "config": {
+          "contract_sha256": "47011ec6d1fd9411ba02180d4ae1cde24a7eaaff93874a3efc4a6dfebc2e68f6",
+          "key": "102_249/ver",
+          "science": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
+        },
+        "status": "completed",
+        "key": "102_249/ver",
+        "node_count": 211173,
+        "cell_count": 131480,
+        "arrays": {
+          "fourQ_cellmean": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/102_249_ver/fourQ_sigma_MPa.npy",
+            "shape": [
+              211173,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 10136432,
+            "file_sha256": "9936ad8e0dad109f46768e21e95f9b64cd4152a8da344ae040c923ebf73d67f9",
+            "values_sha256": "839e0e5241e2cc63f03584f015dda5fcd4ca5b6a8d2d1d953221b3a5dc2715aa"
+          },
+          "element_node": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/102_249_ver/node_sigma_MPa.npy",
+            "shape": [
+              211173,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 10136432,
+            "file_sha256": "b0e6f5cd1278250ea7ea1ceef5743318540ad44829afa607add6068bf95cdca0",
+            "values_sha256": "45840f8343b91f2418737e06f7101da7eef59498d995dc2c3717a8beadfb3e73"
+          },
+          "valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/102_249_ver/valid.npy",
+            "shape": [
+              211173
+            ],
+            "dtype": "bool",
+            "bytes": 211301,
+            "file_sha256": "6b8ae739cbe56bb7c7e8a5c9307a19a57c5640aff2096eaf29dc00fb575bea54",
+            "values_sha256": "ab097e179157c97851ee149218e7baa913b76ae846d2eab05aba80899703bef3"
+          },
+          "original_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/102_249_ver/physical_u_mm.npy",
+            "bytes": 5068280,
+            "mtime_ns": 1791580868309836200,
+            "shape": [
+              211173,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "8140c1cbf528f1f2db03c64c2baa90b352767471f9ceda92eed365d3f387356d"
+          }
+        },
+        "costs": {
+          "cumulative_nodal_case_seconds": 0.5475934060000043,
+          "active": false,
+          "observed_unix_seconds": 1791593971.732123,
+          "attempts": 1,
+          "new_native_tensor_recovery_seconds": 0.07831471299999748,
+          "baseline_fourQ_cache_IO_persist_seconds": 0.11285330399999793,
+          "actual_input_recovery_persistence_seconds": 0.43474010200000635,
+          "new_recovery_is_cached_actual": true,
+          "fresh_joint_cold_measurement": false
+        },
+        "diagnostics": {
+          "passed": true,
+          "scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8",
+          "representation": "element_node",
+          "all_cells": 131480,
+          "native_queries_per_cell": 10,
+          "all_native_element_node_queries": 1314800,
+          "checked_cells": 131480,
+          "checked_chunks": 17,
+          "cell_chunk": 8192,
+          "node_count": 211173,
+          "valid_node_count": 211173,
+          "invalid_node_count": 0,
+          "coverage_exactly_matches_old_valid": true,
+          "all10_J_finite_and_strictly_positive": true,
+          "all10_solve_ex_info_zero": true,
+          "minimum_native_detJ_mm3": 0.0020027821523842726,
+          "minimum_positive_incident_weight_mm3": 0.00027795393718724556,
+          "gradient_partition_relative_error": 5.88273753568106e-16,
+          "physical_affine_mapping_relative_error": 1.3960871289311649e-13,
+          "tensor_symmetry_relative_error": 0.0,
+          "shape_cardinality_absolute_error": 0.0,
+          "shape_partition_absolute_error": 0.0,
+          "gradient_identity_relative_tolerance": 1e-09,
+          "tensor_symmetry_relative_tolerance": 1e-12,
+          "sigma_channels": [
+            "xx",
+            "yy",
+            "zz",
+            "xy",
+            "xz",
+            "yz"
+          ],
+          "sigma_units": "MPa",
+          "X_U_units": "mm",
+          "gradient_units": "dimensionless",
+          "positive_weight": "sum accepted4Q physical weights /10; one weight per incident native cellnode",
+          "invalid_nodes": "Zero tensor slots with explicit valid0; no failed reached node is hidden as invalid0",
+          "skipped_cells_or_queries": 0,
+          "fallbacks": 0,
+          "GT_reads": 0,
+          "solver_calls": 0,
+          "K_guard_repeats": 0,
+          "old_fourQ_tensor_recovery_runs": 0,
+          "clock_or_budget_resets": 0,
+          "cost_and_memory_measurement_owner": "Caller driver, including helper setup and checks",
+          "claim": "Constitutive/recovery proxy, not original nodal stress GT or source signed-scalar exporter"
+        },
+        "read_receipt": {
+          "displacement_target_reads": 0,
+          "source_canonical_stress_reads": 0,
+          "source_canonical_strain_reads": 0,
+          "source_canonical_CSV_reads": 0,
+          "external_learned_weight_reads": 0,
+          "new_physical_solves": 0,
+          "K_applications": 0,
+          "old_K_guard_repeats": 0,
+          "old_final_reads": 0,
+          "sealed_new_test_reads": 0,
+          "DEV_dia_reads": 0,
+          "DEV_reads_before_prediction_barrier": 0,
+          "DEV_scaler_fits": 0,
+          "source_formula_or_sign_trials": 0,
+          "physical_U_reads": 1,
+          "physical_U_byte_hash_reads": 2,
+          "input_cache_reads": 1,
+          "input_member_reads": 5,
+          "operator_weight_array_reads": 1,
+          "old_tensor_array_reads": 1,
+          "valid_array_reads": 1,
+          "new_nodal_tensor_recoveries": 1,
+          "TRAIN_cached_S_reads": 0,
+          "DEV_cached_S_reads": 0,
+          "GT_reads": 0,
+          "tensor_scaler_fits": 0,
+          "training_updates": 0,
+          "optimizer_updates": 0,
+          "own_checkpoint_reads": 0,
+          "own_checkpoint_writes": 0,
+          "own_prediction_array_reads": 0,
+          "original_U_byte_copies": 1
+        },
+        "exact_original_U_byte_identity": true,
+        "source_U": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy",
+          "bytes": 5068280,
+          "mtime_ns": 1791580868309836200,
+          "shape": [
+            211173,
+            3
+          ],
+          "dtype": "torch.float64",
+          "file_sha256": "8140c1cbf528f1f2db03c64c2baa90b352767471f9ceda92eed365d3f387356d"
+        },
+        "old_node_GT_U_metric_recomputed": false
+      },
+      "original_U_byte_identity_preserved": true
+    },
+    "102_38/ver": {
+      "group": "DEV",
+      "status": "completed",
+      "node_count": 197514,
+      "input_manifest": {
+        "config": {
+          "contract_sha256": "47011ec6d1fd9411ba02180d4ae1cde24a7eaaff93874a3efc4a6dfebc2e68f6",
+          "key": "102_38/ver",
+          "science": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
+        },
+        "status": "completed",
+        "key": "102_38/ver",
+        "node_count": 197514,
+        "cell_count": 122953,
+        "arrays": {
+          "fourQ_cellmean": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/102_38_ver/fourQ_sigma_MPa.npy",
+            "shape": [
+              197514,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 9480800,
+            "file_sha256": "b71af57cf2bf9027fa84a90dedc373a0d76356d935b19d0aaa5683efb40351c4",
+            "values_sha256": "729c22f87982859871846306519bfc7ab7ba89ba45fb7d4f0c0b0ff374f1c5b4"
+          },
+          "element_node": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/102_38_ver/node_sigma_MPa.npy",
+            "shape": [
+              197514,
+              6
+            ],
+            "dtype": "float64",
+            "bytes": 9480800,
+            "file_sha256": "9afea8ae47c070ce77d3e5a955916aca022f4f3967e94a7ed2945f6ee92da256",
+            "values_sha256": "a8ec20d008a3108453b5888a2b60f2fb52d32e263e6a0860d2aa4c93886183be"
+          },
+          "valid": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/102_38_ver/valid.npy",
+            "shape": [
+              197514
+            ],
+            "dtype": "bool",
+            "bytes": 197642,
+            "file_sha256": "371b8c23106e6c3f0ba52d8f6b555ae28c65c59311e94a384848cc661b08fe7a",
+            "values_sha256": "ee00d5438d3fa4c5641ddd5cfa318375bb9a5ec9db5ab0b6539b413da76f8253"
+          },
+          "original_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/input_cache/102_38_ver/physical_u_mm.npy",
+            "bytes": 4740464,
+            "mtime_ns": 1791580968263212700,
+            "shape": [
+              197514,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c"
+          }
+        },
+        "costs": {
+          "cumulative_nodal_case_seconds": 0.4791608760000088,
+          "active": false,
+          "observed_unix_seconds": 1791593972.2373512,
+          "attempts": 1,
+          "new_native_tensor_recovery_seconds": 0.07100014499999929,
+          "baseline_fourQ_cache_IO_persist_seconds": 0.0868098309999823,
+          "actual_input_recovery_persistence_seconds": 0.3923510450000265,
+          "new_recovery_is_cached_actual": true,
+          "fresh_joint_cold_measurement": false
+        },
+        "diagnostics": {
+          "passed": true,
+          "scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8",
+          "representation": "element_node",
+          "all_cells": 122953,
+          "native_queries_per_cell": 10,
+          "all_native_element_node_queries": 1229530,
+          "checked_cells": 122953,
+          "checked_chunks": 16,
+          "cell_chunk": 8192,
+          "node_count": 197514,
+          "valid_node_count": 197514,
+          "invalid_node_count": 0,
+          "coverage_exactly_matches_old_valid": true,
+          "all10_J_finite_and_strictly_positive": true,
+          "all10_solve_ex_info_zero": true,
+          "minimum_native_detJ_mm3": 0.0023178435787456486,
+          "minimum_positive_incident_weight_mm3": 0.0010411668925133467,
+          "gradient_partition_relative_error": 7.948637490413616e-16,
+          "physical_affine_mapping_relative_error": 8.513009008076585e-14,
+          "tensor_symmetry_relative_error": 0.0,
+          "shape_cardinality_absolute_error": 0.0,
+          "shape_partition_absolute_error": 0.0,
+          "gradient_identity_relative_tolerance": 1e-09,
+          "tensor_symmetry_relative_tolerance": 1e-12,
+          "sigma_channels": [
+            "xx",
+            "yy",
+            "zz",
+            "xy",
+            "xz",
+            "yz"
+          ],
+          "sigma_units": "MPa",
+          "X_U_units": "mm",
+          "gradient_units": "dimensionless",
+          "positive_weight": "sum accepted4Q physical weights /10; one weight per incident native cellnode",
+          "invalid_nodes": "Zero tensor slots with explicit valid0; no failed reached node is hidden as invalid0",
+          "skipped_cells_or_queries": 0,
+          "fallbacks": 0,
+          "GT_reads": 0,
+          "solver_calls": 0,
+          "K_guard_repeats": 0,
+          "old_fourQ_tensor_recovery_runs": 0,
+          "clock_or_budget_resets": 0,
+          "cost_and_memory_measurement_owner": "Caller driver, including helper setup and checks",
+          "claim": "Constitutive/recovery proxy, not original nodal stress GT or source signed-scalar exporter"
+        },
+        "read_receipt": {
+          "displacement_target_reads": 0,
+          "source_canonical_stress_reads": 0,
+          "source_canonical_strain_reads": 0,
+          "source_canonical_CSV_reads": 0,
+          "external_learned_weight_reads": 0,
+          "new_physical_solves": 0,
+          "K_applications": 0,
+          "old_K_guard_repeats": 0,
+          "old_final_reads": 0,
+          "sealed_new_test_reads": 0,
+          "DEV_dia_reads": 0,
+          "DEV_reads_before_prediction_barrier": 0,
+          "DEV_scaler_fits": 0,
+          "source_formula_or_sign_trials": 0,
+          "physical_U_reads": 1,
+          "physical_U_byte_hash_reads": 2,
+          "input_cache_reads": 1,
+          "input_member_reads": 5,
+          "operator_weight_array_reads": 1,
+          "old_tensor_array_reads": 1,
+          "valid_array_reads": 1,
+          "new_nodal_tensor_recoveries": 1,
+          "TRAIN_cached_S_reads": 0,
+          "DEV_cached_S_reads": 0,
+          "GT_reads": 0,
+          "tensor_scaler_fits": 0,
+          "training_updates": 0,
+          "optimizer_updates": 0,
+          "own_checkpoint_reads": 0,
+          "own_checkpoint_writes": 0,
+          "own_prediction_array_reads": 0,
+          "original_U_byte_copies": 1
+        },
+        "exact_original_U_byte_identity": true,
+        "source_U": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy",
+          "bytes": 4740464,
+          "mtime_ns": 1791580968263212700,
+          "shape": [
+            197514,
+            3
+          ],
+          "dtype": "torch.float64",
+          "file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c"
+        },
+        "old_node_GT_U_metric_recomputed": false
+      },
+      "original_U_byte_identity_preserved": true
+    }
+  },
+  "arms": {
+    "fourQ_cellmean": {
+      "config": {
+        "contract_sha256": "47011ec6d1fd9411ba02180d4ae1cde24a7eaaff93874a3efc4a6dfebc2e68f6",
+        "arm": "fourQ_cellmean",
+        "initial_parameters_sha256": "04cc678f83283f5558d52310eba4dd52329120737d06980c222b9685ee8f967a",
+        "scaler_sha256": "3c43b6c167df56c15c070da5a883dcd485382b0b144a1756540091a73af3bbbf",
+        "case_order_sha256": "93edb11b4a1e65e8cb0c32f6efc156650797b203ab2a8272f51855dbb4611338"
+      },
+      "status": "completed",
+      "completed120": true,
+      "endpoint_step": 120,
+      "initial_parameters_sha256": "04cc678f83283f5558d52310eba4dd52329120737d06980c222b9685ee8f967a",
+      "parameter_count": 4737,
+      "case_exposure_counts": {
+        "101_428/ver": 40,
+        "101_56/ver": 40,
+        "101_78/ver": 40
+      },
+      "case_order_sha256": "93edb11b4a1e65e8cb0c32f6efc156650797b203ab2a8272f51855dbb4611338",
+      "first_actual_gradient_check": {
+        "passed": true,
+        "full_case_loss_finite": true,
+        "all_active_parameter_gradients_present_finite": true,
+        "total_gradient_norm": 1.4101310875001407,
+        "actual_first_TRAIN_key": "101_78/ver",
+        "standalone_preflight": false
+      },
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/fourQ_cellmean/last.pt",
+        "bytes": 84693,
+        "file_sha256": "99a7c7d8a6ac5073c7a413cb53abda487c7b4637598eb7eac3d47f5070cd08e4",
+        "step": 120,
+        "config_sha256": "531654f7b73e24970e327a8d5c1a473af5b36523ee3fa3be13016558867c88bb",
+        "science": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
+      },
+      "costs": {
+        "cumulative_training_seconds": 3.0148154770000133,
+        "training_oneoff_separate": true,
+        "actual_attempted_updates": 120,
+        "actual_optimizer_updates": 120
+      },
+      "history": [
+        {
+          "step": 1,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 1.2766134440898895
+        },
+        {
+          "step": 2,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.8848640695214272
+        },
+        {
+          "step": 3,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.8543359823524952
+        },
+        {
+          "step": 4,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.8212534412741661
+        },
+        {
+          "step": 5,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.7867752704769373
+        },
+        {
+          "step": 6,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 1.0613853186368942
+        },
+        {
+          "step": 7,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 1.0225720554590225
+        },
+        {
+          "step": 8,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.7068383768200874
+        },
+        {
+          "step": 9,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.6640250226482749
+        },
+        {
+          "step": 10,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.6359915835782886
+        },
+        {
+          "step": 11,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.6307410411536694
+        },
+        {
+          "step": 12,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.8493820875883102
+        },
+        {
+          "step": 13,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.5578979225829244
+        },
+        {
+          "step": 14,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.562325231730938
+        },
+        {
+          "step": 15,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.7610364258289337
+        },
+        {
+          "step": 16,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.5207225680351257
+        },
+        {
+          "step": 17,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.7078711837530136
+        },
+        {
+          "step": 18,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.44750520354136825
+        },
+        {
+          "step": 19,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.46378176286816597
+        },
+        {
+          "step": 20,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.4103543320670724
+        },
+        {
+          "step": 21,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.6151978224515915
+        },
+        {
+          "step": 22,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.5943076238036156
+        },
+        {
+          "step": 23,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.3985263127833605
+        },
+        {
+          "step": 24,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.3467675056308508
+        },
+        {
+          "step": 25,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.5354646220803261
+        },
+        {
+          "step": 26,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.3560375086963177
+        },
+        {
+          "step": 27,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.3074653821531683
+        },
+        {
+          "step": 28,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.4828142002224922
+        },
+        {
+          "step": 29,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.31926344707608223
+        },
+        {
+          "step": 30,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.2746191720943898
+        },
+        {
+          "step": 31,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.26505110529251397
+        },
+        {
+          "step": 32,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.28826502710580826
+        },
+        {
+          "step": 33,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.40971826016902924
+        },
+        {
+          "step": 34,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.3968582861125469
+        },
+        {
+          "step": 35,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.26163106225430965
+        },
+        {
+          "step": 36,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.22512940899468958
+        },
+        {
+          "step": 37,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.21842527785338461
+        },
+        {
+          "step": 38,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.3509389776736498
+        },
+        {
+          "step": 39,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.2317259470000863
+        },
+        {
+          "step": 40,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.20017308788374066
+        },
+        {
+          "step": 41,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.32277658581733704
+        },
+        {
+          "step": 42,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.21328383032232523
+        },
+        {
+          "step": 43,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.20796746108680964
+        },
+        {
+          "step": 44,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.18106903322041035
+        },
+        {
+          "step": 45,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.29313380271196365
+        },
+        {
+          "step": 46,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.17392633249983191
+        },
+        {
+          "step": 47,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.19098427798599005
+        },
+        {
+          "step": 48,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2762470319867134
+        },
+        {
+          "step": 49,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2710883729159832
+        },
+        {
+          "step": 50,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.18130863644182682
+        },
+        {
+          "step": 51,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1619542082771659
+        },
+        {
+          "step": 52,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1603303918382153
+        },
+        {
+          "step": 53,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2539252210408449
+        },
+        {
+          "step": 54,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.17177020013332367
+        },
+        {
+          "step": 55,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2473536841571331
+        },
+        {
+          "step": 56,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.16803027410060167
+        },
+        {
+          "step": 57,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.15450360835529864
+        },
+        {
+          "step": 58,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.23902184888720512
+        },
+        {
+          "step": 59,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.16338484454900026
+        },
+        {
+          "step": 60,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.15192537289112806
+        },
+        {
+          "step": 61,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1510480319848284
+        },
+        {
+          "step": 62,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.23065494373440742
+        },
+        {
+          "step": 63,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.1587684927508235
+        },
+        {
+          "step": 64,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.22726169414818287
+        },
+        {
+          "step": 65,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.14817651454359293
+        },
+        {
+          "step": 66,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.15592069923877716
+        },
+        {
+          "step": 67,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1470601896289736
+        },
+        {
+          "step": 68,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2211600374430418
+        },
+        {
+          "step": 69,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.15341720264405012
+        },
+        {
+          "step": 70,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2183600626885891
+        },
+        {
+          "step": 71,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.15177960321307182
+        },
+        {
+          "step": 72,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.14488345512654632
+        },
+        {
+          "step": 73,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1444171613547951
+        },
+        {
+          "step": 74,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.1496738912537694
+        },
+        {
+          "step": 75,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.21257800050079823
+        },
+        {
+          "step": 76,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.14268453465774655
+        },
+        {
+          "step": 77,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.21062911301851273
+        },
+        {
+          "step": 78,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14724578894674778
+        },
+        {
+          "step": 79,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1409603141946718
+        },
+        {
+          "step": 80,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2078681569546461
+        },
+        {
+          "step": 81,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14558787737041712
+        },
+        {
+          "step": 82,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14501013699918985
+        },
+        {
+          "step": 83,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13897932949475944
+        },
+        {
+          "step": 84,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.204450823366642
+        },
+        {
+          "step": 85,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14333674684166908
+        },
+        {
+          "step": 86,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13764762284699827
+        },
+        {
+          "step": 87,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.20213252864778042
+        },
+        {
+          "step": 88,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14180897362530231
+        },
+        {
+          "step": 89,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.20060568675398827
+        },
+        {
+          "step": 90,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1360240145586431
+        },
+        {
+          "step": 91,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14038096088916063
+        },
+        {
+          "step": 92,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13515750679653138
+        },
+        {
+          "step": 93,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.19780204258859158
+        },
+        {
+          "step": 94,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13420767278876156
+        },
+        {
+          "step": 95,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.1387012731283903
+        },
+        {
+          "step": 96,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.19597930647432804
+        },
+        {
+          "step": 97,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.1952883005142212
+        },
+        {
+          "step": 98,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13257195916958153
+        },
+        {
+          "step": 99,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13704810291528702
+        },
+        {
+          "step": 100,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.1931668035686016
+        },
+        {
+          "step": 101,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13156015996355563
+        },
+        {
+          "step": 102,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13580336142331362
+        },
+        {
+          "step": 103,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.1912085898220539
+        },
+        {
+          "step": 104,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13498599454760551
+        },
+        {
+          "step": 105,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13024650397710502
+        },
+        {
+          "step": 106,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.12984346912708133
+        },
+        {
+          "step": 107,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13378388807177544
+        },
+        {
+          "step": 108,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.18845645431429148
+        },
+        {
+          "step": 109,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.12850872543640435
+        },
+        {
+          "step": 110,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13265936449170113
+        },
+        {
+          "step": 111,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.18702180963009596
+        },
+        {
+          "step": 112,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1273556399391964
+        },
+        {
+          "step": 113,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13155510276556015
+        },
+        {
+          "step": 114,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.18545087985694408
+        },
+        {
+          "step": 115,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1263743449235335
+        },
+        {
+          "step": 116,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13043444510549307
+        },
+        {
+          "step": 117,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.18376117292791605
+        },
+        {
+          "step": 118,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.125510593643412
+        },
+        {
+          "step": 119,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.12933987844735384
+        },
+        {
+          "step": 120,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.1820630831643939
+        }
+      ],
+      "read_receipt": {
+        "displacement_target_reads": 0,
+        "source_canonical_stress_reads": 0,
+        "source_canonical_strain_reads": 0,
+        "source_canonical_CSV_reads": 0,
+        "external_learned_weight_reads": 0,
+        "new_physical_solves": 0,
+        "K_applications": 0,
+        "old_K_guard_repeats": 0,
+        "old_final_reads": 0,
+        "sealed_new_test_reads": 0,
+        "DEV_dia_reads": 0,
+        "DEV_reads_before_prediction_barrier": 0,
+        "DEV_scaler_fits": 0,
+        "source_formula_or_sign_trials": 0,
+        "physical_U_reads": 0,
+        "physical_U_byte_hash_reads": 0,
+        "input_cache_reads": 0,
+        "input_member_reads": 3,
+        "operator_weight_array_reads": 0,
+        "old_tensor_array_reads": 0,
+        "valid_array_reads": 3,
+        "new_nodal_tensor_recoveries": 0,
+        "TRAIN_cached_S_reads": 0,
+        "DEV_cached_S_reads": 0,
+        "GT_reads": 0,
+        "tensor_scaler_fits": 0,
+        "training_updates": 120,
+        "optimizer_updates": 120,
+        "own_checkpoint_reads": 0,
+        "own_checkpoint_writes": 1,
+        "own_prediction_array_reads": 0,
+        "original_U_byte_copies": 0
+      },
+      "reason": null,
+      "validation": {
+        "per_case": {
+          "102_249/ver": {
+            "num_nodes": 211173,
+            "stress_relative_l2": 13.016517359335863,
+            "RMSE_MPa": 1297.215766170067,
+            "MAE_MPa": 40.03839173246288,
+            "max_abs_error_MPa": 353387.4325144769,
+            "zero_reference": false,
+            "reference_energy_MPa2": 2097361166.8565176,
+            "error_energy_MPa2": 355355323976.7529,
+            "hotspot_relative_l2": 30.225064494373083,
+            "hotspot_zero_reference": false,
+            "hotspot_nodes": 2112,
+            "hotspot_ties": "descending absolute GT signed stress, ascending original node row"
+          },
+          "102_38/ver": {
+            "num_nodes": 197514,
+            "stress_relative_l2": 0.9515764865693489,
+            "RMSE_MPa": 74.1995570628715,
+            "MAE_MPa": 18.30761874785014,
+            "max_abs_error_MPa": 12093.285256601459,
+            "zero_reference": false,
+            "reference_energy_MPa2": 1200917312.306252,
+            "error_energy_MPa2": 1087427996.0342057,
+            "hotspot_relative_l2": 1.9475097338097762,
+            "hotspot_zero_reference": false,
+            "hotspot_nodes": 1976,
+            "hotspot_ties": "descending absolute GT signed stress, ascending original node row"
+          }
+        },
+        "denominator": 2,
+        "metrics_available_cases": 2,
+        "stress_relative_l2_mean": 6.984046922952606,
+        "stress_relative_l2_worst": 13.016517359335863,
+        "hotspot_relative_l2_mean": 16.08628711409143,
+        "hotspot_relative_l2_worst": 30.225064494373083,
+        "RMSE_MPa_mean": 685.7076616164692,
+        "RMSE_MPa_worst": 1297.215766170067,
+        "MAE_MPa_mean": 29.173005240156506,
+        "MAE_MPa_worst": 40.03839173246288,
+        "max_abs_error_MPa_mean": 182740.35888553917,
+        "max_abs_error_MPa_worst": 353387.4325144769
+      },
+      "predictions": {
+        "102_249/ver": {
+          "key": "102_249/ver",
+          "arm": "fourQ_cellmean",
+          "endpoint_step": 120,
+          "config_sha256": "531654f7b73e24970e327a8d5c1a473af5b36523ee3fa3be13016558867c88bb",
+          "allN_prediction_persisted": true,
+          "node_count": 211173,
+          "prediction": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/fourQ_cellmean/predictions/102_249_ver/signed_S_MPa.npy",
+            "shape": [
+              211173
+            ],
+            "dtype": "float64",
+            "bytes": 1689512,
+            "file_sha256": "45e2c0ca58103aa3741bc56de2bfd141db57f8d113fc48f5379cfaaa5182e269",
+            "values_sha256": "8ca88201f1a3bfb8da2c7c43d4644b65763bcf6c05dbf59ed39443c45d427069"
+          },
+          "original_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/fourQ_cellmean/predictions/102_249_ver/physical_u_mm.npy",
+            "bytes": 5068280,
+            "mtime_ns": 1791580868309836200,
+            "shape": [
+              211173,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "8140c1cbf528f1f2db03c64c2baa90b352767471f9ceda92eed365d3f387356d"
+          },
+          "original_U_exact_byte_identity": true,
+          "new_GT_U_metric_computed": false,
+          "costs": {
+            "components": {
+              "original_GT_free_physical_cold_seconds": 101.030087958,
+              "representation_recovery_input_persist_seconds": 0.4361628130000099,
+              "actual_head_input_H2D_seconds": 0.06407909700001824,
+              "model_load_seconds": 0.005233368999995491,
+              "fullN_inference_decode_Ucopy_prediction_persist_seconds": 0.08801166599999988
+            },
+            "campaign_accounted_cold_seconds": 101.62357490300002,
+            "cached_neural_request_seconds": 0.15732840000001147,
+            "fresh_joint_cold_measurement": false,
+            "training_and_scaler_oneoff_excluded": true,
+            "new_coarse_solver_cost_spliced": false
+          },
+          "read_receipt": {
+            "displacement_target_reads": 0,
+            "source_canonical_stress_reads": 0,
+            "source_canonical_strain_reads": 0,
+            "source_canonical_CSV_reads": 0,
+            "external_learned_weight_reads": 0,
+            "new_physical_solves": 0,
+            "K_applications": 0,
+            "old_K_guard_repeats": 0,
+            "old_final_reads": 0,
+            "sealed_new_test_reads": 0,
+            "DEV_dia_reads": 0,
+            "DEV_reads_before_prediction_barrier": 0,
+            "DEV_scaler_fits": 0,
+            "source_formula_or_sign_trials": 0,
+            "physical_U_reads": 0,
+            "physical_U_byte_hash_reads": 1,
+            "input_cache_reads": 0,
+            "input_member_reads": 1,
+            "operator_weight_array_reads": 0,
+            "old_tensor_array_reads": 0,
+            "valid_array_reads": 1,
+            "new_nodal_tensor_recoveries": 0,
+            "TRAIN_cached_S_reads": 0,
+            "DEV_cached_S_reads": 0,
+            "GT_reads": 0,
+            "tensor_scaler_fits": 0,
+            "training_updates": 0,
+            "optimizer_updates": 0,
+            "own_checkpoint_reads": 0,
+            "own_checkpoint_writes": 0,
+            "own_prediction_array_reads": 0,
+            "original_U_byte_copies": 1
+          },
+          "signed_S_units": "MPa",
+          "input_interface": "full_FE_tensor_proxy"
+        },
+        "102_38/ver": {
+          "key": "102_38/ver",
+          "arm": "fourQ_cellmean",
+          "endpoint_step": 120,
+          "config_sha256": "531654f7b73e24970e327a8d5c1a473af5b36523ee3fa3be13016558867c88bb",
+          "allN_prediction_persisted": true,
+          "node_count": 197514,
+          "prediction": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/fourQ_cellmean/predictions/102_38_ver/signed_S_MPa.npy",
+            "shape": [
+              197514
+            ],
+            "dtype": "float64",
+            "bytes": 1580240,
+            "file_sha256": "3e0706cc26b89a3c7aa7dfcf4ce50253e6cae3a265cf8064407d9d2e8c5114e3",
+            "values_sha256": "735e3c04d735b8b1723a087b40ffaf34e29a7e4a1ee48e81e1b901d56cde2cc5"
+          },
+          "original_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/fourQ_cellmean/predictions/102_38_ver/physical_u_mm.npy",
+            "bytes": 4740464,
+            "mtime_ns": 1791580968263212700,
+            "shape": [
+              197514,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c"
+          },
+          "original_U_exact_byte_identity": true,
+          "new_GT_U_metric_computed": false,
+          "costs": {
+            "components": {
+              "original_GT_free_physical_cold_seconds": 91.455433389,
+              "representation_recovery_input_persist_seconds": 0.43050455200000215,
+              "actual_head_input_H2D_seconds": 0.05887358900000095,
+              "model_load_seconds": 0.005233368999995491,
+              "fullN_inference_decode_Ucopy_prediction_persist_seconds": 0.08410023800001909
+            },
+            "campaign_accounted_cold_seconds": 92.03414513700002,
+            "cached_neural_request_seconds": 0.14821245100000624,
+            "fresh_joint_cold_measurement": false,
+            "training_and_scaler_oneoff_excluded": true,
+            "new_coarse_solver_cost_spliced": false
+          },
+          "read_receipt": {
+            "displacement_target_reads": 0,
+            "source_canonical_stress_reads": 0,
+            "source_canonical_strain_reads": 0,
+            "source_canonical_CSV_reads": 0,
+            "external_learned_weight_reads": 0,
+            "new_physical_solves": 0,
+            "K_applications": 0,
+            "old_K_guard_repeats": 0,
+            "old_final_reads": 0,
+            "sealed_new_test_reads": 0,
+            "DEV_dia_reads": 0,
+            "DEV_reads_before_prediction_barrier": 0,
+            "DEV_scaler_fits": 0,
+            "source_formula_or_sign_trials": 0,
+            "physical_U_reads": 0,
+            "physical_U_byte_hash_reads": 1,
+            "input_cache_reads": 0,
+            "input_member_reads": 1,
+            "operator_weight_array_reads": 0,
+            "old_tensor_array_reads": 0,
+            "valid_array_reads": 1,
+            "new_nodal_tensor_recoveries": 0,
+            "TRAIN_cached_S_reads": 0,
+            "DEV_cached_S_reads": 0,
+            "GT_reads": 0,
+            "tensor_scaler_fits": 0,
+            "training_updates": 0,
+            "optimizer_updates": 0,
+            "own_checkpoint_reads": 0,
+            "own_checkpoint_writes": 0,
+            "own_prediction_array_reads": 0,
+            "original_U_byte_copies": 1
+          },
+          "signed_S_units": "MPa",
+          "input_interface": "full_FE_tensor_proxy"
+        }
+      }
+    },
+    "element_node": {
+      "config": {
+        "contract_sha256": "47011ec6d1fd9411ba02180d4ae1cde24a7eaaff93874a3efc4a6dfebc2e68f6",
+        "arm": "element_node",
+        "initial_parameters_sha256": "04cc678f83283f5558d52310eba4dd52329120737d06980c222b9685ee8f967a",
+        "scaler_sha256": "3c43b6c167df56c15c070da5a883dcd485382b0b144a1756540091a73af3bbbf",
+        "case_order_sha256": "93edb11b4a1e65e8cb0c32f6efc156650797b203ab2a8272f51855dbb4611338"
+      },
+      "status": "completed",
+      "completed120": true,
+      "endpoint_step": 120,
+      "initial_parameters_sha256": "04cc678f83283f5558d52310eba4dd52329120737d06980c222b9685ee8f967a",
+      "parameter_count": 4737,
+      "case_exposure_counts": {
+        "101_428/ver": 40,
+        "101_56/ver": 40,
+        "101_78/ver": 40
+      },
+      "case_order_sha256": "93edb11b4a1e65e8cb0c32f6efc156650797b203ab2a8272f51855dbb4611338",
+      "first_actual_gradient_check": {
+        "passed": true,
+        "full_case_loss_finite": true,
+        "all_active_parameter_gradients_present_finite": true,
+        "total_gradient_norm": 1.3804924738701527,
+        "actual_first_TRAIN_key": "101_78/ver",
+        "standalone_preflight": false
+      },
+      "checkpoint": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/element_node/last.pt",
+        "bytes": 84693,
+        "file_sha256": "93fc619b53fba5e7a848665bed46ff66794a479aa3ea0af5e4dd39e79ebb2514",
+        "step": 120,
+        "config_sha256": "160e82ce7ea16d4e0afdee397255536405912ed7fb7cbc626da5aceb3c83604f",
+        "science": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
+      },
+      "costs": {
+        "cumulative_training_seconds": 2.0009098399999914,
+        "training_oneoff_separate": true,
+        "actual_attempted_updates": 120,
+        "actual_optimizer_updates": 120
+      },
+      "history": [
+        {
+          "step": 1,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 1.2754338830709457
+        },
+        {
+          "step": 2,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.8852100819349289
+        },
+        {
+          "step": 3,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.8547356640920043
+        },
+        {
+          "step": 4,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.8224805891513824
+        },
+        {
+          "step": 5,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.7887349091470242
+        },
+        {
+          "step": 6,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 1.0650593489408493
+        },
+        {
+          "step": 7,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 1.0274267047643661
+        },
+        {
+          "step": 8,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.7104292586445808
+        },
+        {
+          "step": 9,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.6692620161920786
+        },
+        {
+          "step": 10,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.6420889785513282
+        },
+        {
+          "step": 11,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.6366288475692272
+        },
+        {
+          "step": 12,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.8613400906324387
+        },
+        {
+          "step": 13,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.5666125826537609
+        },
+        {
+          "step": 14,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.5710632614791393
+        },
+        {
+          "step": 15,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.7782113030552864
+        },
+        {
+          "step": 16,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.5315710306167603
+        },
+        {
+          "step": 17,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.7286559566855431
+        },
+        {
+          "step": 18,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.4608155535534024
+        },
+        {
+          "step": 19,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.47793278843164444
+        },
+        {
+          "step": 20,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.4251646203920245
+        },
+        {
+          "step": 21,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.6424765214323997
+        },
+        {
+          "step": 22,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.6227935701608658
+        },
+        {
+          "step": 23,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.41591679863631725
+        },
+        {
+          "step": 24,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.3631385820917785
+        },
+        {
+          "step": 25,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.56614950299263
+        },
+        {
+          "step": 26,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.3744268901646137
+        },
+        {
+          "step": 27,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.323715147562325
+        },
+        {
+          "step": 28,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.514259148389101
+        },
+        {
+          "step": 29,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.33775159157812595
+        },
+        {
+          "step": 30,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.29000697238370776
+        },
+        {
+          "step": 31,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.27996777510270476
+        },
+        {
+          "step": 32,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.3062596581876278
+        },
+        {
+          "step": 33,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.4410812258720398
+        },
+        {
+          "step": 34,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.42810389399528503
+        },
+        {
+          "step": 35,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.2787448614835739
+        },
+        {
+          "step": 36,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.23709138832055032
+        },
+        {
+          "step": 37,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.22971673007123172
+        },
+        {
+          "step": 38,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.3816772773861885
+        },
+        {
+          "step": 39,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.24759996216744184
+        },
+        {
+          "step": 40,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.2097018649801612
+        },
+        {
+          "step": 41,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.35335555113852024
+        },
+        {
+          "step": 42,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.22859514318406582
+        },
+        {
+          "step": 43,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.22310206666588783
+        },
+        {
+          "step": 44,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.18905905820429325
+        },
+        {
+          "step": 45,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.32316710241138935
+        },
+        {
+          "step": 46,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.18127042485866696
+        },
+        {
+          "step": 47,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.20516234543174505
+        },
+        {
+          "step": 48,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.3050907887518406
+        },
+        {
+          "step": 49,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.29935254342854023
+        },
+        {
+          "step": 50,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.19442045874893665
+        },
+        {
+          "step": 51,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.16767316323239356
+        },
+        {
+          "step": 52,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.16573671123478562
+        },
+        {
+          "step": 53,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.27981905080378056
+        },
+        {
+          "step": 54,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.18361210636794567
+        },
+        {
+          "step": 55,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2721107769757509
+        },
+        {
+          "step": 56,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.17925482615828514
+        },
+        {
+          "step": 57,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.15813464240636677
+        },
+        {
+          "step": 58,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.26200864650309086
+        },
+        {
+          "step": 59,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.1737025724723935
+        },
+        {
+          "step": 60,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.15447467553894967
+        },
+        {
+          "step": 61,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1532625820254907
+        },
+        {
+          "step": 62,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.25145407393574715
+        },
+        {
+          "step": 63,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.167945833876729
+        },
+        {
+          "step": 64,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.24695632234215736
+        },
+        {
+          "step": 65,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.14924517995677888
+        },
+        {
+          "step": 66,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.164226857945323
+        },
+        {
+          "step": 67,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1476236068410799
+        },
+        {
+          "step": 68,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2385797593742609
+        },
+        {
+          "step": 69,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.16095829755067825
+        },
+        {
+          "step": 70,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.23469598218798637
+        },
+        {
+          "step": 71,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.1588674560189247
+        },
+        {
+          "step": 72,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.14438969839829952
+        },
+        {
+          "step": 73,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.14373408793471754
+        },
+        {
+          "step": 74,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.15611054096370935
+        },
+        {
+          "step": 75,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.22643602453172207
+        },
+        {
+          "step": 76,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.14142440154682845
+        },
+        {
+          "step": 77,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2236651163548231
+        },
+        {
+          "step": 78,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.15281115751713514
+        },
+        {
+          "step": 79,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13927920069545507
+        },
+        {
+          "step": 80,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.21972042508423328
+        },
+        {
+          "step": 81,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.1505240499973297
+        },
+        {
+          "step": 82,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14976499043405056
+        },
+        {
+          "step": 83,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13680822518654168
+        },
+        {
+          "step": 84,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.214762507006526
+        },
+        {
+          "step": 85,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14759200438857079
+        },
+        {
+          "step": 86,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1351243160897866
+        },
+        {
+          "step": 87,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2113681584596634
+        },
+        {
+          "step": 88,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14557455945760012
+        },
+        {
+          "step": 89,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.20914076082408428
+        },
+        {
+          "step": 90,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1330313452053815
+        },
+        {
+          "step": 91,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14365922939032316
+        },
+        {
+          "step": 92,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1318968392442912
+        },
+        {
+          "step": 93,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2050230149179697
+        },
+        {
+          "step": 94,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.13068682921584696
+        },
+        {
+          "step": 95,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.14130399096757174
+        },
+        {
+          "step": 96,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.2023257240653038
+        },
+        {
+          "step": 97,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.20130282826721668
+        },
+        {
+          "step": 98,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.12861303694080561
+        },
+        {
+          "step": 99,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13902115169912577
+        },
+        {
+          "step": 100,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.19811862520873547
+        },
+        {
+          "step": 101,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.12734943896066397
+        },
+        {
+          "step": 102,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13738187868148088
+        },
+        {
+          "step": 103,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.1952469488605857
+        },
+        {
+          "step": 104,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.1362962294369936
+        },
+        {
+          "step": 105,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.12560525082517415
+        },
+        {
+          "step": 106,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.1250712771434337
+        },
+        {
+          "step": 107,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13466729037463665
+        },
+        {
+          "step": 108,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.19136789068579674
+        },
+        {
+          "step": 109,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.12341729644685984
+        },
+        {
+          "step": 110,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13314183056354523
+        },
+        {
+          "step": 111,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.18927828967571259
+        },
+        {
+          "step": 112,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.12203741655685008
+        },
+        {
+          "step": 113,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.13157459255307913
+        },
+        {
+          "step": 114,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.18684815429151058
+        },
+        {
+          "step": 115,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.12085698498412967
+        },
+        {
+          "step": 116,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.1300418060272932
+        },
+        {
+          "step": 117,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.18436670023947954
+        },
+        {
+          "step": 118,
+          "key": "101_428/ver",
+          "encoded_S_case_mean_MSE": 0.11973187618423253
+        },
+        {
+          "step": 119,
+          "key": "101_56/ver",
+          "encoded_S_case_mean_MSE": 0.1285668145865202
+        },
+        {
+          "step": 120,
+          "key": "101_78/ver",
+          "encoded_S_case_mean_MSE": 0.18198198452591896
+        }
+      ],
+      "read_receipt": {
+        "displacement_target_reads": 0,
+        "source_canonical_stress_reads": 0,
+        "source_canonical_strain_reads": 0,
+        "source_canonical_CSV_reads": 0,
+        "external_learned_weight_reads": 0,
+        "new_physical_solves": 0,
+        "K_applications": 0,
+        "old_K_guard_repeats": 0,
+        "old_final_reads": 0,
+        "sealed_new_test_reads": 0,
+        "DEV_dia_reads": 0,
+        "DEV_reads_before_prediction_barrier": 0,
+        "DEV_scaler_fits": 0,
+        "source_formula_or_sign_trials": 0,
+        "physical_U_reads": 0,
+        "physical_U_byte_hash_reads": 0,
+        "input_cache_reads": 0,
+        "input_member_reads": 3,
+        "operator_weight_array_reads": 0,
+        "old_tensor_array_reads": 0,
+        "valid_array_reads": 3,
+        "new_nodal_tensor_recoveries": 0,
+        "TRAIN_cached_S_reads": 0,
+        "DEV_cached_S_reads": 0,
+        "GT_reads": 0,
+        "tensor_scaler_fits": 0,
+        "training_updates": 120,
+        "optimizer_updates": 120,
+        "own_checkpoint_reads": 0,
+        "own_checkpoint_writes": 1,
+        "own_prediction_array_reads": 0,
+        "original_U_byte_copies": 0
+      },
+      "reason": null,
+      "validation": {
+        "per_case": {
+          "102_249/ver": {
+            "num_nodes": 211173,
+            "stress_relative_l2": 61.99767025427952,
+            "RMSE_MPa": 6178.638502101443,
+            "MAE_MPa": 68.98736587506153,
+            "max_abs_error_MPa": 1851305.8178285256,
+            "zero_reference": false,
+            "reference_energy_MPa2": 2097361166.8565176,
+            "error_energy_MPa2": 8061650433323.187,
+            "hotspot_relative_l2": 144.0185419553508,
+            "hotspot_zero_reference": false,
+            "hotspot_nodes": 2112,
+            "hotspot_ties": "descending absolute GT signed stress, ascending original node row"
+          },
+          "102_38/ver": {
+            "num_nodes": 197514,
+            "stress_relative_l2": 2.516301041366474,
+            "RMSE_MPa": 196.20957993546193,
+            "MAE_MPa": 18.584939261596965,
+            "max_abs_error_MPa": 37803.73447163071,
+            "zero_reference": false,
+            "reference_energy_MPa2": 1200917312.306252,
+            "error_energy_MPa2": 7603933328.333578,
+            "hotspot_relative_l2": 5.451790733570076,
+            "hotspot_zero_reference": false,
+            "hotspot_nodes": 1976,
+            "hotspot_ties": "descending absolute GT signed stress, ascending original node row"
+          }
+        },
+        "denominator": 2,
+        "metrics_available_cases": 2,
+        "stress_relative_l2_mean": 32.256985647822994,
+        "stress_relative_l2_worst": 61.99767025427952,
+        "hotspot_relative_l2_mean": 74.73516634446044,
+        "hotspot_relative_l2_worst": 144.0185419553508,
+        "RMSE_MPa_mean": 3187.4240410184525,
+        "RMSE_MPa_worst": 6178.638502101443,
+        "MAE_MPa_mean": 43.78615256832924,
+        "MAE_MPa_worst": 68.98736587506153,
+        "max_abs_error_MPa_mean": 944554.7761500782,
+        "max_abs_error_MPa_worst": 1851305.8178285256
+      },
+      "predictions": {
+        "102_249/ver": {
+          "key": "102_249/ver",
+          "arm": "element_node",
+          "endpoint_step": 120,
+          "config_sha256": "160e82ce7ea16d4e0afdee397255536405912ed7fb7cbc626da5aceb3c83604f",
+          "allN_prediction_persisted": true,
+          "node_count": 211173,
+          "prediction": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/element_node/predictions/102_249_ver/signed_S_MPa.npy",
+            "shape": [
+              211173
+            ],
+            "dtype": "float64",
+            "bytes": 1689512,
+            "file_sha256": "dd0e732154d6cdadd3adbaf97f6422a0f1063032c855a9892e7fce7d7e26f821",
+            "values_sha256": "9bc036bb1af6ee9b5f53e07929273476a28101890fed9d413965964b71314d74"
+          },
+          "original_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/element_node/predictions/102_249_ver/physical_u_mm.npy",
+            "bytes": 5068280,
+            "mtime_ns": 1791580868309836200,
+            "shape": [
+              211173,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "8140c1cbf528f1f2db03c64c2baa90b352767471f9ceda92eed365d3f387356d"
+          },
+          "original_U_exact_byte_identity": true,
+          "new_GT_U_metric_computed": false,
+          "costs": {
+            "components": {
+              "original_GT_free_physical_cold_seconds": 101.030087958,
+              "representation_recovery_input_persist_seconds": 0.43474010200000635,
+              "actual_head_input_H2D_seconds": 0.06059717300001921,
+              "model_load_seconds": 0.004996027000004233,
+              "fullN_inference_decode_Ucopy_prediction_persist_seconds": 0.076134680999985
+            },
+            "campaign_accounted_cold_seconds": 101.60655594100001,
+            "cached_neural_request_seconds": 0.14173218300001622,
+            "fresh_joint_cold_measurement": false,
+            "training_and_scaler_oneoff_excluded": true,
+            "new_coarse_solver_cost_spliced": false
+          },
+          "read_receipt": {
+            "displacement_target_reads": 0,
+            "source_canonical_stress_reads": 0,
+            "source_canonical_strain_reads": 0,
+            "source_canonical_CSV_reads": 0,
+            "external_learned_weight_reads": 0,
+            "new_physical_solves": 0,
+            "K_applications": 0,
+            "old_K_guard_repeats": 0,
+            "old_final_reads": 0,
+            "sealed_new_test_reads": 0,
+            "DEV_dia_reads": 0,
+            "DEV_reads_before_prediction_barrier": 0,
+            "DEV_scaler_fits": 0,
+            "source_formula_or_sign_trials": 0,
+            "physical_U_reads": 0,
+            "physical_U_byte_hash_reads": 1,
+            "input_cache_reads": 0,
+            "input_member_reads": 1,
+            "operator_weight_array_reads": 0,
+            "old_tensor_array_reads": 0,
+            "valid_array_reads": 1,
+            "new_nodal_tensor_recoveries": 0,
+            "TRAIN_cached_S_reads": 0,
+            "DEV_cached_S_reads": 0,
+            "GT_reads": 0,
+            "tensor_scaler_fits": 0,
+            "training_updates": 0,
+            "optimizer_updates": 0,
+            "own_checkpoint_reads": 0,
+            "own_checkpoint_writes": 0,
+            "own_prediction_array_reads": 0,
+            "original_U_byte_copies": 1
+          },
+          "signed_S_units": "MPa",
+          "input_interface": "full_FE_tensor_proxy"
+        },
+        "102_38/ver": {
+          "key": "102_38/ver",
+          "arm": "element_node",
+          "endpoint_step": 120,
+          "config_sha256": "160e82ce7ea16d4e0afdee397255536405912ed7fb7cbc626da5aceb3c83604f",
+          "allN_prediction_persisted": true,
+          "node_count": 197514,
+          "prediction": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/element_node/predictions/102_38_ver/signed_S_MPa.npy",
+            "shape": [
+              197514
+            ],
+            "dtype": "float64",
+            "bytes": 1580240,
+            "file_sha256": "476d8b14339af10f42ec879c434af970479d5566082de28471d6e3ad4c614daf",
+            "values_sha256": "da24d9e3a9a0b50f9b91a8e1ff396dc8f9979dcd1af779e0407a572fff0e7e44"
+          },
+          "original_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/element_node/predictions/102_38_ver/physical_u_mm.npy",
+            "bytes": 4740464,
+            "mtime_ns": 1791580968263212700,
+            "shape": [
+              197514,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c"
+          },
+          "original_U_exact_byte_identity": true,
+          "new_GT_U_metric_computed": false,
+          "costs": {
+            "components": {
+              "original_GT_free_physical_cold_seconds": 91.455433389,
+              "representation_recovery_input_persist_seconds": 0.3923510450000265,
+              "actual_head_input_H2D_seconds": 0.05777055899997663,
+              "model_load_seconds": 0.004996027000004233,
+              "fullN_inference_decode_Ucopy_prediction_persist_seconds": 0.07403459799999723
+            },
+            "campaign_accounted_cold_seconds": 91.98458561800001,
+            "cached_neural_request_seconds": 0.13680600899999718,
+            "fresh_joint_cold_measurement": false,
+            "training_and_scaler_oneoff_excluded": true,
+            "new_coarse_solver_cost_spliced": false
+          },
+          "read_receipt": {
+            "displacement_target_reads": 0,
+            "source_canonical_stress_reads": 0,
+            "source_canonical_strain_reads": 0,
+            "source_canonical_CSV_reads": 0,
+            "external_learned_weight_reads": 0,
+            "new_physical_solves": 0,
+            "K_applications": 0,
+            "old_K_guard_repeats": 0,
+            "old_final_reads": 0,
+            "sealed_new_test_reads": 0,
+            "DEV_dia_reads": 0,
+            "DEV_reads_before_prediction_barrier": 0,
+            "DEV_scaler_fits": 0,
+            "source_formula_or_sign_trials": 0,
+            "physical_U_reads": 0,
+            "physical_U_byte_hash_reads": 1,
+            "input_cache_reads": 0,
+            "input_member_reads": 1,
+            "operator_weight_array_reads": 0,
+            "old_tensor_array_reads": 0,
+            "valid_array_reads": 1,
+            "new_nodal_tensor_recoveries": 0,
+            "TRAIN_cached_S_reads": 0,
+            "DEV_cached_S_reads": 0,
+            "GT_reads": 0,
+            "tensor_scaler_fits": 0,
+            "training_updates": 0,
+            "optimizer_updates": 0,
+            "own_checkpoint_reads": 0,
+            "own_checkpoint_writes": 0,
+            "own_prediction_array_reads": 0,
+            "original_U_byte_copies": 1
+          },
+          "signed_S_units": "MPa",
+          "input_interface": "full_FE_tensor_proxy"
+        }
+      }
+    }
+  },
+  "completion_gate": {
+    "passed": false,
+    "both_arms_complete120": true,
+    "all_four_DEV_predictions_persisted": true,
+    "full5_nodal_recovery_complete": true,
+    "fixed_DEV_denominator": 2,
+    "complete_service_accuracy_gate": false,
+    "representation_gain_gate": false,
+    "terminal_negative_reason": "fixed_representation_or_complete_signed_service_gate_failed",
+    "final_solver_selection": false,
+    "mean_signed_S_relative_improvement": -3.6186667993040755,
+    "each_DEV_S_and_hotspot_within_1p05_baseline": false,
+    "matched_baseline_has_same_fresh7_head": true,
+    "historical67_head_spliced_into_gate": false,
+    "metrics_available_DEV_cases": 2,
+    "partial_representation_improvement_only": false
+  },
+  "costs": {
+    "new_actual_wall_seconds": 10.94807509200001,
+    "inherited_seconds_once": 456.2910297750001,
+    "campaign_composed_wall_seconds": 467.2391051390001,
+    "maximum_new_actual_wall_seconds": 300,
+    "maximum_campaign_composed_wall_seconds": 756.2910297750001,
+    "failed_resume_wall_included": true,
+    "new_actual_overshoot_seconds": 0.0,
+    "fresh_joint_cold_measurement": false,
+    "original_physics_not_new_coarse": true
+  },
+  "memory": {
+    "peak_GPU_allocated_bytes": 155264000,
+    "peak_GPU_reserved_bytes": 216006656
+  },
+  "read_receipt": {
+    "displacement_target_reads": 0,
+    "source_canonical_stress_reads": 0,
+    "source_canonical_strain_reads": 0,
+    "source_canonical_CSV_reads": 0,
+    "external_learned_weight_reads": 0,
+    "new_physical_solves": 0,
+    "K_applications": 0,
+    "old_K_guard_repeats": 0,
+    "old_final_reads": 0,
+    "sealed_new_test_reads": 0,
+    "DEV_dia_reads": 0,
+    "DEV_reads_before_prediction_barrier": 0,
+    "DEV_scaler_fits": 0,
+    "source_formula_or_sign_trials": 0,
+    "physical_U_reads": 5,
+    "physical_U_byte_hash_reads": 14,
+    "input_cache_reads": 5,
+    "input_member_reads": 41,
+    "operator_weight_array_reads": 5,
+    "old_tensor_array_reads": 5,
+    "valid_array_reads": 21,
+    "new_nodal_tensor_recoveries": 5,
+    "TRAIN_cached_S_reads": 3,
+    "DEV_cached_S_reads": 2,
+    "GT_reads": 5,
+    "tensor_scaler_fits": 2,
+    "training_updates": 240,
+    "optimizer_updates": 240,
+    "own_checkpoint_reads": 2,
+    "own_checkpoint_writes": 2,
+    "own_prediction_array_reads": 4,
+    "original_U_byte_copies": 9,
+    "attempted_members": {
+      "101_428/ver:physical_cache_archive": 1,
+      "101_428/ver:physical_cache:vertices_mm": 1,
+      "101_428/ver:physical_cache:cells10": 1,
+      "101_428/ver:physical_cache:grid_node_ids": 1,
+      "101_428/ver:physical_cache:ctetra_element_ids": 1,
+      "101_428/ver:physical_cache:lame": 1,
+      "101_428/ver:original_zero_U": 1,
+      "101_428/ver:original_zero_U:filehash": 1,
+      "101_428/ver:old_valid": 1,
+      "101_428/ver:accepted_Qweights": 1,
+      "101_428/ver:old_fourQ_sigma": 1,
+      "101_428/ver:native10_recovery": 1,
+      "101_428/ver:shared_U_copy": 1,
+      "101_428/ver:shared_U_copy_hash": 1,
+      "101_56/ver:physical_cache_archive": 1,
+      "101_56/ver:physical_cache:vertices_mm": 1,
+      "101_56/ver:physical_cache:cells10": 1,
+      "101_56/ver:physical_cache:grid_node_ids": 1,
+      "101_56/ver:physical_cache:ctetra_element_ids": 1,
+      "101_56/ver:physical_cache:lame": 1,
+      "101_56/ver:original_zero_U": 1,
+      "101_56/ver:original_zero_U:filehash": 1,
+      "101_56/ver:old_valid": 1,
+      "101_56/ver:accepted_Qweights": 1,
+      "101_56/ver:old_fourQ_sigma": 1,
+      "101_56/ver:native10_recovery": 1,
+      "101_56/ver:shared_U_copy": 1,
+      "101_56/ver:shared_U_copy_hash": 1,
+      "101_78/ver:physical_cache_archive": 1,
+      "101_78/ver:physical_cache:vertices_mm": 1,
+      "101_78/ver:physical_cache:cells10": 1,
+      "101_78/ver:physical_cache:grid_node_ids": 1,
+      "101_78/ver:physical_cache:ctetra_element_ids": 1,
+      "101_78/ver:physical_cache:lame": 1,
+      "101_78/ver:original_zero_U": 1,
+      "101_78/ver:original_zero_U:filehash": 1,
+      "101_78/ver:old_valid": 1,
+      "101_78/ver:accepted_Qweights": 1,
+      "101_78/ver:old_fourQ_sigma": 1,
+      "101_78/ver:native10_recovery": 1,
+      "101_78/ver:shared_U_copy": 1,
+      "101_78/ver:shared_U_copy_hash": 1,
+      "102_249/ver:physical_cache_archive": 1,
+      "102_249/ver:physical_cache:vertices_mm": 1,
+      "102_249/ver:physical_cache:cells10": 1,
+      "102_249/ver:physical_cache:grid_node_ids": 1,
+      "102_249/ver:physical_cache:ctetra_element_ids": 1,
+      "102_249/ver:physical_cache:lame": 1,
+      "102_249/ver:original_zero_U": 1,
+      "102_249/ver:original_zero_U:filehash": 1,
+      "102_249/ver:old_valid": 1,
+      "102_249/ver:accepted_Qweights": 1,
+      "102_249/ver:old_fourQ_sigma": 1,
+      "102_249/ver:native10_recovery": 1,
+      "102_249/ver:shared_U_copy": 1,
+      "102_249/ver:shared_U_copy_hash": 1,
+      "102_38/ver:physical_cache_archive": 1,
+      "102_38/ver:physical_cache:vertices_mm": 1,
+      "102_38/ver:physical_cache:cells10": 1,
+      "102_38/ver:physical_cache:grid_node_ids": 1,
+      "102_38/ver:physical_cache:ctetra_element_ids": 1,
+      "102_38/ver:physical_cache:lame": 1,
+      "102_38/ver:original_zero_U": 1,
+      "102_38/ver:original_zero_U:filehash": 1,
+      "102_38/ver:old_valid": 1,
+      "102_38/ver:accepted_Qweights": 1,
+      "102_38/ver:old_fourQ_sigma": 1,
+      "102_38/ver:native10_recovery": 1,
+      "102_38/ver:shared_U_copy": 1,
+      "102_38/ver:shared_U_copy_hash": 1,
+      "101_428/ver:original_cached_S": 1,
+      "101_56/ver:original_cached_S": 1,
+      "101_78/ver:original_cached_S": 1,
+      "101_428/ver:fit_valid:fourQ_cellmean": 1,
+      "101_428/ver:fit_tensor:fourQ_cellmean": 1,
+      "101_56/ver:fit_valid:fourQ_cellmean": 1,
+      "101_56/ver:fit_tensor:fourQ_cellmean": 1,
+      "101_78/ver:fit_valid:fourQ_cellmean": 1,
+      "101_78/ver:fit_tensor:fourQ_cellmean": 1,
+      "fourQ_cellmean:TRAIN_tensor_fit": 1,
+      "101_428/ver:fit_valid:element_node": 1,
+      "101_428/ver:fit_tensor:element_node": 1,
+      "101_56/ver:fit_valid:element_node": 1,
+      "101_56/ver:fit_tensor:element_node": 1,
+      "101_78/ver:fit_valid:element_node": 1,
+      "101_78/ver:fit_tensor:element_node": 1,
+      "element_node:TRAIN_tensor_fit": 1,
+      "101_428/ver:neural_tensor:fourQ_cellmean": 1,
+      "101_428/ver:neural_valid:fourQ_cellmean": 1,
+      "101_56/ver:neural_tensor:fourQ_cellmean": 1,
+      "101_56/ver:neural_valid:fourQ_cellmean": 1,
+      "101_78/ver:neural_tensor:fourQ_cellmean": 1,
+      "101_78/ver:neural_valid:fourQ_cellmean": 1,
+      "fourQ_cellmean:checkpoint_write": 1,
+      "101_428/ver:neural_tensor:element_node": 1,
+      "101_428/ver:neural_valid:element_node": 1,
+      "101_56/ver:neural_tensor:element_node": 1,
+      "101_56/ver:neural_valid:element_node": 1,
+      "101_78/ver:neural_tensor:element_node": 1,
+      "101_78/ver:neural_valid:element_node": 1,
+      "element_node:checkpoint_write": 1,
+      "fourQ_cellmean:endpoint_checkpoint": 1,
+      "102_249/ver:neural_tensor:fourQ_cellmean": 1,
+      "102_249/ver:neural_valid:fourQ_cellmean": 1,
+      "fourQ_cellmean:102_249/ver:U_output": 1,
+      "fourQ_cellmean:102_249/ver:U_output_hash": 1,
+      "102_38/ver:neural_tensor:fourQ_cellmean": 1,
+      "102_38/ver:neural_valid:fourQ_cellmean": 1,
+      "fourQ_cellmean:102_38/ver:U_output": 1,
+      "fourQ_cellmean:102_38/ver:U_output_hash": 1,
+      "element_node:endpoint_checkpoint": 1,
+      "102_249/ver:neural_tensor:element_node": 1,
+      "102_249/ver:neural_valid:element_node": 1,
+      "element_node:102_249/ver:U_output": 1,
+      "element_node:102_249/ver:U_output_hash": 1,
+      "102_38/ver:neural_tensor:element_node": 1,
+      "102_38/ver:neural_valid:element_node": 1,
+      "element_node:102_38/ver:U_output": 1,
+      "element_node:102_38/ver:U_output_hash": 1,
+      "102_249/ver:original_cached_S": 1,
+      "102_38/ver:original_cached_S": 1,
+      "fourQ_cellmean:102_249/ver:metric_prediction": 1,
+      "fourQ_cellmean:102_38/ver:metric_prediction": 1,
+      "element_node:102_249/ver:metric_prediction": 1,
+      "element_node:102_38/ver:metric_prediction": 1
+    },
+    "completed_members": {
+      "101_428/ver:physical_cache:vertices_mm": 1,
+      "101_428/ver:physical_cache:cells10": 1,
+      "101_428/ver:physical_cache:grid_node_ids": 1,
+      "101_428/ver:physical_cache:ctetra_element_ids": 1,
+      "101_428/ver:physical_cache:lame": 1,
+      "101_428/ver:physical_cache_archive": 1,
+      "101_428/ver:original_zero_U:filehash": 1,
+      "101_428/ver:original_zero_U": 1,
+      "101_428/ver:old_valid": 1,
+      "101_428/ver:accepted_Qweights": 1,
+      "101_428/ver:old_fourQ_sigma": 1,
+      "101_428/ver:native10_recovery": 1,
+      "101_428/ver:shared_U_copy_hash": 1,
+      "101_428/ver:shared_U_copy": 1,
+      "101_56/ver:physical_cache:vertices_mm": 1,
+      "101_56/ver:physical_cache:cells10": 1,
+      "101_56/ver:physical_cache:grid_node_ids": 1,
+      "101_56/ver:physical_cache:ctetra_element_ids": 1,
+      "101_56/ver:physical_cache:lame": 1,
+      "101_56/ver:physical_cache_archive": 1,
+      "101_56/ver:original_zero_U:filehash": 1,
+      "101_56/ver:original_zero_U": 1,
+      "101_56/ver:old_valid": 1,
+      "101_56/ver:accepted_Qweights": 1,
+      "101_56/ver:old_fourQ_sigma": 1,
+      "101_56/ver:native10_recovery": 1,
+      "101_56/ver:shared_U_copy_hash": 1,
+      "101_56/ver:shared_U_copy": 1,
+      "101_78/ver:physical_cache:vertices_mm": 1,
+      "101_78/ver:physical_cache:cells10": 1,
+      "101_78/ver:physical_cache:grid_node_ids": 1,
+      "101_78/ver:physical_cache:ctetra_element_ids": 1,
+      "101_78/ver:physical_cache:lame": 1,
+      "101_78/ver:physical_cache_archive": 1,
+      "101_78/ver:original_zero_U:filehash": 1,
+      "101_78/ver:original_zero_U": 1,
+      "101_78/ver:old_valid": 1,
+      "101_78/ver:accepted_Qweights": 1,
+      "101_78/ver:old_fourQ_sigma": 1,
+      "101_78/ver:native10_recovery": 1,
+      "101_78/ver:shared_U_copy_hash": 1,
+      "101_78/ver:shared_U_copy": 1,
+      "102_249/ver:physical_cache:vertices_mm": 1,
+      "102_249/ver:physical_cache:cells10": 1,
+      "102_249/ver:physical_cache:grid_node_ids": 1,
+      "102_249/ver:physical_cache:ctetra_element_ids": 1,
+      "102_249/ver:physical_cache:lame": 1,
+      "102_249/ver:physical_cache_archive": 1,
+      "102_249/ver:original_zero_U:filehash": 1,
+      "102_249/ver:original_zero_U": 1,
+      "102_249/ver:old_valid": 1,
+      "102_249/ver:accepted_Qweights": 1,
+      "102_249/ver:old_fourQ_sigma": 1,
+      "102_249/ver:native10_recovery": 1,
+      "102_249/ver:shared_U_copy_hash": 1,
+      "102_249/ver:shared_U_copy": 1,
+      "102_38/ver:physical_cache:vertices_mm": 1,
+      "102_38/ver:physical_cache:cells10": 1,
+      "102_38/ver:physical_cache:grid_node_ids": 1,
+      "102_38/ver:physical_cache:ctetra_element_ids": 1,
+      "102_38/ver:physical_cache:lame": 1,
+      "102_38/ver:physical_cache_archive": 1,
+      "102_38/ver:original_zero_U:filehash": 1,
+      "102_38/ver:original_zero_U": 1,
+      "102_38/ver:old_valid": 1,
+      "102_38/ver:accepted_Qweights": 1,
+      "102_38/ver:old_fourQ_sigma": 1,
+      "102_38/ver:native10_recovery": 1,
+      "102_38/ver:shared_U_copy_hash": 1,
+      "102_38/ver:shared_U_copy": 1,
+      "101_428/ver:original_cached_S": 1,
+      "101_56/ver:original_cached_S": 1,
+      "101_78/ver:original_cached_S": 1,
+      "101_428/ver:fit_valid:fourQ_cellmean": 1,
+      "101_428/ver:fit_tensor:fourQ_cellmean": 1,
+      "101_56/ver:fit_valid:fourQ_cellmean": 1,
+      "101_56/ver:fit_tensor:fourQ_cellmean": 1,
+      "101_78/ver:fit_valid:fourQ_cellmean": 1,
+      "101_78/ver:fit_tensor:fourQ_cellmean": 1,
+      "fourQ_cellmean:TRAIN_tensor_fit": 1,
+      "101_428/ver:fit_valid:element_node": 1,
+      "101_428/ver:fit_tensor:element_node": 1,
+      "101_56/ver:fit_valid:element_node": 1,
+      "101_56/ver:fit_tensor:element_node": 1,
+      "101_78/ver:fit_valid:element_node": 1,
+      "101_78/ver:fit_tensor:element_node": 1,
+      "element_node:TRAIN_tensor_fit": 1,
+      "101_428/ver:neural_tensor:fourQ_cellmean": 1,
+      "101_428/ver:neural_valid:fourQ_cellmean": 1,
+      "101_56/ver:neural_tensor:fourQ_cellmean": 1,
+      "101_56/ver:neural_valid:fourQ_cellmean": 1,
+      "101_78/ver:neural_tensor:fourQ_cellmean": 1,
+      "101_78/ver:neural_valid:fourQ_cellmean": 1,
+      "fourQ_cellmean:checkpoint_write": 1,
+      "101_428/ver:neural_tensor:element_node": 1,
+      "101_428/ver:neural_valid:element_node": 1,
+      "101_56/ver:neural_tensor:element_node": 1,
+      "101_56/ver:neural_valid:element_node": 1,
+      "101_78/ver:neural_tensor:element_node": 1,
+      "101_78/ver:neural_valid:element_node": 1,
+      "element_node:checkpoint_write": 1,
+      "fourQ_cellmean:endpoint_checkpoint": 1,
+      "102_249/ver:neural_tensor:fourQ_cellmean": 1,
+      "102_249/ver:neural_valid:fourQ_cellmean": 1,
+      "fourQ_cellmean:102_249/ver:U_output_hash": 1,
+      "fourQ_cellmean:102_249/ver:U_output": 1,
+      "102_38/ver:neural_tensor:fourQ_cellmean": 1,
+      "102_38/ver:neural_valid:fourQ_cellmean": 1,
+      "fourQ_cellmean:102_38/ver:U_output_hash": 1,
+      "fourQ_cellmean:102_38/ver:U_output": 1,
+      "element_node:endpoint_checkpoint": 1,
+      "102_249/ver:neural_tensor:element_node": 1,
+      "102_249/ver:neural_valid:element_node": 1,
+      "element_node:102_249/ver:U_output_hash": 1,
+      "element_node:102_249/ver:U_output": 1,
+      "102_38/ver:neural_tensor:element_node": 1,
+      "102_38/ver:neural_valid:element_node": 1,
+      "element_node:102_38/ver:U_output_hash": 1,
+      "element_node:102_38/ver:U_output": 1,
+      "102_249/ver:original_cached_S": 1,
+      "102_38/ver:original_cached_S": 1,
+      "fourQ_cellmean:102_249/ver:metric_prediction": 1,
+      "fourQ_cellmean:102_38/ver:metric_prediction": 1,
+      "element_node:102_249/ver:metric_prediction": 1,
+      "element_node:102_38/ver:metric_prediction": 1
+    }
+  },
+  "technical_error": null,
+  "old_GT_U_accuracy_recomputed": false,
+  "source_signed_scalar_formula_assumed": false,
+  "input_interface": "full_TET10_FE_geometry_original_physical_U",
+  "scalers": {
+    "contract_sha256": "47011ec6d1fd9411ba02180d4ae1cde24a7eaaff93874a3efc4a6dfebc2e68f6",
+    "signed_stress": {
+      "scale_MPa": 81.8243003845215,
+      "mean": 0.17759611016359497,
+      "std": 0.5696497861955057,
+      "raw_std": 0.5696497861955057,
+      "std_floor": 1e-08,
+      "scale_floor_MPa": 1e-12,
+      "fit_keys": [
+        "101_428/ver",
+        "101_56/ver",
+        "101_78/ver"
+      ],
+      "signed_transform": "(asinh(S/scale)-mean)/std",
+      "TRAIN_nodes": 683842
+    },
+    "tensor6": {
+      "fourQ_cellmean": {
+        "mean_MPa": [
+          -0.7823671550229131,
+          9.650955947040373,
+          5.015058973509148,
+          -0.280951333135001,
+          0.42610174654765554,
+          0.14969263235680522
+        ],
+        "std_MPa": [
+          20.084070871595806,
+          31.83844971857215,
+          18.781029221274803,
+          15.863634343325959,
+          11.74554731542147,
+          14.539393112929526
+        ],
+        "raw_std_MPa": [
+          20.084070871595806,
+          31.83844971857215,
+          18.781029221274803,
+          15.863634343325959,
+          11.74554731542147,
+          14.539393112929526
+        ],
+        "std_floor_MPa": 1e-08,
+        "valid_TRAIN_nodes": 683842,
+        "fit_keys": [
+          "101_428/ver",
+          "101_56/ver",
+          "101_78/ver"
+        ],
+        "representation": "fourQ_cellmean"
+      },
+      "element_node": {
+        "mean_MPa": [
+          -0.7826444839339107,
+          9.651358400980447,
+          5.008200630121054,
+          -0.2797162319559311,
+          0.46079018105096936,
+          0.15251453461626363
+        ],
+        "std_MPa": [
+          22.89506153920296,
+          34.49536441445811,
+          20.92479621600224,
+          16.614897105064394,
+          12.553136319444294,
+          15.278904000222553
+        ],
+        "raw_std_MPa": [
+          22.89506153920296,
+          34.49536441445811,
+          20.92479621600224,
+          16.614897105064394,
+          12.553136319444294,
+          15.278904000222553
+        ],
+        "std_floor_MPa": 1e-08,
+        "valid_TRAIN_nodes": 683842,
+        "fit_keys": [
+          "101_428/ver",
+          "101_56/ver",
+          "101_78/ver"
+        ],
+        "representation": "element_node"
+      }
+    },
+    "output_scaler_fits": 0,
+    "input_only_fit_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver"
+    ]
+  }
+}

@@ -1,0 +1,335 @@
+{
+  "schema": 1,
+  "kind": "next_cycle_blind_full_FE_solver_validation_design",
+  "status": "proposal_only_pending_nodal_pair_result_and_root_freeze",
+  "actual": false,
+  "scientific_rules_frozen": false,
+  "implementation_or_execution_authorized_by_this_document": false,
+  "recommendation": "Worth adding exactly one previously frozen FNO2026 cumulative600s last endpoint as an independent learned-interface reference to the same five-CAD/ver blind validation. First bind the single qualified full-FE signed-S route entirely from the completed current TRAIN3/DEV2 pair. If neither S arm qualifies, independently authorize a physical-U/native-P2 plus FNO-U partial-service comparison while every new S target remains sealed. Neither outcome selects an engineering-qualified complete GeoBC solver.",
+  "fixed_inventory": {
+    "CADs": [
+      "489_12",
+      "616_205",
+      "416_282",
+      "247_50",
+      "142_454"
+    ],
+    "case_keys": [
+      "489_12/ver",
+      "616_205/ver",
+      "416_282/ver",
+      "247_50/ver",
+      "142_454/ver"
+    ],
+    "denominator": 5,
+    "case_order": "Original acquisition selection order; no replacement, exclusion or new label/geometry ranking",
+    "original_dataset": "DeepJEB original v1.0 official public Drive component files, not DeepJEB++",
+    "raw_root": "data/raw_next_cycle",
+    "components_per_CAD": [
+      "FieldMesh/<CAD>.h5",
+      "Field/<CAD>.csv",
+      "SolverDeck/<CAD>.fem"
+    ],
+    "acquisition_plan": {
+      "path": "notes/geobc_next_cycle_test_plan.json",
+      "sha256": "c816a7572c07731ec8ded951f78135373575a8c06f692a4b54f32bb322772f85"
+    },
+    "acquisition_summary": {
+      "path": "data/raw_next_cycle/summary.json",
+      "sha256": "2108d9b712abed5d394fa669c8bebdc6ac4cae921473cf0bca6a5555a2b4d210",
+      "status": "completed",
+      "files_completed": 15,
+      "completed_file_bytes": 689980329,
+      "elapsed_seconds": 250.60900000017136,
+      "scientific_array_reads": 0,
+      "Field_CSV_values_parsed": false,
+      "labels_sealed": true,
+      "raw_identity_policy": "Use each acquired file's saved actual_bytes/file_stat/observed_sha256/Drive source record. These are received-byte identities, not independent upstream checksums. No new download or raw-file hashing occurred in this design."
+    },
+    "load_availability": "Acquisition plan lists ver/hor/tor/dia, but no new file header, subcase or target field has been parsed. Only ver is proposed; actual field/deck availability must be verified after route/protocol freeze without substituting another load.",
+    "independence_limit": "IDs exclude all known52; geometry-family and near-duplicate independence are unverified. Report unseen IDs, not a proven family-disjoint split."
+  },
+  "pre_parse_freeze": {
+    "must_precede_any_new_test_header_or_field_parse": true,
+    "bind_exactly": [
+      "Selected route and representation mode, completed development eligibility evidence",
+      "Fixed last120 checkpoint path, actual committed step, stat/SHA, complete model/source configuration and seed2026",
+      "Exact accepted TRAIN3 signed-asinh output scaler and selected arm TRAIN3 tensor6 input scaler, including files/SHA and train keys",
+      "Input alignment/parser/source pins, material/BC specialization, full curved-P2 fourQ equation and RBE maps",
+      "P1-derived fixed32 additive preconditioner construction and true-fine PCG settings",
+      "All five case order, native/off-node query definitions, metrics and zero-reference policy",
+      "Cold-start accounting, campaign/per-case wall and 24GiB caps, failure and label-barrier rules",
+      "Root review/release marker bound to the final protocol/source/checkpoint/scaler identities"
+    ],
+    "binding_status": "Pending current nodal pair completion and explicit root selection; no checkpoint has been inspected or chosen by this document",
+    "forbidden_selection": [
+      "Test-driven seed/checkpoint/arm/coarse setting selection",
+      "DEV-best endpoint selection instead of fixed120",
+      "Test training or normalizer fitting",
+      "Original final5 reuse for tuning",
+      "Test-triggered formula/sign/aggregation/budget rescue"
+    ],
+    "FNO_reference_binding_if_adopted": "Also freeze the one existing seed2026/step2880 cumulative600s last endpoint, exact original25 target-free adapter/cloud/grid/precision contracts, frozen output scaler, raw input fail rules, separate fresh costs and all10 shared-GT barrier before any new test header/field parse."
+  },
+  "route_selection_before_test_parse": {
+    "evidence_design": "notes/geobc_nodal_tensor_representation_design.json",
+    "evidence_design_sha256": "f54c58cf1205ac89aec7de46a71dcd47d9381b320ced775dba253c8e0ba5f0ad",
+    "evidence_scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8",
+    "first_priority": "element_node only if the matched pair is complete120 with valid allN/barrier/receipts, each of both DEV signed-S and hotspot relativeL2 strictly<0.25, mean signed-S improvement>=20% versus its fresh fourQ arm, and each DEV signed-S/hotspot error<=1.05 times matched fourQ. Use its last120 and its existing TRAIN-only scalers without adjustment.",
+    "second_priority": "If element_node fails its predeclared gate, select fresh matched fourQ_cellmean only if complete120/allN/barrier/valid receipts and each DEV signed-S AND hotspot relativeL2 strictly<0.25. Use its last120/scalers. This is a baseline eligibility branch, not a claim the node representation worked.",
+    "if_neither_qualifies": "No signed-S test prediction/target evaluation. Recommend one independently frozen pure-physics U/native-P2 blind partial-service route; signed-S CSV columns and H5 nodal_variables remain sealed. Root may instead defer consuming all test targets if partial-service evidence is not worth the independent budget.",
+    "route_count": 1,
+    "incomplete_pair": "No S eligibility from partial endpoints, null metrics or uncommitted barrier. No replacement arm or historical unmatched head.",
+    "source_bindings": "Completed pair summary supplies actual output/checkpoint/scalers/source identities. Driver default plan filename is not an acquired-data fact; do not guess a missing plan/output path.",
+    "reference_count_proposed": 1,
+    "route_count_definition": "One selected full-FE service candidate plus one fixed independent FNO reference; no second physics/head arm or FNO seed/checkpoint sweep."
+  },
+  "input_only_future_preparation": {
+    "current_design_raw_reads": 0,
+    "future_H5_allowlist": [
+      "vertices",
+      "cells"
+    ],
+    "future_CSV_prelabel_allowlist": [
+      "nodeID",
+      "coord_x(mm)",
+      "coord_y(mm)",
+      "coord_z(mm)"
+    ],
+    "alignment": "Use deck GRID/CSV coordinate identity to map into original H5 vertices with a one-to-one permutation. Never GRID_ID-1; never use the raw H5 nodal-variable order as the vertex order.",
+    "alignment_coordinate_tolerance_mm": 0.0002,
+    "alignment_tolerance_source": "Existing tools/prepare_multifield.py CSV->H5 one-to-one gate; freeze new selective parser before any new CSV header is inspected. Record actual max distance and permutation identity, not an assumed old-case error.",
+    "target_free_parser_requirement": "Existing prepare_multifield.load_original_csv loads targets together with coordinates and therefore cannot be called before the prediction barrier. A narrow coordinate-only CSV path and deferred U/S target path are required. No H5 nodal_variables pre-read.",
+    "required_actual_deck_evidence": [
+      "Selected ver static load case with actual force/moment, physical units and selected material/property connectivity",
+      "Original TET10 global corner/midpoint identity and GRID->H5 mapping without inferred node numbering",
+      "Actual zero SPC/support RBE2 patterns compatible with the accepted free-identity specialization; otherwise explicit unsupported",
+      "Actual loaded-interface RBE3 weighted-LS mapping, selected DOFs/weights/member IDs and conserved force/moment; no default member or load direction",
+      "Output-only unused reference-node restoration maps; no free zero-energy unused node",
+      "No unsupported active material/constraint/contact/nonlinear/control setting; record accepted numerical-setting differences"
+    ],
+    "no_default_material_BC_or_load": true,
+    "unknowns_now": "New N/T, actual material/BC/RBE variants, field header/load mapping, geometric regularity and setup cost are unparsed and unknown. File acquisition alone does not establish solver compatibility."
+  },
+  "physical_service": {
+    "equation": "Same accepted original curved ten-node P2 linear-elastic four-positive-quadrature approximation in physical mm/MPa, with the actual compatible SPC/RBE2/free reduction and RBE3 loads; not exact OptiStruct settings/integration",
+    "initial_guess": "zero",
+    "true_fine_relative_residual_tolerance": 1e-08,
+    "max_PCG_iterations": 10000,
+    "true_residual_interval": 25,
+    "checkpoint_interval": 25,
+    "acceleration": "Fresh combined P1-derived Galerkin additive preconditioner only: full masked P, Ac=P^TAP, fine block-Jacobi plus P Sc P^T; Sc is zero-start fixed32 scalar-diagonal Jacobi with omega=1/Gamma, Gamma=max absolute row-sum of diag(Ac)^(-1/2) Ac diag(Ac)^(-1/2). No direct-Ac low-fidelity solution, no adaptive inner iteration, parameter sweep or test fallback.",
+    "algorithm_reference": "notes/geobc_elastic_coarse_plan.json and its accepted five-CAD extension; exact source SHA and current accepted recipe are to be bound in the final protocol",
+    "guards": "Each new CAD receives its own input/operator/geometry/preconditioner necessary guards once in the actual service build. Prior CAD guards/hashes do not certify new data. No duplicate resource/toy/preflight stage.",
+    "allN_recovery": "Restore fixed nodes at their actual zero constraints and unused loaded-reference outputs via verified original derived H map. Preserve the original H5 vertex order and full N including reference nodes; do not silently omit them."
+  },
+  "query_protocol": {
+    "all_original_nodes": "Persist signed uXYZ[N,3] mm, and selected signed-S[N] MPa only if a qualified S route was frozen; full H5 node order with GRID mapping and finite masks.",
+    "native_full_cell_queries": "Every original cell, original cell-row order, four ordered positive tetrahedron Gauss barycentrics a=(5+3sqrt(5))/20,b=(5-sqrt(5))/20; use all ten P2 nodes. Persist curved physical X, U and G=du/dX in FP64. G=sum_i U_i tensor grad_X N_i, J[c,r]=sum_i X_i,c dN_i/dr, solve J^T grad_XN=grad_rN; physical mm derivative, no normalized derivative or corner-P1 surrogate.",
+    "bounded_physical_coordinate_queries": "Reuse the accepted deterministic selector: <=32 original cells and <=8 conforming shared faces, two interior barycentrics [0.1,0.2,0.3,0.4]/[0.4,0.3,0.2,0.1], shared-face [1/3,1/3,1/3]/[0.2,0.3,0.5]. Locate physical points without oracle barycentrics on the fixed selected-cell scope. No result-based resampling.",
+    "geometry_and_replay": "Pin existing continuous-query geometry/implementation-policy tolerances and explicit ambiguous-root/invalid-J/fold outcomes. Original midside conformity required. Negative orientation policies must follow the physical operator's actual positive-J requirement. One-sided face gradients need not agree; no C1 requirement.",
+    "continuous_S_if_enabled": "Define S_h(X)=sum_i N_i(X) predicted_node_S_i on the same curved TET10 element. This interpolates the already-predicted signed nodal field and is not a claim to reproduce the original solver's continuous scalar, sign or nodal recovery. Do not instead evaluate the learned tensor head at off-node tensor values without a separately frozen definition.",
+    "GT_proxy": "After the label barrier only, apply the same all-ten P2 interpolation/physical gradient to aligned original nodal U, and the same P2 interpolation to original signed nodal S when permitted. These are node-derived reference proxies, never strain/stress tensor GT or a source continuous-field truth.",
+    "scope_limit": "No global unique inverse, arbitrary whole-CAD locator speed, C1 continuity, PDE certification or raw-CAD meshing claim."
+  },
+  "prediction_barrier_and_labels": {
+    "barrier": "All five fullN predictions, native U/G query outputs, bounded-query identities/results and per-CAD numerical convergence/finite receipts must commit before any original test U/S target value is read. Include continuous S predictions if enabled. Verify exact frozen endpoint/source/scaler identities in the barrier.",
+    "failed_case_policy": "Unsupported input, numerical failure, nonfinite output, missing query coverage or budget-negative remains one of five. Never replace or drop it. If all-five barrier fails, open no test target; report capability/cost failures with accuracy null and preserve all still-sealed labels.",
+    "original_U_columns_after_barrier": [
+      "ver_x_disp(mm)",
+      "ver_y_disp(mm)",
+      "ver_z_disp(mm)"
+    ],
+    "original_S_column_after_barrier_if_qualified": "ver_stress(MPa)",
+    "label_source": "Official Field/<CAD>.csv in its GRID/coordinate row identity; select only the frozen ver columns. Apply the precommitted one-to-one coordinate permutation into H5 rows. H5 targets are not a second oracle; no raw field/vertex order assumption.",
+    "once_per_case": "One deferred original target parse per CAD, obtaining U and S together only in the qualified complete branch; U-only parse never materializes any S column. Commit owned label/metric caches and actual attempted/completed counters. Technical read failure is explicit, never silently repeated.",
+    "expected_new_test_target_receipts": {
+      "U_reads": 5,
+      "S_reads_if_qualified": 5,
+      "S_reads_if_U_only": 0
+    },
+    "immutable_labels": "Preserve original signed components and original signed scalar; no abs/sign correction, q replacement, VM reconstruction, calibration, target resampling or solver-reference substitution.",
+    "forbidden": {
+      "test_training_updates": 0,
+      "test_scaler_fits": 0,
+      "test_DEVbest_selection": 0,
+      "old_final_reads": 0,
+      "hor_tor_dia_target_reads": 0
+    },
+    "geometry_input_reads": "Coordinate-only CSV, H5 vertices/cells and deck parsing are input reads with separate receipts; they are not to be disguised as zero sealed-file access after actual release.",
+    "FNO_reference_addendum": "If the optional single frozen FNO reference is adopted, fair_blind_barrier in FNO_independent_reference requires both arms all5 fields before the one shared U/S target parse. Physical native-query outputs are separately required; FNO does not gain a native-gradient claim."
+  },
+  "metrics_and_interpretation": {
+    "inventory_denominator": 5,
+    "node_metrics": "Per-CAD and fixed-five mean/worst U vector relativeL2/RMSmm/max vector error; qualified signed-S relativeL2/RMSE_MPa/MAE_MPa/max and topceil1% absolute-original-S-GT hotspot. Stable descending abs then original-row ascending ties.",
+    "query_metrics": "Full-fourQ positive-volume-weighted U/G relativeL2 and absolute RMS/max, plus same-P2 S proxy scores if enabled. Report node and query scopes separately; no old P1 metric or nodal score transferred to P2 queries.",
+    "zero_reference": "Zero reference energy yields null relative score with explicit zero flag and absolute metrics; no artificial denominator floor or automatic pass.",
+    "blind_target_gate_proposed_for_root_freeze": {
+      "all_five_true_fine_converged_and_capability_complete": true,
+      "each_node_U_relativeL2_maximum": 0.01,
+      "each_native_P2_U_relativeL2_maximum": 0.01,
+      "each_native_P2_G_relativeL2_maximum": 0.05,
+      "each_signed_S_relativeL2_strictly_below_if_enabled": 0.25,
+      "each_signed_S_hotspot_relativeL2_strictly_below_if_enabled": 0.25
+    },
+    "gate_status": "These are proposed blind thresholds, not existing accepted criteria or engineering tolerances. Root must accept or replace them before any new-field parse, then no post-test retuning. Report continuous-S proxy descriptively rather than inventing an unvalidated source-continuous-S gate.",
+    "not_a_neural_ranking": "Full-FE physics has input connectivity/material/BC and per-request solving costs absent in pointcloud-only learned routes. This single blind test evaluates the selected service, not a same-capacity family ranking.",
+    "after_test": "No performance-based route/seed/normalizer/head/coarse correction on these five. Any future development using their evidence needs an independent unused evaluation set; retain this failed or passed trial permanently."
+  },
+  "proposed_budget_and_fresh_cost": {
+    "maximum_campaign_actual_seconds": 2400,
+    "maximum_per_CAD_input_operator_coarse_setup_seconds": 300,
+    "maximum_per_CAD_solve_seconds": 300,
+    "maximum_per_CAD_tensor_recovery_seconds_if_S": 30,
+    "maximum_per_CAD_continuous_queries_and_metrics_seconds": 60,
+    "maximum_peak_GPU_bytes": 25769803776,
+    "budget_status": "Proposed one campaign; campaign cap overrides per-phase maxima. Unknown new N/T and raw-input cost prevent an actual ETA. Root freezes exact limits before parse; no budget rescue based on predictions or GT.",
+    "cold_scope": "Fresh combined actual build from already-acquired original mesh+deck+CSV geometry bytes: input parse/GRID alignment, physical maps, fine geometry/operator/block preconditioner, coarse assembly/guards, selected checkpoint/scaler/model load, zero-start solve, selected tensor recovery/head, native/physical queries and output persistence. Acquisition and upstream CAD meshing excluded explicitly; all source/setup costs charged rather than borrowed from old CAD receipts.",
+    "accounting": "Single-request full checkpoint load charged per independent cold request; campaign shared/batch reuse disclosed separately. Candidate-before-GT cold latency separated from GT parsing/metrics and total validation wall. Report disk/H2D/setup/solve/query/recovery/inference/IO/K/iteration/peak/failure components with measured values, no composed historical cost called fresh.",
+    "resume": "Exact contracts and committed phase caches only; cumulative failed wall/iterations/label attempts remain charged. No geometry/operator rebuild or committed prediction/label reread unless a declared technical repair with receipts is necessary. Do not reset budgets.",
+    "no_value_for_missing": "Budget-negative or unsupported cases keep null metric/cost components and explicit reason. Finite finalization overshoot disclosed; it does not reopen target access or grant convergence."
+  },
+  "metadata_only_design_receipt": {
+    "acquisition_small_JSON_reads": true,
+    "existing_source_and_small_design_JSON_reads": true,
+    "sealed_raw_file_content_reads": 0,
+    "scientific_array_or_target_reads": 0,
+    "checkpoint_or_weight_reads": 0,
+    "scientific_imports_or_contract_calls": 0,
+    "GPU_or_training_runs": 0,
+    "new_downloads": 0,
+    "implementation_written": false,
+    "main_plan_or_existing_source_modified": false,
+    "existing_FNO_summary_config_and_checkpoint_stat_only": true,
+    "new_test_content_access_during_FNO_addendum": 0
+  },
+  "FNO_independent_reference": {
+    "status": "recommended_design_only_input_adapter_missing",
+    "worth_doing": true,
+    "purpose": "Maintain solver-family breadth and measure unseen-CAD accuracy/cost of a learned frozen service against the selected full-FE route; do not presume physics wins.",
+    "preselected_endpoint": {
+      "method": "fno",
+      "seed": 2026,
+      "selected_step": 2880,
+      "checkpoint_role": "fixed_cumulative600s_last_endpoint",
+      "checkpoint": {
+        "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+        "bytes": 170464827,
+        "mtime_ns": 1791557354819071400
+      },
+      "saved_training_summary": {
+        "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/summary.json",
+        "bytes": 862782,
+        "sha256": "505ba9caab71a37a628b95e3027c9cd8522427d6c9576ae95a5a8030aebbf14f"
+      },
+      "saved_config": {
+        "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/config.json",
+        "bytes": 421126,
+        "sha256": "6d9bd673b21f621b4f573ce9edc5aec8cfd270953d34e7265e08d45f71da375a"
+      },
+      "actual_current_file_stat_metadata_confirmed": {
+        "bytes": 170464827,
+        "last_write_utc": "2026-10-09T14:49:14.8190714Z"
+      },
+      "no_weight_bytes_read_in_this_design": true,
+      "selection_rule": "Reuse the existing service/hybrid preselection: cumulative600s last.pt at2880, seed2026. No test selection of2027, validation-best, 480-step endpoint, FNO-response model or any newly trained route."
+    },
+    "existing_binding_evidence": {
+      "plan": "notes/geobc_solver_service_benchmark_plan.json",
+      "plan_sha256": "807326046ffca28b38522b039bc75f164894dac1849d027b119beea5d0ac3113",
+      "service_source": "geobc/solver_service_benchmark.py",
+      "service_source_sha256": "328da3f21052f606a6b921ee32ed6d08f979f806ced29b0bf2c669363e6b094a",
+      "scope": "Prior real target-free allN request replay proves the existing prepared-input FNO inference path; it does not provide an already-existing new-test raw-to25 parser or certify any newCAD."
+    },
+    "frozen_scaler": {
+      "mean": [
+        -0.006059544265096125,
+        -0.0005008273527146082,
+        0.015260029003479832,
+        0.09629744183585241
+      ],
+      "std": [
+        0.05393032209940291,
+        0.011291299669602316,
+        0.07619646768716026,
+        0.5232191238243877
+      ],
+      "stress_scale": 90.46589813232424,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "frozen_public_model": {
+      "model_adapter_source_sha256": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+      "PointNet_source_sha256": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+      "parameter_counts": {
+        "encoder": 16736,
+        "solver": 14160548,
+        "total": 14177284
+      },
+      "grid_resolution": 64,
+      "supplied_channels": 29,
+      "internal_channels": 61,
+      "width": 16,
+      "modes": 12,
+      "layers": 4,
+      "head_width": 128,
+      "output_channels": [
+        "ux_mm",
+        "uy_mm",
+        "uz_mm",
+        "signed_stress_MPa"
+      ],
+      "native_continuous_query_implemented": false,
+      "identity": "Final protocol binds complete saved config/model source/counts and fixed checkpoint stat/SHA; exact strict load_state_dict with frozen model factory. Hash actual checkpoint only during authorized actual identity verification, not now."
+    },
+    "target_free_input_contract": {
+      "xyz": "Original H5 float32 coordinates, isotropic xyz=(xyz_mm-min_xyz_mm)/max_bbox_extent_mm in the original prepared rounding/frame; no second normalization.",
+      "conditions": "Exact25 from tools/prepare_deepjeb.py: flags0:6 reflect original support-reference constrained DOFs, load member6; F/42300 slots7:10, M/565000 slots10:13; E/113800,nu,rho/4.47e-9 slots13:16; loaded-reference offset/L16:19; four support-reference distances/L19:23 sorted by original masterID; loaded-member nearest distance/L23; L/200 slot24.",
+      "faces_and_cloud": "Reconstruct global quadratic-boundary triangles from original cells10 with the pinned mesh_boundary helper, not misindexed raw H5 surface IDs. Unique boundary-node pool; exact old _cad_seed(CAD,2026) and default_rng choice up to1024 without replacement, then zero padding and mask. No role-aware replacement/resampling.",
+      "grid": "Same _stencil(xyz,R64), trilinear feature _splat normalized as the frozen selection helper; supplied occupancy1+unit-lattice XYZ3+actual25=29. Append PointNet32 in the same model to make61; no targets/volume integration/new neural feature channels.",
+      "model_inputs": "Only xyz[N,3], original features[N,25], reconstructed boundary faces for cloud selection, cloud[1,1024,3], mask and target-independent R64 grid/query stencil.",
+      "fullN_output": "One frozen PointNet context and forward_grid per case, old query_grid at every original node, FP64 FieldScaler decode u=encoded*std+mean and S=stress_scale*sinh(encoded*std+mean); no clipping, abs, component mixing or source-sign correction.",
+      "precision": "Frozen FP32/high-matmul/TF32 policy, no autocast; physical decode in FP64; actual finite/fullN/24GiB guards.",
+      "physical_gradient_limit": "FNO source explicitly reports no implemented native continuous-query capability. Do not call a P2 interpolant of its nodal predictions the native FNO field/gradient. Optional common full10-P2 nodal-output proxy comparison requires its own predeclared scope; the proposed physical native-P2 capability remains a separate interface result."
+    },
+    "real_minimal_blockers": [
+      "No accepted target-free raw-newCAD->original25 builder currently exists: prepare_deepjeb.prepare materializes stress, and prepare_multifield.load_original_csv materializes U/S. Copy the exact input math into a new narrow adapter only after root source authorization; never call those old target-loading entrypoints pre-barrier.",
+      "New raw deck fields are still sealed/unparsed: actual four support groups/master order, DOFs and member mappings; loaded group/master, actual ver F/M, E/nu/rho and GRID/H5 one-to-one alignment are not yet certified. Missing/ambiguous/unsupported values cause an explicit unavailable reference, not invented features, density, zero force, default BC or a new25 schema.",
+      "Bind exact original-coordinate/boundary/cloud rounding and reconstructed global node IDs before test parse. FNO old physical-U conditioning or a changed geometry cloud would be a different route.",
+      "The existing service source is pinned to its oldDEV2 prepared archives; a new blind wrapper must reuse its narrow inference helpers, not call the old service run/request_contract with fabricated records or bypass its scope."
+    ],
+    "source_math_references": {
+      "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+      "tools/parse_deepjeb_deck.py": "e9408ebb11a86235bf68cfc6b6c018e8954904a1a7ba7c472b667e0db072ee11",
+      "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b"
+    },
+    "training_cost_context": {
+      "FNO_completed_training_seconds": 608.6778807109991,
+      "FNO_train_case_exposures": 2880,
+      "FNO_train_node_exposures": 625917240,
+      "FNO_training_scope": "Original40TRAIN CAD x known ver/hor/tor; fixed cumulative600s endpoint actually608.677880711s at2880 wholecase updates.",
+      "physics_candidate_training_scope": "U is per-request numerical solving with no learned training; qualified signed-S head uses TRAIN3/ver120 wholecase updates plus TRAIN-only scalers. Bind its actual training seconds/exposures from completed pair; no current placeholder value.",
+      "interpretation": "Different training populations, model capacities, physical connectivity access and offline costs; shared blind cases/targets enable service comparison, not matched-capacity or training-budget causality."
+    },
+    "information_and_cold_accounting": {
+      "FNO": "Model consumes normalized point geometry/cloud and25 deck-derived summaries; it does not consume mesh stiffness/operator or true tensor/U as input. Upstream raw-to25 still requires actual mesh/deck/material/interface data and is charged.",
+      "full_FE": "Consumes complete TET10 connectivity, material, SPC/RBE mappings/load and performs approximate linear-elastic solving/tensor recovery if qualified. Its stronger per-request interface and numerical/cold cost are explicit.",
+      "fresh_request_rule": "Measure each arm as its own fresh combined raw-original-mesh/deck-to-output request, including actual input/schema construction, source alignment, startup/CUDA, source/scaler/checkpoint load, geometry/cloud/grid or operator/preconditioner, inference/solve/query/persistence. Do not use historical physics composed cost or prepared-cache-only FNO latency as fresh cold.",
+      "shared_or_cached_rule": "If implementation shares raw parse/prepared inputs or loaded model across arms/CADs, label that measured service scope separately as shared/cached/batch, with complete upstream phase attribution; it is not an independently measured cold request. Do not charge zero upstream setup.",
+      "training": "Report FNO offline608.6779s and actual head/scaler training cost separately; never add historical old zero-PCG solve into a new solve budget.",
+      "proposed_reference_request_wall_cap_seconds": 120,
+      "campaign": "Same proposed2400s overall campaign cap includes both arms and validation; root may freeze a different sufficient cap before any new test field parse, never after test observation."
+    },
+    "fair_blind_barrier": {
+      "required": "Both preselected arms must persist all5 finite fullN U predictions in the same original-node identity, plus the physical route native queries; if a qualified complete-S route is selected, both also persist all5 signed-S predictions. Freeze all10 node fields and source/endpoint identities before shared target reads.",
+      "shared_GT": "Read each original test/ver U once; read each original signed-S once only in the qualified complete-S branch, then compute both arms metrics from that same owned aligned cache. GT reads5 per member, not5 per arm; actual attempts/repairs counted.",
+      "no_S_unlock_by_FNO": "A historically frozen FNO signed-S output alone does not bypass the physical-route complete-S eligibility rule. In U-only branch no new S target is opened or scored, even if FNO returns4 channels.",
+      "failure": "Any unavailable reference, unsupported full-FE case, nonfinite or incomplete fixed5 barrier is a terminal inventory failure with null accuracy, no deleted/replaced CAD and no hidden single-arm fallback. Root can preregister a different independent partial-service scope before parsing, not after seeing test results.",
+      "comparison": "Use fixed5 per-case mean/worst/absolute errors and true request cost; report FNO-U versus physics-U and qualified S only. Native physical gradient is a separate capability, not a causal victory over an unimplemented FNO derivative API. Do not test-select a seed or revise either route from the blind results."
+    }
+  }
+}

@@ -1,0 +1,679 @@
+{
+  "config": {
+    "contract_sha256": "47011ec6d1fd9411ba02180d4ae1cde24a7eaaff93874a3efc4a6dfebc2e68f6",
+    "arm": "fourQ_cellmean",
+    "initial_parameters_sha256": "04cc678f83283f5558d52310eba4dd52329120737d06980c222b9685ee8f967a",
+    "scaler_sha256": "3c43b6c167df56c15c070da5a883dcd485382b0b144a1756540091a73af3bbbf",
+    "case_order_sha256": "93edb11b4a1e65e8cb0c32f6efc156650797b203ab2a8272f51855dbb4611338"
+  },
+  "status": "completed",
+  "completed120": true,
+  "endpoint_step": 120,
+  "initial_parameters_sha256": "04cc678f83283f5558d52310eba4dd52329120737d06980c222b9685ee8f967a",
+  "parameter_count": 4737,
+  "case_exposure_counts": {
+    "101_428/ver": 40,
+    "101_56/ver": 40,
+    "101_78/ver": 40
+  },
+  "case_order_sha256": "93edb11b4a1e65e8cb0c32f6efc156650797b203ab2a8272f51855dbb4611338",
+  "first_actual_gradient_check": {
+    "passed": true,
+    "full_case_loss_finite": true,
+    "all_active_parameter_gradients_present_finite": true,
+    "total_gradient_norm": 1.4101310875001407,
+    "actual_first_TRAIN_key": "101_78/ver",
+    "standalone_preflight": false
+  },
+  "checkpoint": {
+    "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/fourQ_cellmean/last.pt",
+    "bytes": 84693,
+    "file_sha256": "99a7c7d8a6ac5073c7a413cb53abda487c7b4637598eb7eac3d47f5070cd08e4",
+    "step": 120,
+    "config_sha256": "531654f7b73e24970e327a8d5c1a473af5b36523ee3fa3be13016558867c88bb",
+    "science": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
+  },
+  "costs": {
+    "cumulative_training_seconds": 3.0148154770000133,
+    "training_oneoff_separate": true,
+    "actual_attempted_updates": 120,
+    "actual_optimizer_updates": 120
+  },
+  "history": [
+    {
+      "step": 1,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 1.2766134440898895
+    },
+    {
+      "step": 2,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.8848640695214272
+    },
+    {
+      "step": 3,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.8543359823524952
+    },
+    {
+      "step": 4,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.8212534412741661
+    },
+    {
+      "step": 5,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.7867752704769373
+    },
+    {
+      "step": 6,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 1.0613853186368942
+    },
+    {
+      "step": 7,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 1.0225720554590225
+    },
+    {
+      "step": 8,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.7068383768200874
+    },
+    {
+      "step": 9,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.6640250226482749
+    },
+    {
+      "step": 10,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.6359915835782886
+    },
+    {
+      "step": 11,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.6307410411536694
+    },
+    {
+      "step": 12,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.8493820875883102
+    },
+    {
+      "step": 13,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.5578979225829244
+    },
+    {
+      "step": 14,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.562325231730938
+    },
+    {
+      "step": 15,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.7610364258289337
+    },
+    {
+      "step": 16,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.5207225680351257
+    },
+    {
+      "step": 17,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.7078711837530136
+    },
+    {
+      "step": 18,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.44750520354136825
+    },
+    {
+      "step": 19,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.46378176286816597
+    },
+    {
+      "step": 20,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.4103543320670724
+    },
+    {
+      "step": 21,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.6151978224515915
+    },
+    {
+      "step": 22,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.5943076238036156
+    },
+    {
+      "step": 23,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.3985263127833605
+    },
+    {
+      "step": 24,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.3467675056308508
+    },
+    {
+      "step": 25,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.5354646220803261
+    },
+    {
+      "step": 26,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.3560375086963177
+    },
+    {
+      "step": 27,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.3074653821531683
+    },
+    {
+      "step": 28,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.4828142002224922
+    },
+    {
+      "step": 29,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.31926344707608223
+    },
+    {
+      "step": 30,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.2746191720943898
+    },
+    {
+      "step": 31,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.26505110529251397
+    },
+    {
+      "step": 32,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.28826502710580826
+    },
+    {
+      "step": 33,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.40971826016902924
+    },
+    {
+      "step": 34,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.3968582861125469
+    },
+    {
+      "step": 35,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.26163106225430965
+    },
+    {
+      "step": 36,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.22512940899468958
+    },
+    {
+      "step": 37,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.21842527785338461
+    },
+    {
+      "step": 38,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.3509389776736498
+    },
+    {
+      "step": 39,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.2317259470000863
+    },
+    {
+      "step": 40,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.20017308788374066
+    },
+    {
+      "step": 41,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.32277658581733704
+    },
+    {
+      "step": 42,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.21328383032232523
+    },
+    {
+      "step": 43,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.20796746108680964
+    },
+    {
+      "step": 44,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.18106903322041035
+    },
+    {
+      "step": 45,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.29313380271196365
+    },
+    {
+      "step": 46,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.17392633249983191
+    },
+    {
+      "step": 47,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.19098427798599005
+    },
+    {
+      "step": 48,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.2762470319867134
+    },
+    {
+      "step": 49,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.2710883729159832
+    },
+    {
+      "step": 50,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.18130863644182682
+    },
+    {
+      "step": 51,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.1619542082771659
+    },
+    {
+      "step": 52,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.1603303918382153
+    },
+    {
+      "step": 53,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.2539252210408449
+    },
+    {
+      "step": 54,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.17177020013332367
+    },
+    {
+      "step": 55,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.2473536841571331
+    },
+    {
+      "step": 56,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.16803027410060167
+    },
+    {
+      "step": 57,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.15450360835529864
+    },
+    {
+      "step": 58,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.23902184888720512
+    },
+    {
+      "step": 59,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.16338484454900026
+    },
+    {
+      "step": 60,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.15192537289112806
+    },
+    {
+      "step": 61,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.1510480319848284
+    },
+    {
+      "step": 62,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.23065494373440742
+    },
+    {
+      "step": 63,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.1587684927508235
+    },
+    {
+      "step": 64,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.22726169414818287
+    },
+    {
+      "step": 65,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.14817651454359293
+    },
+    {
+      "step": 66,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.15592069923877716
+    },
+    {
+      "step": 67,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.1470601896289736
+    },
+    {
+      "step": 68,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.2211600374430418
+    },
+    {
+      "step": 69,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.15341720264405012
+    },
+    {
+      "step": 70,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.2183600626885891
+    },
+    {
+      "step": 71,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.15177960321307182
+    },
+    {
+      "step": 72,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.14488345512654632
+    },
+    {
+      "step": 73,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.1444171613547951
+    },
+    {
+      "step": 74,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.1496738912537694
+    },
+    {
+      "step": 75,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.21257800050079823
+    },
+    {
+      "step": 76,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.14268453465774655
+    },
+    {
+      "step": 77,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.21062911301851273
+    },
+    {
+      "step": 78,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.14724578894674778
+    },
+    {
+      "step": 79,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.1409603141946718
+    },
+    {
+      "step": 80,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.2078681569546461
+    },
+    {
+      "step": 81,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.14558787737041712
+    },
+    {
+      "step": 82,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.14501013699918985
+    },
+    {
+      "step": 83,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.13897932949475944
+    },
+    {
+      "step": 84,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.204450823366642
+    },
+    {
+      "step": 85,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.14333674684166908
+    },
+    {
+      "step": 86,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.13764762284699827
+    },
+    {
+      "step": 87,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.20213252864778042
+    },
+    {
+      "step": 88,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.14180897362530231
+    },
+    {
+      "step": 89,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.20060568675398827
+    },
+    {
+      "step": 90,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.1360240145586431
+    },
+    {
+      "step": 91,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.14038096088916063
+    },
+    {
+      "step": 92,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.13515750679653138
+    },
+    {
+      "step": 93,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.19780204258859158
+    },
+    {
+      "step": 94,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.13420767278876156
+    },
+    {
+      "step": 95,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.1387012731283903
+    },
+    {
+      "step": 96,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.19597930647432804
+    },
+    {
+      "step": 97,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.1952883005142212
+    },
+    {
+      "step": 98,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.13257195916958153
+    },
+    {
+      "step": 99,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.13704810291528702
+    },
+    {
+      "step": 100,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.1931668035686016
+    },
+    {
+      "step": 101,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.13156015996355563
+    },
+    {
+      "step": 102,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.13580336142331362
+    },
+    {
+      "step": 103,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.1912085898220539
+    },
+    {
+      "step": 104,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.13498599454760551
+    },
+    {
+      "step": 105,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.13024650397710502
+    },
+    {
+      "step": 106,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.12984346912708133
+    },
+    {
+      "step": 107,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.13378388807177544
+    },
+    {
+      "step": 108,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.18845645431429148
+    },
+    {
+      "step": 109,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.12850872543640435
+    },
+    {
+      "step": 110,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.13265936449170113
+    },
+    {
+      "step": 111,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.18702180963009596
+    },
+    {
+      "step": 112,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.1273556399391964
+    },
+    {
+      "step": 113,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.13155510276556015
+    },
+    {
+      "step": 114,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.18545087985694408
+    },
+    {
+      "step": 115,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.1263743449235335
+    },
+    {
+      "step": 116,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.13043444510549307
+    },
+    {
+      "step": 117,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.18376117292791605
+    },
+    {
+      "step": 118,
+      "key": "101_428/ver",
+      "encoded_S_case_mean_MSE": 0.125510593643412
+    },
+    {
+      "step": 119,
+      "key": "101_56/ver",
+      "encoded_S_case_mean_MSE": 0.12933987844735384
+    },
+    {
+      "step": 120,
+      "key": "101_78/ver",
+      "encoded_S_case_mean_MSE": 0.1820630831643939
+    }
+  ],
+  "read_receipt": {
+    "displacement_target_reads": 0,
+    "source_canonical_stress_reads": 0,
+    "source_canonical_strain_reads": 0,
+    "source_canonical_CSV_reads": 0,
+    "external_learned_weight_reads": 0,
+    "new_physical_solves": 0,
+    "K_applications": 0,
+    "old_K_guard_repeats": 0,
+    "old_final_reads": 0,
+    "sealed_new_test_reads": 0,
+    "DEV_dia_reads": 0,
+    "DEV_reads_before_prediction_barrier": 0,
+    "DEV_scaler_fits": 0,
+    "source_formula_or_sign_trials": 0,
+    "physical_U_reads": 0,
+    "physical_U_byte_hash_reads": 0,
+    "input_cache_reads": 0,
+    "input_member_reads": 3,
+    "operator_weight_array_reads": 0,
+    "old_tensor_array_reads": 0,
+    "valid_array_reads": 3,
+    "new_nodal_tensor_recoveries": 0,
+    "TRAIN_cached_S_reads": 0,
+    "DEV_cached_S_reads": 0,
+    "GT_reads": 0,
+    "tensor_scaler_fits": 0,
+    "training_updates": 120,
+    "optimizer_updates": 120,
+    "own_checkpoint_reads": 0,
+    "own_checkpoint_writes": 1,
+    "own_prediction_array_reads": 0,
+    "original_U_byte_copies": 0
+  },
+  "reason": null
+}
