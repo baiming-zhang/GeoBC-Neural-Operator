@@ -2,7 +2,8 @@
 param([switch]$PublishAPI,
       [ValidatePattern('^$|^[0-9a-f]{40}$')][string]$TargetCommit = '',
       [ValidatePattern('^$|^[0-9a-f]{40}$')][string]$BaseCommit = '',
-      [ValidateRange(0,5000)][int]$ExpectedChanges = 0)
+      [ValidateRange(0,5000)][int]$ExpectedChanges = 0,
+      [string]$ResumeVerifiedBlobReceipt = '')
 
 # The default branch performs no filesystem, Git, credential, or network I/O.
 if (-not $PublishAPI) {
@@ -36,6 +37,8 @@ $script:safeFailure = $null
 $script:apiHeaders = $null
 $script:httpClient = $null
 $script:requestCount = 0
+$requestLimit = $expectedChangeCount + 13
+$reusePrefix = 0
 $script:receiptWritable = $false
 $credentialOutput = $null
 $password = $null
@@ -60,6 +63,7 @@ $receipt = [ordered]@{
     verification_before = $null; verification_before_ref_update = $null; verification_after = $null
     remote_main_before = $null; remote_main_before_ref_update = $null; remote_main_after = $null
     created_blob_requests = 0; created_blob_requests_verified = 0
+    reused_previously_SHA_verified_blob_prefix = 0; prior_blob_receipt = $null
     created_blob_requests_unconfirmed = 0; UTF8_blob_requests = 0; base64_blob_requests = 0
     tree_creation_attempted = $false; created_tree_sha = $null; exact_tree_verified = $false
     commit_creation_attempted = $false; created_commit_sha = $null; exact_commit_verified = $false
@@ -249,7 +253,7 @@ function Parse-Changes([byte[]]$Bytes) {
 function Api-Call([string]$Method, [string]$Endpoint, [string]$Operation, $Payload = $null,
                   [int]$ExpectedCode = 200) {
     $script:requestCount++
-    if ($script:requestCount -gt 90) { Fail-Safe 'fixed_API_request_limit_exceeded' }
+    if ($script:requestCount -gt $requestLimit) { Fail-Safe 'fixed_API_request_limit_exceeded' }
     $request = [Net.Http.HttpRequestMessage]::new([Net.Http.HttpMethod]::new($Method), 'https://api.github.com' + $Endpoint)
     $request.Version = [Version]'1.1'; $request.VersionPolicy = [Net.Http.HttpVersionPolicy]::RequestVersionExact
     foreach ($name in $script:apiHeaders.Keys) { [void]$request.Headers.TryAddWithoutValidation($name, $script:apiHeaders[$name]) }
@@ -342,6 +346,39 @@ try {
     }
     $diff = Git-Bytes 'local_reviewed_delta' @('diff-tree', '--no-commit-id', '--raw', '--no-renames', '--no-abbrev', '-r', '-z', $base, $target)
     $entries = Parse-Changes $diff; $diff = $null
+    if ($ResumeVerifiedBlobReceipt -ne '') {
+        $priorPath = [IO.Path]::GetFullPath((Join-Path $root $ResumeVerifiedBlobReceipt))
+        if (-not $priorPath.StartsWith((Join-Path $root 'notes') + '\', [StringComparison]::OrdinalIgnoreCase) -or
+            (Field $approval 'prior_blob_receipt_path') -cne $ResumeVerifiedBlobReceipt -or
+            (Get-FileHash -LiteralPath $priorPath -Algorithm SHA256).Hash.ToLowerInvariant() -cne
+                (Field $approval 'prior_blob_receipt_sha256')) { Fail-Safe 'unreviewed_prior_blob_receipt' }
+        $prior = [IO.File]::ReadAllText($priorPath) | ConvertFrom-Json -ErrorAction Stop
+        $priorIdentity = Field $prior 'verification_before'
+        $reusePrefix = [int](Field $approval 'reused_verified_blob_prefix')
+        if ((Field $prior 'status') -cne 'failed' -or (Field $prior 'failure_category') -cne 'fixed_API_request_limit_exceeded' -or
+            (Field $prior 'source_sha256') -cne (Field $approval 'prior_source_sha256') -or
+            (Field $prior 'root_review_sha256') -cne (Field $approval 'prior_root_review_sha256') -or
+            (Field $prior 'target_commit') -cne $target -or (Field $prior 'base_commit') -cne $base -or
+            (Field $prior 'local_target_tree') -cne $receipt.local_target_tree -or
+            (Field $prior 'local_changed_files') -ne $expectedChangeCount -or
+            (Field $prior 'created_blob_requests_verified') -ne $reusePrefix -or $reusePrefix -lt 1 -or
+            $reusePrefix -ge $expectedChangeCount -or (Field $prior 'tree_creation_attempted') -ne $false -or
+            (Field $prior 'ref_update_attempted') -ne $false -or
+            (Field $priorIdentity 'passed') -ne $true -or (Field $priorIdentity 'private') -ne $true -or
+            (Field $priorIdentity 'repository_id') -ne $repoId -or (Field $priorIdentity 'user_id') -ne $userId) {
+            Fail-Safe 'prior_immutable_blob_prefix_not_qualified'
+        }
+        for ($i = 1; $i -le $reusePrefix; $i++) {
+            $confirmed = @((Field $prior 'operations') | Where-Object {
+                (Field $_ 'operation') -ceq ('blob_' + $i) -and (Field $_ 'HTTP_code') -eq 201 })
+            if ($confirmed.Count -ne 1 -or $null -eq $entries[$i-1].sha) { Fail-Safe 'prior_blob_prefix_not_contiguous' }
+        }
+        # Prior deterministic upload loop checked each response SHA before
+        # advancing this persistent verified counter. Same immutable diff/tree.
+        $receipt.reused_previously_SHA_verified_blob_prefix = $reusePrefix
+        $receipt.prior_blob_receipt = @{ path = $ResumeVerifiedBlobReceipt
+            sha256 = (Field $approval 'prior_blob_receipt_sha256') }
+    }
     # Verify every immutable local blob, and its bounded size, before retrieving credentials.
     foreach ($entry in $entries) {
         if ($null -eq $entry.sha) { continue }
@@ -392,6 +429,7 @@ try {
         $index = 0
         foreach ($entry in $entries) {
             $index++
+            if ($index -le $reusePrefix) { continue }
             if ($null -eq $entry.sha) { continue }
             $bytes = Git-Bytes 'local_blob_for_API' @('cat-file', 'blob', $entry.sha)
             if ((Git-Object-SHA 'blob' $bytes) -cne $entry.sha -or $bytes.Length -gt 20MB) { Fail-Safe 'immutable_blob_changed_or_oversized' }
@@ -465,6 +503,12 @@ try {
 }
 
 # Allowlisted categories, hashes, counts and timings only. No raw subprocess or HTTP output.
-$receipt | ConvertTo-Json -Depth 12
+[ordered]@{ status = $receipt.status; completed = $receipt.completed
+    target_commit = $receipt.target_commit; remote_main_after = $receipt.remote_main_after
+    exact_tree_verified = $receipt.exact_tree_verified; exact_commit_verified = $receipt.exact_commit_verified
+    created_blob_requests_verified = $receipt.created_blob_requests_verified
+    reused_previously_SHA_verified_blob_prefix = $receipt.reused_previously_SHA_verified_blob_prefix
+    failure_category = $receipt.failure_category; receipt_path = $receiptPath
+    elapsed_seconds = $receipt.elapsed_seconds } | ConvertTo-Json -Depth 3
 if (-not $receipt.completed) { exit 1 }
 exit 0

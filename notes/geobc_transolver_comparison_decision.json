@@ -799,5 +799,25 @@
     "next_priority": "continuous query/stability qualification, retaining best TS and old FNO controls; stop tiny hash/local25 tuning",
     "final_solver_selected": false,
     "updated_at_utc": "2026-10-10T17:17:45.930838+00:00"
-  }
+  },
+  "field_query_qualification": {
+    "status": "completed",
+    "report": "results/geobc_field_queries/BRIEF.md",
+    "native_cases": 27,
+    "FP32_cases": 9,
+    "native_seconds": 25.727333784,
+    "FP32_seconds": 9.597258568,
+    "independent_offnode_FEM_accuracy_measured": false,
+    "conclusion": "Original FNO query stable; new head highest-FP32 fixes TF32 chunk/AD-FD inconsistency; ++ stochastic and context-dependent"
+  },
+  "matched_macro_pair": {
+    "status": "actually_running",
+    "plan": "notes/geobc_common_grid_train_plan.json",
+    "live_identity_receipt": "notes/geobc_common_grid_live_milestone.json",
+    "TRAIN_keys": 120,
+    "fixed_updates_each": 4800,
+    "final_solver_selected": false,
+    "next": "After genuine closed/exited endpoints, all60 existing development cases for both arms, not sealed20DEV"
+  },
+  "updated_at_utc": "2026-10-10T18:06:18.515291+00:00"
 }

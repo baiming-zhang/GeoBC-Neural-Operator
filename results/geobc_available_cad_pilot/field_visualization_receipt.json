@@ -1,0 +1,80 @@
+{
+  "kind": "owned_CAD20_original_node_field_visualization",
+  "case": "120_153/ver",
+  "selection": "first fixed metadata case",
+  "raw_CSV_reads": 0,
+  "H5_reads": 0,
+  "checkpoint_reads": 0,
+  "model_calls": 0,
+  "CUDA_calls": 0,
+  "owned_array_reads": [
+    {
+      "path": "data/geobc_available_cad_pilot/geometry/120_153/xyz.npy",
+      "bytes": 2258480,
+      "mtime_ns": 1791651812556637900,
+      "sha256": "821d7b68556010b609d36549b68ee2cd281e2d6b1e8c2d31748529c6fa587ec0",
+      "shape": [
+        188196,
+        3
+      ],
+      "dtype": "float32"
+    },
+    {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/available_CAD20_candidate9/shared_GT/120_153/ver_physical4.npy",
+      "bytes": 3011264,
+      "mtime_ns": 1791652307131942500,
+      "sha256": "120ba411744a714aa0abef70c705e9b14e03b9b210a60844de0f93434f77a046",
+      "shape": [
+        188196,
+        4
+      ],
+      "dtype": "float32",
+      "exclusive_write": true
+    },
+    {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/available_CAD20_candidate9/predictions/FNO_latent_query_grid25_step4800/120_153/ver/physical4.npy",
+      "bytes": 6022400,
+      "mtime_ns": 1791652141409147500,
+      "sha256": "0f4526e04e064c8dc86188a8e7e4702ba5ccde2987da85284ef6cca55f2adda2",
+      "shape": [
+        188196,
+        4
+      ],
+      "dtype": "float64",
+      "exclusive_write": true
+    },
+    {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/available_CAD20_candidate9/predictions/transolver_pp_cad40_fresh4800/120_153/ver/physical4.npy",
+      "bytes": 6022400,
+      "mtime_ns": 1791651969478327300,
+      "sha256": "fa33e228b8e1b7d8300cc56dea66c7312e6492f16f6675694ad21e387aad8607",
+      "shape": [
+        188196,
+        4
+      ],
+      "dtype": "float64",
+      "exclusive_write": true
+    }
+  ],
+  "outputs": [
+    "results/geobc_available_cad_pilot/field_signed_stress.png",
+    "results/geobc_available_cad_pilot/field_displacement_magnitude.png"
+  ],
+  "original_nodes": 188196,
+  "displayed_nodes": 30000,
+  "display_sampling": "deterministic uniform index subset; all metrics remain full-node",
+  "coordinate_units": "prepared normalized xyz, original-node order",
+  "U_display": "vector magnitude in mm, visualization only; vector labels unchanged",
+  "S_display": "unaltered signed original scalar in MPa",
+  "stress_color_range": {
+    "absolute_limit_MPa": 194.20176696777344,
+    "rule": "shared symmetric GT 99th-percentile absolute S; color saturation only, values unchanged",
+    "saturated_nodes": {
+      "Original FEM CSV": 1882,
+      "FNO grid25": 1494,
+      "Transolver++": 0
+    }
+  },
+  "elapsed_CPU_seconds": 1.8099552870000002,
+  "source_sha256": "7f999dd9c6b1461c5e2002f15469fffc340e8f6dd09dac85353b1548e2c6b598"
+}

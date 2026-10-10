@@ -6,7 +6,7 @@
 
 ## 最新20个新CAD、三载荷结果（2026-10-11）
 
-**现阶段优先FNO；Transolver系列保留++作为对照，最终选型仍待连续查询验证。** 九候选固定540项提交后共享读20个原CSV；480份有效预测，缺失++24000保留60项失败。包含启动修复共17.91分钟UTC，实际运行的monotonic轴另记9.38分钟。
+**现阶段优先FNO；Transolver系列保留++作为对照，最终选型仍待统一表示与容量的对照。** 九候选固定540项提交后共享读20个原CSV；480份有效预测，缺失++24000保留60项失败。包含启动修复共17.91分钟UTC，实际运行的monotonic轴另记9.38分钟。
 
 | 方法 | 位移误差 | 应力误差 | 训练分钟 | 60例模型推理秒 |
 |---|---:|---:|---:|---:|
@@ -16,7 +16,9 @@
 
 FNO查询头相对++降低位移11.9、应力26.1个百分点；每个CAD三载荷平均的位移／应力／热点均20／20例更好，三种载荷的均值也都领先。相对旧FNO仅降低应力1.6个百分点、位移增加0.3个百分点，暂不为这个小差距继续调参。模型推理计时不包含初始化、输入读取和结果保存；完整阶段成本另列。应力误差仍超过50%，这些可用官方TRAIN池新CAD是开发比较，不能宣布最终测试或架构上限。见[精简结果](results/geobc_available_cad_pilot/BRIEF.md)与[选择结论](notes/geobc_available_pilot_actual_result_decision.json)。
 
-下一步比较FNO与最佳++的连续位置查询、重复预测稳定性、原节点重放和查询成本，保留旧FNO参照，不重训、不碰封存20DEV。++推理本身仍含Gumbel随机性，查询集合独立性需要实际验证。见[后续设计](notes/geobc_continuous_query_followup_design.json)。
+实际连续查询检查已完成：3个CAD×三载荷，原三模型诊断25.73秒，独立FP32查询头对照9.60秒。旧FNO查询分块不影响结果，物理梯度AD／有限差分最大相差0.98%；新查询头TF32下相差471%，只改FP32头后降到0.66%，分块差也从6.56e-4降到4.77e-7。++换推理种子后编码场相差6.8%–9.0%，直接改变节点集合也会改变全局上下文。这验证函数数值一致性，不是独立离节点FEM精度。见[查询简报](results/geobc_field_queries/BRIEF.md)。
+
+下一步统一R64输入、PointNet、native25查询头和约4.53M模型容量，比较FNO与++。真实完整TRAIN病例的前向／反向资源测量已完成，FNO和++显存峰值分别0.80与9.32GiB；共享初始化完全一致，两边各4800次更新的正式对照已在北京时间02:02:35启动；不会据旧20例进行小幅超参搜索。见[资源探测计划](notes/geobc_common_grid_probe_plan.json)。
 
 ## 已有独立五CAD结果（2026-10-10）
 
@@ -48,7 +50,7 @@ Transolver++新训练制度在中断恢复后触发原24GiB reserved上限，实
 
 原40／200CAD十臂协议因输入下载317／540、缺223，在原6小时预算内终止；固定ID和封存DEV未替换。见[输入失败简报](results/geobc_coverage_input_negative/BRIEF.md)。
 
-私人GitHub最新真实验收提交为`e4c364d`，包含++资源负结果和FNO启动记录；本地FNO终态、新20CAD结果及查询适配器正在整理为下一次仓库更新。仓库：[GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)。
+私人GitHub最新真实验收提交为`b88cee5`，包含FNO配对终态、新20CAD完整结果与查询适配器。之后的原节点云图、真实查询检查与精度对照暂在本地，随下一次有意义结果更新。仓库：[GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)。
 
 ## 复现与数据边界
 

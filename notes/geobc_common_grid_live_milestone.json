@@ -1,0 +1,39 @@
+{
+  "observed_UTC": "2026-10-10T18:03:50.738848+00:00",
+  "status": "running",
+  "current_arm": "FNO9",
+  "actual_child_and_guard_live": true,
+  "actual_processes": {
+    "guard_process": {
+      "pid": 306,
+      "ppid": 305,
+      "start_ticks": 306,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_common_training_guard",
+        "--start"
+      ]
+    },
+    "child_process": {
+      "pid": 399,
+      "ppid": 306,
+      "start_ticks": 387,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_common_grid",
+        "--start"
+      ]
+    }
+  },
+  "latest_logged_step": 96,
+  "latest_update_training_seconds": 55.25313067436218,
+  "current_arm_remaining_seconds_linear_estimate": 2707.403403043747,
+  "current_arm_finish_BJT_linear_estimate": "2026-10-11T02:48:58.142251+08:00",
+  "estimate_limit": "Early per-case timing; full pair ETA requires actual PP training progress, not first probe speed",
+  "no_GPU_queries": true,
+  "GT_reads": 0
+}

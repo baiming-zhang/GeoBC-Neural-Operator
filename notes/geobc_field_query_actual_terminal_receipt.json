@@ -1,0 +1,38 @@
+{
+  "observed_at_utc": "2026-10-10T17:45:35.247700+00:00",
+  "exact_process_exits": [
+    {
+      "identity": {
+        "pid": 297,
+        "ppid": 296,
+        "start_ticks": 189,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.run_geobc_field_query_guard",
+          "--start"
+        ]
+      },
+      "exited": true
+    },
+    {
+      "identity": {
+        "pid": 390,
+        "ppid": 297,
+        "start_ticks": 253,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.qualify_geobc_field_queries",
+          "--start"
+        ]
+      },
+      "exited": true
+    }
+  ],
+  "27_real_checkpoint_case_diagnostics": 27,
+  "actual_epoch_seconds": 25.727333784103394,
+  "original_negative_preserved": true
+}
