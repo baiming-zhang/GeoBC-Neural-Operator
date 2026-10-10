@@ -5700,7 +5700,7 @@
       ]
     }
   },
-  "updated_at_utc": "2026-10-10T22:24:12.084690+00:00",
+  "updated_at_utc": "2026-10-10T23:03:23.446594+00:00",
   "prospective_final_reservation": {
     "path": "notes/geobc_prospective_cad_split_v1.json",
     "scientific_digest": "7a4f5ab3a6fcb32e19897246eeceeb64d8e3a06eb1511003b86da470d6267dc9",
@@ -5731,6 +5731,36 @@
       "prepared_CADs": 80,
       "prepared_cases": 240,
       "FINAL_numeric_targets_read": 0
+    },
+    "dataset_interface": {
+      "status": "metadata_index_and_two_TRAIN_loader_checks_completed",
+      "scientific_digest": "2d274e4556c5e280359319a4187c0df2c4ada4697237bfd0547e194058e66e0e",
+      "manifest_identity": {
+        "path": "data/geobc_prospective_dataset_v1/manifest.json",
+        "bytes": 2006687,
+        "mtime_ns": 1791671623813764100,
+        "sha256": "68733fab6029ed0a182c09d73dcb61e06d1d7becfca9784498073a1c5dc19ddf"
+      },
+      "validated_loader": "geobc.prospective_dataset_v2.load_case",
+      "loader_sha256": "454af6e029169c58877ea0dc00afdc6cbc569d29b462f29ebd33be778a654b49",
+      "train_CAD_scopes": [
+        40,
+        100
+      ],
+      "TRAIN_cases": 300,
+      "knownDEV_cases": 60,
+      "reservedFINAL_input_cases": 60,
+      "loader_original_dtype_failure_preserved": true,
+      "budget_reset": false,
+      "all300_numeric_bodies_rechecked": false,
+      "corrected_loader_real_TRAIN_checks": 2,
+      "protected_numeric_requests_rejected": 120,
+      "additionalTRAIN_under40_requests_rejected": 180,
+      "new_training_released": false,
+      "FINAL_numeric_target_readout_released": false,
+      "cache_memory_plan": "notes/geobc_prospective_cache_memory_plan.json",
+      "role": "Shared data interface for macro solver comparisons; no accuracy/model gradient/final-test result",
+      "updated_UTC": "2026-10-10T22:55:18.984988+00:00"
     }
   },
   "current_next_stage": {
@@ -5748,5 +5778,17 @@
     "paired_stage_status": "running_PP256",
     "future_development_readout_plan": "notes/geobc_exposure_readout_plan.json",
     "future_exporter": "tools/export_geobc_exposure_comparison.py"
+  },
+  "user_resource_budget": {
+    "status": "user_confirmed_resource_limit",
+    "user_statement": "预算是30.5GB",
+    "memory_budget_GB": 30.5,
+    "memory_budget_bytes": 30500000000,
+    "memory_budget_GiB": 28.405338525772095,
+    "unit_policy": "Literal userGB interpreted as SI1e9bytes; explicit bytes frozen in future guards. The current estimate fits this and the larger binary shorthand too.",
+    "allocation_rule": "Each allocated/reserved peak must be<=bytecap; do not sum allocated+reserved since the latter contains the former",
+    "scope": "Future separately frozen GPU stages; existing live experiment remains within its own smaller immutable24GiB cap",
+    "current_actual_new_GPU_tasks": 0,
+    "updated_UTC": "2026-10-10T23:03:23.446594+00:00"
   }
 }

@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "whole_SOURCE_reviewed": true,
+  "actual_execution_released": false,
+  "scientific_digest": "7bad1d99b6b19a212e06c784ce8d9d9f96c3cc710ff7146b6feaff05603c5694",
+  "source_pins": {
+    "tools/prepare_geobc_prospective_dataset.py": "634137f6fa39549e4b4449f3aced6a13fa27d7bfeedf7b11478d577157363fa8",
+    "tools/run_geobc_dataset_assembly_guard.py": "5a44f18a59db609e1e8496aec704ebd4143b725738b43cc7a95f359b3288e9ee",
+    "geobc/prospective_dataset.py": "e1085d7889fba8ddd0ca29e9e16cfb76e9f5f0d111a248f2b607d123bd2b9317",
+    "geobc/available_cad_pilot_data.py": "fe6a1b8ac1a001dc14a5eefd1e64cb75d71359a3ba77903479d4051fd0eb127a",
+    "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196",
+    "tools/probe_geobc_prospective_loader.py": "5c1bbc502e7f7f6a79b4f4405d831526a6292b4e8136bee5a22cdf848abc14f4",
+    "tools/run_geobc_loader_probe_guard.py": "f8c8d1abf10d7471afd0f5309e8823c8f4d06f2e2f9a2e81e1c91521e874ca07"
+  },
+  "actual_execution": 0,
+  "reviewer": "root",
+  "reviewed_UTC": "2026-10-10T22:36:02.911764+00:00",
+  "review": "Whole CPU driver and complete300s guard reviewed against role-aware loader and actual original legacy loader. Deterministicfirst old/new TRAIN,2realfullN encoding checks and oldloader exact9-member reference; all120protected and180outside40 requests reject before library/array access; only6ownedTRAIN target arrays+21inputs, no rawCSV/H5/DEV/FINAL/scaler/model/GPU. No claim of all300 body or model-gradient validation. Original stage terminal exact exits bound; one new bounded CPU attempt.",
+  "actual_array_reads": 0,
+  "actual_failed_executions": 1,
+  "actual_report_manifest": {
+    "path": "results/geobc_prospective_dataset_interface/manifest.json",
+    "bytes": 1213,
+    "mtime_ns": 1791672081442146400,
+    "sha256": "9ddcdf4677384e5ada3dcbff7bf6ec1cd9d3cda6068b9216f2e79debaf055ed5"
+  }
+}
