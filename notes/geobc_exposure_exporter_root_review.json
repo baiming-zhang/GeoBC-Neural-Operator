@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "whole_SOURCE_reviewed": true,
+  "actual_export_released": true,
+  "exporter_source_sha256": "52864d731b455b9fda60fba175524872fe89b34b0483a441b0144aaeee1f00c0",
+  "scientific_digest": "49eaf1c8fbc2f2057a63dc09f63856cfffdb00b18574a470b5dd2de835238e06",
+  "baseline_bindings": {
+    "baseline_training": {
+      "path": "runs/geobc_exploration/common_grid_matched4800_v1/summary.json",
+      "bytes": 175777,
+      "mtime_ns": 1791665775434748400,
+      "sha256": "edcb9c317605035d2d55cfad57aed64c0c63477fb5addc2e8307fd5a095f4bae"
+    },
+    "baseline_training_external": {
+      "path": "runs/geobc_exploration/common_grid_matched4800_v1/external_terminal.json",
+      "bytes": 4959,
+      "mtime_ns": 1791665776038744400,
+      "sha256": "6c3db26f5d56b7638ecb360804446fd81fc552cf442b07d4533ecd1df9c9892f"
+    },
+    "baseline_development": {
+      "path": "runs/geobc_exploration/common_grid_development60_v1/summary.json",
+      "bytes": 213345,
+      "mtime_ns": 1791666679126806200,
+      "sha256": "87740e4ff7cc100a95d86b8ee1bf75893e4ce46aa3ecde2c419c8dc2fbb638bb"
+    },
+    "baseline_development_external": {
+      "path": "runs/geobc_exploration/common_grid_development60_v1/external_terminal.json",
+      "bytes": 5780,
+      "mtime_ns": 1791666679702203600,
+      "sha256": "4bb4fbd6f47785933c10ef7584625383b51ead2f28d269c1590c68dccd0f3fe8"
+    }
+  },
+  "baseline_plan": "fcec56e5acae282928990c2e7e10eed53addcfd98dbc87bda474063e1b7180a7",
+  "preflight": "Both actual stages terminal/closed/exact exits; all240-before-GT60 and complete physical endpoints required for ranking",
+  "reads": "Saved scalar JSON only; no GT/arrays/PT/GPU/inference",
+  "actual_export": 0,
+  "reviewer": "root",
+  "reviewed_UTC": "2026-10-10T22:18:02.712616+00:00",
+  "review": "Whole scalar-only exporter inspected against actual old/new writer schemas. Six fixed exposure rows, exact terminal exits,240-before-GT60, all120/60/20 finite physical metrics, whole/resource budgets, own4800 baselines, paired20 comparisons, no subset/unknown-cost zero-fill, max3 brief rows, CPU PNG and portable scalar evidence. Release is conditional on genuine future terminal records; no present export or arrays/PT/GT/GPU reads."
+}

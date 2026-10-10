@@ -1,0 +1,2104 @@
+{
+  "scientific": {
+    "question": "Can original target-free input mathematics run on CPU with bounded differences from saved GPU inputs?",
+    "cad": "120_153",
+    "helper_contract": {
+      "schema": "GeoBC_available20_target_free_inputs_v1",
+      "plan": "notes/geobc_available_cad_pilot_plan.json",
+      "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
+      "plan_science": {
+        "schema": 1,
+        "kind": "GeoBC_available_original_TRAIN_CAD20_candidate9_source_design",
+        "purpose": "One availability-conditional independent candidate pilot after existing PP and FNO tasks terminate; no new training or hyperparameter search",
+        "immutable_parent": {
+          "plan": "notes/geobc_coverage_comparison_plan.json",
+          "plan_sha256_at_design": "988f4e90091eff45d659d931e9c1659f819ebd46dab2415f13d630cc95e13920",
+          "scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+          "original_twenty_source_pins": {
+            "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+            "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+            "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+            "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196",
+            "geobc/coverage_comparison_train.py": "bbf3832d144a689d0c8c32d27673953dd9a1d24b5976313e3e6a966d08f55e00",
+            "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+            "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+            "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+            "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+            "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+            "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+            "third_party/transformer_sources.json": "1a46270136d2f58e081ea7be050c46fca5378b9853fc3e703c945129769aefb6",
+            "tools/fetch_exact_deepjeb.py": "ff01bffff639cf007cc9c97969b3210db0bca2375f674709238105d6e59002f2",
+            "tools/fetch_geobc_coverage.py": "81b88675120c9ef7f9c07f139be45bc8a5f8196fb095d07a20ab6b5be7b2adeb",
+            "tools/fetch_next_cycle_test.py": "92eba989a7c0b17ab8a5084cf9d761116ab4ace32b01b5b0e70e1375ad3edfae",
+            "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+            "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+            "tools/run_geobc_coverage_comparison.py": "f39c9b01efd45dbe7d4ae66dc1807dcd865eae2c170aa63e60b157dfc0ae1196",
+            "tools/start_geobc_coverage_comparison.ps1": "4d1cdf1675c5f7d38d6a7ba2b2c3bdf4dcafbb1e6b0808f712e32ced3cea9905",
+            "tools/start_geobc_coverage_fetch.ps1": "7f90ffd8a758c2f3b7f5248370aa1e1f8631af9b56ca7fdc1a19070b17caba9a"
+          },
+          "raw_summary": "data/raw_geobc_coverage/summary.json",
+          "raw_summary_sha256_at_design": "8628a89232326249e9b0af41422efdfabbf310338c6b414ed4fc74e994fb29b7",
+          "raw_status": "budget_exhausted",
+          "raw_terminal_reason": "absolute_six_hour_deadline",
+          "raw_completed_files": 317,
+          "raw_total_files": 540,
+          "raw_missing_files": 223,
+          "preserve_original_source540_input660_prediction2400_and_negative": true,
+          "no_parent_protocol_resize_or_rewrite": true,
+          "parent_input_negative_is_pilot_case_failure_reason": false
+        },
+        "CAD_selection": {
+          "pool_origin": "Frozen original additional_train_CADs160, official TRAIN pool",
+          "ordering": "Python sorted on exact CAD ID strings; ASCII/UTF-8 lexicographic ascending, not numeric tuple order",
+          "selection": "first20 of the102 complete-triplet eligible CADs",
+          "label_based_selection": false,
+          "selection_is_availability_conditional": true,
+          "permanent_held_or_unbiased_final_test_claim": false,
+          "future_200TRAIN_invalidates_held_qualification": true,
+          "eligible_CADs": [
+            "120_153",
+            "131_345",
+            "131_351",
+            "140_229",
+            "146_50",
+            "147_285",
+            "148_533",
+            "153_336",
+            "171_150",
+            "171_329",
+            "174_138",
+            "182_616",
+            "183_565",
+            "195_191",
+            "198_306",
+            "202_107",
+            "202_241",
+            "205_492",
+            "213_241",
+            "217_537",
+            "21_119",
+            "229_200",
+            "230_12",
+            "230_483",
+            "234_488",
+            "240_186",
+            "248_319",
+            "248_625",
+            "257_485",
+            "25_296",
+            "25_395",
+            "266_15",
+            "268_129",
+            "275_289",
+            "280_202",
+            "284_186",
+            "290_422",
+            "291_417",
+            "291_511",
+            "295_394",
+            "316_479",
+            "321_10",
+            "322_280",
+            "323_59",
+            "345_238",
+            "34_78",
+            "361_198",
+            "388_513",
+            "38_249",
+            "394_107",
+            "394_19",
+            "406_171",
+            "415_511",
+            "415_82",
+            "432_214",
+            "432_533",
+            "433_497",
+            "440_206",
+            "449_472",
+            "449_628",
+            "460_38",
+            "474_153",
+            "474_78",
+            "475_209",
+            "475_559",
+            "479_616",
+            "489_611",
+            "494_380",
+            "506_170",
+            "507_217",
+            "507_624",
+            "50_295",
+            "50_380",
+            "510_575",
+            "511_202",
+            "518_209",
+            "519_321",
+            "524_483",
+            "537_142",
+            "537_290",
+            "53_482",
+            "548_225",
+            "560_454",
+            "560_91",
+            "56_293",
+            "56_95",
+            "587_248",
+            "592_61",
+            "610_21",
+            "616_538",
+            "624_483",
+            "625_434",
+            "62_202",
+            "62_394",
+            "62_485",
+            "630_205",
+            "633_187",
+            "66_524",
+            "80_483",
+            "81_417",
+            "86_489",
+            "8_497"
+          ],
+          "selected_CADs": [
+            "120_153",
+            "131_345",
+            "131_351",
+            "140_229",
+            "146_50",
+            "147_285",
+            "148_533",
+            "153_336",
+            "171_150",
+            "171_329",
+            "174_138",
+            "182_616",
+            "183_565",
+            "195_191",
+            "198_306",
+            "202_107",
+            "202_241",
+            "205_492",
+            "213_241",
+            "217_537"
+          ],
+          "excluded_old_TRAIN40": [
+            "101_428",
+            "101_479",
+            "101_56",
+            "101_78",
+            "101_86",
+            "102_240",
+            "102_79",
+            "107_113",
+            "107_147",
+            "107_150",
+            "107_186",
+            "107_233",
+            "107_240",
+            "107_248",
+            "107_291",
+            "107_320",
+            "107_342",
+            "107_459",
+            "10_30",
+            "10_421",
+            "10_460",
+            "10_492",
+            "10_58",
+            "10_80",
+            "113_129",
+            "113_170",
+            "113_390",
+            "113_86",
+            "113_95",
+            "114_28",
+            "114_456",
+            "114_525",
+            "114_91",
+            "116_102",
+            "116_113",
+            "116_30",
+            "116_348",
+            "119_221",
+            "119_322",
+            "119_559"
+          ],
+          "excluded_original_DEV20": [
+            "586_507",
+            "122_14",
+            "421_235",
+            "245_21",
+            "221_483",
+            "572_348",
+            "316_302",
+            "523_257",
+            "371_249",
+            "146_615",
+            "438_247",
+            "12_394",
+            "575_630",
+            "291_186",
+            "173_482",
+            "518_249",
+            "245_484",
+            "427_170",
+            "247_270",
+            "454_50"
+          ],
+          "loads": [
+            "ver",
+            "hor",
+            "tor"
+          ],
+          "case_keys": [
+            "120_153/ver",
+            "120_153/hor",
+            "120_153/tor",
+            "131_345/ver",
+            "131_345/hor",
+            "131_345/tor",
+            "131_351/ver",
+            "131_351/hor",
+            "131_351/tor",
+            "140_229/ver",
+            "140_229/hor",
+            "140_229/tor",
+            "146_50/ver",
+            "146_50/hor",
+            "146_50/tor",
+            "147_285/ver",
+            "147_285/hor",
+            "147_285/tor",
+            "148_533/ver",
+            "148_533/hor",
+            "148_533/tor",
+            "153_336/ver",
+            "153_336/hor",
+            "153_336/tor",
+            "171_150/ver",
+            "171_150/hor",
+            "171_150/tor",
+            "171_329/ver",
+            "171_329/hor",
+            "171_329/tor",
+            "174_138/ver",
+            "174_138/hor",
+            "174_138/tor",
+            "182_616/ver",
+            "182_616/hor",
+            "182_616/tor",
+            "183_565/ver",
+            "183_565/hor",
+            "183_565/tor",
+            "195_191/ver",
+            "195_191/hor",
+            "195_191/tor",
+            "198_306/ver",
+            "198_306/hor",
+            "198_306/tor",
+            "202_107/ver",
+            "202_107/hor",
+            "202_107/tor",
+            "202_241/ver",
+            "202_241/hor",
+            "202_241/tor",
+            "205_492/ver",
+            "205_492/hor",
+            "205_492/tor",
+            "213_241/ver",
+            "213_241/hor",
+            "213_241/tor",
+            "217_537/ver",
+            "217_537/hor",
+            "217_537/tor"
+          ],
+          "fixed_CAD_denominator": 20,
+          "fixed_case_denominator": 60,
+          "unsupported_case_substitution": false
+        },
+        "selected_source_receipt_index": [
+          {
+            "cad_id": "120_153",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/120_153.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/120_153.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 34946496,
+                "observed_sha256": "9394088ae8edc2e65d3517df142ba7b2de48ab65f0b7ccb93118926406992465",
+                "recorded_file_stat": {
+                  "bytes": 34946496,
+                  "mtime_ns": 1791600630413414900
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/120_153.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/120_153.csv",
+                "path": "data/raw_geobc_coverage/Field/120_153.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 58705250,
+                "observed_sha256": "83098f0a340e9c1aa88269a386f22602e77368db404f603716e97bb4673eb868",
+                "recorded_file_stat": {
+                  "bytes": 58705250,
+                  "mtime_ns": 1791600637545188900
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/120_153.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/120_153.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/120_153.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 26616608,
+                "observed_sha256": "0c826f80611ec584025c694385a23a4e956c90c2ad2f297fae231fc10a214196",
+                "recorded_file_stat": {
+                  "bytes": 26616608,
+                  "mtime_ns": 1791604158634500500
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/120_153.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "131_345",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/131_345.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/131_345.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 49689128,
+                "observed_sha256": "26ad72d3724e782c3e4f4ab56506665100ea40e5f5495fb4da58c3ae09a9fa14",
+                "recorded_file_stat": {
+                  "bytes": 49689128,
+                  "mtime_ns": 1791599081202125800
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/131_345.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/131_345.csv",
+                "path": "data/raw_geobc_coverage/Field/131_345.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 83419538,
+                "observed_sha256": "36854692634383b3740582dc4efd472bcc38d20dcebb1cf3b8a7a2e1c31e1dca",
+                "recorded_file_stat": {
+                  "bytes": 83419538,
+                  "mtime_ns": 1791599125771005700
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/131_345.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/131_345.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/131_345.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 37846670,
+                "observed_sha256": "003fb23a86d4a1c2af9a48e5dd4754675768a48b4e2c190517334ed632156507",
+                "recorded_file_stat": {
+                  "bytes": 37846670,
+                  "mtime_ns": 1791599105995907400
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/131_345.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "131_351",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/131_351.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/131_351.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 44533696,
+                "observed_sha256": "8b56a6c6e6872f1b433b195c052d9abe32de542408869e3218cacdde56d513ab",
+                "recorded_file_stat": {
+                  "bytes": 44533696,
+                  "mtime_ns": 1791604777221106700
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/131_351.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/131_351.csv",
+                "path": "data/raw_geobc_coverage/Field/131_351.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 74583284,
+                "observed_sha256": "d1274a9539f8bcf3c4c0747ac74c7605b1adeb0c4713fd8f22efa94566053a2e",
+                "recorded_file_stat": {
+                  "bytes": 74583284,
+                  "mtime_ns": 1791604811746249900
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/131_351.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/131_351.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/131_351.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 34009448,
+                "observed_sha256": "02fc7b9fc88730507f9a045ee00ab985ca903c7695a094fac34f070231fe1726",
+                "recorded_file_stat": {
+                  "bytes": 34009448,
+                  "mtime_ns": 1791604804145914400
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/131_351.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "140_229",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/140_229.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/140_229.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 50662280,
+                "observed_sha256": "55f6669a9a4503242f256ba276d91157bb8dacc5007d923d24dfb36576eb0c29",
+                "recorded_file_stat": {
+                  "bytes": 50662280,
+                  "mtime_ns": 1791605421031122400
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/140_229.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/140_229.csv",
+                "path": "data/raw_geobc_coverage/Field/140_229.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 84998448,
+                "observed_sha256": "e0959e53a8e6b9fa7f3df8c77e4f59ead306ed6374d03285b9dbda35bcfa034f",
+                "recorded_file_stat": {
+                  "bytes": 84998448,
+                  "mtime_ns": 1791605443978002900
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/140_229.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/140_229.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/140_229.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 38686413,
+                "observed_sha256": "08ff2587399468a854b064d28b70286191283b4413d804643cc0248dfe57c31d",
+                "recorded_file_stat": {
+                  "bytes": 38686413,
+                  "mtime_ns": 1791605462029301500
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/140_229.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "146_50",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/146_50.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/146_50.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 33384104,
+                "observed_sha256": "bb93161a04a31fc031769b15c687ea39d85672f481d57d799d9a54873b1fd704",
+                "recorded_file_stat": {
+                  "bytes": 33384104,
+                  "mtime_ns": 1791599737804410500
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/146_50.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/146_50.csv",
+                "path": "data/raw_geobc_coverage/Field/146_50.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 56170065,
+                "observed_sha256": "0746392d5f4c05a34bf0c5ef6c9c5aa6ec8ad5fef8199241800f850951785a8e",
+                "recorded_file_stat": {
+                  "bytes": 56170065,
+                  "mtime_ns": 1791599777367031300
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/146_50.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/146_50.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/146_50.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 25348560,
+                "observed_sha256": "3acc9756d106e9e3729df197833410d01cee9b06a1f8a8ad44e37e647503cb10",
+                "recorded_file_stat": {
+                  "bytes": 25348560,
+                  "mtime_ns": 1791599753476166100
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/146_50.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "147_285",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/147_285.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/147_285.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 34639792,
+                "observed_sha256": "1cb37cc14b176a5dcf8ec02b131cf8718dddd0220fd85e401282d664d887b3ad",
+                "recorded_file_stat": {
+                  "bytes": 34639792,
+                  "mtime_ns": 1791599885840844600
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/147_285.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/147_285.csv",
+                "path": "data/raw_geobc_coverage/Field/147_285.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 58005460,
+                "observed_sha256": "1acd9a9540769d1fe1ce385f706323dd3ec1e749f06116050094021d25a7286c",
+                "recorded_file_stat": {
+                  "bytes": 58005460,
+                  "mtime_ns": 1791599824109573200
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/147_285.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/147_285.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/147_285.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 26411607,
+                "observed_sha256": "8cb2cd2abc82b7b703b704ed0b621543e66fa04eb9b9e4b0e59cae18deffd43f",
+                "recorded_file_stat": {
+                  "bytes": 26411607,
+                  "mtime_ns": 1791599835783444800
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/147_285.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "148_533",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/148_533.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/148_533.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 28510040,
+                "observed_sha256": "0bb703bf5342dff5f9a34c77f94d85bbc94ea7406571bec9e5f7059165828ae4",
+                "recorded_file_stat": {
+                  "bytes": 28510040,
+                  "mtime_ns": 1791598809643438000
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/148_533.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/148_533.csv",
+                "path": "data/raw_geobc_coverage/Field/148_533.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 47927740,
+                "observed_sha256": "8e909139025371eee148d6786ce06a0699788b6c25201feb972dcf7425df29c1",
+                "recorded_file_stat": {
+                  "bytes": 47927740,
+                  "mtime_ns": 1791598885435551300
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/148_533.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/148_533.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/148_533.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 21601856,
+                "observed_sha256": "4770ae0085aeeb22d94eddbc3fe51e6f70cc29d2ea07f3ecfa31fb88d8db8312",
+                "recorded_file_stat": {
+                  "bytes": 21601856,
+                  "mtime_ns": 1791598821671622700
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/148_533.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "153_336",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/153_336.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/153_336.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 42035024,
+                "observed_sha256": "d3fdef0535ae60978550323934c231800b11a86fc05d80d044e4c989bc4d66ff",
+                "recorded_file_stat": {
+                  "bytes": 42035024,
+                  "mtime_ns": 1791601271609543200
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/153_336.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/153_336.csv",
+                "path": "data/raw_geobc_coverage/Field/153_336.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 70635432,
+                "observed_sha256": "0808ada78701d84a210879e864ea582167aa0bf0c023a23ca9e8047e4f24de83",
+                "recorded_file_stat": {
+                  "bytes": 70635432,
+                  "mtime_ns": 1791601310945522700
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/153_336.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/153_336.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/153_336.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 32165101,
+                "observed_sha256": "f0541c3047703ccf46e628c9213f5c3b4ad985aa0adb240c3fdeefaea90c0ca1",
+                "recorded_file_stat": {
+                  "bytes": 32165101,
+                  "mtime_ns": 1791601292223236600
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/153_336.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "171_150",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/171_150.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/171_150.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 65499656,
+                "observed_sha256": "f1cb405e7fd41c4c371683fbefe61229b2ec37a6e574f7bd21f032442b7081e8",
+                "recorded_file_stat": {
+                  "bytes": 65499656,
+                  "mtime_ns": 1791605796372219600
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/171_150.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/171_150.csv",
+                "path": "data/raw_geobc_coverage/Field/171_150.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 110013292,
+                "observed_sha256": "02a774979c03a322acd0d24653b23b8e49df18440ac830763c6dfad1ce587478",
+                "recorded_file_stat": {
+                  "bytes": 110013292,
+                  "mtime_ns": 1791605826955799900
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/171_150.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/171_150.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/171_150.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 49710620,
+                "observed_sha256": "190ae2070580729f69dbf94e2f170d099be786cc8fb06f55ebb3da520e3123f8",
+                "recorded_file_stat": {
+                  "bytes": 49710620,
+                  "mtime_ns": 1791605837190448700
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/171_150.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "171_329",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/171_329.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/171_329.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 40816960,
+                "observed_sha256": "90a2af053f03a3984f6b9ba7d5dce7e8d2c0794c9e5cf95c815cbc2df4ec6e54",
+                "recorded_file_stat": {
+                  "bytes": 40816960,
+                  "mtime_ns": 1791604495415934600
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/171_329.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/171_329.csv",
+                "path": "data/raw_geobc_coverage/Field/171_329.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 68015277,
+                "observed_sha256": "957fd72e728dea4b5569af9977ad6f1d8eecc9b35624850ce562cae5843507b9",
+                "recorded_file_stat": {
+                  "bytes": 68015277,
+                  "mtime_ns": 1791604526002325300
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/171_329.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/171_329.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/171_329.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 31164706,
+                "observed_sha256": "736414fcedb9c17e9b35d70f9bdd984e8a4acbe599447cf3aff81b2aa3f68ca0",
+                "recorded_file_stat": {
+                  "bytes": 31164706,
+                  "mtime_ns": 1791604524306094500
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/171_329.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "174_138",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/174_138.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/174_138.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 39104336,
+                "observed_sha256": "31c79f0be06630f412c50fa0a0687770cc928befcd52a73f35f2676e04ae1cd2",
+                "recorded_file_stat": {
+                  "bytes": 39104336,
+                  "mtime_ns": 1791605087397056000
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/174_138.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/174_138.csv",
+                "path": "data/raw_geobc_coverage/Field/174_138.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 65579747,
+                "observed_sha256": "a5304fce50f11ef7414e7df20e9279ffcc0f53b45c76f43c3745770c44f516bc",
+                "recorded_file_stat": {
+                  "bytes": 65579747,
+                  "mtime_ns": 1791605108894874000
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/174_138.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/174_138.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/174_138.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 29641674,
+                "observed_sha256": "1e55ddaf11c74838604a43bd191365869f5aeb7d5bbc6cabe2a96605e4bfcf2d",
+                "recorded_file_stat": {
+                  "bytes": 29641674,
+                  "mtime_ns": 1791605115040919200
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/174_138.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "182_616",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/182_616.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/182_616.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 47004048,
+                "observed_sha256": "da89531df16d48150d7d058ef9a67fafaa1662cb3bba4e0a8fc7f910ca25b582",
+                "recorded_file_stat": {
+                  "bytes": 47004048,
+                  "mtime_ns": 1791598565698642900
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/182_616.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/182_616.csv",
+                "path": "data/raw_geobc_coverage/Field/182_616.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 78778259,
+                "observed_sha256": "f04f138c91229d3df4f1ca3a95f3b58cb3bbb9fc00a8a86b5baef572dec1ca5f",
+                "recorded_file_stat": {
+                  "bytes": 78778259,
+                  "mtime_ns": 1791598593809152700
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/182_616.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/182_616.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/182_616.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 36035274,
+                "observed_sha256": "2352fccbbae9f3ab13b885ae2ad39a1a46c62d9a39be4b320de4197eab434321",
+                "recorded_file_stat": {
+                  "bytes": 36035274,
+                  "mtime_ns": 1791598595775272700
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/182_616.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "183_565",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/183_565.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/183_565.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 46828600,
+                "observed_sha256": "e1b43acbb85e12329aa1fd02016425591bc7b0596253e3e9eb17dac630ce99e5",
+                "recorded_file_stat": {
+                  "bytes": 46828600,
+                  "mtime_ns": 1791605370086571500
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/183_565.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/183_565.csv",
+                "path": "data/raw_geobc_coverage/Field/183_565.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 78400963,
+                "observed_sha256": "e42046e9a7ef44e004a67e8a8e7ac4ba3abcf7a99eafab424f02ff61a6684b6f",
+                "recorded_file_stat": {
+                  "bytes": 78400963,
+                  "mtime_ns": 1791605392516758100
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/183_565.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/183_565.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/183_565.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 35815234,
+                "observed_sha256": "e68abff622fddaced3c821fa2627f18100bae1509e3e841f912e981a3b7edd87",
+                "recorded_file_stat": {
+                  "bytes": 35815234,
+                  "mtime_ns": 1791605398400952400
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/183_565.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "195_191",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/195_191.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/195_191.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 55648880,
+                "observed_sha256": "cd34f2587dad0ad726220a82c1026c8c6e491ecd599593cc527c6d0a7bafe624",
+                "recorded_file_stat": {
+                  "bytes": 55648880,
+                  "mtime_ns": 1791598900409781000
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/195_191.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/195_191.csv",
+                "path": "data/raw_geobc_coverage/Field/195_191.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 93068206,
+                "observed_sha256": "c8688f01e17dd34d238d473c541a45e9259ebeef2d6b2f1a69f13b6424125fe4",
+                "recorded_file_stat": {
+                  "bytes": 93068206,
+                  "mtime_ns": 1791598975524420200
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/195_191.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/195_191.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/195_191.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 42701807,
+                "observed_sha256": "290b4ec28828b8217812c0345b32a69afd4add5283d504554aa2b9a9c5cf7355",
+                "recorded_file_stat": {
+                  "bytes": 42701807,
+                  "mtime_ns": 1791598925242661200
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/195_191.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "198_306",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/198_306.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/198_306.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 39133520,
+                "observed_sha256": "44c1ade9e866498ac48aacf71f0a8756b32b588520b87ef4c5f1e9f2c61e4814",
+                "recorded_file_stat": {
+                  "bytes": 39133520,
+                  "mtime_ns": 1791598521603851700
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/198_306.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/198_306.csv",
+                "path": "data/raw_geobc_coverage/Field/198_306.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 65839461,
+                "observed_sha256": "863ef2f13163b8345a8f70501a6b02d662f9ab08cdfc58e056709240e89fac12",
+                "recorded_file_stat": {
+                  "bytes": 65839461,
+                  "mtime_ns": 1791598547340931400
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/198_306.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/198_306.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/198_306.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 29726123,
+                "observed_sha256": "aa4e44391412817c4e52e2c1748c858e1a27cb61476023595a4ebf9f96740189",
+                "recorded_file_stat": {
+                  "bytes": 29726123,
+                  "mtime_ns": 1791598538949610100
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/198_306.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "202_107",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/202_107.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/202_107.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 32009856,
+                "observed_sha256": "8ed711847be8906901a6856e59045ecd5d8220688164ce4ff0e50e99859bcef9",
+                "recorded_file_stat": {
+                  "bytes": 32009856,
+                  "mtime_ns": 1791601423915577000
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/202_107.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/202_107.csv",
+                "path": "data/raw_geobc_coverage/Field/202_107.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 53656708,
+                "observed_sha256": "0f21c55692437de02f548db9051b0634e5d22a9b7b572c2a503af890a294bd46",
+                "recorded_file_stat": {
+                  "bytes": 53656708,
+                  "mtime_ns": 1791601439463014700
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/202_107.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/202_107.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/202_107.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 24312582,
+                "observed_sha256": "198c61c492ec51aeb7f597a4299ed47db6be71145d6a102442eeb6d752fecc3d",
+                "recorded_file_stat": {
+                  "bytes": 24312582,
+                  "mtime_ns": 1791604341984658000
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/202_107.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "202_241",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/202_241.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/202_241.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 31942008,
+                "observed_sha256": "085e28864baa9f38aa371f75b9382984b8848eab9bfd49ea47b6ffc211bbacd0",
+                "recorded_file_stat": {
+                  "bytes": 31942008,
+                  "mtime_ns": 1791604400983498300
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/202_241.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/202_241.csv",
+                "path": "data/raw_geobc_coverage/Field/202_241.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 53600656,
+                "observed_sha256": "32da08b0f5ad00440c9b2cbbb4cd0a2833120485b6da2837b02f8aa60b00d620",
+                "recorded_file_stat": {
+                  "bytes": 53600656,
+                  "mtime_ns": 1791604423831313300
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/202_241.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/202_241.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/202_241.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 24254617,
+                "observed_sha256": "cc73c012dd34e8568ea645b3891da3c658a49d32ef4c83aad92467a0d8ef37df",
+                "recorded_file_stat": {
+                  "bytes": 24254617,
+                  "mtime_ns": 1791604422383867600
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/202_241.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "205_492",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/205_492.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/205_492.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 42871904,
+                "observed_sha256": "21441ecdeff803524b7d18c33444e3af6571918fcf2eaa5431ff21f40d933377",
+                "recorded_file_stat": {
+                  "bytes": 42871904,
+                  "mtime_ns": 1791604876630635400
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/205_492.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/205_492.csv",
+                "path": "data/raw_geobc_coverage/Field/205_492.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 71793191,
+                "observed_sha256": "6f6f62ce0eb2da0dcb9f9e359954435eede39867528bcfe976da9735b87ff4bf",
+                "recorded_file_stat": {
+                  "bytes": 71793191,
+                  "mtime_ns": 1791604909993467600
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/205_492.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/205_492.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/205_492.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 32851279,
+                "observed_sha256": "b097cf9b74711b80db368ee37d6033cf96adbf07dfc0c581ab28cdd677126b53",
+                "recorded_file_stat": {
+                  "bytes": 32851279,
+                  "mtime_ns": 1791604928529753600
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/205_492.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "213_241",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/213_241.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/213_241.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 52241888,
+                "observed_sha256": "d9770d4a42c72043d6922f1b9aae47f99f235b06fa0b35d379c1bf4bec143fba",
+                "recorded_file_stat": {
+                  "bytes": 52241888,
+                  "mtime_ns": 1791599655872213100
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/213_241.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/213_241.csv",
+                "path": "data/raw_geobc_coverage/Field/213_241.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 87405893,
+                "observed_sha256": "82484c65a855760bd645690046df276f8e79ff91e123a35bdeccc09c0055dc43",
+                "recorded_file_stat": {
+                  "bytes": 87405893,
+                  "mtime_ns": 1791599701030079900
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/213_241.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/213_241.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/213_241.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 40015652,
+                "observed_sha256": "c4480c4da28b689aeb1dceb909ab1f25f2d8050c3b250b557e632c34f2c74893",
+                "recorded_file_stat": {
+                  "bytes": 40015652,
+                  "mtime_ns": 1791599682077187500
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/213_241.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          },
+          {
+            "cad_id": "217_537",
+            "components": {
+              "FieldMesh": {
+                "relative_path": "FieldMesh/217_537.h5",
+                "path": "data/raw_geobc_coverage/FieldMesh/217_537.h5",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 44944304,
+                "observed_sha256": "c41ca5a66f4d3a937ac3ba74421ccfe73bee9357e5fbe1d4727312d241acbd4a",
+                "recorded_file_stat": {
+                  "bytes": 44944304,
+                  "mtime_ns": 1791601350158146200
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/FieldMesh/217_537.h5.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "Field": {
+                "relative_path": "Field/217_537.csv",
+                "path": "data/raw_geobc_coverage/Field/217_537.csv",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 75443794,
+                "observed_sha256": "6eda7f21ed2e4f95d72d5dda085a9a40f56e0fe1c39c68d16229269fefd19682",
+                "recorded_file_stat": {
+                  "bytes": 75443794,
+                  "mtime_ns": 1791601346427857200
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/Field/217_537.csv.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              },
+              "SolverDeck": {
+                "relative_path": "SolverDeck/217_537.fem",
+                "path": "data/raw_geobc_coverage/SolverDeck/217_537.fem",
+                "original_role": "additional_train",
+                "status": "completed",
+                "actual_bytes": 34511820,
+                "observed_sha256": "76f378f474d2553e3e0dfbd8aa9559222130d5c8abd1895977b26bfedc25f3e2",
+                "recorded_file_stat": {
+                  "bytes": 34511820,
+                  "mtime_ns": 1791601362863281000
+                },
+                "canonical_receipt_path": "data/raw_geobc_coverage/.receipts/SolverDeck/217_537.fem.json",
+                "canonical_receipt_read_in_this_design": false,
+                "checksum_origin": "locally observed received bytes; no independent upstream checksum"
+              }
+            }
+          }
+        ],
+        "candidate_inventory": {
+          "candidate_count": 9,
+          "candidates": [
+            {
+              "candidate_id": "transolver_cad40_fresh4800",
+              "method": "transolver",
+              "step": 4800,
+              "TRAIN_CADs": 40,
+              "complete_TRAIN120_passes": 40,
+              "training_plan": "notes/geobc_coverage_comparison_plan.json",
+              "training_scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+              "training_output": "runs/geobc_coverage_comparison/transolver_cad40_fresh4800",
+              "checkpoint_path": "runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.pt",
+              "endpoint_metadata_path": "runs/geobc_coverage_comparison/transolver_cad40_fresh4800/step4800.json",
+              "inference_entry": "coverage_comparison_train.model_environment + solver_selection_train._predict_case",
+              "checkpoint_hash_binding": "pending root freeze; no checkpoint bytes read by this design",
+              "optimizer_restore": false
+            },
+            {
+              "candidate_id": "transolver_pp_cad40_fresh4800",
+              "method": "transolver_pp",
+              "step": 4800,
+              "TRAIN_CADs": 40,
+              "complete_TRAIN120_passes": 40,
+              "training_plan": "notes/geobc_coverage_comparison_plan.json",
+              "training_scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+              "training_output": "runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800",
+              "checkpoint_path": "runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.pt",
+              "endpoint_metadata_path": "runs/geobc_coverage_comparison/transolver_pp_cad40_fresh4800/step4800.json",
+              "inference_entry": "coverage_comparison_train.model_environment + solver_selection_train._predict_case",
+              "checkpoint_hash_binding": "pending root freeze; no checkpoint bytes read by this design",
+              "optimizer_restore": false
+            },
+            {
+              "candidate_id": "ts3_cad40_fresh4800",
+              "method": "ts3",
+              "step": 4800,
+              "TRAIN_CADs": 40,
+              "complete_TRAIN120_passes": 40,
+              "training_plan": "notes/geobc_coverage_comparison_plan.json",
+              "training_scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+              "training_output": "runs/geobc_coverage_comparison/ts3_cad40_fresh4800",
+              "checkpoint_path": "runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.pt",
+              "endpoint_metadata_path": "runs/geobc_coverage_comparison/ts3_cad40_fresh4800/step4800.json",
+              "inference_entry": "coverage_comparison_train.model_environment + solver_selection_train._predict_case",
+              "checkpoint_hash_binding": "pending root freeze; no checkpoint bytes read by this design",
+              "optimizer_restore": false
+            },
+            {
+              "candidate_id": "fno_cad40_fresh4800",
+              "method": "fno",
+              "step": 4800,
+              "TRAIN_CADs": 40,
+              "complete_TRAIN120_passes": 40,
+              "training_plan": "notes/geobc_coverage_comparison_plan.json",
+              "training_scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+              "training_output": "runs/geobc_coverage_comparison/fno_cad40_fresh4800",
+              "checkpoint_path": "runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.pt",
+              "endpoint_metadata_path": "runs/geobc_coverage_comparison/fno_cad40_fresh4800/step4800.json",
+              "inference_entry": "coverage_comparison_train.model_environment + solver_selection_train._predict_case",
+              "checkpoint_hash_binding": "pending root freeze; no checkpoint bytes read by this design",
+              "optimizer_restore": false
+            },
+            {
+              "candidate_id": "mlp_cad40_fresh4800",
+              "method": "mlp",
+              "step": 4800,
+              "TRAIN_CADs": 40,
+              "complete_TRAIN120_passes": 40,
+              "training_plan": "notes/geobc_coverage_comparison_plan.json",
+              "training_scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
+              "training_output": "runs/geobc_coverage_comparison/mlp_cad40_fresh4800",
+              "checkpoint_path": "runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.pt",
+              "endpoint_metadata_path": "runs/geobc_coverage_comparison/mlp_cad40_fresh4800/step4800.json",
+              "inference_entry": "coverage_comparison_train.model_environment + solver_selection_train._predict_case",
+              "checkpoint_hash_binding": "pending root freeze; no checkpoint bytes read by this design",
+              "optimizer_restore": false
+            },
+            {
+              "candidate_id": "PP_regime_step4800",
+              "method": "transolver_pp",
+              "step": 4800,
+              "TRAIN_CADs": 40,
+              "complete_TRAIN120_passes": 40,
+              "training_plan": "notes/geobc_transolver_pp_regime_plan.json",
+              "training_scientific_digest": "dad6be58506fd5079470e8d31d231ff8cf52234c23cece4007740f812164dc89",
+              "training_output": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION",
+              "checkpoint_path": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION/step4800.pt",
+              "endpoint_metadata_path": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION/step4800.json",
+              "inference_entry": "unchanged coverage_comparison_train.model_environment + solver_selection_train._predict_case",
+              "checkpoint_hash_binding": "pending genuine PP terminal and root freeze; no live PP files or checkpoint bytes read by this design",
+              "optimizer_restore": false,
+              "scope": "4800 versus old4800 is recipe bundle at matched exposure; 24000 also adds exposure and costs"
+            },
+            {
+              "candidate_id": "PP_regime_step24000",
+              "method": "transolver_pp",
+              "step": 24000,
+              "TRAIN_CADs": 40,
+              "complete_TRAIN120_passes": 200,
+              "training_plan": "notes/geobc_transolver_pp_regime_plan.json",
+              "training_scientific_digest": "dad6be58506fd5079470e8d31d231ff8cf52234c23cece4007740f812164dc89",
+              "training_output": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION",
+              "checkpoint_path": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION/step24000.pt",
+              "endpoint_metadata_path": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION/step24000.json",
+              "inference_entry": "unchanged coverage_comparison_train.model_environment + solver_selection_train._predict_case",
+              "checkpoint_hash_binding": "pending genuine PP terminal and root freeze; no live PP files or checkpoint bytes read by this design",
+              "optimizer_restore": false,
+              "scope": "4800 versus old4800 is recipe bundle at matched exposure; 24000 also adds exposure and costs"
+            },
+            {
+              "candidate_id": "FNO_latent_query_grid25_step4800",
+              "method": "FNO_latent_query_grid25",
+              "step": 4800,
+              "TRAIN_CADs": 40,
+              "complete_TRAIN120_passes": 40,
+              "training_plan": "notes/geobc_fno_local_condition_pair_plan.json",
+              "training_scientific_digest": "192ccffe2a79bf63cdd2e8199dd2b9fab79dd29ad8eb10ed689c78dd10e26b51",
+              "training_output": "runs/geobc_coverage_comparison/FNO_LOCAL25_PAIR/FNO_latent_query_grid25",
+              "checkpoint_path": "runs/geobc_coverage_comparison/FNO_LOCAL25_PAIR/FNO_latent_query_grid25/step4800.pt",
+              "endpoint_metadata_path": "runs/geobc_coverage_comparison/FNO_LOCAL25_PAIR/FNO_latent_query_grid25/checkpoint.json",
+              "inference_entry": "fno_local_condition_pair.model_class(torch)(arm), encode_case once, query allN chunks32768",
+              "checkpoint_hash_binding": "pending genuine FNO pair terminal and root freeze; endpoint path and stored payload step4800 must agree",
+              "optimizer_restore": false,
+              "scope": "grid25 and native25 matched pair; shared latent/node decoder differs from old FNO"
+            },
+            {
+              "candidate_id": "FNO_latent_query_native25_step4800",
+              "method": "FNO_latent_query_native25",
+              "step": 4800,
+              "TRAIN_CADs": 40,
+              "complete_TRAIN120_passes": 40,
+              "training_plan": "notes/geobc_fno_local_condition_pair_plan.json",
+              "training_scientific_digest": "192ccffe2a79bf63cdd2e8199dd2b9fab79dd29ad8eb10ed689c78dd10e26b51",
+              "training_output": "runs/geobc_coverage_comparison/FNO_LOCAL25_PAIR/FNO_latent_query_native25",
+              "checkpoint_path": "runs/geobc_coverage_comparison/FNO_LOCAL25_PAIR/FNO_latent_query_native25/step4800.pt",
+              "endpoint_metadata_path": "runs/geobc_coverage_comparison/FNO_LOCAL25_PAIR/FNO_latent_query_native25/checkpoint.json",
+              "inference_entry": "fno_local_condition_pair.model_class(torch)(arm), encode_case once, query allN chunks32768",
+              "checkpoint_hash_binding": "pending genuine FNO pair terminal and root freeze; endpoint path and stored payload step4800 must agree",
+              "optimizer_restore": false,
+              "scope": "grid25 and native25 matched pair; shared latent/node decoder differs from old FNO"
+            }
+          ],
+          "current_upstream_checkpoint_readiness_not_checked": true,
+          "freeze_checkpoint_byte_identities_only_after_upstream_genuine_terminal": true,
+          "do_not_select_candidates_using_new_CAD_targets": true,
+          "failure_policy": "All nine remain. After authentic upstream terminal, a genuinely absent or technically invalid fixed endpoint creates one true terminal-failure entry for every60 cases. Running upstream is not failure. Scientific TRAIN progress-gate failure alone is not checkpoint or execution failure.",
+          "TRAIN_progress_gate_is_research_priority_only": true,
+          "TRAIN_progress_gate_may_delete_valid_frozen_endpoint": false,
+          "scientific_progress_gate_not_passed_means_runtime_failure": false,
+          "valid_fixed_endpoint_after_genuine_terminal": "Predict every available scientifically valid fixed checkpoint even if TRAIN improvement gate failed; retain the real training qualification and cost outcome as context. Do not invent checkpoint or prediction failure."
+        },
+        "input_policy": {
+          "dataset": "original DeepJEB v1.0, original source signed UXYZ mm and scalar S MPa",
+          "source_revision": "160424ca2a5095315ff9ead8a5fc36d2667fd3c6",
+          "H5_members": [
+            "vertices",
+            "cells"
+          ],
+          "forbidden_H5_members": "all nodal physical variables",
+          "CSV_prebarrier_columns": [
+            "nodeID",
+            "coord_x(mm)",
+            "coord_y(mm)",
+            "coord_z(mm)"
+          ],
+          "CSV_prebarrier_header_only_check": "presence/uniqueness of every ver/hor/tor x/y/z_disp(mm) and stress(MPa) name; no numeric target reads",
+          "GRID_to_H5_bijective_tolerance_mm": 0.0002,
+          "features": 25,
+          "feature_source": "blind_solver_inputs.feature_arrays exact existing arithmetic from actual RBE2/RBE3/actions/SPC/MAT1 and geometry",
+          "features_must_not_include_physical_U_or_S": true,
+          "cloud_points": 1024,
+          "cloud_seed": "old BLAKE2b2026:CAD boundary-node choice without replacement with mask and padding",
+          "normalization": "same original FP32 xyz_mm, bbox/max extent",
+          "grid": "same target-free64^3 occupancy1+coordinate3+features25 node splat, geometry-only trilinear query",
+          "scaler": {
+            "mean": [
+              -0.006059544265096125,
+              -0.0005008273527146082,
+              0.015260029003479832,
+              0.09629744183585241
+            ],
+            "std": [
+              0.05393032209940291,
+              0.011291299669602316,
+              0.07619646768716026,
+              0.5232191238243877
+            ],
+            "stress_scale": 90.46589813232424,
+            "channels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "new_scaler_fit": false,
+          "targets_in_input_cache": false,
+          "unsupported_geometry_BC_field_schema_is_terminal_negative": true
+        },
+        "producer_policy": {
+          "proposed_source": "geobc/available_cad_pilot_data.py; not created",
+          "existing_per_CAD_entry": "geobc.coverage_comparison_data._prepare_CAD(contract, plan, cad, output, ledger, status_callback)",
+          "existing_coverage_data_py": "not present; actual module is coverage_comparison_data.py",
+          "can_reuse_without_original_540_contract": true,
+          "must_not_call": [
+            "coverage_comparison_data.request_contract",
+            "coverage_comparison_data._released",
+            "coverage_comparison_data.prepare_inputs",
+            "coverage_comparison_data.read_dev_targets_after_barrier",
+            "coverage_comparison_train.run_predict",
+            "coverage_s_blind_eval.run",
+            "coverage_known_u_readout.run"
+          ],
+          "pilot_contract_groups": {
+            "train_new160": [],
+            "pilot_evaluation_CADs": [
+              "120_153",
+              "131_345",
+              "131_351",
+              "140_229",
+              "146_50",
+              "147_285",
+              "148_533",
+              "153_336",
+              "171_150",
+              "171_329",
+              "174_138",
+              "182_616",
+              "183_565",
+              "195_191",
+              "198_306",
+              "202_107",
+              "202_241",
+              "205_492",
+              "213_241",
+              "217_537"
+            ]
+          },
+          "source_role_binding": "retain original additional_train source identity and explicitly record independent evaluation-only role; never relabel the original protocol",
+          "target_free_branch_requirement": "No selected CAD in contract.groups.train_new160, so _prepare_CAD group=validation and targets=None. Original additional_train group would pre-read all U/S. Adapter must also verify output records contain neither target_path nor physical_path.",
+          "minimal_new_work": [
+            "Independent small-JSON identity contract validating selected60 canonical completed receipts and preserving original negative",
+            "Independent root release gate and aggregate preparation/readout cost guard without changing original pins",
+            "Call existing per-CAD math through explicit evaluation-only contract; own output/read ledger/manifest for fixed20 CADs",
+            "Independent input-only loader and all9x60 prediction-or-real-failure barrier; original wrappers contain fixed540/2400/5case constraints",
+            "After own barrier use existing _targets pure12-column parse once perCAD and own guarded atomic shared-GT manifest; no original protocol wrapper"
+          ],
+          "existing_private_helpers_are_implementation_dependencies_not_stable_public_API": true
+        },
+        "execution_device_and_lock": {
+          "existing_prepare_CAD_is_CPU_only": false,
+          "existing_prepare_CAD_CPU_parts": [
+            "NumPy/h5py vertices/cells",
+            "deck parser and GRID coordinate reading",
+            "SciPy coordinate maps and feature_arrays",
+            "quadratic boundary extraction and seeded cloud"
+          ],
+          "existing_prepare_CAD_CUDA_parts": [
+            "coverage_comparison_data.py:456 reads recipe.device, original recipe=cuda",
+            "line457 transfers xyz tensor to device; line458 Torch _stencil",
+            "line461 creates device grid coordinates; line473 transfers features and Torch _splat",
+            "line486 calls torch.cuda.synchronize on CUDA"
+          ],
+          "stencil_splat_are": "Torch functions in solver_selection_data.py:121/138; allocate on tensor.device and use index_add; not NumPy",
+          "existing_coverage_grid_function": "No _coverage_grid definition/reference found in geobc or tools source",
+          "planned_prepare_device": "cuda, existing exact path; no runtime CPU fallback",
+          "single_shared_GPU_lock": "runs/geobc_exploration/.coordinator.lock for actual preparation/grid and full independent readout; nonblocking",
+          "peak_GPU_GiB": 24,
+          "wait_for_all_existing_PP_and_FNO_exact_PID_startticks_exit_and_terminal_closed_clocks": true,
+          "do_not_launch_any_new_GPU_work_while_PP_or_FNO_live": true,
+          "optional_future_CPU_only_split": "Requires separate explicit source implementation/review; not provided or released by this design"
+        },
+        "prediction_and_GT_barrier": {
+          "required_terminal_entries": 540,
+          "entry_meaning": "nine fixed candidates x60 fixed case_keys, distinct from parent540 acquisition files",
+          "required_inventory": "exact Cartesian product of frozen candidate_id and case_key, including real terminal failures",
+          "successful_prediction": "immutable hashed finite all-original-node encoded[N,4] and decoded physical[N,4] with source/input/checkpoint identities",
+          "all_original_nodes": true,
+          "sampling_or_interpolation_of_labels": false,
+          "prediction_seed": "BLAKE2b 8 bytes of 2026:GeoBC_AVAILABLE20:{case_key}, modulo2**31; same case seed across candidates, isolated RNG; model.eval()",
+          "new_training_or_optimizer_restore_or_updates": false,
+          "barrier_complete_vs_all_finite_are_distinct": true,
+          "pre_GT_requirement": "Every540 terminal entry committed; all fixed20 input alignments complete; zero U/S numeric parse attempts before barrier",
+          "GT_parse_once_unit": "one source CSV parse per selectedCAD reading all12 original ver/hor/tor UXYZ/S columns, shared by every candidate",
+          "expected_source_GT_parses": 20,
+          "expected_U_case_reads": 60,
+          "expected_S_case_reads": 60,
+          "retain_source_signs": true,
+          "forbidden_GT": [
+            "dia",
+            "strain",
+            "H5 nodal variables",
+            "oldDEV",
+            "oldfinal",
+            "originalnewDEV20"
+          ],
+          "interrupted_source_read_without_committed_owned_cache": "terminal uncommitted-read negative; no silent reparse or budget reset",
+          "if_all_predictions_fail": "commit fixed failure inventory, no unnecessary GT read",
+          "if_any_selected_input_unsupported_or_incomplete": "complete campaign input-negative with fixed IDs and true failure ledger; all GT counts0; do not shrink20 or substitute",
+          "parent540_input_negative_does_not_invalidate_independent_selected60_source_receipts": true,
+          "query_chunk_nodes": 32768
+        },
+        "metrics_and_interpretation": {
+          "existing_metric_helpers": "coverage_comparison_train.physical_metrics + aggregate(denominator=60); numeric function reuse only",
+          "reported": [
+            "full60 case-mean and worst U relativeL2",
+            "full60 case-mean and worst signedS relativeL2",
+            "full60 case-mean and worst top1%abs-originalS hotspot relativeL2",
+            "physical RMS/maximum errors and per-case scalars",
+            "per-load20CAD summaries and20CAD paired candidate differences",
+            "actual inference and inherited training seconds, parameter counts and exposures"
+          ],
+          "fixed_denominators": "60 overall and20 for each load; missing/nonfinite/zero-reference values make corresponding aggregate null, not subset means",
+          "no_train_metric_substitution_for_generalization": true,
+          "no_same_compute_or_capacity_family_ceiling_claim": true,
+          "not_author_DeepJEB_exact_replay": true,
+          "single_seed_and_availability_conditioned_CAD_scope": true,
+          "candidate_ranking_rules": {
+            "primary_score": "0.5*(full60 case_mean_U_relativeL2+full60 case_mean_signedS_relativeL2)",
+            "eligibility": "all60 required original-node U/S/hot metrics finite and completed; no subset means",
+            "ties": "retain equal-score candidates; compare worstS/hot/U and actual cost, do not claim family ceiling",
+            "failure": "visible true failure rows, no forced ranking of incomplete candidates",
+            "scope": "availability-conditioned additionalTRAIN20 not originalsealed20DEV or finaltest"
+          }
+        },
+        "budgets": {
+          "entire_preparation_wall_seconds_max": 3600,
+          "all9x60_readout_wall_seconds_max": 3600,
+          "whole_campaign_wall_seconds_max": 7200,
+          "peak_allocated_and_reserved_GPU_GiB_max": 24,
+          "all_initialization_IO_transfer_persistence_failure_costs_included": true,
+          "no_automatic_resume_or_budget_reset": true
+        },
+        "outputs": {
+          "input_cache": "data/geobc_available_cad_pilot",
+          "readout": "runs/geobc_exploration/available_CAD20_candidate9",
+          "report": "results/geobc_available_cad_pilot"
+        }
+      },
+      "source_sha256": {
+        "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+        "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+        "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+        "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196",
+        "geobc/coverage_comparison_train.py": "bbf3832d144a689d0c8c32d27673953dd9a1d24b5976313e3e6a966d08f55e00",
+        "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+        "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+        "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+        "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+        "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+        "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+        "third_party/transformer_sources.json": "1a46270136d2f58e081ea7be050c46fca5378b9853fc3e703c945129769aefb6",
+        "tools/fetch_exact_deepjeb.py": "ff01bffff639cf007cc9c97969b3210db0bca2375f674709238105d6e59002f2",
+        "tools/fetch_geobc_coverage.py": "81b88675120c9ef7f9c07f139be45bc8a5f8196fb095d07a20ab6b5be7b2adeb",
+        "tools/fetch_next_cycle_test.py": "92eba989a7c0b17ab8a5084cf9d761116ab4ace32b01b5b0e70e1375ad3edfae",
+        "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+        "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+        "tools/run_geobc_coverage_comparison.py": "f39c9b01efd45dbe7d4ae66dc1807dcd865eae2c170aa63e60b157dfc0ae1196",
+        "tools/start_geobc_coverage_comparison.ps1": "4d1cdf1675c5f7d38d6a7ba2b2c3bdf4dcafbb1e6b0808f712e32ced3cea9905",
+        "tools/start_geobc_coverage_fetch.ps1": "7f90ffd8a758c2f3b7f5248370aa1e1f8631af9b56ca7fdc1a19070b17caba9a",
+        "geobc/coverage_s_blind_eval.py": "05740be3b58b4cf4998f3dec9643fa4c82ba1cb335034c63dea747c430659e4c",
+        "geobc/coverage_known_u_readout.py": "bb694b0495226efc81d2535cda3a27bf57dc82ed02314c7d97b179998cdf4d0d",
+        "geobc/transolver_pp_regime_confirmation.py": "7b35c294495727ef8b117841046c3d31fda980147769a44ec00f06346cb2956e",
+        "geobc/fno_local_condition_pair.py": "c1d5884bd5ab704856d0677fa00c6234477985cd4a324791997e3f6f52bc2ff5",
+        "geobc/available_cad_pilot_data.py": "fe6a1b8ac1a001dc14a5eefd1e64cb75d71359a3ba77903479d4051fd0eb127a",
+        "geobc/available_cad_pilot_eval.py": "aa0644e27e4fc849f7cd59c6b57284a1120135ea87e8e0fa2a029d1d5ef229a3",
+        "tools/run_geobc_available_pilot_guard.py": "de3afe185f7b64d0238d999598701339e6bb556ab55ab55f35b523019697f009"
+      },
+      "groups": {
+        "train_new160": [],
+        "validation20": [
+          "120_153"
+        ]
+      },
+      "selected_CADs": [
+        "120_153"
+      ],
+      "case_keys": [
+        "120_153/ver",
+        "120_153/hor",
+        "120_153/tor"
+      ],
+      "validation_keys": [
+        "120_153/ver",
+        "120_153/hor",
+        "120_153/tor",
+        "131_345/ver",
+        "131_345/hor",
+        "131_345/tor",
+        "131_351/ver",
+        "131_351/hor",
+        "131_351/tor",
+        "140_229/ver",
+        "140_229/hor",
+        "140_229/tor",
+        "146_50/ver",
+        "146_50/hor",
+        "146_50/tor",
+        "147_285/ver",
+        "147_285/hor",
+        "147_285/tor",
+        "148_533/ver",
+        "148_533/hor",
+        "148_533/tor",
+        "153_336/ver",
+        "153_336/hor",
+        "153_336/tor",
+        "171_150/ver",
+        "171_150/hor",
+        "171_150/tor",
+        "171_329/ver",
+        "171_329/hor",
+        "171_329/tor",
+        "174_138/ver",
+        "174_138/hor",
+        "174_138/tor",
+        "182_616/ver",
+        "182_616/hor",
+        "182_616/tor",
+        "183_565/ver",
+        "183_565/hor",
+        "183_565/tor",
+        "195_191/ver",
+        "195_191/hor",
+        "195_191/tor",
+        "198_306/ver",
+        "198_306/hor",
+        "198_306/tor",
+        "202_107/ver",
+        "202_107/hor",
+        "202_107/tor",
+        "202_241/ver",
+        "202_241/hor",
+        "202_241/tor",
+        "205_492/ver",
+        "205_492/hor",
+        "205_492/tor",
+        "213_241/ver",
+        "213_241/hor",
+        "213_241/tor",
+        "217_537/ver",
+        "217_537/hor",
+        "217_537/tor"
+      ],
+      "train_keys": {},
+      "source_role": "additional_train",
+      "pilot_role": "evaluation_only",
+      "helper_validation_is_technical_branch_only": true,
+      "scaler": {
+        "mean": [
+          -0.006059544265096125,
+          -0.0005008273527146082,
+          0.015260029003479832,
+          0.09629744183585241
+        ],
+        "std": [
+          0.05393032209940291,
+          0.011291299669602316,
+          0.07619646768716026,
+          0.5232191238243877
+        ],
+        "stress_scale": 90.46589813232424,
+        "channels": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "scaler_source": {
+        "path": "data/geobc_solver_selection/manifest.json",
+        "bytes": 269313,
+        "mtime_ns": 1791554109639550500,
+        "sha256": "76ba5189e0cfb4db226db472ca9cfe019f4d7f81c1eff9d0335726eea73a4ced"
+      },
+      "input_recipe": {
+        "H5_members": [
+          "vertices",
+          "cells"
+        ],
+        "coordinate_columns": [
+          "nodeID",
+          "coord_x(mm)",
+          "coord_y(mm)",
+          "coord_z(mm)"
+        ],
+        "known_loads": [
+          "ver",
+          "hor",
+          "tor"
+        ],
+        "features": 25,
+        "GRID_H5_tolerance_mm": 0.0002,
+        "cloud_points": 1024,
+        "cloud_seed": 2026,
+        "grid_resolution": 64,
+        "grid_channels": 29,
+        "normalization": "original FP32 xyz_mm; (xyz_mm-bbox_min)/max_bbox_extent",
+        "cloud": "unique original quadratic-boundary FEM IDs; BLAKE2b seed2026:CAD without replacement; zero padding/bool mask",
+        "support_flags": "actual RBE2 CM on mapped members and actual SPC; no role-implied clamping",
+        "material": "explicit real MAT1 E/nu/rho; no defaults",
+        "reader_scope": {
+          "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+          "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+          "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+          "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+          "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+          "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+          "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+          "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+          "deck_coordinate_relative_tolerance": 1e-05,
+          "material_relative_tolerance": 1e-08,
+          "allowed_static_params": {
+            "POST": [
+              "-1",
+              "0",
+              "1",
+              "2"
+            ],
+            "AUTOSPC": [
+              "YES",
+              "NO"
+            ],
+            "GRDPNT": [
+              "0"
+            ],
+            "LGDISP": [
+              "0",
+              "NO"
+            ],
+            "INREL": [
+              "0"
+            ],
+            "CHECKEL": [
+              "NO"
+            ],
+            "RENUMOK": [
+              "YES"
+            ],
+            "PRINFACC": [
+              "1"
+            ],
+            "CONTFEL": [
+              "AUTO"
+            ]
+          },
+          "allowed_gapprm_names": [
+            "GAPCMPL"
+          ],
+          "ignored_output_cards": [
+            "ENDDATA",
+            "OUTPUT",
+            "OUTPUT2",
+            "DISPLACEMENT",
+            "GPSTRESS",
+            "STRESS",
+            "STRAIN",
+            "SPCFORCE",
+            "OLOAD",
+            "GPFORCE",
+            "ECHO",
+            "FORMAT",
+            "ELFORCE",
+            "ESE"
+          ],
+          "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+          "explicit_proprietary_control_exclusions": [
+            {
+              "output_only_claim": false,
+              "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+              "card": "DEBUG",
+              "original_effect": "unknown",
+              "value": "0.0",
+              "classification": "definition_unverified_explicitly_not_reproduced",
+              "inactive_claim": false,
+              "name": "LGSHPSNS"
+            }
+          ]
+        },
+        "load_transfer": {
+          "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+          "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+          "minimum_rank": 6,
+          "maximum_normal_condition": 1000000000000,
+          "relative_guard_tolerance": 1e-09,
+          "guards": [
+            "H B=I6",
+            "virtual work",
+            "net force",
+            "net moment about true reference"
+          ],
+          "fallback_or_pseudoinverse": false,
+          "OptiStruct_exact": false
+        },
+        "seed": 2026,
+        "scaler_fit": "none; exact original TRAIN40-only frozen scaler",
+        "DEV_input_targets": false,
+        "target_columns_presence_check": [
+          "ver_x_disp(mm)",
+          "ver_y_disp(mm)",
+          "ver_z_disp(mm)",
+          "ver_stress(MPa)",
+          "hor_x_disp(mm)",
+          "hor_y_disp(mm)",
+          "hor_z_disp(mm)",
+          "hor_stress(MPa)",
+          "tor_x_disp(mm)",
+          "tor_y_disp(mm)",
+          "tor_z_disp(mm)",
+          "tor_stress(MPa)"
+        ],
+        "numeric_targets_before_barrier": false
+      },
+      "reader_policy": {
+        "path": "notes/geobc_elastic_crosscad_plan.json",
+        "bytes": 25494,
+        "mtime_ns": 1791580206234418300,
+        "sha256": "a94122fefe1786ae685e019833c5cd78625c6f0a082c564fac4a990f4082fa5d"
+      },
+      "raw_sources": {
+        "120_153": {
+          "FieldMesh": {
+            "path": "data/raw_geobc_coverage/FieldMesh/120_153.h5",
+            "bytes": 34946496,
+            "mtime_ns": 1791600630413414900,
+            "sha256": "9394088ae8edc2e65d3517df142ba7b2de48ab65f0b7ccb93118926406992465",
+            "source_url": "https://drive.google.com/file/d/1bW-zxbZ1prtKIbslwdLozJj8GmskQJTC/view?usp=drive_web",
+            "role": "additional_train",
+            "source_role": "additional_train",
+            "pilot_role": "evaluation_only",
+            "available": true,
+            "checksum_origin": "locally observed received bytes; no independent upstream checksum",
+            "canonical_receipt": {
+              "path": "data/raw_geobc_coverage/.receipts/FieldMesh/120_153.h5.json",
+              "bytes": 1200,
+              "mtime_ns": 1791600630424564300,
+              "sha256": "171ef9dbac588c07698f259632be208adf94ff2eb8012225fa8ffd6a5c6546d5"
+            }
+          },
+          "Field": {
+            "path": "data/raw_geobc_coverage/Field/120_153.csv",
+            "bytes": 58705250,
+            "mtime_ns": 1791600637545188900,
+            "sha256": "83098f0a340e9c1aa88269a386f22602e77368db404f603716e97bb4673eb868",
+            "source_url": "https://drive.google.com/file/d/1Dqn9OOoKnu8bRGBwlfXM5GBQ-Q04ScPN/view?usp=drive_web",
+            "role": "additional_train",
+            "source_role": "additional_train",
+            "pilot_role": "evaluation_only",
+            "available": true,
+            "checksum_origin": "locally observed received bytes; no independent upstream checksum",
+            "canonical_receipt": {
+              "path": "data/raw_geobc_coverage/.receipts/Field/120_153.csv.json",
+              "bytes": 1204,
+              "mtime_ns": 1791600637640550200,
+              "sha256": "45a897c6fca98a33e36199763b865bbfd98410542965a7531a96e52c4985b042"
+            }
+          },
+          "SolverDeck": {
+            "path": "data/raw_geobc_coverage/SolverDeck/120_153.fem",
+            "bytes": 26616608,
+            "mtime_ns": 1791604158634500500,
+            "sha256": "0c826f80611ec584025c694385a23a4e956c90c2ad2f297fae231fc10a214196",
+            "source_url": "https://drive.google.com/file/d/1ftTmC8MEd0d2JlaU1TCPKKLwkZMmhbHF/view?usp=drive_web",
+            "role": "additional_train",
+            "source_role": "additional_train",
+            "pilot_role": "evaluation_only",
+            "available": true,
+            "checksum_origin": "locally observed received bytes; no independent upstream checksum",
+            "canonical_receipt": {
+              "path": "data/raw_geobc_coverage/.receipts/SolverDeck/120_153.fem.json",
+              "bytes": 2391,
+              "mtime_ns": 1791604158650016700,
+              "sha256": "d7f10c08c27f9ff2f6e07b5dcf85627b772b96d48d86b73520ecf5d62d90940c"
+            }
+          }
+        }
+      },
+      "selected_source_files": 60,
+      "original_acquisition_summary": {
+        "path": "data/raw_geobc_coverage/summary.json",
+        "bytes": 891150,
+        "mtime_ns": 1791620307866666200,
+        "sha256": "8628a89232326249e9b0af41422efdfabbf310338c6b414ed4fc74e994fb29b7"
+      },
+      "original_acquisition_status": "budget_exhausted",
+      "original540_complete": false,
+      "original660_complete": false,
+      "original2400_barrier_complete": false,
+      "original_negative_is_pilot_case_failure": false,
+      "fixed_CAD_denominator": 20,
+      "fixed_case_denominator": 60
+    },
+    "recipe": {
+      "methods": [
+        "transolver",
+        "transolver_pp",
+        "ts3",
+        "fno",
+        "mlp"
+      ],
+      "train_loads": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "seed": 2026,
+      "cloud_seed": 2026,
+      "device": "cpu",
+      "fixed_updates": 4800,
+      "evaluation_updates": [
+        0,
+        1200,
+        2400,
+        4800
+      ],
+      "training_readout_keys": [
+        "101_479/ver",
+        "107_320/hor",
+        "10_58/tor"
+      ],
+      "learning_rate": 0.001,
+      "learning_rate_schedule": "constant; existing shared recipe retained to isolate exposure and coverage",
+      "weight_decay": 0.0,
+      "optimizer": "Adam",
+      "cloud_points": 1024,
+      "geometry_dim": 32,
+      "grid_resolution": 64,
+      "microbatch_nodes": 32768,
+      "eval_batch_size": 32768,
+      "stress_transform": "asinh",
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "loss": "All original case nodes, encoded4 MSE; one full-case mean and one Adam update; weighted chunks only for pointwise models; whole global context for transformer",
+      "fresh_initialization": true,
+      "warmstart_previous_models": false,
+      "common_case_order_seed": 2026,
+      "case_order": "For each scale, independent complete shuffles of its full CAD×known3 list using Python Random(2026); identical stored order across all five methods at that scale; 4800 always full passes",
+      "train_budget_seconds_each_arm": 7200,
+      "budget_clock": "Accumulated whole-case update wall time including case IO and synchronized forward/backward/Adam; excludes separate initialization, evaluation and checkpoint writes which are separately reported",
+      "budget_stop_rule": "Check only between complete-case updates, retain partial pass and actual exposures. If 4800 not reached, terminal incomplete_cost_limit, never equate insufficient exposure with converged architecture failure",
+      "no_DEV_best_or_seed_selection": true,
+      "no_early_stopping_from_DEV": true,
+      "no_hyperparameter_rescue_in_stage": true,
+      "second_seed": "not part of this macro comparison; no variance/significance claim",
+      "capacity": "Reuse exact existing family constructors/presets; capacities differ and are disclosed. This measures current recipe, not tuned family optima",
+      "fno_query": "Trilinearly query encoded4 at all original nodes, then physical decode; grid contains inputs only",
+      "transolver_pp_evaluation": "Pinned upstream stochastic Gumbel behavior; deterministic per-case checkpoint-specific isolated RNG; preserve train RNG",
+      "continuous_query_scope": "Original-node U/S primary; this stage alone does not certify arbitrary interior query/gradient quality or full engineering qualification"
+    },
+    "whole_budget_seconds": 900,
+    "CPU_affinity_cores": 4,
+    "reference_input_manifest": {
+      "path": "data/geobc_available_cad_pilot/manifest.json",
+      "bytes": 1017054,
+      "mtime_ns": 1791651931755128000,
+      "sha256": "fff45fadb650e0b3463d1483726a44dadd74b9e8035de5fa6035b2364d3fec66"
+    },
+    "checks": "xyz/cloud/features/mask/query_indices exact; query_weights abs2e-6; grid occupancy exact, xyz abs2e-6, feature-raster per-channel abs1e-4*(1+reference peak)",
+    "scope": "Known development input-only, no numeric target/scaler/strain/H5nodal read; no new80 preparation until qualified",
+    "CUDA_visible_devices": "",
+    "GPU_lock_used": false
+  },
+  "scientific_digest": "fd6487c267ed28bd5c83e679f4a138da96dbbbc7a6b9ac70f3161c3ad59cfc3d",
+  "source_pins": {
+    "tools/build_geobc_prospective_input_contract.py": "231f123378d10a0ec4d7b83a2b21c09a2b7300b9099207130c9092141c522fb7",
+    "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196",
+    "geobc/available_cad_pilot_data.py": "fe6a1b8ac1a001dc14a5eefd1e64cb75d71359a3ba77903479d4051fd0eb127a",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+    "tools/geobc_cpu_input_probe.py": "1370b77826151bd730db4540400e305c7b8ff083d8c0fef4fc79f28e49670abe",
+    "tools/run_geobc_cpu_input_probe.py": "7d0da4287568b78bf86237d2d7b419f5b9d195691e19755e4696b2d5a28dff70",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0"
+  },
+  "output": "data/geobc_CPU_input_probe_v1",
+  "root_review": "notes/geobc_cpu_input_probe_root_review.json"
+}

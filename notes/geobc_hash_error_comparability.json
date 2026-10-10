@@ -1,0 +1,30 @@
+{
+  "question": "Why new errors are much larger than historical Hash below1percent?",
+  "historical_Hash": {
+    "single_stress_percent": 0.41394,
+    "two_mean_stress_percent": 0.76813,
+    "five_mean_stress_percent": 1.4495,
+    "shared50_TRAIN_mean_stress_percent": 16.16664,
+    "scope": "Known-label fitting, original stress-only sampled/full protocols; not a cross-CAD generalization benchmark",
+    "reference": "ALL_METHODS_RESULTS.md"
+  },
+  "current_evidence": {
+    "common4800": "results/geobc_common_grid_comparison/BRIEF.md",
+    "FNO24000": "notes/geobc_exposure_FNO24000_interim.json",
+    "samecase_fit": "results/geobc_single_case_fit/BRIEF.md",
+    "physical_loss": "results/geobc_physical_loss_pair/BRIEF.md"
+  },
+  "conclusions": [
+    "Historical below1percent is supported only on one/two fitted cases; not all Hash results.",
+    "Current shared TRAIN120 is underfit in this recipe; increasing FNO exposure40to200 lowers TRAIN stress39.0to24.2percent.",
+    "Common4800 TRAIN stress39.0versus knownDEV56.1percent contains a transfer gap in addition to fitting error.",
+    "No architecture ceiling or Hash rejection follows from mismatched cases, outputs, representation, losses or budgets.",
+    "Singlecase physical objective improved U but not S/hot; do not silently change shared loss."
+  ],
+  "future_macro_options": "notes/geobc_post_exposure_macro_options.json",
+  "candidate_inclusion": "Geometry/BC-conditioned continuous Hash or an operator with fine Hash decoder remains a candidate alongside native Transolver; stop small Hash hyperparameter tuning.",
+  "next_decision": "Finish already fixed PP24000 and four-endpoint knownDEV60, then select a macro representation/solver comparison using common split/jointU_S/physical fullN/fit-and-development/cost. Prepare shared input data now without opening FINAL.",
+  "new_Hash_experiment_actual_execution": 0,
+  "final_solver_selected": false,
+  "updated_UTC": "2026-10-10T22:22:49.318070+00:00"
+}

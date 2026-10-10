@@ -5681,25 +5681,57 @@
     "conclusion": "Original FNO query stable; new head highest-FP32 fixes TF32 chunk/AD-FD inconsistency; ++ stochastic and context-dependent"
   },
   "matched_macro_pair": {
-    "status": "actually_running",
+    "status": "completed",
     "plan": "notes/geobc_common_grid_train_plan.json",
     "live_identity_receipt": "notes/geobc_common_grid_live_milestone.json",
     "TRAIN_keys": 120,
     "fixed_updates_each": 4800,
     "final_solver_selected": false,
-    "next": "After genuine closed/exited endpoints, all60 existing development cases for both arms, not sealed20DEV"
+    "next": "Own4800 continuations to fixed100/200 exposures; no claim of final solver",
+    "report": "results/geobc_common_grid_comparison/BRIEF.md",
+    "development_U_S": {
+      "FNO9": [
+        0.279300135521613,
+        0.5606220902180189
+      ],
+      "PP256": [
+        0.4143652919512146,
+        0.864059355648341
+      ]
+    }
   },
-  "updated_at_utc": "2026-10-10T18:06:18.515291+00:00",
+  "updated_at_utc": "2026-10-10T22:24:12.084690+00:00",
   "prospective_final_reservation": {
     "path": "notes/geobc_prospective_cad_split_v1.json",
     "scientific_digest": "7a4f5ab3a6fcb32e19897246eeceeb64d8e3a06eb1511003b86da470d6267dc9",
     "TRAIN_CADs": 100,
     "DEV_CADs": 20,
     "FINAL_CADs": 20,
-    "new_inputs_prepared": false,
+    "new_inputs_prepared": true,
     "new_training_started": false,
     "FINAL_numeric_targets_opened": false,
-    "role": "New availability-conditional prospective split; original failed200 plan remains unchanged"
+    "role": "New availability-conditional prospective split; original failed200 plan remains unchanged",
+    "new_input_preparation": {
+      "status": "completed",
+      "plan": "notes/geobc_cpu_inputs80_plan.json",
+      "source_scientific_digest": "95e4bad65c66e9415266646b4e3b9b32376ae148280919697c3b03c72c5c43c1",
+      "exec_session": 40933,
+      "native_child": {
+        "pid": 787,
+        "start_ticks": 218862
+      },
+      "native_guard": {
+        "pid": 786,
+        "start_ticks": 218854
+      },
+      "note": "Input-only CPU backend; no FINAL numeric targets, no GPU, no new training",
+      "report": "results/geobc_prospective_input_preparation/BRIEF.md",
+      "native_epoch_seconds": 483.958048582077,
+      "native_monotonic_seconds": 442.568467004,
+      "prepared_CADs": 80,
+      "prepared_cases": 240,
+      "FINAL_numeric_targets_read": 0
+    }
   },
   "current_next_stage": {
     "stage": "matched_exposure24000_v1",
@@ -5707,6 +5739,14 @@
     "actual_launched": true,
     "loss_ablation": "completed_S_and_hot_not_improved",
     "question": "Does 100/200 balanced exposure improve both matched solvers?",
-    "future_development_readout_actual": 0
+    "future_development_readout_actual": 0,
+    "FNO24000_TRAIN_U_S": [
+      0.10463388917605126,
+      0.24170221670862674
+    ],
+    "FNO24000_is_TRAIN_only": true,
+    "paired_stage_status": "running_PP256",
+    "future_development_readout_plan": "notes/geobc_exposure_readout_plan.json",
+    "future_exporter": "tools/export_geobc_exposure_comparison.py"
   }
 }

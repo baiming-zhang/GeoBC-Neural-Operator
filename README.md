@@ -6,9 +6,9 @@
 
 随后固定单病例诊断已完成：FNO9在既有TRAIN病例10_58/tor上，共享训练该例U／S为41.5%／50.9%，fresh独立40更新为96.2%／99.7%，独立4800更新降为3.9%／11.5%，训练UTC2.57分钟／mono2.39分钟。这证明同一模型在该例上可以拟合得明显更好，大误差包含共享训练拟合不足；曝光与优化历史不同，不能把差异全归因于一个因素，也未达到Hash另一个单例的亚1%精度。后续先处理拟合与训练目标，再扩大数据；见[三行诊断](results/geobc_single_case_fit/BRIEF.md)。
 
-前瞻100／20／20划分中，新增TRAIN60×三载荷的180例目标已完成CPU准备及退出验收，UTC84.70秒／mono78.79秒；原CSV GRID对齐H5 vertices，继承旧TRAIN40-only scaler，DEV／FINAL标签读取均为0。新80个CAD的几何／25特征／R64输入尚未准备，新100CAD训练尚未启动；这是target-only阶段。见[数据准备简报](results/geobc_prospective_train_preparation/BRIEF.md)。当前状态以下列真实报告及运行收据为准。
+前瞻100／20／20划分中，新增TRAIN60×三载荷的180例目标已完成CPU准备及退出验收，UTC84.70秒／mono78.79秒；原CSV GRID对齐H5 vertices，继承旧TRAIN40-only scaler，DEV／FINAL标签读取均为0。随后固定80个CAD／240病例的几何、25特征、PointNet云及R64查询输入已用CPU全部准备完成，UTC483.96秒／mono442.57秒；新增TRAIN60节点排列与既有目标一致，FINAL20仍只读输入。新100CAD训练尚未启动。见[输入准备](results/geobc_prospective_input_preparation/BRIEF.md)。见[数据准备简报](results/geobc_prospective_train_preparation/BRIEF.md)。当前状态以下列真实报告及运行收据为准。
 
-下一阶段已在北京时间05:36:22启动：从两臂各自完整4800检查点保留Adam／RNG／病例顺序，继续到12000／24000更新，即每例100／200次曝光；两个求解器都比较，不按FNO预选赢家。全部TRAIN输入与encoded目标按文件路径去重常驻GPU，实际560个文件／6.83GiB，载入22.66秒；首病例张量与原加载器逐项完全一致，FNO真实全节点梯度与显存门通过。++的实际资源门将在其开始时检查。保留原损失、输入、模型与scaler；开发60读出在训练全部结束后独立执行。见[曝光计划](notes/geobc_exposure_extension_plan.json)。
+下一阶段已在北京时间05:36:22启动：从两臂各自完整4800检查点保留Adam／RNG／病例顺序，继续到12000／24000更新，即每例100／200次曝光；两个求解器都比较，不按FNO预选赢家。全部TRAIN输入与encoded目标按文件路径去重常驻GPU，实际560个文件／6.83GiB，载入22.66秒；首病例张量与原加载器逐项完全一致，FNO真实全节点梯度与显存门通过。++已通过真实全节点梯度和24GiB显存门，正在同预算延长训练。保留原损失、输入、模型与scaler；开发60读出在训练全部结束后独立执行。见[曝光计划](notes/geobc_exposure_extension_plan.json)。
 
 原版DeepJEB的30项可恢复slides实验已完成，随后探索十类学习结构及物理求解路线。全部阶段证据见[一分钟结果](results/SOLVER_BRIEF.md)，详细记录见[探索报告](results/geobc_exploration/REPORT.md)。
 
@@ -36,9 +36,9 @@ FNO查询头相对++降低位移11.9、应力26.1个百分点；每个CAD三载�
 
 物理损失的固定单例对照也已完成：同FNO9、10_58/tor、fresh初始化、Adam及4800次更新，仅改变为`0.5 × (U相对L2² + signed S相对L2²)`，训练UTC2.81分钟。位移从3.90%降为2.22%，应力从11.51%升为11.97%，热点也变差。不能据此解释应力瓶颈或替换共享训练损失；保留原encoded4 MSE进入曝光实验。实际初始物理标量完全一致，全节点梯度及显存门通过，原signed标签与scaler未改。见[损失对照](results/geobc_physical_loss_pair/BRIEF.md)。
 
-前瞻协议为100 TRAIN／20 known DEV／20 reserved FINAL CAD：TRAIN=旧40+新增60，DEV沿用当前20，FINAL按固定ID哈希规则另留20，不替代失败ID。新增TRAIN60的三载荷目标已准备，新80个CAD的几何输入尚未准备。FINAL数值标签仍未读、不得用于训练／scaler拟合／调参。该协议来自可用官方TRAIN池，不是无偏官方TEST。见[固定划分](notes/geobc_prospective_cad_split_v1.json)。
+前瞻协议为100 TRAIN／20 known DEV／20 reserved FINAL CAD：TRAIN=旧40+新增60，DEV沿用当前20，FINAL按固定ID哈希规则另留20，不替代失败ID。新增TRAIN60的三载荷目标及新80个CAD的几何／条件输入均已准备；输入准备使用原CPU数学后端，未开启FINAL数值目标。FINAL数值标签仍未读、不得用于训练／scaler拟合／调参。该协议来自可用官方TRAIN池，不是无偏官方TEST。见[固定划分](notes/geobc_prospective_cad_split_v1.json)。
 
-新划分与现有输入准备数学的元数据绑定已完成，用时0.063秒，检查240份源文件stat并保留接收SHA。新增TRAIN60与FINAL20合计80个CAD／240病例都进入原准备函数的“只读输入”分支，逐CAD保留真实科学角色，关闭会解析标签的`train_new160`分支；技术上的validation别名不能当作开发集划分。继承现有TRAIN40-only scaler及R64／25特征配方，未重新拟合scaler。新数据数组、数值标签、训练与GPU执行均为零；实际准备守卫和预算尚待单独确定，不能直接启动原40／200流程。见[输入绑定](notes/geobc_prospective_target_free_input_contract.json)。
+新划分与现有输入准备数学的元数据绑定已完成，用时0.063秒，检查240份源文件stat并保留接收SHA。新增TRAIN60与FINAL20合计80个CAD／240病例都进入原准备函数的“只读输入”分支，逐CAD保留真实科学角色，关闭会解析标签的`train_new160`分支；技术上的validation别名不能当作开发集划分。继承现有TRAIN40-only scaler及R64／25特征配方，未重新拟合scaler。该元数据绑定阶段没有数组／标签／训练／GPU执行；后续独立CPU守卫已完成80CAD输入准备，未启动原40／200流程或新100CAD训练。见[输入绑定](notes/geobc_prospective_target_free_input_contract.json)。
 
 ## 已有独立五CAD结果（2026-10-10）
 
@@ -70,7 +70,7 @@ Transolver++新训练制度在中断恢复后触发原24GiB reserved上限，实
 
 原40／200CAD十臂协议因输入下载317／540、缺223，在原6小时预算内终止；固定ID和封存DEV未替换。见[输入失败简报](results/geobc_coverage_input_negative/BRIEF.md)。
 
-私人GitHub最新真实验收提交为`84f4a48`，包含新20CAD完整结果、原节点云图、真实查询检查、FP32精度对照，以及正在运行的统一配置训练代码与启动证据；尚无两臂4800终态结果。仓库：[GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)。
+私人GitHub最近验收提交为`e5a0525`，包含统一4800／开发60／单例／物理损失结果和实际曝光启动记录。FNO24000训练端点、新80CAD输入结果及后续读出工具正在整理为下一次独立快照；整个曝光配对与新开发结果尚未完成。仓库：[GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)。
 
 ## 复现与数据边界
 
@@ -151,3 +151,9 @@ python tools/plot_suite_fields.py
 GINO训练前已按[频带口径](notes/gino_vs_fno_implementation_scope.md)统一为官方(24,24,22)，对应旧FNO的x/y总24、z12；此前资源检查采用较小的默认频带，完整训练配置的首个325387节点case已通过，480更新结果已完成：GINO验证U54.42%/S72.46%，可比训练740.1秒；旧FNO480为47.51%/66.71%、99.8秒。GINO均值、最差与成本本轮均没有优先证据。新训练不会重复低频候选或据旧final调参。
 
 
+
+最新私人仓库已真实验收`e5a0525`（北京时间05:42:33，126.41秒）：统一4800／开发60／单例／损失对照结果与图表，以及新曝光阶段代码与真实启动记录。下一次有意义实际端点后再更新，不把SOURCE-only或运行中阶段写成完成。
+
+曝光阶段FNO已到固定24000／每例200曝光：全TRAIN120的U／S从4800的19.5%／39.0%，到12000的17.4%／30.7%，再到24000的10.5%／24.2%；新增训练UTC10.23分钟／mono9.35分钟，包含中途读出与检查点。++正在同样延长，整个配对及新的开发读出仍未完成。该端点是训练拟合证据，尚未随下一次有意义结果更新私人仓库。
+
+新增CPU准备已验收全部80CAD／240病例，用时UTC8.07分钟；TRAIN180输入排列与独立目标一致，FINAL60仅输入。曝光阶段++仍活着，本次观察6510／24000，预计北京时间12:30左右完成。下一步完成共同端点的开发60读出，按拟合、迁移、热点和成本设计宏观求解器对照；Hash仍作为几何／BC控制的连续场候选，不预选赢家。后续六端点CPU简报／图表导出器已SOURCE冻结并审阅，实际导出为0。

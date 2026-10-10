@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "whole_SOURCE_reviewed": true,
+  "actual_execution_released": false,
+  "scientific_digest": "95e4bad65c66e9415266646b4e3b9b32376ae148280919697c3b03c72c5c43c1",
+  "source_pins": {
+    "tools/build_geobc_prospective_input_contract.py": "231f123378d10a0ec4d7b83a2b21c09a2b7300b9099207130c9092141c522fb7",
+    "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196",
+    "geobc/available_cad_pilot_data.py": "fe6a1b8ac1a001dc14a5eefd1e64cb75d71359a3ba77903479d4051fd0eb127a",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+    "tools/geobc_cpu_input_probe.py": "1370b77826151bd730db4540400e305c7b8ff083d8c0fef4fc79f28e49670abe",
+    "tools/run_geobc_cpu_input_probe.py": "7d0da4287568b78bf86237d2d7b419f5b9d195691e19755e4696b2d5a28dff70",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "tools/prepare_geobc_cpu_inputs80.py": "3a2749f6929cf4bfe6114cfca474c29ef55c488f15b8d3db4f1c102e935ac419",
+    "tools/run_geobc_cpu_inputs80.py": "f37b23ad90cc19481e6092f593d779179c5b57720a2534bc61aeb96b11d37259"
+  },
+  "actual_preparation_or_array_reads": 0,
+  "reviewed_epoch": 1791670502.9172719,
+  "reviewer": "root",
+  "source_review": "Whole fixed80 producer and complete CPU guard inspected; reusable CPU helper previously reviewed/probed. Fixed IDs, 180 TRAIN alignment SHA, FINAL input-only60, no target/scaler/GPU reads, four CPU cores, one attempt and dual7200s deadline.",
+  "upstream_qualified": true,
+  "upstream_exact_guard_and_child_exited": true,
+  "CPU_probe_native_epoch_seconds": 7.413350820541382,
+  "actual_completed_preparations": 1,
+  "completed_acceptance_identity": {
+    "path": "results/geobc_prospective_input_preparation/manifest.json",
+    "bytes": 1096,
+    "mtime_ns": 1791671010457987700,
+    "sha256": "9d60b44dde53346fd0a311f3b299c2e2bf65f1be141870a4021db268d3aaa16b"
+  },
+  "actual_native_epoch_seconds": 483.958048582077,
+  "actual_guard_and_child_exited": true
+}

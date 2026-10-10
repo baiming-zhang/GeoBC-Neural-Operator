@@ -1,5 +1,5 @@
 {
-  "observed_UTC": "2026-10-10T21:38:00.003888+00:00",
+  "observed_UTC": "2026-10-10T22:23:31.398252+00:00",
   "scientific_digest": "91417c08784c30d9d8a191788916741190bd682418fe8a34987a51283b93ee53",
   "actual_live": true,
   "boot_id": "c768cff3-9091-4a9a-a7fe-b11f1634f5ff",
@@ -30,11 +30,11 @@
     }
   },
   "status": "running",
-  "current_arm": "FNO9",
-  "step": 6720,
-  "new_training_epoch_seconds": 61.85644793510437,
-  "remaining_estimate_seconds": 556.7080314159393,
-  "provisional_active_arm_finish_BJT": "2026-10-11T05:47:16.711898+08:00",
+  "current_arm": "PP256",
+  "step": 6510,
+  "new_training_epoch_seconds": 2151.8693492412567,
+  "remaining_estimate_seconds": 22009.470712414957,
+  "provisional_active_arm_finish_BJT": "2026-10-11T12:30:20.868948+08:00",
   "estimate_scope": "Current arm only; no remaining queued-arm estimate without its actual progress",
   "GPU_cache": {
     "unique_files": 560,
@@ -50,31 +50,34 @@
       "encoder": {
         "missing": [],
         "finite": true,
-        "L2": 0.03495194031147886
+        "L2": 0.13381179001726476
       },
       "head": {
         "missing": [],
         "finite": true,
-        "L2": 0.49533277365644
+        "L2": 2.7961493297295443
       },
       "operator": {
-        "missing": [],
+        "missing": [
+          "backbone.embedding.weight",
+          "backbone.embedding.bias"
+        ],
         "finite": true,
-        "L2": 0.44835291473358224
+        "L2": 0.15590431342203678
       }
     },
     "leaf_gradients": {
-      "context": 0.01737961359322071,
-      "latent": 0.003156673163175583
+      "context": 0.08244479447603226,
+      "latent": 0.0015724173281341791
     },
-    "allocated_bytes": 8202463232,
-    "reserved_bytes": 8396996608
+    "allocated_bytes": 16619355648,
+    "reserved_bytes": 17590910976
   },
   "status_identity": {
     "path": "runs/geobc_exploration/matched_exposure24000_v1/status.json",
-    "bytes": 6627,
-    "mtime_ns": 1791668277862084300,
-    "sha256": "889b9e0ed275f6cae62438a43b40237fae7b420b3ed6aadbb27966019716ab72"
+    "bytes": 191884,
+    "mtime_ns": 1791670984269964200,
+    "sha256": "531ae855a68709cf183cff50063f391ed67fcdc1e277e5f197f5919b96dc8d46"
   },
   "CPU_GT_PT_model_GPU_reads": 0
 }
