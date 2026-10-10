@@ -1,0 +1,1684 @@
+{
+  "status": "completed",
+  "config": {
+    "contract": {
+      "schema": "geobc_physical_TET10_continuous_v1",
+      "kind": "physical_TET10_continuous_U_gradient_capability",
+      "case_keys": [
+        "101_428/ver",
+        "101_56/ver",
+        "101_78/ver",
+        "102_249/ver",
+        "102_38/ver"
+      ],
+      "records": {
+        "101_428/ver": {
+          "nodes": 270276,
+          "cells": 169852,
+          "fourQ_queries": 679408,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/101_428/input/manifest.json",
+            "sha256": "592764e00313aafd795d28ff183a6bdda94047433141ca66998c5abe112f4145"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/101_428/input/input.npz",
+            "bytes": 34537404,
+            "mtime_ns": 1791580306768265900,
+            "sha256": "ae66e77d0ddd437ee3690c2dde3336953ea6cbd3e002eb0be7067f4ea415bee7"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                270276,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "75866b719f9cd3f0d300d4c1bec2fb5b288d5b877cdd2884166cc5eaa74305f6"
+            },
+            "cells10": {
+              "shape": [
+                169852,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "c4e5f96cc88bf6d544b4f4123772827b137ac7ff12276ed315fdb04d77270e45"
+            },
+            "grid_node_ids": {
+              "shape": [
+                270276
+              ],
+              "dtype": "int64",
+              "sha256": "65f935b3245149b5098845c7a2ff0dc69dd7bc833d2668519deddfbd235228f2"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                169852
+              ],
+              "dtype": "int64",
+              "sha256": "58f16a6d5e7b1e8827143e2a7375e40e3c062f204c6e63231d5907f5bbe8c288"
+            }
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/101_428/operator/summary.json",
+            "sha256": "d58bbb938605bbcd293f8a335d13a46199dd5ccb1dfb1c5addb3a4ae66b71c1c"
+          },
+          "operator_arrays": {
+            "gradients": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/physical_gradients.npy",
+              "bytes": 163058048,
+              "mtime_ns": 1791580310141977600,
+              "shape": [
+                169852,
+                4,
+                10,
+                3
+              ],
+              "dtype": "torch.float64"
+            },
+            "weights": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/quadrature_weights.npy",
+              "bytes": 5435392,
+              "mtime_ns": 1791580310167315700,
+              "shape": [
+                169852,
+                4
+              ],
+              "dtype": "torch.float64"
+            }
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/summary.json",
+            "sha256": "9b26bf439d1eca8da6a8102e11ea63856994800408e99310b1c811233e489a94"
+          },
+          "physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy",
+            "bytes": 6486752,
+            "mtime_ns": 1791580411614811300,
+            "shape": [
+              270276,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "9496a94be91e192080f31edcb87283e9c115634c643bb0c61c7d089d51a412fb"
+          },
+          "deferred_GT_U": {
+            "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+            "bytes": 45320930,
+            "mtime_ns": 1791511980352062400,
+            "member": "displacement",
+            "expected_shape": [
+              270276,
+              3
+            ],
+            "units": "mm",
+            "member_read_before_all5_prediction_barrier": false
+          },
+          "inherited_original_GT_free_physical_seconds": 100.95741130100001
+        },
+        "101_56/ver": {
+          "nodes": 221213,
+          "cells": 139546,
+          "fourQ_queries": 558184,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/101_56/input/manifest.json",
+            "sha256": "8a15a5662979b3c291b96bac7a2ddc316e5ea0bc51d1f372ed36a223d8bca6cf"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/101_56/input/input.npz",
+            "bytes": 28338396,
+            "mtime_ns": 1791580416400665100,
+            "sha256": "b3e4d4c47f573d267ba8c46a0259ab5c307d326a7cd643e61f1f3327be26dae0"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                221213,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "d3028c742caf61ce6957dbc03c1d05138667d1998404593f7588e50b0776cc99"
+            },
+            "cells10": {
+              "shape": [
+                139546,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "20a3d5fa85640874dd36b0e98a9516540c2144b357dbf02bad7041f421d1b2d7"
+            },
+            "grid_node_ids": {
+              "shape": [
+                221213
+              ],
+              "dtype": "int64",
+              "sha256": "b908e54d906255e2dcf5e737ce6a12ec9b89c32af6a40dd400c3ca089ddbcf94"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                139546
+              ],
+              "dtype": "int64",
+              "sha256": "bf4bfd79f43f7e2fa79ad5e5f18deaab80fadb0dfe6f6f4b545bef24e93ed444"
+            }
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/101_56/operator/summary.json",
+            "sha256": "5451566a5d269b5352373a3c900acf13f8c13a19dd95e980794e115a9b22666d"
+          },
+          "operator_arrays": {
+            "gradients": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/physical_gradients.npy",
+              "bytes": 133964288,
+              "mtime_ns": 1791580417832566300,
+              "shape": [
+                139546,
+                4,
+                10,
+                3
+              ],
+              "dtype": "torch.float64"
+            },
+            "weights": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/quadrature_weights.npy",
+              "bytes": 4465600,
+              "mtime_ns": 1791580417849652700,
+              "shape": [
+                139546,
+                4
+              ],
+              "dtype": "torch.float64"
+            }
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/summary.json",
+            "sha256": "593d8a3131eda6014e176ca74e12b67828aa5e231bedcdff5a35da0f43dd007e"
+          },
+          "physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy",
+            "bytes": 5309240,
+            "mtime_ns": 1791580495841281900,
+            "shape": [
+              221213,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "7b76dfa12e5332b313ff7ffea1cbf24660e9dba7e03341c186c9f0532ee07b4a"
+          },
+          "deferred_GT_U": {
+            "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+            "bytes": 37050462,
+            "mtime_ns": 1791454716033307500,
+            "member": "displacement",
+            "expected_shape": [
+              221213,
+              3
+            ],
+            "units": "mm",
+            "member_read_before_all5_prediction_barrier": false
+          },
+          "inherited_original_GT_free_physical_seconds": 77.042284078
+        },
+        "101_78/ver": {
+          "nodes": 192353,
+          "cells": 120639,
+          "fourQ_queries": 482556,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/101_78/input/manifest.json",
+            "sha256": "dc188bfaca90d155d2c38d947eb76aca9e98e866b33e251e03efa465ee066bf8"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/101_78/input/input.npz",
+            "bytes": 24599396,
+            "mtime_ns": 1791580499987754200,
+            "sha256": "549abbd70392df7bedd3c83128f259176be2fb73eb468333fc7349b640d0d8d5"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                192353,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "15c8dbb7af57380f096da1878412c924bf9e5dbf76ac2cd1041f661deb1fcafc"
+            },
+            "cells10": {
+              "shape": [
+                120639,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "dc614dce3463085a75d6c33c8a05d8154847c38a6cf7595478aee7eaee4f7a57"
+            },
+            "grid_node_ids": {
+              "shape": [
+                192353
+              ],
+              "dtype": "int64",
+              "sha256": "d40d02715d19f440fa2ddc8a2614153994f828fe846cbbf065e8e3f3e3967db6"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                120639
+              ],
+              "dtype": "int64",
+              "sha256": "38181ecb52b2ec6d278d7c1104c075eb9fe8c3c65b48086037b41ef73ae4d08b"
+            }
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/101_78/operator/summary.json",
+            "sha256": "02ba7d4ed4145199f991a38b5ccc00950403328bb801ce660ee86b6285e75468"
+          },
+          "operator_arrays": {
+            "gradients": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/physical_gradients.npy",
+              "bytes": 115813568,
+              "mtime_ns": 1791580501399479700,
+              "shape": [
+                120639,
+                4,
+                10,
+                3
+              ],
+              "dtype": "torch.float64"
+            },
+            "weights": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/quadrature_weights.npy",
+              "bytes": 3860576,
+              "mtime_ns": 1791580501422478900,
+              "shape": [
+                120639,
+                4
+              ],
+              "dtype": "torch.float64"
+            }
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/summary.json",
+            "sha256": "9bb13704114b38fab5e8fefdaa66f676a50630c3e08c9d635f02660a095fd8ae"
+          },
+          "physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy",
+            "bytes": 4616600,
+            "mtime_ns": 1791580757923400300,
+            "shape": [
+              192353,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "5081a9667a3107df6508a60f03a173e008e30ca382ac898f31af22ce720fa85b"
+          },
+          "deferred_GT_U": {
+            "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+            "bytes": 32255262,
+            "mtime_ns": 1791511981517772800,
+            "member": "displacement",
+            "expected_shape": [
+              192353,
+              3
+            ],
+            "units": "mm",
+            "member_read_before_all5_prediction_barrier": false
+          },
+          "inherited_original_GT_free_physical_seconds": 82.46914100800004
+        },
+        "102_249/ver": {
+          "nodes": 211173,
+          "cells": 131480,
+          "fourQ_queries": 525920,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/102_249/input/manifest.json",
+            "sha256": "c763b0234124d98e86468bab7827564143462042a2ba5467460dce43fc6ca8d5"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/102_249/input/input.npz",
+            "bytes": 26903428,
+            "mtime_ns": 1791580762404912300,
+            "sha256": "edc37756b4f62a951398ce4b7d1beed2892e8d64cbde2f6e34ab471aa739b089"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                211173,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "8b6157e33a497beff171ee0b3d9728a24ae19cb5cdf97f88c4d257d673c914c8"
+            },
+            "cells10": {
+              "shape": [
+                131480,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "4de2f4369a4282c381c55eb3e9de9876bc2e0fba414eb5bb95733e712a8304b6"
+            },
+            "grid_node_ids": {
+              "shape": [
+                211173
+              ],
+              "dtype": "int64",
+              "sha256": "61beab4c5cc505e921a93141ae7d6341dd33eee327c4e513cd7d6e6a6cc957d7"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                131480
+              ],
+              "dtype": "int64",
+              "sha256": "dddce0c80ca7ff52cc93c324db1b9a81147980775b0cae9f6d6bd6085ad4c854"
+            }
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/102_249/operator/summary.json",
+            "sha256": "ac6cae9c7ed3fbb4553f9ee0ab396544f37fa0c988de6b130703f3dbd99dce0d"
+          },
+          "operator_arrays": {
+            "gradients": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/physical_gradients.npy",
+              "bytes": 126220928,
+              "mtime_ns": 1791580764011368300,
+              "shape": [
+                131480,
+                4,
+                10,
+                3
+              ],
+              "dtype": "torch.float64"
+            },
+            "weights": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/quadrature_weights.npy",
+              "bytes": 4207488,
+              "mtime_ns": 1791580764029368300,
+              "shape": [
+                131480,
+                4
+              ],
+              "dtype": "torch.float64"
+            }
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/summary.json",
+            "sha256": "782614bbbbb9525ca8677f18d02a52e5dc07029fbf61d8b22f6e34c2ecf2d538"
+          },
+          "physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy",
+            "bytes": 5068280,
+            "mtime_ns": 1791580868309836200,
+            "shape": [
+              211173,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "8140c1cbf528f1f2db03c64c2baa90b352767471f9ceda92eed365d3f387356d"
+          },
+          "deferred_GT_U": {
+            "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+            "bytes": 35482562,
+            "mtime_ns": 1791454718057858700,
+            "member": "displacement",
+            "expected_shape": [
+              211173,
+              3
+            ],
+            "units": "mm",
+            "member_read_before_all5_prediction_barrier": false
+          },
+          "inherited_original_GT_free_physical_seconds": 101.030087958
+        },
+        "102_38/ver": {
+          "nodes": 197514,
+          "cells": 122953,
+          "fourQ_queries": 491812,
+          "input_manifest": {
+            "path": "data/geobc_elastic_crosscad5/102_38/input/manifest.json",
+            "sha256": "c97bd8d632a89b1bdb45f4aef160966dfc4ad89805c73b3183ee46e47a3ef3f0"
+          },
+          "input_cache": {
+            "path": "data/geobc_elastic_crosscad5/102_38/input/input.npz",
+            "bytes": 25169148,
+            "mtime_ns": 1791580872358353600,
+            "sha256": "2cb905c61c696be7991e43999c845807f1c0401a6c82849e25032a34ccae4296"
+          },
+          "input_members": {
+            "vertices_mm": {
+              "shape": [
+                197514,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "cf4c40a26fac3b2a262cbf4e4730369f6607a0f887c3a380995197f328b4f8a7"
+            },
+            "cells10": {
+              "shape": [
+                122953,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "67132da00c6f807ecfed4619349231e50be05a0c3664be38025fb30ddab03eb8"
+            },
+            "grid_node_ids": {
+              "shape": [
+                197514
+              ],
+              "dtype": "int64",
+              "sha256": "3cd08b3d5349fe7948f1acff97c398e08d83ebdaaf060e861378bb27bf7dc8fb"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                122953
+              ],
+              "dtype": "int64",
+              "sha256": "cc4e75956b0e2af9162bc274f4434665a9204815896336863bca5fe354e2f67d"
+            }
+          },
+          "operator_summary": {
+            "path": "data/geobc_elastic_crosscad5/102_38/operator/summary.json",
+            "sha256": "eec5f728e92e097ee6ec4e509502b0db3ff44f9c08d3f4662c433afb9eba8add"
+          },
+          "operator_arrays": {
+            "gradients": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/physical_gradients.npy",
+              "bytes": 118035008,
+              "mtime_ns": 1791580873648885600,
+              "shape": [
+                122953,
+                4,
+                10,
+                3
+              ],
+              "dtype": "torch.float64"
+            },
+            "weights": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/quadrature_weights.npy",
+              "bytes": 3934624,
+              "mtime_ns": 1791580873662883100,
+              "shape": [
+                122953,
+                4
+              ],
+              "dtype": "torch.float64"
+            }
+          },
+          "original_zero_summary": {
+            "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/summary.json",
+            "sha256": "19ce243bd77f2cfe60687e8090121cadc363077ce832bf567c4f036f28a7ee29"
+          },
+          "physical_U": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy",
+            "bytes": 4740464,
+            "mtime_ns": 1791580968263212700,
+            "shape": [
+              197514,
+              3
+            ],
+            "dtype": "torch.float64",
+            "file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c"
+          },
+          "deferred_GT_U": {
+            "path": "data/prepared_geobc_multiload/102_38_ver.npz",
+            "bytes": 33185758,
+            "mtime_ns": 1791511983883164000,
+            "member": "displacement",
+            "expected_shape": [
+              197514,
+              3
+            ],
+            "units": "mm",
+            "member_read_before_all5_prediction_barrier": false
+          },
+          "inherited_original_GT_free_physical_seconds": 91.455433389
+        }
+      },
+      "science_recipe": {
+        "kind": "physical_TET10_continuous_U_gradient_candidate_design",
+        "question": "Does the accepted original zero-start physical field supply full-TET10 native P2 U/physical gradient and a bounded physical-coordinate query interface on these five known CAD/ver inputs?",
+        "case_keys": [
+          "101_428/ver",
+          "101_56/ver",
+          "101_78/ver",
+          "102_249/ver",
+          "102_38/ver"
+        ],
+        "full_FE_input_interface": true,
+        "comparison_scope": "Independent capability evidence, not repair of signed-S pair and not causal architecture ranking against pointcloud-only neural routes.",
+        "full_cell_scope": {
+          "nodes": 1092529,
+          "cells": 684470,
+          "query_points": 2737880,
+          "ordered_queries": "original cell row then accepted fourQ index, every original cell, no sampling"
+        },
+        "quadrature": "a=(5+3sqrt(5))/20; b=(5-sqrt(5))/20; four ordered (a,b,b,b) permutations; use accepted physical positive weights/gradients directly",
+        "precision_units": {
+          "dtype": "FP64",
+          "X": "original physical mm",
+          "U": "mm",
+          "dN_dX": "1/mm",
+          "G_du_dX": "dimensionless",
+          "engineering_strain6": "[Gxx,Gyy,Gzz,Gxy+Gyx,Gxz+Gzx,Gyz+Gzy], dimensionless",
+          "weights": "mm^3"
+        },
+        "native_field_math": {
+          "U": "U_cq,a=sum_i N_i(Lq) U_cell_i,a; all signed10 P2 weights, no P1 corner surrogate",
+          "X": "X_cq=sum_i N_i(Lq) X_cell_i, curved physical TET10 geometry",
+          "gradient": "G_cq,a,b=sum_i U_cell_i,a * accepted_dN_dX_cq,i,b; no new operator assembly or solve",
+          "additional_queries": "J_c,r=sum_i X_i,c dN_i/dr_r; solve J^T grad_X_N=grad_r_N in FP64, then same full10 U/G. No normalized-coordinate derivative."
+        },
+        "GT_proxy": "Only original canonical nodal displacement member, after all five candidate predictions commit. Apply same10 P2 basis and physical gradients to GT U. Derived U/G/engineering-strain are node-derived P2 proxies, never source-solver strain GT, constitutive recovery or continuum validation.",
+        "candidate_persistence_before_GT": {
+          "all_five_barrier": true,
+          "persist_per_case": [
+            "query_X_mm.npy",
+            "query_U_mm.npy",
+            "query_gradient_dimensionless.npy",
+            "query_engineering_strain6.npy",
+            "small query/identity/coverage/cost manifests",
+            "small deterministic interior/face prediction records"
+          ],
+          "candidate_arrays_shapes": "[T,4,3], [T,4,3], [T,4,3,3], [T,4,6] respectively",
+          "original_physical_U_byte_identity_must_match": true,
+          "GT_U_source_reads": 5,
+          "GT_U_source_reads_each": 1,
+          "resume": "Never recompute committed candidate queries or repeat committed source GT U reads; use owned per-case derived proxy/metric cache. Uncommitted GT read remains explicit blocking failure."
+        },
+        "metrics": {
+          "primary": "Each CAD full4Q positive-volume-weighted U-vector/G-Frobenius/engineering6 relativeL2, reference energy zero => null, no epsilon-manufactured score",
+          "absolute": "weighted U-vector RMS mm and maximum vector error mm; G-Frobenius and strain6 RMS/max dimensionless",
+          "physical_strain_tensor": "Also report symmetric3x3 Frobenius proxy error; engineering6 norm weights [1,1,1,0.5,0.5,0.5], not a six-component energy equivalence claim",
+          "aggregate": "fixed denominator5, per-case and worst/mean; do not transfer existing node U error to new4Q scores"
+        },
+        "small_query_scope": {
+          "selection": "one actual scan_face_conformity per CAD max_records8; select_cells_and_faces max_cells32/max_faces8, lexicographic corner-ID face order plus original cell rows; no result-driven selection",
+          "interior": "two strictly interior barycentrics [0.1,0.2,0.3,0.4] and [0.4,0.3,0.2,0.1] per selected cell, <=64 occurrences/CAD",
+          "shared_faces": "two canonical-face barycentrics [1/3,1/3,1/3] and [0.2,0.3,0.5], map sorted shared corner IDs onto both local cells; <=16 shared physical points/32 sided occurrences/CAD",
+          "C0": "record physical-position and U trace differences; no GT needed to establish same conforming6-node quadratic face trace",
+          "normal_derivative": "report (G_left-G_right) n using one common unit normal from canonical shared P2 surface tangents; one-sided derivatives, expected nonzero for C0 FE, never a C1 failure gate",
+          "inverse": "reuse bounded GeometryLocator.locate on selected<=32 cells for the <=96 occurrences, no oracle barycentrics supplied to inverse; inherited LocatorConfig bounds unchanged",
+          "scope_limit": "All-cell barycentric/native queries plus bounded physical-point inversion; no claim of a fast unlabelled-point global whole-CAD locator or globally unique inverse."
+        },
+        "acceptance": {
+          "capability_complete": "all5 all4Q predicted+GT-proxy metrics finite and covered, exact row/element identities, positive accepted weights, FP64 mm units, all5 prelabel barrier, no forbidden reads",
+          "new_small_geometry": "only the actual selected query validity/inverse checks; failure reported without repair/substitution; no old8K guards repeated",
+          "C0_relative_tolerance": 1e-09,
+          "inverse_direct_U_relative_tolerance": 1e-07,
+          "physical_inverse_residual_over_characteristic_L": 1e-10,
+          "normal_derivative_jump_threshold": null,
+          "accuracy": "Report fixed fullQ proxy accuracy separately from native API/coverage acceptance; no source strain accuracy or final solver winner inferred.",
+          "trace_tolerance_definitions": "max physical position trace gap / characteristic L <=1e-9; max U trace gap / max(1mm,max absolute traceU) <=1e-9; inverse/direct U replay uses same1mm floor with1e-7 tolerance. These are numerical replay gates, not GT accuracy denominators.",
+          "zero_reference": "A zero GT proxy energy yields null relative score plus exact zero flag and absolute error; this does not mean missing coverage."
+        },
+        "read_policy": {
+          "physical_U_prediction_reads": 5,
+          "GT_U_reads": 5,
+          "accepted_cache_members": "vertices_mm,cells10,grid_node_ids,ctetra_element_ids; accepted gradients/weights. Reuse load_input target-free reader if necessary, no scientific old stage entrypoint.",
+          "stress_or_strain_source_label_reads": 0,
+          "learned_weights_reads": 0,
+          "training_updates": 0,
+          "scaler_fits": 0,
+          "new_solves": 0,
+          "new_tensor_recoveries": 0,
+          "K_applications_or_old_guard_repeats": 0,
+          "old_final_or_sealed_or_DEV_dia_reads": 0,
+          "pre_actual_arrays_GT_imports_contracts_AST_GPU_toy_runs": 0
+        },
+        "budget": {
+          "new_actual_wall_seconds_maximum": 300,
+          "per_case_combined_candidate_plus_reference_metrics_seconds_maximum": 60,
+          "campaign_accounted_maximum_seconds": 752.954357734,
+          "inherited_original_zero_GT_free_seconds_once": 452.954357734,
+          "maximum_peak_GPU_bytes": 25769803776,
+          "cell_chunk": 8192,
+          "one_fixed_attempt": "No new solve/recovery/tuning/mesh fallback. Actual first frozen run is acceptance; no resource or science preflight. Failure/resume wall counts without reset.",
+          "costs": "Cached continuous query/input/reference/persistence costs measured separately; full service cost composes original zero physics plus actual continuous query costs, not a fresh combined cold measurement. Never splice newer fine/coarse costs.",
+          "ledger": "Compact case/phase/elapsed journal about60s or completeCAD/barrier/failure; deterministic selectors+cursor replace unbounded prefixes. Final exit always accounts wall, failed attempts and unfinished work."
+        },
+        "reuse_API": {
+          "shape_and_mapping": "geobc.continuous_query_geometry.quadratic_shape/map_points/jacobian/shape_gradient/interpolate_nodal",
+          "topology_and_inverse": "same scan_face_conformity/select_cells_and_faces/GeometryLocator.locate; no synthetic_fixture or old101479 evaluator",
+          "target_free_cache": "geobc.elastic_pilot_data.load_input; metadata contract/stat helpers from elastic_crosscad; direct selective accepted cache reads may avoid unused RBE/load data",
+          "operator_cache": "geobc.elastic_pilot._load_array only gradients/weights; no MatrixFreeElastic.apply/_build_geometry/_algebra_guards/_rules oldsinglecase",
+          "engineering_note": "Do not reuse corner-P1 gradient_supervision.cell_tensor_strain or call old bounded diagnostic scientific entrypoints"
+        },
+        "records": {
+          "101_428/ver": {
+            "nodes": 270276,
+            "cells": 169852,
+            "fourQ_queries": 679408,
+            "input_manifest": {
+              "path": "data/geobc_elastic_crosscad5/101_428/input/manifest.json",
+              "sha256": "592764e00313aafd795d28ff183a6bdda94047433141ca66998c5abe112f4145"
+            },
+            "input_cache": {
+              "path": "data/geobc_elastic_crosscad5/101_428/input/input.npz",
+              "bytes": 34537404,
+              "mtime_ns": 1791580306768265900,
+              "sha256": "ae66e77d0ddd437ee3690c2dde3336953ea6cbd3e002eb0be7067f4ea415bee7"
+            },
+            "input_members": {
+              "vertices_mm": {
+                "shape": [
+                  270276,
+                  3
+                ],
+                "dtype": "float64",
+                "sha256": "75866b719f9cd3f0d300d4c1bec2fb5b288d5b877cdd2884166cc5eaa74305f6"
+              },
+              "cells10": {
+                "shape": [
+                  169852,
+                  10
+                ],
+                "dtype": "int64",
+                "sha256": "c4e5f96cc88bf6d544b4f4123772827b137ac7ff12276ed315fdb04d77270e45"
+              },
+              "grid_node_ids": {
+                "shape": [
+                  270276
+                ],
+                "dtype": "int64",
+                "sha256": "65f935b3245149b5098845c7a2ff0dc69dd7bc833d2668519deddfbd235228f2"
+              },
+              "ctetra_element_ids": {
+                "shape": [
+                  169852
+                ],
+                "dtype": "int64",
+                "sha256": "58f16a6d5e7b1e8827143e2a7375e40e3c062f204c6e63231d5907f5bbe8c288"
+              }
+            },
+            "operator_summary": {
+              "path": "data/geobc_elastic_crosscad5/101_428/operator/summary.json",
+              "sha256": "d58bbb938605bbcd293f8a335d13a46199dd5ccb1dfb1c5addb3a4ae66b71c1c"
+            },
+            "operator_arrays": {
+              "gradients": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/physical_gradients.npy",
+                "bytes": 163058048,
+                "mtime_ns": 1791580310141977600,
+                "shape": [
+                  169852,
+                  4,
+                  10,
+                  3
+                ],
+                "dtype": "torch.float64"
+              },
+              "weights": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/quadrature_weights.npy",
+                "bytes": 5435392,
+                "mtime_ns": 1791580310167315700,
+                "shape": [
+                  169852,
+                  4
+                ],
+                "dtype": "torch.float64"
+              }
+            },
+            "original_zero_summary": {
+              "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/summary.json",
+              "sha256": "9b26bf439d1eca8da6a8102e11ea63856994800408e99310b1c811233e489a94"
+            },
+            "physical_U": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy",
+              "bytes": 6486752,
+              "mtime_ns": 1791580411614811300,
+              "shape": [
+                270276,
+                3
+              ],
+              "dtype": "torch.float64",
+              "file_sha256": "9496a94be91e192080f31edcb87283e9c115634c643bb0c61c7d089d51a412fb"
+            },
+            "deferred_GT_U": {
+              "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+              "bytes": 45320930,
+              "mtime_ns": 1791511980352062400,
+              "member": "displacement",
+              "expected_shape": [
+                270276,
+                3
+              ],
+              "units": "mm",
+              "member_read_before_all5_prediction_barrier": false
+            },
+            "inherited_original_GT_free_physical_seconds": 100.95741130100001
+          },
+          "101_56/ver": {
+            "nodes": 221213,
+            "cells": 139546,
+            "fourQ_queries": 558184,
+            "input_manifest": {
+              "path": "data/geobc_elastic_crosscad5/101_56/input/manifest.json",
+              "sha256": "8a15a5662979b3c291b96bac7a2ddc316e5ea0bc51d1f372ed36a223d8bca6cf"
+            },
+            "input_cache": {
+              "path": "data/geobc_elastic_crosscad5/101_56/input/input.npz",
+              "bytes": 28338396,
+              "mtime_ns": 1791580416400665100,
+              "sha256": "b3e4d4c47f573d267ba8c46a0259ab5c307d326a7cd643e61f1f3327be26dae0"
+            },
+            "input_members": {
+              "vertices_mm": {
+                "shape": [
+                  221213,
+                  3
+                ],
+                "dtype": "float64",
+                "sha256": "d3028c742caf61ce6957dbc03c1d05138667d1998404593f7588e50b0776cc99"
+              },
+              "cells10": {
+                "shape": [
+                  139546,
+                  10
+                ],
+                "dtype": "int64",
+                "sha256": "20a3d5fa85640874dd36b0e98a9516540c2144b357dbf02bad7041f421d1b2d7"
+              },
+              "grid_node_ids": {
+                "shape": [
+                  221213
+                ],
+                "dtype": "int64",
+                "sha256": "b908e54d906255e2dcf5e737ce6a12ec9b89c32af6a40dd400c3ca089ddbcf94"
+              },
+              "ctetra_element_ids": {
+                "shape": [
+                  139546
+                ],
+                "dtype": "int64",
+                "sha256": "bf4bfd79f43f7e2fa79ad5e5f18deaab80fadb0dfe6f6f4b545bef24e93ed444"
+              }
+            },
+            "operator_summary": {
+              "path": "data/geobc_elastic_crosscad5/101_56/operator/summary.json",
+              "sha256": "5451566a5d269b5352373a3c900acf13f8c13a19dd95e980794e115a9b22666d"
+            },
+            "operator_arrays": {
+              "gradients": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/physical_gradients.npy",
+                "bytes": 133964288,
+                "mtime_ns": 1791580417832566300,
+                "shape": [
+                  139546,
+                  4,
+                  10,
+                  3
+                ],
+                "dtype": "torch.float64"
+              },
+              "weights": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/quadrature_weights.npy",
+                "bytes": 4465600,
+                "mtime_ns": 1791580417849652700,
+                "shape": [
+                  139546,
+                  4
+                ],
+                "dtype": "torch.float64"
+              }
+            },
+            "original_zero_summary": {
+              "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/summary.json",
+              "sha256": "593d8a3131eda6014e176ca74e12b67828aa5e231bedcdff5a35da0f43dd007e"
+            },
+            "physical_U": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy",
+              "bytes": 5309240,
+              "mtime_ns": 1791580495841281900,
+              "shape": [
+                221213,
+                3
+              ],
+              "dtype": "torch.float64",
+              "file_sha256": "7b76dfa12e5332b313ff7ffea1cbf24660e9dba7e03341c186c9f0532ee07b4a"
+            },
+            "deferred_GT_U": {
+              "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+              "bytes": 37050462,
+              "mtime_ns": 1791454716033307500,
+              "member": "displacement",
+              "expected_shape": [
+                221213,
+                3
+              ],
+              "units": "mm",
+              "member_read_before_all5_prediction_barrier": false
+            },
+            "inherited_original_GT_free_physical_seconds": 77.042284078
+          },
+          "101_78/ver": {
+            "nodes": 192353,
+            "cells": 120639,
+            "fourQ_queries": 482556,
+            "input_manifest": {
+              "path": "data/geobc_elastic_crosscad5/101_78/input/manifest.json",
+              "sha256": "dc188bfaca90d155d2c38d947eb76aca9e98e866b33e251e03efa465ee066bf8"
+            },
+            "input_cache": {
+              "path": "data/geobc_elastic_crosscad5/101_78/input/input.npz",
+              "bytes": 24599396,
+              "mtime_ns": 1791580499987754200,
+              "sha256": "549abbd70392df7bedd3c83128f259176be2fb73eb468333fc7349b640d0d8d5"
+            },
+            "input_members": {
+              "vertices_mm": {
+                "shape": [
+                  192353,
+                  3
+                ],
+                "dtype": "float64",
+                "sha256": "15c8dbb7af57380f096da1878412c924bf9e5dbf76ac2cd1041f661deb1fcafc"
+              },
+              "cells10": {
+                "shape": [
+                  120639,
+                  10
+                ],
+                "dtype": "int64",
+                "sha256": "dc614dce3463085a75d6c33c8a05d8154847c38a6cf7595478aee7eaee4f7a57"
+              },
+              "grid_node_ids": {
+                "shape": [
+                  192353
+                ],
+                "dtype": "int64",
+                "sha256": "d40d02715d19f440fa2ddc8a2614153994f828fe846cbbf065e8e3f3e3967db6"
+              },
+              "ctetra_element_ids": {
+                "shape": [
+                  120639
+                ],
+                "dtype": "int64",
+                "sha256": "38181ecb52b2ec6d278d7c1104c075eb9fe8c3c65b48086037b41ef73ae4d08b"
+              }
+            },
+            "operator_summary": {
+              "path": "data/geobc_elastic_crosscad5/101_78/operator/summary.json",
+              "sha256": "02ba7d4ed4145199f991a38b5ccc00950403328bb801ce660ee86b6285e75468"
+            },
+            "operator_arrays": {
+              "gradients": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/physical_gradients.npy",
+                "bytes": 115813568,
+                "mtime_ns": 1791580501399479700,
+                "shape": [
+                  120639,
+                  4,
+                  10,
+                  3
+                ],
+                "dtype": "torch.float64"
+              },
+              "weights": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/quadrature_weights.npy",
+                "bytes": 3860576,
+                "mtime_ns": 1791580501422478900,
+                "shape": [
+                  120639,
+                  4
+                ],
+                "dtype": "torch.float64"
+              }
+            },
+            "original_zero_summary": {
+              "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/summary.json",
+              "sha256": "9bb13704114b38fab5e8fefdaa66f676a50630c3e08c9d635f02660a095fd8ae"
+            },
+            "physical_U": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy",
+              "bytes": 4616600,
+              "mtime_ns": 1791580757923400300,
+              "shape": [
+                192353,
+                3
+              ],
+              "dtype": "torch.float64",
+              "file_sha256": "5081a9667a3107df6508a60f03a173e008e30ca382ac898f31af22ce720fa85b"
+            },
+            "deferred_GT_U": {
+              "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+              "bytes": 32255262,
+              "mtime_ns": 1791511981517772800,
+              "member": "displacement",
+              "expected_shape": [
+                192353,
+                3
+              ],
+              "units": "mm",
+              "member_read_before_all5_prediction_barrier": false
+            },
+            "inherited_original_GT_free_physical_seconds": 82.46914100800004
+          },
+          "102_249/ver": {
+            "nodes": 211173,
+            "cells": 131480,
+            "fourQ_queries": 525920,
+            "input_manifest": {
+              "path": "data/geobc_elastic_crosscad5/102_249/input/manifest.json",
+              "sha256": "c763b0234124d98e86468bab7827564143462042a2ba5467460dce43fc6ca8d5"
+            },
+            "input_cache": {
+              "path": "data/geobc_elastic_crosscad5/102_249/input/input.npz",
+              "bytes": 26903428,
+              "mtime_ns": 1791580762404912300,
+              "sha256": "edc37756b4f62a951398ce4b7d1beed2892e8d64cbde2f6e34ab471aa739b089"
+            },
+            "input_members": {
+              "vertices_mm": {
+                "shape": [
+                  211173,
+                  3
+                ],
+                "dtype": "float64",
+                "sha256": "8b6157e33a497beff171ee0b3d9728a24ae19cb5cdf97f88c4d257d673c914c8"
+              },
+              "cells10": {
+                "shape": [
+                  131480,
+                  10
+                ],
+                "dtype": "int64",
+                "sha256": "4de2f4369a4282c381c55eb3e9de9876bc2e0fba414eb5bb95733e712a8304b6"
+              },
+              "grid_node_ids": {
+                "shape": [
+                  211173
+                ],
+                "dtype": "int64",
+                "sha256": "61beab4c5cc505e921a93141ae7d6341dd33eee327c4e513cd7d6e6a6cc957d7"
+              },
+              "ctetra_element_ids": {
+                "shape": [
+                  131480
+                ],
+                "dtype": "int64",
+                "sha256": "dddce0c80ca7ff52cc93c324db1b9a81147980775b0cae9f6d6bd6085ad4c854"
+              }
+            },
+            "operator_summary": {
+              "path": "data/geobc_elastic_crosscad5/102_249/operator/summary.json",
+              "sha256": "ac6cae9c7ed3fbb4553f9ee0ab396544f37fa0c988de6b130703f3dbd99dce0d"
+            },
+            "operator_arrays": {
+              "gradients": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/physical_gradients.npy",
+                "bytes": 126220928,
+                "mtime_ns": 1791580764011368300,
+                "shape": [
+                  131480,
+                  4,
+                  10,
+                  3
+                ],
+                "dtype": "torch.float64"
+              },
+              "weights": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/quadrature_weights.npy",
+                "bytes": 4207488,
+                "mtime_ns": 1791580764029368300,
+                "shape": [
+                  131480,
+                  4
+                ],
+                "dtype": "torch.float64"
+              }
+            },
+            "original_zero_summary": {
+              "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/summary.json",
+              "sha256": "782614bbbbb9525ca8677f18d02a52e5dc07029fbf61d8b22f6e34c2ecf2d538"
+            },
+            "physical_U": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy",
+              "bytes": 5068280,
+              "mtime_ns": 1791580868309836200,
+              "shape": [
+                211173,
+                3
+              ],
+              "dtype": "torch.float64",
+              "file_sha256": "8140c1cbf528f1f2db03c64c2baa90b352767471f9ceda92eed365d3f387356d"
+            },
+            "deferred_GT_U": {
+              "path": "data/prepared_geobc_multiload/102_249_ver.npz",
+              "bytes": 35482562,
+              "mtime_ns": 1791454718057858700,
+              "member": "displacement",
+              "expected_shape": [
+                211173,
+                3
+              ],
+              "units": "mm",
+              "member_read_before_all5_prediction_barrier": false
+            },
+            "inherited_original_GT_free_physical_seconds": 101.030087958
+          },
+          "102_38/ver": {
+            "nodes": 197514,
+            "cells": 122953,
+            "fourQ_queries": 491812,
+            "input_manifest": {
+              "path": "data/geobc_elastic_crosscad5/102_38/input/manifest.json",
+              "sha256": "c97bd8d632a89b1bdb45f4aef160966dfc4ad89805c73b3183ee46e47a3ef3f0"
+            },
+            "input_cache": {
+              "path": "data/geobc_elastic_crosscad5/102_38/input/input.npz",
+              "bytes": 25169148,
+              "mtime_ns": 1791580872358353600,
+              "sha256": "2cb905c61c696be7991e43999c845807f1c0401a6c82849e25032a34ccae4296"
+            },
+            "input_members": {
+              "vertices_mm": {
+                "shape": [
+                  197514,
+                  3
+                ],
+                "dtype": "float64",
+                "sha256": "cf4c40a26fac3b2a262cbf4e4730369f6607a0f887c3a380995197f328b4f8a7"
+              },
+              "cells10": {
+                "shape": [
+                  122953,
+                  10
+                ],
+                "dtype": "int64",
+                "sha256": "67132da00c6f807ecfed4619349231e50be05a0c3664be38025fb30ddab03eb8"
+              },
+              "grid_node_ids": {
+                "shape": [
+                  197514
+                ],
+                "dtype": "int64",
+                "sha256": "3cd08b3d5349fe7948f1acff97c398e08d83ebdaaf060e861378bb27bf7dc8fb"
+              },
+              "ctetra_element_ids": {
+                "shape": [
+                  122953
+                ],
+                "dtype": "int64",
+                "sha256": "cc4e75956b0e2af9162bc274f4434665a9204815896336863bca5fe354e2f67d"
+              }
+            },
+            "operator_summary": {
+              "path": "data/geobc_elastic_crosscad5/102_38/operator/summary.json",
+              "sha256": "eec5f728e92e097ee6ec4e509502b0db3ff44f9c08d3f4662c433afb9eba8add"
+            },
+            "operator_arrays": {
+              "gradients": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/physical_gradients.npy",
+                "bytes": 118035008,
+                "mtime_ns": 1791580873648885600,
+                "shape": [
+                  122953,
+                  4,
+                  10,
+                  3
+                ],
+                "dtype": "torch.float64"
+              },
+              "weights": {
+                "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/quadrature_weights.npy",
+                "bytes": 3934624,
+                "mtime_ns": 1791580873662883100,
+                "shape": [
+                  122953,
+                  4
+                ],
+                "dtype": "torch.float64"
+              }
+            },
+            "original_zero_summary": {
+              "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/summary.json",
+              "sha256": "19ce243bd77f2cfe60687e8090121cadc363077ce832bf567c4f036f28a7ee29"
+            },
+            "physical_U": {
+              "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy",
+              "bytes": 4740464,
+              "mtime_ns": 1791580968263212700,
+              "shape": [
+                197514,
+                3
+              ],
+              "dtype": "torch.float64",
+              "file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c"
+            },
+            "deferred_GT_U": {
+              "path": "data/prepared_geobc_multiload/102_38_ver.npz",
+              "bytes": 33185758,
+              "mtime_ns": 1791511983883164000,
+              "member": "displacement",
+              "expected_shape": [
+                197514,
+                3
+              ],
+              "units": "mm",
+              "member_read_before_all5_prediction_barrier": false
+            },
+            "inherited_original_GT_free_physical_seconds": 91.455433389
+          }
+        },
+        "source_pins": {
+          "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+          "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+          "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+          "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f"
+        }
+      },
+      "scientific_digest": "81e86d9e61aadc793134fd95e4047798003a3bfaccd8f47400d767892fd265f2",
+      "science_recipe_sha256": "81e86d9e61aadc793134fd95e4047798003a3bfaccd8f47400d767892fd265f2",
+      "source_sha256": {
+        "geobc/elastic_continuous_capability.py": "ccdada3c4849e6afbed36348710b1af926d83cdbdd88f0ee7a4b589ba5b987a2",
+        "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+        "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+        "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+        "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f"
+      },
+      "inherited_seconds": 452.954357734,
+      "output": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_continuous5_ver_capability",
+      "array_or_label_reads_in_request_contract": 0
+    },
+    "case_key": "102_38/ver"
+  },
+  "full_Q": {
+    "cells": 122953,
+    "quadrature_points": 491812,
+    "complete": true
+  },
+  "arrays": {
+    "U_mm": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_continuous5_ver_capability/102_38_ver/candidate_U_mm.npy",
+      "bytes": 11803616,
+      "mtime_ns": 1791592793905859000,
+      "shape": [
+        122953,
+        4,
+        3
+      ],
+      "dtype": "float64",
+      "values_sha256": "8a6702cf5b59658de4b66fabdc02858622010cb4ee68d0d233cf036db5f893b1"
+    },
+    "gradient_dimensionless": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_continuous5_ver_capability/102_38_ver/candidate_gradient_dimensionless.npy",
+      "bytes": 35410592,
+      "mtime_ns": 1791592793983700400,
+      "shape": [
+        122953,
+        4,
+        3,
+        3
+      ],
+      "dtype": "float64",
+      "values_sha256": "db2100dc94b42ca78dbe15f5d1a02e48225961065bf20a9d86bb471fb1225c20"
+    },
+    "engineering_strain6": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_continuous5_ver_capability/102_38_ver/candidate_engineering_strain6.npy",
+      "bytes": 23607104,
+      "mtime_ns": 1791592794064746700,
+      "shape": [
+        122953,
+        4,
+        6
+      ],
+      "dtype": "float64",
+      "values_sha256": "9fcfd97e692d8cb30c85772a30b7aec5940b72dc5e9bf826f4a28eeafc120478"
+    },
+    "X_mm": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_continuous5_ver_capability/102_38_ver/candidate_X_mm.npy",
+      "bytes": 11803616,
+      "mtime_ns": 1791592794102291700,
+      "shape": [
+        122953,
+        4,
+        3
+      ],
+      "dtype": "float64",
+      "values_sha256": "909f9712897d9f16c3cc8087801d1baae80284708a4032d38ba4fb0e8ac235bd"
+    }
+  },
+  "small_queries": {
+    "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_continuous5_ver_capability/102_38_ver/candidate_small_queries.npz",
+    "bytes": 61830,
+    "mtime_ns": 1791592794353010200,
+    "file_sha256": "3db52559fa26bd121b2358b378946b72e453a48f5d90f35c5a87a31222bf11b7",
+    "members": {
+      "rows": {
+        "shape": [
+          96
+        ],
+        "dtype": "int64",
+        "values_sha256": "852e8f57644e004486c6d08569fb15b071c6071ca2b72877cd4145b859b7ad25"
+      },
+      "node_ids": {
+        "shape": [
+          96,
+          10
+        ],
+        "dtype": "int64",
+        "values_sha256": "055ce4cb92f88c689e8e35a0f9ae7eb13977dc4ff4fbb229461b0c7445b62d59"
+      },
+      "barycentric": {
+        "shape": [
+          96,
+          4
+        ],
+        "dtype": "float64",
+        "values_sha256": "5cb65aa9bdb8eeb2e06672571e2b1abd2ac20a667654d09c1723bb648e1e77ec"
+      },
+      "basis": {
+        "shape": [
+          96,
+          10
+        ],
+        "dtype": "float64",
+        "values_sha256": "97fed58269778d2bd76093a874273438debf2c83731e3e8581779519ba1951d7"
+      },
+      "physical_gradients": {
+        "shape": [
+          96,
+          10,
+          3
+        ],
+        "dtype": "float64",
+        "values_sha256": "9eae929ba8811df074bce3b7bda656d758ccd4b7fb75382a38ebb4a36ce69fac"
+      },
+      "X_mm": {
+        "shape": [
+          96,
+          3
+        ],
+        "dtype": "float64",
+        "values_sha256": "3a1280660a3428d370d3bfd6a9410d291c26e6580d5dd799e60c86a7e9f7d9c0"
+      },
+      "U_mm": {
+        "shape": [
+          96,
+          3
+        ],
+        "dtype": "float64",
+        "values_sha256": "ef8111f293e492c405f2e4f3d3084e93b447bc388f28f0b5aa2451e7cee863f1"
+      },
+      "gradient_dimensionless": {
+        "shape": [
+          96,
+          3,
+          3
+        ],
+        "dtype": "float64",
+        "values_sha256": "46fc01fb3fe8a814d6fd846ce7185017c4a0b8968d3bea2c1b3a9395d0fa7edd"
+      },
+      "engineering_strain6": {
+        "shape": [
+          96,
+          6
+        ],
+        "dtype": "float64",
+        "values_sha256": "723526e9a6cf696a09615eb5b31edf87bd2dc7b9165e4420d02246b2eed8c82b"
+      },
+      "face_pairs": {
+        "shape": [
+          16,
+          2
+        ],
+        "dtype": "int64",
+        "values_sha256": "c777bbe351773a0d671636dd3957121e72458eefe9fced833bdc967477036d33"
+      },
+      "common_face_normals": {
+        "shape": [
+          16,
+          3
+        ],
+        "dtype": "float64",
+        "values_sha256": "c49c8c2b4a8f09a280987de161e09306ec1dad2eb4f1a94070eef970f38d884f"
+      }
+    }
+  },
+  "geometry_diagnostics": {
+    "status": "completed",
+    "selected_original_cells": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      927,
+      22271,
+      28129,
+      29672,
+      92537,
+      92552,
+      122952
+    ],
+    "selected_cells": 32,
+    "interior_query_occurrences": 64,
+    "shared_face_physical_queries": 16,
+    "shared_face_sided_occurrences": 32,
+    "total_query_occurrences": 96,
+    "whole_CAD_fast_locator_claim": false,
+    "face_topology": {
+      "cell_count": 122953,
+      "interior_face_count": 229498,
+      "boundary_face_count": 32816,
+      "midside_mismatch_count": 0,
+      "nonmanifold_face_count": 0
+    },
+    "C1_required": false,
+    "normal_derivative_jump_is_diagnostic": true,
+    "C0_max_position_gap_over_L": 1.9603732036918336e-17,
+    "C0_max_U_trace_scaled_gap": 2.168404344971009e-19,
+    "C0_passed": true,
+    "normal_derivative_jump_RMS_dimensionless": 3.855376400315316e-06,
+    "normal_derivative_jump_max_dimensionless": 8.68187671960167e-06,
+    "inverse_status_counts": {
+      "inside_accepted": 96
+    },
+    "inverse_valid_queries": 96,
+    "inverse_max_direct_U_scaled_gap": 1.7277845820728999e-15,
+    "inverse_replay_passed": true,
+    "inverse_counters": {
+      "logical_queries": 96,
+      "candidate_evaluations": 257,
+      "newton_attempts": 514,
+      "newton_iterations": 1070,
+      "backtrack_evaluations": 1070,
+      "jacobian_evaluations": 1936,
+      "map_evaluations": 3680,
+      "descriptor_evaluations": 608,
+      "affine_seed_checks": 257
+    },
+    "inverse_interior_gradient_scaled_gap_diagnostic": 1.726049858596923e-16,
+    "inverse_interior_gradient_evaluated_queries": 64,
+    "inverse_shared_face_accepted_sides": [
+      {
+        "query_occurrence": 64,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 0
+      },
+      {
+        "query_occurrence": 65,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 122952
+      },
+      {
+        "query_occurrence": 66,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 0
+      },
+      {
+        "query_occurrence": 67,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 122952
+      },
+      {
+        "query_occurrence": 68,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 0
+      },
+      {
+        "query_occurrence": 69,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 28129
+      },
+      {
+        "query_occurrence": 70,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 0
+      },
+      {
+        "query_occurrence": 71,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 28129
+      },
+      {
+        "query_occurrence": 72,
+        "accepted_element_row": 22271,
+        "direct_side_element_row": 22271
+      },
+      {
+        "query_occurrence": 73,
+        "accepted_element_row": 22271,
+        "direct_side_element_row": 122952
+      },
+      {
+        "query_occurrence": 74,
+        "accepted_element_row": 22271,
+        "direct_side_element_row": 22271
+      },
+      {
+        "query_occurrence": 75,
+        "accepted_element_row": 22271,
+        "direct_side_element_row": 122952
+      },
+      {
+        "query_occurrence": 76,
+        "accepted_element_row": 92537,
+        "direct_side_element_row": 92537
+      },
+      {
+        "query_occurrence": 77,
+        "accepted_element_row": 92537,
+        "direct_side_element_row": 92552
+      },
+      {
+        "query_occurrence": 78,
+        "accepted_element_row": 92537,
+        "direct_side_element_row": 92537
+      },
+      {
+        "query_occurrence": 79,
+        "accepted_element_row": 92537,
+        "direct_side_element_row": 92552
+      },
+      {
+        "query_occurrence": 80,
+        "accepted_element_row": 927,
+        "direct_side_element_row": 927
+      },
+      {
+        "query_occurrence": 81,
+        "accepted_element_row": 927,
+        "direct_side_element_row": 92537
+      },
+      {
+        "query_occurrence": 82,
+        "accepted_element_row": 927,
+        "direct_side_element_row": 927
+      },
+      {
+        "query_occurrence": 83,
+        "accepted_element_row": 927,
+        "direct_side_element_row": 92537
+      },
+      {
+        "query_occurrence": 84,
+        "accepted_element_row": 22271,
+        "direct_side_element_row": 22271
+      },
+      {
+        "query_occurrence": 85,
+        "accepted_element_row": 22271,
+        "direct_side_element_row": 92552
+      },
+      {
+        "query_occurrence": 86,
+        "accepted_element_row": 22271,
+        "direct_side_element_row": 22271
+      },
+      {
+        "query_occurrence": 87,
+        "accepted_element_row": 22271,
+        "direct_side_element_row": 92552
+      },
+      {
+        "query_occurrence": 88,
+        "accepted_element_row": 927,
+        "direct_side_element_row": 927
+      },
+      {
+        "query_occurrence": 89,
+        "accepted_element_row": 927,
+        "direct_side_element_row": 28129
+      },
+      {
+        "query_occurrence": 90,
+        "accepted_element_row": 927,
+        "direct_side_element_row": 927
+      },
+      {
+        "query_occurrence": 91,
+        "accepted_element_row": 927,
+        "direct_side_element_row": 28129
+      },
+      {
+        "query_occurrence": 92,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 0
+      },
+      {
+        "query_occurrence": 93,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 29672
+      },
+      {
+        "query_occurrence": 94,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 0
+      },
+      {
+        "query_occurrence": 95,
+        "accepted_element_row": 0,
+        "direct_side_element_row": 29672
+      }
+    ],
+    "inverse_sampled_regularity_not_global_uniqueness_proof": true
+  },
+  "persisted_unix_seconds": 1791592794.4742773,
+  "original_physical_U_file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c",
+  "GT_U_reads_at_prediction_commit": 0,
+  "read_receipt": {
+    "stress_source_label_reads": 0,
+    "strain_source_label_reads": 0,
+    "learned_weight_reads": 0,
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "new_physical_solves": 0,
+    "new_tensor_recoveries": 0,
+    "K_applications": 0,
+    "old_K_guard_repeats": 0,
+    "old_final_reads": 0,
+    "sealed_new_test_reads": 0,
+    "DEV_dia_reads": 0,
+    "GT_reads_before_all_five_prediction_barrier": 0,
+    "physical_U_prediction_reads": 5,
+    "physical_U_byte_hash_reads": 5,
+    "GT_U_reads": 0,
+    "input_cache_reads": 5,
+    "input_cache_byte_hash_reads": 5,
+    "input_member_reads": 20,
+    "operator_array_reads": 10,
+    "own_prediction_array_reads": 0,
+    "own_reference_array_reads": 0,
+    "source_GT_U_read_attempts": 0,
+    "source_GT_U_read_completed": 0,
+    "attempted_members": {
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz": 1,
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz:ctetra_element_ids": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz:ctetra_element_ids": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz:ctetra_element_ids": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz:ctetra_element_ids": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz:ctetra_element_ids": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy": 1
+    },
+    "completed_members": {
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz:ctetra_element_ids": 1,
+      "data/geobc_elastic_crosscad5/101_428/input/input.npz": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz:ctetra_element_ids": 1,
+      "data/geobc_elastic_crosscad5/101_56/input/input.npz": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz:ctetra_element_ids": 1,
+      "data/geobc_elastic_crosscad5/101_78/input/input.npz": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz:ctetra_element_ids": 1,
+      "data/geobc_elastic_crosscad5/102_249/input/input.npz": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz:vertices_mm": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz:cells10": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz:grid_node_ids": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz:ctetra_element_ids": 1,
+      "data/geobc_elastic_crosscad5/102_38/input/input.npz": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/physical_gradients.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/quadrature_weights.npy": 1,
+      "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy": 1
+    }
+  }
+}

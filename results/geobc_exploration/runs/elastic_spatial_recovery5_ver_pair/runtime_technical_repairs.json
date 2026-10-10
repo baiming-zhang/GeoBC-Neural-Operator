@@ -1,0 +1,27 @@
+{
+  "repairs": [
+    {
+      "reason": "Actual first launch failed metadata equality on associatively summed inherited costs; difference 5.684341886080802e-14 seconds",
+      "change": "Match recomputed inherited accounting using same existing1e-8 tolerance; no scientific recipe/data/budget changes",
+      "prior_source_sha256": "6296082dfdb4e12302cc51f474cc810ba4bd0ba0709a5b1f279d78edefa88480",
+      "repaired_source_sha256": "fd8b584373389ee7327d589a2d2b691553c41fdb2e046f6a5770274a663e3e48",
+      "time_UTC": "2026-10-10T00:08:40.188320+00:00",
+      "no_array_or_target_reads_or_optimizer_updates_before_failure": true,
+      "AST_policy": "Original author final AST retained as original evidence; root necessary one-line review only, next actual invocation is syntax/runtime acceptance"
+    },
+    {
+      "reason": "Windows status reader sharing conflict caused mounted-filesystem os.replace PermissionError and blocked finalizer metadata persistence",
+      "recovery": "Commit existing inactive finalizer status.json.tmp and close active stage clock at authoritative coordinator-observed child exit; resume same frozen source/recipe/checkpoints and remaining budget",
+      "time_UTC": "2026-10-10T00:32:19.690259+00:00",
+      "parent_exit_UTC": "2026-10-10T00:29:43.911804+00:00",
+      "conservative_finalizer_exit_wall_seconds_added": 1.7865378856658936,
+      "training_journal_finalizer_failed_actual_seconds": 0.05659127235412598,
+      "idle_since_actual_exit_not_training_or_campaign_cost": true,
+      "source_or_scientific_recipe_changed": false,
+      "no_checkpoint_bytes_read_by_repair": true
+    }
+  ],
+  "failed_metadata_attempt_parent_observed_wall_seconds_charged_conservatively": 5.004416112000001,
+  "not_measured_training_time": true,
+  "failed_attempt_scientific_reads": 0
+}

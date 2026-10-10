@@ -1,0 +1,110 @@
+{
+  "parent_scalers": {
+    "contract_sha256": "2d36e69fcdbb5755a56e228bacb9fc8cef21a6993be23ef5ca72068fcf021d76",
+    "tensor6": {
+      "mean": [
+        -0.7823671550229131,
+        9.650955947040373,
+        5.015058973509148,
+        -0.280951333135001,
+        0.42610174654765554,
+        0.14969263235680522
+      ],
+      "std": [
+        20.084070871595806,
+        31.83844971857215,
+        18.781029221274803,
+        15.863634343325959,
+        11.74554731542147,
+        14.539393112929526
+      ],
+      "raw_std": [
+        20.084070871595806,
+        31.83844971857215,
+        18.781029221274803,
+        15.863634343325959,
+        11.74554731542147,
+        14.539393112929526
+      ],
+      "floor_MPa": 1e-08,
+      "channels": [
+        "xx",
+        "yy",
+        "zz",
+        "xy",
+        "xz",
+        "yz"
+      ],
+      "valid_TRAIN_nodes": 683842,
+      "fit_keys": [
+        "101_428/ver",
+        "101_56/ver",
+        "101_78/ver"
+      ]
+    },
+    "signed_stress": {
+      "scale_MPa": 81.8243003845215,
+      "mean": 0.17759611016359497,
+      "std": 0.5696497861955057,
+      "raw_std": 0.5696497861955057,
+      "std_floor": 1e-08,
+      "scale_floor_MPa": 1e-12,
+      "fit_keys": [
+        "101_428/ver",
+        "101_56/ver",
+        "101_78/ver"
+      ],
+      "signed_transform": "(asinh(S/scale)-mean)/std",
+      "TRAIN_nodes": 683842
+    },
+    "targets": {
+      "101_428/ver": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_428_ver_encoded.npy",
+        "shape": [
+          270276
+        ],
+        "dtype": "float32",
+        "bytes": 1081232,
+        "mtime_ns": 1791584136536496900,
+        "values_sha256": "4e374a7447e03c2633ce6d9dc5e3f2870ea0e5a66958cfc2179b0948c6131232"
+      },
+      "101_56/ver": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_56_ver_encoded.npy",
+        "shape": [
+          221213
+        ],
+        "dtype": "float32",
+        "bytes": 884980,
+        "mtime_ns": 1791584136547495700,
+        "values_sha256": "3609223d203974e9aea846564d47679c836f4ec89f0e7597ff805b228a853dc4"
+      },
+      "101_78/ver": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_78_ver_encoded.npy",
+        "shape": [
+          192353
+        ],
+        "dtype": "float32",
+        "bytes": 769540,
+        "mtime_ns": 1791584136557495500,
+        "values_sha256": "a1de1675576a02ad4ef702393861d4fffbf0f2446a2d3c2139bb18a36c641e15"
+      }
+    },
+    "fit_seconds": 0.16860318900000948
+  },
+  "fit_keys": [
+    "101_428/ver",
+    "101_56/ver",
+    "101_78/ver"
+  ],
+  "physical_U_zero_center_component_RMS_mm": [
+    0.03805074949664119,
+    0.010744947877825999,
+    0.07918749694715654
+  ],
+  "physical_U_floor_mm": 1e-12,
+  "TRAIN_nodes": 683842,
+  "new_scaler_fits": 0,
+  "DEV_scaler_fits": 0,
+  "new_scaler_fit_wall_seconds": 0.005910807000020668,
+  "source": "immutable parent serialized scaler"
+}

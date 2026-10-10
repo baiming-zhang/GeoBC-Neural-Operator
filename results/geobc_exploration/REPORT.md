@@ -278,7 +278,7 @@ GINO单seed2026 fixed480完整case初筛completed，四次TRAIN120遍历，U均�
 
 ## 主计划中的下一阶段
 
-当前计划阶段已完成，后续决策仍由主计划确定。 计划阶段：solver_spatial_physical_recovery_structural_design。
+当前计划阶段已完成，后续决策仍由主计划确定。 计划阶段：solver_spatial_physical_recovery_selection。
 
 ## 解释边界
 
@@ -286,4 +286,4 @@ GINO单seed2026 fixed480完整case初筛completed，四次TRAIN120遍历，U均�
 迁移尾部误差可能被 asinh 逆变换放大；不截断预测、不更改标签，也不把训练误差称为泛化误差。
 候选模型组合已有的 [PointNet](https://arxiv.org/abs/1612.00593) 点集汇聚与 [Instant-NGP](https://nvlabs.github.io/instant-ngp/) hash 表示；当前尚无新算法或泛化成功的结论。
 
-本页随实验更新；科学训练／评估／冻结诊断完成94/94项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。
+本页随实验更新；科学训练／评估／冻结诊断完成97/97项，合成验收完成3/3项。原30项slides复现已完成，自主研究继续。

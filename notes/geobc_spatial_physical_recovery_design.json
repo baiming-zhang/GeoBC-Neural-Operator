@@ -1,0 +1,769 @@
+{
+  "kind": "spatial_physical_signed_recovery_pair_design",
+  "status": "root_released_for_one_frozen_actual_pair",
+  "actual_execution_released": true,
+  "source_changes_authorized": true,
+  "purpose": "Test one global spatial component beyond a same-local physical query decoder; not final solver selection or rescue of raw6/factored heads",
+  "train_keys": [
+    "101_428/ver",
+    "101_56/ver",
+    "101_78/ver"
+  ],
+  "validation_keys": [
+    "102_249/ver",
+    "102_38/ver"
+  ],
+  "arms": [
+    "local_physical_zero_latent",
+    "global_FNO_physical_latent"
+  ],
+  "parent_readout_summary": {
+    "path": "runs/geobc_exploration/elastic_stress_readout5_ver/summary.json",
+    "sha256": "973bb7e37a76838592e75a47dd813e5c2113e1f6a6d43e9830b83c8cc2024c38"
+  },
+  "parent_magnitude_plan": {
+    "path": "notes/geobc_stress_magnitude_plan.json",
+    "sha256": "b79593a00f0a100ad3bdc2b4b29539ef26530d82f1a057a6bb52b310edc5d4d4"
+  },
+  "records": {
+    "101_428/ver": {
+      "node_count": 270276,
+      "input_arrays": {
+        "xyz": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/xyz.npy",
+          "shape": [
+            270276,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 3243440,
+          "mtime_ns": 1791584131476870800,
+          "values_sha256": "c9f54a43f045d4729147dbb4ab4ed4f85bd5b46e8aab72228d5d46c2d2121228"
+        },
+        "features": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/features.npy",
+          "shape": [
+            270276,
+            25
+          ],
+          "dtype": "float32",
+          "bytes": 27027728,
+          "mtime_ns": 1791584131535871500,
+          "values_sha256": "9a92083c2ae2b2635aaad844311e5340bae8d03bb4e72b7470fed0832ffdb9c8"
+        },
+        "cloud": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/cloud.npy",
+          "shape": [
+            1024,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 12416,
+          "mtime_ns": 1791584131559978100,
+          "values_sha256": "09064629480569ca68ff7a878270a72e224dfdd0094d3f195d9e9f5c3d2fb449"
+        },
+        "mask": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/mask.npy",
+          "shape": [
+            1024
+          ],
+          "dtype": "bool",
+          "bytes": 1152,
+          "mtime_ns": 1791584131564979400,
+          "values_sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+        },
+        "grid_node_ids": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/grid_node_ids.npy",
+          "shape": [
+            270276
+          ],
+          "dtype": "int64",
+          "bytes": 2162336,
+          "mtime_ns": 1791584131575978100,
+          "values_sha256": "65f935b3245149b5098845c7a2ff0dc69dd7bc833d2668519deddfbd235228f2"
+        },
+        "valid": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/valid.npy",
+          "shape": [
+            270276
+          ],
+          "dtype": "bool",
+          "bytes": 270404,
+          "mtime_ns": 1791584131747790300,
+          "values_sha256": "3ce134176931bd11066ea520203deafa73adc9cd20c32ec16fa559055cc3397b"
+        },
+        "sigma_MPa": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_428_ver/sigma_MPa.npy",
+          "shape": [
+            270276,
+            6
+          ],
+          "dtype": "float64",
+          "bytes": 12973376,
+          "mtime_ns": 1791584133008547000,
+          "values_sha256": "2b220abc01b53ed3346c1355d9d535bbbfe842020f75494a2de9d2c245c3b122"
+        }
+      },
+      "original_zero_physical_U": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy",
+        "bytes": 6486752,
+        "mtime_ns": 1791580411614811300,
+        "shape": [
+          270276,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "physical_U_file_sha256": "9496a94be91e192080f31edcb87283e9c115634c643bb0c61c7d089d51a412fb",
+      "original_fine_summary": {
+        "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/summary.json",
+        "sha256": "9b26bf439d1eca8da6a8102e11ea63856994800408e99310b1c811233e489a94"
+      },
+      "cached_original_signed_stress": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_428_ver.npy",
+        "shape": [
+          270276
+        ],
+        "dtype": "float64",
+        "bytes": 2162336,
+        "mtime_ns": 1791584136282787900,
+        "values_sha256": "793da550e815bd0e27a06e65656dd1dd2267903744468d99e62148c2def3ee34"
+      },
+      "physical_feature_provenance": {
+        "physical_prediction": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/physical_u_mm.npy",
+          "bytes": 6486752,
+          "mtime_ns": 1791580411614811300,
+          "shape": [
+            270276,
+            3
+          ],
+          "dtype": "torch.float64"
+        },
+        "actual_physical_prediction_file_sha256": "9496a94be91e192080f31edcb87283e9c115634c643bb0c61c7d089d51a412fb",
+        "operator_summary": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/summary.json",
+          "sha256": "d58bbb938605bbcd293f8a335d13a46199dd5ccb1dfb1c5addb3a4ae66b71c1c"
+        },
+        "input_manifest": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/input/manifest.json",
+          "sha256": "592764e00313aafd795d28ff183a6bdda94047433141ca66998c5abe112f4145"
+        },
+        "physical_GT_free_cold_seconds": 100.95741130100001
+      },
+      "accepted_feature_preparation_costs": {
+        "neural_input_preparation_seconds": 0.30215560400006325,
+        "incidence_mask_seconds": 0.13639105400000062,
+        "tensor_recovery_seconds": 1.1894837559999587,
+        "elapsed_seconds": 1.6588083359999928
+      },
+      "accepted_physical_GT_free_cold_seconds": 100.95741130100001
+    },
+    "101_56/ver": {
+      "node_count": 221213,
+      "input_arrays": {
+        "xyz": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/xyz.npy",
+          "shape": [
+            221213,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 2654684,
+          "mtime_ns": 1791584133213155100,
+          "values_sha256": "12de6dd49683cbfdab56501c8873e94eb8e4efe8f6553138b67e812c0e9c236a"
+        },
+        "features": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/features.npy",
+          "shape": [
+            221213,
+            25
+          ],
+          "dtype": "float32",
+          "bytes": 22121428,
+          "mtime_ns": 1791584133273300300,
+          "values_sha256": "a588beadece3d31d9e76cab89cebcc3c669edf7eb6af8728d2e953c3f9e5e46b"
+        },
+        "cloud": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/cloud.npy",
+          "shape": [
+            1024,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 12416,
+          "mtime_ns": 1791584133295301700,
+          "values_sha256": "7b5cac028ece882664d0801708fd90dbaa864e23c009bdb040706f8aaef490da"
+        },
+        "mask": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/mask.npy",
+          "shape": [
+            1024
+          ],
+          "dtype": "bool",
+          "bytes": 1152,
+          "mtime_ns": 1791584133300341900,
+          "values_sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+        },
+        "grid_node_ids": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/grid_node_ids.npy",
+          "shape": [
+            221213
+          ],
+          "dtype": "int64",
+          "bytes": 1769832,
+          "mtime_ns": 1791584133310341600,
+          "values_sha256": "b908e54d906255e2dcf5e737ce6a12ec9b89c32af6a40dd400c3ca089ddbcf94"
+        },
+        "valid": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/valid.npy",
+          "shape": [
+            221213
+          ],
+          "dtype": "bool",
+          "bytes": 221341,
+          "mtime_ns": 1791584133380260300,
+          "values_sha256": "c37030c5e67db1027bd95af33554f55790ebc5dffe0e576bf29b8b59ad1f4ad5"
+        },
+        "sigma_MPa": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_56_ver/sigma_MPa.npy",
+          "shape": [
+            221213,
+            6
+          ],
+          "dtype": "float64",
+          "bytes": 10618352,
+          "mtime_ns": 1791584134032047800,
+          "values_sha256": "9ee0b27d2c953e5740811f91613178d1e751cc39df9bccbc272541a47faf6a04"
+        }
+      },
+      "original_zero_physical_U": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy",
+        "bytes": 5309240,
+        "mtime_ns": 1791580495841281900,
+        "shape": [
+          221213,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "physical_U_file_sha256": "7b76dfa12e5332b313ff7ffea1cbf24660e9dba7e03341c186c9f0532ee07b4a",
+      "original_fine_summary": {
+        "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/summary.json",
+        "sha256": "593d8a3131eda6014e176ca74e12b67828aa5e231bedcdff5a35da0f43dd007e"
+      },
+      "cached_original_signed_stress": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_56_ver.npy",
+        "shape": [
+          221213
+        ],
+        "dtype": "float64",
+        "bytes": 1769832,
+        "mtime_ns": 1791584136324931800,
+        "values_sha256": "b5f7d89dfc7d63579bc9561b999a5be4b049992fb99e406845615e3113ed7b91"
+      },
+      "physical_feature_provenance": {
+        "physical_prediction": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/physical_u_mm.npy",
+          "bytes": 5309240,
+          "mtime_ns": 1791580495841281900,
+          "shape": [
+            221213,
+            3
+          ],
+          "dtype": "torch.float64"
+        },
+        "actual_physical_prediction_file_sha256": "7b76dfa12e5332b313ff7ffea1cbf24660e9dba7e03341c186c9f0532ee07b4a",
+        "operator_summary": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/summary.json",
+          "sha256": "5451566a5d269b5352373a3c900acf13f8c13a19dd95e980794e115a9b22666d"
+        },
+        "input_manifest": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/input/manifest.json",
+          "sha256": "8a15a5662979b3c291b96bac7a2ddc316e5ea0bc51d1f372ed36a223d8bca6cf"
+        },
+        "physical_GT_free_cold_seconds": 77.042284078
+      },
+      "accepted_feature_preparation_costs": {
+        "neural_input_preparation_seconds": 0.2251931879999347,
+        "incidence_mask_seconds": 0.04256725899995217,
+        "tensor_recovery_seconds": 0.6153826900000468,
+        "elapsed_seconds": 0.904805730000021
+      },
+      "accepted_physical_GT_free_cold_seconds": 77.042284078
+    },
+    "101_78/ver": {
+      "node_count": 192353,
+      "input_arrays": {
+        "xyz": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/xyz.npy",
+          "shape": [
+            192353,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 2308364,
+          "mtime_ns": 1791584134169561700,
+          "values_sha256": "00c7c8f8f08e04ada2b91abf6501e3fe2bd76f59d8492bf955b7faa2ba09ebc2"
+        },
+        "features": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/features.npy",
+          "shape": [
+            192353,
+            25
+          ],
+          "dtype": "float32",
+          "bytes": 19235428,
+          "mtime_ns": 1791584134211631500,
+          "values_sha256": "f316227de575554dfc8619bdf90812451d94c834618f16b55692952b138e98de"
+        },
+        "cloud": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/cloud.npy",
+          "shape": [
+            1024,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 12416,
+          "mtime_ns": 1791584134229630900,
+          "values_sha256": "174e62a46d9cdeee6ab1c018d53704270f44111b015ba0ce1d414e06d2734e2f"
+        },
+        "mask": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/mask.npy",
+          "shape": [
+            1024
+          ],
+          "dtype": "bool",
+          "bytes": 1152,
+          "mtime_ns": 1791584134236139700,
+          "values_sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+        },
+        "grid_node_ids": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/grid_node_ids.npy",
+          "shape": [
+            192353
+          ],
+          "dtype": "int64",
+          "bytes": 1538952,
+          "mtime_ns": 1791584134245139400,
+          "values_sha256": "d40d02715d19f440fa2ddc8a2614153994f828fe846cbbf065e8e3f3e3967db6"
+        },
+        "valid": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/valid.npy",
+          "shape": [
+            192353
+          ],
+          "dtype": "bool",
+          "bytes": 192481,
+          "mtime_ns": 1791584134311140300,
+          "values_sha256": "14e1e13fa6a3b5cb78a91f1b69ec28e2a60cd1501410e8a79a8e97902025a5e2"
+        },
+        "sigma_MPa": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/101_78_ver/sigma_MPa.npy",
+          "shape": [
+            192353,
+            6
+          ],
+          "dtype": "float64",
+          "bytes": 9233072,
+          "mtime_ns": 1791584134782315800,
+          "values_sha256": "b750b93633d4a729777c430b9f355aea2c6a10660911d4e28fb9c6f6c9ef9cd1"
+        }
+      },
+      "original_zero_physical_U": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy",
+        "bytes": 4616600,
+        "mtime_ns": 1791580757923400300,
+        "shape": [
+          192353,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "physical_U_file_sha256": "5081a9667a3107df6508a60f03a173e008e30ca382ac898f31af22ce720fa85b",
+      "original_fine_summary": {
+        "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/summary.json",
+        "sha256": "9bb13704114b38fab5e8fefdaa66f676a50630c3e08c9d635f02660a095fd8ae"
+      },
+      "cached_original_signed_stress": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_78_ver.npy",
+        "shape": [
+          192353
+        ],
+        "dtype": "float64",
+        "bytes": 1538952,
+        "mtime_ns": 1791584136366097000,
+        "values_sha256": "abc7ee662a8a662299b2101a0bea396a5400f087a0a55c809d685427a2b21342"
+      },
+      "physical_feature_provenance": {
+        "physical_prediction": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/physical_u_mm.npy",
+          "bytes": 4616600,
+          "mtime_ns": 1791580757923400300,
+          "shape": [
+            192353,
+            3
+          ],
+          "dtype": "torch.float64"
+        },
+        "actual_physical_prediction_file_sha256": "5081a9667a3107df6508a60f03a173e008e30ca382ac898f31af22ce720fa85b",
+        "operator_summary": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/summary.json",
+          "sha256": "02ba7d4ed4145199f991a38b5ccc00950403328bb801ce660ee86b6285e75468"
+        },
+        "input_manifest": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/input/manifest.json",
+          "sha256": "dc188bfaca90d155d2c38d947eb76aca9e98e866b33e251e03efa465ee066bf8"
+        },
+        "physical_GT_free_cold_seconds": 82.46914100800004
+      },
+      "accepted_feature_preparation_costs": {
+        "neural_input_preparation_seconds": 0.1647629159999724,
+        "incidence_mask_seconds": 0.037456431000009616,
+        "tensor_recovery_seconds": 0.4487234860000626,
+        "elapsed_seconds": 0.6737388630000396
+      },
+      "accepted_physical_GT_free_cold_seconds": 82.46914100800004
+    },
+    "102_249/ver": {
+      "node_count": 211173,
+      "input_arrays": {
+        "xyz": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/xyz.npy",
+          "shape": [
+            211173,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 2534204,
+          "mtime_ns": 1791584134930924700,
+          "values_sha256": "b9b79dcbf8543c01ec365120e2d05526a2f4cef3744ad6527e134ad761c8e341"
+        },
+        "features": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/features.npy",
+          "shape": [
+            211173,
+            25
+          ],
+          "dtype": "float32",
+          "bytes": 21117428,
+          "mtime_ns": 1791584134995935800,
+          "values_sha256": "07d54b0a67fad68f4570872c5f51b1a03765205bcc2d48fef72f295c600a8092"
+        },
+        "cloud": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/cloud.npy",
+          "shape": [
+            1024,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 12416,
+          "mtime_ns": 1791584135010910900,
+          "values_sha256": "a727bf751ba57094b1e30b54931b773a6809aa334c5fdb1143a82320edd94942"
+        },
+        "mask": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/mask.npy",
+          "shape": [
+            1024
+          ],
+          "dtype": "bool",
+          "bytes": 1152,
+          "mtime_ns": 1791584135016415600,
+          "values_sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+        },
+        "grid_node_ids": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/grid_node_ids.npy",
+          "shape": [
+            211173
+          ],
+          "dtype": "int64",
+          "bytes": 1689512,
+          "mtime_ns": 1791584135026419600,
+          "values_sha256": "61beab4c5cc505e921a93141ae7d6341dd33eee327c4e513cd7d6e6a6cc957d7"
+        },
+        "valid": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/valid.npy",
+          "shape": [
+            211173
+          ],
+          "dtype": "bool",
+          "bytes": 211301,
+          "mtime_ns": 1791584135093420700,
+          "values_sha256": "ab097e179157c97851ee149218e7baa913b76ae846d2eab05aba80899703bef3"
+        },
+        "sigma_MPa": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_249_ver/sigma_MPa.npy",
+          "shape": [
+            211173,
+            6
+          ],
+          "dtype": "float64",
+          "bytes": 10136432,
+          "mtime_ns": 1791584135509249300,
+          "values_sha256": "839e0e5241e2cc63f03584f015dda5fcd4ca5b6a8d2d1d953221b3a5dc2715aa"
+        }
+      },
+      "original_zero_physical_U": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy",
+        "bytes": 5068280,
+        "mtime_ns": 1791580868309836200,
+        "shape": [
+          211173,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "physical_U_file_sha256": "8140c1cbf528f1f2db03c64c2baa90b352767471f9ceda92eed365d3f387356d",
+      "original_fine_summary": {
+        "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/summary.json",
+        "sha256": "782614bbbbb9525ca8677f18d02a52e5dc07029fbf61d8b22f6e34c2ecf2d538"
+      },
+      "cached_original_signed_stress": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/102_249_ver.npy",
+        "shape": [
+          211173
+        ],
+        "dtype": "float64",
+        "bytes": 1689512,
+        "mtime_ns": 1791584179557568100,
+        "values_sha256": "22c3b9fe6ffcbe1a1a262ab20abe9e556d1889b09ca8f910c411ee717c23e02b"
+      },
+      "physical_feature_provenance": {
+        "physical_prediction": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_249_ver/physical_u_mm.npy",
+          "bytes": 5068280,
+          "mtime_ns": 1791580868309836200,
+          "shape": [
+            211173,
+            3
+          ],
+          "dtype": "torch.float64"
+        },
+        "actual_physical_prediction_file_sha256": "8140c1cbf528f1f2db03c64c2baa90b352767471f9ceda92eed365d3f387356d",
+        "operator_summary": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/operator/summary.json",
+          "sha256": "ac6cae9c7ed3fbb4553f9ee0ab396544f37fa0c988de6b130703f3dbd99dce0d"
+        },
+        "input_manifest": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_249/input/manifest.json",
+          "sha256": "c763b0234124d98e86468bab7827564143462042a2ba5467460dce43fc6ca8d5"
+        },
+        "physical_GT_free_cold_seconds": 101.030087958
+      },
+      "accepted_feature_preparation_costs": {
+        "neural_input_preparation_seconds": 0.193166347999977,
+        "incidence_mask_seconds": 0.03972044299996469,
+        "tensor_recovery_seconds": 0.39644237000004523,
+        "elapsed_seconds": 0.6513670260000026
+      },
+      "accepted_physical_GT_free_cold_seconds": 101.030087958
+    },
+    "102_38/ver": {
+      "node_count": 197514,
+      "input_arrays": {
+        "xyz": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/xyz.npy",
+          "shape": [
+            197514,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 2370296,
+          "mtime_ns": 1791584135646874600,
+          "values_sha256": "de16067d56f64970c5fa816890be7c616bbea07253c63f57b77006e670334f05"
+        },
+        "features": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/features.npy",
+          "shape": [
+            197514,
+            25
+          ],
+          "dtype": "float32",
+          "bytes": 19751528,
+          "mtime_ns": 1791584135694139700,
+          "values_sha256": "f35475cf39ec61aeaa6d0a65f2e869e6966365d565b36bfa11c6a7bc0262704d"
+        },
+        "cloud": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/cloud.npy",
+          "shape": [
+            1024,
+            3
+          ],
+          "dtype": "float32",
+          "bytes": 12416,
+          "mtime_ns": 1791584135713932800,
+          "values_sha256": "92eabc5e9589e185b3cbe3366405630c39e822a03216c83faa2802134a236b3a"
+        },
+        "mask": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/mask.npy",
+          "shape": [
+            1024
+          ],
+          "dtype": "bool",
+          "bytes": 1152,
+          "mtime_ns": 1791584135722063400,
+          "values_sha256": "5a648d8015900d89664e00e125df179636301a2d8fa191c1aa2bd9358ea53a69"
+        },
+        "grid_node_ids": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/grid_node_ids.npy",
+          "shape": [
+            197514
+          ],
+          "dtype": "int64",
+          "bytes": 1580240,
+          "mtime_ns": 1791584135735063200,
+          "values_sha256": "3cd08b3d5349fe7948f1acff97c398e08d83ebdaaf060e861378bb27bf7dc8fb"
+        },
+        "valid": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/valid.npy",
+          "shape": [
+            197514
+          ],
+          "dtype": "bool",
+          "bytes": 197642,
+          "mtime_ns": 1791584135812489300,
+          "values_sha256": "ee00d5438d3fa4c5641ddd5cfa318375bb9a5ec9db5ab0b6539b413da76f8253"
+        },
+        "sigma_MPa": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/input_cache/102_38_ver/sigma_MPa.npy",
+          "shape": [
+            197514,
+            6
+          ],
+          "dtype": "float64",
+          "bytes": 9480800,
+          "mtime_ns": 1791584136209624300,
+          "values_sha256": "729c22f87982859871846306519bfc7ab7ba89ba45fb7d4f0c0b0ff374f1c5b4"
+        }
+      },
+      "original_zero_physical_U": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy",
+        "bytes": 4740464,
+        "mtime_ns": 1791580968263212700,
+        "shape": [
+          197514,
+          3
+        ],
+        "dtype": "torch.float64"
+      },
+      "physical_U_file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c",
+      "original_fine_summary": {
+        "path": "runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/summary.json",
+        "sha256": "19ce243bd77f2cfe60687e8090121cadc363077ce832bf567c4f036f28a7ee29"
+      },
+      "cached_original_signed_stress": {
+        "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/102_38_ver.npy",
+        "shape": [
+          197514
+        ],
+        "dtype": "float64",
+        "bytes": 1580240,
+        "mtime_ns": 1791584179601899900,
+        "values_sha256": "d93a458c461063ee35b6e045fb39c8c2f797c0ce924467e1fcfa2e1c73b95519"
+      },
+      "physical_feature_provenance": {
+        "physical_prediction": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_crosscad5_ver/102_38_ver/physical_u_mm.npy",
+          "bytes": 4740464,
+          "mtime_ns": 1791580968263212700,
+          "shape": [
+            197514,
+            3
+          ],
+          "dtype": "torch.float64"
+        },
+        "actual_physical_prediction_file_sha256": "afde2a4710e2f1db5f7c696396e650ffa5d9cd2509e03dc3d5ea4191f442b07c",
+        "operator_summary": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/operator/summary.json",
+          "sha256": "eec5f728e92e097ee6ec4e509502b0db3ff44f9c08d3f4662c433afb9eba8add"
+        },
+        "input_manifest": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/102_38/input/manifest.json",
+          "sha256": "c97bd8d632a89b1bdb45f4aef160966dfc4ad89805c73b3183ee46e47a3ef3f0"
+        },
+        "physical_GT_free_cold_seconds": 91.455433389
+      },
+      "accepted_feature_preparation_costs": {
+        "neural_input_preparation_seconds": 0.17928211900004953,
+        "incidence_mask_seconds": 0.04325725000001057,
+        "tensor_recovery_seconds": 0.3872473019999916,
+        "elapsed_seconds": 0.6373877280000215
+      },
+      "accepted_physical_GT_free_cold_seconds": 91.455433389
+    }
+  },
+  "input_interface": "FullFE physics supplies immutable original zero-start U plus recovered raw sigma6/valid. Geometry xyz/original25/cloud are same across arms; different supplied information from pointcloud-only solver benchmark. No displacement GT input.",
+  "recipe": {
+    "seed": 2026,
+    "original25": "Preserve exact canonical original25, no reinterpretation of undocumented channels",
+    "geometry": "Same canonical xyz and accepted1024-node cloud/mask; common PointNet32 width64 trained",
+    "physical_query": "Physical uXYZ3 + raw sigma6 + valid1 always reach local decoder directly; invalid sigma normalized slots zero with separate validity flag",
+    "common_local_decoder": "86 inputs: xyz3+original25+physicalU3+sigma6+valid1+PointNet32+global_latent16; four hidden256 ReLU, scalar1 unbounded encoded signed S",
+    "common_initialization": "Initialize PointNet/common86-input head once with seed2026; clone exact state to both arms before independent FNO creation. Common TRAIN normalizers and original-S scaler. No pretrained neural weights.",
+    "local_arm": "Exactly zero16 global latent tokens, otherwise identical local inputs/head/cloud",
+    "global_arm": "FNO3d(in_channels=71,out_channels=16,width=16,modes=12,layers=4,padding=0,head_width=128,checkpoint_blocks=True), R64",
+    "grid": "Target-free trilinear mean splat of original25+normalized physicalU3+normalized sigma6+valid1 =35, with occupancy1+coordinate3+PointNet32 =>71 channels; node-splat occupancy, not FE volume occupancy",
+    "query": "Use geobc.fno.query_grid arbitrary16-channel latent at every original node, concatenate to local decoder. No sigma-only voxel washout, no scalar-S grid supervision.",
+    "normalizers": "Reuse immutable TRAIN3-only sigma mean/std and original signed-asinh q90 mean/std from parent scalers; fit one shared zero-center component RMS for TRAIN3 predicted physicalU only, floor1e-12mm. DEV fits0. xyz/original25 unchanged.",
+    "loss": "Full-original-node case-mean encoded S squared error; node-weighted chunk backward, exactly one Adam update per complete CAD",
+    "optimizer": "Adam lr0.001 weight_decay0; FP32/TF32 matching prior decoder, FFT remains FP32, no autocast",
+    "balanced_case_order": "Independent Random(2026) shuffled TRAIN3 balanced passes, identical ordered prefix for both arms; all3 complete before endpoint",
+    "training_budget": "Each arm stops only after first full balanced3 pass with cumulative actual training_seconds>=600; report overshoot. Training timer includes actual case cache I/O/H2D, context/FNO forward, fullN query/backward/optimizer/checkpoint. No DEV feedback/validation-best.",
+    "chunk_nodes": 32768,
+    "geometry_and_latent_graph": "Recompute geometry/FNO once per fullCAD update, accumulate full-node head/latent/context gradients across chunks, one graph backward then optimizer; no stale graph or context cache across updates",
+    "evaluation": "Both fixed endpoints, allN physicalU reused unchanged + direct signedS predictions for all5; persist both arms allDEV predictions before either DEV cachedS read. Primary allN per-case signedL2/hotspot top1% abs originalS; stable row tie order.",
+    "no_rescue": "No q*tanh, sign formula, label alteration, width/loss/step/seed/mesh/grid sweep; no source exporter guessing; no science/resource preflight"
+  },
+  "gate": {
+    "per_arm_complete_service_gate": "Both DEV cases signedS relativeL2<0.25 AND hotspot relativeL2<0.25; missing/budget/backend candidate terminal negative",
+    "global_component_justified": "Global also passes complete service gate AND DEV meanS relativeL2 at least20% lower than identical-local baseline; positive baseline denominator required",
+    "cheaper_local_choice": "Local passes and global not justified => prefer local physical geometry decoder within this fullFE scope, no final architecture claim",
+    "capacity_claim": "Global has extra active FNO parameters/compute; component ablation only, not capacity matched and not isolated propagation causality"
+  },
+  "budget": {
+    "maximum_GPU_peak_bytes": 25769803776,
+    "training_target_seconds_per_arm": 600,
+    "paired_actual_training_target_seconds": 1200,
+    "campaign_accounted_wall_seconds_maximum": 1800,
+    "inherited_original_physical_and_feature_preparation_seconds_once": 457.4804654170001,
+    "nominal_remaining_new_startup_fit_prediction_persistence_margin_seconds": 142.51953458299988,
+    "accounting": "Stage counts inherited original5 full GT-free physical+feature prep once plus every new actual wall including technicalfailed attempts/resume, no reset. Arm train overshoots and whole-stage limit explicit. No re-run physics/recovery/oldguards.",
+    "cost_reporting": "Cached neural incremental train/inference/setup separately; each deployment composed fullcold=its originalzero GT-free physical cold + original recovery/input prep + new input/model/context/grid/fullNdecode/persist. Never splice newcoarse costs or call composed cost fresh joint measurement. If either complete pass/prediction/cost missing retain negative, no extension."
+  },
+  "read_policy": {
+    "TRAIN_displacement_target_reads": 0,
+    "DEV_displacement_target_reads": 0,
+    "source_csv_or_archive_reads": 0,
+    "new_physical_solves": 0,
+    "new_tensor_recoveries": 0,
+    "old_K_guard_repeats": 0,
+    "old_final_reads": 0,
+    "sealed_new_test_reads": 0,
+    "DEV_dia_reads": 0,
+    "TRAIN_cached_original_S": "Allowed supervision/scaler only TRAIN3",
+    "DEV_cached_original_S": "Once shared metrics only after both fixed allN predictions persist",
+    "physical_U_input_reads": "Immutable predicted field, not displacement target; preserve actual file/values identity"
+  },
+  "API_reuse": {
+    "geometry": "geobc.conditioned_field.PointNetGeometryEncoder(32,64)",
+    "global": "geobc.fno.FNO3d + geobc.fno.query_grid",
+    "raster": "geobc.solver_selection_data._stencil/_splat only target-free helpers; no prepare_data/load_case/old four-output query wrapper",
+    "metrics": "geobc.elastic_stress_readout.signed_metrics/aggregate with fixed allN/hot semantics",
+    "cache": "Parent accepted input arrays/rawsigma/valid and label_cache identities; original fine U feature_source exact hash",
+    "real_pitfalls": [
+      "solver_selection_data.query_grid hard-requires4 channels; do not use it for16 latents",
+      "Prior feature cache lacks U array; reuse exact originalzero physicalU record, never source displacement member",
+      "FNO output is16 latent channels, not signedS; direct local sigma retained even when spatial raster loses detail",
+      "Multi-chunk FNO/PointNet graph must accumulate and backprop once; no detach that freezes global encoder",
+      "Signed CSV definition unknown affects physical scalar recovery, not original signed-S supervision validity",
+      "Actual global addition is not parameter-capacity matched; no cross-interface/old40CAD ranking"
+    ]
+  },
+  "source_pins": {
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/elastic_stress_readout.py": "c040688cb2cced43e57532bd0c2e691ce64e8d8df0c39349ba545a668fb2d386"
+  },
+  "root_authorization": "proceed_frozen_geometry_BC_physical_spatial_pair; source only, actual root release pending"
+}

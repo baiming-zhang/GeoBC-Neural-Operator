@@ -1,0 +1,119 @@
+{
+  "kind": "budget_limited_spatial_pair_fixed_endpoint_readout",
+  "status": "frozen_terminal_budget_endpoints_root_released",
+  "scientific_rules_frozen": true,
+  "actual_execution_released": false,
+  "scientific_digest": "d39d0af8a686fed87dbcfe5931f356b9311862890c798dbf2ceea4e2786132f4",
+  "arms": [
+    "local_physical_zero_latent",
+    "global_FNO_physical_latent"
+  ],
+  "validation_keys": [
+    "102_249/ver",
+    "102_38/ver"
+  ],
+  "output": "runs/geobc_exploration/elastic_spatial_budget_fixed_endpoint_readout",
+  "root_review_marker": "notes/elastic_spatial_budget_readout_root_review.json",
+  "design": "notes/geobc_budget_limited_endpoint_readout_design.json",
+  "parent_plan": "notes/geobc_spatial_physical_recovery_plan.json",
+  "parent_terminal_bindings": {
+    "summary": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/summary.json",
+      "sha256": "10e991133f36333ff19df06992e8e17706a62de93a5b4bfe2bc481bc0fae442a"
+    },
+    "status": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/status.json",
+      "sha256": "6b79c52640e0d7dd37b1d78eb552f3435f7044a8af1467da3d70d9b49b0e51c1"
+    },
+    "clock": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/clock.json",
+      "sha256": "64ef10da7772444b9720ab5ca5e7d2d8af6524a30e3d1debee45e6261c80300d"
+    },
+    "read_receipt": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/read_receipt.json",
+      "sha256": "c39839782726e602fe9ff68b95737662fa963057757673ff7eb19652bdd3aad4"
+    },
+    "scalers": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/scalers.json",
+      "sha256": "0ff4b8f9761752a7e2619a4697da0fda7d0e96484eab14b38d90750d4f918331"
+    },
+    "initial_common": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/initial_common.pt",
+      "bytes": 981611,
+      "mtime_ns": 1791590928401120800
+    },
+    "initial_common_metadata": {
+      "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/initial_common.json",
+      "sha256": "ca6a64fd1423bb0bdfb675586c938d7dcd089065691c13e8cd4fd9ec0c03ff58"
+    },
+    "arms": {
+      "local_physical_zero_latent": {
+        "checkpoint": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/local_physical_zero_latent/last.pt",
+          "bytes": 2961069,
+          "mtime_ns": 1791592002178510900
+        },
+        "status": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/local_physical_zero_latent/status.json",
+          "sha256": "7aead1df643bc0ffae5cd5a2715747edfe01fc93cb023828b15dd595d416c128"
+        },
+        "training_summary": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/local_physical_zero_latent/training_summary.json",
+          "sha256": "5500e653562d65e648b48b075b166d97fc9245528b801d331699395c8a3068af"
+        }
+      },
+      "global_FNO_physical_latent": {
+        "checkpoint": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/global_FNO_physical_latent/last.pt",
+          "bytes": 172897259,
+          "mtime_ns": 1791592160202752200
+        },
+        "status": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_spatial_recovery5_ver_pair/global_FNO_physical_latent/status.json",
+          "sha256": "2e72bc1eeeeeb988b2c11642c0832126b3e841d9705dc5e345b93f3636633241"
+        }
+      }
+    }
+  },
+  "parent_binding_schema": {
+    "summary": "{path,sha256}: final parent summary",
+    "status": "{path,sha256}: terminal parent status",
+    "clock": "{path,sha256}: final inactive parent clock",
+    "read_receipt": "{path,sha256}: terminal parent read receipt",
+    "scalers": "{path,sha256}: serialized parent TRAIN normalizers",
+    "initial_common": "{path,bytes,mtime_ns}: parent initial_common.pt, no preterminal bytes read",
+    "initial_common_metadata": "{path,sha256}: parent initial_common.json",
+    "arms": "{arm:{checkpoint:{path,bytes,mtime_ns},status:{path,sha256},training_summary:{path,sha256} only required for local}}"
+  },
+  "recipe": {
+    "checkpoint_selection": "last_committed_at_parent_terminal_snapshot",
+    "maximum_cumulative_readout_wall_seconds": 180,
+    "maximum_GPU_peak_bytes": 25769803776,
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "new_displacement_GT_reads": 0,
+    "source_stress_member_reads": 0,
+    "DEV_cached_signed_S_reads_after_four_prediction_barrier": 2,
+    "checkpoint_access": "Parent-owned initial_common and selected last.pt are allowed only after release; separately count actual parent_checkpoint_reads and hash reads.",
+    "prediction_scope": "Two fixed DEV/ver cases, both arms, all original nodes and unchanged parent71grid/16latent/local86 architecture and saved scalers.",
+    "parent_costs": "Immutable context only; never reset or refill parent1800s budget",
+    "evidence_gate": "Complete finite fixed-endpoint predictions/metrics only; no parent-pair pass or fair600s600s/capacity ranking",
+    "skip": "Complete parent metrics for both arms => no scientific readout/import/array/weight/GT access",
+    "no_fallback_or_rescue": true
+  },
+  "source_sha256": {
+    "geobc/elastic_spatial_budget_readout.py": "7a8d166589370f750209dc50102e63eef6a2dbb5baa144bd1bffdbf1d2bcd939",
+    "geobc/elastic_spatial_recovery.py": "fd8b584373389ee7327d589a2d2b691553c41fdb2e046f6a5770274a663e3e48",
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/elastic_stress_readout.py": "c040688cb2cced43e57532bd0c2e691ce64e8d8df0c39349ba545a668fb2d386"
+  },
+  "read_policy": {
+    "signed_labels": "Only existing cached original DEV S; shared across both endpoints after barrier. New-stage GT receipt counts actual cached label accesses, not source member reads.",
+    "U": "Only frozen predicted physical U; exact byte copy, no new U metrics",
+    "parent": "No files changed; no parent run/train/request_contract/Clock call",
+    "new_sealed_old_final_dia": "Forbidden",
+    "source_preparation": "Source/metadata only; no live checkpoint hashing or loading"
+  }
+}

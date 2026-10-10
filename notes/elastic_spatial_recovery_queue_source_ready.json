@@ -1,0 +1,123 @@
+{
+  "status": "tools_source_ready_final_AST_static_metadata_only",
+  "kind": "spatial_physical_signed_recovery_pair",
+  "source_sha256": {
+    "tools/run_geobc_exploration.py": "ca10287461e83709b7410a15517f6a691c7263091baf2021becc380d9cef4639",
+    "tools/summarize_geobc_exploration.py": "b38d41d3961a66f5d1aae37eef31630ed11c72ceda141b887d483a679e233505"
+  },
+  "previous_source_sha256": {
+    "tools/run_geobc_exploration.py": "4bdce5106a6cda6707fdf2558d516fcb8c149ef8e54f99aac3becc636e280917",
+    "tools/summarize_geobc_exploration.py": "3bf26916fa6f7f345e09f8e19f323bf3920f2ed9037015420d466935b936a12d"
+  },
+  "old_completed_validator_branches_verbatim_preserved": true,
+  "old_completed_validator_branches_sha256": "3956482cbda6f604f023884752c397df0edfc25953d9bf04de615ca66a436222",
+  "checks": {
+    "AST_batch_invocations": 1,
+    "AST_files": 2,
+    "AST_passed": true,
+    "static_routing_before_generic": true,
+    "old_validator_branches_unchanged": true,
+    "static_schema_passed": true
+  },
+  "elapsed_seconds": 0.03476910013705492,
+  "API": {
+    "metadata": "geobc.elastic_spatial_recovery.request_contract(plan)->(contract,plan)",
+    "job": "elastic_spatial_recovery5_ver_pair",
+    "kind": "spatial_physical_signed_recovery_pair",
+    "train_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver"
+    ],
+    "validation_keys": [
+      "102_249/ver",
+      "102_38/ver"
+    ],
+    "case_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver",
+      "102_249/ver",
+      "102_38/ver"
+    ],
+    "arms": [
+      "local_physical_zero_latent",
+      "global_FNO_physical_latent"
+    ],
+    "identity": "Exact summary.config.contract, source_sha256 map ownkey geobc/elastic_spatial_recovery.py 64-character SHA, scientific_digest/science_recipe_sha256 strings",
+    "terminal_policy": "Completed numerical/budget/performance negative ends the fixed pair; no DEV-best or rescue/replay"
+  },
+  "read_receipt": {
+    "prohibited_native_int_zero": [
+      "displacement_target_reads",
+      "TRAIN_displacement_target_reads",
+      "DEV_displacement_target_reads",
+      "source_csv_or_archive_reads",
+      "canonical_target_member_reads",
+      "old_final_reads",
+      "sealed_new_test_reads",
+      "DEV_dia_reads",
+      "new_physical_solves",
+      "new_tensor_recoveries",
+      "K_guards_repeated",
+      "external_model_or_weight_reads",
+      "DEV_scaler_fits"
+    ],
+    "actual_native_int_nonnegative": [
+      "GT_reads",
+      "stress_reads",
+      "TRAIN_stress_reads",
+      "DEV_stress_reads",
+      "physical_U_input_reads",
+      "cached_input_array_reads",
+      "scaler_fits",
+      "optimizer_steps",
+      "own_checkpoint_reads",
+      "own_checkpoint_writes"
+    ],
+    "GT_training_scaler_own_checkpoint_are_not_forced_zero": true,
+    "validated_location": "top summary.read_receipt"
+  },
+  "export": {
+    "top_small_JSON": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "read_receipt.json",
+      "scalers.json",
+      "initial_common.json",
+      "prediction_barrier.json",
+      "evaluation_receipt.json"
+    ],
+    "arm_directory": "output/arm_name",
+    "arm_small_JSON": [
+      "config.json",
+      "status.json",
+      "training_summary.json",
+      "initial_common.json",
+      "first_actual_gradient_check.json",
+      "read_receipt.json"
+    ],
+    "prediction_directory": "output/arm_name/predictions/case_key.replace(/,_)",
+    "prediction_small_JSON": [
+      "prediction_metadata.json",
+      "read_receipt.json",
+      "summary.json"
+    ],
+    "global_receipt_key": "spatial_physical_signed_recovery_receipt",
+    "PT_NPY_S_U_arrays_exported": false,
+    "reporter_or_plots_assumed": false
+  },
+  "scope": {
+    "newmodule_imports": 0,
+    "newmodule_AST": 0,
+    "contracts_executed": 0,
+    "scientific_array_reads": 0,
+    "GT_reads": 0,
+    "weight_reads": 0,
+    "GPU_calls": 0,
+    "actual_candidate_runs": 0,
+    "reporter_runs": 0,
+    "geobc_master_plan_or_accepted_config_changes": 0
+  }
+}

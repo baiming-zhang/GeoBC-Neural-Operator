@@ -1,0 +1,118 @@
+{
+  "status": "tools_source_ready_final_AST_static_metadata_only",
+  "kind": "physical_TET10_continuous_U_gradient_capability",
+  "source_sha256": {
+    "tools/run_geobc_exploration.py": "da9b119a28095a0abc87d82ed6f1b11de8ed5c09ae0e67cd8d54126f4faf8ee6",
+    "tools/summarize_geobc_exploration.py": "2ea019a37d32b5476e0226f8d8825475f770b963517558abcc82d27628dccaea"
+  },
+  "previous_source_sha256": {
+    "tools/run_geobc_exploration.py": "05d7fd48bbb217aaf94ef15873dc2dbf0e90aeb0be4f5b5c57e7b3385eb1d4ca",
+    "tools/summarize_geobc_exploration.py": "09eeb65aaf192c94db6f1f7c13b86b7ffd54e2afbd56525909c53bb03031d76f"
+  },
+  "all_old_completed_validators_verbatim_preserved": true,
+  "old_completed_validator_branches_sha256": "9f4a88d46a78d3b426aa752948d3772bd93f1c1e98661f1f36be4f43d13b3c11",
+  "preserved_branches": [
+    "geobc.elastic_spatial_budget_readout",
+    "geobc.elastic_spatial_recovery",
+    "all other previous completed validators"
+  ],
+  "checks": {
+    "AST_batch_invocations": 1,
+    "AST_files": 2,
+    "AST_passed": true,
+    "static_routing_before_generic": true,
+    "old_parent_readout_validators_unchanged": true,
+    "static_schema_passed": true
+  },
+  "elapsed_seconds": 0.03654969995841384,
+  "API": {
+    "metadata": "geobc.elastic_continuous_capability.request_contract(plan)->(contract,plan)",
+    "job": "elastic_continuous5_ver_capability",
+    "kind": "physical_TET10_continuous_U_gradient_capability",
+    "formal_plan": "notes/geobc_physical_continuous_plan.json",
+    "case_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver",
+      "102_249/ver",
+      "102_38/ver"
+    ],
+    "identity": "Exact summary.config.contract; source_sha256 map ownkey geobc/elastic_continuous_capability.py64SHA; scientific_digest string",
+    "budget": "New300s cumulative stage,60s per case,24GiB; no old solve/guard repeat",
+    "terminal_policy": "Completed numerical/backend/budget negatives end this capability stage without rescue or replays",
+    "metric_scope": "Node GT-U-derived gradient proxy; no source strain or stress GT"
+  },
+  "read_receipt": {
+    "prohibited_native_int_zero": [
+      "stress_source_label_reads",
+      "strain_source_label_reads",
+      "learned_weight_reads",
+      "training_updates",
+      "scaler_fits",
+      "new_physical_solves",
+      "new_tensor_recoveries",
+      "K_applications",
+      "old_K_guard_repeats",
+      "old_final_reads",
+      "sealed_new_test_reads",
+      "DEV_dia_reads",
+      "GT_reads_before_all_five_prediction_barrier"
+    ],
+    "actual_native_int_nonnegative": [
+      "physical_U_prediction_reads",
+      "physical_U_byte_hash_reads",
+      "GT_U_reads",
+      "input_cache_reads",
+      "input_cache_byte_hash_reads",
+      "input_member_reads",
+      "operator_array_reads",
+      "own_prediction_array_reads",
+      "own_reference_array_reads",
+      "source_GT_U_read_attempts",
+      "source_GT_U_read_completed"
+    ],
+    "physical_U_and_GT_U_are_not_forced_zero": true,
+    "validated_location": "top summary.read_receipt"
+  },
+  "export": {
+    "top_small_JSON": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "clock.json",
+      "prediction_barrier.json",
+      "read_receipt.json"
+    ],
+    "case_directory": "output/case_key.replace(/,_)",
+    "case_small_JSON": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "prediction_manifest.json",
+      "query_manifest.json",
+      "geometry_diagnostics.json",
+      "reference_manifest.json",
+      "read_receipt.json",
+      "metrics.json",
+      "costs.json",
+      "source_GT_U_read_started.json"
+    ],
+    "source_GT_U_read_started_is_optional": true,
+    "global_receipt_key": "physical_continuous_U_gradient_capability_receipt",
+    "NPY_NPZ_PT_arrays_exported": false,
+    "old_GT_node_metrics_exported": false,
+    "reporters_or_plots_executed": false
+  },
+  "scope": {
+    "newmodule_imports": 0,
+    "newmodule_AST": 0,
+    "contracts_executed": 0,
+    "scientific_array_reads": 0,
+    "GT_reads": 0,
+    "weight_reads": 0,
+    "GPU_calls": 0,
+    "actual_candidate_runs": 0,
+    "reporter_runs": 0,
+    "geobc_master_plan_accepted_config_or_other_ready_changes": 0
+  }
+}

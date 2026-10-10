@@ -1,0 +1,78 @@
+{
+  "status": "source_ready_pending_parent_terminal_binding_and_root_release",
+  "kind": "budget_limited_spatial_pair_fixed_endpoint_readout",
+  "source": "geobc/elastic_spatial_budget_readout.py",
+  "source_sha256": "7a8d166589370f750209dc50102e63eef6a2dbb5baa144bd1bffdbf1d2bcd939",
+  "parent_source_sha256": "fd8b584373389ee7327d589a2d2b691553c41fdb2e046f6a5770274a663e3e48",
+  "plan": "notes/geobc_spatial_budget_readout_plan.json",
+  "pending_plan_sha256": "1dd0509e660d7634239cac030ab2c822e9f695c833f408fd1538db6b5d66db6a",
+  "design": "notes/geobc_budget_limited_endpoint_readout_design.json",
+  "design_sha256": "41bf6751d180c7ee902278de1dd1afb94b4487ad94b0ee96d7306a556ca89822",
+  "scientific_digest": "d39d0af8a686fed87dbcfe5931f356b9311862890c798dbf2ceea4e2786132f4",
+  "author_final_AST_parse_count": 1,
+  "author_final_AST_and_small_JSON_elapsed_seconds": 0.0037666999269276857,
+  "author_final_AST": "passed",
+  "small_JSON_validation": "Own source hash, pending parent binding/frozen status, scientific digest and180s recipe checked using stdlib only",
+  "imports_of_new_module_or_scientific_modules": 0,
+  "request_contract_or_source_check_executions": 0,
+  "array_or_GT_or_live_checkpoint_reads": 0,
+  "model_or_weight_or_GPU_or_resource_or_toy_preflight_runs": 0,
+  "parent_or_old_cache_or_master_files_modified": 0,
+  "API": {
+    "request_contract": "(plan_path)->(contract,plan), stdlib metadata-only; requires terminal bindings",
+    "run": "(plan_path,output=None)",
+    "CLI": "python -m geobc.elastic_spatial_budget_readout --plan notes/geobc_spatial_budget_readout_plan.json --output runs/geobc_exploration/elastic_spatial_budget_fixed_endpoint_readout",
+    "source_check": "CLI --source-check permits a pending plan, no module/scientific/contract execution during author delivery"
+  },
+  "root_marker": {
+    "path": "notes/elastic_spatial_budget_readout_root_review.json",
+    "required": "status='passed', decision='proceed_conditional_fixed_endpoint_readout', contract_sha256=digest(contract), source_sha256=contract.source_sha256"
+  },
+  "scope": {
+    "arms": ["local_physical_zero_latent", "global_FNO_physical_latent"],
+    "validation_keys": ["102_249/ver", "102_38/ver"],
+    "independent_cumulative_wall_seconds": 180,
+    "peak_GPU_ceiling_bytes": 25769803776,
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "new_U_GT_metrics": null,
+    "parent_pair_pass_claimed": false,
+    "fair600s600s_or_capacity_ranking_claimed": false
+  },
+  "parent_snapshot_required_from_root_after_terminal": {
+    "JSON_SHA_records": ["summary", "status", "clock", "read_receipt", "scalers", "initial_common_metadata", "arms.*.status", "arms.local_physical_zero_latent.training_summary"],
+    "checkpoint_stats_only_before_actual": ["initial_common", "arms.*.checkpoint"],
+    "checkpoints_never_hashed_or_loaded_while_live": true,
+    "actual_checkpoint_disclosure": "Each selected file is loaded+hashed only after release, config/steps/pass/offset/exposures/first-gradient checked; committed and journal charged training costs recorded independently"
+  },
+  "source_semantics": [
+    "No parent run/train/request_contract/Clock invocation; only model_class/create_model/gpu_item/array_load reused",
+    "Parent sources, summaries, clock, checkpoints and predictions are read-only",
+    "Both arms/four complete DEV signed-S and exact-byte U predictions precede the new barrier and shared cachedS access",
+    "Parent initial_common and two last checkpoints are explicit allowed parent_checkpoint_reads, not external pretrained weights",
+    "Resume keeps own cumulative180s/read receipts and fixed selected checkpoint identities",
+    "Nonfinite signed prediction and readout-budget exhaustion are terminal negatives; no fallback checkpoint or training rescue",
+    "Already complete parent metrics skip scientific imports, checkpoints, arrays and labels",
+    "Zero-reference signed metrics remain null-relative with finite absolute evidence; descriptive accuracy thresholds cannot repair parent gate"
+  ],
+  "forbidden_receipt_keys": [
+    "displacement_target_reads", "TRAIN_displacement_target_reads", "DEV_displacement_target_reads",
+    "source_csv_or_archive_reads", "canonical_target_member_reads", "old_final_reads",
+    "sealed_new_test_reads", "DEV_dia_reads", "new_physical_solves", "new_tensor_recoveries",
+    "K_guards_repeated", "external_model_or_weight_reads", "optimizer_steps", "training_updates",
+    "scaler_fits", "DEV_scaler_fits", "TRAIN_stress_reads"
+  ],
+  "actual_receipt_keys": [
+    "GT_reads", "stress_reads", "DEV_stress_reads", "cached_stress_array_reads", "parent_evaluation_cache_reads",
+    "own_evaluation_cache_reads", "cached_input_array_reads", "physical_U_input_reads", "physical_U_copy_reads",
+    "parent_checkpoint_reads", "parent_checkpoint_hash_reads", "own_prediction_array_reads"
+  ],
+  "small_JSON_schema": {
+    "top": ["config.json", "status.json", "summary.json", "clock.json", "read_receipt.json", "scalers.json", "endpoint_selection.json", "prediction_barrier.json", "evaluation_receipt.json"],
+    "arm": ["endpoint_metadata.json"],
+    "prediction": ["prediction_metadata.json", "summary.json", "read_receipt.json"],
+    "summary": "Fixed two arms/two DEV cases for completed, skipped and negative terminal outcomes; config.contract, completion_gate, descriptive_readout, parent cost/gate context and actual read receipts",
+    "excluded_exports": ["*.pt", "*.npy"]
+  },
+  "actual_execution_authorized_by_this_ready": false
+}

@@ -219,6 +219,9 @@ def main(*, preserve_existing_plots=False):
     metadata_kinds.add('elastic_p1_derived_coarse_extension')
     metadata_kinds.add('solver_service_cost_screen')
     metadata_kinds.add('elastic_direct_coarse_screen')
+    metadata_kinds.add('spatial_physical_signed_recovery_pair')
+    metadata_kinds.add('budget_limited_spatial_pair_fixed_endpoint_readout')
+    metadata_kinds.add('physical_TET10_continuous_U_gradient_capability')
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
@@ -245,6 +248,9 @@ def main(*, preserve_existing_plots=False):
         if job.get('kind') in metadata_kinds:filenames=('summary.json','config.json','status.json')
         if job.get('kind')=='solver_service_cost_screen':filenames+=('read_receipt.json','request_metadata.json',)
         if job.get('kind')=='elastic_direct_coarse_screen':filenames+=('read_receipt.json',)
+        if job.get('kind')=='spatial_physical_signed_recovery_pair':filenames+=('clock.json','read_receipt.json','scalers.json','initial_common.json','prediction_barrier.json','evaluation_receipt.json','runtime_technical_repairs.json','BRIEF.md')
+        if job.get('kind')=='budget_limited_spatial_pair_fixed_endpoint_readout':filenames+=('clock.json','read_receipt.json','scalers.json','endpoint_selection.json','prediction_barrier.json','evaluation_receipt.json','runtime_technical_repairs.json','BRIEF.md')
+        if job.get('kind')=='physical_TET10_continuous_U_gradient_capability':filenames+=('clock.json','prediction_barrier.json','read_receipt.json','BRIEF.md')
         if job.get('kind')=='gino_training_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json')
         if job.get('kind')=='fno_response_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
         if job.get('kind')=='deeponet_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
@@ -292,6 +298,51 @@ def main(*, preserve_existing_plots=False):
                     if path.is_file():
                         case_dest.mkdir(exist_ok=True)
                         shutil.copyfile(path,case_dest/filename)
+        if job.get('kind')=='physical_TET10_continuous_U_gradient_capability':
+            for case_key in summary.get('case_keys',[]):
+                case_source=source/case_key.replace('/','_')
+                case_dest=target/case_key.replace('/','_')
+                for filename in ('config.json','status.json','summary.json','prediction_manifest.json',
+                                 'query_manifest.json','geometry_diagnostics.json','reference_manifest.json',
+                                 'read_receipt.json','metrics.json','costs.json','source_GT_U_read_started.json'):
+                    path=case_source/filename
+                    if path.is_file():
+                        case_dest.mkdir(exist_ok=True)
+                        shutil.copyfile(path,case_dest/filename)
+        if job.get('kind')=='budget_limited_spatial_pair_fixed_endpoint_readout':
+            for arm_name in ('local_physical_zero_latent','global_FNO_physical_latent'):
+                arm_source=source/arm_name
+                arm_dest=target/arm_name
+                endpoint=arm_source/'endpoint_metadata.json'
+                if endpoint.is_file():
+                    arm_dest.mkdir(exist_ok=True)
+                    shutil.copyfile(endpoint,arm_dest/'endpoint_metadata.json')
+                for case_key in summary.get('validation_keys',[]):
+                    prediction_source=arm_source/'predictions'/case_key.replace('/','_')
+                    prediction_dest=arm_dest/'predictions'/case_key.replace('/','_')
+                    for filename in ('prediction_metadata.json','summary.json','read_receipt.json'):
+                        path=prediction_source/filename
+                        if path.is_file():
+                            prediction_dest.mkdir(parents=True,exist_ok=True)
+                            shutil.copyfile(path,prediction_dest/filename)
+        if job.get('kind')=='spatial_physical_signed_recovery_pair':
+            for arm_name in ('local_physical_zero_latent','global_FNO_physical_latent'):
+                arm_source=source/arm_name
+                arm_dest=target/arm_name
+                for filename in ('config.json','status.json','training_summary.json',
+                                 'initial_common.json','first_actual_gradient_check.json','read_receipt.json'):
+                    path=arm_source/filename
+                    if path.is_file():
+                        arm_dest.mkdir(exist_ok=True)
+                        shutil.copyfile(path,arm_dest/filename)
+                for case_key in summary.get('case_keys',[]):
+                    prediction_source=arm_source/'predictions'/case_key.replace('/','_')
+                    prediction_dest=arm_dest/'predictions'/case_key.replace('/','_')
+                    for filename in ('prediction_metadata.json','read_receipt.json','summary.json'):
+                        path=prediction_source/filename
+                        if path.is_file():
+                            prediction_dest.mkdir(parents=True,exist_ok=True)
+                            shutil.copyfile(path,prediction_dest/filename)
         if job.get('kind')=='elastic_direct_coarse_screen':
             for case_key in summary.get('case_keys',[]):
                 case_source=source/case_key.replace('/','_')
@@ -328,6 +379,35 @@ def main(*, preserve_existing_plots=False):
                 'exported_files':[str(Path('runs')/job['name']/name).replace('\\','/') for name in filenames if (source/name).exists()],
                 'export_policy':'Small JSON only; no NPY/CSR/raw/weights copied',
                 'cache_payloads_exported':False,'receipt_location':'summary.json:receipt or config.contract'}
+            if job.get('kind')=='physical_TET10_continuous_U_gradient_capability':
+                observed_receipts[job['kind']].update({
+                    'case_keys':summary.get('case_keys',[]),'read_receipt':summary.get('read_receipt',{}),
+                    'completion_gate':summary.get('completion_gate',{}),
+                    'metric_scope':'Physical continuous TET10 U and node-U-derived gradient proxy; not source strain GT',
+                    'GT_policy':'All five full4Q predictions persisted before first GT-U read; actual physical-U/GT-U counts retained',
+                    'new_stage_budget_seconds':300,'per_case_budget_seconds':60,
+                    'terminal_policy':'Completed numerical/backend/budget negatives terminate without new solves or gate rescue',
+                    'prediction_export_policy':'Case manifests, diagnostics, metrics and receipt JSON only; no NPY/NPZ/PT',
+                    'legacy_GT_node_metrics_exported':False,'prediction_arrays_exported':False})
+            if job.get('kind')=='budget_limited_spatial_pair_fixed_endpoint_readout':
+                observed_receipts[job['kind']].update({
+                    'validation_keys':summary.get('validation_keys',[]),'arms':list(summary.get('arms',{})),
+                    'read_receipt':summary.get('read_receipt',{}),'completion_gate':summary.get('completion_gate',{}),
+                    'endpoint_policy':'Independent180s readout of frozen parent endpoints; no training or parent budget rescue',
+                    'capacity_matched':False,'parent_pair_pass_claimed':False,
+                    'skip_policy':'Existing complete parent metrics skip repeat inference; terminal negatives do not retry',
+                    'prediction_export_policy':'Endpoint/prediction metadata and receipts only; no PT/NPY/U/S arrays',
+                    'model_checkpoints_exported':False,'prediction_arrays_exported':False})
+            if job.get('kind')=='spatial_physical_signed_recovery_pair':
+                observed_receipts[job['kind']].update({
+                    'train_keys':summary.get('train_keys',[]),'validation_keys':summary.get('validation_keys',[]),
+                    'case_keys':summary.get('case_keys',[]),'arms':list(summary.get('arms',{})),
+                    'read_receipt':summary.get('read_receipt',{}),
+                    'endpoint_policy':'Balanced TRAIN3 cumulative600s per arm; no DEV-best selection',
+                    'gate_location':'summary.json:completion_gate; completed negatives close the fixed pair',
+                    'allowed_supervised_receipt_policy':'Stress GT, physical-U inputs, scaler fit, optimizer and own checkpoints use actual cumulative counts',
+                    'prediction_export_policy':'Metadata/receipt/summary JSON only; no signedS or physicalU arrays',
+                    'model_checkpoints_exported':False,'prediction_arrays_exported':False})
             if job.get('kind')=='elastic_direct_coarse_screen':
                 observed_receipts[job['kind']].update({
                     'case_keys':summary.get('case_keys',[]),
@@ -978,6 +1058,9 @@ def main(*, preserve_existing_plots=False):
                                    'elastic_coarse_extension_receipt':observed_receipts.get('elastic_p1_derived_coarse_extension'),
                                    'solver_service_cost_receipt':observed_receipts.get('solver_service_cost_screen'),
                                    'elastic_direct_coarse_receipt':observed_receipts.get('elastic_direct_coarse_screen'),
+                                   'spatial_physical_signed_recovery_receipt':observed_receipts.get('spatial_physical_signed_recovery_pair'),
+                                   'spatial_budget_fixed_endpoint_readout_receipt':observed_receipts.get('budget_limited_spatial_pair_fixed_endpoint_readout'),
+                                   'physical_continuous_U_gradient_capability_receipt':observed_receipts.get('physical_TET10_continuous_U_gradient_capability'),
                                    'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
                                    'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',

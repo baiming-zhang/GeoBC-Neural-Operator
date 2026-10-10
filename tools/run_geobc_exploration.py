@@ -59,7 +59,104 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
     if not summary or summary.get("status") != "completed":
         return None
     command = job["command"]
-    if "geobc.elastic_low_fidelity" in command:
+    if "geobc.elastic_continuous_capability" in command:
+        from geobc.elastic_continuous_capability import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        fixed_cases = ["101_428/ver", "101_56/ver", "101_78/ver", "102_249/ver", "102_38/ver"]
+        source_pins = contract.get("source_sha256")
+        own_source = source_pins.get("geobc/elastic_continuous_capability.py") if isinstance(source_pins, dict) else None
+        if (job.get("kind") != "physical_TET10_continuous_U_gradient_capability"
+                or summary.get("kind") != "physical_TET10_continuous_U_gradient_capability"
+                or summary.get("config", {}).get("contract") != contract
+                or requested.get("case_keys") != fixed_cases
+                or summary.get("case_keys") != fixed_cases
+                or set(summary.get("cases", {})) != set(fixed_cases)
+                or not isinstance(source_pins, dict) or not isinstance(own_source, str) or len(own_source) != 64
+                or not isinstance(contract.get("scientific_digest"), str) or not contract["scientific_digest"]):
+            raise ValueError(f"Physical continuous capability differs from frozen five-case/input/source contract: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("stress_source_label_reads", "strain_source_label_reads", "learned_weight_reads",
+                    "training_updates", "scaler_fits", "new_physical_solves", "new_tensor_recoveries",
+                    "K_applications", "old_K_guard_repeats", "old_final_reads", "sealed_new_test_reads",
+                    "DEV_dia_reads", "GT_reads_before_all_five_prediction_barrier"):
+            if type(receipt.get(key)) is not int or receipt[key] != 0:
+                raise ValueError(f"Physical continuous capability unexpectedly accessed {key}: {job['name']}")
+        for key in ("physical_U_prediction_reads", "physical_U_byte_hash_reads", "GT_U_reads",
+                    "input_cache_reads", "input_cache_byte_hash_reads", "input_member_reads", "operator_array_reads",
+                    "own_prediction_array_reads", "own_reference_array_reads", "source_GT_U_read_attempts", "source_GT_U_read_completed"):
+            if type(receipt.get(key)) is not int or receipt[key] < 0:
+                raise ValueError(f"Physical continuous capability lacks actual nonnegative {key}: {job['name']}")
+        # Node-U-derived TET10 gradients are proxies, not source strain GT.
+        # Terminal budget/numerical capability negatives never restart solves.
+    elif "geobc.elastic_spatial_budget_readout" in command:
+        from geobc.elastic_spatial_budget_readout import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        fixed_validation = ["102_249/ver", "102_38/ver"]
+        fixed_arms = {"local_physical_zero_latent", "global_FNO_physical_latent"}
+        source_pins = contract.get("source_sha256")
+        own_source = source_pins.get("geobc/elastic_spatial_budget_readout.py") if isinstance(source_pins, dict) else None
+        gate = summary.get("completion_gate", {})
+        if (job.get("kind") != "budget_limited_spatial_pair_fixed_endpoint_readout"
+                or summary.get("kind") != "budget_limited_spatial_pair_fixed_endpoint_readout"
+                or summary.get("config", {}).get("contract") != contract
+                or summary.get("validation_keys") != fixed_validation
+                or set(summary.get("arms", {})) != fixed_arms
+                or set(summary.get("cases", {})) != set(fixed_validation)
+                or not isinstance(source_pins, dict) or not isinstance(own_source, str) or len(own_source) != 64
+                or any(not isinstance(contract.get(name), str) or not contract[name]
+                       for name in ("scientific_digest", "science_recipe_sha256"))
+                or gate.get("parent_pair_pass_claimed") is not False or gate.get("capacity_matched") is not False):
+            raise ValueError(f"Fixed spatial budget readout differs from endpoints/DEV scope/source or parent disclosure: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("displacement_target_reads", "TRAIN_displacement_target_reads", "DEV_displacement_target_reads",
+                    "source_csv_or_archive_reads", "canonical_target_member_reads", "old_final_reads",
+                    "sealed_new_test_reads", "DEV_dia_reads", "new_physical_solves", "new_tensor_recoveries",
+                    "K_guards_repeated", "external_model_or_weight_reads", "optimizer_steps", "training_updates",
+                    "scaler_fits", "DEV_scaler_fits", "TRAIN_stress_reads"):
+            if type(receipt.get(key)) is not int or receipt[key] != 0:
+                raise ValueError(f"Spatial budget readout unexpectedly accessed {key}: {job['name']}")
+        for key in ("GT_reads", "stress_reads", "DEV_stress_reads", "cached_stress_array_reads",
+                    "parent_evaluation_cache_reads", "own_evaluation_cache_reads", "cached_input_array_reads",
+                    "physical_U_input_reads", "physical_U_copy_reads", "parent_checkpoint_reads",
+                    "parent_checkpoint_hash_reads", "own_prediction_array_reads"):
+            if type(receipt.get(key)) is not int or receipt[key] < 0:
+                raise ValueError(f"Spatial budget readout lacks actual nonnegative {key}: {job['name']}")
+        # Parent budget/gate remains negative. Fixed readout, skipped existing
+        # metrics and terminal budget negatives never rescue/replay training.
+    elif "geobc.elastic_spatial_recovery" in command:
+        from geobc.elastic_spatial_recovery import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        fixed_train = ["101_428/ver", "101_56/ver", "101_78/ver"]
+        fixed_validation = ["102_249/ver", "102_38/ver"]
+        fixed_arms = {"local_physical_zero_latent", "global_FNO_physical_latent"}
+        source_pins = contract.get("source_sha256")
+        own_source = source_pins.get("geobc/elastic_spatial_recovery.py") if isinstance(source_pins, dict) else None
+        if (job.get("kind") != "spatial_physical_signed_recovery_pair"
+                or summary.get("kind") != "spatial_physical_signed_recovery_pair"
+                or summary.get("config", {}).get("contract") != contract
+                or requested.get("train_keys") != fixed_train or requested.get("validation_keys") != fixed_validation
+                or summary.get("train_keys") != fixed_train or summary.get("validation_keys") != fixed_validation
+                or summary.get("case_keys") != fixed_train + fixed_validation
+                or set(summary.get("arms", {})) != fixed_arms
+                or set(summary.get("cases", {})) != set(fixed_train + fixed_validation)
+                or not isinstance(source_pins, dict) or not isinstance(own_source, str) or len(own_source) != 64
+                or any(not isinstance(contract.get(name), str) or not contract[name]
+                       for name in ("scientific_digest", "science_recipe_sha256"))):
+            raise ValueError(f"Spatial physical signed-recovery pair differs from frozen arms/cases/source contract: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("displacement_target_reads", "TRAIN_displacement_target_reads", "DEV_displacement_target_reads",
+                    "source_csv_or_archive_reads", "canonical_target_member_reads", "old_final_reads",
+                    "sealed_new_test_reads", "DEV_dia_reads", "new_physical_solves", "new_tensor_recoveries",
+                    "K_guards_repeated", "external_model_or_weight_reads", "DEV_scaler_fits"):
+            if type(receipt.get(key)) is not int or receipt[key] != 0:
+                raise ValueError(f"Spatial recovery pair unexpectedly accessed {key}: {job['name']}")
+        for key in ("GT_reads", "stress_reads", "TRAIN_stress_reads", "DEV_stress_reads", "physical_U_input_reads",
+                    "cached_input_array_reads", "scaler_fits", "optimizer_steps", "own_checkpoint_reads", "own_checkpoint_writes"):
+            if type(receipt.get(key)) is not int or receipt[key] < 0:
+                raise ValueError(f"Spatial recovery pair lacks actual nonnegative {key}: {job['name']}")
+        # Supervised stress/optimizer/own-checkpoint accesses are real allowed
+        # work. Completed budget or performance negatives end this fixed pair.
+    elif "geobc.elastic_low_fidelity" in command:
         from geobc.elastic_low_fidelity import request_contract
         contract, requested = request_contract(command[command.index("--plan") + 1])
         fixed_cases = ["101_428/ver", "102_249/ver"]

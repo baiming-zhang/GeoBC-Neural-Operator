@@ -1,0 +1,119 @@
+{
+  "kind": "physical_TET10_continuous_U_gradient_capability",
+  "status": "source_ready_actual_root_review_pending",
+  "source": "geobc/elastic_continuous_capability.py",
+  "source_sha256": "ccdada3c4849e6afbed36348710b1af926d83cdbdd88f0ee7a4b589ba5b987a2",
+  "source_hashes": {
+    "geobc/elastic_continuous_capability.py": "ccdada3c4849e6afbed36348710b1af926d83cdbdd88f0ee7a4b589ba5b987a2",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_crosscad.py": "897114caccffad680559f4cd868183eae5d2594d5b1d2af679defd48f367461f"
+  },
+  "formal_plan": "notes/geobc_physical_continuous_plan.json",
+  "formal_plan_sha256": "6ed9ced3bb890f743b7983f7ff060f497b5eb8778c21c9a78bd808696bbb2990",
+  "scientific_digest": "81e86d9e61aadc793134fd95e4047798003a3bfaccd8f47400d767892fd265f2",
+  "science_recipe_sha256": "81e86d9e61aadc793134fd95e4047798003a3bfaccd8f47400d767892fd265f2",
+  "actual_execution_released": false,
+  "root_review_marker": "notes/elastic_continuous_capability_root_review.json",
+  "required_decision": "proceed_frozen_full_TET10_continuous_U_gradient_capability",
+  "author_final_AST_parse_count": 1,
+  "author_final_small_metadata_validation": true,
+  "scientific_imports": 0,
+  "request_contract_executions": 0,
+  "array_GT_weight_reads": 0,
+  "GPU_resource_or_toy_preflight_runs": 0,
+  "new_solver_training_or_recovery_runs": 0,
+  "old_source_cache_plan_result_or_master_tool_modifications": 0,
+  "design_changes": "source authorization/status only; frozen recipe/gates/budget/scientific digest unchanged",
+  "API": {
+    "request_contract": "(plan)->(contract,plan)",
+    "run": "(plan,output=None)",
+    "CLI": "--plan --output",
+    "native_query": "explicit supplied physical vertices/cells/U/original element rows/barycentric -> FP64 X/U/G/engineering6; known-cell, no implicit full-CAD locator"
+  },
+  "schema": {
+    "case_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver",
+      "102_249/ver",
+      "102_38/ver"
+    ],
+    "cases": "dict fixed5; status/full_Q/metrics/geometry_diagnostics/costs/read_receipt",
+    "contract_source_sha256": "map own module plus4 frozen source helpers",
+    "scientific_digest": "string",
+    "forbidden_native_zero_keys": [
+      "stress_source_label_reads",
+      "strain_source_label_reads",
+      "learned_weight_reads",
+      "training_updates",
+      "scaler_fits",
+      "new_physical_solves",
+      "new_tensor_recoveries",
+      "K_applications",
+      "old_K_guard_repeats",
+      "old_final_reads",
+      "sealed_new_test_reads",
+      "DEV_dia_reads",
+      "GT_reads_before_all_five_prediction_barrier"
+    ],
+    "actual_native_nonnegative_keys": [
+      "physical_U_prediction_reads",
+      "physical_U_byte_hash_reads",
+      "GT_U_reads",
+      "input_cache_reads",
+      "input_cache_byte_hash_reads",
+      "input_member_reads",
+      "operator_array_reads",
+      "own_prediction_array_reads",
+      "own_reference_array_reads",
+      "source_GT_U_read_attempts",
+      "source_GT_U_read_completed"
+    ],
+    "case_directory": "output/key.replace(/,_)",
+    "top_small_JSON": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "clock.json",
+      "prediction_barrier.json",
+      "read_receipt.json"
+    ],
+    "case_small_JSON": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "prediction_manifest.json",
+      "query_manifest.json",
+      "geometry_diagnostics.json",
+      "reference_manifest.json",
+      "read_receipt.json",
+      "metrics.json",
+      "costs.json",
+      "source_GT_U_read_started.json"
+    ],
+    "local_arrays_not_exported": [
+      "*.npy",
+      "*.npz"
+    ],
+    "completion_gate": "all5 full4Q plus bounded native inverse/C0/coverage/finite/units/identity; true proxy accuracy reported separately; normal jump not C1 gate; fixed budget/backend negative terminal"
+  },
+  "evidence": {
+    "full_cells": 684470,
+    "full4Q_queries": 2737880,
+    "precision_units": "FP64 X/U mm, gradients and engineering strains dimensionless, positive weights mm^3",
+    "new_actual_budget_seconds": 300,
+    "per_case_combined_budget_seconds": 60,
+    "original_GT_free_inherited_seconds_once": 452.954357734,
+    "maximum_GPU_peak_bytes": 25769803776,
+    "all5_candidate_prediction_barrier_before_shared_GT_U5": true,
+    "reference_strain_is_GT_nodal_P2_proxy_not_source_strain_GT": true,
+    "source_GT_U_once_each_per_case": true,
+    "source_physical_U_byte_identity_preserved": true,
+    "fullQ_accepted_gradients_reused_without_new_K_solve_or_recovery": true,
+    "bounded_inverse_scope": "<=32 cells, <=96 query occurrences/CAD; no fast whole-CAD inverse claim",
+    "compact_ledger": "case/phase/cost cursor about60s/completeCAD/barrier/failure; no full-history rewriting; all exits/failed/resume wall count"
+  },
+  "created_UTC": "2026-10-10T00:36:12.937904+00:00"
+}

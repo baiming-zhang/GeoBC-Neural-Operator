@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_common_request_cost_and_macro_candidate_design",
+  "stage": "solver_spatial_physical_recovery_selection",
   "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -21,10 +21,33 @@
     "Use a single GPU queue, reuse existing data, and avoid redundant audits."
   ],
   "next_stages": {
-    "stage": "solver_spatial_physical_recovery_structural_design",
-    "brief_action": "Direct coarse closed onboth accuracy/cost; preserve exactfine-preconditioned solver. Prepare one geometry/BC/physics-conditioned spatial-vs-local directS recovery pair, no newsource until current97stage publication stable, no sealed/final."
+    "stage": "solver_spatial_physical_recovery_selection",
+    "brief_action": "One frozen actual local geometry/BC/physical vs global FNO spatial pair; both cumulative600s balanced endpoints, existing TRAIN3/DEV2, all-DEV prediction barrier; no final/sealed/dia read."
   },
   "jobs": [
+    {
+      "name": "elastic_spatial_recovery5_ver_pair",
+      "stage": "solver_spatial_physical_recovery_selection",
+      "kind": "spatial_physical_signed_recovery_pair",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_spatial_recovery",
+        "--plan",
+        "notes/geobc_spatial_physical_recovery_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_spatial_recovery5_ver_pair"
+      ],
+      "requires": [
+        "notes/geobc_spatial_physical_recovery_design.json",
+        "notes/geobc_spatial_physical_recovery_plan.json",
+        "notes/elastic_spatial_recovery_source_ready.json",
+        "notes/elastic_spatial_recovery_root_review.json",
+        "geobc/elastic_spatial_recovery.py",
+        "notes/elastic_spatial_recovery_queue_source_ready.json"
+      ],
+      "output": "runs/geobc_exploration/elastic_spatial_recovery5_ver_pair"
+    },
     {
       "name": "elastic_low_fidelity2_ver",
       "stage": "solver_low_fidelity_physical_selection",
@@ -193,6 +216,52 @@
         "geobc/solver_service_benchmark.py"
       ],
       "output": "runs/geobc_exploration/solver_service_dev2_fixed_endpoint"
+    },
+    {
+      "name": "elastic_spatial_budget_fixed_endpoint_readout",
+      "stage": "solver_elastic_spatial_budget_readout",
+      "kind": "budget_limited_spatial_pair_fixed_endpoint_readout",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_spatial_budget_readout",
+        "--plan",
+        "notes/geobc_spatial_budget_readout_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_spatial_budget_fixed_endpoint_readout"
+      ],
+      "requires": [
+        "notes/geobc_budget_limited_endpoint_readout_design.json",
+        "notes/geobc_spatial_budget_readout_plan.json",
+        "notes/elastic_spatial_budget_readout_source_ready.json",
+        "notes/elastic_spatial_budget_readout_root_review.json",
+        "notes/elastic_spatial_budget_readout_queue_source_ready.json",
+        "geobc/elastic_spatial_budget_readout.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_spatial_budget_fixed_endpoint_readout"
+    },
+    {
+      "name": "elastic_continuous5_ver_capability",
+      "stage": "solver_elastic_continuous_capability",
+      "kind": "physical_TET10_continuous_U_gradient_capability",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.elastic_continuous_capability",
+        "--plan",
+        "notes/geobc_physical_continuous_plan.json",
+        "--output",
+        "runs/geobc_exploration/elastic_continuous5_ver_capability"
+      ],
+      "requires": [
+        "notes/geobc_physical_continuous_candidate_design.json",
+        "notes/geobc_physical_continuous_plan.json",
+        "notes/elastic_continuous_capability_source_ready.json",
+        "notes/elastic_continuous_capability_root_review.json",
+        "notes/elastic_continuous_capability_queue_source_ready.json",
+        "geobc/elastic_continuous_capability.py"
+      ],
+      "output": "runs/geobc_exploration/elastic_continuous5_ver_capability"
     }
   ],
   "historical_jobs": [
@@ -4367,5 +4436,142 @@
     },
     "GT_reads": 0,
     "report": "results/elastic_low_fidelity/BRIEF.md"
+  },
+  "spatial_physical_recovery_design": {
+    "status": "root_review_passed_actual_released",
+    "design": "notes/geobc_spatial_physical_recovery_design.json",
+    "actual_execution_released": true,
+    "source_author": "macro_solver_next",
+    "kind": "spatial_physical_signed_recovery_pair",
+    "job": "elastic_spatial_recovery5_ver_pair",
+    "arms": [
+      "local_physical_zero_latent",
+      "global_FNO_physical_latent"
+    ],
+    "primary_question": "Does learned global spatial propagation improve direct original signedS beyond samegeometry/BC/physical localdecoder in fullFE service?",
+    "case_scope": "existing TRAIN3+DEV2 ver only; noUtarget/newsolve/final/sealed/dia",
+    "nominal_source_preparation_minutes": [
+      20,
+      30
+    ],
+    "actual_training_target_seconds_per_arm": 600,
+    "campaign_accounted_maximum_seconds": 1800,
+    "inherited_setup_seconds": 457.480465417,
+    "gate": "bothDEVS/hot<25percent perarm; globalworthonly20percentmeanS gain overlocal; unchangedoriginalzero U exactidentity",
+    "next_actual_requires": "AuthorfinalonceAST/ready +necessarydisjointrootreview before soleGPU actual",
+    "root_review": "notes/elastic_spatial_recovery_root_review.json",
+    "source_sha256": "fd8b584373389ee7327d589a2d2b691553c41fdb2e046f6a5770274a663e3e48",
+    "scientific_digest": "d39d0af8a686fed87dbcfe5931f356b9311862890c798dbf2ceea4e2786132f4",
+    "runtime_technical_repairs": [
+      {
+        "reason": "Actual first launch failed metadata equality on associatively summed inherited costs; difference 5.684341886080802e-14 seconds",
+        "change": "Match recomputed inherited accounting using same existing1e-8 tolerance; no scientific recipe/data/budget changes",
+        "prior_source_sha256": "6296082dfdb4e12302cc51f474cc810ba4bd0ba0709a5b1f279d78edefa88480",
+        "repaired_source_sha256": "fd8b584373389ee7327d589a2d2b691553c41fdb2e046f6a5770274a663e3e48",
+        "time_UTC": "2026-10-10T00:08:40.188320+00:00",
+        "no_array_or_target_reads_or_optimizer_updates_before_failure": true,
+        "AST_policy": "Original author final AST retained as original evidence; root necessary one-line review only, next actual invocation is syntax/runtime acceptance"
+      }
+    ],
+    "runtime_observation": {
+      "observed_at_UTC": "2026-10-10T00:11:22+00:00",
+      "exact_coordinator_cmdline_live": true,
+      "linux_pid": 386,
+      "child_pid": 412,
+      "new_actual_wall_seconds": 160.24063579900002,
+      "local_training_seconds": 94.06765563499744,
+      "local_steps": 4092,
+      "first_actual_local_gradient_passed": true,
+      "interpretation": "Stage wall also includes launch/shared setup/state writes/synchronization; no component timings prove dominant overhead. Hard campaign budget may prevent both endpoints. Keep fixed recipe/budget; incomplete endpoint is budget feasibility evidence, not architecture precision failure.",
+      "future_stage_efficiency_only": "Use deterministic seed/pass/offset instead of repeatedly serializing growing full prefixes; compact complete-CAD checkpoint and honest final/failed wall accounting. No edit/restart of this live stage."
+    }
+  },
+  "spatial_pair_followup_policy": {
+    "status": "conditional_macro_decisions_before_DEV_readout_not_execution_release",
+    "local_pass_global_not_justified": "Close extra FNO component; freeze qualifying local endpoint and assess CAD/load coverage, continuous queries and complete service cost before final route choice.",
+    "global_pass_and_ge20percent_mean_gain": "Keep frozen two endpoints; validate spatial gain, hotspots and full costs on additional CAD/load coverage before scaling global route.",
+    "both_fail": "Close this decoder recipe. Next structural candidate may preserve element/integration-point tensor and element geometry information lost by nodal averaging; compare to existing node-recovered inputs on a frozen small cross-CAD screen, without width/loss/seed rescue or guessing original exporter.",
+    "route_choice_evidence_remaining": [
+      "independent CAD and available canonical load coverage",
+      "all-node physical-unit mean/worst/hotspot accuracy",
+      "continuous query and gradient capability",
+      "fresh joint cold service time and failure rate"
+    ],
+    "constraints": "Use only actual canonical load types; sealed newtest5 remains unopened until route/seed/checkpoint/budget/protocol are frozen. Pointcloud-only and full-FE interfaces remain separate; this pair is component selection, not a final engineering qualification."
+  },
+  "conditional_budget_endpoint_readout": {
+    "status": "completed_finite_evidence_unequal_fixed_endpoints",
+    "design": "notes/geobc_budget_limited_endpoint_readout_design.json",
+    "source_author": "deepjeb_research",
+    "queue_author": "topology_train_impl",
+    "activation": "Only parent terminal budget negative with complete local600 and global last committed checkpoint; skip if full parent metrics exist",
+    "parent_gate_never_rewritten": true,
+    "unequal_training_disclosed": true,
+    "new_independent_actual_wall_cap_seconds": 180,
+    "actual_execution_released": true,
+    "parent_campaign_seconds": 1800.0744290246657,
+    "parent_gate_permanently_negative": true,
+    "global_last_checkpoint_training_seconds_context": 120.47836400299502,
+    "root_review_marker": "notes/elastic_spatial_budget_readout_root_review.json",
+    "readout_actual_seconds": 6.31136285499997,
+    "local_DEV_mean_signedS": 0.5584074966991357,
+    "global_DEV_mean_signedS": 0.48740235768806034,
+    "neither_endpoint_meets_allDEV_S_hot25pct": true,
+    "fair_training_pair_claimed": false
+  },
+  "physical_continuous_capability": {
+    "status": "completed_full5_capability_integrity_passed",
+    "design": "notes/geobc_physical_continuous_candidate_design.json",
+    "source_author": "macro_solver_next",
+    "kind": "physical_TET10_continuous_U_gradient_capability",
+    "job": "elastic_continuous5_ver_capability",
+    "scope": "5CAD all684470 TET10 and2737880 Q U/physical-G/strain; all5 predicted before GTnodalU5; derived sameP2 proxy, not source strainGT",
+    "new_actual_seconds_cap": 300,
+    "nominal_source_preparation_minutes": [
+      25,
+      30
+    ],
+    "source_started_at_UTC": "2026-10-10T00:23:00+00:00",
+    "GPU_actual_only_after_current_serial_jobs_terminal_and_root_release": true,
+    "actual_execution_released": true,
+    "root_review_marker": "notes/elastic_continuous_capability_root_review.json",
+    "source_sha256": "ccdada3c4849e6afbed36348710b1af926d83cdbdd88f0ee7a4b589ba5b987a2",
+    "actual_wall_seconds": 14.252685370999998,
+    "cells": 684470,
+    "queries": 2737880,
+    "metrics_proxy_aggregate": {
+      "U_mm": {
+        "mean": 0.00016222262226206995,
+        "min": 0.00016220083047521883,
+        "max": 0.0001622436404328102
+      },
+      "gradient_dimensionless": {
+        "mean": 0.00033279290129103637,
+        "min": 0.0002394140314305416,
+        "max": 0.00041722353052213413
+      },
+      "engineering_strain6": {
+        "mean": 0.001595560235618731,
+        "min": 0.0011640939883051406,
+        "max": 0.0019468801785886554
+      },
+      "symmetric_strain_Frobenius": {
+        "mean": 0.001630792941015821,
+        "min": 0.001178179801401782,
+        "max": 0.0019888544411719024
+      }
+    },
+    "source_strain_GT_claimed": false,
+    "source_GT_U_reads": 5,
+    "not_final_solver_selection": true
+  },
+  "next_macro_representation_question": {
+    "status": "design_frozen_actual_not_released",
+    "file": "notes/geobc_nodal_tensor_representation_design.json",
+    "owner": "macro_solver_next",
+    "reason": "Full-P2 U and derivative proxy accurate on5 fixedCAD; investigate whether old4Q mean tensor recovery loses within-element variation before learning original signedS",
+    "actual_execution_released": false,
+    "not_original_exporter_recovery_claim": true,
+    "scientific_digest": "0cdfd4ae71d2de1ce26d6bb6d5fe517d1920d7cd66d49eb7001b4ad49c8fa5b8"
   }
 }
