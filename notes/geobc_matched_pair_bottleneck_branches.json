@@ -1,0 +1,32 @@
+{
+  "status": "conditional_design_only",
+  "current_fixed_protocol_unchanged": true,
+  "question": "Is high stress error mainly a shared fitting problem, or a training-to-new-geometry transfer problem?",
+  "evidence_required_before_selection": [
+    "Both fixed4800 complete TRAIN120 physical U/S/hot metrics",
+    "Both same60 development physical U/S/hot metrics with the full120 prediction barrier",
+    "Training curves and complete costs, per-load20 and paired-CAD20 differences",
+    "Original physical units and no subset mean, no sealed final readout"
+  ],
+  "branch_fitting_remains_high": {
+    "trigger": "TRAIN stress above 15% for the better complete matched arm; this is a diagnostic priority, not a success criterion or early stopping rule",
+    "next_question": "Can the existing representation/operator fit a fixed known training case, and what part of the field is lost by grid representation?",
+    "design_direction": "Use an existing TRAIN120 case selected from the fixed-endpoint TRAIN errors, keeping the20 development CADs outside this new fitting task. One independently trained selected solver control versus its saved shared prediction at exactly that case, same scaler/native nodes and recorded exposure. Compare signed-S hotspots and displacement jointly. A separate geometric/grid representation diagnostic uses this already-known TRAIN truth, not sealed fields.",
+    "scope_limit": "No automated learning-rate/mode/hash-layer sweep; source/budget/exposure choices locked before new numerical work. Do not explain all high DEV error as generalization when TRAIN fitting itself is poor."
+  },
+  "branch_training_low_transfer_high": {
+    "trigger": "TRAIN stress at or below15%, but same60 development stress above30% for the better complete matched arm",
+    "next_question": "Does available CAD diversity improve cross-geometry prediction at fixed model and compute, or does the geometry/BC interface miss transferable structure?",
+    "design_direction": "Use only the actual complete official CAD three-piece sources available now and a separately frozen CAD split/scaler. Compare data coverage with fixed solver/compute; input availability is not a solver-accuracy result. A prospective graph/whole-mesh interface is considered only if its macro information contribution is specified and source available, with no repeated failed large download."
+  },
+  "branch_both_materially_improve": {
+    "trigger": "Complete matched solver TRAIN and DEV stress low enough that fitting/transfer diagnostics no longer dominate",
+    "next_question": "Can it preserve accuracy, numerical consistency and physical boundary response at arbitrary positions and new load combinations?",
+    "design_direction": "Independent held-out CAD validation and correctly defined load/BC combinations, full-node U/signed-S plus functional gradients/physical units. Off-node FEM accuracy needs independent source truth or an explicitly labeled proxy; numerical AD/FD consistency alone is insufficient."
+  },
+  "solver_choice": "Use complete matched primary score and CAD/load consistency/cost to prioritize solver family; no presumption of Hash/FNO/Transolver and no claim of architecture upper bound.",
+  "source_implementation": 0,
+  "actual_new_training_or_GT": 0,
+  "actual_execution_released": false,
+  "sealed20DEV_final_reads": 0
+}

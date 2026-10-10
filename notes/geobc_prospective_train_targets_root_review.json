@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "reviewer": "root",
+  "whole_SOURCE_reviewed": true,
+  "CPU_preparation_released": false,
+  "scientific_digest": "4ce32e2a7858a6aaa2d0e70eee6f30bde92d3efe0eb6e3f27e6e594fd4730452",
+  "source_pins": {
+    "tools/prepare_geobc_prospective_train_targets.py": "1ea6ae678e82b5b7de77d85ae647d6774029b074ecc4a61f1b0df27eb8e899a0",
+    "tools/run_geobc_train_target_guard.py": "36ad1b932668a9799d778af247850f2be9f76ea4379c1f788ceb62691db01cd2",
+    "tools/freeze_geobc_train_target_preparation.py": "f620ff43f8d2c031019a164634e9355b91e0d5710876001106b2d3184c9e4f15",
+    "geobc/available_cad_pilot_data.py": "fe6a1b8ac1a001dc14a5eefd1e64cb75d71359a3ba77903479d4051fd0eb127a",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+    "geobc/models.py": "9e5c16ca1d4fca77a58bb6579f0fdb33c8765e876692cee3f5b580ea0bccf6d2",
+    "geobc/train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7"
+  },
+  "review_basis": [
+    "Explicit selected TRAIN60 equals immutable split, disjoint oldTRAIN/DEV/FINAL/originalsealed20",
+    "Guard/source/metadata identities, one shot, dual1800s deadline including startup/IO/save/failure/exit",
+    "Native CSV reads only coordinates plus known3 columns; H5 reads only vertices, labels sourceCSV notH5",
+    "Original physical FP32/aligned GRID/constant TRAIN40 scaler encoding, no signs/clipping/defaults/scaler fitting",
+    "CPU libraries only; actual CUDA-initialization guard, thread1, no model construction or GPU tasks",
+    "Real guard/child PID/ticks/argv captured before reads, owned-child cleanup, true external exit and exact cost",
+    "Per-CAD three records commit atomically in metadata, fixed180 denominator; failure prefix/cost retained",
+    "Future geometry inputs not prepared, FINAL labels sealed; scientific roles separate from helper aliases"
+  ],
+  "actual_preparation_executions": 1,
+  "actual_final_or_DEV_target_reads": 0,
+  "source_metadata_seconds": 0.030999999959021807,
+  "actual_completed_terminal_evidence": {
+    "summary": {
+      "path": "data/geobc_prospective_TRAIN60_targets_v1/summary.json",
+      "bytes": 501676,
+      "mtime_ns": 1791665357384714900,
+      "sha256": "c3895a6c59224c24d36d76a01ed5558ce411e118feaf075735cbc6c82104d0d6"
+    },
+    "external": {
+      "path": "data/geobc_prospective_TRAIN60_targets_v1/external_terminal.json",
+      "bytes": 1111,
+      "mtime_ns": 1791665357657768300,
+      "sha256": "c8899570565f331eed593556c89027f52c2cf1e2bda6f6b8a309304bfee92229"
+    },
+    "clock": {
+      "path": "data/geobc_prospective_TRAIN60_targets_v1/clock.json",
+      "bytes": 237,
+      "mtime_ns": 1791665357367716800,
+      "sha256": "1a152c702afe15e7961ea29dc5742db52dad0b01f5498f9e10d9f0412132f403"
+    },
+    "execution": {
+      "path": "data/geobc_prospective_TRAIN60_targets_v1/execution.json",
+      "bytes": 580,
+      "mtime_ns": 1791665271810399000,
+      "sha256": "f9ea398082adfb869473446898d2507b71710362191f2cb2e2ecbc778219f8a0"
+    }
+  },
+  "actual_target_only_result": {
+    "path": "results/geobc_prospective_train_preparation/manifest.json",
+    "bytes": 2270,
+    "mtime_ns": 1791665618750283900,
+    "sha256": "1be4499ec322e24124b439a6ac842584cf8e85254a6d89d60045db9d3e9d9208"
+  }
+}

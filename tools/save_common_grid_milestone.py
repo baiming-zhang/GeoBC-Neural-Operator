@@ -24,11 +24,6 @@ def run():
            'estimate_limit':'Early per-case timing; full pair ETA requires actual PP training progress, not first probe speed',
            'no_GPU_queries':True,'GT_reads':0}
     d.write('notes/geobc_common_grid_live_milestone.json',value)
-    report=d.read('results/geobc_field_queries/summary.json')
-    d.write('results/geobc_field_queries/QA.json',{'passed':True,'reviewer':'root',
-            'actual_PNG_viewed':True,'plot':'query_precision.png','clear_labels':True,
-            'scalar_consistency_checked':True,'source_summary_identities':report['source_identities'],
-            'newGT_or_GPU':0})
     print(json.dumps(value,ensure_ascii=False))
 
 

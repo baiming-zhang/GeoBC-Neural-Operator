@@ -18,7 +18,8 @@
     "Independent fields and case identity are diagnostics, not novel methods or generalization results.",
     "The exact two CADs are unseen by this Hash50 checkpoint but have historical experiment use: migration pilot, not pristine final blind test.",
     "New strict experiments split CAD groups, fit scalers only on train, select model only on validation, and isolate final test.",
-    "Use a single GPU queue, reuse existing data, and avoid redundant audits."
+    "Use a single GPU queue, reuse existing data, and avoid redundant audits.",
+    "Respect notes/geobc_prospective_cad_split_v1.json FINAL20 reservation in every future producer/training/scaler/selection; current DEV20 is known development only. Do not revive original training200 over these reserved IDs."
   ],
   "next_stages": {
     "stage": "solver_spatial_physical_recovery_selection",
@@ -5574,7 +5575,7 @@
       "source_only_preparation_still_not_actual_experiment": true,
       "published_at_utc": "2026-10-10T12:40:55.9431624Z"
     },
-    "current_status": "CAD20_completed_continuous_query_followup",
+    "current_status": "common4800_and_development60_and_singlefit_and_physical_loss_complete_exposure_extension_launched",
     "updated_UTC": "2026-10-10T17:17:45.930838+00:00",
     "latest_independent_HF_HEAD": {
       "receipt": "notes/geobc_hf_direct_http11_HEAD_receipt.json",
@@ -5688,5 +5689,24 @@
     "final_solver_selected": false,
     "next": "After genuine closed/exited endpoints, all60 existing development cases for both arms, not sealed20DEV"
   },
-  "updated_at_utc": "2026-10-10T18:06:18.515291+00:00"
+  "updated_at_utc": "2026-10-10T18:06:18.515291+00:00",
+  "prospective_final_reservation": {
+    "path": "notes/geobc_prospective_cad_split_v1.json",
+    "scientific_digest": "7a4f5ab3a6fcb32e19897246eeceeb64d8e3a06eb1511003b86da470d6267dc9",
+    "TRAIN_CADs": 100,
+    "DEV_CADs": 20,
+    "FINAL_CADs": 20,
+    "new_inputs_prepared": false,
+    "new_training_started": false,
+    "FINAL_numeric_targets_opened": false,
+    "role": "New availability-conditional prospective split; original failed200 plan remains unchanged"
+  },
+  "current_next_stage": {
+    "stage": "matched_exposure24000_v1",
+    "plan": "notes/geobc_exposure_extension_plan.json",
+    "actual_launched": true,
+    "loss_ablation": "completed_S_and_hot_not_improved",
+    "question": "Does 100/200 balanced exposure improve both matched solvers?",
+    "future_development_readout_actual": 0
+  }
 }

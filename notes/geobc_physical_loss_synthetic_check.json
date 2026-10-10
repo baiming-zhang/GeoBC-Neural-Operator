@@ -1,0 +1,98 @@
+{
+  "status": "completed_synthetic_only",
+  "observed_UTC": "2026-10-10T20:30:37.345940+00:00",
+  "actual_seconds": 0.7459039309997024,
+  "source_sha256": {
+    "geobc/physical_field_loss.py": "9e386b771f86906ed1fb4524286cea57d2521698c2f582d4595c7cb24fa3de00",
+    "tools/check_geobc_physical_field_loss.py": "65a4c30b0ae634c9e9fa6e089c55206f8f0e6211033314c645c81cab71c8121e",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+    "geobc/common_grid_solver.py": "b9271091c20faf9f2edad12e9d9afc0a9382ca45accdfce9048e79028601fd80"
+  },
+  "frozen_scaler": {
+    "mean": [
+      -0.006059544265096125,
+      -0.0005008273527146082,
+      0.015260029003479832,
+      0.09629744183585241
+    ],
+    "std": [
+      0.05393032209940291,
+      0.011291299669602316,
+      0.07619646768716026,
+      0.5232191238243877
+    ],
+    "stress_scale": 90.46589813232424,
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "synthetic_case_nodes": 7,
+  "objective": ".5*(physical displacement relative L2 squared + original signed stress relative L2 squared)",
+  "metric_reference": "benchmark.FieldScaler.decode and field_metrics, unmodified",
+  "reporting_primary_unchanged": ".5*(unsquared mean relative_U_L2 + unsquared mean relative_S_L2)",
+  "metric_loss_absolute_error": 0.0,
+  "decode_max_absolute_error": 0.0,
+  "unequal_chunk_loss_absolute_error": 8.673617379884035e-19,
+  "unequal_chunk_gradient_max_absolute_error": 0.0,
+  "central_finite_difference_checks": [
+    {
+      "row": 0,
+      "encoded_channel": 0,
+      "AD": 0.01124401016864878,
+      "FD": 0.01124401016912302,
+      "relative_difference": 4.217716201540986e-11
+    },
+    {
+      "row": 1,
+      "encoded_channel": 1,
+      "AD": 7.582797399920252e-05,
+      "FD": 7.582797410810027e-05,
+      "relative_difference": 1.4361158336706578e-09
+    },
+    {
+      "row": 2,
+      "encoded_channel": 2,
+      "AD": 0.005179680740419008,
+      "FD": 0.005179680740742543,
+      "relative_difference": 6.246226709735052e-11
+    },
+    {
+      "row": 0,
+      "encoded_channel": 3,
+      "AD": 0.010715555876990294,
+      "FD": 0.010715555876211064,
+      "relative_difference": 7.271959154150222e-11
+    },
+    {
+      "row": 2,
+      "encoded_channel": 3,
+      "AD": 0.02486826030978466,
+      "FD": 0.024868260316019547,
+      "relative_difference": 2.5071667774651014e-10
+    },
+    {
+      "row": 5,
+      "encoded_channel": 3,
+      "AD": -0.006385177471672496,
+      "FD": -0.006385177470525499,
+      "relative_difference": 1.7963424905873657e-10
+    }
+  ],
+  "zero_norm_cases_rejected": 2,
+  "physical_truth_source": "explicit synthetic constants only, no DeepJEB labels",
+  "actual_model_fullN_gradient_gate_passed": false,
+  "actual_GPU_resource_gate_passed": false,
+  "actual_training_activation_released": false,
+  "actual_DeepJEB_array_GT_PT_reads": 0,
+  "actual_model_construction_or_training": 0,
+  "CUDA_initialized": false,
+  "limitations": [
+    "Synthetic checks do not measure solver accuracy or explain existing error",
+    "No existing model, loss, scaler, labels, scientific identity or dataset split changed",
+    "Future activation requires evidence from the fixed current pair and single-case diagnostic",
+    "Whole-case joint model gradients, FP64 objective cost and GPU memory still require real qualification"
+  ]
+}

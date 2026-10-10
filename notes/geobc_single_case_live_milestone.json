@@ -1,0 +1,69 @@
+{
+  "observed_UTC": "2026-10-10T21:16:05.238150+00:00",
+  "actual_child_and_guard_live": true,
+  "processes": {
+    "guard_process": {
+      "pid": 269,
+      "ppid": 268,
+      "start_ticks": 25583,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_single_case_guard",
+        "--start"
+      ]
+    },
+    "child_process": {
+      "pid": 362,
+      "ppid": 269,
+      "start_ticks": 25659,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_single_case_diagnostic",
+        "--start"
+      ]
+    }
+  },
+  "selected": {
+    "arm": "FNO9",
+    "case_key": "10_58/tor",
+    "development_ties": [
+      "FNO9"
+    ],
+    "shared_training_case": {
+      "nodes": 254645,
+      "u_relative_l2": 0.4153712144077348,
+      "stress_relative_l2": 0.5085435579914914,
+      "stress_hotspot_relative_l2": 0.25932400529054295,
+      "u_vector_error_RMS_mm": 0.0076827534515552355,
+      "u_max_vector_error_mm": 0.03951208166355746,
+      "stress_RMSE_MPa": 15.894726267189247,
+      "stress_MAE_MPa": 10.466229924472113,
+      "stress_max_abs_error_MPa": 450.84207174386313,
+      "stress_hotspot_nodes": 2547,
+      "u_zero_reference": false,
+      "stress_zero_reference": false,
+      "hotspot_zero_reference": false
+    },
+    "development_scores": {
+      "FNO9": 0.41996111286981597,
+      "PP256": 0.6392123237997778
+    },
+    "selection_is_diagnostic_not_final_solver_choice": true
+  },
+  "step": 3810,
+  "training_epoch_seconds": 121.50335502624512,
+  "remaining_training_seconds_linear_estimate": 31.571737920205425,
+  "estimated_BJT_endpoint": "2026-10-11T05:16:36.809888+08:00",
+  "endpoint_keys_present": [
+    "0",
+    "40"
+  ],
+  "first_fullN_gradients_passed": true,
+  "cached_encoded_reads": 1,
+  "cached_physical_reads": 1,
+  "new_GPU_GT_PT_dataset_reads": 0
+}

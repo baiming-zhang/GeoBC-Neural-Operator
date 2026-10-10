@@ -1,0 +1,80 @@
+{
+  "observed_UTC": "2026-10-10T21:38:00.003888+00:00",
+  "scientific_digest": "91417c08784c30d9d8a191788916741190bd682418fe8a34987a51283b93ee53",
+  "actual_live": true,
+  "boot_id": "c768cff3-9091-4a9a-a7fe-b11f1634f5ff",
+  "processes": {
+    "guard_process": {
+      "pid": 278,
+      "ppid": 277,
+      "start_ticks": 5963,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_exposure_guard",
+        "--start"
+      ]
+    },
+    "child_process": {
+      "pid": 360,
+      "ppid": 278,
+      "start_ticks": 6007,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_exposure_extension",
+        "--start"
+      ]
+    }
+  },
+  "status": "running",
+  "current_arm": "FNO9",
+  "step": 6720,
+  "new_training_epoch_seconds": 61.85644793510437,
+  "remaining_estimate_seconds": 556.7080314159393,
+  "provisional_active_arm_finish_BJT": "2026-10-11T05:47:16.711898+08:00",
+  "estimate_scope": "Current arm only; no remaining queued-arm estimate without its actual progress",
+  "GPU_cache": {
+    "unique_files": 560,
+    "bytes": 7335534040,
+    "epoch_seconds": 22.662548542022705,
+    "monotonic_seconds": 22.662550918000008,
+    "duplicate_files_shared": true,
+    "inputs_immutable": true
+  },
+  "first_actual_cached_fullN_gradient_check": {
+    "passed": true,
+    "gradients": {
+      "encoder": {
+        "missing": [],
+        "finite": true,
+        "L2": 0.03495194031147886
+      },
+      "head": {
+        "missing": [],
+        "finite": true,
+        "L2": 0.49533277365644
+      },
+      "operator": {
+        "missing": [],
+        "finite": true,
+        "L2": 0.44835291473358224
+      }
+    },
+    "leaf_gradients": {
+      "context": 0.01737961359322071,
+      "latent": 0.003156673163175583
+    },
+    "allocated_bytes": 8202463232,
+    "reserved_bytes": 8396996608
+  },
+  "status_identity": {
+    "path": "runs/geobc_exploration/matched_exposure24000_v1/status.json",
+    "bytes": 6627,
+    "mtime_ns": 1791668277862084300,
+    "sha256": "889b9e0ed275f6cae62438a43b40237fae7b420b3ed6aadbb27966019716ab72"
+  },
+  "CPU_GT_PT_model_GPU_reads": 0
+}

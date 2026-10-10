@@ -1,0 +1,135 @@
+{
+  "status": "completed",
+  "scientific_qualification": true,
+  "case_key": "10_58/tor",
+  "arm": "FNO9",
+  "single_case_denominator": 1,
+  "fixed_independent_endpoints": [
+    0,
+    40,
+    4800
+  ],
+  "rows": [
+    {
+      "role": "shared4800_case40",
+      "fixed_endpoint_updates": 4800,
+      "case_exposures": 40,
+      "total_updates": 4800,
+      "U": 0.4153712144077348,
+      "S": 0.5085435579914914,
+      "hot": 0.25932400529054295,
+      "train_epoch_minutes": 26.968500729401907,
+      "train_monotonic_minutes": 24.855219725016664,
+      "point_available": true,
+      "complete_single_case_stage": true
+    },
+    {
+      "role": "independent0",
+      "fixed_endpoint_updates": 0,
+      "case_exposures": 0,
+      "total_updates": 0,
+      "U": 1.6850636968723323,
+      "S": 1.0248085986915587,
+      "hot": 1.0030403739197598,
+      "train_epoch_minutes": null,
+      "train_monotonic_minutes": null,
+      "point_available": true,
+      "complete_single_case_stage": true
+    },
+    {
+      "role": "independent40",
+      "fixed_endpoint_updates": 40,
+      "case_exposures": 40,
+      "total_updates": 40,
+      "U": 0.9621643346259956,
+      "S": 0.9968796449287678,
+      "hot": 0.9969027226860047,
+      "train_epoch_minutes": 0.02642869154612223,
+      "train_monotonic_minutes": 0.026428684550000033,
+      "point_available": true,
+      "complete_single_case_stage": true
+    },
+    {
+      "role": "independent4800",
+      "fixed_endpoint_updates": 4800,
+      "case_exposures": 4800,
+      "total_updates": 4800,
+      "U": 0.039005716800929104,
+      "S": 0.11505211323562067,
+      "hot": 0.08619902226577046,
+      "train_epoch_minutes": 2.5677393555641173,
+      "train_monotonic_minutes": 2.3852189784999998,
+      "point_available": true,
+      "complete_single_case_stage": true
+    }
+  ],
+  "qualified4800_relative_gain_vs_shared": {
+    "U": 0.9060943188936523,
+    "S": 0.7737615363961691,
+    "hot": 0.667601068519691
+  },
+  "source_evidence": {
+    "native": {
+      "path": "runs/geobc_exploration/matched_solver_single_case_fit_v1/summary.json",
+      "bytes": 6271,
+      "mtime_ns": 1791666995236778400,
+      "sha256": "301bae19547d254f2f5e4efe5c2def6365027dea056ee3ef18d2c25d92f8f848"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/matched_solver_single_case_fit_v1/external_terminal.json",
+      "bytes": 5659,
+      "mtime_ns": 1791666995919331200,
+      "sha256": "01144a524a94656a90cd6dd6b93c14b7ddda8e95f8a36a98761b9485590ad6ed"
+    }
+  },
+  "shared_reference_identity": {
+    "path": "runs/geobc_exploration/common_grid_matched4800_v1/summary.json",
+    "bytes": 175777,
+    "mtime_ns": 1791665775434748400,
+    "sha256": "edcb9c317605035d2d55cfad57aed64c0c63477fb5addc2e8307fd5a095f4bae"
+  },
+  "selection": {
+    "arm": "FNO9",
+    "case_key": "10_58/tor",
+    "development_ties": [
+      "FNO9"
+    ],
+    "shared_training_case": {
+      "nodes": 254645,
+      "u_relative_l2": 0.4153712144077348,
+      "stress_relative_l2": 0.5085435579914914,
+      "stress_hotspot_relative_l2": 0.25932400529054295,
+      "u_vector_error_RMS_mm": 0.0076827534515552355,
+      "u_max_vector_error_mm": 0.03951208166355746,
+      "stress_RMSE_MPa": 15.894726267189247,
+      "stress_MAE_MPa": 10.466229924472113,
+      "stress_max_abs_error_MPa": 450.84207174386313,
+      "stress_hotspot_nodes": 2547,
+      "u_zero_reference": false,
+      "stress_zero_reference": false,
+      "hotspot_zero_reference": false
+    },
+    "development_scores": {
+      "FNO9": 0.41996111286981597,
+      "PP256": 0.6392123237997778
+    },
+    "selection_is_diagnostic_not_final_solver_choice": true
+  },
+  "whole_epoch_seconds": 164.09467720985413,
+  "whole_monotonic_seconds": 153.143453818,
+  "failure": null,
+  "GT_PT_model_GPU_reads": 0,
+  "final_solver_selected": false,
+  "exporter_numeric_array_validation_performed": false,
+  "interpretation": [
+    "One worst known TRAIN case selected by frozen rule, not population-average or final test",
+    "40 compares same-case exposure but different optimizer history;4800 compares total updates but different case exposure",
+    "Resident one-case IO differs from shared loading; times are experiment costs, not solver inference speed",
+    "Same asinh scaler/joint4 loss/model/init; no exclusive capacity/optimization/representation attribution",
+    "Negative stages may retain complete saved diagnostic points; gains and complete4800 conclusions are cancelled",
+    "Raw signedS MPa and U vector mm; no independent off-node FEM or source stress-export semantics claim"
+  ],
+  "required_PNG_rendered": true,
+  "visual_QA": "pending_actual_view",
+  "CPU_export_seconds": 0.6973891100000174
+}

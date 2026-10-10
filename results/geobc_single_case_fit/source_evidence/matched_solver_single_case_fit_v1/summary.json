@@ -1,0 +1,188 @@
+{
+  "status": "completed",
+  "active": false,
+  "closed": true,
+  "execution": {
+    "run_process": {
+      "pid": 362,
+      "ppid": 269,
+      "start_ticks": 25659,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_single_case_diagnostic",
+        "--start"
+      ]
+    },
+    "guard": {
+      "guard_process": {
+        "pid": 269,
+        "ppid": 268,
+        "start_ticks": 25583,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.run_geobc_single_case_guard",
+          "--start"
+        ]
+      },
+      "scientific_digest": "963e7800ec446599789e5b52ec1cd42dbafdbc45342ffc03107264641d7fd8ce",
+      "entry_epoch": 1791666833.2902005,
+      "entry_monotonic": 256.389852116,
+      "deadline_epoch": 1791686833.2902005,
+      "deadline_monotonic": 20256.389852116
+    },
+    "scientific_digest": "963e7800ec446599789e5b52ec1cd42dbafdbc45342ffc03107264641d7fd8ce"
+  },
+  "selected": {
+    "arm": "FNO9",
+    "case_key": "10_58/tor",
+    "development_ties": [
+      "FNO9"
+    ],
+    "shared_training_case": {
+      "nodes": 254645,
+      "u_relative_l2": 0.4153712144077348,
+      "stress_relative_l2": 0.5085435579914914,
+      "stress_hotspot_relative_l2": 0.25932400529054295,
+      "u_vector_error_RMS_mm": 0.0076827534515552355,
+      "u_max_vector_error_mm": 0.03951208166355746,
+      "stress_RMSE_MPa": 15.894726267189247,
+      "stress_MAE_MPa": 10.466229924472113,
+      "stress_max_abs_error_MPa": 450.84207174386313,
+      "stress_hotspot_nodes": 2547,
+      "u_zero_reference": false,
+      "stress_zero_reference": false,
+      "hotspot_zero_reference": false
+    },
+    "development_scores": {
+      "FNO9": 0.41996111286981597,
+      "PP256": 0.6392123237997778
+    },
+    "selection_is_diagnostic_not_final_solver_choice": true
+  },
+  "step": 4800,
+  "endpoints": {
+    "0": {
+      "physical": {
+        "nodes": 254645,
+        "u_relative_l2": 1.6850636968723323,
+        "stress_relative_l2": 1.0248085986915587,
+        "stress_hotspot_relative_l2": 1.0030403739197598,
+        "u_vector_error_RMS_mm": 0.03116713071149031,
+        "u_max_vector_error_mm": 0.11625397796489509,
+        "stress_RMSE_MPa": 32.030790473087976,
+        "stress_MAE_MPa": 20.975916267904044,
+        "stress_max_abs_error_MPa": 374.65105712720316,
+        "stress_hotspot_nodes": 2547,
+        "u_zero_reference": false,
+        "stress_zero_reference": false,
+        "hotspot_zero_reference": false
+      },
+      "epoch_seconds": 0.7596068382263184,
+      "monotonic_seconds": 0.7596077829999786,
+      "training_epoch_seconds_before_readout": null,
+      "training_monotonic_seconds_before_readout": null,
+      "case_exposures": 0,
+      "optimizer_steps": 0
+    },
+    "40": {
+      "physical": {
+        "nodes": 254645,
+        "u_relative_l2": 0.9621643346259956,
+        "stress_relative_l2": 0.9968796449287678,
+        "stress_hotspot_relative_l2": 0.9969027226860047,
+        "u_vector_error_RMS_mm": 0.017796301492272026,
+        "u_max_vector_error_mm": 0.11122240294276818,
+        "stress_RMSE_MPa": 31.157860184202125,
+        "stress_MAE_MPa": 20.06618942367593,
+        "stress_max_abs_error_MPa": 368.6572535781957,
+        "stress_hotspot_nodes": 2547,
+        "u_zero_reference": false,
+        "stress_zero_reference": false,
+        "hotspot_zero_reference": false
+      },
+      "epoch_seconds": 0.028200387954711914,
+      "monotonic_seconds": 0.028201401999979225,
+      "training_epoch_seconds_before_readout": 1.585721492767334,
+      "training_monotonic_seconds_before_readout": 1.585721073000002,
+      "case_exposures": 40,
+      "optimizer_steps": 40
+    },
+    "4800": {
+      "physical": {
+        "nodes": 254645,
+        "u_relative_l2": 0.039005716800929104,
+        "stress_relative_l2": 0.11505211323562067,
+        "stress_hotspot_relative_l2": 0.08619902226577046,
+        "u_vector_error_RMS_mm": 0.0007214541956404378,
+        "u_max_vector_error_mm": 0.0075197033715964446,
+        "stress_RMSE_MPa": 3.5959984500923485,
+        "stress_MAE_MPa": 1.1801357821277412,
+        "stress_max_abs_error_MPa": 275.88474422051365,
+        "stress_hotspot_nodes": 2547,
+        "u_zero_reference": false,
+        "stress_zero_reference": false,
+        "hotspot_zero_reference": false
+      },
+      "epoch_seconds": 0.018513917922973633,
+      "monotonic_seconds": 0.018514785000036227,
+      "training_epoch_seconds_before_readout": 154.06436133384705,
+      "training_monotonic_seconds_before_readout": 143.11313871,
+      "case_exposures": 4800,
+      "optimizer_steps": 4800
+    }
+  },
+  "raw_GT_reads": 0,
+  "DEV_GT_reads": 0,
+  "scaler_fits": 0,
+  "pretrained_checkpoint_reads": 0,
+  "cached_TRAIN_encoded_reads": 1,
+  "cached_TRAIN_physical_reads": 1,
+  "input_query_rows_with_nonzero_weights": 254645,
+  "counts": {
+    "encoder": 16736,
+    "head": 26884,
+    "operator": 4483238,
+    "total": 4526858
+  },
+  "shared_init_sha256": "a7e147323a978876a43fd76b00c1b6f5e518c44235002607dcd1e21cf2409b57",
+  "original_nodes": 254645,
+  "elapsed_epoch_seconds": 163.104505777359,
+  "elapsed_monotonic_seconds": 152.153282177,
+  "first_actual_fullN_gradient_check": {
+    "passed": true,
+    "gradients": {
+      "encoder": {
+        "missing": [],
+        "finite": true,
+        "L2": 0.08684531298884858
+      },
+      "head": {
+        "missing": [],
+        "finite": true,
+        "L2": 0.2886761063882133
+      },
+      "operator": {
+        "missing": [],
+        "finite": true,
+        "L2": 0.007844538122356772
+      }
+    },
+    "leaf_gradients": {
+      "context": 0.007325813639909029,
+      "latent": 0.00010346606723032892
+    },
+    "expected_inactive_parameters": []
+  },
+  "training_epoch_seconds": 154.06436133384705,
+  "training_monotonic_seconds": 143.11313871,
+  "peak_allocated_bytes": 754546688,
+  "peak_reserved_bytes": 859832320,
+  "fixed4800": true,
+  "comparison_scope": "One selected known TRAIN case; no generalization claim",
+  "exposure_limit": "40 same-case exposures vs shared 40;4800 same-total updates vs shared4800. These controls differ in optimizer history and case exposure.",
+  "training_clock_includes_step40_readout_and_checkpoint_IO": true
+}

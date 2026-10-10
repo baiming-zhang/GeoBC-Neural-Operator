@@ -1,0 +1,62 @@
+{
+  "status": "completed_interim_FNO_only",
+  "pair_complete": false,
+  "readout_DEV60_executed": false,
+  "observed_UTC": "2026-10-10T18:33:32.920864+00:00",
+  "scientific_digest": "bfe799930dcb490a4fa35363d6dc86e04e1f5d12d187505cdf99a0cc2d3a582c",
+  "FNO_nominal_parameters": 4526858,
+  "shared_init_sha256": "a7e147323a978876a43fd76b00c1b6f5e518c44235002607dcd1e21cf2409b57",
+  "FNO_training_seconds_epoch": 1618.1100437641144,
+  "FNO_training_seconds_monotonic": 1491.313183501,
+  "FNO_TRAIN120_readout_seconds_epoch": 51.95608997344971,
+  "FNO_TRAIN120_readout_seconds_monotonic": 48.99770213900001,
+  "FNO_TRAIN120": {
+    "fixed_denominator": 120,
+    "metrics_available_cases": 120,
+    "case_mean_u_relative_l2": 0.19514234744971287,
+    "worst_case_u_relative_l2": 0.5208510946321178,
+    "case_mean_stress_relative_l2": 0.38985869861709316,
+    "worst_case_stress_relative_l2": 0.5085435579914914,
+    "case_mean_stress_hotspot_relative_l2": 0.3937834241244324,
+    "worst_case_stress_hotspot_relative_l2": 0.5591064766162452,
+    "selection_score": 0.292500523033403,
+    "all_cases_complete": true
+  },
+  "checkpoint_identity": {
+    "path": "runs/geobc_exploration/common_grid_matched4800_v1/FNO9/step4800.pt",
+    "bytes": 54396811,
+    "mtime_ns": 1791656991951525200,
+    "sha256": "b75cb4d3ba2ca66cc8ba42d1632f04968d09d3efda35e1fa3192176493323615"
+  },
+  "mutable_source_capture_SHA256": "35080517070ab418d5ddb651d29d1ee8f14db63f2722227ae61719fbfa9650c4",
+  "actual_live_processes": {
+    "guard": {
+      "pid": 306,
+      "ppid": 305,
+      "start_ticks": 306,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_common_training_guard",
+        "--start"
+      ]
+    },
+    "child": {
+      "pid": 399,
+      "ppid": 306,
+      "start_ticks": 387,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_common_grid",
+        "--start"
+      ]
+    }
+  },
+  "actual_current_arm": "PP256",
+  "interpretation": "Training fit still inaccurate; no cross-CAD gain or matched pair winner claimed. Entire fixed protocol unchanged.",
+  "new_GT_PT_arrays_GPU_reads": 0,
+  "final_solver_selected": false
+}
