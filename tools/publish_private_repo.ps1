@@ -115,7 +115,7 @@ function Inventory([string[]]$Allowlist) {
     $seen = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
     $files = [Collections.Generic.List[object]]::new()
     $skipNames = @('.git', '__pycache__', '.venv', 'venv', '.local_deps', 'cache', '.cache',
-                   '.pytest_cache', '.mypy_cache', '.ruff_cache', '.tox', 'node_modules')
+                   '.pytest_cache', '.mypy_cache', '.ruff_cache', '.tox', 'node_modules', '.mplconfig', '.mpl-cache')
     foreach ($relative in $Allowlist) {
         $absolute = Project-Path $relative
         if (-not (Test-Path -LiteralPath $absolute)) { $problems.Add('Missing allowlist path: ' + $relative); continue }

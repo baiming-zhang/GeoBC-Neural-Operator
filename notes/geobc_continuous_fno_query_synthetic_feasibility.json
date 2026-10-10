@@ -1,0 +1,36 @@
+{
+  "kind": "synthetic_CPU_spatial_stencil_feasibility",
+  "status": "passed",
+  "observed_at_utc": "2026-10-10T16:35:58.013493+00:00",
+  "elapsed_seconds_including_imports": 0.8063867079999909,
+  "source_sha256": {
+    "tools/check_fno_query_stencil_cpu.py": "6b8544748b2ff3fd33ecb79d9306c843536e9c8d8c3cbc46775f32343f723f28",
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/coverage_comparison_data.py": "716fd153999d38fb0e54f20b22523564f16068da7fb048d711e0a2edda798196"
+  },
+  "device": "cpu",
+  "CUDA_initialized": false,
+  "dataset_reads": 0,
+  "PT_reads": 0,
+  "GT_reads": 0,
+  "model_constructions": 0,
+  "model_calls": 0,
+  "resolution": 64,
+  "interior_queries": 3,
+  "boundary_value_queries": 3,
+  "affine_value_max_abs_error": 5.960464477539063e-08,
+  "normalized_coordinate_gradient_max_abs_error": 7.62939453125e-06,
+  "boundary_value_max_abs_error": 0.0,
+  "fresh_stencil_coordinate_autograd": true,
+  "detached_cache_coordinate_autograd": false,
+  "current_new_suite_cache": "Bare partition-of-unity trilinear _stencil; no occupancy renormalization. Historical masked prepare_grids caches are distinct.",
+  "limits": [
+    "Synthetic affine interpolation only, not an actual trained FNO qualification.",
+    "No original-node replay, physical mm gradient, new CAD, BC generalization, or signed-S accuracy tested.",
+    "Native25 must have an explicit off-node extension; raw node slices are insufficient.",
+    "Grid-cell derivative jumps are expected; C0 does not imply C1.",
+    "Current cached coordinate weights cannot supply latent spatial derivatives without recomputation."
+  ],
+  "live_training_source_or_protocol_changed": false
+}

@@ -81,6 +81,16 @@ def relative(value):
     return path(value).relative_to(ROOT.resolve()).as_posix()
 
 
+def shared_gpu_lock(plan):
+    """Resolve the frozen prose-valued lock declaration to its sole file path."""
+    declared = plan["scientific"]["execution_device_and_lock"]["single_shared_GPU_lock"]
+    filename = "runs/geobc_exploration/.coordinator.lock"
+    require(declared == filename + " for actual preparation/grid and full independent readout; nonblocking",
+            "Frozen common GPU lock declaration changed")
+    require(relative(filename) == filename, "Common GPU lock resolves outside its declared path")
+    return filename
+
+
 def read(value):
     return json.loads(path(value).read_text(encoding="utf-8-sig"))
 
@@ -303,10 +313,14 @@ def process_snapshot(pid):
 
 def exact_process_exited(record):
     require(type(record.get("pid")) is int and record["pid"] > 0
-            and type(record.get("start_ticks")) is int and record["start_ticks"] > 0,
+            and type(record.get("start_ticks")) is int and record["start_ticks"] > 0
+            and isinstance(record.get("argv"), list) and record["argv"],
             "Exact PID/start-ticks identity is required", NotReady)
     current = process_snapshot(record["pid"])
-    return current is None or current["start_ticks"] != record["start_ticks"]
+    # These Python workers never exec another program.  After a WSL restart
+    # PID and ticks may coincide with a different executable; require argv too.
+    return (current is None or current["start_ticks"] != record["start_ticks"]
+            or current["argv"] != record["argv"])
 
 
 def release(contract, plan, purpose="preparation"):
@@ -545,8 +559,7 @@ def prepare(plan_path=PLAN, start=False):
     before = predecessor_gate(plan)
     output = path(plan["scientific"]["outputs"]["input_cache"])
     output.relative_to(ROOT.resolve())
-    lockfile = plan["scientific"]["execution_device_and_lock"]["single_shared_GPU_lock"]
-    require(relative(lockfile) == "runs/geobc_exploration/.coordinator.lock", "Common GPU lock changed")
+    lockfile = shared_gpu_lock(plan)
     with gpu_lock(lockfile):
         after = predecessor_gate(plan)
         require(before["PP_and_FNO"] == after["PP_and_FNO"], "Upstream binding changed while acquiring GPU", NotReady)
@@ -586,7 +599,7 @@ def prepare(plan_path=PLAN, start=False):
             import torch
             from geobc import coverage_comparison_data as original
             torch.cuda.init()
-            device = plan["recipe_reference"]["device"]
+            device = torch.cuda.current_device()
             total = torch.cuda.get_device_properties(device).total_memory
             torch.cuda.set_per_process_memory_fraction(min(1., memory["cap_bytes"] / total), device)
             def memory_guard():
@@ -645,7 +658,7 @@ def prepare(plan_path=PLAN, start=False):
             clock.phase("terminal_persistence_and_CUDA_cleanup")
             if torch is not None:
                 try:
-                    device = plan["recipe_reference"]["device"]
+                    device = torch.cuda.current_device()
                     torch.cuda.synchronize(device)
                     memory.update(peak_allocated_bytes=int(torch.cuda.max_memory_allocated(device)),
                                   peak_reserved_bytes=int(torch.cuda.max_memory_reserved(device)), measurement_available=True)

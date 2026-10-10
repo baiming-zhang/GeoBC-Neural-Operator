@@ -1755,14 +1755,14 @@
     "geobc/fno_local_condition_pair.py": "c1d5884bd5ab704856d0677fa00c6234477985cd4a324791997e3f6f52bc2ff5"
   },
   "new_source_sha256": {
-    "geobc/available_cad_pilot_data.py": "1fbc7e7b82009fa8086d12a37f91cc624d8b634cb314715be74cfd3fa80dba1e",
-    "geobc/available_cad_pilot_eval.py": "8272c72ed09ec62309d31abff54eafb1762fa7a4434e809f1975064849c7bb15",
-    "tools/run_geobc_available_pilot_guard.py": "78099936f0704153c655e55f4c832ccccad363c50aeab6be6a416c9eb323489f"
+    "geobc/available_cad_pilot_data.py": "fe6a1b8ac1a001dc14a5eefd1e64cb75d71359a3ba77903479d4051fd0eb127a",
+    "geobc/available_cad_pilot_eval.py": "aa0644e27e4fc849f7cd59c6b57284a1120135ea87e8e0fa2a029d1d5ef229a3",
+    "tools/run_geobc_available_pilot_guard.py": "de3afe185f7b64d0238d999598701339e6bb556ab55ab55f35b523019697f009"
   },
   "source_implementation_authorized": true,
-  "preparation_released": false,
-  "evaluation_released": false,
-  "actual_execution_started": false,
+  "preparation_released": true,
+  "evaluation_released": true,
+  "actual_execution_started": true,
   "root_review": "notes/available_cad_pilot_root_review.json",
   "checkpoint_binding_policy": "Bind exact bytes and genuine payload/source/config/step after upstream authentic terminal before pilot predictions; no live PT reads in source phase",
   "source_root_reviewed_at_utc": "2026-10-10T11:36:30.848163+00:00",
@@ -1791,5 +1791,6 @@
       "true_nonexit_and_timeout_negative_preserved": true,
       "actual_execution_started": false
     }
-  ]
+  ],
+  "terminal_release_at_utc": "2026-10-10T16:51:14.194050+00:00"
 }

@@ -118,7 +118,7 @@ def within_budget(record, seconds, deadline_epoch, deadline_monotonic):
             and record["ended_monotonic"] <= deadline_monotonic)
 
 
-def run(plan_path=PLAN, start=False):
+def run(plan_path=PLAN, start=False, resume_prelaunch=None):
     if not start:
         return {"status": "source_only", "actual_execution": False,
                 "plan_reads": 0, "raw_reads": 0, "GT_reads": 0, "child_launches": 0,
@@ -137,6 +137,36 @@ def run(plan_path=PLAN, start=False):
         release(contract, plan, purpose)
     require(contract["source_sha256"].get(OWN) == sha(OWN), "Guard source is not root-pinned")
     proof = predecessor_gate(plan)
+    recovery = None
+    if resume_prelaunch:
+        # Explicit root-reviewed continuation is limited to the observed failure
+        # before any native clock, data, array, model or GT access.  Original UTC
+        # deadlines remain authoritative, including repair/downtime costs.
+        global ENTRY_EPOCH
+        recovery = read(resume_prelaunch)
+        require(recovery.get("passed") is True and recovery.get("actual_continuation_released") is True
+                and recovery.get("scientific_digest") == SCIENCE
+                and recovery.get("source_pins") == contract["source_sha256"]
+                and recovery.get("zero_raw_array_model_GT_reads") is True,
+                "Prelaunch continuation lacks the exact root technical release")
+        prior = recovery["prior_campaign_identity"]
+        require(sha(prior["path"]) == prior["sha256"], "Original campaign archive identity changed")
+        original = read(prior["path"])
+        require(original.get("closed") is True and original.get("active") is False
+                and original.get("status") == "terminal" and len(original.get("stages", {})) == 1
+                and original["stages"]["preparation"]["exit_code"] == 1
+                and original["stages"]["preparation"]["actual_child_exited"] is True
+                and exact_process_exited(original["guard_process"])
+                and exact_process_exited(original["stages"]["preparation"]["child_process"]),
+                "Prior failure does not prove the exact guard and preparation child exited")
+        for item in recovery["archived_files"]:
+            require(sha(item["path"]) == item["sha256"], "Prelaunch failure archive changed")
+        require(recovery["original_deadline_epoch"] == original["deadline_epoch"]
+                == original["entry_epoch"] + CAMPAIGN_SECONDS,
+                "Original absolute campaign deadline differs")
+        ENTRY_EPOCH = original["entry_epoch"]
+        require(time.time() < ENTRY_EPOCH + STAGE_SECONDS,
+                "Original preparation deadline exhausted during repair")
     require(remaining_budget(ENTRY_EPOCH + STAGE_SECONDS, ENTRY_MONOTONIC + STAGE_SECONDS) > 0,
             "Preparation budget exhausted before launch")
     outputs = plan["scientific"]["outputs"]
@@ -153,7 +183,7 @@ def run(plan_path=PLAN, start=False):
     own_process = process_snapshot(os.getpid())
     require(own_process is not None, "Actual guard process identity unavailable")
     campaign = {"schema": 1, "kind": KIND, "scientific_digest": SCIENCE,
-        "status": "starting", "actual_execution": True, "attempts": 1,
+        "status": "starting", "actual_execution": True, "attempts": original["attempts"] + 1 if recovery else 1,
         "automatic_replay": False, "source_sha256": contract["source_sha256"],
         "guard_process": own_process,
         "started_at_utc": datetime.fromtimestamp(ENTRY_EPOCH, timezone.utc).isoformat(),
@@ -161,6 +191,15 @@ def run(plan_path=PLAN, start=False):
         "deadline_epoch": ENTRY_EPOCH + CAMPAIGN_SECONDS,
         "deadline_monotonic": ENTRY_MONOTONIC + CAMPAIGN_SECONDS,
         "budget_seconds": CAMPAIGN_SECONDS, "predecessor_proof": proof, "stages": {}}
+    if recovery:
+        campaign["prelaunch_technical_continuation"] = {
+            "root_review": str(resume_prelaunch), "root_review_sha256": sha(resume_prelaunch),
+            "prior_campaign_identity": recovery["prior_campaign_identity"],
+            "original_entry_monotonic": original["entry_monotonic"],
+            "original_deadline_monotonic": original["deadline_monotonic"],
+            "current_monotonic_is_new_measured_axis": True,
+            "UTC_span_includes_original_failure_repair_and_downtime": True,
+            "budget_reset": False, "data_or_model_replay": False}
     evaluation.mkdir(parents=True, exist_ok=True)
     with launchfile.open("x", encoding="utf-8") as stream:
         json.dump(campaign, stream, ensure_ascii=False, indent=2, allow_nan=False)
@@ -331,8 +370,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--plan", default=PLAN)
     parser.add_argument("--start", action="store_true")
+    parser.add_argument("--resume-prelaunch", default=None)
     args = parser.parse_args()
-    result = run(args.plan, args.start)
+    result = run(args.plan, args.start, args.resume_prelaunch)
     print(json.dumps(result, ensure_ascii=False, allow_nan=False), flush=True)
     return 0 if not args.start or result.get("within_external_budget") is True else 1
 

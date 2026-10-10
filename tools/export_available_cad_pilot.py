@@ -118,8 +118,8 @@ def _process(record):
         raise RuntimeError("Actual process exit cannot be established") from error
     if ticks != record["start_ticks"]:
         return True
-    require(argv == record["argv"], "A live exact PID/startticks changed argv; exit is not established")
-    return False
+    # Known Python workers do not exec; WSL reboot can reuse PID and ticks.
+    return argv != record["argv"]
 
 
 def _module_argv(record, module, plan_path):
@@ -274,12 +274,59 @@ def _gate(plan_path, index):
               "evaluation": _stage(evaluation_external, native, execution, "evaluation", plan_path, source_pins)}
     require(campaign.get("schema") == 1 and campaign.get("kind") == GUARD_KIND and campaign.get("status") == "terminal"
         and campaign.get("closed") is True and campaign.get("active") is False and campaign.get("actual_execution") is True
-        and campaign.get("attempts") == 1 and campaign.get("automatic_replay") is False
+        and type(campaign.get("attempts")) is int and campaign["attempts"] >= 1
+        and campaign.get("automatic_replay") is False
         and campaign.get("scientific_digest") == SCI and campaign.get("source_sha256") == source_pins
         and campaign.get("guard_process") == evaluation_external["guard"]["guard_process"]
         == preparation_external["guard"]["guard_process"] and _process(campaign["guard_process"])
         and campaign.get("stages") == {"preparation": preparation_external, "evaluation": evaluation_external},
         "Authentic complete campaign receipts/exact exited guard differ")
+    continuation_history = []
+    prior = campaign
+    while prior["attempts"] > 1:
+        continuation = prior["prelaunch_technical_continuation"]
+        technical = _json(continuation["root_review"], index)
+        require(index[continuation["root_review"]]["sha256"] == continuation["root_review_sha256"]
+            and technical.get("passed") is True and technical.get("actual_continuation_released") is True
+            and technical.get("scientific_digest") == SCI
+            and technical.get("zero_raw_array_model_GT_reads") is True
+            and technical.get("budget_reset") is False,
+            "Explicit pre-data technical continuation is not genuinely reviewed")
+        archived = technical["prior_campaign_identity"]
+        original = _json(archived["path"], index)
+        require(index[archived["path"]]["sha256"] == archived["sha256"]
+            and continuation["prior_campaign_identity"] == archived
+            and original.get("closed") is True and original.get("active") is False
+            and original.get("status") == "terminal"
+            and original["attempts"] == prior["attempts"] - 1
+            and original["entry_epoch"] == campaign["entry_epoch"]
+            and original["deadline_epoch"] == campaign["deadline_epoch"]
+            and technical["original_deadline_epoch"] == campaign["deadline_epoch"]
+            and set(original["stages"]) == {"preparation"}
+            and original["stages"]["preparation"]["exit_code"] == 1
+            and _process(original["guard_process"])
+            and _process(original["stages"]["preparation"]["child_process"]),
+            "Archived pre-data failure, exact exit or original deadline differs")
+        for file_identity in technical["archived_files"]:
+            archive_path = path(file_identity["path"])
+            require(archive_path.suffix in (".json", ".log")
+                and archive_path.stat().st_size <= 64 * 1024**2,
+                "Only bounded technical metadata archives can be read")
+            require(hashlib.sha256(archive_path.read_bytes()).hexdigest() == file_identity["sha256"],
+                "Archived technical failure file changed")
+        if technical.get("read_receipt_identity"):
+            ledger_identity = technical["read_receipt_identity"]
+            ledger = _json(ledger_identity["path"], index)
+            require(index[ledger_identity["path"]]["sha256"] == ledger_identity["sha256"]
+                and all(v == 0 for v in ledger.values() if type(v) is int)
+                and ledger["attempted_reads"] == ledger["completed_reads"] == {},
+                "Pre-data technical failure actually opened input or GT")
+        continuation_history.append({"archived_campaign": archived,
+            "actual_pre_data_attempt_seconds": original["stages"]["preparation"]["elapsed_seconds"],
+            "actual_pre_data_attempt_epoch_seconds": original["stages"]["preparation"]["elapsed_epoch_seconds"],
+            "source_pins_at_attempt": original["source_sha256"],
+            "zero_raw_array_model_GT_reads": True})
+        prior = original
     require(campaign.get("entry_epoch") == evaluation_external["guard"]["campaign_entry_epoch"]
         == preparation_external["guard"]["campaign_entry_epoch"]
         and campaign.get("entry_monotonic") == evaluation_external["guard"]["campaign_entry_monotonic"]
@@ -310,6 +357,10 @@ def _gate(plan_path, index):
         "budget_seconds": {"preparation": 3600, "evaluation": 3600, "campaign": 7200},
         "qualification_clock_policy": "Both recorded epoch and monotonic spans must satisfy unchanged budgets; missing or inconsistent axes cannot qualify",
         "campaign_within_external_budget": campaign.get("within_external_budget")}
+    costs["pre_data_technical_continuation_history"] = continuation_history
+    costs["campaign_attempts"] = campaign["attempts"]
+    costs["UTC_span_includes_original_failures_repair_and_downtime"] = bool(continuation_history)
+    costs["monotonic_span_is_continuation_only"] = bool(continuation_history)
     if review.get("experiment_summary_sha256") is not None:
         require(review["experiment_summary_sha256"] == index[str((base / "summary.json").relative_to(root()))]["sha256"],
                 "Exporter review binds a different experiment summary")

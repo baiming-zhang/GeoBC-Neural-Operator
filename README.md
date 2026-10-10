@@ -4,7 +4,21 @@
 
 原版DeepJEB的30项可恢复slides实验已完成，随后探索十类学习结构及物理求解路线。全部阶段证据见[一分钟结果](results/SOLVER_BRIEF.md)，详细记录见[探索报告](results/geobc_exploration/REPORT.md)。
 
-## 最新结果（2026-10-10）
+## 最新20个新CAD、三载荷结果（2026-10-11）
+
+**现阶段优先FNO；Transolver系列保留++作为对照，最终选型仍待连续查询验证。** 九候选固定540项提交后共享读20个原CSV；480份有效预测，缺失++24000保留60项失败。包含启动修复共17.91分钟UTC，实际运行的monotonic轴另记9.38分钟。
+
+| 方法 | 位移误差 | 应力误差 | 训练分钟 | 60例模型推理秒 |
+|---|---:|---:|---:|---:|
+| FNO grid25查询头 | 27.1% | 53.4% | 25.20 | 2.047 |
+| 最佳Transolver++ | 39.0% | 79.4% | 68.55 | 10.750 |
+| 旧FNO | 26.8% | 55.0% | 20.11 | 2.232 |
+
+FNO查询头相对++降低位移11.9、应力26.1个百分点；每个CAD三载荷平均的位移／应力／热点均20／20例更好，三种载荷的均值也都领先。相对旧FNO仅降低应力1.6个百分点、位移增加0.3个百分点，暂不为这个小差距继续调参。模型推理计时不包含初始化、输入读取和结果保存；完整阶段成本另列。应力误差仍超过50%，这些可用官方TRAIN池新CAD是开发比较，不能宣布最终测试或架构上限。见[精简结果](results/geobc_available_cad_pilot/BRIEF.md)与[选择结论](notes/geobc_available_pilot_actual_result_decision.json)。
+
+下一步比较FNO与最佳++的连续位置查询、重复预测稳定性、原节点重放和查询成本，保留旧FNO参照，不重训、不碰封存20DEV。++推理本身仍含Gumbel随机性，查询集合独立性需要实际验证。见[后续设计](notes/geobc_continuous_query_followup_design.json)。
+
+## 已有独立五CAD结果（2026-10-10）
 
 五种方法都在相同40个CAD、120个载荷病例上完成4800次全案例更新。随后固定五个未参与本轮训练的CAD/ver，比较全部1,080,435个原节点；先提交25份预测，再共享读取五份原signed应力，历史位移缓存另行评估：
 
@@ -20,26 +34,21 @@
 
 五例包含两例官方TRAIN与三例官方TEST，但均与本轮TRAIN40、新增TRAIN160、DEV20互斥。历史U已知、CSV字节/坐标曾读，只称U-known/S-field-blind；不是全局未观察文件或最终测试。单seed、ver单载荷、容量及输入表达不同，不能断言家族上限。Hash单／五样本应力拟合约0.4%／1.5%，不作为跨CAD赢家证据。完整FE物理路线此前U为0.01623%，需要更多完整网格/材料/真实BC输入，原CSV signed S的导出语义仍未绑定，不能据位移准确宣称完整U/S已解决。见[五方法简报](results/geobc_fixed4800_pilot/BRIEF.md)、[Transolver对比](results/TRANSOLVER_COMPARISON.md)与[物理U历史报告](results/blind_solver_service/BRIEF.md)。
 
-## 下一阶段
+## 当前推进（2026-10-11）
 
-40／200 CAD × Transolver、Transolver++、Transolver-3、FNO、MLP的10臂[科学协议](notes/geobc_coverage_comparison_plan.json)已经冻结。每臂fresh seed2026、4800次全案例更新（40 CAD为40轮，200 CAD为8轮），保持原结构、25条件、signed目标和TRAIN40-only scaler；容量差异单列。新增160TRAIN与20DEV按metadata冻结，不能按标签或下载成功替换。全部固定端点预测／明确终态失败提交后，才共享读取DEV标签。没有设计族谱，只声明CAD ID互斥。
+FNO 局部25条件配对已完成，实际 UTC 耗时58.56分钟。两臂均完成4800次更新及全TRAIN120读出。旧FNO的位移／应力误差为14.0%／34.9%；grid25新查询头为18.1%／32.6%，native25为18.3%／33.0%。应力略有改善，位移明显变差，native25配对门槛未通过，暂不替换旧FNO。见[配对简报](results/geobc_fno_local_pair/BRIEF.md)。
 
-五种40-CAD臂均完成4800更新，总训练约3小时15分钟。全部TRAIN120的统一读出已完成600／600次全节点预测，用时4分43秒，没有重训或读取DEV。FNO的U／S平均误差14.0%／34.9%，MLP为35.6%／73.8%，Transolver++为37.6%／77.6%；原版与3的应力误差均约86%。FNO当前配方拟合优势普遍，++是三个Transolver版本中更好的候选，仍未选择最终泛化赢家。见[完整TRAIN紧凑结果](results/geobc_train_fit/BRIEF.md)与[Transolver对比](results/TRANSOLVER_COMPARISON.md)。
+Transolver++新训练制度在中断恢复后触发原24GiB reserved上限，实际停在23166／24000；最终24000物理指标缺失。新4800端点的TRAIN120位移／应力44.2%／80.1%，旧端点37.6%／77.6%。资源失败不能解释为整个Transolver家族的效果上限。见[制度确认结果](results/geobc_pp_regime_confirmation/BRIEF.md)。
 
-上述独立五CAD评估已完成，不替代冻结的新20DEV。同ver载荷的TRAIN40参照：FNO位移／应力7.9%／35.1%，五CAD20.6%／55.1%，拟合残差与CAD外差距并存；++应力74.6%与五CAD74.5%相近且均偏高，末段loss仍下降，当前首要证据是拟合不足。两组CAD难度未控制，不能作泛化的因果估计。下一步只设计FNO与++两个宏观候选，检查作者训练制度与应力泛化，不继续Hash微调，也不按已打开五例选最佳端点。
+固定20个新CAD×三载荷的九候选比较已经真实完成，全部540份预测或端点失败提交后才共享读取20份原CSV标签。初次启动的锁路径与CUDA设备索引错误发生在数据读取之前，记录已归档；显式技术恢复保留北京时间01:55:37准备截止、02:55:37整体截止，不重置预算。原20DEV仍封存；这20例来自可用的官方TRAIN池，是开发比较，不能宣称无偏最终测试。见[当前计划](notes/geobc_available_cad_pilot_plan.json)。
 
-扩展数据恢复的原绝对6小时预算已在北京时间2026-10-10 16:15:02截止，16:18:27实际finalize为budget_exhausted：完整317/540、缺223。Drive/HF连接故障未恢复，父协调器16:18:56报告输入失败并真实退出；不换CAD、不开新DEV、不将该失败解释为方法效果。五个40-CAD模型和已完成读出全部保留。见[输入负结果](results/geobc_coverage_input_negative/BRIEF.md)。
+下一步根据新几何、三载荷的误差、热点和成本决定：若领先清晰，验证领先者与最佳Transolver的连续查询能力；若结果接近，设计统一网格输入、条件和查询头的容量配对，分清算子与表示的贡献。停止Hash小幅微调。见[后续选择分支](notes/geobc_solver_choice_branches.json)。
 
-Transolver++制度确认中断后完整检查点恢复触发原24GiB reserved上限，真实终态23166/24000；最终24000指标缺失，不以中途checkpoint替代，不重置预算。实际UTC跨度6小时33分、native训练328.6分钟，两种时间轴与未知区间分别记录。[本轮负结果和已保存端点](results/geobc_pp_regime_confirmation/BRIEF.md)已完成CPU导出与图验收。新4800全120例U/S44.2%/80.1%，旧4800为37.6%/77.6%，同曝光未改善；资源负结果不是Transolver家族泛化失败。FNO局部25条件配对于23:49真实启动，首个全节点PointNet/FNO/head及两leaf梯度通过；暂估10月11日00:45结束，整体9000秒原上限。之后继续固定20新CAD×三载荷、九候选比较，缺失PP24000保留为真实固定端点失败。见[两条宏观设计](notes/geobc_after_fixed4800_solver_design.md)。
+连续查询适配器已通过合成CPU数值检查，支持TET10位置、局部条件及物理坐标梯度；尚未验证训练模型的任意位置准确性，单元内节点插值也不等同于独立的离节点FEM真值。
 
+原40／200CAD十臂协议因输入下载317／540、缺223，在原6小时预算内终止；固定ID和封存DEV未替换。见[输入失败简报](results/geobc_coverage_input_negative/BRIEF.md)。
 
-原新增160TRAIN中已有102个CAD的FieldMesh/Field/SolverDeck源收据齐全。另立[独立缓存候选协议](notes/geobc_available_cad_pilot_plan.json)，固定字符串排序前20CAD×三载荷，对九个既有/计划固定端点先提交全部540份预测或真实失败，再共享读取标签。当前仅SOURCE实现，输入字段、GRID对齐与缓存未验证，准备与评估均未释放；源准备含CUDA，等待++及FNO真实退出后运行。该数据可用性条件pilot不替代原封存20DEV/540源协议，病例以后进入200TRAIN即不再held。
-
-该20-CAD比较的准备、评估和预算守卫代码，以及FNO／20-CAD的CPU结果汇总器，均已冻结并完成源码检查；实际新CAD预测、真实场值读取与两份结果导出仍为0。简报主表只展示最佳候选、最佳Transolver与旧FNO参照，最多三行、五列；完整九候选和热点／最坏案例等细节另存CSV、JSON与图。++保存的训练标量显示最近五遍encoded目标较4800步附近下降55.7%，这不是物理U／S误差下降，仍须固定24000读出判断。
-
-新五方法结果包已在本地完成导出与图表验收。私人GitHub本次更新已于北京时间17:05完成：main提交f621a3b，账号／仓库ID／private=true及远端SHA均真实核实；仅此次调用采用direct HTTP/1.1修复代理传输失败。18:10新增源码／状态快照d31e799也已实际推送并验证，包含PP训练、已审阅FNO配对和终态报告代码；PP新指标仍待完成。仓库更新先独立形成本地提交，再经绑定确切SHA的有时限直连普通push。
-
-本轮比较当前训练配方，不代表家族效果上限；40／200 CAD的覆盖面与每例训练次数同时变化，不能单独归因于数据量。已经核对三版官方示例的训练制度；实际十臂读出后，按拟合与泛化证据决定独立资格验证或一次完整训练制度确认，见[后续选择范围](notes/transolver_recipe_scope_next.md)。当前实验配置不变。
+私人GitHub最新真实验收提交为`e4c364d`，包含++资源负结果和FNO启动记录；本地FNO终态、新20CAD结果及查询适配器正在整理为下一次仓库更新。仓库：[GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)。
 
 ## 复现与数据边界
 
@@ -119,4 +128,4 @@ python tools/plot_suite_fields.py
 
 GINO训练前已按[频带口径](notes/gino_vs_fno_implementation_scope.md)统一为官方(24,24,22)，对应旧FNO的x/y总24、z12；此前资源检查采用较小的默认频带，完整训练配置的首个325387节点case已通过，480更新结果已完成：GINO验证U54.42%/S72.46%，可比训练740.1秒；旧FNO480为47.51%/66.71%、99.8秒。GINO均值、最差与成本本轮均没有优先证据。新训练不会重复低频候选或据旧final调参。
 
-20个新几何×三载荷、九固定候选的独立比较：准备、评估与单次预算守卫源码已全部冻结并经审阅；等待PP/FNO真实结束退出后运行，当前预测及新真实场值读取均为0。见[冻结计划](notes/geobc_available_cad_pilot_plan.json)。
+

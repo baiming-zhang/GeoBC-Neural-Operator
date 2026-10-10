@@ -1,0 +1,40 @@
+{
+  "observed_at_utc": "2026-10-10T17:00:35.573140+00:00",
+  "boot_id": "a0a13cb8-a69a-4952-ae58-73987e0f4c44",
+  "processes": [
+    {
+      "identity": {
+        "pid": 270,
+        "ppid": 269,
+        "start_ticks": 7622,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.run_geobc_available_pilot_guard",
+          "--start",
+          "--resume-prelaunch",
+          "notes/available_cad_pilot_preIO_technical_recovery_root_review.json"
+        ]
+      },
+      "exact_exited": true
+    },
+    {
+      "identity": {
+        "pid": 363,
+        "ppid": 270,
+        "start_ticks": 7953,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "geobc.available_cad_pilot_data",
+          "--plan",
+          "notes/geobc_available_cad_pilot_plan.json",
+          "--start"
+        ]
+      },
+      "exact_exited": true
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "status": "source_ready_new_time_axes_revision_not_root_released_not_executed",
   "created_at_utc": "2026-10-10T15:10:32.442424+00:00",
   "source": "tools/run_geobc_available_pilot_guard.py",
-  "final_source_sha256": "78099936f0704153c655e55f4c832ccccad363c50aeab6be6a416c9eb323489f",
+  "final_source_sha256": "de3afe185f7b64d0238d999598701339e6bb556ab55ab55f35b523019697f009",
   "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
   "whole_source_reviewed_by_root": false,
   "independent_readonly_review": {
@@ -79,6 +79,16 @@
         ]
       },
       "receipt_created_at_utc": "2026-10-10T11:33:57.500901+00:00"
+    },
+    {
+      "source_sha256": "78099936f0704153c655e55f4c832ccccad363c50aeab6be6a416c9eb323489f",
+      "archived_in": "notes/source_revisions/available20_preIO_lock_failure",
+      "reason": "observed preIO lock path defect"
+    },
+    {
+      "source_sha256": "4886ba9f948d80c7432e9a3be79862da75594b527872e9c518b65a16de419a9e",
+      "archived_in": "notes/source_revisions/available20_CUDA_index_failure",
+      "reason": "ValueError: Expected a torch.device with a specified index or an integer, but got:cuda"
     }
   ],
   "revision_count": 2,
@@ -99,5 +109,6 @@
     "difference_epoch_minus_monotonic": "clock_axis_difference_seconds",
     "campaign_overhead_epoch": "between_stage_and_guard_overhead_epoch_seconds",
     "campaign_overhead_monotonic": "between_stage_and_guard_overhead_seconds"
-  }
+  },
+  "technical_source_repair_at_utc": "2026-10-10T16:59:21.359278+00:00"
 }

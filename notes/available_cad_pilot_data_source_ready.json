@@ -3,7 +3,7 @@
   "status": "source_ready_not_released_not_executed",
   "created_at_utc": "2026-10-10T11:18:48.047813+00:00",
   "source": "geobc/available_cad_pilot_data.py",
-  "final_source_sha256": "1fbc7e7b82009fa8086d12a37f91cc624d8b634cb314715be74cfd3fa80dba1e",
+  "final_source_sha256": "fe6a1b8ac1a001dc14a5eefd1e64cb75d71359a3ba77903479d4051fd0eb127a",
   "plan": "notes/geobc_available_cad_pilot_plan.json",
   "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
   "AST": {
@@ -163,5 +163,18 @@
     "genuine PP/FNO terminal and exact process-ticks exit bindings",
     "genuine separate root actual release",
     "root-reviewed one-shot external guard writes authoritative preparation external terminal after actual child exit"
-  ]
+  ],
+  "previous_revisions": [
+    {
+      "source_sha256": "1fbc7e7b82009fa8086d12a37f91cc624d8b634cb314715be74cfd3fa80dba1e",
+      "archived_in": "notes/source_revisions/available20_preIO_lock_failure",
+      "reason": "observed preIO lock path defect"
+    },
+    {
+      "source_sha256": "778825752d3fdca343983975c3c469fc098755242455c4be54986c6836d0d375",
+      "archived_in": "notes/source_revisions/available20_CUDA_index_failure",
+      "reason": "ValueError: Expected a torch.device with a specified index or an integer, but got:cuda"
+    }
+  ],
+  "technical_source_repair_at_utc": "2026-10-10T16:59:21.359278+00:00"
 }

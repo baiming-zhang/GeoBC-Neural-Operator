@@ -3,14 +3,14 @@
   "reviewer": "root",
   "reviewed_at_utc": "2026-10-10T15:15:48.477107+00:00",
   "source": "tools/export_available_cad_pilot.py",
-  "source_sha256": "e192beb0d4465012b2daa4ffcd2b0a5d9199550aade801c1fbf06a5e141a3d4c",
+  "source_sha256": "f328d619b270752240304a2e0310f2166468be453bda68f8037ae82ac1e619f9",
   "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
   "whole_source_reviewed": true,
-  "source_ready_sha256": "c2a5f5f402775498f2113b2ecf118c92907f817f8d202a6499addfeafc752eda",
+  "source_ready_sha256": "dbc8a1a2c8c89b889ba60f36f8d153d7dba74d1c6b7dbf74b90b2ff5ac8e2dfd",
   "independent_source_schema_review_by": "available20_data_impl",
   "actual_export_released": true,
   "release_is_conditional_on_authentic_PILOT_terminal_closed_native_clocks_exact_guard_child_exits": true,
-  "actual_export_executed": false,
+  "actual_export_executed": true,
   "default_executed": false,
   "arrays_GT_PT_GPU_reads": 0,
   "AST": {
@@ -41,6 +41,11 @@
         "seconds": 0.004690298999776132,
         "historical_revisions_retained_in_source_ready": true
       }
+    },
+    {
+      "prior_source_sha256": "e192beb0d4465012b2daa4ffcd2b0a5d9199550aade801c1fbf06a5e141a3d4c",
+      "reason": "Actual pre-data technical continuation receipts added; fixed science/budgets/ranking unchanged",
+      "reviewed_at_utc": "2026-10-10T17:06:58.488363+00:00"
     }
   ],
   "clock_axis_revision_review": {
@@ -51,5 +56,21 @@
     "difference_cause_not_inferred": true,
     "scientific_rules_unchanged": true,
     "source_only_no_experiment_calls": true
-  }
+  },
+  "technical_continuation_root_review": {
+    "reviewer": "root",
+    "passed": true,
+    "source_AST_passed": true,
+    "root_review_hash_and_archive_chain_exact": true,
+    "both_original_UTC_deadlines_unchanged": true,
+    "actual_export_executed": false,
+    "raw_array_PT_GT_GPU_reads": 0,
+    "monotonic_continuation_only_explicit": true
+  },
+  "actual_export_exit_code": 0,
+  "actual_export_CPU_seconds_before_persistence": 9.960951765000004,
+  "actual_PNG_root_visual_QA_passed": true,
+  "actual_PNG": "results/geobc_available_cad_pilot/comparison.png",
+  "actual_export_manifest_sha256": "00e095046654b0003d05004224c0b06036811b444c2d7064f31673f122078282",
+  "actual_QA_at_utc": "2026-10-10T17:17:45.930838+00:00"
 }

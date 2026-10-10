@@ -1,12 +1,12 @@
 {
   "passed": true,
   "reviewer": "root",
-  "reviewed_at_utc": "2026-10-10T12:40:40.256557+00:00",
+  "reviewed_at_utc": "2026-10-10T15:57:53.252317+00:00",
   "source": "tools/push_reviewed_snapshot.ps1",
   "source_sha256": "e1e7251f74ce2f02851b2bc621c128eb0cdc39e85b02b8178b56fb767c877e3d",
   "whole_source_reviewed": true,
   "decision": "one_bounded_direct_HTTP11_immutable_private_snapshot_attempt",
-  "target_commit": "e40e38cd10aa375bab80637dc9248a40c75bce93",
+  "target_commit": "e4c364dbbcea5837bf6d96ad73cf28abb5b594c7",
   "ordinary_fast_forward_only": true,
   "preserve_existing_user_authorization": true,
   "required_identity": {
@@ -17,15 +17,16 @@
   },
   "local_snapshot_review": {
     "prepared_by": "tools/publish_private_repo.ps1 -PrepareSnapshot",
-    "elapsed_seconds": 5.9279645,
+    "elapsed_seconds": 6.8327357,
     "exit_code": 0,
-    "file_count": 2304,
-    "bytes": 245864474,
+    "file_count": 2342,
+    "bytes": 250637669,
     "metadata_reviewed": true,
-    "local_ancestor_d31_verified_exit0": true,
-    "tracked_delta_files": 32,
+    "local_ancestor_e40_verified_exit0": true,
+    "tracked_delta_files": 62,
     "untracked_publication_receipt_excluded": true,
-    "contents": "frozen reviewed CAD20 preparation/evaluation/one-shot guard and CPU exporters; PP14080 running plus genuine saved4800/loss diagnostics; no PP24k/FNO/new20 results, no arrays/PT/raw data"
+    "contents": "PP real resource negative23166/24000 and CPU report/QA; immutable interruption/cursor/cost evidence and frozen time-axis guards/reporters; FNO actual live first-gradient only; no PP24k/FNO endpoints/newCAD predictions/raw arrays/PT",
+    "source_authors_frozen": true
   },
   "AST": {
     "parse_count": 1,
@@ -44,5 +45,6 @@
   ],
   "actual_new_target_push_executed": false,
   "historical_verified_f621_receipt": "notes/github_immutable_push_f621_receipt.json",
-  "historical_verified_d31_receipt": "notes/github_immutable_push_d31_receipt.json"
+  "historical_verified_d31_receipt": "notes/github_immutable_push_d31_receipt.json",
+  "AST_reused_after_exact_source_SHA_match": true
 }

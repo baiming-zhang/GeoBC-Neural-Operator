@@ -1,54 +1,47 @@
 {
-  "observed_at_utc": "2026-10-10T15:50:59.885446+00:00",
-  "external_launch_present": true,
-  "status": "running",
-  "guard_source_sha256": "2667cde14afa4761e8b79fdd5e2c077f9d4923fd9921faaf2674f3f028302cda",
-  "child_pid": 380,
-  "child_process": {
-    "pid": 380,
-    "ppid": 287,
-    "start_ticks": 7296,
-    "argv": [
-      "/home/research/.venvs/geobc/bin/python",
-      "-u",
-      "-m",
-      "geobc.fno_local_condition_pair",
-      "--plan",
-      "notes/geobc_fno_local_condition_pair_plan.json",
-      "--start"
-    ]
-  },
-  "guard_process": {
-    "pid": 287,
-    "ppid": 286,
-    "start_ticks": 7239,
-    "argv": [
-      "/home/research/.venvs/geobc/bin/python",
-      "-u",
-      "-m",
-      "tools.run_geobc_fno_pair_guard"
-    ]
-  },
-  "started_at_utc": "2026-10-10T15:49:45.299558+00:00",
-  "deadline_epoch": 1791656385.2995582,
-  "exit_code": null,
-  "child_process_exact_alive": true,
-  "guard_process_exact_alive": true,
-  "native_status": {
+  "observed_at_utc": "2026-10-10T16:25:12.459131+00:00",
+  "status.json": {
     "status": "running",
     "phase": "training",
-    "arm": "FNO_latent_query_grid25",
-    "step": 64
+    "arm": "FNO_latent_query_native25",
+    "step": 487
   },
-  "native_clock": {
+  "clock.json": {
     "phase": "training",
-    "arm": "FNO_latent_query_grid25",
-    "closed": false,
-    "active": true,
-    "cumulative_wall_seconds": 69.12985958900002,
+    "arm": "FNO_latent_query_native25",
     "training_seconds": {
-      "FNO_latent_query_grid25": 18.796610447999868,
-      "FNO_latent_query_native25": 0.0
-    }
-  }
+      "FNO_latent_query_grid25": 1511.9210603679999,
+      "FNO_latent_query_native25": 154.76085015099943
+    },
+    "cumulative_wall_seconds": 1955.731885565,
+    "closed": false,
+    "active": true
+  },
+  "external_launch.json": {
+    "status": "running"
+  },
+  "summary.json": null,
+  "guard": {
+    "pid": 287,
+    "start_ticks": 7239,
+    "exact_alive": true,
+    "argv": "/home/research/.venvs/geobc/bin/python -u -m tools.run_geobc_fno_pair_guard "
+  },
+  "child": {
+    "pid": 380,
+    "start_ticks": 7296,
+    "exact_alive": true,
+    "argv": "/home/research/.venvs/geobc/bin/python -u -m geobc.fno_local_condition_pair --plan notes/geobc_fno_local_condition_pair_plan.json --start "
+  },
+  "FNO_latent_query_grid25_gradient": {
+    "passed": true,
+    "step": 1,
+    "missing_gradient_names": []
+  },
+  "FNO_latent_query_native25_gradient": {
+    "passed": true,
+    "step": 1,
+    "missing_gradient_names": []
+  },
+  "inspection_scope": "Transition check of native scalar status/clock/external/gradient and /proc only; no raw/GT/PT/arrays/GPU monitoring"
 }

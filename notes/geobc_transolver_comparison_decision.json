@@ -95,8 +95,8 @@
   "current_new_DEV_results_available": false,
   "no_final_family_selected": true,
   "recipe_scope_analysis": "notes/transolver_recipe_scope_next.md",
-  "current_status": "FNO current empirical leader; PP real TRAIN-only author regime running, first gradient passed; formal10 inputs negative, newDEV sealed; private f621 verified published",
-  "latest_UTC": "2026-10-10T07:41:34.551509+00:00",
+  "current_status": "CAD20_three_load_completed_FNO_priority_continuous_qualification_next",
+  "latest_UTC": "2026-10-10T17:17:45.930838+00:00",
   "latest_user_clarification": "Senior suggested Transolver without a version; final solver must be chosen by observed best performance, not the suggestion alone.",
   "final_solver_selected": false,
   "latest_TRAIN_only_comparison": {
@@ -738,5 +738,66 @@
     "old_input_negative_preserved": true,
     "repeat_probes_authorized": false,
     "new_downloads_released": false
+  },
+  "FNO_local_pair_terminal": {
+    "status": "completed",
+    "UTC_wall_seconds": 3513.354578733444,
+    "report": "results/geobc_fno_local_pair/BRIEF.md",
+    "scientific_pair_gate_passed": false,
+    "keep_old_FNO_baseline": true,
+    "grid25_TRAIN120_U_S": [
+      0.1813,
+      0.3263
+    ],
+    "native25_TRAIN120_U_S": [
+      0.18338037549301509,
+      0.3300730725402756
+    ],
+    "old_FNO_TRAIN120_U_S": [
+      0.139808,
+      0.34858
+    ],
+    "final_solver_selected": false
+  },
+  "available_CAD20_terminal": {
+    "status": "completed",
+    "SCI": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
+    "report": "results/geobc_available_cad_pilot/BRIEF.md",
+    "complete_CADs": 20,
+    "complete_cases": 60,
+    "finite_allN_predictions": 480,
+    "true_PP24000_failure_entries": 60,
+    "terminal_prediction_inventory": 540,
+    "shared_raw_CSV_GT_reads": 20,
+    "GT_reads_before_barrier": 0,
+    "actual_UTC_campaign_seconds": 1074.3857960700989,
+    "actual_continuation_monotonic_seconds": 563.0016064580001,
+    "leader": "FNO_latent_query_grid25_step4800",
+    "best_Transolver": "transolver_pp_cad40_fresh4800",
+    "leader_U_S": [
+      0.27089867961570563,
+      0.5336926202974681
+    ],
+    "bestTS_U_S": [
+      0.3901865716641529,
+      0.7943834166640956
+    ],
+    "leader_vs_TS_U_S_improvement_pp": [
+      11.928789204844726,
+      26.06907963666275
+    ],
+    "leader_vs_TS_CAD20_U_S_hot_improved": [
+      20,
+      20,
+      20
+    ],
+    "FNO_grid_vs_old_U_S_delta_pp": [
+      0.321209959321289,
+      -1.58560771677945
+    ],
+    "interpretation": "FNO family working priority supported on three loads/all20 pairedCAD. New head small tradeoff vsoldFNO; no final architecture ceiling or unbiased finaltest.",
+    "next_priority": "continuous query/stability qualification, retaining best TS and old FNO controls; stop tiny hash/local25 tuning",
+    "final_solver_selected": false,
+    "updated_at_utc": "2026-10-10T17:17:45.930838+00:00"
   }
 }

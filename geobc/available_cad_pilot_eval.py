@@ -521,7 +521,7 @@ def run(plan_path=PLAN, start=False):
     manifest = {**manifest, "output": str(d.path(plan["scientific"]["outputs"]["input_cache"]))}
     output = d.path(plan["scientific"]["outputs"]["readout"])
     from .coverage_comparison_train import lock
-    held = lock(plan["scientific"]["execution_device_and_lock"]["single_shared_GPU_lock"])
+    held = lock(d.shared_gpu_lock(plan))
     try:
         held.__enter__()
     except (OSError, RuntimeError) as error:
