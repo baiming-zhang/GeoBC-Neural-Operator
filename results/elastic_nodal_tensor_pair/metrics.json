@@ -431,5 +431,60 @@
   },
   "conclusion": "Replacing cell-mean tensor by native-node tensor did not improve this fixed matched head. Close this frozen pair; not a family-wide impossibility proof. Extreme decoded DEV outliers dominate L2; cause is not established by aggregate metrics.",
   "next_test_labels_still_sealed": true,
-  "final_solver_selected": false
+  "final_solver_selected": false,
+  "metadata_only_error_concentration": {
+    "fourQ_cellmean": {
+      "fixed120_complete": true,
+      "last_balanced_pass_encoded_MSE_by_CAD": {
+        "101_428/ver": 0.125510593643412,
+        "101_56/ver": 0.12933987844735384,
+        "101_78/ver": 0.1820630831643939
+      },
+      "per_DEV": {
+        "102_249/ver": {
+          "stress_relativeL2": 13.016517359335863,
+          "RMSE_MPa": 1297.215766170067,
+          "MAE_MPa": 40.03839173246288,
+          "maximum_error_MPa": 353387.4325144769,
+          "single_largest_node_fraction_of_total_squared_error": 0.3514304388678406,
+          "GT_stress_RMS_from_saved_energy_MPa": 99.65920455978666
+        },
+        "102_38/ver": {
+          "stress_relativeL2": 0.9515764865693489,
+          "RMSE_MPa": 74.1995570628715,
+          "MAE_MPa": 18.30761874785014,
+          "maximum_error_MPa": 12093.285256601459,
+          "single_largest_node_fraction_of_total_squared_error": 0.1344894087984598,
+          "GT_stress_RMS_from_saved_energy_MPa": 77.97539988653764
+        }
+      }
+    },
+    "element_node": {
+      "fixed120_complete": true,
+      "last_balanced_pass_encoded_MSE_by_CAD": {
+        "101_428/ver": 0.11973187618423253,
+        "101_56/ver": 0.1285668145865202,
+        "101_78/ver": 0.18198198452591896
+      },
+      "per_DEV": {
+        "102_249/ver": {
+          "stress_relativeL2": 61.99767025427952,
+          "RMSE_MPa": 6178.638502101443,
+          "MAE_MPa": 68.98736587506153,
+          "maximum_error_MPa": 1851305.8178285256,
+          "single_largest_node_fraction_of_total_squared_error": 0.4251403927114867,
+          "GT_stress_RMS_from_saved_energy_MPa": 99.65920455978666
+        },
+        "102_38/ver": {
+          "stress_relativeL2": 2.516301041366474,
+          "RMSE_MPa": 196.20957993546193,
+          "MAE_MPa": 18.584939261596965,
+          "maximum_error_MPa": 37803.73447163071,
+          "single_largest_node_fraction_of_total_squared_error": 0.18794514342681068,
+          "GT_stress_RMS_from_saved_energy_MPa": 77.97539988653764
+        }
+      }
+    }
+  },
+  "interpretation_scope": "The largest single node contributes 13–43% of all squared error on each endpoint/case. Severe finite outliers matter, so do not infer that all nodes are uniformly inaccurate or that physical tensor information is inherently useless. The frozen matched pair still fails complete-S and representation-gain gates; no clipping, loss, aggregation, seed or endpoint rescue. A nonlinear decoding/extrapolation mechanism is a hypothesis, not established causation."
 }

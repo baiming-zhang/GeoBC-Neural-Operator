@@ -1,0 +1,320 @@
+{
+  "schema": 1,
+  "status": "design_only_proposal_not_frozen",
+  "actual_execution_released": false,
+  "created_at_utc": "2026-10-10T01:21:21.749177+00:00",
+  "main_decision": "优先一次扩大CAD覆盖的原signed U/S直接监督大对照，而非继续小物理应力head或符号公式试探。当前源S导出未知阻止精确物理signed-S对应；不阻止学习与评价原始、未改动的signed-S监督。",
+  "priority_option": "data_coverage_40_vs200_direct_signed_fields",
+  "current_learning_evidence": {
+    "runs": [
+      {
+        "method": "fno",
+        "seed": 2026,
+        "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/summary.json",
+        "status": "completed",
+        "train_CADs": 40,
+        "train_cases": 120,
+        "loads": [
+          "hor",
+          "tor",
+          "ver"
+        ],
+        "DEV_CADs": 5,
+        "DEV_cases": 15,
+        "endpoint_step": 2880,
+        "complete_case_exposure_min": 24,
+        "complete_case_exposure_max": 24,
+        "actual_train_seconds": 608.6778807109991,
+        "train_node_exposures": 625917240,
+        "endpoint_DEV_known3": {
+          "U_mean_relative_l2": 0.3627884176080105,
+          "U_worst_relative_l2": 0.7561329603783523,
+          "S_mean_relative_l2": 0.5645220326029999,
+          "S_worst_relative_l2": 0.7548419201687406,
+          "S_hotspot_mean_relative_l2": 0.45580880226156384
+        }
+      },
+      {
+        "method": "fno",
+        "seed": 2027,
+        "path": "runs/geobc_exploration/solver_confirm_fno_seed2027_600s/summary.json",
+        "status": "completed",
+        "train_CADs": 40,
+        "train_cases": 120,
+        "loads": [
+          "hor",
+          "tor",
+          "ver"
+        ],
+        "DEV_CADs": 5,
+        "DEV_cases": 15,
+        "endpoint_step": 2880,
+        "complete_case_exposure_min": 24,
+        "complete_case_exposure_max": 24,
+        "actual_train_seconds": 601.5754067829937,
+        "train_node_exposures": 625917240,
+        "endpoint_DEV_known3": {
+          "U_mean_relative_l2": 0.36223107120843484,
+          "U_worst_relative_l2": 0.7207178888013864,
+          "S_mean_relative_l2": 0.5606817267361248,
+          "S_worst_relative_l2": 0.7331576873256912,
+          "S_hotspot_mean_relative_l2": 0.44168684652353557
+        }
+      },
+      {
+        "method": "mlp",
+        "seed": 2026,
+        "path": "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/summary.json",
+        "status": "completed",
+        "train_CADs": 40,
+        "train_cases": 120,
+        "loads": [
+          "hor",
+          "tor",
+          "ver"
+        ],
+        "DEV_CADs": 5,
+        "DEV_cases": 15,
+        "endpoint_step": 7080,
+        "complete_case_exposure_min": 59,
+        "complete_case_exposure_max": 59,
+        "actual_train_seconds": 604.2184895979956,
+        "train_node_exposures": 1538713215,
+        "endpoint_DEV_known3": {
+          "U_mean_relative_l2": 0.5169084246026078,
+          "U_worst_relative_l2": 1.2819758249587372,
+          "S_mean_relative_l2": 0.7562170731387928,
+          "S_worst_relative_l2": 0.9678971828364324,
+          "S_hotspot_mean_relative_l2": 0.6907131454538936
+        }
+      },
+      {
+        "method": "mlp",
+        "seed": 2027,
+        "path": "runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/summary.json",
+        "status": "completed",
+        "train_CADs": 40,
+        "train_cases": 120,
+        "loads": [
+          "hor",
+          "tor",
+          "ver"
+        ],
+        "DEV_CADs": 5,
+        "DEV_cases": 15,
+        "endpoint_step": 7080,
+        "complete_case_exposure_min": 59,
+        "complete_case_exposure_max": 59,
+        "actual_train_seconds": 607.661245224986,
+        "train_node_exposures": 1538713215,
+        "endpoint_DEV_known3": {
+          "U_mean_relative_l2": 0.43010453171261814,
+          "U_worst_relative_l2": 0.6387090831486468,
+          "S_mean_relative_l2": 0.7324411674393444,
+          "S_worst_relative_l2": 0.8255837590336937,
+          "S_hotspot_mean_relative_l2": 0.6857425994808849
+        }
+      }
+    ],
+    "interpretation": "FNO/MLP不是TRAIN10或只3CAD模型：已用40CAD/三known载荷，并有完整24或59次案例曝光。FNO在此确认预算/输入下S优于MLP，仍约56%而非完整S资格；不能以更多曝光自动预言解决泛化或源语义。这里只取known DEV小summary，未重新打开oldfinal。"
+  },
+  "available_original_DeepJEB": {
+    "revision": "160424ca2a5095315ff9ead8a5fc36d2667fd3c6",
+    "official_random_metadata_train_CADs": 1924,
+    "official_random_metadata_test_CADs": 214,
+    "aligned_multiload_CADs": 50,
+    "aligned_multiload_cases": 200,
+    "local_prefix_provenance_complete_component_triplets": 50,
+    "additional_exact_release_CADs": [
+      "506_25",
+      "506_533"
+    ],
+    "additional_exact_aligned_cases": [
+      "506_533/ver",
+      "506_25/tor"
+    ],
+    "current_eligible_reuse_TRAIN_CADs": 40,
+    "fresh_additional_aligned_CADs_sufficient_for_scale_contrast": false,
+    "old_DEV_CADs_excluded_from_training": [
+      "102_249",
+      "102_38",
+      "107_91",
+      "114_202",
+      "116_440"
+    ],
+    "physical_DEV_CADs_excluded": [
+      "102_249",
+      "102_38"
+    ],
+    "old_final_CADs_permanently_excluded": [
+      "107_95",
+      "113_345",
+      "113_472",
+      "114_319",
+      "116_61"
+    ],
+    "new_blind_CADs_permanently_excluded": [
+      "142_454",
+      "247_50",
+      "416_282",
+      "489_12",
+      "616_205"
+    ],
+    "new_blind_official_train_members_excluded": [
+      "247_50",
+      "489_12"
+    ],
+    "new_blind_official_test_members": [
+      "142_454",
+      "416_282",
+      "616_205"
+    ],
+    "unused_official_TRAIN_metadata_candidates_not_locally_prepared": 1875,
+    "metadata_population_not_available_field_files": "1875是原官方TRAIN ID候选数，不是已经下载/对齐/兼容的CAD数；新周期实际获取、字段可用性与source identity仍未验证。52个非sealed已有source CAD并不等于可做独立大样本扩充；exact2早已用于复现/overfit，不能冒充全新DEV。",
+    "acquisition_now": false,
+    "family_disjoint_claim": false
+  },
+  "options": [
+    {
+      "id": "data_coverage_40_vs200_direct_signed_fields",
+      "priority": 1,
+      "status": "recommended_after_current_blind_terminal_and_new_cycle_freeze",
+      "question": "在保留结构、载荷接口与原signed目标时，扩大训练几何覆盖是否给跨CAD应力带来大收益？同时以FNO/MLP两种不同归纳结构区分只对某一架构有用的覆盖效应；不是宽度/seed/损失救训。",
+      "minimum_readiness": {
+        "reuse_train_CADs": 40,
+        "new_train_CADs_requested": 160,
+        "new_development_CADs_requested": 20,
+        "target_train_CADs": 200,
+        "target_train_cases_known3": 600,
+        "target_development_cases_known3": 60,
+        "loads": [
+          "ver",
+          "hor",
+          "tor"
+        ],
+        "selection": "先冻结metadata-only seed2026候选名单，从1875未用官方TRAIN候选取160增补TRAIN+20新DEV；whole-CAD互斥，无GT/表现/几何难度择样；dia、本轮新blind5和旧final始终不进入开发。实际缺字段保留failure denominator，不换好案例。",
+        "current_local_new_triplets": 0,
+        "new_download_and_alignment_require_root_authorization": true,
+        "extra_geometry_family_lineage": "现meta无设计族谱，仅能声明CAD IDs互斥，不能承诺设计族外推。"
+      },
+      "minimal_comparison": {
+        "families": [
+          "existing_FNO_point_to_grid_R64",
+          "existing_geometry_conditioned_MLP"
+        ],
+        "arms_per_family": [
+          "fresh_original_TRAIN40",
+          "fresh_TRAIN200_including_same40"
+        ],
+        "new_model_seed": 2026,
+        "same_constructor_initialization_within_family": true,
+        "full_model_same_initialization_across_families": false,
+        "architecture_and_inputs": "保留各已接受的original25、同1024 xyz PointNet/global32及已有family adapter；direct4原signed uXYZ/mm与S/MPa；不新增teacher/物理tensor、rank、频率、宽度或目标公式。",
+        "common_transform": "每family两臂直接复用原TRAIN40-only共同FieldScaler；不对新DEV/newblind拟合；增加数据臂不更改旧标签或挪动S定义。",
+        "fixed_updates_each_arm": 4800,
+        "complete_case_rule": "每次全原N四通道均方loss，一次Adam；200CAD×known3=600case每pass，共8passes；40CAD×known3=120case共40passes，4800端点均为完整pass。",
+        "maximum_training_seconds_each_arm_proposed": 1800,
+        "budget_semantics": "预算未达4800则终态incomplete，披露实际完整pass/节点曝光，不把曝光不足判为架构精度失败；无后续budget/lr/width/seed救。实际IO、训练、物理解码、冷推理和采集/准备成本另记。",
+        "validation": "两规模/两family固定端点在同新DEV20×known3全原节点评价；原DEV/历史600端点仅上下文，不为new对照挑best。四端点预测屏障后共享新DEV标签读取，科学规则由root未来冻结。"
+      },
+      "advance_gate_proposed": {
+        "at_least_one_family": "全60DEVcase均有finite完整输出，扩大数据臂相对其fresh40控制S均值改善≥20%，S最差≤1.05倍，top原|S|1%热点均值改善≥10%，U最差≤1.10倍；列MPa RMS/max及mm误差和实际冷成本，不能只有编码loss改善。",
+        "absolute_complete_S_qualification": "数据覆盖continue gate不替代每case S/hotspot绝对资格；完整GeoBC仍需另行冻结绝对门和未使用集合，不能据相对收益宣布工程可用。"
+      },
+      "stop_rule": "新数据入口不可用则停在readiness negative；完整4800后两个family均无实质S收益，关闭这一次纯数据规模假设，不自动加宽度/seed/更多epochs/1000CAD；现U-only盲验不反馈选样。",
+      "uncertainty": "1800s是否足够4800及下载/对齐字节时价未知；新样本与archive-prefix的分布变化、密切几何族相关、FNO R64前端平滑仍可能限制学习。固定更新对照匹配案例数，不匹配节点数或总计算成本，均须实记；这是覆盖与分布组合效果，不是单一因果证明。"
+    },
+    {
+      "id": "source_closed_physical_signed_output_interface",
+      "priority": 2,
+      "status": "currently_blocked_not_a_parallel_parameter_search",
+      "question": "只有原scalar exporter/recovery契约闭合后，才可检验一个完整物理U/S接口；避免把未知源scalar与近似tensor误差混为一谈。",
+      "necessary_new_information": "原H3D及导出会话/代码，或作者确认的唯一datatype/component、GLOBAL/BYPROP、corner/midside、先标量或先张量平均及sign规则；不是再从DEV枚举trace/principal符号或fit公式。",
+      "minimum_if_unblocked": "仅预固定TRAIN101_428/ver的原结果→CSV源接口复現；唯一规则在声明导出舍入容差内对应，之后独立比较近似FE恢复误差。不开DEV、oldfinal、新blindS，不新增学习小head。",
+      "advance_gate": "可信source契约+唯一源路线可重复匹配GRID-aligned原CSV；这证明输出接口，不证明近似FE模型已精确或工程合格。",
+      "stop_rule": "缺原结果/可信契约或唯一路线不匹配则保持unknown并关闭精确物理signed-S主张；直接signed监督仍可按option1推进，物理路线保留U/native-P2参考。"
+    }
+  ],
+  "current_blind_separation": "当前正式blind只比较full-FE U/native-P2和固定FNO2026 last2880原节点U，信息输入、offline训练和fresh成本不同。无论U门通过与否，它均不解决signed-S；本设计不读其sealed字段、不改变当前队列或开启S读出。",
+  "not_selected": "本文件不冻结选型、采集、模型、预算或新stage。先等当前blind事实与root决策；不给无限新family列表，旧负配方不救训。",
+  "source_evidence": {
+    "notes/geobc_split.json": {
+      "sha256": "1dd3d53bfdfebc790c5f4e8c457ca6af88c95be900f664eccabeb6697b128859",
+      "bytes": 25283
+    },
+    "notes/geobc_solver_confirmation_plan.json": {
+      "sha256": "a73b4bc63e9af00637c19d443fda2e2e0728e774a31a69c32ece33e2537951a6",
+      "bytes": 9909
+    },
+    "data/prepared_geobc_multiload/manifest.json": {
+      "sha256": "8d9ea79c047977830bf152a0a0b93c64a6e62b5a7ea4941c9f4c2fbff04c1ee0",
+      "bytes": 933191
+    },
+    "data/prepared_exact_multifield/manifest.json": {
+      "sha256": "a3b280aefe621f72d5bd8c665007d2aee178fad803050b0c1ce6ccfb0c90cc8d",
+      "bytes": 11262
+    },
+    "data/raw/deepjeb_provenance.json": {
+      "sha256": "14bc747ab78e15f7dbaf046f7ed14db502db362b69ac376d2a795b4c616fa262",
+      "bytes": 45835
+    },
+    "data/raw_exact/deepjeb_drive_provenance.json": {
+      "sha256": "0f1183b9fa9a8cd03db53a3e419bdda7ca2220b8a08422b31c143f415a4e5ecc",
+      "bytes": 2716
+    },
+    "data/raw/Metadata/train_split_random.json": {
+      "sha256": "8ae895ad70448b0699ecf7211a32224fe4cdbaf685018617a16ba1c25df75f1d",
+      "bytes": 22420
+    },
+    "data/raw/Metadata/test_split_random.json": {
+      "sha256": "525a6cdfd15315f382f99920a3953e53d8e65d2c88f3d20a6f682202a8da48cc",
+      "bytes": 2512
+    },
+    "notes/geobc_stress_semantics.json": {
+      "sha256": "e1f5f41918d2e2a1f9d0194802e134f936f00282cf8036833283f74a665f25b1",
+      "bytes": 6605
+    },
+    "notes/geobc_signed_output_interface.md": {
+      "sha256": "d5f0c58fa7695df9f7994072c890ce0eb82dd145227afa177e3564c8dcaf1727",
+      "bytes": 6219
+    },
+    "notes/geobc_nodal_tensor_pair_plan.json": {
+      "sha256": "6f8a528d1462ddd284418bda3be75a2ac23e073a50201f27ca9d47c48fa5b20b",
+      "bytes": 44746
+    },
+    "runs/geobc_exploration/elastic_nodal_tensor5_ver_pair/summary.json": {
+      "sha256": "11cc96900a7daac3f17106d69ff1a408daaa3e31aa917d621f1eff3021f83a7b",
+      "bytes": 157141
+    },
+    "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/summary.json": {
+      "sha256": "505ba9caab71a37a628b95e3027c9cd8522427d6c9576ae95a5a8030aebbf14f",
+      "bytes": 862782
+    },
+    "runs/geobc_exploration/solver_confirm_fno_seed2027_600s/summary.json": {
+      "sha256": "9da16460bcbc78200fe07a0dfe3e9911c074ca437f86ac4b66c826d83ceec5e1",
+      "bytes": 762487
+    },
+    "runs/geobc_exploration/solver_confirm_mlp_seed2026_600s/summary.json": {
+      "sha256": "687aba6920906f54611a81de539d606fc348b25c7c4adb5b0f15359f539fde6e",
+      "bytes": 1372602
+    },
+    "runs/geobc_exploration/solver_confirm_mlp_seed2027_600s/summary.json": {
+      "sha256": "effd71bb7f9e0befd7dc10d702d1642400dcfdd7b46033e4d2346221b0772601",
+      "bytes": 1275588
+    }
+  },
+  "read_receipt": {
+    "access": "Existing small JSON manifests/splits/run summaries and source notes only; file SHA only for those metadata/text files",
+    "scientific_array_reads": 0,
+    "raw_header_or_field_reads": 0,
+    "GT_reads": 0,
+    "weight_reads": 0,
+    "new_sealed_content_reads": 0,
+    "module_imports": 0,
+    "contract_executions": 0,
+    "GPU_runs": 0,
+    "downloads": 0,
+    "training_runs": 0,
+    "queue_or_report_source_changes": 0
+  }
+}

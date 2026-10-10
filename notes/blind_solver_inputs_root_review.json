@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "status": "completed_source_review",
+  "passed": true,
+  "source": "geobc/blind_solver_inputs.py",
+  "source_sha256": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+  "created_UTC": "2026-10-10T01:32:04.256878+00:00",
+  "independent_reviewer": "deepjeb_research",
+  "scope": [
+    "Original25 schema: RBE2 CM descriptor separated from physical true SPC",
+    "Original H5 rows and CSV nodeID coordinate one-to-one, 0.0002mm Euclidean tolerance",
+    "Original FP32 canonical cloud, quadratic boundary pool, deterministic seed and mask",
+    "H5 vertices/cells only and coordinate-only selective CSV before U barrier",
+    "Original signed U columns only, once-per-source claim, owned GT cache distinct from source parses",
+    "Helper verifies ten node and five physical native manifest inventory and byte SHA; driver separately proves content completion"
+  ],
+  "source_only": true,
+  "module_imports": 0,
+  "AST_runs": 0,
+  "request_contract_runs": 0,
+  "new_raw_or_header_reads": 0,
+  "arrays_or_GT_or_weights_reads": 0,
+  "GPU_runs": 0,
+  "actual_execution_released": false
+}

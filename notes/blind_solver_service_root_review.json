@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "passed": true,
+  "decision": "proceed_frozen_blind_full_FE_U_with_FNO_reference",
+  "source_sha256": "668543d48520348f5e2cb3794a3dba96f178318f84dc126b598bbce669ea8000",
+  "source_pins": {
+    "geobc/blind_solver_service.py": "668543d48520348f5e2cb3794a3dba96f178318f84dc126b598bbce669ea8000",
+    "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/elastic_coarse.py": "a723024b08c773bcab66ee7494e3a450f4b4b7990dbefe6410e3f0ef2454d420",
+    "geobc/elastic_continuous_capability.py": "ccdada3c4849e6afbed36348710b1af926d83cdbdd88f0ee7a4b589ba5b987a2",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+    "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+    "tools/parse_deepjeb_deck.py": "e9408ebb11a86235bf68cfc6b6c018e8954904a1a7ba7c472b667e0db072ee11"
+  },
+  "scientific_digest": "0b9a9702fbe946f56ab69684247f177a134c9ab3657ef3932ed7a4942f600e7e",
+  "reviewed_UTC": "2026-10-10T01:34:13.644829+00:00",
+  "root_review_scope": [
+    "Cumulative2400s clock, failed/resume accounting, 300/300/60 physical phases and120 FNO cold cap",
+    "True original fine1e-8 PCG, accepted fixed32 additive preconditioner, zero start, no coarse substitute",
+    "Frozen seed2026 last2880/FNO schema/checkpoint stats and old TRAIN-only scaler; U-only decode",
+    "All full original-node finite U and all5 full4Q physical X/U/G persisted before shared original CSV U access",
+    "Ten independent process request costs; acquisition/upstream meshing excluded; offline training separate",
+    "Fixed denominator5, strict U1%/P2G5% gates, zero-energy relative null",
+    "Both input and driver independent finite source review passed, preexecution narrow technical fixes preserved"
+  ],
+  "independent_review": {
+    "reviewer": "deepjeb_research",
+    "passed": true,
+    "source_sha256": "668543d48520348f5e2cb3794a3dba96f178318f84dc126b598bbce669ea8000",
+    "evidence_lines": {
+      "fullN_physical_finite": "403-406",
+      "native_full4Q_commit": "429-454; continuous query_full303-327",
+      "FNO_fullN_finite": "495-503",
+      "barrier_before_U": "682-714;777;798",
+      "metrics_fixed5_and_zero_energy": "551-565;717-726;863-865"
+    }
+  },
+  "input_review": {
+    "path": "notes/blind_solver_inputs_root_review.json",
+    "sha256": "6aa310165e239d454875bd263c1552b5d8257a5dce318fd3bbbcc36465a5205f"
+  },
+  "preexecution_technical_fix": {
+    "path": "notes/blind_solver_service_preexecution_fix.json",
+    "sha256": "6e61bcd54d949bce761b7394f450baeb37ca37f1116568095d9af254e6661a96"
+  },
+  "new_raw_or_header_or_label_or_array_or_weight_reads": 0,
+  "additional_AST_import_contract_resource_GPU_preflights": 0,
+  "first_runtime_acceptance": "sole actual frozen job; no standalone probes",
+  "U_only_does_not_complete_full_GeoBC": true
+}

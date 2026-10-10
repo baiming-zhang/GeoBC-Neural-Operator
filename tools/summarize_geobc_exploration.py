@@ -25,6 +25,29 @@ def percent(value):
     if not math.isfinite(float(value)): raise ValueError('Nonfinite metric')
     return f'{100*value:.3f}%'
 
+# BEGIN BLIND_SOLVER_SERVICE_INTEGRATION
+def blind_solver_service_text(result):
+    gate=result.get('completion_gate',{})
+    receipt=result.get('read_receipt',{})
+    def verdict(name):
+        value=gate.get(name)
+        return '通过' if value is True else '未通过' if value is False else '未记录'
+    barrier='完整' if gate.get('prediction_barrier_complete') is True else '未完整'
+    readout='完成' if gate.get('GT_U_readout_complete') is True else '未完成'
+    target_parses=receipt.get('source_U_target_parses')
+    stress_reads=receipt.get('stress_target_reads')
+    report=(f"固定五个新CAD/ver、完整分母5的U-only盲验已到终态：两臂原节点预测与物理全四Q查询屏障{barrier}，共享U读出{readout}。"
+            f"物理节点/P2代理预门{verdict('physical_accuracy_gate')}，固定FNO2026 last2880节点U预门{verdict('FNO_node_U_gate')}。"
+            f"原CSV U目标实际解析{target_parses if target_parses is not None else '未记录'}次，S目标读取{stress_reads if stress_reads is not None else '未记录'}次；"
+            '目标缓存后续读取另记。输入不兼容、预算或数值负结果保留五分母，缺失精度不填零。'
+            '两接口的输入信息、离线训练和真实raw-to-field冷成本分别记录，未作同容量/同训练成本因果排名。'
+            '物理连续梯度来自全TET10运动学；FNO本轮仅原节点U，不能给它添加原生梯度结论。S仍封存，U-only结果不构成完整GeoBC或工程求解器选定。')
+    brief=(f"固定new5/ver的U-only盲验已到终态，物理预门{verdict('physical_accuracy_gate')}、"
+           f"冻结FNO2026节点U预门{verdict('FNO_node_U_gate')}；共同屏障{barrier}、U读出{readout}，S仍封存。"
+           '失败病例保留在分母5，输入/成本不同，未选定完整GeoBC求解器。')
+    return report,brief
+# END BLIND_SOLVER_SERVICE_INTEGRATION
+
 def stage_counts(jobs,summaries):
     synthetic={job['name'] for job in jobs if job.get('kind','').startswith('synthetic_')}
     scientific={job['name'] for job in jobs}-synthetic
@@ -225,6 +248,9 @@ def main(*, preserve_existing_plots=False):
     # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
     metadata_kinds.add('physical_nodal_tensor_signed_S_representation_pair')
     # END NODAL_TENSOR_PAIR_INTEGRATION
+    # BEGIN BLIND_SOLVER_SERVICE_INTEGRATION
+    metadata_kinds.add('blind_full_FE_U_with_frozen_FNO_reference')
+    # END BLIND_SOLVER_SERVICE_INTEGRATION
     jobs=plan.get('historical_jobs',[])+plan['jobs']
     for job in jobs:
         source=ROOT/job['output']
@@ -257,6 +283,9 @@ def main(*, preserve_existing_plots=False):
         # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
         if job.get('kind')=='physical_nodal_tensor_signed_S_representation_pair':filenames+=('clock.json','read_receipt.json','scalers.json','initialization.json','prediction_barrier.json','runtime_technical_repairs.json','checkpoint_index.json','BRIEF.md','metrics.md')
         # END NODAL_TENSOR_PAIR_INTEGRATION
+        # BEGIN BLIND_SOLVER_SERVICE_INTEGRATION
+        if job.get('kind')=='blind_full_FE_U_with_frozen_FNO_reference':filenames+=('clock.json','read_receipt.json','prediction_barrier.json','metrics.json','BRIEF.md','metrics.md')
+        # END BLIND_SOLVER_SERVICE_INTEGRATION
         if job.get('kind')=='gino_training_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json')
         if job.get('kind')=='fno_response_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
         if job.get('kind')=='deeponet_screen':filenames+=('metrics_best.json','metrics_latest.json','metrics.jsonl','first_update_gradient_check.json','first_actual_check.json')
@@ -341,6 +370,41 @@ def main(*, preserve_existing_plots=False):
                             prediction_dest.mkdir(parents=True,exist_ok=True)
                             shutil.copyfile(path,prediction_dest/filename)
         # END NODAL_TENSOR_PAIR_INTEGRATION
+        # BEGIN BLIND_SOLVER_SERVICE_INTEGRATION
+        if job.get('kind')=='blind_full_FE_U_with_frozen_FNO_reference':
+            for arm_name in ('physics_full_FE','FNO_frozen2880'):
+                for case_key in summary.get('case_keys',[]):
+                    case_stem=case_key.replace('/','_')
+                    request_source=source/'requests'/arm_name/case_stem
+                    request_dest=target/'requests'/arm_name/case_stem
+                    for filename in ('config.json','status.json','summary.json','clock.json','read_receipt.json',
+                                     'input_manifest.json','operator_manifest.json','coarse_manifest.json',
+                                     'checkpoint.json','prediction_manifest.json','query_manifest.json',
+                                     'geometry_diagnostics.json','costs.json'):
+                        path=request_source/filename
+                        if path.is_file():
+                            request_dest.mkdir(parents=True,exist_ok=True)
+                            shutil.copyfile(path,request_dest/filename)
+                    path=request_source/'input'/'manifest.json'
+                    if path.is_file():
+                        (request_dest/'input').mkdir(parents=True,exist_ok=True)
+                        shutil.copyfile(path,request_dest/'input'/'manifest.json')
+            for case_key in summary.get('case_keys',[]):
+                case_stem=case_key.replace('/','_')
+                for filename in (case_stem+'.json',case_stem+'_read_started.json'):
+                    path=source/'label_cache'/filename
+                    if path.is_file():
+                        (target/'label_cache').mkdir(exist_ok=True)
+                        shutil.copyfile(path,target/'label_cache'/filename)
+                metric_source=source/'metrics'/case_stem
+                metric_dest=target/'metrics'/case_stem
+                for filename in ('config.json','status.json','summary.json','clock.json','read_receipt.json',
+                                 'reference_manifest.json','metrics.json','costs.json'):
+                    path=metric_source/filename
+                    if path.is_file():
+                        metric_dest.mkdir(parents=True,exist_ok=True)
+                        shutil.copyfile(path,metric_dest/filename)
+        # END BLIND_SOLVER_SERVICE_INTEGRATION
         if job.get('kind')=='physical_TET10_continuous_U_gradient_capability':
             for case_key in summary.get('case_keys',[]):
                 case_source=source/case_key.replace('/','_')
@@ -435,6 +499,19 @@ def main(*, preserve_existing_plots=False):
                     'prediction_export_policy':'Input/recovery, training/checkpoint-index and prediction receipt JSON only; no NPY/NPZ/PT/U/S arrays',
                     'model_checkpoints_exported':False,'prediction_arrays_exported':False})
             # END NODAL_TENSOR_PAIR_INTEGRATION
+            # BEGIN BLIND_SOLVER_SERVICE_INTEGRATION
+            if job.get('kind')=='blind_full_FE_U_with_frozen_FNO_reference':
+                observed_receipts[job['kind']].update({
+                    'case_keys':summary.get('case_keys',[]),'arms':list(summary.get('arms',{})),
+                    'requests':list(summary.get('requests',{})),
+                    'read_receipt':summary.get('read_receipt',{}),'completion_gate':summary.get('completion_gate',{}),
+                    'metric_scope':'Blind fixed-five original-node U; physical native full-fourQ U/G node-derived reference proxies, not strain GT; signed-S targets sealed',
+                    'endpoint_policy':'Pure full-FE zero-start fixed-equation solve plus one preselected FNO2026 cumulative600s last2880; no new training/scaler or test selection',
+                    'allowed_work_policy':'Actual raw input parses, new operators/solves/K, frozen FNO checkpoint/inference, original U target parses after all-ten predictions plus physical-query barrier, owned GT cache reads retained',
+                    'terminal_policy':'Completed unsupported, numerical, geometry, backend and budget negatives terminate with fixed denominator5; no case substitution or automatic retry',
+                    'prediction_export_policy':'Whitelisted small JSON/MD only; no raw, NPY/NPZ, CSR, PT/checkpoints or predicted/target field arrays',
+                    'model_checkpoints_exported':False,'prediction_arrays_exported':False})
+            # END BLIND_SOLVER_SERVICE_INTEGRATION
             if job.get('kind')=='physical_TET10_continuous_U_gradient_capability':
                 observed_receipts[job['kind']].update({
                     'case_keys':summary.get('case_keys',[]),'read_receipt':summary.get('read_receipt',{}),
@@ -930,6 +1007,13 @@ def main(*, preserve_existing_plots=False):
     if sealed_acquisition_result:
         sealed_acquisition_report,sealed_acquisition_brief=sealed_acquisition_text(sealed_acquisition_result)
         lines += ['', '## 下一周期独立test5的封存获取','',sealed_acquisition_report]
+    # BEGIN BLIND_SOLVER_SERVICE_INTEGRATION
+    blind_solver_result=latest_observed('blind_full_FE_U_with_frozen_FNO_reference')
+    blind_solver_brief=None
+    if blind_solver_result and blind_solver_result.get('status')=='completed':
+        blind_solver_report,blind_solver_brief=blind_solver_service_text(blind_solver_result)
+        lines += ['', '## 五个新CAD的冻结U-only服务盲验','',blind_solver_report]
+    # END BLIND_SOLVER_SERVICE_INTEGRATION
     lines += ['', '## 主计划中的下一阶段','',next_text]
     lines += ['', '## 解释边界','',
               '两个 CAD 的结果是迁移 pilot，存在其他历史实验使用；不是最终盲测。九个组合的四类载荷均已在其他训练 CAD 出现，不能称为全局未见载荷类别。新模型的最终测试CAD仅指未参与其训练/选模，原50案例历史实验包含这些CAD。',
@@ -1019,6 +1103,13 @@ def main(*, preserve_existing_plots=False):
     if gino_resource_brief:brief += ['- **新结构资源：**'+gino_resource_brief]
     if gino_training_brief:brief += ['- **新结构初筛：**'+gino_training_brief]
     if sealed_acquisition_brief:brief += ['- **新周期test：**'+sealed_acquisition_brief]
+    # BEGIN BLIND_SOLVER_SERVICE_INTEGRATION
+    if blind_solver_brief:
+        brief += ['', '- **冻结U-only盲验：**'+blind_solver_brief]
+        blind_run=observed_receipts.get('blind_full_FE_U_with_frozen_FNO_reference',{}).get('run')
+        if blind_run and (dest/'runs'/blind_run/'BRIEF.md').is_file():
+            brief += [f'原始五病例、节点/P2代理指标及真实两接口成本见[盲验小简报](runs/{blind_run}/BRIEF.md)，不移入旧final精度或应力结论。']
+    # END BLIND_SOLVER_SERVICE_INTEGRATION
     fno_response_metrics=ROOT/'results/fno_response/metrics.json'
     if fno_response_metrics.is_file() and json.loads(fno_response_metrics.read_text(encoding='utf8')).get('status')=='completed':
         brief += ['', '固定480的FNO响应基结构配对与DEV组合载荷结果见[FNO结构简报](../fno_response/BRIEF.md)；历史direct4仅上下文，未据此改旧final或新sealed test。']
@@ -1120,6 +1211,9 @@ def main(*, preserve_existing_plots=False):
                                    # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
                                    'physical_nodal_tensor_signed_S_representation_pair_receipt':observed_receipts.get('physical_nodal_tensor_signed_S_representation_pair'),
                                    # END NODAL_TENSOR_PAIR_INTEGRATION
+                                   # BEGIN BLIND_SOLVER_SERVICE_INTEGRATION
+                                   'blind_full_FE_U_with_frozen_FNO_reference_receipt':observed_receipts.get('blind_full_FE_U_with_frozen_FNO_reference'),
+                                   # END BLIND_SOLVER_SERVICE_INTEGRATION
                                    'observed_noncompleted_stages':{name:result.get('status') for name,result in observed_stages.items() if result.get('status')!='completed'},
                                    'new_stage_export_policy':'config/status/summary JSON only; no8 NPY CSR cache, raw labels or weights copied; failed acquisition receipts exported without completed-stage credit',
                                    'summaries':list(summaries),'raw_data_checkpoints_predictions':'retained locally; not included in Git payload',

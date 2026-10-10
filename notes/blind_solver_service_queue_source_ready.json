@@ -1,0 +1,189 @@
+{
+  "schema": 1,
+  "status": "source_ready_static_schema_passed_actual_not_executed",
+  "created_at_utc": "2026-10-10T01:15:22.941448+00:00",
+  "kind": "blind_full_FE_U_with_frozen_FNO_reference",
+  "job": "blind_solver_full5_ver_U",
+  "module": "geobc.blind_solver_service",
+  "formal_plan": "notes/geobc_blind_solver_plan.json",
+  "output": "runs/geobc_exploration/blind_solver_full5_ver_U",
+  "driver_api": {
+    "request_contract": "request_contract(plan_path) -> (contract, plan)",
+    "run": "run(plan_path, output=None)",
+    "CLI": "python -m geobc.blind_solver_service --plan notes/geobc_blind_solver_plan.json --output runs/geobc_exploration/blind_solver_full5_ver_U"
+  },
+  "source_sha256": {
+    "tools/run_geobc_exploration.py": "ce01c3d1f12de4ecaf87c86c19f1402c826ec9647a606659ded6dc5afc1e9490",
+    "tools/summarize_geobc_exploration.py": "03d36afc2f6fcefa3f82f381d61b2c81e417c773650b19e6a3c48d6a4f7cc397"
+  },
+  "existing_source_preservation": {
+    "tools/run_geobc_exploration.py": {
+      "original_source_sha256": "aec55492a3fe5cad5755d95520aaeb0f72d245b7d54933af496904e7a0f362cc",
+      "marked_new_insertion_blocks": 1,
+      "original_source_restored_sha256": "aec55492a3fe5cad5755d95520aaeb0f72d245b7d54933af496904e7a0f362cc",
+      "all_existing_source_preserved": true
+    },
+    "tools/summarize_geobc_exploration.py": {
+      "original_source_sha256": "bdc286d986ebb1c02da07a432078d7c4549cbbfbc37319f58f30ce675f8e4354",
+      "marked_new_insertion_blocks": 8,
+      "original_source_restored_sha256": "bdc286d986ebb1c02da07a432078d7c4549cbbfbc37319f58f30ce675f8e4354",
+      "all_existing_source_preserved": true
+    }
+  },
+  "root_recipe": {
+    "path": "notes/geobc_blind_solver_root_recipe.json",
+    "sha256": "511166920a73ad22f92538b199702bb4d3ada55d5c68e514f9d7fe6aa279ba30",
+    "actual_execution_released": false
+  },
+  "driver_source_state": "Driver author supplied final schema; source-ready/formal source pins and execution release remain root-owned. No driver source import or request_contract execution performed.",
+  "completion_schema": {
+    "case_keys": [
+      "489_12/ver",
+      "616_205/ver",
+      "416_282/ver",
+      "247_50/ver",
+      "142_454/ver"
+    ],
+    "arms": [
+      "physics_full_FE",
+      "FNO_frozen2880"
+    ],
+    "requests_count": 10,
+    "fixed_denominator": 5,
+    "U_only": true,
+    "final_solver_selection": false,
+    "own_source_map_key": "geobc/blind_solver_service.py",
+    "contract_scientific_digest_type": "nonempty str",
+    "gate_boolean_fields": [
+      "passed",
+      "prediction_barrier_complete",
+      "GT_U_readout_complete",
+      "physical_accuracy_gate",
+      "FNO_node_U_gate"
+    ],
+    "terminal_negative_reason": "str or null"
+  },
+  "receipts": {
+    "forbidden_native_int_zero": [
+      "stress_target_reads",
+      "H5_nodal_variable_reads",
+      "strain_target_reads",
+      "hor_tor_dia_target_reads",
+      "training_updates",
+      "scaler_fits",
+      "test_endpoint_selection",
+      "test_seed_selection",
+      "old_final_reads",
+      "old_development_target_reads",
+      "GT_U_reads_before_prediction_barrier",
+      "source_scalar_formula_trials",
+      "case_replacements",
+      "mesh_or_geometry_repairs"
+    ],
+    "allowed_actual_native_int_nonnegative": [
+      "raw_h5_input_reads",
+      "raw_deck_input_reads",
+      "raw_CSV_coordinate_reads",
+      "input_cache_reads",
+      "input_member_reads",
+      "new_operator_builds",
+      "new_fine_guard_K_applications",
+      "new_coarse_builds",
+      "new_coarse_guard_K_applications",
+      "fine_K_applications",
+      "solve_iterations",
+      "preconditioner_applications",
+      "FNO_checkpoint_read_attempts",
+      "FNO_checkpoint_reads",
+      "FNO_checkpoint_byte_hash_reads",
+      "FNO_inference_requests",
+      "native_query_cases",
+      "own_PCG_checkpoint_reads",
+      "own_PCG_checkpoint_writes",
+      "source_U_target_parse_attempts",
+      "source_U_target_parses",
+      "owned_GT_cache_reads",
+      "own_prediction_array_reads"
+    ],
+    "coordinate_CSV_reads": "allowed input access, separately counted; not a source target access",
+    "full_prediction_barrier_minimum_work": {
+      "FNO_inference_requests": 5,
+      "native_query_cases": 5,
+      "new_operator_builds": 5,
+      "new_coarse_builds": 5,
+      "fine_K_applications": ">0",
+      "FNO_checkpoint_reads": ">0"
+    },
+    "GT_barrier": "No source_U parse attempts/completions before full-ten prediction + physical native query barrier; completed GT-U readout requires actual source_U_target_parses >=5. Attempts must be >= completed parses; owned target-cache access separately actual."
+  },
+  "terminal_policy": "Completed unsupported/numerical/geometry/backend/budget negatives retain fixed five/ten records and may have zero GT or missing predictions/metrics. Accuracy gate false does not cause replay. No forced positive work counts except a claimed complete prediction barrier; no filling missing metrics with zero.",
+  "export_policy": {
+    "format": "Only explicit small JSON and MD filenames copied when present; no arrays, CSR, NPY/NPZ/PT, raw fields or checkpoint payloads",
+    "top": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "clock.json",
+      "read_receipt.json",
+      "prediction_barrier.json",
+      "metrics.json",
+      "BRIEF.md",
+      "metrics.md"
+    ],
+    "request_directory": "requests/<arm>/<cad_ver>",
+    "request_files": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "clock.json",
+      "read_receipt.json",
+      "input_manifest.json",
+      "operator_manifest.json",
+      "coarse_manifest.json",
+      "checkpoint.json",
+      "prediction_manifest.json",
+      "query_manifest.json",
+      "geometry_diagnostics.json",
+      "costs.json",
+      "input/manifest.json"
+    ],
+    "label_cache_metadata": [
+      "label_cache/<cad_ver>.json",
+      "label_cache/<cad_ver>_read_started.json"
+    ],
+    "metric_directory": "metrics/<cad_ver>",
+    "metric_files": [
+      "config.json",
+      "status.json",
+      "summary.json",
+      "clock.json",
+      "read_receipt.json",
+      "reference_manifest.json",
+      "metrics.json",
+      "costs.json"
+    ]
+  },
+  "report_policy": "New completed-only report/BRIEF section and source BRIEF link. U-only, five denominator, terminal negatives/missing metrics, separate interface input and real costs, physical P2-derived proxy versus FNO node-only capabilities, sealed S and no final full-solver selection remain explicit. Existing report science/plots untouched; only metadata receipts/export whitelist added.",
+  "author_checks": {
+    "status": "passed",
+    "AST_parse_count": 2,
+    "AST_parse_count_per_owned_source": 1,
+    "stdlib_static_schema_check_count": 1,
+    "elapsed_seconds": 0.047744000097736716,
+    "existing_branch_source_preservation": "exact SHA restored after removing marked new insertions and new helper separator",
+    "new_driver_imports": 0,
+    "new_contract_executions": 0,
+    "scientific_imports": 0,
+    "scientific_array_reads": 0,
+    "raw_test_reads": 0,
+    "GT_reads": 0,
+    "weight_reads": 0,
+    "model_instances": 0,
+    "GPU_runs": 0,
+    "toy_runs": 0,
+    "resource_preflights": 0,
+    "actual_report_runs": 0,
+    "actual_queue_runs": 0
+  },
+  "next_action": "Root necessary source review plus final driver/formal-plan release; root sole coordinator performs any actual new-test parsing and science."
+}

@@ -59,6 +59,69 @@ def completed_summary(job: dict[str, Any]) -> dict[str, Any] | None:
     if not summary or summary.get("status") != "completed":
         return None
     command = job["command"]
+    # BEGIN BLIND_SOLVER_SERVICE_INTEGRATION
+    if "geobc.blind_solver_service" in command:
+        from geobc.blind_solver_service import request_contract
+        contract, requested = request_contract(command[command.index("--plan") + 1])
+        fixed_cases = ["489_12/ver", "616_205/ver", "416_282/ver", "247_50/ver", "142_454/ver"]
+        fixed_arms = {"physics_full_FE", "FNO_frozen2880"}
+        fixed_requests = {arm + ":" + key for arm in fixed_arms for key in fixed_cases}
+        source_pins = contract.get("source_sha256")
+        own_source = source_pins.get("geobc/blind_solver_service.py") if isinstance(source_pins, dict) else None
+        gate = summary.get("completion_gate", {})
+        if (job.get("kind") != "blind_full_FE_U_with_frozen_FNO_reference"
+                or summary.get("kind") != "blind_full_FE_U_with_frozen_FNO_reference"
+                or summary.get("config", {}).get("contract") != contract
+                or requested.get("case_keys") != fixed_cases
+                or summary.get("case_keys") != fixed_cases
+                or set(summary.get("cases", {})) != set(fixed_cases)
+                or set(summary.get("arms", {})) != fixed_arms
+                or any(set(arm.get("cases", {})) != set(fixed_cases) for arm in summary.get("arms", {}).values())
+                or set(summary.get("requests", {})) != fixed_requests
+                or not isinstance(source_pins, dict) or not isinstance(own_source, str) or len(own_source) != 64
+                or not isinstance(contract.get("scientific_digest"), str) or not contract["scientific_digest"]
+                or type(gate.get("fixed_denominator")) is not int or gate["fixed_denominator"] != 5
+                or gate.get("U_only") is not True or gate.get("final_solver_selection") is not False
+                or any(type(gate.get(name)) is not bool for name in
+                       ("passed", "prediction_barrier_complete", "GT_U_readout_complete",
+                        "physical_accuracy_gate", "FNO_node_U_gate"))
+                or (gate.get("terminal_negative_reason") is not None
+                    and not isinstance(gate["terminal_negative_reason"], str))):
+            raise ValueError(f"Blind U-only service differs from its fixed five-CAD/two-interface/source or terminal schema: {job['name']}")
+        receipt = summary.get("read_receipt", {})
+        for key in ("stress_target_reads", "H5_nodal_variable_reads", "strain_target_reads", "hor_tor_dia_target_reads",
+                    "training_updates", "scaler_fits", "test_endpoint_selection", "test_seed_selection",
+                    "old_final_reads", "old_development_target_reads", "GT_U_reads_before_prediction_barrier",
+                    "source_scalar_formula_trials", "case_replacements", "mesh_or_geometry_repairs"):
+            if type(receipt.get(key)) is not int or receipt[key] != 0:
+                raise ValueError(f"Blind U-only service unexpectedly accessed {key}: {job['name']}")
+        for key in ("raw_h5_input_reads", "raw_deck_input_reads", "raw_CSV_coordinate_reads", "input_cache_reads",
+                    "input_member_reads", "new_operator_builds", "new_fine_guard_K_applications", "new_coarse_builds",
+                    "new_coarse_guard_K_applications", "fine_K_applications", "solve_iterations",
+                    "preconditioner_applications", "FNO_checkpoint_read_attempts", "FNO_checkpoint_reads",
+                    "FNO_checkpoint_byte_hash_reads", "FNO_inference_requests", "native_query_cases",
+                    "own_PCG_checkpoint_reads", "own_PCG_checkpoint_writes", "source_U_target_parse_attempts",
+                    "source_U_target_parses", "owned_GT_cache_reads", "own_prediction_array_reads"):
+            if type(receipt.get(key)) is not int or receipt[key] < 0:
+                raise ValueError(f"Blind U-only service lacks actual nonnegative {key}: {job['name']}")
+        if gate["GT_U_readout_complete"] and (not gate["prediction_barrier_complete"]
+                                               or receipt["source_U_target_parses"] < 5):
+            raise ValueError(f"Blind U-only readout lacks the fixed-five prediction/target receipt barrier: {job['name']}")
+        if receipt["source_U_target_parse_attempts"] < receipt["source_U_target_parses"]:
+            raise ValueError(f"Blind U-only target parse completions exceed actual attempts: {job['name']}")
+        if not gate["prediction_barrier_complete"] and (
+                receipt["source_U_target_parses"] != 0 or receipt["source_U_target_parse_attempts"] != 0):
+            raise ValueError(f"Blind U-only service opened targets without a full prediction barrier: {job['name']}")
+        if gate["prediction_barrier_complete"] and (
+                any(receipt[name] < 5 for name in
+                    ("FNO_inference_requests", "native_query_cases", "new_operator_builds", "new_coarse_builds"))
+                or receipt["fine_K_applications"] <= 0 or receipt["FNO_checkpoint_reads"] <= 0):
+            raise ValueError(f"Blind U-only prediction barrier lacks actual five-request input/solver/FNO work: {job['name']}")
+        # New input parsing, solves/K, frozen FNO weights and owned target-cache
+        # reads are actual allowed work. Completed scientific/budget negatives
+        # remain terminal even when the accuracy or completion gate is false.
+        return summary
+    # END BLIND_SOLVER_SERVICE_INTEGRATION
     # BEGIN NODAL_TENSOR_PAIR_INTEGRATION
     if "geobc.elastic_nodal_tensor_pair" in command:
         from geobc.elastic_nodal_tensor_pair import request_contract

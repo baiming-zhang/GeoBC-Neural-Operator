@@ -1,0 +1,26 @@
+{
+  "status": "completed_before_actual_execution",
+  "created_UTC": "2026-10-10T01:32:04.256878+00:00",
+  "old_source_sha256": "893eaf35875ebe2512444c6b1ba8701c68e16fbdceb0ea31e4104d5bc2360201",
+  "new_source_sha256": "668543d48520348f5e2cb3794a3dba96f178318f84dc126b598bbce669ea8000",
+  "scientific_digest_unchanged": "0b9a9702fbe946f56ab69684247f177a134c9ab3657ef3932ed7a4942f600e7e",
+  "changes": [
+    {
+      "scope": "physical_request and frozen_FNO_request prepare_case return accounting",
+      "old": "absorb record.read_receipt",
+      "new": "absorb current helper_counts(input folder)",
+      "reason": "Completed own-cache manifest can contain an older cumulative receipt; current ledger prevents false negative resume delta."
+    },
+    {
+      "scope": "request_child and metric_child initial peak-memory setup",
+      "old": "reset_peak_memory_stats before CUDA allocator initialization",
+      "new": "torch.cuda.init then reset_peak_memory_stats",
+      "reason": "Initialize actual CUDA context before resetting counters; charged inside existing request/metric cold clocks."
+    }
+  ],
+  "scientific_rules_changed": false,
+  "runtime_or_AST_or_import_preflight_runs": 0,
+  "new_data_or_labels_or_weights_reads": 0,
+  "intermediate_source_sha256": "03d5c4838f66f6165b527128c1bdae9d80dc5e16948f1df8faf703e7cf9831f7",
+  "updated_UTC": "2026-10-10T01:34:13.644829+00:00"
+}

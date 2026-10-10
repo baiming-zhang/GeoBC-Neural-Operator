@@ -1,0 +1,155 @@
+{
+  "status": "source_ready_author_AST_and_small_metadata_only",
+  "created_UTC": "2026-10-10T01:20:14.156368+00:00",
+  "source": "geobc/blind_solver_inputs.py",
+  "source_sha256": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+  "source_pins": {
+    "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+    "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6"
+  },
+  "root_recipe": {
+    "path": "notes/geobc_blind_solver_root_recipe.json",
+    "sha256": "511166920a73ad22f92538b199702bb4d3ada55d5c68e514f9d7fe6aa279ba30"
+  },
+  "case_keys": [
+    "489_12/ver",
+    "616_205/ver",
+    "416_282/ver",
+    "247_50/ver",
+    "142_454/ver"
+  ],
+  "arms": [
+    "physics_full_FE",
+    "FNO_frozen2880"
+  ],
+  "checks": {
+    "AST_passed": true,
+    "AST_seconds": 0.0042183001060038805,
+    "small_metadata": {
+      "fixed_cases": 5,
+      "received_completed_files": 15,
+      "H5_allowlist": [
+        "vertices",
+        "cells"
+      ]
+    }
+  },
+  "author_execution": {
+    "module_imports": 0,
+    "request_contract_calls": 0,
+    "prepare_calls": 0,
+    "new_raw_or_header_reads": 0,
+    "scientific_array_reads": 0,
+    "GT_reads": 0,
+    "model_or_weight_reads": 0,
+    "GPU_calls": 0,
+    "toy_or_resource_runs": 0
+  },
+  "API": {
+    "request_contract": "request_contract(plan_path)->(input_contract,plan); stdlib JSON/source hashes/received-file stats only",
+    "prepare_case": "prepare_case(plan_path,key,contract=None,guard=None,budget_seconds=300,output=None,observer=None)->record; explicit independent request-owned output",
+    "prepare_data": "prepare_data(plan_path)->manifest; released only; driver uses independent prepare_case calls",
+    "read_cache_metadata": "read_cache_metadata(plan_path,contract=None)->manifest; metadata only",
+    "load_input": "load_input(record,device,for_fno=False,guard=None,observer=None)->dict including _actual_read_receipt; target-free; FNO grid freshly rebuilt",
+    "read_U": "read_U(record,barrier,contract=...,output=...,guard=None,observer=None)->FP64 allN U_mm; shared U-only parse after authentic all10 node/all5 native manifest barrier",
+    "CLI": "python -m geobc.blind_solver_inputs --plan notes/geobc_blind_solver_plan.json"
+  },
+  "schema": {
+    "record": "kind/status/contract/key/cad_id/feasibility_pass/source/costs/preparation_seconds/path/file_identity/arrays/facts/region_array_keys/deferred_U_source/read_receipt",
+    "physics_input": [
+      "vertices_mm",
+      "cells10",
+      "grid_node_ids",
+      "ctetra_element_ids",
+      "free_node_ids",
+      "fixed_node_ids",
+      "force",
+      "lame",
+      "derived_node_ids",
+      "derived_source_ids",
+      "derived_rowptr",
+      "derived_blocks",
+      "rbe3_member_node_ids",
+      "rbe3_Hbar",
+      "rbe3_length_mm",
+      "reference_xyz_mm",
+      "reference_load6",
+      "characteristic_length_mm",
+      "regions"
+    ],
+    "FNO_input": [
+      "xyz",
+      "features",
+      "cloud",
+      "mask",
+      "grid",
+      "query_indices",
+      "query_weights"
+    ],
+    "receipt_actual": [
+      "raw_h5_input_reads",
+      "raw_deck_input_reads",
+      "raw_CSV_coordinate_reads",
+      "input_cache_reads",
+      "input_member_reads",
+      "source_U_target_parse_attempts",
+      "source_U_target_parses",
+      "owned_GT_cache_reads"
+    ],
+    "receipt_forbidden_zero": [
+      "source_S_target_reads",
+      "H5_nodal_variable_reads",
+      "source_strain_target_reads",
+      "old_final_reads",
+      "DEV_dia_reads",
+      "model_or_weight_reads",
+      "optimizer_steps",
+      "scaler_fits",
+      "new_physical_solves",
+      "K_applications"
+    ],
+    "ledger": "attempted_reads/completed_reads persisted per source/member; observer(event,source,member); load_input ledger cumulative in same owned input directory, caller consumes delta or max"
+  },
+  "release": {
+    "root_review": "notes/blind_solver_service_root_review.json",
+    "passed": true,
+    "source_sha256": "exact geobc/blind_solver_service.py SHA string",
+    "source_pins": "exact complete plan source_sha256 map",
+    "scientific_digest": "exact plan scientific_digest",
+    "decision": "proceed_frozen_blind_full_FE_U_with_FNO_reference",
+    "actual_execution_released_false_permitted": true,
+    "optional_input_contract_digest": "checked only if present"
+  },
+  "barrier": {
+    "passed": true,
+    "case_keys": "exact fixed5",
+    "arms": "exact fixed2",
+    "all10_node_U_predictions_committed": true,
+    "all5_native_complete": true,
+    "input_contract_sha256": "digest(input_contract)",
+    "node_prediction_manifests": "MAP10 arm:case -> path/sha256",
+    "native_prediction_manifests": "MAP5 case -> path/sha256",
+    "proof": "actual small committed manifest byte hashes; no prediction-array read"
+  },
+  "input_semantics": {
+    "GRID_mapping": "actual CSV nodeID/coordinates and deck GRID coordinates -> one-to-one original H5 rows; absolute Euclidean tolerance0.0002mm; never GRID-1",
+    "features": "exact original25 FP32 inline arithmetic; actual RBE2 CM support flags separate from physical SPC-derived constraints; actual MAT1 E/nu/rho required",
+    "cloud": "exact old normalized FP32 xyz + unique quadratic-boundary FEM IDs + blake2b2026:CAD seed + without-replacement1024 + zero padding/bool mask",
+    "H5": "vertices/cells only; no faces/nodal_variables needed",
+    "physics": "unchanged accepted pure _parse_deck/_build specialization and weighted-LS approximation; no global CAD/PATHS monkeypatch",
+    "budget": "caller cumulative guard checked at phase/read boundaries; local preparation bound<=300s; true wall/phase times retained; unsupported terminal negative, identity/technical failures explicit",
+    "GT": "only three fixed ver displacement CSV usecols after barrier; original source parse once per CAD with persistent read-start claim/owned commit; interrupted uncommitted parse blocks replay"
+  },
+  "limitations": [
+    "No new-test content/header/shape observed in source preparation; actual missing density/interfaces/cards/mapping is unsupported without defaults or replacement",
+    "Official software exactness not claimed; original accepted approximate curved-P2/RBE3 mathematics retained",
+    "Record array shape/dtype/byte SHA and exact full CTETRA/corner-mid association are first-actual checks, not source-stage claims",
+    "Source-only readiness does not release or validate actual cold service/physics performance"
+  ],
+  "formal_plan_pending_at_author_check": true
+}

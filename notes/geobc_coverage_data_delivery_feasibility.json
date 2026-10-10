@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "kind": "original_DeepJEB_coverage_delivery_feasibility",
+  "status": "metadata_only_design_no_acquisition_release",
+  "created_UTC": "2026-10-10T01:39:03.196045+00:00",
+  "actual_execution_released": false,
+  "decision": "数据量与逐CAD获取途径可行，值得作为下一宏观覆盖对照；当前缺新增180CAD完整数据，不能直接启动200CAD训练。优先冻结名单后逐文件Drive获取，不为随机名单扫描三大gzip包。",
+  "requested_scope": {
+    "reuse_TRAIN_CADs": 40,
+    "additional_TRAIN_CADs": 160,
+    "new_DEV_CADs": 20,
+    "target_TRAIN_CADs": 200,
+    "loads": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "target_TRAIN_cases": 600,
+    "target_DEV_cases": 60,
+    "additional_CADs": 180,
+    "raw_files_per_CAD": 3,
+    "additional_raw_files": 540,
+    "additional_aligned_cases": 540,
+    "case_IDs_selected_or_frozen_by_this_note": false,
+    "source_labels_unchanged": true,
+    "sealed_oldfinal_currentblind_dia_excluded": true
+  },
+  "known_local_inventory": {
+    "complete_component_triplets_stat_verified": 57,
+    "original_prefix_CADs": 50,
+    "slide_exact_extra_CADs": 2,
+    "current_blind_CADs_sealed_and_excluded": 5,
+    "provenance_size_stat_mismatches_observed": 0,
+    "aligned_multiload_existing_CADs": 50,
+    "aligned_known3_cases_existing": 150,
+    "eligible_TRAIN40_known3_reuse_cases": 120,
+    "eligible_unused_official_TRAIN_candidates": 1875,
+    "unused_candidates_with_all3_official_index_URLs": 1875,
+    "unused_candidate_raw_triplets_available_locally": 0,
+    "missing_for_new160_plusDEV20": {
+      "CAD_triplets": 180,
+      "raw_component_files": 540,
+      "aligned_known3_cases": 540
+    },
+    "availability_note": "URLs and official TRAIN IDs are metadata availability, not certified current download responses, usable fields, geometry-family independence or prepared data."
+  },
+  "acquisition_routes": {
+    "preferred_direct_official_Drive": {
+      "source_index": {
+        "path": "notes/original_deepjeb_drive_index.json",
+        "sha256": "5951a04f3f551472f6054f329c257c90925f553e3f258b413899cf0050a6705c"
+      },
+      "per_component_index_counts": {
+        "FieldMesh": 2138,
+        "Field": 2138,
+        "SolverDeck": 2138
+      },
+      "indexed_complete_triplets": 2138,
+      "components": [
+        "FieldMesh/<CAD>.h5",
+        "Field/<CAD>.csv",
+        "SolverDeck/<CAD>.fem"
+      ],
+      "per_load_files_required": false,
+      "why": "原版一个CAD的同一Field CSV/H5/FEM承载多个静态载荷；ver/hor/tor不要求分别下载三套文件。新文件实际三载荷字段与BC仍待冻结后的内容验收。",
+      "existing_transport": "tools/fetch_next_cycle_test.py _one_file atomic byte transfer, observed SHA receipts, HTML/login rejection, concurrency2; actual recent15-file Windows transfer completed689980329bytes/250.609s.",
+      "existing_script_scope_limit": "fetch_next_cycle_test.request_contract硬锁fiveCAD/15files，不能用改参数直接获取540files；需另一个冻结范围acquisition wrapper复用其通用transfer helper。fetch_exact_deepjeb需要已知size/SHA manifest，而全量Drive index只有name/url，不能假造upstream checksums。",
+      "required_before_acquisition": "Root独立冻结160TRAIN+20DEV与540URL名单/不替换失败/隔离输出/byte预算；先获取binary并保持DEV标签sealed，source receipts逐文件保存。",
+      "network_path": "Windows Python沿已验证系统proxy路径；旧WSL直接网络Errno101失败，勿不经新证据重复那条失败途径。",
+      "exact_selected_bytes": null,
+      "upstream_per_file_SHA_or_size_available_from_index": false,
+      "no_540_HEAD_enumeration_performed": true
+    },
+    "official_HuggingFace_archive_fallback": {
+      "dataset": "KAIST-SmartDesignLab/DeepJEB original v1.0",
+      "revision": "160424ca2a5095315ff9ead8a5fc36d2667fd3c6",
+      "official_metadata_URL": "https://huggingface.co/api/datasets/KAIST-SmartDesignLab/DeepJEB/tree/160424ca2a5095315ff9ead8a5fc36d2667fd3c6",
+      "official_archive_metadata": {
+        "FieldMesh.tar.gz": {
+          "bytes": 53817481481,
+          "lfs_sha256": "87351216876be5a6007f73cf562a07293cbf0beee0724dd2fda1a4ca29dda059"
+        },
+        "Field.tar.gz": {
+          "bytes": 59811001592,
+          "lfs_sha256": "570a9d6db968fd37a27d82820e07dae17fd06455bb9c88a7075fb7a70d1d8b7f"
+        },
+        "SolverDeck.tar.gz": {
+          "bytes": 16837587126,
+          "lfs_sha256": "ecec03c8867dba5b8643489c8f8d2c3639ec03259c32b680a1fff321aeab4087"
+        }
+      },
+      "three_archives_total_bytes": 130466070199,
+      "existing_three_compressed_prefix_bytes": 3100610560,
+      "maximum_additional_compressed_bytes_to_full_three": 127365459639,
+      "needed_small_metadata_already_local": true,
+      "Metadata_archive_bytes": 22022,
+      "case_selection_supported_by_source": "tools/fetch_deepjeb.py --cases ... --components FieldMesh Field SolverDeck --max-download-mib ...",
+      "gzip_limitation": "HTTP Range可续传compressed前缀，但不等于按CAD随机seek；tar r|gz必须解压扫描目标前面的compressed流。随机180名单的精确最晚成员/前缀字节未知，最多接近三包130.47GB。",
+      "avoid_for_preferred_selection": "不用按文件顺序取前180来替代事先随机冻结名单；可能改变科学覆盖问题。",
+      "Drive_vs_HF_limit": "官方Drive observed-byte identity不是独立上游checksum，且未证明每文件与固定HF revision bit-identical，须保持各自provenance。"
+    }
+  },
+  "storage_and_time_planning": {
+    "basis": "现有50CAD的已保存元数据和文件stat；未读取数组或任何场标签。旧prefix50不是新随机180的保证分布。",
+    "existing50_raw_triplet_mean_bytes": 136427081.84,
+    "existing50_raw_triplet_min_max_bytes": [
+      97660186,
+      207816190
+    ],
+    "existing50_known3_prepared_case_mean_bytes": 35839991.92,
+    "existing50_nodes_mean_from_manifest": 213696.4,
+    "estimated_new_raw180_bytes": 24556874731,
+    "estimated_prepared540_bytes": 19353595637,
+    "estimated_shared_solver_case_cache540_bytes": 31652979552,
+    "estimated_shared_geometry180_bytes": 2923366752,
+    "estimated_new_total_if_all_three_layers_retained_bytes": 78486816672,
+    "estimate_formula_solver_case": "132*Nbytes = feature25 FP32 + physical4 FP32 + encoded4 FP32; grid29*64^3*4 bytes/case. Shared xyz/query8indices/query8weights approx76*Nbytes/CAD. Headers/JSON/cloud/other copied products omitted.",
+    "exact_grid_payload_660_cases_bytes": 20069744640,
+    "caches_shared_across_four_training_arms_recommended": true,
+    "do_not_duplicate_same660_cache_four_times": true,
+    "recommended_initial_free_reserve_GiB": 150,
+    "reserve_is_not_new_dataset_upper_bound": true,
+    "workspace_volume_free_bytes_observed": 549494206464,
+    "storage_feasible_at_observed_free_space": true,
+    "recent_Drive_effective_bytes_per_second": 2753214.485511407,
+    "linear_scale_download_seconds_estimate": 8919.346770921331,
+    "ETA_status": "约2.5小时只是最近5CAD吞吐线性外推；540请求的quota/throttling/HTML/size变化使实际时间未知。对齐/三载荷准备时间未知，不冒称已准备。",
+    "full_archive_fallback_adds_compressed_cache_storage_and_much_more_scan_IO": true
+  },
+  "remaining_implementation_and_unknowns": [
+    "180CAD exact names/URLs/bytes尚未冻结；这里只证明1875候选全有三组件URL。",
+    "新Field的ver/hor/tor signedU/S是否齐全、GRID映射/材料/BC/节点数、CSV/H5对齐与兼容性未读内容验证。",
+    "当前公开Drive URL远端可访问性/下载quota未逐文件核；无现成upstream SHA或size可预承诺。",
+    "现有solver_selection_data.prepare_data会读DEV physical targets、拟合scaler、做label roundtrip；不能原封调用来满足四臂所有DEV预测先落盘的新屏障。",
+    "覆盖对照应复用固定原TRAIN40 scaler，新增target-free/input cache与TRAIN监督可准备；新DEV S/U的共享延迟读出需要独立冻结producer/runner契约。",
+    "需要一次独立数据获取/对齐与cache阶段，当前blind source/plan/运行不改。旧final、新blind5、dia和旧DEV不能补到新TRAIN。",
+    "不同CAD ID不等于不同设计族；没有设计族谱，不宣称family-disjoint。"
+  ],
+  "shortest_next_stage": [
+    "先在metadata中冻结1875池seed2026的160TRAIN+20DEV和排除清单，保留180分母，不按download/GT结果换例。",
+    "独立Windows scoped Drive acquisition，仅540binary files/2workers/atomic receipts，不下载整包；byte预算先用150GiB保守容量与实际Content-Length/receivedbytes记录。",
+    "统一原25/GRID对齐与三载荷准备，shared cache一次生成，复用TRAIN40 scaler；DEV labels sealed直至四固定端点预测屏障。",
+    "再按已建议两family×40/200四臂固定update训练与共同DEV20对比，不以本note预判完整U/S胜者。"
+  ],
+  "evidence": {
+    "proposal": {
+      "path": "notes/geobc_after_blind_fullS_options.json",
+      "sha256": "27d746477d36a5ec47bcf16e976dec76ba875508b8cb88cf0f326ee206db348a"
+    },
+    "prefix_provenance": {
+      "path": "data/raw/deepjeb_provenance.json",
+      "sha256": "14bc747ab78e15f7dbaf046f7ed14db502db362b69ac376d2a795b4c616fa262"
+    },
+    "exact_provenance": {
+      "path": "data/raw_exact/deepjeb_drive_provenance.json",
+      "sha256": "0f1183b9fa9a8cd03db53a3e419bdda7ca2220b8a08422b31c143f415a4e5ecc"
+    },
+    "recent_acquisition": {
+      "path": "data/raw_next_cycle/summary.json",
+      "sha256": "2108d9b712abed5d394fa669c8bebdc6ac4cae921473cf0bca6a5555a2b4d210"
+    },
+    "original_TRAIN_metadata": {
+      "path": "data/raw/Metadata/train_split_random.json",
+      "sha256": "8ae895ad70448b0699ecf7211a32224fe4cdbaf685018617a16ba1c25df75f1d"
+    },
+    "prepared_multiload_manifest": {
+      "path": "data/prepared_geobc_multiload/manifest.json",
+      "sha256": "8d9ea79c047977830bf152a0a0b93c64a6e62b5a7ea4941c9f4c2fbff04c1ee0"
+    },
+    "prefix_fetch_source": {
+      "path": "tools/fetch_deepjeb.py",
+      "sha256": "e0fa3571da9c121b307abc2c4d2a8d0dfade27ac14ebbe6ecb33b366c048beb3"
+    },
+    "atomic_fetch_source": {
+      "path": "tools/fetch_next_cycle_test.py",
+      "sha256": "92eba989a7c0b17ab8a5084cf9d761116ab4ace32b01b5b0e70e1375ad3edfae"
+    },
+    "exact_fetch_source": {
+      "path": "tools/fetch_exact_deepjeb.py",
+      "sha256": "ff01bffff639cf007cc9c97969b3210db0bca2375f674709238105d6e59002f2"
+    },
+    "cache_producer_source": {
+      "path": "geobc/solver_selection_data.py",
+      "sha256": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6"
+    },
+    "transport_diagnosis": {
+      "path": "notes/next_cycle_download_transport_diagnosis.json",
+      "sha256": "963557d70be08941af925a913fed30794e481b717b8d207750b4e64da7c17221"
+    }
+  },
+  "read_receipt": {
+    "source_and_small_JSON_reads": true,
+    "local_file_size_stats": true,
+    "official_file_tree_metadata_GET_successes": 1,
+    "web_reader_unavailable_attempts": 1,
+    "official_metadata_only_body": true,
+    "raw_file_body_reads": 0,
+    "raw_field_or_header_reads": 0,
+    "scientific_array_reads": 0,
+    "GT_or_weight_reads": 0,
+    "download_preparation_function_runs": 0,
+    "downloads": 0,
+    "imports_of_scientific_modules": 0,
+    "GPU_runs": 0,
+    "existing_files_or_blind_recipe_changes": 0
+  }
+}

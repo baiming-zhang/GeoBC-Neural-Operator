@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "status": "source_ready_actual_not_released",
+  "kind": "blind_full_FE_U_with_frozen_FNO_reference",
+  "module": "geobc.blind_solver_service",
+  "plan": {
+    "path": "notes/geobc_blind_solver_plan.json",
+    "sha256": "c5a39390ae2ae01c921f5fc3e6b5bb5ecc931cccafaf0ce1fd987f766a24fd40"
+  },
+  "source": {
+    "path": "geobc/blind_solver_service.py",
+    "sha256": "668543d48520348f5e2cb3794a3dba96f178318f84dc126b598bbce669ea8000"
+  },
+  "scientific_digest": "0b9a9702fbe946f56ab69684247f177a134c9ab3657ef3932ed7a4942f600e7e",
+  "source_pins": {
+    "geobc/blind_solver_service.py": "668543d48520348f5e2cb3794a3dba96f178318f84dc126b598bbce669ea8000",
+    "geobc/blind_solver_inputs.py": "baf46d0c342162e0626311300785dbd2bbb07cda7b36fb3f9a9fdd72bda4cdfa",
+    "geobc/elastic_pilot.py": "76687a2cd8ce9ce002fe69150b72d90b1413b656d36c281244d7e65cd473d796",
+    "geobc/elastic_pilot_data.py": "b566c45584806777e8b70b3492c2d626159f99df9d4bff7cba070fe25a4f5819",
+    "geobc/elastic_coarse.py": "a723024b08c773bcab66ee7494e3a450f4b4b7990dbefe6410e3f0ef2454d420",
+    "geobc/elastic_continuous_capability.py": "ccdada3c4849e6afbed36348710b1af926d83cdbdd88f0ee7a4b589ba5b987a2",
+    "geobc/continuous_query_geometry.py": "95599c0001c2f50f1cabd5f2e74d91396f71072378a77b31763ee086e6a79c27",
+    "geobc/solver_selection_models.py": "d53c5672e0dcecb2b87f1fe9401a759503ea05dc72c337a9b2d96cfc1a03382c",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "tools/mesh_boundary.py": "da4728e6c0cd7bcd749f35c26dd41d189c5893e88e5e01bf2e4b66e16d05ff3b",
+    "tools/prepare_deepjeb.py": "73f99f39b3ea2b9bed6dae70082186e1975944ad63b96c03aaba5975770a4b22",
+    "tools/parse_deepjeb_deck.py": "e9408ebb11a86235bf68cfc6b6c018e8954904a1a7ba7c472b667e0db072ee11"
+  },
+  "metadata_pins": {
+    "root_recipe": {
+      "path": "notes/geobc_blind_solver_root_recipe.json",
+      "sha256": "511166920a73ad22f92538b199702bb4d3ada55d5c68e514f9d7fe6aa279ba30"
+    },
+    "adopted_design": {
+      "path": "notes/geobc_next_blind_solver_design.json",
+      "sha256": "5af00a762c943c77fdd8d1cdb2c2a37f031730dfed3d58d1719aface67372203"
+    },
+    "acquisition_summary": {
+      "path": "data/raw_next_cycle/summary.json",
+      "sha256": "2108d9b712abed5d394fa669c8bebdc6ac4cae921473cf0bca6a5555a2b4d210"
+    },
+    "input_parent_plan": {
+      "path": "notes/geobc_elastic_crosscad_plan.json",
+      "sha256": "a94122fefe1786ae685e019833c5cd78625c6f0a082c564fac4a990f4082fa5d"
+    },
+    "accepted_coarse_plan": {
+      "path": "notes/geobc_elastic_coarse_plan.json",
+      "sha256": "bb7260eb9669bb6d210943df5f8fc66612a8ad8df25e1c942a261260f997a453"
+    },
+    "input_source_ready": {
+      "path": "notes/blind_solver_inputs_source_ready.json",
+      "sha256": "cc787ba8b6e761d555d706e8eaa65d966264e7f762154996acf5cd8daed1858e"
+    },
+    "queue_source_ready": {
+      "path": "notes/blind_solver_service_queue_source_ready.json",
+      "sha256": "de2700091307eeb552131a335b6f1a48266797de082a711c2933ae19596cac65"
+    },
+    "FNO_config": {
+      "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/config.json",
+      "sha256": "6d9bd673b21f621b4f573ce9edc5aec8cfd270953d34e7265e08d45f71da375a"
+    },
+    "FNO_training_summary": {
+      "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/summary.json",
+      "sha256": "505ba9caab71a37a628b95e3027c9cd8522427d6c9576ae95a5a8030aebbf14f"
+    }
+  },
+  "API": {
+    "request_contract": "(contract,plan); metadata only",
+    "run": "run(plan,output=None)",
+    "CLI": "--plan --output; internal independent child-arm/case and metric-case modes"
+  },
+  "root_marker": {
+    "path": "notes/blind_solver_service_root_review.json",
+    "required_fields": {
+      "passed": true,
+      "source_sha256": "own source SHA string",
+      "source_pins": "exact full source map",
+      "scientific_digest": "0b9a9702fbe946f56ab69684247f177a134c9ab3657ef3932ed7a4942f600e7e",
+      "decision": "proceed_frozen_blind_full_FE_U_with_FNO_reference"
+    },
+    "created_by_author": false
+  },
+  "summary_schema": {
+    "case_keys": [
+      "489_12/ver",
+      "616_205/ver",
+      "416_282/ver",
+      "247_50/ver",
+      "142_454/ver"
+    ],
+    "arms": [
+      "physics_full_FE",
+      "FNO_frozen2880"
+    ],
+    "requests": [
+      "physics_full_FE:489_12/ver",
+      "physics_full_FE:616_205/ver",
+      "physics_full_FE:416_282/ver",
+      "physics_full_FE:247_50/ver",
+      "physics_full_FE:142_454/ver",
+      "FNO_frozen2880:489_12/ver",
+      "FNO_frozen2880:616_205/ver",
+      "FNO_frozen2880:416_282/ver",
+      "FNO_frozen2880:247_50/ver",
+      "FNO_frozen2880:142_454/ver"
+    ],
+    "config_contract": true,
+    "forbidden_native_int_zero": [
+      "stress_target_reads",
+      "H5_nodal_variable_reads",
+      "strain_target_reads",
+      "hor_tor_dia_target_reads",
+      "training_updates",
+      "scaler_fits",
+      "test_endpoint_selection",
+      "test_seed_selection",
+      "old_final_reads",
+      "old_development_target_reads",
+      "GT_U_reads_before_prediction_barrier",
+      "source_scalar_formula_trials",
+      "case_replacements",
+      "mesh_or_geometry_repairs"
+    ],
+    "actual_native_int_nonnegative": [
+      "raw_h5_input_reads",
+      "raw_deck_input_reads",
+      "raw_CSV_coordinate_reads",
+      "input_cache_reads",
+      "input_member_reads",
+      "new_operator_builds",
+      "new_fine_guard_K_applications",
+      "new_coarse_builds",
+      "new_coarse_guard_K_applications",
+      "fine_K_applications",
+      "solve_iterations",
+      "preconditioner_applications",
+      "FNO_checkpoint_read_attempts",
+      "FNO_checkpoint_reads",
+      "FNO_checkpoint_byte_hash_reads",
+      "FNO_inference_requests",
+      "native_query_cases",
+      "own_PCG_checkpoint_reads",
+      "own_PCG_checkpoint_writes",
+      "source_U_target_parse_attempts",
+      "source_U_target_parses",
+      "owned_GT_cache_reads",
+      "own_prediction_array_reads"
+    ],
+    "negative": "status completed gatefalse terminal; technical failed preserved; no scientific replay",
+    "aggregate_fields": [
+      "node_U_relative_l2_mean",
+      "node_U_relative_l2_worst"
+    ],
+    "arm_cost_fields": [
+      "fresh_request_wall_seconds_sum",
+      "observed_completed_requests"
+    ]
+  },
+  "author_validation": {
+    "AST_count": 1,
+    "AST_seconds": 0.007218035999999817,
+    "small_metadata_passed": true,
+    "module_imports": 0,
+    "request_contract_runs": 0,
+    "scientific_imports": 0,
+    "raw_content_or_header_reads": 0,
+    "arrays_or_GT_or_weights_reads": 0,
+    "GPU_or_resource_or_toy_checks": 0,
+    "AST_validated_source_sha256": "893eaf35875ebe2512444c6b1ba8701c68e16fbdceb0ea31e4104d5bc2360201"
+  },
+  "runtime_acceptance": "first authentic-released frozen actual job; sole GPU queue controlled by root",
+  "actual_execution_released": false,
+  "root_preexecution_technical_fix": {
+    "path": "notes/blind_solver_service_preexecution_fix.json",
+    "sha256": "6e61bcd54d949bce761b7394f450baeb37ca37f1116568095d9af254e6661a96",
+    "new_source_AST_repeated": false
+  }
+}

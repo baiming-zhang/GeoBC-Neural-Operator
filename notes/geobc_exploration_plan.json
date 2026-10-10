@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_selection_next_blind_interface_design",
+  "stage": "solver_blind_interface_source_preparation",
   "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -287,6 +287,31 @@
         "geobc/elastic_nodal_tensor_pair.py",
         "geobc/elastic_nodal_tensor.py"
       ]
+    },
+    {
+      "name": "blind_solver_full5_ver_U",
+      "kind": "blind_full_FE_U_with_frozen_FNO_reference",
+      "stage": "solver_new5_blind_U_reference",
+      "command": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-m",
+        "geobc.blind_solver_service",
+        "--plan",
+        "notes/geobc_blind_solver_plan.json",
+        "--output",
+        "runs/geobc_exploration/blind_solver_full5_ver_U"
+      ],
+      "requires": [
+        "notes/geobc_blind_solver_root_recipe.json",
+        "notes/geobc_blind_solver_plan.json",
+        "notes/blind_solver_inputs_source_ready.json",
+        "notes/blind_solver_service_source_ready.json",
+        "notes/blind_solver_service_queue_source_ready.json",
+        "notes/blind_solver_service_root_review.json",
+        "geobc/blind_solver_inputs.py",
+        "geobc/blind_solver_service.py"
+      ],
+      "output": "runs/geobc_exploration/blind_solver_full5_ver_U"
     }
   ],
   "historical_jobs": [
@@ -4646,5 +4671,88 @@
       "implementation_authorized": false
     },
     "policy": "Decide after frozen nodal representation actual; source-ready design is not implementation or execution authorization."
+  },
+  "blind_solver_source_preparation": {
+    "status": "actual_completed",
+    "actual_execution_released": true,
+    "started_UTC": "2026-10-10T01:05:40.384742+00:00",
+    "root_recipe": "notes/geobc_blind_solver_root_recipe.json",
+    "job": "blind_solver_full5_ver_U",
+    "owners": {
+      "input_helper": "topology_train_impl",
+      "driver_formal_plan": "macro_solver_next",
+      "queue_reporter": "deepjeb_research"
+    },
+    "expected_source_minutes": [
+      45,
+      60
+    ],
+    "source_only_no_sealed_parse": true,
+    "all_new_stress_labels_sealed": true,
+    "no_final_solver_selected": true,
+    "queue_reporter_status": "final_source_ready_author_AST_static_schema_passed",
+    "queue_reporter_ready": "notes/blind_solver_service_queue_source_ready.json",
+    "queue_reporter_source_sha256": {
+      "tools/run_geobc_exploration.py": "ce01c3d1f12de4ecaf87c86c19f1402c826ec9647a606659ded6dc5afc1e9490",
+      "tools/summarize_geobc_exploration.py": "03d36afc2f6fcefa3f82f381d61b2c81e417c773650b19e6a3c48d6a4f7cc397"
+    },
+    "queue_reporter_checked_UTC": "2026-10-10T01:16:55.251425+00:00",
+    "input_helper_status": "final_source_ready_independent_source_review_passed",
+    "input_helper_review": "notes/blind_solver_inputs_root_review.json",
+    "driver_status": "final_source_ready_narrow_resume_counter_fix_applied",
+    "driver_source_sha256": "668543d48520348f5e2cb3794a3dba96f178318f84dc126b598bbce669ea8000",
+    "driver_ready": "notes/blind_solver_service_source_ready.json",
+    "root_preexecution_fix": "notes/blind_solver_service_preexecution_fix.json",
+    "released_UTC": "2026-10-10T01:34:13.644829+00:00",
+    "root_review": "notes/blind_solver_service_root_review.json",
+    "independent_driver_source_review": "PASS final source",
+    "maximum_campaign_seconds": 2400,
+    "stress_targets_sealed": true,
+    "completed_UTC": "2026-10-10T01:45:53.308639+00:00",
+    "actual_seconds": 193.106327462,
+    "summary": "runs/geobc_exploration/blind_solver_full5_ver_U/summary.json",
+    "completion_gate": {
+      "passed": true,
+      "prediction_barrier_complete": true,
+      "GT_U_readout_complete": true,
+      "physical_accuracy_gate": true,
+      "FNO_node_U_gate": false,
+      "U_only": true,
+      "final_solver_selection": false,
+      "fixed_denominator": 5,
+      "terminal_negative_reason": null
+    }
+  },
+  "after_blind_fullS_design": {
+    "status": "coverage_option_selected_pending_root_frozen_recipe",
+    "owner": "deepjeb_research",
+    "file": "notes/geobc_after_blind_fullS_options.json",
+    "actual_execution_released": false,
+    "implementation_authorized": false,
+    "question": "Select the next macro data-scale or structural-input comparison from actual metadata; U-only blind test does not complete original U/S objective.",
+    "no_new_label_or_array_reads": true,
+    "sha256": "27d746477d36a5ec47bcf16e976dec76ba875508b8cb88cf0f326ee206db348a",
+    "current_learning_TRAIN_CADs": 40,
+    "proposal": "one direct signed U/S data coverage40vs200 comparison across frozen FNO and MLP families",
+    "delivery_feasibility": "notes/geobc_coverage_data_delivery_feasibility.json",
+    "delivery_sha256": "d099728ca42396e0a0e117150d857b4dcd400db3072f6d122dd1e34ca646a5b8",
+    "reason": "Unseen-CAD full physical U passed; full signed S remains unresolved. Prioritize one macro direct-signed coverage comparison across two retained learning families."
+  },
+  "blind_solver_completed_readout": {
+    "status": "completed",
+    "summary": "runs/geobc_exploration/blind_solver_full5_ver_U/summary.json",
+    "report": "results/blind_solver_service/BRIEF.md",
+    "actual_seconds": 193.106327462,
+    "physical_U_mean": 0.0001622586282937944,
+    "FNO_U_mean": 0.23511480956820713,
+    "native_P2_G_range": [
+      0.00022340495805070302,
+      0.0003962482444524967
+    ],
+    "all_original_nodes": 1080435,
+    "all_cells": 676079,
+    "all4Q": 2704316,
+    "all_new_signed_S_sealed": true,
+    "full_GeoBC_completed": false
   }
 }

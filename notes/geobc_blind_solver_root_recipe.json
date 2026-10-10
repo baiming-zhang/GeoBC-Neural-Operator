@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "status": "source_preparation_authorized_actual_not_released",
+  "kind": "blind_full_FE_U_with_frozen_FNO_reference",
+  "created_UTC": "2026-10-10T01:05:40.384742+00:00",
+  "human_authorization": "Sustained autonomous broad GeoBC solver selection; solver not selected, no Hash micro-tuning",
+  "adopted_design": {
+    "path": "notes/geobc_next_blind_solver_design.json",
+    "sha256": "5af00a762c943c77fdd8d1cdb2c2a37f031730dfed3d58d1719aface67372203"
+  },
+  "actual_execution_released": false,
+  "route": "pure_full_FE_U_native_P2_plus_one_frozen_FNO_node_U_reference",
+  "stress_route_eligibility": "Both new matched stress heads failed DEV gates; no S route selected. All new-test S targets remain sealed. FNO internal4 output allowed, only U decode/persist/metrics.",
+  "case_keys": [
+    "489_12/ver",
+    "616_205/ver",
+    "416_282/ver",
+    "247_50/ver",
+    "142_454/ver"
+  ],
+  "fixed_denominator": 5,
+  "FNO_reference": {
+    "method": "fno",
+    "seed": 2026,
+    "checkpoint_role": "fixed_cumulative600s_last_endpoint",
+    "step": 2880,
+    "checkpoint": {
+      "path": "runs/geobc_exploration/solver_confirm_fno_seed2026_600s/last.pt",
+      "bytes": 170464827,
+      "mtime_ns": 1791557354819071400
+    },
+    "frozen_scaler": {
+      "mean": [
+        -0.006059544265096125,
+        -0.0005008273527146082,
+        0.015260029003479832,
+        0.09629744183585241
+      ],
+      "std": [
+        0.05393032209940291,
+        0.011291299669602316,
+        0.07619646768716026,
+        0.5232191238243877
+      ],
+      "stress_scale": 90.46589813232424,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "no_new_training_or_scaler_fit": true,
+    "no_test_seed_or_endpoint_selection": true
+  },
+  "physical_route": {
+    "fine_equation": "Accepted original curved TET10 fourQ full equation, FP64 true residual convergence",
+    "true_fine_relative_residual_tolerance": 1e-08,
+    "preconditioner": "Accepted P1-derived fixed32 additive space while solving full fine equation; no direct coarse field substitution",
+    "zero_start": true,
+    "source_coarse_module": "geobc/elastic_coarse.py",
+    "fresh_combined_cost": true,
+    "geometry_regularity": "Preserve accepted elastic_pilot center+fourQ coherent nonzero signed orientation, including consistently negative orientation with positive abs(detJ) quadrature weights, plus corresponding existing native query policy. No new positive-sign-only rule, P1 substitution, dropped cells or source-H3D claim."
+  },
+  "before_any_new_test_parse": [
+    "Final formal plan binds final sources/checkpoint/scaler/seed/query/full budgets and exact identities",
+    "Authentic root source review/release marker after source-ready; no source preparation raw/header/array or weight reads"
+  ],
+  "inputs": {
+    "H5_allowlist": [
+      "vertices",
+      "cells"
+    ],
+    "CSV_prelabel_only": [
+      "nodeID",
+      "coord_x(mm)",
+      "coord_y(mm)",
+      "coord_z(mm)"
+    ],
+    "GRID_to_H5_one_to_one_tolerance_mm": 0.0002,
+    "FNO_exact_original25_target_free": true,
+    "actual_material_and_BC_required": true,
+    "no_fake_defaults_or_GRID_minus1": true,
+    "unsupported_keeps_case": true
+  },
+  "prediction_barrier": {
+    "all10_node_U_predictions": true,
+    "all5_physical_full_fourQ_U_G_geometry_outputs": true,
+    "then_shared_deferred_CSV_U_once_per_CAD": true,
+    "target_S_reads": 0,
+    "H5_nodal_variable_reads": 0,
+    "failure_no_target_open": true
+  },
+  "physical_blind_gate": {
+    "all5_true_fine_converged_and_queries_complete": true,
+    "each_node_U_relativeL2_strictly_below": 0.01,
+    "each_native_P2_U_relativeL2_strictly_below": 0.01,
+    "each_native_P2_G_relativeL2_strictly_below": 0.05,
+    "zero_reference_relative_null_not_pass": true,
+    "not_engineering_tolerance_claim": true
+  },
+  "FNO_interpretation": "Same original-node U metrics; independently report same nodeU1% gate, input and training/cost differences explicit. No native-gradient claim or family capacity ranking. No whole-GeoBC selection from U-only result.",
+  "budgets": {
+    "maximum_campaign_actual_seconds": 2400,
+    "maximum_per_CAD_input_operator_coarse_setup_seconds": 300,
+    "maximum_per_CAD_solve_seconds": 300,
+    "maximum_per_CAD_physical_queries_and_metrics_seconds": 60,
+    "maximum_peak_GPU_bytes": 25769803776,
+    "campaign_cap_overrides_per_phase": true,
+    "failed_resume_wall_and_input_GT_attempts_retained": true,
+    "finalization_overshoot_explicit": true,
+    "maximum_per_FNO_independent_cold_request_seconds": 120
+  },
+  "costs": "Fresh raw-to-field cost each interface; acquisition and upstream CAD meshing excluded explicitly; all parse/setup/solve/FNO checkpoint/H2D/inference/query/IO charged; target/metrics and offline training separate; do not borrow historical31-42s. Ten GPU-serial independent child requests, one per arm/CAD; parent launch-to-observed-exit counts true cold and failed time. Fixed FNO cap120s. Persist physical fullfourQ U/G before labels; later metric child reuses these candidate outputs, no re-solve. Source U parses5 and subsequent owned GT-cache accesses must be separate actual receipt counts.",
+  "scope_rule": "One frozen blind protocol; no replacing cases, dropping failures, retuning recipe or consuming S to rescue. This is service evidence across unseen IDs, not established unseen geometry families."
+}

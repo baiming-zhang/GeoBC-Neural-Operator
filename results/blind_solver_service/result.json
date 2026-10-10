@@ -1,0 +1,282 @@
+{
+  "status": "completed",
+  "kind": "blind_full_FE_U_with_frozen_FNO_reference",
+  "source_summary": {
+    "path": "runs/geobc_exploration/blind_solver_full5_ver_U/summary.json",
+    "sha256": "433c549622b2785361d83f7dc25dc3bd2280cf2c6b0f74d367b9116b0f47b24a"
+  },
+  "scientific_digest": "0b9a9702fbe946f56ab69684247f177a134c9ab3657ef3932ed7a4942f600e7e",
+  "case_keys": [
+    "489_12/ver",
+    "616_205/ver",
+    "416_282/ver",
+    "247_50/ver",
+    "142_454/ver"
+  ],
+  "fixed_denominator": 5,
+  "coverage": {
+    "original_nodes": 1080435,
+    "cells10": 676079,
+    "native_fourQ_points": 2704316,
+    "all10_finite_full_N_predictions_committed": true,
+    "all5_full_fourQ_physical_predictions_committed": true
+  },
+  "completion_gate": {
+    "passed": true,
+    "prediction_barrier_complete": true,
+    "GT_U_readout_complete": true,
+    "physical_accuracy_gate": true,
+    "FNO_node_U_gate": false,
+    "U_only": true,
+    "final_solver_selection": false,
+    "fixed_denominator": 5,
+    "terminal_negative_reason": null
+  },
+  "metrics": {
+    "489_12/ver": {
+      "physics_full_FE": {
+        "node_U": {
+          "relative_l2": 0.00016221533443058626,
+          "absolute_RMS": 2.6881081790157277e-05,
+          "absolute_max": 7.72294700900375e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_U": {
+          "relative_l2": 0.0001622058730415453,
+          "absolute_RMS": 2.5036372958909618e-05,
+          "absolute_max": 7.678119195688917e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_G": {
+          "relative_l2": 0.00024637677997699724,
+          "absolute_RMS": 1.4367497992692297e-06,
+          "absolute_max": 1.699015128791179e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "reference": "same TET10 P2 proxy derived from original source node U, not source strain GT"
+      },
+      "FNO_frozen2880": {
+        "node_U": {
+          "relative_l2": 0.24094283561674446,
+          "absolute_RMS": 0.03992719981561067,
+          "absolute_max": 0.14327500382590513,
+          "zero_reference_relative_is_null": false
+        },
+        "native_gradient_available": false
+      }
+    },
+    "616_205/ver": {
+      "physics_full_FE": {
+        "node_U": {
+          "relative_l2": 0.00016232129470043083,
+          "absolute_RMS": 1.2439677199281593e-05,
+          "absolute_max": 4.328722169375293e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_U": {
+          "relative_l2": 0.0001622299291394198,
+          "absolute_RMS": 1.1157240544865592e-05,
+          "absolute_max": 4.315010271748185e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_G": {
+          "relative_l2": 0.0003962482444524967,
+          "absolute_RMS": 1.0718002966357514e-06,
+          "absolute_max": 1.3029410970590053e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "reference": "same TET10 P2 proxy derived from original source node U, not source strain GT"
+      },
+      "FNO_frozen2880": {
+        "node_U": {
+          "relative_l2": 0.3037656422230412,
+          "absolute_RMS": 0.023279425786129262,
+          "absolute_max": 0.13122152624219785,
+          "zero_reference_relative_is_null": false
+        },
+        "native_gradient_available": false
+      }
+    },
+    "416_282/ver": {
+      "physics_full_FE": {
+        "node_U": {
+          "relative_l2": 0.00016224866449150968,
+          "absolute_RMS": 1.6499402967301372e-05,
+          "absolute_max": 5.0628297488685694e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_U": {
+          "relative_l2": 0.00016220530719620246,
+          "absolute_RMS": 1.585470126914556e-05,
+          "absolute_max": 5.043548129270605e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_G": {
+          "relative_l2": 0.00034745324919134503,
+          "absolute_RMS": 1.2504470420044995e-06,
+          "absolute_max": 2.7306181182424094e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "reference": "same TET10 P2 proxy derived from original source node U, not source strain GT"
+      },
+      "FNO_frozen2880": {
+        "node_U": {
+          "relative_l2": 0.21422925472868207,
+          "absolute_RMS": 0.021785416923035095,
+          "absolute_max": 0.10585943219937116,
+          "zero_reference_relative_is_null": false
+        },
+        "native_gradient_available": false
+      }
+    },
+    "247_50/ver": {
+      "physics_full_FE": {
+        "node_U": {
+          "relative_l2": 0.00016220772714542302,
+          "absolute_RMS": 2.9221205543195213e-05,
+          "absolute_max": 9.093571620275739e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_U": {
+          "relative_l2": 0.00016220049027775417,
+          "absolute_RMS": 2.9084650565761474e-05,
+          "absolute_max": 9.053409657448511e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_G": {
+          "relative_l2": 0.00022340495805070302,
+          "absolute_RMS": 1.7118902397162889e-06,
+          "absolute_max": 1.3127234416725726e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "reference": "same TET10 P2 proxy derived from original source node U, not source strain GT"
+      },
+      "FNO_frozen2880": {
+        "node_U": {
+          "relative_l2": 0.16399938845970458,
+          "absolute_RMS": 0.02954396762395278,
+          "absolute_max": 0.14825450892638525,
+          "zero_reference_relative_is_null": false
+        },
+        "native_gradient_available": false
+      }
+    },
+    "142_454/ver": {
+      "physics_full_FE": {
+        "node_U": {
+          "relative_l2": 0.0001623001207010222,
+          "absolute_RMS": 1.3965474857188312e-05,
+          "absolute_max": 4.389304937724016e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_U": {
+          "relative_l2": 0.00016223824015991213,
+          "absolute_RMS": 1.2252404463850283e-05,
+          "absolute_max": 4.352008400521221e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "native_P2_G": {
+          "relative_l2": 0.0003889455325381667,
+          "absolute_RMS": 1.1295624702050885e-06,
+          "absolute_max": 2.1661516751574353e-05,
+          "zero_reference_relative_is_null": false
+        },
+        "reference": "same TET10 P2 proxy derived from original source node U, not source strain GT"
+      },
+      "FNO_frozen2880": {
+        "node_U": {
+          "relative_l2": 0.25263692681286337,
+          "absolute_RMS": 0.021738706257044365,
+          "absolute_max": 0.12312773898088047,
+          "zero_reference_relative_is_null": false
+        },
+        "native_gradient_available": false
+      }
+    }
+  },
+  "aggregate": {
+    "physics_full_FE": {
+      "node_U_relative_l2_mean": 0.0001622586282937944,
+      "node_U_relative_l2_worst": 0.00016232129470043083,
+      "fixed_denominator": 5
+    },
+    "FNO_frozen2880": {
+      "node_U_relative_l2_mean": 0.23511480956820713,
+      "node_U_relative_l2_worst": 0.3037656422230412,
+      "fixed_denominator": 5
+    }
+  },
+  "costs": {
+    "cumulative_campaign_wall_seconds": 193.106327462,
+    "campaign_cap_seconds": 2400,
+    "unknown_gap_charged_seconds": 0.0,
+    "finalization_overshoot_seconds": 0.0,
+    "fresh_combined_measurement": true
+  },
+  "arm_costs": {
+    "physics_full_FE": {
+      "fresh_request_wall_seconds_sum": 123.45430454699999,
+      "observed_completed_requests": 5,
+      "fresh_cold_scope": "raw input to persisted node U and required physical native queries; independent process",
+      "offline_training_seconds": 0,
+      "acquisition_and_upstream_meshing_excluded": true
+    },
+    "FNO_frozen2880": {
+      "fresh_request_wall_seconds_sum": 49.64237760899999,
+      "observed_completed_requests": 5,
+      "fresh_cold_scope": "raw input to persisted node U and required physical native queries; independent process",
+      "offline_training_seconds": 608.6778807109991,
+      "acquisition_and_upstream_meshing_excluded": true
+    }
+  },
+  "cold_range_seconds": {
+    "physics_full_FE": [
+      20.206235255999996,
+      33.54791444200001
+    ],
+    "FNO_frozen2880": [
+      8.244669633,
+      12.438802028999987
+    ]
+  },
+  "read_receipt": {
+    "stress_target_reads": 0,
+    "H5_nodal_variable_reads": 0,
+    "strain_target_reads": 0,
+    "hor_tor_dia_target_reads": 0,
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "test_endpoint_selection": 0,
+    "test_seed_selection": 0,
+    "old_final_reads": 0,
+    "old_development_target_reads": 0,
+    "GT_U_reads_before_prediction_barrier": 0,
+    "source_scalar_formula_trials": 0,
+    "case_replacements": 0,
+    "mesh_or_geometry_repairs": 0,
+    "raw_h5_input_reads": 10,
+    "raw_deck_input_reads": 10,
+    "raw_CSV_coordinate_reads": 10,
+    "input_cache_reads": 20,
+    "input_member_reads": 285,
+    "new_operator_builds": 5,
+    "new_fine_guard_K_applications": 40,
+    "new_coarse_builds": 5,
+    "new_coarse_guard_K_applications": 10,
+    "fine_K_applications": 4781,
+    "solve_iterations": 4541,
+    "preconditioner_applications": 4551,
+    "FNO_checkpoint_read_attempts": 5,
+    "FNO_checkpoint_reads": 5,
+    "FNO_checkpoint_byte_hash_reads": 5,
+    "FNO_inference_requests": 5,
+    "native_query_cases": 5,
+    "own_PCG_checkpoint_reads": 0,
+    "own_PCG_checkpoint_writes": 190,
+    "source_U_target_parse_attempts": 5,
+    "source_U_target_parses": 5,
+    "owned_GT_cache_reads": 5,
+    "own_prediction_array_reads": 20
+  },
+  "interpretation": "New CAD IDs, ver only; different information interfaces, no architecture causal ranking, no original signed S evaluation, native G is GT-node-U-derived P2 proxy not source strain GT."
+}
