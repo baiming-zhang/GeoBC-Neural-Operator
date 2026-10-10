@@ -66,10 +66,18 @@ function Git-Run([string]$Directory, [string[]]$Arguments, [string]$InputText = 
         $errorTask = $process.StandardError.ReadToEndAsync()
         $process.WaitForExit()
         $output = $outputTask.Result
-        # Do not expose stderr: helpers or HTTP diagnostics can contain credentials.
-        [void]$errorTask.Result
+        # Classify in memory; never expose raw helper/HTTP diagnostics.
+        $safeErrorKind = 'unspecified'
+        $errorText = $errorTask.Result
+        if ($errorText -match 'Authentication failed|could not read Username|invalid credentials') { $safeErrorKind = 'authentication' }
+        elseif ($errorText -match 'permission.*denied|not authorized|write access.*denied') { $safeErrorKind = 'permission' }
+        elseif ($errorText -match 'SSL|schannel|certificate') { $safeErrorKind = 'TLS' }
+        elseif ($errorText -match 'Could not resolve|Failed to connect|Couldn.t connect|timed out') { $safeErrorKind = 'network_connection' }
+        elseif ($errorText -match 'RPC failed|HTTP/2|returned error: [45][0-9][0-9]') { $safeErrorKind = 'network_HTTP' }
+        elseif ($errorText -match 'non-fast-forward|fetch first|rejected') { $safeErrorKind = 'branch_conflict' }
+        $errorText = $null
         if ($AcceptedExitCodes -notcontains $process.ExitCode) {
-            throw ('Git operation failed: {0}; exit {1}. Diagnostic output withheld.' -f $Arguments[0], $process.ExitCode)
+            throw ('Git operation failed: {0}; exit {1}; category {2}. Raw diagnostic output withheld.' -f $Arguments[0], $process.ExitCode, $safeErrorKind)
         }
         return [pscustomobject]@{ ExitCode = $process.ExitCode; Output = $output }
     } finally { $process.Dispose() }
