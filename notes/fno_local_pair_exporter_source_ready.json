@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "status": "source_ready_not_released_not_executed",
+  "created_at_utc": "2026-10-10T12:08:39.076672+00:00",
+  "source": "tools/export_fno_local_pair.py",
+  "final_source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+  "scientific_digest": "192ccffe2a79bf63cdd2e8199dd2b9fab79dd29ad8eb10ed689c78dd10e26b51",
+  "plan": "notes/geobc_fno_local_condition_pair_plan.json",
+  "AST": {
+    "passed": true,
+    "parse_count": 1,
+    "seconds": 0.004850875000556698,
+    "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+    "module_imported_or_executed": false,
+    "stdlib_top_level_imports": [
+      "__future__",
+      "argparse",
+      "csv",
+      "datetime",
+      "hashlib",
+      "json",
+      "math",
+      "os",
+      "pathlib",
+      "re",
+      "time"
+    ],
+    "default_export_is_False": true
+  },
+  "actual_export_released": false,
+  "actual_export_performed": false,
+  "actual_FNO_execution_started_by_this_task": false,
+  "source_phase_receipt": {
+    "only_source_or_saved_JSON_schema_reads": true,
+    "default_calls": 0,
+    "contract_calls": 0,
+    "raw_reads": 0,
+    "H5_reads": 0,
+    "array_reads": 0,
+    "PT_body_reads": 0,
+    "GT_reads": 0,
+    "model_constructions": 0,
+    "inference_calls": 0,
+    "GPU_calls": 0,
+    "plot_calls": 0,
+    "downloads": 0,
+    "root_marker_writes": 0
+  },
+  "owned_files": [
+    "tools/export_fno_local_pair.py",
+    "notes/fno_local_pair_exporter_source_ready.json"
+  ],
+  "prior_sources_plans_pins_rootmarkers_modified": false,
+  "interfaces": {
+    "export_saved(plan_path=PLAN,export=False)": "Immediate source_only with reads/writes/scientific_array/GPU calls0; no plan or marker read. export=True does terminal/release gate then saved-scalar CPU export.",
+    "CLI": "python -m tools.export_fno_local_pair [--plan PLAN] --export; default is zero IO/exit0; required plot missing/unavailable/failed persists completed_incomplete and returns exit1",
+    "terminal_inputs(plan_path=PLAN)": "CPU project saved JSON/scalars only, plus actual WSL /proc identities; never call FNO request_contract/model/prepare/inference APIs",
+    "full120_metrics": "Recompute only complete fixed120 signed U/S/hot mean+worst from saved per-case scalars and verify saved aggregate; missing/partial4800/nonfinite/zero-reference yields null, never subset means"
+  },
+  "required_export_root_review": {
+    "path": "notes/fno_local_pair_exporter_root_review.json",
+    "passed": true,
+    "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+    "scientific_digest": "192ccffe2a79bf63cdd2e8199dd2b9fab79dd29ad8eb10ed689c78dd10e26b51",
+    "actual_export_released": true
+  },
+  "actual_gate": [
+    "authentic frozen FNO science/source binding to true FNO rootreview",
+    "saved summary completed or failed; status.phase terminal",
+    "native clock closed=true active=false",
+    "actual external_launch.status terminal; genuine saved guard_process and child_process pid/start_ticks/argv",
+    "both exact processes exited in common WSL /proc; direct parent and actual child argv match",
+    "current FNO driver/guard source SHA equals genuine execution source pins",
+    "forbidden scientific-read counters remain0"
+  ],
+  "negative_policy": "A genuine closed/exited negative may be reported after CPU release; protocol/scientific qualification remains false, fixed120 partial endpoints stay null. Manifest status represents export artifacts only: both plot groups saved gives completed, otherwise completed_incomplete/CLI exit1. Existing incomplete artifacts are preserved for root review, never automatically overwritten. Missing closed clock or exact process identity/exit blocks export.",
+  "reference": {
+    "saved_fullTRAIN120_summary": "results/geobc_train_fit/summary.json",
+    "sha256": "f20f2d68d1a277e05c42b05a9440572a8dd32b051b6445417c04d7d69e75e161",
+    "old_arm": "fno_cad40_fresh4800",
+    "original_training_summary": "runs/geobc_coverage_comparison/fno_cad40_fresh4800/summary.json",
+    "original_training_summary_sha256": "d7749f67427d7e5a8a91f2d04d95fa62d83e4b6bdc7ee89a5a2ca531d5afe3bb",
+    "original_training_summary_body_read_in_source_phase": false,
+    "future_read": "Root-approved export gate only; verify saved index SHA; read JSON parameter/config/cost metadata, never PT/stat array bodies; unavailable parameter count remains null"
+  },
+  "outputs": {
+    "directory": "results/geobc_fno_local_pair",
+    "required_files": [
+      "BRIEF.md",
+      "metrics.json",
+      "manifest.json",
+      "scalars.csv"
+    ],
+    "plots": [
+      "loss_comparison.png",
+      "loss_comparison.svg",
+      "aggregate_comparison.png",
+      "aggregate_comparison.svg"
+    ],
+    "plot_sources": "two saved scalar loss.jsonl logs and saved genuine fixed0/fixed4800 full120 readout aggregates plus old4800 reference",
+    "plot_backend": "lazy Matplotlib Agg CPU",
+    "plot_cache": "owned output/.mpl-cache",
+    "plot_missing_status": "missing/unavailable/failed explicit in metrics+manifest+BRIEF; completed_incomplete and CLI exit1; no nonexistent plot links",
+    "ownership_cache": "Identity-bound completed cache reused only with unchanged source/input/artifact hashes; incomplete/interrupted/changed output preserved for root review; no automatic overwrite"
+  },
+  "report_policy": [
+    "native25 versus grid25 is the single local25 origin factor inside the matched new decoder",
+    "old FNO absolute U/signedS/hot mean+worst, real saved train/attempt wall and parameter differences are explicit",
+    "actual closed inner clock and observed external launch-to-child-exit wall reported separately",
+    "unknown cost intervals and timeout are nonexact; CPU export approval does not imply experimental PASS",
+    "actual first complete TRAIN gradient metadata and exact named initial tensor pairing reported",
+    "relative pair gate does not automatically choose a new decoder with larger old-reference errors",
+    "TRAIN120 is not held20/generalization/final solver qualification"
+  ],
+  "runtime_verification": "Not performed: source-only authorization excludes module/default/contract/plots/raw/arrays/checkpoints/models/CUDA execution.",
+  "AST_history": [
+    {
+      "passed": true,
+      "parse_count": 1,
+      "seconds": 0.005178147999686189,
+      "module_imported_or_executed": false,
+      "stdlib_top_level_imports": [
+        "__future__",
+        "argparse",
+        "csv",
+        "datetime",
+        "hashlib",
+        "json",
+        "math",
+        "os",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "default_export_is_False": true,
+      "source_sha256": "1adff6409fc32005cc133b1f349c81b6a21c61c31e32769ec282aac7f0c029a0",
+      "created_at_utc": "2026-10-10T12:08:39.076672+00:00"
+    }
+  ],
+  "AST_revision_count": 2,
+  "updated_at_utc": "2026-10-10T12:33:51.552556+00:00",
+  "source_bytes": 44448,
+  "revision_fixes": {
+    "scope": "Only owned exporter source and ready JSON changed; original science/source/plans/pins/rootmarkers untouched",
+    "artifact_completion": "Both loss and aggregate plot statuses must be saved; otherwise completed_incomplete with persistent reasons and CLI exit1. Genuine scientific-negative report can have completed artifacts without experiment PASS.",
+    "cost_qualification": "Requires cost_accounting_exact, finite external wall >= finite closed inner wall, explicit finite nonnegative unknown_interruption_charge_seconds == 0, launch exit0/no timeout/within budget and exact in-flight costs. Missing interruption field no longer defaults0.",
+    "writer_field_evidence": "geobc/fno_local_condition_pair.py:243-246 initializes and persists unknown_interruption_charge_seconds=0; line255 increments observed interruption gap",
+    "new_final_AST_only": true,
+    "actual_entrypoint_calls": 0
+  }
+}

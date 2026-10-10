@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-10-10T10:10:26.534402+00:00",
+  "source": "tools/push_reviewed_snapshot.ps1",
+  "source_sha256": "e1e7251f74ce2f02851b2bc621c128eb0cdc39e85b02b8178b56fb767c877e3d",
+  "whole_source_reviewed": true,
+  "decision": "one_bounded_direct_HTTP11_immutable_private_snapshot_attempt",
+  "target_commit": "d31e7996ca011bcb6a3dc77b06cfcaa4e323615f",
+  "ordinary_fast_forward_only": true,
+  "preserve_existing_user_authorization": true,
+  "required_identity": {
+    "owner": "baiming-zhang",
+    "user_id": 174442095,
+    "repository_id": 1410470321,
+    "private": true
+  },
+  "local_snapshot_review": {
+    "prepared_by": "tools/publish_private_repo.ps1 -PrepareSnapshot",
+    "elapsed_seconds": 5.9029206,
+    "exit_code": 0,
+    "file_count": 2283,
+    "bytes": 245420583,
+    "metadata_reviewed": true,
+    "local_ancestor_f621_verified_exit0": true,
+    "tracked_delta_files": 31,
+    "untracked_publication_receipt_excluded": true,
+    "contents": "frozen reviewed PP/FNO/report/guards; explicit running/queued status and genuine input-negative; no new PP/FNO results, no arrays/PT/raw data"
+  },
+  "AST": {
+    "parse_count": 1,
+    "parse_errors": 0,
+    "elapsed_seconds": 0.002802
+  },
+  "reviewed_properties": [
+    "exact current source SHA and selected target root-bound before any local/credential/network operations",
+    "GCM and HTTP secrets memory-only; sanitized category/HTTP-code logs",
+    "Exact identity/private before and after",
+    "No recopy/stage/commit/create/fetch/force",
+    "Only exact target, empty main or locally proven ancestor",
+    "Per-call direct HTTP1.1; no global proxy/TLS changes",
+    "All Git/REST operations time-bounded",
+    "Failure after mutation remains unknown until remote verification"
+  ],
+  "actual_new_target_push_executed": false,
+  "historical_verified_f621_receipt": "notes/github_immutable_push_f621_receipt.json"
+}

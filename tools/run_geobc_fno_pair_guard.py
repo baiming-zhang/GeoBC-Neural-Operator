@@ -13,6 +13,18 @@ PLAN = "notes/geobc_fno_local_condition_pair_plan.json"
 BUDGET = 9000
 
 
+def process_identity(pid):
+    """Capture the actual Linux start identity before an endpoint can exit."""
+    try:
+        folder = Path("/proc") / str(pid)
+        raw = (folder / "stat").read_text(encoding="utf-8")
+        tail = raw[raw.rfind(")") + 2:].split()
+        argv = [part.decode("utf-8") for part in (folder / "cmdline").read_bytes().split(b"\0") if part]
+        return {"pid": pid, "ppid": int(tail[1]), "start_ticks": int(tail[19]), "argv": argv}
+    except (OSError, ValueError, IndexError, UnicodeError):
+        return None
+
+
 def main():
     if os.name == "nt":
         raise SystemExit("Use the project's WSL process namespace")
@@ -27,6 +39,7 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     record = {"status": "starting", "started_at_utc": datetime.now(timezone.utc).isoformat(),
               "external_budget_seconds": BUDGET, "automatic_replay": False,
+              "guard_process": process_identity(os.getpid()),
               "guard_source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     marker = output / "external_launch.json"
     with marker.open("x", encoding="utf-8") as stream:
@@ -35,7 +48,8 @@ def main():
     argv = [sys.executable, "-u", "-m", "geobc.fno_local_condition_pair", "--plan", PLAN, "--start"]
     with (output / "process.log").open("x", encoding="utf-8") as log:
         child = subprocess.Popen(argv, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
-        record.update(status="running", child_pid=child.pid, child_argv=argv)
+        record.update(status="running", child_pid=child.pid, child_argv=argv,
+                      child_process=process_identity(child.pid))
         marker.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
         timed_out = False
         try:

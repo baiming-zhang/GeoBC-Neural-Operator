@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "kind": "GeoBC_PP_live_saved_training_loss_diagnostic",
+  "observed_at_utc": "2026-10-10T11:45:15.480033+00:00",
+  "scientific_digest": "dad6be58506fd5079470e8d31d231ff8cf52234c23cece4007740f812164dc89",
+  "source_snapshot": {
+    "path": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION/loss.jsonl",
+    "read_snapshot_bytes": 2828519,
+    "snapshot_sha256": "4896ed5e3ca63f8a98efd816939e16e6e4518634c9e25771f4d6d0e539478e87",
+    "live_append_only": true,
+    "ignored_partial_last_line": 0
+  },
+  "saved_updates": 10976,
+  "full_passes": 91,
+  "baseline_passes36_to40": [
+    {
+      "pass": 36,
+      "mean_encoded4_case_loss": 0.36444466092313327,
+      "max_case_encoded4_loss": 3.338226795196533,
+      "mean_preclip_gradient_norm": 2.653921164572239,
+      "lr_min": 0.000644351164117212,
+      "lr_max": 0.0006682484684486093
+    },
+    {
+      "pass": 37,
+      "mean_encoded4_case_loss": 0.33485967504481473,
+      "max_case_encoded4_loss": 3.330773115158081,
+      "mean_preclip_gradient_norm": 2.370302589982748,
+      "lr_min": 0.0006684476821020339,
+      "lr_max": 0.0006919416503232462
+    },
+    {
+      "pass": 38,
+      "mean_encoded4_case_loss": 0.3143770509089033,
+      "max_case_encoded4_loss": 2.8386526107788086,
+      "mean_preclip_gradient_norm": 2.3275962273279824,
+      "lr_min": 0.000692137202287421,
+      "lr_max": 0.0007151634211773683
+    },
+    {
+      "pass": 39,
+      "mean_encoded4_case_loss": 0.3172753750346601,
+      "max_case_encoded4_loss": 2.793355703353882,
+      "mean_preclip_gradient_norm": 2.3107111836473146,
+      "lr_min": 0.0007153547753090678,
+      "lr_max": 0.0007378501140711973
+    },
+    {
+      "pass": 40,
+      "mean_encoded4_case_loss": 0.3237907103883723,
+      "max_case_encoded4_loss": 2.8145549297332764,
+      "mean_preclip_gradient_norm": 2.261911006271839,
+      "lr_min": 0.0007380367457363597,
+      "lr_max": 0.0007599395290838358
+    }
+  ],
+  "recent_complete5_passes": [
+    {
+      "pass": 87,
+      "mean_encoded4_case_loss": 0.1496564287925139,
+      "max_case_encoded4_loss": 1.4341169595718384,
+      "mean_preclip_gradient_norm": 0.7533212081839641,
+      "lr_min": 0.000911004597682446,
+      "lr_max": 0.0009172384214131891
+    },
+    {
+      "pass": 88,
+      "mean_encoded4_case_loss": 0.14954967107623815,
+      "max_case_encoded4_loss": 1.902804970741272,
+      "mean_preclip_gradient_norm": 0.7183782699207465,
+      "lr_min": 0.0009045123168475863,
+      "lr_max": 0.0009109513459511994
+    },
+    {
+      "pass": 89,
+      "mean_encoded4_case_loss": 0.15139770136059572,
+      "max_case_encoded4_loss": 1.7455302476882935,
+      "mean_preclip_gradient_norm": 0.7520419526845217,
+      "lr_min": 0.0008978163619499129,
+      "lr_max": 0.0009044573541813313
+    },
+    {
+      "pass": 90,
+      "mean_encoded4_case_loss": 0.14038474847717833,
+      "max_case_encoded4_loss": 1.450097918510437,
+      "mean_preclip_gradient_norm": 0.679402922342221,
+      "lr_min": 0.0008909201046043657,
+      "lr_max": 0.0008977597160240072
+    },
+    {
+      "pass": 91,
+      "mean_encoded4_case_loss": 0.1422971619758755,
+      "max_case_encoded4_loss": 1.6021369695663452,
+      "mean_preclip_gradient_norm": 0.6661692914863427,
+      "lr_min": 0.0008838270172841984,
+      "lr_max": 0.0008908618039417389
+    }
+  ],
+  "baseline_mean_encoded4_loss": 0.33094949445997673,
+  "recent_mean_encoded4_loss": 0.1466571423364803,
+  "recent_over_baseline_ratio": 0.4431405540467331,
+  "diagnostic_seconds": 0.03847573900020507,
+  "interpretation": "TRAIN-only loss continues after the fixed4800 interim; encoded4 normalized/asinh training objective, not physical U/S. Different training exposure and optimizer schedule. No causal scheduler claim, no fixed24000 result, no early stop or endpoint/hyperparameter selection. This CPU read of saved loss performs no inference and reads no arrays/PT/raw/new CAD GT. Fixed4800/24000 endpoints and all budgets unchanged.",
+  "read_receipt": {
+    "numeric_new_CAD_GT_reads": 0,
+    "array_reads": 0,
+    "checkpoint_body_reads": 0,
+    "inference_calls": 0,
+    "GPU_calls": 0,
+    "default_or_contract_calls": 0
+  },
+  "actual24k_readout_complete": false
+}

@@ -88,7 +88,7 @@
   "new_CAD_acquisition_not_started": false,
   "human_clarification": "Senior did not specify a version; user wants empirical best across methods, no preselected family/version",
   "no_family_selected_by_recommendation": true,
-  "updated_UTC": "2026-10-10T10:08:34.598731+00:00",
+  "updated_UTC": "2026-10-10T11:52:12.058464+00:00",
   "next_protocol": "notes/geobc_coverage_comparison_plan.json",
   "scientific_digest": "bcce7d422749ca26b72ecba57ddcbbb985dcd3643ac77cf87f5671310b1aa01b",
   "actual_start_Beijing": "2026-10-10 10:34",
@@ -445,22 +445,30 @@
       "pid": 364,
       "first_real_case": "107_150/tor",
       "first_gradient_passed": true,
-      "last_observed_step": 4269,
-      "last_observed_UTC": "2026-10-10T10:04:53.814294+00:00",
-      "last_training_seconds": 3576.150732772,
+      "last_observed_step": 14080,
+      "last_observed_UTC": "2026-10-10T12:31:41.721999+00:00",
+      "last_training_seconds": 11612.646213852002,
       "fixed_updates": 24000,
-      "estimated_finish_Beijing": "2026-10-10T22:44:22.516592+08:00",
-      "ETA_basis": "Actual4269 updates /3576.15 training seconds plus assumed240s future nontraining; provisional",
+      "estimated_finish_Beijing": "2026-10-10T22:52:03.359104+08:00",
+      "ETA_basis": "Actual14080-step cumulative training rate plus240s future nontraining margin; provisional",
       "train_limit_seconds": 28800,
       "whole_limit_seconds": 30000,
       "same_120_TRAIN_and_old_scaler": true,
       "DEV_or_held5_reads_authorized": false,
       "auto_resume": false,
       "external_guard_session": 85631,
-      "last_total_seconds": 3617.0186955045792,
-      "estimated_remaining_training_seconds": 16528.702297569533,
+      "last_total_seconds": 11693.78476617358,
+      "estimated_remaining_training_seconds": 8181.637105213911,
       "ETA_extra_nontrain_seconds_assumed": 240,
-      "exact_child_alive_at_last_observation": true
+      "exact_child_alive_at_last_observation": true,
+      "fixed4800_full120_readout_complete": true,
+      "training_seconds": 11612.646213852002,
+      "total_seconds": 11693.78476617358,
+      "ETA_remaining_hours": 2.3393436403371974,
+      "ETA_Beijing": "2026-10-10T22:52:03.359104+08:00",
+      "exact_identity_live": true,
+      "native_clock_active": true,
+      "native_clock_closed": false
     },
     "FNO_parallel_source_preparation": {
       "status": "root_source_review_passed_queued_after_PP_terminal",
@@ -478,7 +486,9 @@
       "whole_wall_seconds": 9000,
       "metadata_review_seconds": 2.9129917740001474,
       "predecessor_condition": "Actual PP terminal/closed/exited; common GPU lock; independently enforced before scientific reads",
-      "root_budget_gate_repair": "Complete pair outside frozen training/wall budget cannot qualify; preserves SCI and original20 pins"
+      "root_budget_gate_repair": "Complete pair outside frozen training/wall budget cannot qualify; preserves SCI and original20 pins",
+      "guard_source_sha256": "62f2a854e1c79a72af2776a06b20341e1944a0d43673a8d52c5bd37c690b06a8",
+      "guard_identity_capture": "Genuine guard+child PID/start_ticks/argv captured in external_launch at actual future launch; no FNO execution yet"
     },
     "PP_report_source_preparation": {
       "status": "source_frozen_root_reviewed_no_export",
@@ -497,6 +507,119 @@
       "FNO_native25_gate_pass": "compare both arms against old FNO absolute U/S/hot metrics; cannot select an inferior new decoder merely from relative rescue",
       "FNO_native25_gate_fail": "stop this modification without expanding hyperparameter search",
       "final_solver_selection": "requires independently frozen broader CAD evaluation; five opened cases remain historical, sealed20 protocol preserved"
+    },
+    "PP_fixed4800_interim": {
+      "schema": 1,
+      "status": "interim_TRAIN_only_fixed4800_readout_complete_actual_training_continues",
+      "observed_UTC": "2026-10-10T10:16:36.487231+00:00",
+      "source_readout": "runs/geobc_coverage_comparison/PP_REGIME_CONFIRMATION/TRAIN_readout/step4800.json",
+      "saved_scalar_sha256": "e6a59659ea8f366d98129320bf8aa8305fc3ebad2d9002e73fc7f9d79f5f5aee",
+      "step": 4800,
+      "full_TRAIN120_finite": true,
+      "fixed_denominator": 120,
+      "old_constant4800": {
+        "U": 0.376404251258568,
+        "S": 0.7758711489217134,
+        "hotS": 0.8183305275437486
+      },
+      "new_bundle4800": {
+        "U": 0.44197351672352203,
+        "S": 0.8008227284563871,
+        "hotS": 0.8302244953119718,
+        "worst_U": 0.8609031010473251,
+        "worst_S": 0.9467045514330236,
+        "worst_hotS": 0.9270717946952315
+      },
+      "new_over_old_ratios": {
+        "U": 1.1741990565879972,
+        "S": 1.0321594372588165,
+        "hotS": 1.0145344299985037
+      },
+      "interpretation": "At equal4800 exposure author-inspired optimizer/LR/clip bundle has not improved TRAIN U/S; fixed24000 still running and no final judgement or endpoint selection",
+      "actual_terminal_or_final_gate": false,
+      "closed_clock": false,
+      "new_inference_GT_array_PT_reads": 0,
+      "read_scope": "Saved full120 metric scalars only; no re-run",
+      "latest_status_step": 5024,
+      "latest_training_seconds": 4203.6735385169995,
+      "latest_native_total_seconds": 4281.5619963685795,
+      "ETA_Beijing": "2026-10-10T22:45:00+08:00",
+      "old_reference": {
+        "path": "results/geobc_train_fit/summary.json",
+        "sha256": "f20f2d68d1a277e05c42b05a9440572a8dd32b051b6445417c04d7d69e75e161"
+      }
+    },
+    "available_input_pilot_source_design": {
+      "status": "all_three_sources_frozen_root_reviewed_waiting_authentic_PP_FNO_exit",
+      "plan": "notes/geobc_available_cad_pilot_plan.json",
+      "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
+      "design_review": "notes/available_cad_pilot_design_root_review.json",
+      "eligible_source_CADs": 102,
+      "fixed_CADs": 20,
+      "fixed_cases": 60,
+      "fixed_candidates": 9,
+      "data_owner": "available20_data_impl",
+      "eval_owner": "available20_eval_impl",
+      "preparation_released": false,
+      "evaluation_released": false,
+      "raw_array_GT_model_GPU_reads_or_runs": 0,
+      "source_pool": "originaladditionalTRAIN160; cachedavailability-conditioned, notoriginalDEV20/finaltest",
+      "execution_dependency": "PP/FNO authentic terminal/closedinactive/exactPID-startticks exit and shared GPU lock; source readiness not actual execution",
+      "source_recopy_disallowed_while_writers_active": true,
+      "producer_source_ready": {
+        "source": "geobc/available_cad_pilot_data.py",
+        "sha256": "1fbc7e7b82009fa8086d12a37f91cc624d8b634cb314715be74cfd3fa80dba1e",
+        "ready": "notes/available_cad_pilot_data_source_ready.json",
+        "actual_execution": 0
+      },
+      "outerguard_source_ready": {
+        "source": "tools/run_geobc_available_pilot_guard.py",
+        "sha256": "ab58950909501402c7ef9114e482e5571271806a1669a904c627d3cd32563a2b",
+        "ready": "notes/available_cad_pilot_guard_source_ready.json",
+        "actual_execution": 0,
+        "whole_root_and_independent_review_passed": true
+      },
+      "root_review": "notes/available_cad_pilot_root_review.json",
+      "whole_source_review_passed": true,
+      "actual_preparation_execution": 0,
+      "actual_evaluation_execution": 0,
+      "evaluation_source_ready": {
+        "source": "geobc/available_cad_pilot_eval.py",
+        "sha256": "8272c72ed09ec62309d31abff54eafb1762fa7a4434e809f1975064849c7bb15",
+        "ready": "notes/available_cad_pilot_eval_source_ready.json",
+        "actual_execution": 0
+      },
+      "source_work_completed": "Parallel source authors plus root guard and full review completed; source-only AST, real numeric readout still unverified"
+    },
+    "PP_live_loss_diagnostic": {
+      "observed_at_utc": "2026-10-10T11:45:15.480033+00:00",
+      "saved_updates": 10976,
+      "full_passes": 91,
+      "baseline_mean_encoded4_loss": 0.33094949445997673,
+      "recent_mean_encoded4_loss": 0.1466571423364803,
+      "recent_over_baseline_ratio": 0.4431405540467331,
+      "diagnostic_seconds": 0.03847573900020507,
+      "actual24k_readout_complete": false,
+      "path": "notes/geobc_pp_live_training_loss_diagnostic.json",
+      "interpretation": "Recent five full120 passes loss down55.7% vs passes36–40, supports completing frozen24k; TRAIN encoded4 objective only, not physical U/S gain/selection. No extra prediction or target read"
+    },
+    "report_sources_in_progress": {
+      "FNO_local_pair": {
+        "source": "tools/export_fno_local_pair.py",
+        "source_sha256": "addf8f9c0f6c8bb01ed3818ecc91b5c4fb76972958e72202fbf63db1cb3efb9e",
+        "source_ready": "notes/fno_local_pair_exporter_source_ready.json",
+        "root_review": "notes/fno_local_pair_exporter_root_review.json",
+        "status": "source_frozen_root_reviewed_future_conditional_CPU_export",
+        "actual_export": false
+      },
+      "available_CAD20": {
+        "source": "tools/export_available_cad_pilot.py",
+        "source_sha256": "00da303bb4363a0fb845b54ad3022d4fe98843b28d09f08ef809a2300ff28532",
+        "source_ready": "notes/available_cad_pilot_exporter_source_ready.json",
+        "root_review": "notes/available_cad_pilot_exporter_root_review.json",
+        "status": "source_frozen_root_reviewed_future_conditional_CPU_export",
+        "actual_export": false
+      }
     }
   },
   "same_ver_TRAIN_mean": {
@@ -528,14 +651,18 @@
   },
   "input_negative_report": "results/geobc_coverage_input_negative/BRIEF.md",
   "private_stage_publication": {
-    "status": "completed_verified_private_snapshot",
+    "status": "actual_completed_private_target_verified",
     "commit": "f621a3bc5570cc1056d0ba24a4a18e90bf43a0c9",
     "published_UTC": "2026-10-10T09:05:36.7508363Z",
     "receipt": "notes/github_immutable_push_receipt.json",
     "elapsed_seconds": 18.1734545,
     "private": true,
     "owner": "baiming-zhang",
-    "snapshot_scope": "Five fixed4800, allTRAIN120 diagnostic, independent5 S/knownU, compact export and earlier source design; new later PP/FNO source and inputnegative note pending next snapshot"
+    "snapshot_scope": "Five fixed4800, allTRAIN120 diagnostic, independent5 S/knownU, compact export and earlier source design; new later PP/FNO source and inputnegative note pending next snapshot",
+    "last_published_commit": "d31e7996ca011bcb6a3dc77b06cfcaa4e323615f",
+    "last_published_UTC": "2026-10-10T10:10:42.1257816Z",
+    "last_actual_push_seconds": 14.8381898,
+    "scope": "frozen PP/FNO/reporter and guards plus running/queued status and genuine input-negative; no new PP/FNO metrics"
   },
   "latest_independent_HF_HEAD": {
     "receipt": "notes/geobc_hf_direct_http11_HEAD_receipt.json",

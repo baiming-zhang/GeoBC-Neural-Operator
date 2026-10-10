@@ -1,0 +1,167 @@
+{
+  "schema": 1,
+  "status": "source_ready_not_released_not_executed",
+  "created_at_utc": "2026-10-10T11:18:48.047813+00:00",
+  "source": "geobc/available_cad_pilot_data.py",
+  "final_source_sha256": "1fbc7e7b82009fa8086d12a37f91cc624d8b634cb314715be74cfd3fa80dba1e",
+  "plan": "notes/geobc_available_cad_pilot_plan.json",
+  "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
+  "AST": {
+    "passed": true,
+    "parse_count": 1,
+    "seconds": 0.005244939000476734,
+    "module_imported_or_executed": false
+  },
+  "source_phase_read_receipt": {
+    "source_or_small_JSON_only": true,
+    "raw_header_reads": 0,
+    "H5_reads": 0,
+    "CSV_numeric_reads": 0,
+    "array_reads": 0,
+    "checkpoint_reads": 0,
+    "numeric_GT_reads": 0,
+    "CUDA_calls": 0,
+    "downloads": 0,
+    "contract_calls": 0,
+    "default_entry_calls": 0
+  },
+  "actual_execution_started": false,
+  "actual_release": false,
+  "root_marker_written": false,
+  "original_sources_modified": false,
+  "original_pins_modified": false,
+  "fixed_scope": {
+    "selected_CADs": 20,
+    "case_keys": 60,
+    "source_files": 60,
+    "denominator_changes": false,
+    "case_substitution": false
+  },
+  "interfaces": {
+    "request_contract(plan_path=PLAN)": "stdlib source/small-JSON SHA and file stats only -> (contract, plan); validates all selected60 canonical official completed receipts, original540/317 negative and eligible102 lexicographic first20",
+    "prepare(plan_path=PLAN,start=False)": "immediate source_only with zero reads/writes; --start requires real root release, direct-parent one-shot guard, authentic PP/FNO terminal/closed clocks/exact process exits, nonblocking common GPU lock",
+    "read_completed_inputs(plan_path=PLAN)": "small JSON and stats plus actual Linux process identity only -> (manifest, contract, plan); requires closed prep clock/exact prep PID-ticks exit/authoritative external terminal; positive requires every60 complete input records; real terminal input-negative returns fixedcase60 plus partial records/missing_case_keys and GT0",
+    "peer_helpers": [
+      "path",
+      "relative",
+      "read",
+      "write",
+      "digest",
+      "sha",
+      "identity",
+      "stat_matches",
+      "require",
+      "process_snapshot",
+      "exact_process_exited",
+      "release(contract,plan,purpose)",
+      "predecessor_gate(plan)",
+      "validate_external_guard(contract,purpose)",
+      "gpu_lock(filename)"
+    ]
+  },
+  "input_math": {
+    "entry": "geobc.coverage_comparison_data._prepare_CAD",
+    "original_wrappers_called": false,
+    "train_new160": [],
+    "source_role": "additional_train",
+    "pilot_role": "evaluation_only",
+    "original_helper_validation_is_technical_branch_only": true,
+    "features": 25,
+    "cloud_points": 1024,
+    "R": 64,
+    "grid_channels": 29,
+    "scaler_fit": false,
+    "target_path_or_physical_path_allowed": false
+  },
+  "manifest_schema": {
+    "output": "relative fixed input_cache",
+    "contract": "full source/math/science identity contract",
+    "records": "60 full original helper records on success with input paths/file identities/num_nodes/deferred_source/permutation; no targets",
+    "GT_header_metadata": "byCAD columns/columns_sha256/known3_target_columns_present/numeric_target_reads=0",
+    "prepare_clock_path": "input_cache/clock.json",
+    "prepare_clock": "returned closed inactive authoritative inner clock object",
+    "prep_read_receipt": "returned persistent original-helper input counters plus forbidden numericGT all0",
+    "authoritative_preparation_wall_seconds": "external elapsed including initialization/hash/IO/persistence/failure/exit",
+    "preparation_external_terminal": "returned reviewed external terminal receipt"
+  },
+  "guard_environment": "GEOBC_AVAILABLE20_PREP_GUARD; peer evaluation uses GEOBC_AVAILABLE20_EVAL_GUARD",
+  "guard_schema": {
+    "schema": 1,
+    "kind": "GeoBC_available20_one_shot_guard",
+    "purpose": "preparation or evaluation",
+    "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
+    "guard_source": "tools/run_geobc_available_pilot_guard.py",
+    "guard_source_sha256": "exact root-frozen contract.source_sha256[guard_source]",
+    "guard_process": "actual pid/start_ticks/argv (process_snapshot includes ppid); direct parent os.getppid must equal pid",
+    "entry_epoch": "finite number",
+    "entry_monotonic": "finite number",
+    "deadline_epoch": "entry_epoch+3600",
+    "deadline_monotonic": "entry_monotonic+3600",
+    "budget_seconds": 3600,
+    "campaign_entry_epoch": "finite number",
+    "campaign_entry_monotonic": "finite number",
+    "campaign_deadline_epoch": "campaign_entry_epoch+7200",
+    "campaign_deadline_monotonic": "campaign_entry_monotonic+7200",
+    "automatic_replay": false
+  },
+  "guard_actual_identity_checks": [
+    "common WSL /proc namespace",
+    "exact alive direct-parent PID/start_ticks/argv",
+    "argv names tools/run_geobc_available_pilot_guard.py or -m tools.run_geobc_available_pilot_guard",
+    "guard source SHA is in root source pins",
+    "runtime deadline=min(stage,campaign)",
+    "no automatic replay or input budget reset"
+  ],
+  "external_terminal_path": "data/geobc_available_cad_pilot/preparation_external_terminal.json",
+  "external_terminal_schema": {
+    "schema": 1,
+    "kind": "GeoBC_available20_one_shot_guard",
+    "purpose": "preparation",
+    "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
+    "status": "terminal",
+    "guard": "identical original env JSON dict",
+    "child_process": "actual full process_snapshot(pid), identical execution/manifest/clock.run_process",
+    "exit_code": "0 for completed, 1 for failed",
+    "external_timeout": false,
+    "within_external_budget": true,
+    "elapsed_seconds": "inner cumulative wall <= actual full-stage elapsed <=3600",
+    "ended_at_utc": "real UTC",
+    "automatic_replay": false
+  },
+  "upstream_root_binding": {
+    "root_review_field": "upstream_terminal_bindings",
+    "required_keys": [
+      "PP",
+      "FNO"
+    ],
+    "each": {
+      "plan": "exact predecessor plan path",
+      "summary_identity": "small JSON path/bytes/mtime_ns/sha256",
+      "clock_identity": "small JSON path/bytes/mtime_ns/sha256",
+      "status_identity": "small JSON path/bytes/mtime_ns/sha256",
+      "run_process": "genuine previously captured pid/start_ticks/argv",
+      "related_processes": "genuine guard/child process identity list"
+    },
+    "checks": [
+      "summary completed or failed",
+      "status terminal",
+      "native science/source identity",
+      "clock closed inactive",
+      "every bound exact PID/ticks exited"
+    ],
+    "TRAIN_progress_gate_required": false
+  },
+  "budgets": {
+    "whole_preparation_wall_seconds_max": 3600,
+    "whole_campaign_wall_seconds_max": 7200,
+    "allocated_and_reserved_GPU_bytes_max": 25769803776,
+    "no_runtime_CPU_or_resolution_fallback": true,
+    "no_automatic_resume": true
+  },
+  "remaining_before_actual_start": [
+    "root source review/freeze including external guard and eval source SHA",
+    "genuine PP/FNO terminal and exact process-ticks exit bindings",
+    "genuine separate root actual release",
+    "root-reviewed one-shot external guard writes authoritative preparation external terminal after actual child exit"
+  ]
+}

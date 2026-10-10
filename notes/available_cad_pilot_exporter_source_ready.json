@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "kind": "GeoBC_available_CAD20_candidate9_exporter_source_ready",
+  "status": "source_only_ready_not_actual_export_release",
+  "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
+  "source": "tools/export_available_cad_pilot.py",
+  "source_sha256": "00da303bb4363a0fb845b54ad3022d4fe98843b28d09f08ef809a2300ff28532",
+  "source_bytes": 47159,
+  "sole_AST_parse_calls": 1,
+  "sole_AST_parse_passed": true,
+  "AST_elapsed_seconds": 0.004690298999776132,
+  "static_default_immediate_return_verified": true,
+  "source_phase": {
+    "project_modules_imported_or_executed": 0,
+    "default_calls": 0,
+    "export_calls": 0,
+    "contract_calls": 0,
+    "plotting_library_imports": 0,
+    "array_reads": 0,
+    "PT_reads": 0,
+    "raw_H5_CSV_reads": 0,
+    "numeric_GT_reads": 0,
+    "GPU_calls": 0,
+    "model_constructions": 0,
+    "downloads": 0,
+    "tests": 0
+  },
+  "actual_export_released": false,
+  "actual_export_started": false,
+  "root_marker_written": false,
+  "default_API": "run(plan_path=PLAN,export=False) returns immediately with reads=0/writes=0; no plan/default/contract/module runtime was executed in source phase",
+  "actual_API": "run(plan_path=PLAN,export=True); python -m tools.export_available_cad_pilot --plan notes/geobc_available_cad_pilot_plan.json --export",
+  "formal_plan": "notes/geobc_available_cad_pilot_plan.json",
+  "output": "results/geobc_available_cad_pilot",
+  "actual_outputs": [
+    "BRIEF.md",
+    "metrics.json",
+    "manifest.json",
+    "metrics.csv",
+    "comparison.png",
+    "comparison.svg"
+  ],
+  "release_marker": {
+    "path": "notes/available_cad_pilot_exporter_root_review.json",
+    "passed": true,
+    "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
+    "source_sha256": "must equal final exporter source SHA",
+    "actual_export_released": true,
+    "experiment_summary_sha256": "optional exact actual saved summary byte binding; root writes marker"
+  },
+  "release_requirements": [
+    "Frozen SCI/candidate9/CAD20/load3 and all experiment source pins match unchanged original20 pins",
+    "Authentic experiment root source/release marker and separate exporter release marker",
+    "True pilot summary/status terminal and both native clocks closed inactive with actual execution identities",
+    "Both external stage and campaign receipts terminal with matching clock/process/source identities",
+    "Exact common-WSL child and guard PID/startticks/argv exits; no native-inflight export",
+    "No project modules, contracts, models, raw files, arrays, PT or numeric GT opened by exporter"
+  ],
+  "negative_export_policy": {
+    "true_closed_protocol_or_cost_negative_can_export": true,
+    "inflight_or_missing_native_closure_or_exact_exit_or_source_mismatch_rejected": true,
+    "ranking_cancelled_when_protocol_or_cost_negative": true,
+    "leader_and_bestTS_and_formal_primary_score_null_when_nonqualified": true,
+    "saved_complete_denominator_nonqualified_descriptive_scalars_retained": true,
+    "unknown_or_nonexact_cost_null_not_zero_and_no_leader_cost_difference": true,
+    "original_source_results_not_rewritten": true
+  },
+  "scalar_validation": {
+    "all_candidate_rows": 9,
+    "full_case_denominator": 60,
+    "per_load_CAD_denominator": 20,
+    "paired_CAD_denominator": 20,
+    "pair_count": 36,
+    "all_saved_percase_means_worst_and_primary_recomputed": true,
+    "positive_ranking_requires_saved_barrier540_and_GT20once_60U_60S_and_exact_within_budget_costs": true,
+    "primary_score": "0.5*(full60 meanU+meanSignedS), only complete finite U/S/hot eligible; no subset means",
+    "missing_nonfinite_zero_reference_metric_aggregates_null": true,
+    "bestTS_only_eligible_TS_PP_TS3_families": true,
+    "all_exact_equal_score_ties_retained": true,
+    "single_seed_no_significance_or_architecture_ceiling_claim": true,
+    "true_failures_and_missing_prediction_entries_visible": true,
+    "percase_physical_errors_and_zero_reference_flags_checked": true,
+    "GT_once12_columns_and_sign_units_from_saved_JSON_metadata_only": true,
+    "oldDEV_final_originalnewDEV20_dia_strain_H5nodal_receipt_zero_checked": true,
+    "original540_660_2400_20pins_and_acquisition_negative_preserved": true
+  },
+  "CPU_plot_contract": {
+    "matplotlib_import": "delayed until actual authorized export",
+    "backend": "Agg",
+    "MPLCONFIGDIR": "results/geobc_available_cad_pilot/.mplconfig only",
+    "content": "six aggregate scalar comparison panels; no cloud maps or field arrays",
+    "library_or_plot_failure": "completed_incomplete, explicit plot incomplete, no full PASS claim, CLI exit1"
+  },
+  "main_exit": {
+    "source_only_ready": 0,
+    "completed_including_honest_negative_scientific_report": 0,
+    "completed_incomplete_plot": 1,
+    "gate_or_unhandled_failure": "nonzero"
+  },
+  "metadata_scope": "Saved small JSON/scalars and source byte identities only; checkpoint/input/raw paths and recorded hashes indexed without opening bodies",
+  "actual_export_and_render_not_verified": true,
+  "AST_parse_calls_total_including_superseded_source": 2,
+  "AST_history": [
+    {
+      "source_sha256": "fff6621667c6419a49deb5a04d150c7154e2ea12c17e67db426533b76eaddf66",
+      "source_bytes": 46502,
+      "AST_elapsed_seconds": 0.004569374999846332,
+      "AST_parse_calls_this_revision": 1,
+      "passed": true,
+      "reason_superseded": "User requested compact readable BRIEF: <=3 deduplicated role rows and five columns"
+    }
+  ],
+  "BRIEF_contract": {
+    "opening": "Best eligible and best eligible TS; mean U/S differences in percentage points and honest cost differences",
+    "main_table_rows_max": 3,
+    "main_table_roles": [
+      "best eligible",
+      "best TS",
+      "old FNO"
+    ],
+    "deduplicate_candidates": true,
+    "main_table_columns": [
+      "method",
+      "mean U",
+      "mean S",
+      "training minutes",
+      "inference seconds"
+    ],
+    "ties": "retain all candidate labels; display ranges of each tied model full60 scalar, never arbitrary winner or subset-case mean",
+    "no_leader": "brief explicit null/input or protocol negative; link complete nine-row CSV without a large main table",
+    "details": "Full nine rows, worst/hot/failure/parameters/exposure and perload20/paired20 remain in CSV/JSON/scalar figures"
+  }
+}

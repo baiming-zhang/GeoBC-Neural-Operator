@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "status": "source_ready_not_released_not_executed",
+  "created_at_utc": "2026-10-10T11:33:57.500901+00:00",
+  "source": "tools/run_geobc_available_pilot_guard.py",
+  "final_source_sha256": "ab58950909501402c7ef9114e482e5571271806a1669a904c627d3cd32563a2b",
+  "scientific_digest": "c7c994a44d462b94426ecfa034f2d535bbf7751331c1e16ab8925485e5a67770",
+  "whole_source_reviewed_by_root": true,
+  "independent_readonly_review": {
+    "agent": "solver_choice_review",
+    "passed_after_two_repairs": true,
+    "repairs": [
+      "Capture terminate/kill/wait errors and preserve true nonexited stage failure receipt",
+      "Recheck stage/campaign budgets after normal receipt persistence, boundary overrun cannot pass"
+    ]
+  },
+  "AST": {
+    "passed": true,
+    "parse_count": 1,
+    "seconds": 0.001471600029617548,
+    "module_imported_or_executed": false
+  },
+  "actual_release": false,
+  "actual_execution_started": false,
+  "root_marker_written": false,
+  "source_phase_read_receipt": {
+    "raw_header_reads": 0,
+    "array_reads": 0,
+    "checkpoint_reads": 0,
+    "numeric_GT_reads": 0,
+    "GPU_calls": 0,
+    "contract_calls": 0,
+    "default_entry_calls": 0,
+    "child_launches": 0
+  },
+  "default": "run(start=False) immediate zero project reads/writes/children",
+  "actual_command": "python -u tools/run_geobc_available_pilot_guard.py --start",
+  "actual_gates": [
+    "Separate genuine root preparation and evaluation releases/source pins",
+    "Authentic terminal closed PP/FNO plus exact process exits",
+    "No previous pilot attempt/clock/predictions/GT; no automatic replay or cost reset"
+  ],
+  "budgets": {
+    "preparation_seconds": 3600,
+    "evaluation_seconds": 3600,
+    "campaign_seconds": 7200,
+    "deadline": "min(stage deadline,campaign deadline)",
+    "entry": "before project metadata imports/hash/gates; covers child initialization/IO/transfers/persistence/exit/failure; inter-stage guard overhead separately charged in campaign"
+  },
+  "phases": [
+    {
+      "purpose": "preparation",
+      "module": "geobc.available_cad_pilot_data",
+      "env": "GEOBC_AVAILABLE20_PREP_GUARD",
+      "external_terminal": "data/geobc_available_cad_pilot/preparation_external_terminal.json"
+    },
+    {
+      "purpose": "evaluation",
+      "module": "geobc.available_cad_pilot_eval",
+      "env": "GEOBC_AVAILABLE20_EVAL_GUARD",
+      "external_terminal": "runs/geobc_exploration/available_CAD20_candidate9/evaluation_external_terminal.json"
+    }
+  ],
+  "campaign_terminal": "runs/geobc_exploration/available_CAD20_candidate9/campaign_external_terminal.json",
+  "identity": "actual /proc pid/start_ticks/argv/ppid for guard and direct children",
+  "input_negative_policy": "Authentic completed input-negative exit0 -> evaluator fixed540 true failure entries and numericGT0; failed/timeout/unclosed/no-exit -> stop for root technical review, no implicit replay"
+}

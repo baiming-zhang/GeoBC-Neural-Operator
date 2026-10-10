@@ -27,7 +27,7 @@
     "tools/start_geobc_coverage_comparison.ps1": "4d1cdf1675c5f7d38d6a7ba2b2c3bdf4dcafbb1e6b0808f712e32ced3cea9905",
     "tools/start_geobc_coverage_fetch.ps1": "7f90ffd8a758c2f3b7f5248370aa1e1f8631af9b56ca7fdc1a19070b17caba9a",
     "geobc/coverage_train_fit_diagnostic.py": "b8a398c540f778f4467d5fea834ca215fd800798808b671b9c554b4da5fed2fe",
-    "tools/run_geobc_fno_pair_guard.py": "2c97d760c8f3f1ef8cd2df3e0e627757a4746952216af3fe4032550322f98c8b",
+    "tools/run_geobc_fno_pair_guard.py": "62f2a854e1c79a72af2776a06b20341e1944a0d43673a8d52c5bd37c690b06a8",
     "geobc/fno_local_condition_pair.py": "c1d5884bd5ab704856d0677fa00c6234477985cd4a324791997e3f6f52bc2ff5"
   },
   "reviewer": "root",
@@ -51,5 +51,19 @@
   "execution_condition": "Only after released PP actual terminal, closed inactive clock, exact process exit, and common GPU lock; enforced inside driver before any scientific reads",
   "predecessor_exit_not_claimed_now": true,
   "first_runtime_acceptance": "First actual fullN TRAIN backward, finite nonzero PointNet/FNO/head and both leaves; same named initial tensors across arms",
-  "technical_resume_automatic": false
+  "technical_resume_automatic": false,
+  "guard_identity_metadata_repair": {
+    "prior_source_sha256": "2c97d760c8f3f1ef8cd2df3e0e627757a4746952216af3fe4032550322f98c8b",
+    "source_sha256": "62f2a854e1c79a72af2776a06b20341e1944a0d43673a8d52c5bd37c690b06a8",
+    "reviewer": "root",
+    "reviewed_at_utc": "2026-10-10T11:25:32.186396+00:00",
+    "whole_guard_source_reviewed": true,
+    "AST_passed": true,
+    "AST_parse_count": 1,
+    "AST_seconds": 0.0005643998738378286,
+    "purpose": "Capture genuine guard and child PID/start_ticks/argv at launch for later exact upstream exit proof; no solver science/model/recipe/budget change",
+    "scientific_digest_unchanged": true,
+    "actual_FNO_execution_started": false,
+    "raw_array_checkpoint_GT_GPU_reads": 0
+  }
 }
