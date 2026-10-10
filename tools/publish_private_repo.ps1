@@ -128,9 +128,11 @@ function Api([string]$Method, [string]$Endpoint, $Body = $null, [switch]$Allow40
     if ($null -ne $Body) { $parameters.Body = ($Body | ConvertTo-Json -Compress); $parameters.ContentType = 'application/json' }
     try { return Invoke-RestMethod @parameters } catch {
         $status = 0
-        if ($null -ne $_.Exception.Response) { $status = [int]$_.Exception.Response.StatusCode }
+        $response = Field $_.Exception 'Response'
+        if ($null -ne $response) { $status = [int](Field $response 'StatusCode' 0) }
         if ($Allow404 -and $status -eq 404) { return $null }
-        throw ('GitHub REST {0} {1} failed (HTTP {2}); credentials and response details withheld.' -f $Method, $Endpoint, $status)
+        $safeErrorType = $_.Exception.GetType().Name
+        throw ('GitHub REST {0} {1} failed (HTTP {2}, {3}); credentials and response details withheld.' -f $Method, $Endpoint, $status, $safeErrorType)
     }
 }
 
