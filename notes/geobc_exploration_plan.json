@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "geometry_head_transfer_macro_runtime_preparation",
+  "stage": "operator_teacher_latent_macro_preparation",
   "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -5764,10 +5764,16 @@
     }
   },
   "current_next_stage": {
-    "proposal": "notes/geobc_geometry_head_transfer_macro_proposal_v32.json",
-    "prototype_CPU_ready": true,
-    "actual_training_launches": 0,
-    "automatic_40": false
+    "plan": "notes/geobc_geometry_head_transfer_v33_plan.json",
+    "actual_training_launches": 1,
+    "actual_launch": "notes/geobc_geometry_head_transfer_v33_actual_launch.json",
+    "exec_session": 94686,
+    "default_additional_passes": 5,
+    "automatic_40": false,
+    "training_completed": true,
+    "readout_plan": "notes/geobc_geometry_head_v34_plan.json",
+    "readout_exec_session": 28537,
+    "readout_actual_launch": "notes/geobc_geometry_head_v34_actual_launch.json"
   },
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
@@ -6590,15 +6596,15 @@
   },
   "latest_verified_GitHub_publication": {
     "status": "verified_private_remote_publication",
-    "commit": "999564b8d6064de11a1d44b4ae54678ea50d7aae",
+    "commit": "0b3509b34a21ff286b3e927559a33936c28859ff",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "elapsed_seconds": 57.0574983,
-    "finished_at_utc": "2026-10-11T09:02:10.1803804Z",
-    "receipt": "notes/github_gitdata_publication_999564b8d6064de11a1d44b4ae54678ea50d7aae_response_gain_short5_20261011_receipt.json",
-    "actual_scope": "v28b/v29 completed encodedobjective negative report/acceptedPNG; frozen v30 and v31 sources plus v30 actualTS fullN-qualified running snapshot; later v30 terminal and v31 actual launch are not in this commit"
+    "elapsed_seconds": 40.9861966,
+    "finished_at_utc": "2026-10-11T09:13:32.0931439Z",
+    "receipt": "notes/github_gitdata_publication_0b3509b34a21ff286b3e927559a33936c28859ff_gain_terminal_transfer_cpu_20261011_receipt.json",
+    "actual_scope": "v30/v31 truecompleted responsegain negative report/acceptedPNG and strict v32 learned encoder-head transfer prototype with actual synthetic CPU check; no real teacher PT loading or warm training yet"
   },
   "globalHash_physical5_completed": {
     "status": "actual_completed_same5_knownDEV",
@@ -6764,5 +6770,19 @@
     "decision": "negative both; no extension",
     "TRAIN_whole_seconds": 446.9909698963,
     "DEV_whole_seconds": 120.1723430157
+  },
+  "geometry_head_transfer_completed": {
+    "report": "results/geobc_geometry_head_v34/BRIEF.md",
+    "TRAIN_external_seconds": 541.9926681519,
+    "DEV_external_seconds": 167.8709237575531,
+    "decision": "TSheadwarm negative; FNO intact5to10 learns; frozen encoder/head latent mapping is next diagnostic"
+  },
+  "current_stage": "operator_teacher_latent_macro_preparation",
+  "node_latent_operator_diagnostic_SOURCE": {
+    "proposal": "notes/geobc_node_latent_teacher_macro_proposal_v35.json",
+    "source_ready": "notes/geobc_node_latent_teacher_v35_source_ready.json",
+    "CPU_seconds": 2.6920743480004603,
+    "actual_training_launches": 0,
+    "next": "Implement bounded2-arm TRAIN runtime and guard, freeze scientific order/source, then one real GPU qualification and5 passes. No default40."
   }
 }

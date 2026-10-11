@@ -1,0 +1,31 @@
+{
+  "observed_UTC": "2026-10-11T09:30:39.572022+00:00",
+  "phase": "training",
+  "status": "running",
+  "elapsed_seconds": 453.4933624267578,
+  "actual_live": {
+    "guard_process": true,
+    "child_process": true
+  },
+  "teacher_loads": 1,
+  "methods": {
+    "transolver_headwarm": {
+      "status": "completed",
+      "step": 1500,
+      "additional_optimizer_step_completions": 1500,
+      "training_epoch_seconds": 142.72667860984802
+    },
+    "FNO16_headwarm_reset": {
+      "status": "completed",
+      "step": 1500,
+      "additional_optimizer_step_completions": 1500,
+      "training_epoch_seconds": 107.61989974975586
+    },
+    "FNO16_continue": {
+      "status": "running",
+      "step": 1980,
+      "additional_optimizer_step_completions": 480,
+      "training_epoch_seconds": 35.144392251968384
+    }
+  }
+}

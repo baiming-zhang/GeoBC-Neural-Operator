@@ -1,0 +1,108 @@
+{
+  "status": "actual_synthetic_node_latent_CPU_passed_not_GPU",
+  "source": {
+    "path": "geobc/node_latent_teacher_v35.py",
+    "bytes": 4512,
+    "mtime_ns": 1791712213245740100,
+    "sha256": "736ee6d6073eedcd1f71ebfc229cc8f01ee7b95f8a70079d1c36f8e19a65fef2"
+  },
+  "synthetic_teacher_not_trained": true,
+  "synthetic_nodes": 33337,
+  "chunks": [
+    32768,
+    569
+  ],
+  "zero_teacher_norm_rejected": true,
+  "teacher_gradients_absent": true,
+  "results": {
+    "transolver": {
+      "transfer": {
+        "fresh_model_before": "13d31df15c487a1240b8f1f81f0a7ccf7a15a73f32cbbb29fb3dff34632e5abb",
+        "transferred_model_after": "e2406106ab49f078c66525ccd19aaedf8f665e157fb0de0ab93824e5a9c5fe22",
+        "operator_before": "72e4034d3200192ca60fd353e6abe67b4e8d7e7b7fe91f21c4ba096b5e8fcf54",
+        "operator_after": "72e4034d3200192ca60fd353e6abe67b4e8d7e7b7fe91f21c4ba096b5e8fcf54",
+        "operator_unchanged": true,
+        "encoder_head_equal_teacher": true,
+        "transferred_group_digests": {
+          "encoder": "fb12b3e9c0eb8b334b2b79c5579bc275be236da78d2a7b521910514b37505bb2",
+          "head": "bb5c519cb6b02cc90898a1c7146f6350efcc9d341aa596d2d3e99acaa99e9f55"
+        },
+        "teacher_state_digest": "a4f11d47d571903d9a5e63483dfb345961db6eaf9f02d28c56a6d6284ea412cc",
+        "teacher_training_or_exposure_validated_here": false,
+        "frozen_groups": [
+          "encoder",
+          "head"
+        ],
+        "trainable_groups": [
+          "operator"
+        ],
+        "optimizer_parameter_count": 1838552,
+        "objective": "TRAIN teacher node-latent approximation, not FEM"
+      },
+      "frozen_groups_unchanged": true,
+      "frozen_groups_gradients_absent": true,
+      "all_named_operator_gradients_close": true,
+      "checked_operator_parameters": 109,
+      "max_gradient_absolute_difference": 7.62939453125e-06,
+      "operator_gradient_L2": 2023.355948801919,
+      "normalized_teacher_loss": 25.207678073427843,
+      "leaf_receipt": {
+        "original_nodes_used": 33337,
+        "channels": 16,
+        "node_sampling": false,
+        "teacher_node_latent_L2_squared": 1859.596969014328,
+        "operator_latent_gradient_L2": 0.6783695220947266,
+        "geometry_context_gradient_expected": false,
+        "head_gradient_expected": false,
+        "FEM_loss_used_for_updates": false
+      }
+    },
+    "FNO16": {
+      "transfer": {
+        "fresh_model_before": "0e91784589a573b0d048a738aa17db0b855f88cb5faca72a96533e06f19d6a97",
+        "transferred_model_after": "f0bdbfe1236860aa3647f88cdb40f436e2f410af7e0028189d572b12136026d7",
+        "operator_before": "f2f33a1d21d28341ce86583e0c45541aa9126369b71a1c15798f83a25e796e0d",
+        "operator_after": "f2f33a1d21d28341ce86583e0c45541aa9126369b71a1c15798f83a25e796e0d",
+        "operator_unchanged": true,
+        "encoder_head_equal_teacher": true,
+        "transferred_group_digests": {
+          "encoder": "fb12b3e9c0eb8b334b2b79c5579bc275be236da78d2a7b521910514b37505bb2",
+          "head": "bb5c519cb6b02cc90898a1c7146f6350efcc9d341aa596d2d3e99acaa99e9f55"
+        },
+        "teacher_state_digest": "a4f11d47d571903d9a5e63483dfb345961db6eaf9f02d28c56a6d6284ea412cc",
+        "teacher_training_or_exposure_validated_here": false,
+        "frozen_groups": [
+          "encoder",
+          "head"
+        ],
+        "trainable_groups": [
+          "operator"
+        ],
+        "optimizer_parameter_count": 4200624,
+        "objective": "TRAIN teacher node-latent approximation, not FEM"
+      },
+      "frozen_groups_unchanged": true,
+      "frozen_groups_gradients_absent": true,
+      "all_named_operator_gradients_close": true,
+      "checked_operator_parameters": 30,
+      "max_gradient_absolute_difference": 1.4901161193847656e-08,
+      "operator_gradient_L2": 0.6062379222059167,
+      "normalized_teacher_loss": 0.0025336805371583434,
+      "leaf_receipt": {
+        "original_nodes_used": 33337,
+        "channels": 16,
+        "node_sampling": false,
+        "teacher_node_latent_L2_squared": 1859.596969014328,
+        "operator_latent_gradient_L2": 0.006801868323236704,
+        "geometry_context_gradient_expected": false,
+        "head_gradient_expected": false,
+        "FEM_loss_used_for_updates": false
+      }
+    }
+  },
+  "real_numeric_GT_reads": 0,
+  "PT_reads": 0,
+  "GPU_calls": 0,
+  "optimizer_updates": 0,
+  "CPU_seconds": 2.6920743480004603
+}

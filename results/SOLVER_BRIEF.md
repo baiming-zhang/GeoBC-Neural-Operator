@@ -1,21 +1,25 @@
 # GeoBC：一分钟结果
 
-**目前继续以FNO为主候选；Hash保留应力热点对照，三版紧凑Transolver短筛已完成。最终求解器尚未选定。**
+**目前优先推进FNO；Transolver当前配方拟合不足，最终求解器仍未确定。**
 
-同原版DeepJEB、100训练CAD×三载荷、物理损失，在20个knownDEV新CAD×三载荷、全原节点上的结果：
+原版DeepJEB，100训练CAD×三载荷；20个knownDEV新CAD×三载荷，全原节点物理误差：
 
 | 方法 | 训练遍数 | 位移误差 | 应力误差 |
 |---|---:|---:|---:|
 | FNO | 5 | 31.61% | 56.10% |
-| 全局Hash | 5 | 31.37% | 54.45% |
 | FNO | 10 | 25.60% | 52.14% |
+| 原版紧凑Transolver | 5 | 52.06% | 93.20% |
 
-同5遍Hash联合优势只有0.94个百分点，未达推进门槛，停止追加；FNO追加5遍纯训练97秒，改善明显，但不能当同曝光选型结论。原Hash<1%是已知单样本拟合，不能与新CAD误差混比。
+同5遍全局Hash为31.37%／54.45%，只比FNO联合改善0.94个百分点，停止小幅微调。Hash单样本<1%说明能拟合已知场，不能当新CAD精度。
 
-原全节点++物理5遍训练约32分钟，TRAIN应力仍93.81%。新三版紧凑TS同5遍已完成，原版最好：新几何U/S52.06%／93.20%，仍落后FNO31.61%／56.10%；三者TRAIN应力也约94%，当前配方拟合不足。相同R16输入FNO控制已完成，新几何应力64.98%，明显优于TS但差于原R64 FNO56.10%；压缩本身不足解释TS差距。R64大容量同5遍已完成，新几何U/S29.03%／54.45%；参数增3.138倍仅改善联合2.11pp，未达推进门槛，不追加长训。空token控制已完成，应力93.15% vs原版93.20%，没有明显改善。原TS／FNO双模型训练目标控制已完成，同5遍标准化MSE使新几何U/S分别变差到65.62%／94.60%和48.71%／72.14%，停止此路线，不追加长训。先5遍、有学习再10遍，不统一40遍／24000步。40遍耗时是整轮总计：已有FNO整轮16.61分钟，不再乘40。
+TS系列原版优于++／3，但三者TRAIN应力也约94%，首先是拟合不足。相同R16表示的FNO应力64.98%，所以输入压缩不足以解释差距。剔除空token、标准化MSE、固定幅值先验及迁移TRAIN学得的编码器／输出头均未解决TS问题；这些负结果不追加40遍。
 
-[同5遍Hash对照](geobc_global_hash_physical_v18/BRIEF.md) · [FNO5→10](geobc_physical10_v16/BRIEF.md) · [++训练负结果](geobc_native_physical_TRAIN_v13/BRIEF.md) · [三版精度比较](geobc_coarse_three_physical5_v21/BRIEF.md) · [R16 FNO控制](geobc_coarse_fno_control_v23/BRIEF.md) · [R64容量控制](geobc_wide_fno64_v25/BRIEF.md) · [空token控制](geobc_occupied_ts_v27/BRIEF.md)。
+最新迁移对照已完成：TS应力94.37%，没有改善；R16 FNO从自身5→10遍应力64.98%→58.96%。三控制新训练共9.03分钟、DEV2.80分钟，继承teacher旧4.19分钟单列，不当fresh5公平比较。[迁移对照](geobc_geometry_head_v34/BRIEF.md)。
 
-保留signed U(mm)/S(MPa)，按GRID对齐CSV与H5原节点；旧H5-only结果撤回。knownDEV已用于迭代、单seed／可用官方TRAIN来源；先前FINAL已揭盲，未来不再用来调参。模型容量和表示不同，不能宣布架构上限；连续接口一致不等于独立离节点FEM精度。[冻结测试](geobc_FINAL_v9/BRIEF.md)。
+下一步只做5遍中间场诊断：冻结同一TRAIN teacher的编码器／输出头，比较TS与FNO能否学得它的节点latent映射。合成完整分块梯度检查已通过，真实训练未启动；teacher拟合与原FEM误差分开。
 
-固定输入物理幅值先验同5遍也未改善：TS新几何U/S58.05%／94.18%，FNO16 30.60%／68.92%；停止追加。下一步检查从TRAIN学得的几何编码器／查询头是否能帮助原TS，保留FNO算子重置和完整续训控制，继承5遍成本单列，实际训练未启动。[幅值对照](geobc_response_gain_v31/BRIEF.md)。
+5遍初筛，有证据再10遍；不统一40遍或24000步。旧FNO40遍整轮仅16.61分钟，knownDEV U/S23.17%／50.85%；全节点++40遍约4.3小时是整段外推总时间，不能再乘40。较长训练结果不与5遍当等曝光公平比较。
+
+保留signed U(mm)/S(MPa)、GRID对齐CSV与H5原节点；旧H5-only撤回。knownDEV已用于迭代、单seed／可用官方TRAIN来源，不能宣布架构上限；旧FINAL已揭盲，未来不用调参。连续接口一致不等于独立离节点FEM精度。
+
+[同5遍Hash对照](geobc_global_hash_physical_v18/BRIEF.md) · [FNO5→10](geobc_physical10_v16/BRIEF.md) · [三版TS](geobc_coarse_three_physical5_v21/BRIEF.md) · [既有40遍对照](geobc_operator_hash_v8/BRIEF.md)
