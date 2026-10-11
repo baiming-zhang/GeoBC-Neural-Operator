@@ -2,8 +2,27 @@
   "passed": true,
   "whole_source_reviewed": true,
   "reviewer": "root",
-  "actual_execution_released": false,
-  "training_binding": {},
+  "actual_execution_released": true,
+  "training_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/response_gain_TS_FNO100_physical5_v30/summary.json",
+      "bytes": 498467,
+      "mtime_ns": 1791709383258894800,
+      "sha256": "b5c0d7b7484f5ce93a00d978a43c9bd205ebdaa0a7854140dd299dd6b3884c48"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/response_gain_TS_FNO100_physical5_v30/status.json",
+      "bytes": 498467,
+      "mtime_ns": 1791709383268923700,
+      "sha256": "b5c0d7b7484f5ce93a00d978a43c9bd205ebdaa0a7854140dd299dd6b3884c48"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/response_gain_TS_FNO100_physical5_v30/external_terminal.json",
+      "bytes": 17092,
+      "mtime_ns": 1791709383985236200,
+      "sha256": "89c76b2ab3605b1438160a6e2cef744e90e96fc2219485f2e0df2a084bcb448d"
+    }
+  },
   "source_pins": {
     "geobc/macro_warm_readout_contract_v3.py": "8ae49f8cf92fbe75a6972b835240d8b93f25f0c7aaa79514e17e1f3163ce09e5",
     "geobc/macro_readout_protocol.py": "cc338e7eee3c7fb81d9e8d0a56a837b09a07a730f47d3e7a0599295c95841bd9",
@@ -148,5 +167,6 @@
   },
   "scientific_digest": "3b6f950fa25f2307168133f9026427fea34f025fa2d84dc21d95c818a467d5b9",
   "review": "Full inherited v29 evaluator/guard/contract with narrow gain factory, physicalscale and sourceSCI/candidates/trainidentity/directpredecessor substitutions; exact source/current terminal gate and barrier120 beforeGT60 unchanged. Future release only after v30 actualcompleted/exactexit/qualified fullN/full300 physicalreadouts; no new runtime here.",
-  "actual_launches": 0
+  "actual_launches": 0,
+  "actual_metadata_release_UTC": "2026-10-11T09:03:46.750663+00:00"
 }

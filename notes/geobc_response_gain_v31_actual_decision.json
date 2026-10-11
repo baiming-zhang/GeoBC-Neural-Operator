@@ -1,0 +1,18 @@
+{
+  "status": "negative_under_fixed_five_passes",
+  "report": "results/geobc_response_gain_v31/BRIEF.md",
+  "TS_gain_minus_own_DEV_pp": {
+    "U": 5.99,
+    "S": 0.98,
+    "hot": 1.85
+  },
+  "FNO16_gain_minus_own_DEV_pp": {
+    "U": -0.18,
+    "S": 3.94,
+    "hot": 4.98
+  },
+  "response_gain_extension": false,
+  "automatic_40": false,
+  "conclusion": "This fixed amplitude prior did not help either solver under five passes. Not evidence of a TS architecture ceiling or exact physics failure.",
+  "next_macro": "Train-only FNO learned geometry/head transfer to fresh TS operator, paired with fresh FNO operator reset and intact FNO continuation. Count inherited teacher exposure and costs."
+}

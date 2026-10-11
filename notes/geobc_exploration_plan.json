@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "input_response_gain_TS_FNO_same5_actual_running",
+  "stage": "geometry_head_transfer_macro_runtime_preparation",
   "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -5764,13 +5764,10 @@
     }
   },
   "current_next_stage": {
-    "plan": "notes/geobc_response_gain_v30_plan.json",
-    "question": "Can a fixed input-derived dimensional U/S amplitude prior improve the same R16 TS and FNO under original physical loss and five balanced passes?",
-    "actual_launches": 1,
-    "default_passes": 5,
-    "automatic_40": false,
-    "exec_session": 56268,
-    "actual_launch": "notes/geobc_response_gain_v30_actual_launch.json"
+    "proposal": "notes/geobc_geometry_head_transfer_macro_proposal_v32.json",
+    "prototype_CPU_ready": true,
+    "actual_training_launches": 0,
+    "automatic_40": false
   },
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
@@ -6593,15 +6590,15 @@
   },
   "latest_verified_GitHub_publication": {
     "status": "verified_private_remote_publication",
-    "commit": "bc640ad7bd2aeb11e690fdd73db8443cce42e8f6",
+    "commit": "999564b8d6064de11a1d44b4ae54678ea50d7aae",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "elapsed_seconds": 82.3026108,
-    "finished_at_utc": "2026-10-11T08:31:43.2695024Z",
-    "receipt": "notes/github_gitdata_publication_bc640ad7bd2aeb11e690fdd73db8443cce42e8f6_occupied_ts_short5_20261011_receipt.json",
-    "actual_scope": "Completed occupiedoriginalTS v26/v27 fullTRAIN/knownDEV/acceptedreport; source v28b actualfirstTSqualification and ongoing training snapshot, v29 SOURCE pending at snapshot. Later v28b terminal/v29 live not part of remote commit"
+    "elapsed_seconds": 57.0574983,
+    "finished_at_utc": "2026-10-11T09:02:10.1803804Z",
+    "receipt": "notes/github_gitdata_publication_999564b8d6064de11a1d44b4ae54678ea50d7aae_response_gain_short5_20261011_receipt.json",
+    "actual_scope": "v28b/v29 completed encodedobjective negative report/acceptedPNG; frozen v30 and v31 sources plus v30 actualTS fullN-qualified running snapshot; later v30 terminal and v31 actual launch are not in this commit"
   },
   "globalHash_physical5_completed": {
     "status": "actual_completed_same5_knownDEV",
@@ -6761,5 +6758,11 @@
     "decision": "negative fixed5; no extension",
     "training_seconds": 401.2245366573,
     "readout_seconds": 118.1625740528
+  },
+  "response_gain_control_completed": {
+    "report": "results/geobc_response_gain_v31/BRIEF.md",
+    "decision": "negative both; no extension",
+    "TRAIN_whole_seconds": 446.9909698963,
+    "DEV_whole_seconds": 120.1723430157
   }
 }

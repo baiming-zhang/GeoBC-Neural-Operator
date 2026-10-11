@@ -17,3 +17,5 @@
 [同5遍Hash对照](geobc_global_hash_physical_v18/BRIEF.md) · [FNO5→10](geobc_physical10_v16/BRIEF.md) · [++训练负结果](geobc_native_physical_TRAIN_v13/BRIEF.md) · [三版精度比较](geobc_coarse_three_physical5_v21/BRIEF.md) · [R16 FNO控制](geobc_coarse_fno_control_v23/BRIEF.md) · [R64容量控制](geobc_wide_fno64_v25/BRIEF.md) · [空token控制](geobc_occupied_ts_v27/BRIEF.md)。
 
 保留signed U(mm)/S(MPa)，按GRID对齐CSV与H5原节点；旧H5-only结果撤回。knownDEV已用于迭代、单seed／可用官方TRAIN来源；先前FINAL已揭盲，未来不再用来调参。模型容量和表示不同，不能宣布架构上限；连续接口一致不等于独立离节点FEM精度。[冻结测试](geobc_FINAL_v9/BRIEF.md)。
+
+固定输入物理幅值先验同5遍也未改善：TS新几何U/S58.05%／94.18%，FNO16 30.60%／68.92%；停止追加。下一步检查从TRAIN学得的几何编码器／查询头是否能帮助原TS，保留FNO算子重置和完整续训控制，继承5遍成本单列，实际训练未启动。[幅值对照](geobc_response_gain_v31/BRIEF.md)。
