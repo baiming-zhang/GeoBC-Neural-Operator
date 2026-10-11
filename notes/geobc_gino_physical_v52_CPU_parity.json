@@ -1,0 +1,27 @@
+{
+  "status": "CPU_chain_rule_parity_passed",
+  "source_sha256": "bb6e6c9d57a9b79c1b101fe2f6726caa35d03ba529d88c242dfc26e21fe67800",
+  "actual_CPU_seconds": 0.9350755140039837,
+  "nodes": 7,
+  "query_chunk": 3,
+  "signed_asinh_stress_decode": true,
+  "loss_absolute_difference": 0.0,
+  "parameter_gradient_max_absolute_differences": {
+    "a": 0.0,
+    "b": 3.469446951953614e-18
+  },
+  "coverage": {
+    "original_nodes_used": 7,
+    "node_sampling": false,
+    "input_encode_calls": 1,
+    "input_graph_backward_calls": 1,
+    "output_chunks": 3,
+    "operator_latent_L2": 831.6087260237078,
+    "geometry_context": "Live inside original latent graph; not detached separately"
+  },
+  "DEV_rejected_before_encode": true,
+  "actual_GT_PT_array_GPU_reads": 0,
+  "real_GINO_fullN_resource_qualification": false,
+  "actual_training_updates": 0,
+  "scope": "Deterministic CPU analytic test model only; exact monolithic physical graph versus chunk chain rule, not GINO runtime qualification"
+}

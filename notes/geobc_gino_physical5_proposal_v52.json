@@ -1,0 +1,93 @@
+{
+  "status": "implementation_in_progress_no_GPU_release",
+  "updated_at_utc": "2026-10-11T13:20:57.491237+00:00",
+  "purpose": "One structural GINO candidate under current CAD-isolated physical protocol, not old encoded480 rerun or Hash microtuning",
+  "previous_actual_GINO": {
+    "status": "completed",
+    "updates": 480,
+    "TRAIN_CADs": 40,
+    "objective": "encoded4 MSE",
+    "TRAIN_seconds": 740.1197138909995,
+    "whole_seconds": 864.193457144,
+    "parameters": {
+      "total": 7478973,
+      "encoder": 16736,
+      "solver": 7462237
+    },
+    "modes": [
+      24,
+      24,
+      22
+    ],
+    "old_knownDEV_U_S_percent": [
+      54.42406023002088,
+      72.45587481659118
+    ]
+  },
+  "proposed_recipe": {
+    "TRAIN_CADs": 100,
+    "TRAIN_cases": 300,
+    "knownDEV_CADs": 20,
+    "knownDEV_cases": 60,
+    "passes": 5,
+    "updates": 1500,
+    "seed": 2026,
+    "scaler": "Existing oldTRAIN40 only; no fitting",
+    "objective": ".5*(physical relative U L2 squared + physical signed S L2 squared), full original nodes",
+    "model": "Existing actual matched-frequency GINO width16/layers4/modes24,24,22/R64/radius.033/PointNet32; unchanged learned input/output integral kernels",
+    "optimizer": "Adam lr.001 weight_decay0 foreach=True fused=False due original complex spectra; implementation differs from fused real FNO",
+    "query_chunk": 2048,
+    "memory_limit_bytes": 30500000000,
+    "provisional_train_budget_seconds": 3600,
+    "whole_budget_seconds": null,
+    "no_automatic40_or24000": true
+  },
+  "geometry_inventory_identity": {
+    "path": "notes/geobc_gino_physical_v52_geometry_inventory.json",
+    "bytes": 65677,
+    "mtime_ns": 1791724857539978600,
+    "sha256": "41c8f2de916525301e074388a4bd6bc9045e1c8068d22add3ef2a507a3c1dd0c"
+  },
+  "adapter_identity": {
+    "path": "geobc/gino_physical_training_v52.py",
+    "bytes": 3421,
+    "mtime_ns": 1791724710954416700,
+    "sha256": "bb6e6c9d57a9b79c1b101fe2f6726caa35d03ba529d88c242dfc26e21fe67800"
+  },
+  "adapter_CPU_review_identity": {
+    "path": "notes/geobc_gino_physical_v52_adapter_source_review.json",
+    "bytes": 1453,
+    "mtime_ns": 1791724857540981600,
+    "sha256": "96062a7716ef17abe13c2a76d7f14fda648f9f07c83dfae1bf798036ecc96b0d"
+  },
+  "reference": "Same current physical5 FNO full60 scalars; no old GT/PT replay",
+  "prior_cost_projection": {
+    "historical_480_TRAIN_seconds": 740.1197138909995,
+    "1500_update_linear_TRAIN_seconds_estimate": 2312.874105909373,
+    "scope": "Old recipe/40CAD/backend only, not measured new ETA; new physical FP64/100CAD/cache changes and60 new CSR builds unmeasured"
+  },
+  "source_runtime_complete": false,
+  "actual_GPU_qualification": false,
+  "actual_training_updates": 0,
+  "actual_new_GT_reads": 0,
+  "limits": [
+    "Not a GNO-only causal ablation; model frequency/capacity/backend differences disclosed",
+    "knownDEV iterative; no final or blind claim",
+    "Old officialGINO resource and training evidence preserved; do not re-run old480 or toy GPU resource",
+    "Current continuous API is not independently off-node FEM accuracy"
+  ],
+  "native_cache_identity": {
+    "path": "geobc/gino_physical_cache_v52.py",
+    "bytes": 6155,
+    "mtime_ns": 1791724949752340600,
+    "sha256": "e3698184d5e0a5c74d51e95bad2ca9575f6ddd2d9fe28f1bed75da7d37536387"
+  },
+  "native_cache_source_review_identity": {
+    "path": "notes/geobc_gino_physical_v52_cache_source_review.json",
+    "bytes": 1239,
+    "mtime_ns": 1791725022028139400,
+    "sha256": "38d77eee5c4faef6ee2f71cf67e142a01083c5e22b03cf77ae3532f37da41458"
+  },
+  "native_cache_disk_bytes_upper": 7532826400,
+  "next_implementation": "Integrate exact current perCAD CSR inventory+new60 construction and one bounded real fullN qualification/training guard; GPU actual0"
+}

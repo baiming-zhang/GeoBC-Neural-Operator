@@ -1,0 +1,1764 @@
+{
+  "status": "actual_metadata_only_geometry_inventory_completed",
+  "actual_CPU_seconds": 0.0470000000204891,
+  "dataset_identity": {
+    "path": "data/geobc_prospective_dataset_v1/manifest.json",
+    "bytes": 2006687,
+    "mtime_ns": 1791671623813764100,
+    "sha256": "68733fab6029ed0a182c09d73dcb61e06d1d7becfca9784498073a1c5dc19ddf"
+  },
+  "old_actual_GINO_identity": {
+    "path": "runs/geobc_exploration/gino_screen_seed2026_480/summary.json",
+    "bytes": 993735,
+    "mtime_ns": 1791566472292028900,
+    "sha256": "2dc05962a39114c562e93f3339af186eda0b48d49ee208f6e6e48b1bab34eb74"
+  },
+  "TRAIN_CADs": 100,
+  "TRAIN_cases": 300,
+  "same_old_xyz_files": 40,
+  "existing_CSR_reusable_by_metadata": 40,
+  "new_CAD_CSR_needed": 60,
+  "actual_numeric_GT_PT_array_GPU_reads": 0,
+  "per_CAD": [
+    {
+      "cad": "101_428",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/101_428/xyz.npy",
+        "bytes": 3243440,
+        "mtime_ns": 1791554048458419900
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/101_428/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565570949109800,
+        "sha256": "7983a4d813a39dcc6c50987700064602026cdbd97e7f9e6f4cd39e0651ddfa4d"
+      },
+      "CSR_inventory_bytes": 325684624
+    },
+    {
+      "cad": "101_479",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/101_479/xyz.npy",
+        "bytes": 2151920,
+        "mtime_ns": 1791554049062253300
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "runs/geobc_exploration/gino_radius_input_pilot_101_479/summary.json",
+        "bytes": 18231,
+        "mtime_ns": 1791562970615195600,
+        "sha256": "e09aa84a26cdc2957f61c083409bad8b6113390a200b5bf93290eeb1ac4480d0"
+      },
+      "CSR_inventory_bytes": 216204464
+    },
+    {
+      "cad": "101_56",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/101_56/xyz.npy",
+        "bytes": 2654684,
+        "mtime_ns": 1791554049588741400
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/101_56/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565642082797000,
+        "sha256": "f45e3edb5fc414952d85ee5e7aa5a887e869ea2df343bcf12e05707fb2582f01"
+      },
+      "CSR_inventory_bytes": 261108440
+    },
+    {
+      "cad": "101_78",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/101_78/xyz.npy",
+        "bytes": 2308364,
+        "mtime_ns": 1791554050152143900
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/101_78/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565716747359400,
+        "sha256": "fba0d44659b2a7c7841157e5c614b925a7cca60ae75c748f7787d1e57c8ab26c"
+      },
+      "CSR_inventory_bytes": 225741528
+    },
+    {
+      "cad": "101_86",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/101_86/xyz.npy",
+        "bytes": 2629928,
+        "mtime_ns": 1791554050649162400
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/101_86/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565744195670600,
+        "sha256": "4d711822d2d518acedf4a5402094e69c984892243ef84e0d4d1c4cf4e9d3ae88"
+      },
+      "CSR_inventory_bytes": 262762464
+    },
+    {
+      "cad": "102_240",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/102_240/xyz.npy",
+        "bytes": 2452460,
+        "mtime_ns": 1791554051181138400
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/102_240/manifest.json",
+        "bytes": 4812,
+        "mtime_ns": 1791565612839576400,
+        "sha256": "9b7f03e011d2afd84f0c76e2256c3b5d74bdb4316c1b87a5e81763121c5e06c0"
+      },
+      "CSR_inventory_bytes": 240253112
+    },
+    {
+      "cad": "102_79",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/102_79/xyz.npy",
+        "bytes": 2659928,
+        "mtime_ns": 1791554051693491700
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/102_79/manifest.json",
+        "bytes": 4801,
+        "mtime_ns": 1791565583079114900,
+        "sha256": "d2056a0ba643b324d05749396e6e24ec49d211ded803e0d0bf3d026d6f6a68b9"
+      },
+      "CSR_inventory_bytes": 259519360
+    },
+    {
+      "cad": "107_113",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_113/xyz.npy",
+        "bytes": 2757824,
+        "mtime_ns": 1791554052238321700
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_113/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565568050306000,
+        "sha256": "ba20ee51f5bf2216b0f1e5d85c338a09abcff23e4529afee24f8dde260b7f223"
+      },
+      "CSR_inventory_bytes": 275374576
+    },
+    {
+      "cad": "107_147",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_147/xyz.npy",
+        "bytes": 2396852,
+        "mtime_ns": 1791554052814361900
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_147/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565600739152800,
+        "sha256": "03035567cc373c76fb989ddf7603c902ac5b8e85264160fcf5799fec2e2635e4"
+      },
+      "CSR_inventory_bytes": 243607432
+    },
+    {
+      "cad": "107_150",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_150/xyz.npy",
+        "bytes": 3904772,
+        "mtime_ns": 1791554053441948300
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_150/manifest.json",
+        "bytes": 4811,
+        "mtime_ns": 1791565564136391400,
+        "sha256": "80118dcace3751f399ca2ab621ac3ea4de3233f94aaeab42ee654d4490fc5874"
+      },
+      "CSR_inventory_bytes": 391212808
+    },
+    {
+      "cad": "107_186",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_186/xyz.npy",
+        "bytes": 3283940,
+        "mtime_ns": 1791554054141430000
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_186/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565686711890200,
+        "sha256": "fb6c6013a068345017cbfa4663251b27808eb9a152887ceddfc41dc1fb7d00ee"
+      },
+      "CSR_inventory_bytes": 325538568
+    },
+    {
+      "cad": "107_233",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_233/xyz.npy",
+        "bytes": 2839436,
+        "mtime_ns": 1791554054758758600
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_233/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565596297413500,
+        "sha256": "21f7cbbd547fc31eab957eda15e102a8ecf0aa9f18237e64aa9b076f4e9033dd"
+      },
+      "CSR_inventory_bytes": 278575768
+    },
+    {
+      "cad": "107_240",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_240/xyz.npy",
+        "bytes": 2500988,
+        "mtime_ns": 1791554055331087100
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_240/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565672468651800,
+        "sha256": "62b9804b84923b30c760fbcd7688fe78672ab6b22ff2739b51926bbdad86ba85"
+      },
+      "CSR_inventory_bytes": 246899992
+    },
+    {
+      "cad": "107_248",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_248/xyz.npy",
+        "bytes": 2472776,
+        "mtime_ns": 1791554055937795400
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_248/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565644486262800,
+        "sha256": "d59f88d365fa2266ae88f926069eb9837357a080453ba40675bc0fa18c79b86f"
+      },
+      "CSR_inventory_bytes": 241829600
+    },
+    {
+      "cad": "107_291",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_291/xyz.npy",
+        "bytes": 2542196,
+        "mtime_ns": 1791554056540861400
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_291/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565615214142800,
+        "sha256": "38a9de59a87982aff7eaf5cbdc9af5f4736d6361570109302380ce3eb49638a4"
+      },
+      "CSR_inventory_bytes": 250458952
+    },
+    {
+      "cad": "107_320",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_320/xyz.npy",
+        "bytes": 2528228,
+        "mtime_ns": 1791554057085132100
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_320/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565543962987600,
+        "sha256": "0052ce2c46b8e842bd6c90721b07f94e571f666d5f51ed5d477ec9dc421defd0"
+      },
+      "CSR_inventory_bytes": 254943976
+    },
+    {
+      "cad": "107_342",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_342/xyz.npy",
+        "bytes": 2467316,
+        "mtime_ns": 1791554057602947100
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_342/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565603144771400,
+        "sha256": "888caf2b0627d2256441f4094a3a0eb6728512e8153c437133fd2f0f0874f0d9"
+      },
+      "CSR_inventory_bytes": 248177000
+    },
+    {
+      "cad": "107_459",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/107_459/xyz.npy",
+        "bytes": 2478656,
+        "mtime_ns": 1791554058120131500
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/107_459/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565607800647200,
+        "sha256": "714275742a9f7cd7a4c5d3ec33cb90c04140f9e032975047dd729a4abb4747e3"
+      },
+      "CSR_inventory_bytes": 246697456
+    },
+    {
+      "cad": "10_30",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/10_30/xyz.npy",
+        "bytes": 1898780,
+        "mtime_ns": 1791554058608647800
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/10_30/manifest.json",
+        "bytes": 4793,
+        "mtime_ns": 1791565684440724800,
+        "sha256": "c7175bff7f3de4b84ca4cdb529b297a8ab370e3b5890fe61a3cc30dda52aa798"
+      },
+      "CSR_inventory_bytes": 192746136
+    },
+    {
+      "cad": "10_421",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/10_421/xyz.npy",
+        "bytes": 2276576,
+        "mtime_ns": 1791554059054520200
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/10_421/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565699331909400,
+        "sha256": "1f8adf60a579a04434c5a7d353ae9c8b020a0908c643574bcf61208377f953dc"
+      },
+      "CSR_inventory_bytes": 223698224
+    },
+    {
+      "cad": "10_460",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/10_460/xyz.npy",
+        "bytes": 2404100,
+        "mtime_ns": 1791554059593853400
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/10_460/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565669176693500,
+        "sha256": "7b7c2944d88be841230357f234c9f9d9bd3d0a9d2a56b929c48b4b8f4df0f46b"
+      },
+      "CSR_inventory_bytes": 237577512
+    },
+    {
+      "cad": "10_492",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/10_492/xyz.npy",
+        "bytes": 2558948,
+        "mtime_ns": 1791554060146576500
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/10_492/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565639326793400,
+        "sha256": "1792e8378f18c22fd9202010ee111441a2fd4fe02193e84c4223961d93c635df"
+      },
+      "CSR_inventory_bytes": 250320168
+    },
+    {
+      "cad": "10_58",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/10_58/xyz.npy",
+        "bytes": 3055868,
+        "mtime_ns": 1791554060683022800
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/10_58/manifest.json",
+        "bytes": 4784,
+        "mtime_ns": 1791565546272809600,
+        "sha256": "20c19aa895eb5c5434e98992c50b9b15ff9d80da21c9b893de18cd1e2701a397"
+      },
+      "CSR_inventory_bytes": 301268184
+    },
+    {
+      "cad": "10_80",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/10_80/xyz.npy",
+        "bytes": 1945112,
+        "mtime_ns": 1791554061236800200
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/10_80/manifest.json",
+        "bytes": 4792,
+        "mtime_ns": 1791565598682802000,
+        "sha256": "7c7741f47b1ed18bcff9d283b6986985f4f69fe06174c40d51977b0fe8ebb470"
+      },
+      "CSR_inventory_bytes": 194095904
+    },
+    {
+      "cad": "113_129",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/113_129/xyz.npy",
+        "bytes": 2834444,
+        "mtime_ns": 1791554061690026200
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/113_129/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565661505127300,
+        "sha256": "7afff16176ea844e39a7fedfc8f1b1814494f0930511d348bd63f00b4d25bf00"
+      },
+      "CSR_inventory_bytes": 286144376
+    },
+    {
+      "cad": "113_170",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/113_170/xyz.npy",
+        "bytes": 3048380,
+        "mtime_ns": 1791554062255078000
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/113_170/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565634623100300,
+        "sha256": "28951d7c7299da8f749bdace14fe9c2b0a65894a46085f907502a58232e411b2"
+      },
+      "CSR_inventory_bytes": 308120728
+    },
+    {
+      "cad": "113_390",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/113_390/xyz.npy",
+        "bytes": 2385008,
+        "mtime_ns": 1791554062828365600
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/113_390/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565590596022000,
+        "sha256": "92d7671e38715e4d96f7b9832ceb7a2997508524903a8bc5cf9de428a4cb3831"
+      },
+      "CSR_inventory_bytes": 241700848
+    },
+    {
+      "cad": "113_86",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/113_86/xyz.npy",
+        "bytes": 2999960,
+        "mtime_ns": 1791554063373117900
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/113_86/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565619654186200,
+        "sha256": "a14cb6d3683991873ddcf1789d95736aa4adaa2e1c6be7c53958c8c5c987ac81"
+      },
+      "CSR_inventory_bytes": 298406048
+    },
+    {
+      "cad": "113_95",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/113_95/xyz.npy",
+        "bytes": 2555036,
+        "mtime_ns": 1791554064103364000
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/113_95/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565579717896600,
+        "sha256": "1898087e6c048b49a884b25f4134436ffcc654f430d122bed0cef5a5f887b029"
+      },
+      "CSR_inventory_bytes": 258936280
+    },
+    {
+      "cad": "114_28",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/114_28/xyz.npy",
+        "bytes": 2218016,
+        "mtime_ns": 1791554064613570700
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/114_28/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565653625072200,
+        "sha256": "8029303d3ed12b1f4b180b55fc59ae532a629a5115ea8c1c8cfc4ad07f619440"
+      },
+      "CSR_inventory_bytes": 217953232
+    },
+    {
+      "cad": "114_456",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/114_456/xyz.npy",
+        "bytes": 2291756,
+        "mtime_ns": 1791554065086263300
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/114_456/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565605531301300,
+        "sha256": "9e1394c298f5af900667a89a7dae4b25c00748d440a51f86b9d663ffc87118cd"
+      },
+      "CSR_inventory_bytes": 229684984
+    },
+    {
+      "cad": "114_525",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/114_525/xyz.npy",
+        "bytes": 3198236,
+        "mtime_ns": 1791554065609471500
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/114_525/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565576823778000,
+        "sha256": "8e9aab091c18a63b9e38b7ae6e9633b41a320662ab8c1a17c58d0982cc4e97e4"
+      },
+      "CSR_inventory_bytes": 319326712
+    },
+    {
+      "cad": "114_91",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/114_91/xyz.npy",
+        "bytes": 2102456,
+        "mtime_ns": 1791554066248696500
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/114_91/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565628061241900,
+        "sha256": "2d721008e9af295223e795133af48e42ad4ad9ebf5e5e96f00385a1de69cbbe5"
+      },
+      "CSR_inventory_bytes": 213486656
+    },
+    {
+      "cad": "116_102",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/116_102/xyz.npy",
+        "bytes": 2703272,
+        "mtime_ns": 1791554066788065200
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/116_102/manifest.json",
+        "bytes": 4812,
+        "mtime_ns": 1791565736172053400,
+        "sha256": "4c4a32eab6d7c41fd633c784f420f2612afea37334a404855d7a0634a5a1d9fc"
+      },
+      "CSR_inventory_bytes": 267408800
+    },
+    {
+      "cad": "116_113",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/116_113/xyz.npy",
+        "bytes": 2689064,
+        "mtime_ns": 1791554067336563300
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/116_113/manifest.json",
+        "bytes": 4812,
+        "mtime_ns": 1791565574163030900,
+        "sha256": "2a6669214a2fae1b8318ea80e93938b18bf29bdba921903199cdcc9b034a152f"
+      },
+      "CSR_inventory_bytes": 269139328
+    },
+    {
+      "cad": "116_30",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/116_30/xyz.npy",
+        "bytes": 1834364,
+        "mtime_ns": 1791554067864454500
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/116_30/manifest.json",
+        "bytes": 4803,
+        "mtime_ns": 1791565625410307200,
+        "sha256": "b957d14a056f414ab0a664849141b468ffc837f092f096d5d2334ab18ce899f9"
+      },
+      "CSR_inventory_bytes": 186703640
+    },
+    {
+      "cad": "116_348",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/116_348/xyz.npy",
+        "bytes": 2319344,
+        "mtime_ns": 1791554068310646500
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/116_348/manifest.json",
+        "bytes": 4812,
+        "mtime_ns": 1791565657606381800,
+        "sha256": "29e907647ffb5e29b944620c9e47e4dd6ef63b61eca483f64766fda146695fcb"
+      },
+      "CSR_inventory_bytes": 233152656
+    },
+    {
+      "cad": "119_221",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/119_221/xyz.npy",
+        "bytes": 3123428,
+        "mtime_ns": 1791554068832157400
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/119_221/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565593430696500,
+        "sha256": "ee3164c0beacd3d639878be85589528328cd11c991aa42225a60224098c79f77"
+      },
+      "CSR_inventory_bytes": 311286792
+    },
+    {
+      "cad": "119_322",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/119_322/xyz.npy",
+        "bytes": 2678168,
+        "mtime_ns": 1791554069435111700
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/119_322/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565674931914500,
+        "sha256": "3d35879a6b46ab5f0ce6b446f450e64095d6b49b9ab410d05a491d66c9b4b951"
+      },
+      "CSR_inventory_bytes": 269419296
+    },
+    {
+      "cad": "119_559",
+      "current_xyz_identity": {
+        "path": "data/geobc_solver_selection/geometry/119_559/xyz.npy",
+        "bytes": 2930636,
+        "mtime_ns": 1791554070007017100
+      },
+      "same_file_old_xyz_identity": true,
+      "existing_CSR_reuse_metadata_passed": true,
+      "reason": "Same original xyz path/bytes/mtime, three loads and complete stored CSR stat witnesses; no numerical bodies read",
+      "CSR_manifest_identity": {
+        "path": "data/geobc_gino_radius_trainval/119_559/manifest.json",
+        "bytes": 4813,
+        "mtime_ns": 1791565610249505000,
+        "sha256": "f80fe9b0ddaa512fd1f02729fab07a8d7d8e233188651174e6897c0b75a28aba"
+      },
+      "CSR_inventory_bytes": 296041816
+    },
+    {
+      "cad": "229_200",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/229_200/xyz.npy",
+        "bytes": 2915360,
+        "mtime_ns": 1791670517961154800,
+        "sha256": "33e5d84a4e4cf043ba64807a74209bbb311bc6d14fcfebefaf74588c6132189e",
+        "shape": [
+          242936,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "230_12",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/230_12/xyz.npy",
+        "bytes": 2433896,
+        "mtime_ns": 1791670523982181800,
+        "sha256": "475c7d5d815546cd52f647c8a5185f78b9214b45895125863183f284eb9fa304",
+        "shape": [
+          202814,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "230_483",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/230_483/xyz.npy",
+        "bytes": 2531288,
+        "mtime_ns": 1791670530009218600,
+        "sha256": "410937f266ad76952a09673533f50cbfd683e40f26d44e9a4fc1940b38159441",
+        "shape": [
+          210930,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "248_319",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/248_319/xyz.npy",
+        "bytes": 3083408,
+        "mtime_ns": 1791670550890053600,
+        "sha256": "d65aa65e27bf9a94d033b3e2c37210981cedc2744fc972bc7dd97bb8049c6b50",
+        "shape": [
+          256940,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "248_625",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/248_625/xyz.npy",
+        "bytes": 2240948,
+        "mtime_ns": 1791670556523800300,
+        "sha256": "4eebcd40b96b1aebe4bcbc5cbf51e27b84f84291df52a406e7fb4af18db03b83",
+        "shape": [
+          186735,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "257_485",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/257_485/xyz.npy",
+        "bytes": 2488328,
+        "mtime_ns": 1791670562231702700,
+        "sha256": "3a1956c1e6025c6955bf930efff250f635d9e3310691721328f1d7a89d5ce1ed",
+        "shape": [
+          207350,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "25_296",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/25_296/xyz.npy",
+        "bytes": 1763696,
+        "mtime_ns": 1791670566815650200,
+        "sha256": "0f2ce01dcbc5a24d6e400fbe095023d29a331dc5061caa709351404a47702f16",
+        "shape": [
+          146964,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "25_395",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/25_395/xyz.npy",
+        "bytes": 2504072,
+        "mtime_ns": 1791670572447072900,
+        "sha256": "2836682d90abae7df7d07dc710fad6a350b0fc52b6ff857f322407f44b589e2b",
+        "shape": [
+          208662,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "266_15",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/266_15/xyz.npy",
+        "bytes": 2675408,
+        "mtime_ns": 1791670579182669100,
+        "sha256": "b4580997091a0c864b29ae02f8c27a21fd9f81d3cd178a8ee538e876e56d1b0a",
+        "shape": [
+          222940,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "268_129",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/268_129/xyz.npy",
+        "bytes": 2516900,
+        "mtime_ns": 1791670585030682700,
+        "sha256": "0172c2056ec4492d6ff8c5bfe9188eca7575550c5b1100cf14fb07c86e2ae50a",
+        "shape": [
+          209731,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "275_289",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/275_289/xyz.npy",
+        "bytes": 2453540,
+        "mtime_ns": 1791670590896102500,
+        "sha256": "75606984a653bf1ffad9b746433585466fefca86dc4ce646d0f193df23733463",
+        "shape": [
+          204451,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "280_202",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/280_202/xyz.npy",
+        "bytes": 2203208,
+        "mtime_ns": 1791670597096502500,
+        "sha256": "aa83f7055d9438349407017d87836fb797a3a7ec63135a7203742926a5ba43ff",
+        "shape": [
+          183590,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "284_186",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/284_186/xyz.npy",
+        "bytes": 3250244,
+        "mtime_ns": 1791670604483910400,
+        "sha256": "291fea2ae6758aecc476eb8a80e900884277b686101b5b95e9e122f63f838cea",
+        "shape": [
+          270843,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "290_422",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/290_422/xyz.npy",
+        "bytes": 2865464,
+        "mtime_ns": 1791670610844751300,
+        "sha256": "4e6a49ff10e8f9bad5efbd7da78e0a2e75f2e7ae55d1f5e387eb37cddb8597b0",
+        "shape": [
+          238778,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "291_417",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/291_417/xyz.npy",
+        "bytes": 2468564,
+        "mtime_ns": 1791670616805266000,
+        "sha256": "bd2616785c9c282843d53ed6cd1690fda49c8cc3087398450f6d883bc821fad8",
+        "shape": [
+          205703,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "291_511",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/291_511/xyz.npy",
+        "bytes": 2111924,
+        "mtime_ns": 1791670621745228500,
+        "sha256": "3b321310b5807f5758a07e8f7f5b8b386060ff3d29dce2f64e13b4cba8dbb0c2",
+        "shape": [
+          175983,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "295_394",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/295_394/xyz.npy",
+        "bytes": 2608772,
+        "mtime_ns": 1791670628082754100,
+        "sha256": "cd01a45130a420dd11f69efc5db473dde4871fdc925d68f326fce4e47d06c62a",
+        "shape": [
+          217387,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "316_479",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/316_479/xyz.npy",
+        "bytes": 2213144,
+        "mtime_ns": 1791670634018524900,
+        "sha256": "0abce7850672e8e5cf73741e438802d9a77ebb190e62efe7d7b821e42733766c",
+        "shape": [
+          184418,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "322_280",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/322_280/xyz.npy",
+        "bytes": 2269988,
+        "mtime_ns": 1791670646114494200,
+        "sha256": "25ea8dd649c05d3f27489cb640080cef01436f4974c16076f5f127ad89b6b651",
+        "shape": [
+          189155,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "323_59",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/323_59/xyz.npy",
+        "bytes": 1669892,
+        "mtime_ns": 1791670650275137100,
+        "sha256": "8baddcc79c5190ff045a626fa6be9a7a539f35cd41cddbd66218f561457b49e6",
+        "shape": [
+          139147,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "345_238",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/345_238/xyz.npy",
+        "bytes": 3210236,
+        "mtime_ns": 1791670657167008000,
+        "sha256": "66046ea57359acd1a6dda1a15116f0d5fe712e6a35f027b17c12015bb4e8ae3c",
+        "shape": [
+          267509,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "34_78",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/34_78/xyz.npy",
+        "bytes": 2302424,
+        "mtime_ns": 1791670662455973700,
+        "sha256": "de07a6609ba7dc6b32eb4ce56bd0daaab062bd1b077fe8408de4084d26ff4114",
+        "shape": [
+          191858,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "361_198",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/361_198/xyz.npy",
+        "bytes": 2412932,
+        "mtime_ns": 1791670668646699600,
+        "sha256": "fa7d2259acb88597c3a7cca34b4ce272cc9ea4c8e3bf569c660d6dc39e0a4dfc",
+        "shape": [
+          201067,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "388_513",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/388_513/xyz.npy",
+        "bytes": 2231000,
+        "mtime_ns": 1791670675302811300,
+        "sha256": "de83aaa7c89fa3b7cd7c1edd817f78d47873ea3494060c38a84b5739aa71f7ae",
+        "shape": [
+          185906,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "38_249",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/38_249/xyz.npy",
+        "bytes": 2054168,
+        "mtime_ns": 1791670681211307000,
+        "sha256": "6379b4773e004d7a699a1cf46adbc239e6a1f771657f03f5b1558505f5861947",
+        "shape": [
+          171170,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "394_19",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/394_19/xyz.npy",
+        "bytes": 2592092,
+        "mtime_ns": 1791670695528738900,
+        "sha256": "0ea68d614e6f486f1acfcdb75da137c9223372268b505b0533fa5793047ca473",
+        "shape": [
+          215997,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "406_171",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/406_171/xyz.npy",
+        "bytes": 2534240,
+        "mtime_ns": 1791670701546818300,
+        "sha256": "2b2555f6c615cd529225f15d399706a06c3840bf24875de6b508b6bc2b68d277",
+        "shape": [
+          211176,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "415_511",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/415_511/xyz.npy",
+        "bytes": 1906052,
+        "mtime_ns": 1791670706216007200,
+        "sha256": "5edf166aa6d1f99893b64dbe183cbfe51e6b7610602e2978b99e9f0d50229ea1",
+        "shape": [
+          158827,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "432_214",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/432_214/xyz.npy",
+        "bytes": 2939780,
+        "mtime_ns": 1791670717750862900,
+        "sha256": "a8633a0c0f1cdae189d66acb19ed375b79fb14613df2332d33455b6bd627bcb7",
+        "shape": [
+          244971,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "432_533",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/432_533/xyz.npy",
+        "bytes": 2239652,
+        "mtime_ns": 1791670723058940100,
+        "sha256": "4e812e8dad10661dede3708aa1dd7b8c85c1e5112515414b138b71a48e6e728e",
+        "shape": [
+          186627,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "433_497",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/433_497/xyz.npy",
+        "bytes": 2200100,
+        "mtime_ns": 1791670728399611400,
+        "sha256": "2fc0750bab8d6ac2dbaa632982948269f7fdfbb6edc386f35837054d66184281",
+        "shape": [
+          183331,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "440_206",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/440_206/xyz.npy",
+        "bytes": 2279756,
+        "mtime_ns": 1791670733746042500,
+        "sha256": "53d60bd85d629fba5f483286ef4cd6f1ce7e64c928d7f10007255145a731a4f3",
+        "shape": [
+          189969,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "475_209",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/475_209/xyz.npy",
+        "bytes": 3881516,
+        "mtime_ns": 1791670776887184000,
+        "sha256": "b3c496472016ce462f284e7f17611592f0d6926ce38615e0d13ae371c01f6029",
+        "shape": [
+          323449,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "489_611",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/489_611/xyz.npy",
+        "bytes": 2053988,
+        "mtime_ns": 1791670796005952500,
+        "sha256": "fc1555cfea903f0b327daf9828542d7e33947b28df42ab1d80b16f3771bf12ce",
+        "shape": [
+          171155,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "506_170",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/506_170/xyz.npy",
+        "bytes": 2273624,
+        "mtime_ns": 1791670809697007400,
+        "sha256": "03fb3df4df95480329cdfad5c316d4d0078ad5b14a9e086eab127559177375ad",
+        "shape": [
+          189458,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "507_217",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/507_217/xyz.npy",
+        "bytes": 2701220,
+        "mtime_ns": 1791670815993645100,
+        "sha256": "117cb7d91902f91495ce03ce14d987abff5d02f04426542a408fc1f43dcc3908",
+        "shape": [
+          225091,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "507_624",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/507_624/xyz.npy",
+        "bytes": 1918196,
+        "mtime_ns": 1791670820936965500,
+        "sha256": "dca3a3406a45c9504393901ab9c83b49d258419e0d3f06224d6fcc73478fc955",
+        "shape": [
+          159839,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "50_295",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/50_295/xyz.npy",
+        "bytes": 1657172,
+        "mtime_ns": 1791670825252723400,
+        "sha256": "e959826284a580526a0b525eb14ac4760a4505b3605a901838d6f8734ad80907",
+        "shape": [
+          138087,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "510_575",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/510_575/xyz.npy",
+        "bytes": 2844800,
+        "mtime_ns": 1791670831497384200,
+        "sha256": "b52bbb08028d4073a12873d322e4f752392e79496866bf15caae31ce0b130d1b",
+        "shape": [
+          237056,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "518_209",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/518_209/xyz.npy",
+        "bytes": 3333248,
+        "mtime_ns": 1791670843507218000,
+        "sha256": "8e56ead08bc95b544a6a044da47ef24235b30f95156332faf88ec59d70823b32",
+        "shape": [
+          277760,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "524_483",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/524_483/xyz.npy",
+        "bytes": 1833884,
+        "mtime_ns": 1791670854411719000,
+        "sha256": "eed309517dde1c920aaa59071ebc6c8c62c44df4b6b27e2795e1716089503805",
+        "shape": [
+          152813,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "537_142",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/537_142/xyz.npy",
+        "bytes": 2747756,
+        "mtime_ns": 1791670860495780200,
+        "sha256": "583c1bc1c94b435e804fe131eaf3a4b00689866c21aa983fcd32c05b472776be",
+        "shape": [
+          228969,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "53_482",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/53_482/xyz.npy",
+        "bytes": 2590700,
+        "mtime_ns": 1791670872790036700,
+        "sha256": "66886770e41b1b9366f66dcae9dace2d17cc4b177451f2ba9c9b3f845d07a447",
+        "shape": [
+          215881,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "548_225",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/548_225/xyz.npy",
+        "bytes": 2776592,
+        "mtime_ns": 1791670879230489900,
+        "sha256": "1db1b8089a1d63072bde0407b744942901bc926150c52ac9d23e283306650bb1",
+        "shape": [
+          231372,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "560_91",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/560_91/xyz.npy",
+        "bytes": 2122784,
+        "mtime_ns": 1791670889566423500,
+        "sha256": "fe3da137fabac0f792f403971fafb1f05086e63aeaf8deee0b7d19c1d7a08048",
+        "shape": [
+          176888,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "56_293",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/56_293/xyz.npy",
+        "bytes": 2560160,
+        "mtime_ns": 1791670895323589400,
+        "sha256": "2e7d0f5c8b21c7081e85d59f59d843fae1b9855dfc91a1bf77023e9b889f06ab",
+        "shape": [
+          213336,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "56_95",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/56_95/xyz.npy",
+        "bytes": 2765576,
+        "mtime_ns": 1791670901696556100,
+        "sha256": "64d7723e31d4e17f7078d28ea63880f61cf79a50e91c2ff69b4ffb9ef1d5715f",
+        "shape": [
+          230454,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "587_248",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/587_248/xyz.npy",
+        "bytes": 2407556,
+        "mtime_ns": 1791670907484515600,
+        "sha256": "0cc69945ed9919c964a8c9f5abe53189a387d43f4047de6325974b6dec83f0e1",
+        "shape": [
+          200619,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "592_61",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/592_61/xyz.npy",
+        "bytes": 2833688,
+        "mtime_ns": 1791670914020586200,
+        "sha256": "c6f31a1ef6e5690d7558cd274ccdc41efdb3b811f7d901b371555678070f5e3a",
+        "shape": [
+          236130,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "610_21",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/610_21/xyz.npy",
+        "bytes": 2061248,
+        "mtime_ns": 1791670919206760700,
+        "sha256": "8d476ec05218398ae0d37349217cf672b217be02dc1b7a85112c1f2009f113df",
+        "shape": [
+          171760,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "616_538",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/616_538/xyz.npy",
+        "bytes": 2901020,
+        "mtime_ns": 1791670925777875400,
+        "sha256": "01fa966d3630c07fed9bd9736f51997833115fe62b1063111c91bf5c5be813d4",
+        "shape": [
+          241741,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "62_202",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/62_202/xyz.npy",
+        "bytes": 1710680,
+        "mtime_ns": 1791670936731177900,
+        "sha256": "0ab95f3d7e263d18426e3a15fe732077153136fd1b3d1402884f56d10d7319db",
+        "shape": [
+          142546,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "62_394",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/62_394/xyz.npy",
+        "bytes": 3246272,
+        "mtime_ns": 1791670943762703000,
+        "sha256": "13f9e4fb7574fd9cc834ee7d7a0da73533a053aa8e9057db453cbf627beafb78",
+        "shape": [
+          270512,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "630_205",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/630_205/xyz.npy",
+        "bytes": 2280980,
+        "mtime_ns": 1791670955060054800,
+        "sha256": "4640fb5685910d3cb05c4082269396abab2792eacd1d46de5151d7430486cb72",
+        "shape": [
+          190071,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "633_187",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/633_187/xyz.npy",
+        "bytes": 2388608,
+        "mtime_ns": 1791670960913962100,
+        "sha256": "0a5323cde76e42bcb1909e44687a10d2bbb4ed34d8b29c64521dd569b23fdb65",
+        "shape": [
+          199040,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "66_524",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/66_524/xyz.npy",
+        "bytes": 2188904,
+        "mtime_ns": 1791670966240294600,
+        "sha256": "406823677b2af619eed13f5dc357de4b14c30f511fc7213992bf503ffffd5b62",
+        "shape": [
+          182398,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "80_483",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/80_483/xyz.npy",
+        "bytes": 2046632,
+        "mtime_ns": 1791670971102605900,
+        "sha256": "fdf9316c5a1405701a3269650a0e7905163affc8c7c8ab2bdbf1188a0776af48",
+        "shape": [
+          170542,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "81_417",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/81_417/xyz.npy",
+        "bytes": 2041532,
+        "mtime_ns": 1791670975957517800,
+        "sha256": "9493177768443b5c61ebfc1de6f1650e1ec09fe782e6aab0e56f92ed616423e9",
+        "shape": [
+          170117,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "86_489",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/86_489/xyz.npy",
+        "bytes": 2532248,
+        "mtime_ns": 1791670981891107000,
+        "sha256": "99e5e6f13b673fd2a70978cfb94e2cdb4869ef1a87a85a4eba10c51c0d4ebbc3",
+        "shape": [
+          211010,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    },
+    {
+      "cad": "8_497",
+      "current_xyz_identity": {
+        "path": "data/geobc_prospective_CPU_inputs_v1/geometry/8_497/xyz.npy",
+        "bytes": 1863080,
+        "mtime_ns": 1791670986708427700,
+        "sha256": "aba28d43e5267692f7a658278586528cd1b43c345b6d48a715593107e9fa1558",
+        "shape": [
+          155246,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "same_file_old_xyz_identity": false,
+      "existing_CSR_reuse_metadata_passed": false,
+      "reason": "New CAD geometry; own target-free CSR required"
+    }
+  ]
+}
