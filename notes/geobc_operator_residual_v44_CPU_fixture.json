@@ -1,0 +1,82 @@
+{
+  "status": "actual_synthetic_CPU_zero_residual_and_first_gradient_passed_not_native_GPU",
+  "CPU_seconds": 1.0284905919979792,
+  "source": {
+    "path": "geobc/operator_residual_v44.py",
+    "bytes": 5390,
+    "mtime_ns": 1791717738150052900,
+    "sha256": "9cae7ffc08c2714792423641f80c00be8966db8fbc1a46aa8f0d6b97add37a74"
+  },
+  "checker": {
+    "path": "tools/check_operator_residual_v44_CPU.py",
+    "bytes": 3787,
+    "mtime_ns": 1791717738150052900,
+    "sha256": "7b0f3cd45512193351847008aea6f7504fbab0ada24bf08268f00ac345679aa0"
+  },
+  "modes": {
+    "mlp": {
+      "initial_teacher_exact": true,
+      "trainable_first_gradient_L2": 0.000302971165933925,
+      "frozen_gradients_none": true,
+      "frozen_hashes_unchanged": true,
+      "cached_nodes_and_explicit_points_equal": true,
+      "profile": {
+        "method": "FNO5_frozen_mlp_zero_residual",
+        "counts": {
+          "teacher": 4526858,
+          "decoder": 26884,
+          "reference": 26884
+        },
+        "total_parameters": 4580626,
+        "trainable_parameters": 26884,
+        "backend": "torch_FP32_MLP",
+        "teacher_weights_frozen": true,
+        "reference_weights_frozen": true,
+        "initialization": "baseline encoded4 + decoder(theta)-decoder(theta0), exactteacher at identical theta/theta0; no zero gate or native slicing",
+        "target": "Original signed physical U/S loss after common scaler decode, not teacher distillation",
+        "exposures": "Teacher trained5; decoder additional5 planned, not fresh5 or allparameters10",
+        "continuous_interface": "Fixed context/trilinear R64/explicit native25 extension; continuity conditional on that extension, C0 not generally C1",
+        "offnode_FEM_accuracy_measured": false,
+        "owns_data_or_launch": false
+      },
+      "nodes": 257,
+      "query_chunk": 64,
+      "tail": 1
+    },
+    "hash": {
+      "initial_teacher_exact": true,
+      "trainable_first_gradient_L2": 0.001988137389494139,
+      "frozen_gradients_none": true,
+      "frozen_hashes_unchanged": true,
+      "cached_nodes_and_explicit_points_equal": true,
+      "profile": {
+        "method": "FNO5_frozen_hash_zero_residual",
+        "counts": {
+          "teacher": 4526858,
+          "decoder": 1300,
+          "reference": 1300
+        },
+        "total_parameters": 4529458,
+        "trainable_parameters": 1300,
+        "backend": "injected_CPU_interface_not_native_Hash",
+        "teacher_weights_frozen": true,
+        "reference_weights_frozen": true,
+        "initialization": "baseline encoded4 + decoder(theta)-decoder(theta0), exactteacher at identical theta/theta0; no zero gate or native slicing",
+        "target": "Original signed physical U/S loss after common scaler decode, not teacher distillation",
+        "exposures": "Teacher trained5; decoder additional5 planned, not fresh5 or allparameters10",
+        "continuous_interface": "Fixed context/trilinear R64/explicit native25 extension; continuity conditional on that extension, C0 not generally C1",
+        "offnode_FEM_accuracy_measured": false,
+        "owns_data_or_launch": false
+      },
+      "nodes": 257,
+      "query_chunk": 64,
+      "tail": 1
+    }
+  },
+  "teacher": "Untrained synthetic CPU FNO9, not actual trained5 checkpoint",
+  "hash": "Injected Torch interface fixture, not nativeTCNN",
+  "trained_PT_reads": 0,
+  "dataset_GT_reads": 0,
+  "GPU_calls": 0,
+  "optimizer_updates": 0
+}

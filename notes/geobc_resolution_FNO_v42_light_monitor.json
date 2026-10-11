@@ -1,0 +1,55 @@
+{
+  "status": "running",
+  "phase": "training",
+  "elapsed": 150.74056482315063,
+  "step": 630,
+  "training_seconds": 76.51552176475525,
+  "cache_loaded": 300,
+  "peak_allocated": 13171033088,
+  "peak_reserved": 14308868096,
+  "gradient": {
+    "passed": true,
+    "key": "107_150/ver",
+    "nodes": 325387,
+    "groups_L2": {
+      "encoder": 0.13149444514550293,
+      "head": 0.4396731925763411,
+      "operator": 0.012512133057334734
+    },
+    "allowed_unused": [],
+    "leaf_gradients": {
+      "geometry_context_L2": 0.010540302842855453,
+      "operator_latent_L2": 8.908310701372102e-05,
+      "original_nodes_used": 325387,
+      "node_sampling": false
+    },
+    "full300_physical_cache_qualified": true,
+    "optimizer_updates": 0
+  },
+  "R64_reconstruction": {
+    "passed": true,
+    "key": "107_150/ver",
+    "comparisons": {
+      "grid": {
+        "allclose": true,
+        "absolute_max_difference": 9.5367431640625e-07,
+        "atol": 3e-05,
+        "rtol": 3e-05
+      },
+      "query_indices": {
+        "exact": true
+      },
+      "query_weights": {
+        "allclose": true,
+        "absolute_max_difference": 0.0,
+        "atol": 3e-05,
+        "rtol": 3e-05
+      }
+    },
+    "reference_input_bodies_read": 3,
+    "GT_reads": 0
+  },
+  "error": null,
+  "guard_live": true,
+  "child_live": true
+}

@@ -1,0 +1,59 @@
+{
+  "status": "zero_preserving_operator_residual_SOURCE_CPU_interface_ready_runtime_not_implemented_or_released",
+  "predecessor": {
+    "path": "notes/geobc_resolution_FNO_v43_actual_decision.json",
+    "bytes": 1783,
+    "mtime_ns": 1791717887613944800,
+    "sha256": "24a757d9e208a83a9219cac5832b4849d6c6514daebfa9a644dd0e55f36aaa5e"
+  },
+  "question": "Can a local continuous residual decoder correct physicalerror left by a frozen trainedwhole-geometry/BC FNO without relearning its global solution?",
+  "evidence": "R64→R128 exactsame4.526858Mweights/order didnot help; teacherlatentfit alone doesnot improveFEM; originalglobalHash replacedhead andlearnedoperatorfresh, not additivewarmcorrection. Current5→10FNO improves, so retain intactFNO10 as mixedexposure context. No residual efficacy claimed yet.",
+  "teacher_plan": {
+    "path": "notes/geobc_macro100_FNO9_physical5_v12_plan.json",
+    "bytes": 213774,
+    "mtime_ns": 1791693505915001900,
+    "sha256": "429c29ff07fedd69a5551271b89765c3b995b36aec51e177749645204cc26ede"
+  },
+  "teacher_SCI": "83dde5542c2110378ca3e987d69fa5d2c87094b7bf262decff18d62aa1adf453",
+  "teacher_checkpoint": {
+    "path": "runs/geobc_exploration/macro100_FNO9_physical5_v12/step1500.pt",
+    "bytes": 54461131,
+    "mtime_ns": 1791693788122975200,
+    "sha256": "a7503b561026d108b7d4f647150c9e29b39a519cf33c790e9bb4801d0f7e2091"
+  },
+  "teacher_old_pure_training_seconds": 96.55264163017273,
+  "teacher_old_whole_seconds": 256.4251549243927,
+  "teacher_training": "OriginalTRAIN100/300cases physical5/FNO9R64 allteacherweights fixedeval; callerloadonceCPU validatesSCI/dataset/scaler/step1500/Adam/fourRNG/exposure, no originalcheckpoint mutation.",
+  "arms": [
+    "frozen_FNO5_plus_MLP_residual",
+    "frozen_FNO5_plus_TCNN_residual"
+  ],
+  "residual": "Teacherencoded4 + f_theta(xyz,native25,context32,latent16) - f_theta0(sameinputs). Publicstate clone frozenreference ensures exactinitialteacher while mutabledecoderfirstgradient exists; no zero gate, no nativeflat slicing.",
+  "supervision": "Original signed fullnodephysicalU/S relative squared after unchanged scalerdecode; residual added inencodedspace, not rawMPa/MM addition and not teacher target distillation.",
+  "capacity": "MLP76→128→128→4=26884trainable vsfixedofficialTCNN HashGrid12levels/2features/log2size19/base8/growth1.6/width64x2/out4/condition73 nativecount must be actualGPUmeasured. FP32MLP vsnativeFP16Hash and extra frozenreference cost explicit, notcapacity/precisioncausality.",
+  "cache": "Use originalR64 physicalTRAIN cache including originalgrid/stencils to preserve actualteacherinput. Then frozenforward300 once caches detachedcontext32/latent16R64; estimated5.033GBlatent+20.268GBexistingphysicalcache before model/temp. Whole30.5GB SI realqualification required. Prototypefallbackraster builder not substitute for originalteacherinput in actualtraining.",
+  "exposure": "Teacherexisting5 sharedoldcostonce; onlynewdecoder5/1500balancedupdates, reference0/frozenoperator5. Not fresh5 or allparameters10. ExistingintactFNO5→10 scalarcontext sameTRAIN/DEV, no replay.",
+  "real_qualification": "Full300cache andmax325387nodes initialstudent exactlyteacher output using originalstencils, realmutabledecoder allnamedfinite/present+positiveaggregated gradient, frozenFNO/reference gradsNone/hashsame. RestoreRNG beforeAdam; nofakeencoder/operatorlearning. Nativecombinedparams onegradscope, no flatoffsethash-vsMLP claims.",
+  "CPU_fixture": {
+    "path": "notes/geobc_operator_residual_v44_CPU_fixture.json",
+    "bytes": 3417,
+    "mtime_ns": 1791717739908464600,
+    "sha256": "f4cb82e95f110d0e6f36cb3b85fb56d61b21467918817853dc434827ce323280"
+  },
+  "CPU_scope": "UntrainedCPU FNO teacher andsynthetic257nodes/64chunks+tail1; MLPrealTorch andHashinjectedTorch interface only; exactteacherinitial/cachednode=explicitpoint predictions/trainablefirstgradient/frozenhash+grad verified1.02849s. No teacherPT/GT/nativeTCNN/GPU/Adam.",
+  "continuous_interface": "FixedwholeCADcontext/originalR64 trilinear field/explicitnative25 extension. C0conditionalontheextension, notC1 or independentoffnodeFEMaccuracy.",
+  "intended_limits_seconds": {
+    "shared_cache_teacher": 600,
+    "setup_per_arm": 120,
+    "training_per_arm": 900,
+    "TRAIN_readout_per_arm": 300,
+    "whole": 3600
+  },
+  "failure_policy": "OneUTCmono/publicGPUlock/30.5GBattempt, allinit/cache/teacher/referenceforward/updates/save/failure/exit costs. preserveowncheckpointAdam/RNG/cursor/exposure/frozenhashes, noautomaticreplay/reset.",
+  "future_DEV": "All2students×60=120immutablefinite/hash predictions before knownGT60once; teacherexistingoriginalFEM scalarbaseline andFNO10context only. If additionalteacher predictions/comparisons requested, add60predictions toSCI/barrier beforeGT, not silentlyreadthem after. FINAL/scalerfit0.",
+  "runtime_implemented": false,
+  "actual_execution_released": false,
+  "actual_GPU_launches": 0,
+  "actual_teacher_PT_reads": 0,
+  "actual_GT_reads": 0
+}
