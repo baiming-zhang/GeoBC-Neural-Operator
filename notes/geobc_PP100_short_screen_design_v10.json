@@ -1,0 +1,66 @@
+{
+  "status": "metadata_design_only",
+  "observed_UTC": "2026-10-11T03:27:00.253332+00:00",
+  "question": "Does native whole-node Transolver++ learn100CAD better when trained under a short GPU-resident macro protocol, relative to FNO?",
+  "rationale": [
+    "FNO presently leads jointphysicalU/S; Hash continuation stopped",
+    "40CAD Transolver++ evidence does not establish its100CAD behaviour",
+    "Do not spend40passes per unpromising candidate; actual throughput/resource gate precedes training endpoint choice"
+  ],
+  "fixed_TRAIN_CAD_count": 100,
+  "TRAIN_cases": 300,
+  "scaler": "retained oldTRAIN40-only",
+  "families": [
+    "FNO9",
+    "PP256_NATIVE"
+  ],
+  "knownDEV_CAD_count": 20,
+  "FINAL_reuse_for_selection": false,
+  "existing_FINAL_now_unblinded": true,
+  "memory_limit_bytes": 30500000000,
+  "metadata_evidence": {
+    "native_cache_unique_files": 900,
+    "native_cache_upper_bytes": 7532826400,
+    "maximum_TRAIN_key": "107_150/ver",
+    "maximum_TRAIN_nodes": 325387,
+    "actual_array_body_reads": 0,
+    "actual_GPU_cache_loaded": false
+  },
+  "first_stage_proposal": {
+    "type": "nativePP100 resident-cache/maximum-originalN gradient and timing feasibility",
+    "gradient_updates": 3,
+    "whole_budget_seconds": 600,
+    "DEV_FINAL_GT_reads": 0,
+    "rawCSV_H5_reads": 0,
+    "model_accuracy_claim": false,
+    "source_ready": false,
+    "actual_execution": 0
+  },
+  "subsequent_stage": {
+    "endpoints_not_yet_released": true,
+    "preferred_initial_passes": 5,
+    "initial_updates_if_released": 1500,
+    "fresh_pair_FNO_and_nativePP": true,
+    "match_TRAIN_order_seed_scaler_loss_and_fixed_exposure": true,
+    "all_knownDEV_predictions_before_shared_GT": true,
+    "continue_only_if_candidate_can_change_selection": true,
+    "do_not_default_to_24000": true
+  },
+  "dependencies": [
+    "geobc/train_resident_cache.py",
+    "geobc/macro_training.py",
+    "geobc/native_context_solver.py",
+    "geobc/prospective_dataset.py"
+  ],
+  "source_sha256": {
+    "geobc/train_resident_cache.py": "79dfcc3602e8062fefab8d31afd8380e936806efc4befddae518293233597d3d",
+    "geobc/macro_training.py": "9df8c35f070da4935260785c55361dad0580cb6b79d8393c99c35452e987c3c9",
+    "geobc/native_context_solver.py": "e13291d837b72da948101479b56fd0b7df83133fd1e4bcc9a727237e9f98b7d9",
+    "geobc/prospective_dataset.py": "e1085d7889fba8ddd0ca29e9e16cfb76e9f5f0d111a248f2b607d123bd2b9317"
+  },
+  "limits": [
+    "FNO/nativePP representation and operatorcapacity differ; report both",
+    "Timing diagnostic maxcase is not average throughput orphysicalgeneralization",
+    "KnownDEV is development; do not present additionalmodelselection on v9FINAL as blinded"
+  ]
+}

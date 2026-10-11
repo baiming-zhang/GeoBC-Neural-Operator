@@ -1,21 +1,20 @@
 # GeoBC：一分钟结果
 
-**当前充分训练的主候选仍是FNO100／12000：新CAD位移／应力误差23.17%／50.85%。全局Hash已成为值得继续比较的候选，最终选型未定。**
+**目前主模型是FNO；全局Hash在应力热点上更好。两者跨CAD误差仍高，尚不能替代FEM。**
 
-同100训练CAD、4800步／16遍、20开发CAD×三载荷全原节点：
+冻结后20个独立CAD×三载荷、60例全原节点物理评估：
 
-| 方法 | 位移误差 | 应力误差 |
-|---|---:|---:|
-| FNO | 28.59% | 56.49% |
-| Geometry Hash | 41.27% | 61.61% |
-| Whole-BC operator Hash | 29.86% | 54.01% |
+| 方法 | 位移误差 | 应力误差 | 热点误差 |
+|---|---:|---:|---:|
+| FNO | 22.39% | 48.54% | 41.69% |
+| 全局BC控制Hash | 24.29% | 48.44% | 34.05% |
 
-全局Hash相对FNO：位移差1.27个百分点，应力好2.48、热点好6.74个百分点；20/20 CAD应力／热点更好，位移仅5/20更好。总容量12.25M vs4.53M且混合精度不同，不是纯容量匹配对照。
+FNO位移低1.89个百分点，16/20 CAD更好；总体应力基本相同。Hash热点低7.63个百分点，20/20 CAD改善。FNO在读取这些标签前已由knownDEV联合误差选为主模型，此后没有改变。[独立测试](geobc_FINAL_v9/BRIEF.md)。
 
-全局latent置零，误差升至83.73%／100.00%；几何descriptor置零35.43%／64.29%。这是未重训的分布外依赖诊断，不能把零输入版本当求解器或因果消融。[结果与成本](geobc_operator_hash_v5/BRIEF.md)。
+两者同100训练CAD×三载荷、12000更新＝40遍、seed2026、oldTRAIN40-only scaler。FNO整轮16.61分钟；Hash纯训练合计12.21分钟，两个训练阶段wall合计26.95分钟，含原元数据故障及修复等待，另不含成功阶段间分析等待。独立测试155.38秒。40遍包含在这些总耗时中，不再乘40。
 
-训练后真实CUDA连续查询已通过，目标读取和训练更新均0，整轮4.83秒。[接口范围](geobc_trained_operator_hash_queries/BRIEF.md)。仅给有竞争力的全局Hash追加7200步到12000／40遍，保留model／Adam／四类RNG／曝光cursor，不改配方；追加训练上限10分钟，整体20分钟。
+原Hash<1%来自已知单样本拟合。共享Hash50迁移到新几何／新载荷组合约92%；三个高误差案例各自拟合能降到0.055%–0.125%。因此单场拟合能力与新几何／边界求解能力之间有很大差距。整体算子上下文确实改善Hash：同4800步几何Hash U/S41.27%/61.61%，全局Hash29.86%/54.01%；全局latent置零误差显著增大，但这是同权重依赖诊断，不是重训消融。[宏观对照](geobc_operator_hash_v5/BRIEF.md)。
 
-历史同40CAD／12000／约4.53M公平对照：FNO26.50%／55.55%，Transolver++52.35%／83.99%。TS系列以++为主；当前配方FNO领先，不宣布架构上限。[TS比较](geobc_short_screen/BRIEF.md)。
+与学长建议的Transolver对比：已有同40CAD／12000步／约4.53M对照中，FNO26.50%/55.55%，Transolver++52.35%/83.99%；目前++是TS系列重点候选。这是当前配方的结果，不能判定Transolver架构上限。[公平对照](geobc_short_screen/BRIEF.md)。下一项先探索100CAD Transolver++与FNO短筛的速度、显存和学习曲线，不默认给所有方法40遍，也不继续Hash微调。
 
-Hash<1%属于已知单／双样本应力拟合，不能直接比较新CAD联合位移／应力。全部保留原版GRID对齐CSV、signed U(mm)/S(MPa)、原节点；oldTRAIN40-only scaler、knownDEV非FINAL，FINAL数值标签未读。单seed、可用性条件池，尚未证明独立离节点FEM精度。
+原CSV GRID→H5 vertices对齐，signed U(mm)/S(MPa)原列／符号保留；teacher、grid与FEM误差分开。TRAIN／DEV／FINAL按CAD隔离，scaler仅训练集拟合；这次FINAL来自可用官方TRAIN池，非官方独立测试、单seed且容量／精度不同。它已揭盲，未来选型不能再当盲测。真实CUDA连续查询／梯度通过，但独立离节点FEM精度未测。[连续接口](geobc_trained_operator_hash_queries/BRIEF.md) · [位移云图](geobc_FINAL_v9/plots_v2/field_U.png) · [应力云图](geobc_FINAL_v9/plots_v2/field_S.png)。

@@ -1,0 +1,185 @@
+{
+  "status": "actual_completed_result_decision",
+  "observed_UTC": "2026-10-11T03:25:06.694183+00:00",
+  "scientific_digest": "9648e958224a07f1daa8c3eb97a6cf44dbb5eaa5cbb1bcb57649829b06ecc1d9",
+  "primary": "FNO100_12000",
+  "primary_frozen_before_FINAL": true,
+  "primary_changed_from_FINAL": false,
+  "secondary": "GLOBAL_HASH100_12000_hotspot",
+  "points": [
+    {
+      "name": "FNO100_12000",
+      "primary": true,
+      "U_percent": 22.39061480744243,
+      "S_percent": 48.53521462452434,
+      "hot_percent": 41.687647778132906,
+      "parameters": 4526858,
+      "inference_UTC_seconds": 1.0950121879577637
+    },
+    {
+      "name": "GLOBAL_HASH100_12000",
+      "primary": false,
+      "U_percent": 24.28518447402965,
+      "S_percent": 48.436689286732154,
+      "hot_percent": 34.053101266194716,
+      "parameters": 12245894,
+      "inference_UTC_seconds": 0.8225719928741455
+    }
+  ],
+  "paired_CAD20": {
+    "FNO100_12000:GLOBAL_HASH100_12000": {
+      "direction": "left minus right; negative favors left",
+      "per_CAD20": {
+        "21_119": {
+          "U": -0.03050633802308385,
+          "S": -0.010755653248726812,
+          "hot": 0.08889700438637645
+        },
+        "234_488": {
+          "U": 0.02221833150616057,
+          "S": 0.018945206282707034,
+          "hot": 0.09149759746448333
+        },
+        "240_186": {
+          "U": 0.005691453531896207,
+          "S": 0.012899902557768092,
+          "hot": 0.09953655931462613
+        },
+        "321_10": {
+          "U": -0.047150270285219474,
+          "S": -0.00995983479128256,
+          "hot": 0.034272499999919825
+        },
+        "394_107": {
+          "U": -0.012042508080029537,
+          "S": 0.03655443117881133,
+          "hot": 0.09585894238224897
+        },
+        "415_82": {
+          "U": -0.0016278363677182846,
+          "S": -0.0008371238754182516,
+          "hot": 0.11189525637214683
+        },
+        "449_472": {
+          "U": 0.026539089771528412,
+          "S": 0.03501681417365989,
+          "hot": 0.08682180650827935
+        },
+        "449_628": {
+          "U": -0.03783085950620014,
+          "S": 0.0034868920528233205,
+          "hot": 0.06880160348330783
+        },
+        "460_38": {
+          "U": -0.023394857855074377,
+          "S": -0.004485216148340705,
+          "hot": 0.09312512823275505
+        },
+        "474_153": {
+          "U": -0.04337845288326858,
+          "S": -0.010604611555126523,
+          "hot": 0.05688887167020957
+        },
+        "474_78": {
+          "U": -0.00709981289105525,
+          "S": -0.001578904497968751,
+          "hot": 0.1003053447205703
+        },
+        "475_559": {
+          "U": -0.06664854716736461,
+          "S": -0.021977023652124783,
+          "hot": 0.0671664944330435
+        },
+        "479_616": {
+          "U": -0.02393601057938406,
+          "S": -0.010993316278965567,
+          "hot": 0.09804702580705915
+        },
+        "494_380": {
+          "U": -0.04924861173937323,
+          "S": -0.026528621748190113,
+          "hot": 0.04895684932048272
+        },
+        "511_202": {
+          "U": 0.0049786825146298,
+          "S": -0.015644542012221967,
+          "hot": 0.012427751375518362
+        },
+        "519_321": {
+          "U": -0.043884348927831766,
+          "S": -0.013784602070648244,
+          "hot": 0.07750223084010428
+        },
+        "537_290": {
+          "U": -0.0259567539421121,
+          "S": 0.0172984056166048,
+          "hot": 0.08523008845737608
+        },
+        "560_454": {
+          "U": -0.0028053020796968142,
+          "S": -0.010251549240526828,
+          "hot": 0.012085519567940572
+        },
+        "625_434": {
+          "U": -0.0014704189290245435,
+          "S": 0.007483503562053555,
+          "hot": 0.09139488057814442
+        },
+        "62_485": {
+          "U": -0.02136056138522216,
+          "S": 0.025420911253551243,
+          "hot": 0.1061978474730461
+        }
+      },
+      "better_CAD_counts": {
+        "U": 16,
+        "S": 12,
+        "hot": 0
+      },
+      "mean_difference": {
+        "U": -0.01894569666587219,
+        "S": 0.0009852533779219081,
+        "hot": 0.07634546511938194
+      }
+    }
+  },
+  "results_manifest": {
+    "path": "results/geobc_FINAL_v9/manifest.json",
+    "bytes": 1784,
+    "mtime_ns": 1791688485596697600,
+    "sha256": "bc478914ff583efb8f6a543a539bf56f3931f023e7227cc6151e9c9f803e3e91"
+  },
+  "terminal_receipt": {
+    "path": "notes/geobc_FINAL_v9_terminal_receipt.json",
+    "bytes": 808,
+    "mtime_ns": 1791688470583762500,
+    "sha256": "d16c220ba83993b6cdb9f67d9d8edf8bacb5f5bfd8e994d499040eb0d9291803"
+  },
+  "actual_visual_review": {
+    "path": "notes/geobc_FINAL_v9_actual_visual_review.json",
+    "bytes": 1452,
+    "mtime_ns": 1791689106712747100,
+    "sha256": "cb38326060b1d301b2c3fa5608bce1156573c018bbf7e098d44dbe9fa4dc753b"
+  },
+  "FINAL_raw_CSV_parses": 20,
+  "FINAL_scored_cases": 60,
+  "all_original_node_counts_verified": true,
+  "split_counts": {
+    "TRAIN": 100,
+    "knownDEV": 20,
+    "FINAL": 20
+  },
+  "CAD_intersections_empty": true,
+  "FINAL_overlap_with_Hash50": [],
+  "scaler": "oldTRAIN40-only, retained for both100CAD candidates; no DEV/FINAL fit",
+  "limitations": [
+    "Availability-conditional officialTRAIN source pool, not officialtest",
+    "Single seed",
+    "Parameter capacity and decoder precision differ",
+    "Independent off-node FEM accuracy unmeasured",
+    "Stress exporter sign/semantics not reconstructed",
+    "FINAL now unblinded and cannot serve future selection as pristine test"
+  ],
+  "next_action": "Stop Hash training; design GPU-resident100CAD Transolver++/FNO short macro screen with measured feasibility before choosing fixed short endpoints",
+  "new_training_executed": false
+}

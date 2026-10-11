@@ -6289,8 +6289,224 @@
   },
   "operator_hash_extension_v7": {
     "plan": "notes/geobc_operator_hash_extension_v7_plan.json",
-    "status": "released_actual_started_endpoint_pending",
+    "status": "completed12000_and_knownDEV60_CPUexport",
     "main_until_completed": "FNO10012000",
     "final_solver_selected": false
+  },
+  "operator_hash_matched40_v8": {
+    "status": "actual_completed_matched12000_reviewed",
+    "scientific_digest": "3231152547e60a610ae87fdcd2966dc49d6b2e1d37599124a63317203144f60d",
+    "result_manifest": "results/geobc_global_hash_matched_v8/manifest.json",
+    "points": [
+      {
+        "name": "FNO100_12000",
+        "U_percent": 23.1685301028625,
+        "S_percent": 50.845743732417034,
+        "hot_percent": 41.65191842983057,
+        "joint_score": 0.3700713691763977,
+        "parameters": 4526858,
+        "inference_UTC_seconds": 1.0943975448608398
+      },
+      {
+        "name": "GLOBAL_HASH100_12000",
+        "U_percent": 24.10558970517264,
+        "S_percent": 50.88567667594972,
+        "hot_percent": 35.1117432585397,
+        "joint_score": 0.3749563319056118,
+        "parameters": 12245894,
+        "inference_UTC_seconds": 1.490696668624878
+      }
+    ],
+    "paired_summary": {
+      "direction": "left minus right; negative favors left",
+      "better_CAD_counts": {
+        "U": 4,
+        "S": 9,
+        "hot": 20
+      },
+      "mean_difference": {
+        "U": 0.00937059602310138,
+        "S": 0.0003993294353268562,
+        "hot": -0.06540175171290884
+      }
+    },
+    "cost": {
+      "global_parent_campaign_UTC_seconds": 1011.2617523670197,
+      "global_additional_stage_UTC_seconds": 605.6805107593536,
+      "global_sum_stage_wall_UTC_seconds": 1616.9422631263733,
+      "global_train_UTC_seconds": 732.6331317424774,
+      "global_original_failed_and_recovery_cost": {
+        "original_failure_binding": {
+          "summary": {
+            "path": "runs/geobc_exploration/macro_FNO_GLOBAL_HASH_100CAD4800_v5/summary.json",
+            "bytes": 9581,
+            "mtime_ns": 1791685118345739900,
+            "sha256": "499dda0735a311c7267c7966e28de6720a2b4d328dba2127819b946c3e6f026b"
+          },
+          "external": {
+            "path": "runs/geobc_exploration/macro_FNO_GLOBAL_HASH_100CAD4800_v5/external_terminal.json",
+            "bytes": 6466,
+            "mtime_ns": 1791685118891246500,
+            "sha256": "b2e28f3e4ee296631598b04ca2b69047c09c998387c2327c33e89e8649bbeb4a"
+          }
+        },
+        "original_optimizer_updates": 0,
+        "original_attempt_setup_cost_seconds": 126.14469194412231,
+        "original_campaign_elapsed_epoch_seconds": 1010.587753534317,
+        "original_campaign_elapsed_monotonic_seconds": 924.8588757010002,
+        "between_attempt_wall_epoch_seconds": 469.00755190849304,
+        "between_attempt_wall_monotonic_seconds": 430.5732206729999,
+        "original_absolute_deadlines_retained": true,
+        "new_training_updates": 4800,
+        "no_original_checkpoint_or_Adam_to_resume": true,
+        "unavoidable_cache_reload_after_exact_original_exit": true,
+        "automatic_replay": false
+      },
+      "DEV_readout_UTC_seconds": 74.37687587738037,
+      "between_successful_stage_analysis_wall_not_in_stage_sum": true,
+      "FNO_train_UTC_seconds": 879.4019341468811,
+      "FNO_whole_stage_UTC_seconds": 998.6561088562012
+    },
+    "PNG_root_actual_viewed": true,
+    "primary": "FNO100_12000",
+    "secondary": "GLOBAL_HASH100_12000_for_hotspot",
+    "selection_rule": "Fixed full60 joint .5(U+S) from knownDEV before FINALGT; no FINAL tuning or primary switch",
+    "additional_Hash_training_released": false,
+    "FINAL_numeric_reads": 0,
+    "next": "Independent bounded FINAL20 CADx3 joint test, two frozen candidates",
+    "recorded_UTC": "2026-10-11T03:04:44.350404+00:00"
+  },
+  "next_FINAL_phase": {
+    "status": "science_design_only_not_SOURCE_or_actual_release",
+    "actual_execution": 0,
+    "FINAL_numeric_target_reads": 0,
+    "FINAL_numeric_target_release": false,
+    "designed_at_UTC": "2026-10-11T03:02:49.269227+00:00",
+    "purpose": "One frozen FINAL20 CADx3 load test after matched12000 DEV selection; same100 TRAIN split/scaler, no method/hyperparameter selection after unblind",
+    "case_keys": [
+      "21_119/ver",
+      "21_119/hor",
+      "21_119/tor",
+      "234_488/ver",
+      "234_488/hor",
+      "234_488/tor",
+      "240_186/ver",
+      "240_186/hor",
+      "240_186/tor",
+      "321_10/ver",
+      "321_10/hor",
+      "321_10/tor",
+      "394_107/ver",
+      "394_107/hor",
+      "394_107/tor",
+      "415_82/ver",
+      "415_82/hor",
+      "415_82/tor",
+      "449_472/ver",
+      "449_472/hor",
+      "449_472/tor",
+      "449_628/ver",
+      "449_628/hor",
+      "449_628/tor",
+      "460_38/ver",
+      "460_38/hor",
+      "460_38/tor",
+      "474_153/ver",
+      "474_153/hor",
+      "474_153/tor",
+      "474_78/ver",
+      "474_78/hor",
+      "474_78/tor",
+      "475_559/ver",
+      "475_559/hor",
+      "475_559/tor",
+      "479_616/ver",
+      "479_616/hor",
+      "479_616/tor",
+      "494_380/ver",
+      "494_380/hor",
+      "494_380/tor",
+      "511_202/ver",
+      "511_202/hor",
+      "511_202/tor",
+      "519_321/ver",
+      "519_321/hor",
+      "519_321/tor",
+      "537_290/ver",
+      "537_290/hor",
+      "537_290/tor",
+      "560_454/ver",
+      "560_454/hor",
+      "560_454/tor",
+      "625_434/ver",
+      "625_434/hor",
+      "625_434/tor",
+      "62_485/ver",
+      "62_485/hor",
+      "62_485/tor"
+    ],
+    "candidate_set": [
+      "FNO100_step12000",
+      "GLOBAL_HASH100_12000"
+    ],
+    "candidate_control": "Both fixed full endpoints. Select primary using preexisting knownDEV joint .5(U+S) with full60 complete denominators before any FINAL GT; still report both without tuning from FINAL.",
+    "prediction_denominator": 120,
+    "GT_case_denominator": 60,
+    "CSV_CAD_parse_denominator": 20,
+    "GT_policy": "Commit/reopen/hash all2x60 finite original-node encoded4 and physical4 predictions before first numericFINAL CSV parse; official signed12 fields eachCAD once, share acrosscandidates/loads. Partial parse or prediction failure does not authorize replay/ID replacement.",
+    "scaler": {
+      "mean": [
+        -0.006059544265096125,
+        -0.0005008273527146082,
+        0.015260029003479832,
+        0.09629744183585241
+      ],
+      "std": [
+        0.05393032209940291,
+        0.011291299669602316,
+        0.07619646768716026,
+        0.5232191238243877
+      ],
+      "stress_scale": 90.46589813232424,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "training_updates": 0,
+    "scaler_fits": 0,
+    "memory_limit_bytes": 30500000000,
+    "proposed_whole_budget_seconds": 1800,
+    "source_math": "Reuse only verified TRAIN target producer coordinate alignment/parser math with separately reviewed FINAL permission; do not change protected prospective loader or oldscience/pins.",
+    "report": "Full60 case physical U/S/hot, perload20, pairedCAD20, worstcase and minimal representative fields; exact inference/stage costs and capacity/precision. Independent offnode FEM accuracy not measured.",
+    "limitations": [
+      "HeldCADs come from available officialTRAIN pool; not independent officialDeepJEB test or unbiasedavailability sample",
+      "Single seed and reused knownDEV; stage study not universalsolver ranking",
+      "Final candidate ineligible on incomplete/full60nonfinite/clock/process failure; denominator preserved and unknowncost notzero"
+    ],
+    "release_condition": "Matchedv8 truecompleted/closed/external0/exact exits and CPU export/PNG reviewed; primaryselection/checkpoints/science/source reviewed and immutable pinned before any FINAL numeric data; independent bounded guard/code notyet written",
+    "primary_selection_before_FINAL": "FNO100_12000",
+    "secondary": "GLOBAL_HASH100_12000_for_hotspot",
+    "primary_selection_rule": "Fixed full60 joint .5(U+S) from knownDEV before FINALGT; no FINAL tuning or primary switch",
+    "actual_knownDEV_result_binding": {
+      "path": "results/geobc_global_hash_matched_v8/manifest.json",
+      "sha256": "6459abaa88815f412f39f55a5a0412c593d2f36301219cbfac184dfd05ab86e6"
+    },
+    "primary_frozen_UTC": "2026-10-11T03:04:44.350404+00:00"
+  },
+  "after_FINAL_v9": {
+    "status": "actual_completed_research_continues",
+    "decision": "notes/geobc_FINAL_v9_actual_result_decision.json",
+    "primary": "FNO100_12000",
+    "secondary": "GLOBAL_HASH100_12000_hotspot",
+    "FINAL_now_unblinded": true,
+    "Hash_training_stopped": true,
+    "current_GPU_task": null,
+    "next_macro": "GPU-resident100CAD Transolver++/FNO short screening; inspect existing implementations and quantify actual feasibility first; no default40passes/24000",
+    "next_macro_source_ready": false,
+    "next_macro_execution": 0,
+    "next_macro_design": "notes/geobc_PP100_short_screen_design_v10.json"
   }
 }

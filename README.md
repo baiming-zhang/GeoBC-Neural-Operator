@@ -4,25 +4,23 @@
 
 ## 目前结论
 
-**最新学习候选优先FNO：100个训练CAD×三载荷、12000更新，在knownDEV20 CAD×三载荷上位移／signed应力误差23.17%／50.85%。最终求解器尚未选定。**
+**冻结后20个独立CAD×三载荷测试已完成：FNO位移／应力22.39%／48.54%，全局Hash24.29%／48.44%。继续以FNO为主模型；Hash热点34.05% vs FNO41.69%，20/20 CAD改善，保留热点对照。绝对误差仍高，求解器筛选继续。**
 
-同40CAD／12000更新、R64/native25、约4.53M参数的历史公平对照：FNO26.50%／55.55%，Transolver++52.35%／83.99%。目前TS系列以++为主，FNO优先；不宣布架构上限。[同配置比较](results/geobc_short_screen/BRIEF.md)。
-
-Hash低于1%来自单／双已知病例的应力拟合，不能直接比较新CAD的联合位移／应力。几何条件Hash在同40CAD／4800更新的新60病例上49.19%／64.96%，FNO27.93%／56.06%；总训练阶段3.43／4.93分钟。[40遍确认](results/geobc_two_warm_screens_v3/BRIEF.md)。
+[一分钟结果](results/SOLVER_BRIEF.md) · [冻结后独立测试](results/geobc_FINAL_v9/BRIEF.md) · [同训练量开发比较](results/geobc_global_hash_matched_v8/BRIEF.md)。历史同40CAD／12000／约4.53M公平对照：FNO26.50%／55.55%，Transolver++52.35%／83.99%；目前TS系列以++为主，当前配方FNO优先，不宣布架构上限。Hash<1%是已知少样本应力拟合，不等于新CAD联合U/S精度。
 
 ## 最新进展
 
-FNO扩大TRAIN40→100：同4800更新没有改善（28.59%／56.49%）；给予相同40遍曝光、12000更新后改善至23.17%／50.85%，位移19/20、应力20/20 CAD更低。整轮训练996.53秒（16.61分钟），开发读出98.23秒，CPU导出4.38秒，图已验看；120份完整有限预测先验证再共享knownGT60一次。未读FINAL／原CSV、新拟合scaler0。同更新数与同曝光数分别解释，不能声称纯数据单因素。[三行覆盖报告](results/geobc_fno_coverage_v4/BRIEF.md)。
+全局Hash宏观上下文使几何Hash新CAD误差明显降低，但最终同40遍曝光未全面胜出，因此停止Hash追加或微调。headlatentzero和geomzero只作推理依赖诊断；真实官方TCNN训练后连续query通过节点／分块／重排一致性及输入梯度，未测独立离节点FEM精度。[4800宏观对照](results/geobc_operator_hash_v5/BRIEF.md) · [CUDA连续接口](results/geobc_trained_operator_hash_queries/BRIEF.md)。
 
-同100CAD／4800更新宏观比较已完成：FNO28.59%／56.49%，几何条件Hash41.27%／61.61%，全局算子Hash29.86%／54.01%。全局Hash20/20开发CAD应力与热点更低，但位移较差、参数及混合精度不同；未全面胜出。全局latent置零导致83.73%／100.00%，仅为推理依赖诊断。240完整有限预测先提交／重验再knownGT60共享一次，开发整轮240.66秒，CPU导出18.22秒，实际图已验看。[三行比较](results/geobc_operator_hash_v5/BRIEF.md)。
+从自身4800 checkpoint恢复model／Adam／四RNG／cursor，仅追加7200步到12000，训练444.68秒、完整阶段605.68秒；新开发完整60份预测先提交／重验再共享knownGT60一次，74.38秒，CPU导出5.65秒，图已验看。初始元数据失败126秒、修复gap及原stage1011秒保留，无预算重置，无GT或预测重播。
 
-真实TCNN全节点梯度／FNO初始化字节检查通过；训练后真实CUDA连续查询整轮4.83秒通过节点／chunk／perm一致性和输入梯度，GT／更新0。原全局阶段元数据getter技术失败126秒与修复间隔469秒均保留，原20分钟绝对budget未重置；恢复训练287.95秒、原完整campaign1011.26秒。只将有竞争力的全局Hash从自身4800恢复model／Adam／四RNG／cursor，追加7200到与FNO相同12000／40遍：训练最多10分钟、整体20分钟、30.5GB。不延长几何Hash、不调微小参数；新端点尚未完成，不声称最终选型。[CUDA接口](results/geobc_trained_operator_hash_queries/BRIEF.md)。
+FNO主模型由knownDEV联合误差在FINAL标签读取前选定。FINAL两端点120份全节点预测先保存／重验，再20个CSV各解析一次并共享60例场，完整阶段155.38秒；CPU报告13.27秒。云图色条排版另用已有数组修复13.42秒，原图／评分保留，修复图已验看，无CSV重读或新推理。[位移云图](results/geobc_FINAL_v9/plots_v2/field_U.png) · [应力云图](results/geobc_FINAL_v9/plots_v2/field_S.png)。
 
-此前原生++10遍／1200更新阶段26.32分钟，开发69.68%／94.05%，当前配方贵且欠拟合，暂降低投入优先级。原双24000计划已主动终止，真实非零退出、日志和成本保留；技术交接空argv快照失败已用实际完整进程身份核对，未重跑预测／GT、不冒称完成。[三候选初筛](results/geobc_three_short_screens/BRIEF.md)。
+这一批FINAL现已揭盲，不能再当作未来选型的盲测。停止Hash追加；下一项宏观候选是100CAD上的Transolver++短筛，与FNO配对，先检验GPU常驻缓存、实际显存与训练速度，再决定短端点预算。设计尚未执行，不预设赢家；不让所有方法默认跑40遍或24000步。
 
 ## 数据与资源
 
-前瞻协议固定 **100 TRAIN／20 known DEV／20 reserved FINAL CAD**：TRAIN为旧40加新60，每CAD三载荷；scaler沿用仅旧TRAIN40拟合的版本。FINAL数值标签未读，不用于调参。[划分](notes/geobc_prospective_cad_split_v1.json)。
+前瞻协议固定 **100 TRAIN／20 known DEV／20 FINAL CAD**：TRAIN为旧40加新60，每CAD三载荷；scaler沿用仅旧TRAIN40拟合的版本。三个集合CAD无交集，FINAL也不在原Hash50训练CAD中；本次FINAL仅一次冻结后评分。来源是可用官方TRAIN池，非官方独立测试或无偏抽样，单seed结果。[划分](notes/geobc_prospective_cad_split_v1.json)。
 
 420病例接口已整合：TRAIN300有已有目标，DEV60／FINAL60仅输入。两个实际TRAIN加载检查通过；旧int32／新int64索引兼容故障及原预算内修复保留，未验证全部300数值正文，本次100CAD缓存18.39GB、最大全节点梯度已通过，设备使用峰值21.83GB。[接口简报](results/geobc_prospective_dataset_interface/BRIEF.md)。后续入口为 `geobc.prospective_dataset_v2.load_case`，明确选择40或100范围。
 
@@ -50,6 +48,8 @@ python tools/plot_suite_fields.py
 
 研究阶段必须使用各自冻结计划和真实进程交接，不能因旧status、锁文件或SOURCE-ready重复启动GPU任务。30分钟监视器持续推进；活训练期间只作轻量检查。
 
-[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `5c89902` 包含FNO100CAD实际完成结果。全局Hash宏观对照、必要依赖诊断、CUDA连续接口和续训启动状态正在整理为下一快照；仅在远端精确commit、owner/repo ID及private状态核验后声明发布。[发布计划](notes/github_publish_plan.json)。
+[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；上次已验收提交 `4fa0900`。本地已完成12000步同曝光比较及FINAL测试；本批代码／结果正在整理发布，远端状态以[最新验收记录](notes/github_publish_plan.json)为准。[发布计划](notes/github_publish_plan.json)。
 
 更早逐阶段运行叙述存于[README历史快照](results/README_STATE_HISTORY_20261011.md)，状态以当前真实报告和运行收据为准。
+
+冻结source pins记录的是原运行文件字节，Git可能规范化行尾。新克隆运行当前v7／v8／v9协议前，先执行 `python tools/restore_geobc_source_line_endings.py --check`；如提示仅行尾不同，执行 `--restore` 可恢复匹配的原LF／CRLF字节。仅校验当前64个冻结依赖，未知内容拒绝写入，不改科学pins、目标或代码逻辑；旧历史版本的代码差异不由此恢复。在WSL从项目根目录执行研究工具时使用 `python -m tools.<模块名>`，以保证项目包可导入。
