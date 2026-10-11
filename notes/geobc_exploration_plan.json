@@ -5700,7 +5700,7 @@
       ]
     }
   },
-  "updated_at_utc": "2026-10-10T23:03:23.446594+00:00",
+  "updated_at_utc": "2026-10-11T05:04:18.911296+00:00",
   "prospective_final_reservation": {
     "path": "notes/geobc_prospective_cad_split_v1.json",
     "scientific_digest": "7a4f5ab3a6fcb32e19897246eeceeb64d8e3a06eb1511003b86da470d6267dc9",
@@ -5764,20 +5764,15 @@
     }
   },
   "current_next_stage": {
-    "stage": "matched_exposure24000_v1",
-    "plan": "notes/geobc_exposure_extension_plan.json",
-    "actual_launched": true,
-    "loss_ablation": "completed_S_and_hot_not_improved",
-    "question": "Does 100/200 balanced exposure improve both matched solvers?",
-    "future_development_readout_actual": 0,
-    "FNO24000_TRAIN_U_S": [
-      0.10463388917605126,
-      0.24170221670862674
-    ],
-    "FNO24000_is_TRAIN_only": true,
-    "paired_stage_status": "running_PP256",
-    "future_development_readout_plan": "notes/geobc_exposure_readout_plan.json",
-    "future_exporter": "tools/export_geobc_exposure_comparison.py"
+    "status": "native_PP_physical_short5_actually_running",
+    "plan": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_plan.json",
+    "SCI": "4acc9c5499657f110dde75ec77adee34802a2725ea26a430da356d361e1f245d",
+    "exec_session": 92307,
+    "receipt": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_actual_launch.json",
+    "fixed_updates": 1500,
+    "passes": 5,
+    "estimated_minutes": 35,
+    "after_real_terminal": "Analyze TRAIN physical full300; separately qualify knownDEV60 predictions-first comparing immutable FNO physical5 baseline; no automatic40passes/24000"
   },
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
@@ -6528,5 +6523,21 @@
     "next_DEV_exec_session": 95100,
     "short5_result": "FNO lower physical U/S/hot, about22.16x faster pure training",
     "next_macro_actual_execution": 0
+  },
+  "shared_physical_v12_completed": {
+    "report": "results/geobc_shared_physical_v12/BRIEF.md",
+    "TRAIN_U_S": [
+      0.299635,
+      0.503253
+    ],
+    "knownDEV_U_S_hot": [
+      0.316086,
+      0.560967,
+      0.450768
+    ],
+    "whole_seconds": 256.42515,
+    "CPU_export_seconds": 3.118227,
+    "FINAL_reads": 0,
+    "new_recipe_final_solver_selected": false
   }
 }

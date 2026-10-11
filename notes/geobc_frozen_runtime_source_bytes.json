@@ -1,5 +1,5 @@
 {
-  "scope": "Immutable current v7/v8/v9/v10/v11 dependency source bytes and v11 metadata handoff only; no raw data or numerical checkpoint",
+  "scope": "Current v7-v13 runtime dependencies and CPU report exporter; only exact source bytes/line-ending restoration",
   "scientific_digest": "9648e958224a07f1daa8c3eb97a6cf44dbb5eaa5cbb1bcb57649829b06ecc1d9",
   "source_pins_changed": false,
   "files": {
@@ -377,7 +377,77 @@
       "frozen_runtime_sha256": "179d0cca4272024e055fe1c399dc9eefbd8bf44f19759b7cd6ec1b6484d9c357",
       "canonical_LF_sha256": "179d0cca4272024e055fe1c399dc9eefbd8bf44f19759b7cd6ec1b6484d9c357",
       "line_endings": "LF"
+    },
+    "geobc/train_physical_cache_v12.py": {
+      "frozen_runtime_sha256": "1efa5a3d0e8ce782a8e1033cb299b6e03b13ae5f7a23c034742944b89705a181",
+      "canonical_LF_sha256": "1efa5a3d0e8ce782a8e1033cb299b6e03b13ae5f7a23c034742944b89705a181",
+      "line_endings": "LF"
+    },
+    "geobc/macro_physical_contract_v12.py": {
+      "frozen_runtime_sha256": "647810cbcfaa03a529bdd081357d90d85c1d68c5096fc47199dbedaee2ce5549",
+      "canonical_LF_sha256": "647810cbcfaa03a529bdd081357d90d85c1d68c5096fc47199dbedaee2ce5549",
+      "line_endings": "LF"
+    },
+    "tools/train_geobc_macro_physical_v12.py": {
+      "frozen_runtime_sha256": "60009f6e286bad5aab247940e7372ca74041f99bdc909b782af3d0e112db5e12",
+      "canonical_LF_sha256": "3941d902b6a124887de91632e9e37f441a1f06e96e8f617a62f372b2499b04d4",
+      "line_endings": "CRLF"
+    },
+    "tools/run_geobc_macro_physical_guard_v12.py": {
+      "frozen_runtime_sha256": "542c3007f36c9d86c5040327745f3ac720469ede3f6a47db0992baf5eaa76760",
+      "canonical_LF_sha256": "6cb7e19fd1f0a96c00db552a6089e16518b98029a5299852f855f9df2535d4a2",
+      "line_endings": "CRLF"
+    },
+    "geobc/physical_field_loss.py": {
+      "frozen_runtime_sha256": "9e386b771f86906ed1fb4524286cea57d2521698c2f582d4595c7cb24fa3de00",
+      "canonical_LF_sha256": "9e386b771f86906ed1fb4524286cea57d2521698c2f582d4595c7cb24fa3de00",
+      "line_endings": "LF"
+    },
+    "geobc/physical_readout_contract_v12.py": {
+      "frozen_runtime_sha256": "2d1118d9a9788e6d7d47981bb8917f29305c8b20e7536b3989c60f554e01ba85",
+      "canonical_LF_sha256": "4bbb313891c99aeab8c57ee8bd42b1c5ede4e48067351e76753d0b13a3cc71bf",
+      "line_endings": "CRLF"
+    },
+    "tools/evaluate_geobc_physical100_v12.py": {
+      "frozen_runtime_sha256": "9e0e709b49e25518b2ad1e981a9cd63efff1ba281eeda391dff9a164702cc69a",
+      "canonical_LF_sha256": "5e5a8b1b3ae611bc2f92fa894b7f2b3b4b92dd359316a6ded64692016d23a4ea",
+      "line_endings": "CRLF"
+    },
+    "tools/run_geobc_physical100_readout_guard_v12.py": {
+      "frozen_runtime_sha256": "95b8eb3d580536185f5a1803852e8636cd02f4cf3ed0ae8316b04a04897c3983",
+      "canonical_LF_sha256": "3c062b8d87de522339f764f499ced92ea7dff55608526f013dd55567cec00e7b",
+      "line_endings": "CRLF"
+    },
+    "geobc/train_native_physical_cache_v13.py": {
+      "frozen_runtime_sha256": "c3e50089009b71c8ccda0ac8923d5245c37a0763f562617aaba97b5432a4712f",
+      "canonical_LF_sha256": "9de5bdee9559aba6482eb41fc07828fdab77686656d9f63707f6c0a5d4b2cc2e",
+      "line_endings": "CRLF"
+    },
+    "geobc/native_physical_contract_v13.py": {
+      "frozen_runtime_sha256": "74e8d1ae789d8b1c905039b224a040471fb21f162271bbcb4d21f2377c4c23e6",
+      "canonical_LF_sha256": "a83eec71d2a19129b14b8f4bd97ea9386e2f6d691a998796da5177b0428f58ca",
+      "line_endings": "CRLF"
+    },
+    "tools/train_geobc_native_physical_v13.py": {
+      "frozen_runtime_sha256": "a5078fdf4ececefe3948cae85a527b098e51fa0d441e850a444eb789c4f0efab",
+      "canonical_LF_sha256": "ea61e29613c92e62dc4bebd9f8d3e9b845d543395d626fb119ca9bb289cbcd4d",
+      "line_endings": "CRLF"
+    },
+    "tools/run_geobc_native_physical_guard_v13.py": {
+      "frozen_runtime_sha256": "775b98a0642e847c2ffd3198043b8062fbdc69926ddd562f8eb9668d4dd36239",
+      "canonical_LF_sha256": "93dff3f0a87ec28372fd7602894650cea480ae25018515176205f25c7b62f418",
+      "line_endings": "CRLF"
+    },
+    "tools/export_geobc_shared_physical_v12.py": {
+      "frozen_runtime_sha256": "125c80df98cf7fde3d0c090d5d7658da864f9162d92bb1fde82140ef63f9f20e",
+      "canonical_LF_sha256": "125c80df98cf7fde3d0c090d5d7658da864f9162d92bb1fde82140ef63f9f20e",
+      "line_endings": "LF"
     }
   },
-  "additional_scientific_digest": "943582670d1dc999a940524c68daafc407f06d483603cdc0915aaf4b578774ee"
+  "additional_scientific_digest": "943582670d1dc999a940524c68daafc407f06d483603cdc0915aaf4b578774ee",
+  "physical_v12_and_native_v13_scientific_digests": [
+    "83dde5542c2110378ca3e987d69fa5d2c87094b7bf262decff18d62aa1adf453",
+    "1fa318292c9f3ffb265b5974f9e021c1b2c3253602ec8ed9058ec901250e0cc9",
+    "4acc9c5499657f110dde75ec77adee34802a2725ea26a430da356d361e1f245d"
+  ]
 }
