@@ -1,0 +1,34 @@
+{
+  "status": "actual_width_capacity_control_completed_negative_for_further_training",
+  "report": "results/geobc_wide_fno64_v25/BRIEF.md",
+  "DEV_U": 0.2903365463591599,
+  "DEV_S": 0.5445439530094732,
+  "DEV_hot": 0.42806591405287786,
+  "capacity_ratio": 3.138096224798746,
+  "DEV_gate": {
+    "R64_FNO_W16_1500": {
+      "passed": false,
+      "U_difference": -0.025749382799207077,
+      "S_difference": -0.016423142449710215,
+      "primary_difference": -0.021086262624458646,
+      "direction": "R64 width16 FNO5 minus R64 width9 FNO5; hidden width differs",
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false
+    }
+  },
+  "pure_TRAIN_seconds": 87.82318878173828,
+  "TRAIN_whole_seconds": 238.8985652923584,
+  "DEV_whole_seconds": 76.84794855117798,
+  "CPU_seconds": 7.658133781998913,
+  "visual_accepted": true,
+  "interpretation": "A3.138x parameter increase improves jointU/S2.11pp but fails frozen3pp advancement gate. It is best among these six same5 candidates, not finalsolver and not enough to justify further capacity/longtraining.",
+  "next_hypothesis": "Sparse occupied global TS tokens: current4096-token TS includes emptycells with XYZ/globalcontext; test whether excluding emptytokens restores fitting. One fixed originalTS best among TS family, same physical5 and source head/query; scatter emptylatent0 explicit package confound.",
+  "next_must_measure": "TRAIN-only occupied-token fraction and fullN gradients; then fixed5 DEV60 barrier. No claim emptytokens cause known errors until actualcomparison.",
+  "automatic_continuation": false,
+  "final_solver_selected": false
+}

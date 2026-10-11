@@ -1,0 +1,48 @@
+{
+  "status": "actual_GPU_job_live_common_WSL_proc",
+  "SCI": "01ced059a17f730cbd301d370883acb4a50ca5d3333e7d403f99bfb0d1d6cea6",
+  "exec_session": 83095,
+  "external_launch_identity": {
+    "path": "runs/geobc_exploration/wide_FNO64_100_physical5_v24/external_launch.json",
+    "bytes": 13821,
+    "mtime_ns": 1791705099578014900,
+    "sha256": "10e7a06136136fe5373d168c0482cf69efce06ee87ac1b5ddd4d405599619a58"
+  },
+  "processes": {
+    "child_process": {
+      "pid": 22136,
+      "ppid": 22132,
+      "start_ticks": 2337910,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_wide_fno64_v24",
+        "--start",
+        "--plan",
+        "notes/geobc_wide_FNO64_100_physical5_v24_plan.json"
+      ]
+    },
+    "guard_process": {
+      "pid": 22132,
+      "ppid": 22131,
+      "start_ticks": 2337545,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_wide_fno64_guard_v24",
+        "--start",
+        "--plan",
+        "notes/geobc_wide_FNO64_100_physical5_v24_plan.json"
+      ]
+    }
+  },
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "elapsed_epoch_seconds": 18.192899227142334,
+  "phase": "shared_cache_setup",
+  "cache_complete": false,
+  "verified_UTC": "2026-10-11T07:51:58.840726+00:00",
+  "deadline_epoch": 1791706900.6478207,
+  "actual_optimizer_steps": 0
+}

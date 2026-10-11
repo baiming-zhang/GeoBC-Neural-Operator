@@ -19,7 +19,11 @@ Hash联合优势0.94个百分点，未达预设推进门槛，停止追加Hash�
 
 三版紧凑Transolver同100CAD／5遍训练及新几何评估已完成，共用缓存整轮16.08分钟，DEV166.98秒。同5遍FNO U/S31.61%／56.10%；原版TS52.06%／93.20%、++55.26%／94.23%、3 52.81%／93.43%。原版是本轮TS系列最好，但仍明显落后；TRAIN应力也约94%，当前问题是拟合不足，不能宣称架构上限。[四方法简报](results/geobc_coarse_three_physical5_v21/BRIEF.md)。
 
-下一项是相同R16输入／连续头／物理损失的FNO控制，用来分辨输入压缩与算子／训练配方问题；原型只完成CPU合成检查，真实训练尚未启动。先5遍、有证据再延长，不默认40遍或24000步。
+相同R16输入的FNO控制已完成：训练整轮4.14分钟、DEV1.16分钟，U/S30.78%／64.98%；输入压缩本身不足以解释TS约94%的应力误差，算子／容量／配方交互仍未分离。[R16控制](results/geobc_coarse_fno_control_v23/BRIEF.md)。
+
+R64 FNO容量控制已完成同5遍训练和DEV：隐藏width9→16、参数4.527M→14.206M，其余网格／频带／头／物理损失不变；新几何U/S29.03%／54.45%，同5遍六候选中联合最好，但3.138倍容量仅改善联合2.11个百分点，未达3pp推进门槛，不追加长训。训练整轮3.98分钟、DEV1.28分钟。[容量控制](results/geobc_wide_fno64_v25/BRIEF.md)。
+
+下一宏观问题是紧凑Transolver把空网格也作为全局token：检查排除空token能否恢复拟合，保留原节点物理监督／5遍预算。当前尚未运行此实验，不预设原因成立。先5遍、有证据再延长，不默认40遍或24000步。
 原全节点++物理5遍训练耗时31.81分钟，TRAIN应力误差93.81%，没有通过训练门槛，因此该配方新DEV未运行。[负结果](results/geobc_native_physical_TRAIN_v13/BRIEF.md)。紧凑表示已通过真实GPU全节点反传验证；R16池化与容量差异明确记录，不能视为纯架构消融。[资源验证](results/geobc_coarse_transolver_resource_v19/BRIEF.md) · [当前计划](notes/geobc_coarse_three100_physical5_v20_plan.json) · [真实启动身份](notes/geobc_coarse_three_v20_actual_launch.json)。
 
 ## 数据与证据
@@ -38,6 +42,6 @@ Hash联合优势0.94个百分点，未达预设推进门槛，停止追加Hash�
 
 WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`，RTX5090；显存上限30.5GB（30,500,000,000 bytes），公共非阻塞GPU锁。[依赖](requirements-lock-wsl.txt) · [TCNN安装](notes/install_tcnn.md)。研究工具在WSL项目根目录使用 `python -m tools.<模块名>`，按对应冻结计划／真实终态交接运行；不能因旧status或SOURCE-ready重复启动。
 
-新克隆先执行 `python tools/restore_geobc_source_line_endings.py --check`，仅行尾不同可执行 `--restore`，恢复130个冻结运行依赖的LF／CRLF字节；未知内容拒绝写入。半小时监视器持续推进，健康后台训练只作轻量检查。
+新克隆先执行 `python tools/restore_geobc_source_line_endings.py --check`，仅行尾不同可执行 `--restore`，恢复146个冻结运行依赖的LF／CRLF字节；未知内容拒绝写入。半小时监视器持续推进，健康后台训练只作轻量检查。
 
-[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`c849467`，包含真实Hash物理5遍对照与紧凑三TS资源验证；本次完整三方法训练／DEV结果已在本地验收，尚待本轮推送。[发布状态](notes/github_publish_plan.json)。
+[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`ee4550d`，已包含紧凑三TS完整同5遍训练／DEV结果与图；本地R16 FNO控制与R64容量控制都已完成，结果与下一阶段待本轮正式推送。[发布状态](notes/github_publish_plan.json)。

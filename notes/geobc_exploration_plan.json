@@ -5764,13 +5764,11 @@
     }
   },
   "current_next_stage": {
-    "status": "compact_three_same5_completed_select_R16FNO_control_SOURCE",
-    "actual_completed_report": "results/geobc_coarse_three_physical5_v21/BRIEF.md",
-    "actual_decision": "notes/geobc_coarse_three_v21_actual_decision.json",
-    "next_model_SOURCE": "geobc/coarse_fno_control_v22.py",
-    "next_training_plan_created": false,
-    "next_training_execution": 0,
-    "goal_active": true
+    "status": "v24_v25_completed_next_TS_occupied_token_macro_design",
+    "decision": "notes/geobc_wide_fno_v25_actual_decision.json",
+    "no_active_GPU_job": true,
+    "automatic_40_or24000": false,
+    "final_solver_selected": false
   },
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
@@ -6593,15 +6591,15 @@
   },
   "latest_verified_GitHub_publication": {
     "status": "verified_private_remote_publication",
-    "commit": "c8494670601063508f1f7544fa120a7fa1c0e4d5",
+    "commit": "ee4550de73946e9bf76ea21db1366f6fd2f2e95e",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "elapsed_seconds": 67.9483974,
-    "finished_at_utc": "2026-10-11T06:42:44.0047512Z",
-    "receipt": "notes/github_gitdata_publication_c8494670601063508f1f7544fa120a7fa1c0e4d5_hashphysical5_coarse_ts_resource_20261011_receipt.json",
-    "actual_scope": "GlobalHashphysical5 sameexposure knownDEV/report/acceptedplot and metadata recovery; compact3Transolver real6wholeN gradient resource qualification. No new compact100CAD training or DEV result."
+    "elapsed_seconds": 61.1451479,
+    "finished_at_utc": "2026-10-11T07:22:26.5812553Z",
+    "receipt": "notes/github_gitdata_publication_ee4550de73946e9bf76ea21db1366f6fd2f2e95e_coarse_three_physical5_20261011_receipt.json",
+    "actual_scope": "Completed allthree compactTS same5 TRAIN/knownDEV/report/acceptedPNG; FNO16 SOURCE prototype only. Future v22 training is local and not part of this snapshot."
   },
   "globalHash_physical5_completed": {
     "status": "actual_completed_same5_knownDEV",
@@ -6687,5 +6685,50 @@
         "releases_continuation": false
       }
     }
+  },
+  "coarse_FNO_control_completed": {
+    "status": "completed_R16_FNO_control_decision",
+    "report": "results/geobc_coarse_fno_control_v23/BRIEF.md",
+    "visual_accepted": true,
+    "actual_TRAIN_seconds": 248.50098180770874,
+    "actual_DEV_seconds": 69.57232165336609,
+    "interpretation": "R16 pooling alone does not explain TS stress near94%; sameR16 FNO near65%, R64 FNO near56%. Operator/capacity/optimization interactions remain unresolved.",
+    "next": "R64 FNO width16 vs width9, same100x3/fivepasses/fullphysical loss/oldscaler/seed; one fixed ~3.14x capacity control, no sweep",
+    "final_solver_selected": false,
+    "automatic40_or24000": false
+  },
+  "wide_FNO_capacity_completed": {
+    "status": "actual_width_capacity_control_completed_negative_for_further_training",
+    "report": "results/geobc_wide_fno64_v25/BRIEF.md",
+    "DEV_U": 0.2903365463591599,
+    "DEV_S": 0.5445439530094732,
+    "DEV_hot": 0.42806591405287786,
+    "capacity_ratio": 3.138096224798746,
+    "DEV_gate": {
+      "R64_FNO_W16_1500": {
+        "passed": false,
+        "U_difference": -0.025749382799207077,
+        "S_difference": -0.016423142449710215,
+        "primary_difference": -0.021086262624458646,
+        "direction": "R64 width16 FNO5 minus R64 width9 FNO5; hidden width differs",
+        "thresholds": {
+          "primary_absolute_improvement_at_least": 0.03,
+          "maximum_either_field_absolute_deterioration": 0.02,
+          "fixed_denominator": 60
+        },
+        "fixed_denominator": 60,
+        "releases_continuation": false
+      }
+    },
+    "pure_TRAIN_seconds": 87.82318878173828,
+    "TRAIN_whole_seconds": 238.8985652923584,
+    "DEV_whole_seconds": 76.84794855117798,
+    "CPU_seconds": 7.658133781998913,
+    "visual_accepted": true,
+    "interpretation": "A3.138x parameter increase improves jointU/S2.11pp but fails frozen3pp advancement gate. It is best among these six same5 candidates, not finalsolver and not enough to justify further capacity/longtraining.",
+    "next_hypothesis": "Sparse occupied global TS tokens: current4096-token TS includes emptycells with XYZ/globalcontext; test whether excluding emptytokens restores fitting. One fixed originalTS best among TS family, same physical5 and source head/query; scatter emptylatent0 explicit package confound.",
+    "next_must_measure": "TRAIN-only occupied-token fraction and fullN gradients; then fixed5 DEV60 barrier. No claim emptytokens cause known errors until actualcomparison.",
+    "automatic_continuation": false,
+    "final_solver_selected": false
   }
 }
