@@ -1606,6 +1606,31 @@
       "frozen_runtime_sha256": "1d5ad8404c8bae231eb3e1f32ba2b0a69402c2f4e0c00defb038adca64ecd6cd",
       "canonical_LF_sha256": "1d5ad8404c8bae231eb3e1f32ba2b0a69402c2f4e0c00defb038adca64ecd6cd",
       "line_endings": "LF"
+    },
+    "geobc/shared_decoder_pair_contract_v61.py": {
+      "frozen_runtime_sha256": "7f3049ceaf41205403d642437fbe9f3655f9f1393658eaeb5099af2cabeed03d",
+      "canonical_LF_sha256": "7f3049ceaf41205403d642437fbe9f3655f9f1393658eaeb5099af2cabeed03d",
+      "line_endings": "LF"
+    },
+    "tools/train_geobc_shared_decoder_v61.py": {
+      "frozen_runtime_sha256": "588d8817b4c926132ae619c5c53d0c149751aae020a7a2fe59937114c00957db",
+      "canonical_LF_sha256": "d3280dd6aad39284aa7d54b658d2ed4481e23919637f0407dce3366bee30523c",
+      "line_endings": "CRLF"
+    },
+    "tools/run_geobc_shared_decoder_guard_v61.py": {
+      "frozen_runtime_sha256": "7162cba5f342a3051a7a3b42f2c23c4c2386c796cd3a3cd6ecf46767d8ae56ef",
+      "canonical_LF_sha256": "cd3002c880ed5f88503682980db5ea83380ebc23e622b955e15eca84f21b9edd",
+      "line_endings": "CRLF"
+    },
+    "tools/prepare_geobc_shared_decoder_v61.py": {
+      "frozen_runtime_sha256": "8e3a01dd994772bd3e3aa71976ae48164b4b8f3597c8944688cb82cd3ed4765e",
+      "canonical_LF_sha256": "8e3a01dd994772bd3e3aa71976ae48164b4b8f3597c8944688cb82cd3ed4765e",
+      "line_endings": "LF"
+    },
+    "tools/export_geobc_shared_decoder_v61.py": {
+      "frozen_runtime_sha256": "a4e3437371db36c4f89d224d165df7d0200ff8b470702f0961ff6be613e7c199",
+      "canonical_LF_sha256": "a4e3437371db36c4f89d224d165df7d0200ff8b470702f0961ff6be613e7c199",
+      "line_endings": "LF"
     }
   },
   "additional_scientific_digest": "943582670d1dc999a940524c68daafc407f06d483603cdc0915aaf4b578774ee",
@@ -1617,8 +1642,8 @@
   "operator_residual_v45_scientific_digest": "a233be15dbf2770cd619a9e54805006e80e549601665b379ba5ceaa6eace3c35",
   "operator_residual_v46_scientific_digest": "83d312dab717a83d5d1ceb1657b94a0bd25a69ef171c3a9bf8b98530718fa94d",
   "latest_source_extension": {
-    "stage": "v60 scalar CPU exporter",
-    "source": "tools/export_geobc_single_decoder_v60.py",
+    "stage": "v61 scalar CPU exporter",
+    "source": "tools/export_geobc_shared_decoder_v61.py",
     "actual_runtime_execution": 0
   }
 }

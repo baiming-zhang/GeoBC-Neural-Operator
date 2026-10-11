@@ -1,0 +1,36 @@
+{
+  "SCI": "c5327e4113206e6580ad99d852268bb8eeb82e69ccd459101ac95354ce719b31",
+  "exec_session": 32274,
+  "observed_epoch": 1791741423.7370846,
+  "guard_process": {
+    "pid": 41420,
+    "ppid": 41418,
+    "start_ticks": 5636974,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_shared_decoder_guard_v61",
+      "--start",
+      "--plan",
+      "notes/geobc_shared_decoder_v61_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 41421,
+    "ppid": 41420,
+    "start_ticks": 5637072,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_shared_decoder_v61",
+      "--start",
+      "--plan",
+      "notes/geobc_shared_decoder_v61_plan.json"
+    ]
+  },
+  "both_exact_live": true,
+  "current_updates": 200,
+  "phase": "shared_decoder_pair"
+}
