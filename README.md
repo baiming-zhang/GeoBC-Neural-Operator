@@ -4,6 +4,10 @@
 
 ## 当前结论
 
+**最新：同一FNO从10遍延续到20遍，新CAD位移／应力20.65%／48.83%，热点36.84%；目前验证结果优先保留这一FNO轨迹。** TRAIN位移／应力15.75%／35.74%，共享训练拟合仍是瓶颈。新增训练176.68秒、完整训练阶段347.95秒，knownDEV全60例验证71.09秒；没有自动40遍或24000步。[最新两行对比](results/geobc_fno20_readout_v57/BRIEF.md)。
+
+同父多病例梯度合并已实际完成：TRAIN应力46.42%反而高于原10遍44.25%，停止该分支；此前应力专门化仅改善0.98个百分点，也已停止。两者均未读取DEV。[病例合并](results/geobc_fno_case_batch_v55/BRIEF.md) · [训练趋势](results/geobc_fno_learning20_v56/BRIEF.md)。以下为此前筛选结果，不与新20遍视作等曝光架构比较。
+
 **目前优先保留FNO，Hash保留应力热点对照；绝对误差仍高，最终求解器尚未确定。** 已知单样本Hash小于1%是拟合能力，不是新CAD的迁移精度。
 
 同100训练CAD×三载荷、物理损失、5遍／1500步，knownDEV20个新CAD×三载荷、全部原节点：
@@ -52,4 +56,4 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复291个冻结依赖的LF／CRLF字节，未知内容拒绝写入。半小时监视器继续推进；健康后台任务只轻量检查。
 
-[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`577529b`，包含GINO预算检查点全60例物理误差／成本、简报、精确终态与预测屏障标量来源，以及停止延长决定；应力专门化短对照已在本地完成，下一次发布将包含新实际结果。发布44.22秒，28份文件、确切远端commit／tree及前中后私人身份均核实。[发布状态](notes/github_publish_plan.json)。
+[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`cd6ccf6`，包含同父FNO应力专门化的实际TRAIN300结果、完整资格／终态／停止决定及slides口径核对；多病例梯度合并仍为下一阶段提案。发布45.99秒，31份文件、确切远端commit／tree及前中后私人身份均核实。[发布状态](notes/github_publish_plan.json)。

@@ -1,0 +1,93 @@
+{
+  "status": "completed_existing_scalar_only",
+  "at_utc": "2026-10-11T16:05:08.425263+00:00",
+  "TRAIN_case_denominator": 300,
+  "per_load_case_denominator": 100,
+  "per_load": {
+    "ver": {
+      "physical5": {
+        "u_relative_l2": 0.3157310602159734,
+        "stress_relative_l2": 0.5287161807744907,
+        "stress_hotspot_relative_l2": 0.46269586644817673
+      },
+      "physical10": {
+        "u_relative_l2": 0.2363742900639098,
+        "stress_relative_l2": 0.48240231493026625,
+        "stress_hotspot_relative_l2": 0.4681313745680711
+      },
+      "S_gain_pp": 4.631386584422442
+    },
+    "hor": {
+      "physical5": {
+        "u_relative_l2": 0.283140638089036,
+        "stress_relative_l2": 0.5313761142128007,
+        "stress_hotspot_relative_l2": 0.5355859896367948
+      },
+      "physical10": {
+        "u_relative_l2": 0.19698086706917853,
+        "stress_relative_l2": 0.4547771307089316,
+        "stress_hotspot_relative_l2": 0.4489876004188284
+      },
+      "S_gain_pp": 7.6598983503869125
+    },
+    "tor": {
+      "physical5": {
+        "u_relative_l2": 0.3000335511541443,
+        "stress_relative_l2": 0.4496677093242252,
+        "stress_hotspot_relative_l2": 0.29273261824331565
+      },
+      "physical10": {
+        "u_relative_l2": 0.22280735438669835,
+        "stress_relative_l2": 0.3903057190616482,
+        "stress_hotspot_relative_l2": 0.2670623801561622
+      },
+      "S_gain_pp": 5.936199026257699
+    }
+  },
+  "source_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/macro100_FNO9_physical10_v15/summary.json",
+      "bytes": 405382,
+      "mtime_ns": 1791697618829213200,
+      "sha256": "65ca669e010632b45b4ffd69dd210fcc8b13ad334a1a8570d3e5104a1a90b1c1"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/macro100_FNO9_physical10_v15/status.json",
+      "bytes": 405382,
+      "mtime_ns": 1791697618838227700,
+      "sha256": "65ca669e010632b45b4ffd69dd210fcc8b13ad334a1a8570d3e5104a1a90b1c1"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/macro100_FNO9_physical10_v15/external_terminal.json",
+      "bytes": 11603,
+      "mtime_ns": 1791697619578249600,
+      "sha256": "ccdf9e6d45754bc144ca71cf72a1c4b6a6cefa95b43a647cfa05a667e40498f1"
+    }
+  },
+  "parent_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/macro100_FNO9_physical5_v12/summary.json",
+      "bytes": 402938,
+      "mtime_ns": 1791693807135197100,
+      "sha256": "253c34db3b61d3f5a3db1f021a76caddf134d41035f3b52f36ec2388d0eb6b26"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/macro100_FNO9_physical5_v12/status.json",
+      "bytes": 402938,
+      "mtime_ns": 1791693807146778400,
+      "sha256": "253c34db3b61d3f5a3db1f021a76caddf134d41035f3b52f36ec2388d0eb6b26"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/macro100_FNO9_physical5_v12/external_terminal.json",
+      "bytes": 10058,
+      "mtime_ns": 1791693807931140400,
+      "sha256": "4c7c5629b97de2a274a6fae6d8faebb4fa22e61ce5f25700e3c75ec2b51f19d1"
+    }
+  },
+  "CPU_seconds": 0.973712761006027,
+  "GT_array_reads": 0,
+  "PT_body_reads": 0,
+  "inference": 0,
+  "GPU": 0,
+  "scope": "Already completed fullTRAIN300 endpoints by known load family; associations only, no new solver quality or causal conclusion"
+}

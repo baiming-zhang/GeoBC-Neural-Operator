@@ -8,213 +8,234 @@
   "passed": true,
   "whole_source_reviewed": true,
   "reviewer": "root",
-  "reviewed_at_utc": "2026-10-11T15:09:53.445752+00:00",
+  "reviewed_at_utc": "2026-10-11T15:45:25.658579+00:00",
   "decision": "one_bounded_exact_immutable_gitdata_API_publication_attempt",
   "source_sha256": "f9ab1692564f03ef4f0419c7c7a01ca13f8223fe5ef313f3dc8b16ebc064bef9",
-  "target_commit": "577529b83d13f4bbcb1ed3c570d04479d70232fd",
-  "base_commit": "14049264089c817cbcaebdcac8a77eaff950250a",
-  "target_tree": "cafa4dd1c08e16dfd68a2186a0d747ff94a32315",
-  "changed_file_count": 28,
+  "target_commit": "cd6ccf6dad447188ff864f07af39714e9cbb8c3b",
+  "base_commit": "577529b83d13f4bbcb1ed3c570d04479d70232fd",
+  "target_tree": "b5b433a8933ba4c0d5d4c69abdf6cea44ed0bc8c",
+  "changed_file_count": 31,
   "changed_file_identities": [
     {
       "path": "README.md",
       "change": "M",
-      "bytes": 7315,
-      "sha256": "01d1a35d5c5187fd8fa12ca49bca1b869e64668936401f36d843c83bc9d71e4e",
+      "bytes": 8021,
+      "sha256": "583764ba2a998051cff98601a3a11357dce78c11a73a5e28ccfc0d7dfe4b8fa1",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "geobc/fno_stress_contract_v54.py",
+      "change": "A",
+      "bytes": 6505,
+      "sha256": "6cc5d9c1be457592a139c832fb7fc7764b08cb3406a78651d7f67d728dc2ce7a",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "geobc/fno_stress_specialist_v54.py",
+      "change": "A",
+      "bytes": 3646,
+      "sha256": "0322edbf5bfc70527b8a540b2e28c26b69785f85eca94307357a2be43f21ccc7",
       "line_ending_normalization_only": false
     },
     {
       "path": "notes/geobc_exploration_plan.json",
       "change": "M",
-      "bytes": 287058,
-      "sha256": "a1646181edb69ae21f592cad7d20ffca9851161f5e6e904cf95308272a77a7a9",
+      "bytes": 288113,
+      "sha256": "047afac0c816beb077a029f596fb22211fc61dbd3a922c891e85866255e9a898",
       "line_ending_normalization_only": false
     },
     {
       "path": "notes/geobc_fno_stress_specialization_v54_proposal.json",
-      "change": "A",
-      "bytes": 2794,
-      "sha256": "98b81a06a68aa4cdc3a4c510037bf283fe72023f57859726126297784583e5d7",
+      "change": "M",
+      "bytes": 3688,
+      "sha256": "c612d71e6bcef416e4f499074460b0ecf4e8e4e56b76149d845226aec3895d18",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_gino_knownDEV_v53_actual_decision.json",
+      "path": "notes/geobc_fno_stress_v54_CPU_verification.json",
       "change": "A",
-      "bytes": 1537,
-      "sha256": "0745d669b96bed06b23928b651eaf40062d9440254538ef6291dd406198f9329",
+      "bytes": 1266,
+      "sha256": "4aa45fa03f51e4fc047373ee2cbd4f5131887cefc3b1b635128edf0089dbc99a",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_gino_knownDEV_v53_actual_launch.json",
-      "change": "A",
-      "bytes": 1623,
-      "sha256": "ab7d893536970c6cd49dfa0451add4be3ef7405397aa84e096a92137974a41da",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_gino_knownDEV_v53_actual_terminal_receipt.json",
+      "path": "notes/geobc_fno_stress_v54_actual_launch.json",
       "change": "A",
       "bytes": 1147,
-      "sha256": "3b8df5cadee63ac378f4a94e579d0b7eab38107c0d29a33b70d084aa0b2dc144",
+      "sha256": "30885de0e0c993a3ea6aeba860d9246325f9bb0bfc6b2e6579a05bf86eb2f7c6",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_gino_knownDEV_v53_plan.json",
+      "path": "notes/geobc_fno_stress_v54_actual_terminal_receipt.json",
       "change": "A",
-      "bytes": 31338,
-      "sha256": "2012c360244a960bb61b54a498d6c684c57c203016cfd57646c1d7d401a4ef9f",
+      "bytes": 2673,
+      "sha256": "60dedd484ce334f3216b1b407f5630cec45bc7e7dcdd57422bd23ebdf3f7deb3",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_gino_knownDEV_v53_root_review.json",
+      "path": "notes/geobc_fno_stress_v54_exporter_root_review.json",
       "change": "A",
-      "bytes": 20365,
-      "sha256": "3f0ef0077752eee1de4a17a79a3ee21e4921d6f57a7d602e18373ea9cecccc87",
+      "bytes": 624,
+      "sha256": "29a30a6bd1f79bd386f709ab05a4c387e8d645146e863de1cf7ca2c1417b4929",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_gino_physical_v52_actual_budget_terminal_receipt.json",
+      "path": "notes/geobc_fno_stress_v54_plan.json",
       "change": "A",
-      "bytes": 2984,
-      "sha256": "ae663323b8ff3ed30fd7ba285e6a6f8dd8f4d334f96e016f36a6c88598f0c6ae",
+      "bytes": 224857,
+      "sha256": "3a823c6e2853049cf2d52a225d352ced1b3acc45f192199d1535c468fb3c37b9",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/github_gino53_result_snapshot_index_repair.json",
+      "path": "notes/geobc_fno_stress_v54_root_review.json",
       "change": "A",
-      "bytes": 1837,
-      "sha256": "cc313e1176631ef7f64d6e06bf3142e3c77f710a60548f14096826f5260b6179",
+      "bytes": 14095,
+      "sha256": "70ebb1606e9f6e40e045912ab5743d9c723fa428d2415cbd261dbefb425ea1ba",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/github_gitdata_1404926_actual_publication_root_review.json",
+      "path": "notes/geobc_fno_stress_v54_source_review.json",
       "change": "A",
-      "bytes": 564,
-      "sha256": "bde8b064b56214a418a28d7859ad372a20e5add8bb92b6576da3d65a577cddbe",
+      "bytes": 11698,
+      "sha256": "42113c4023938c98601ce8cc7a45de3e741c7af414176e0bee8f8c37c6b10bee",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/github_gitdata_1404926_verified_receipt.json",
-      "change": "A",
-      "bytes": 1050,
-      "sha256": "ee5ddbca42bd3de03cc9a6af4068c32736e6b5c981a0d7caea49b8f36d4cbfcd",
+      "path": "notes/geobc_frozen_runtime_source_bytes.json",
+      "change": "M",
+      "bytes": 82743,
+      "sha256": "4781a65e374912ee51e58ddfa8ea4caa81f0697f0fd8f78137c5e11963c7a7ec",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/github_gitdata_publication_14049264089c817cbcaebdcac8a77eaff950250a_gino_known_dev_source_fit_gap_20261011_receipt.json",
+      "path": "notes/geobc_shared_case_batch_v55_proposal.json",
       "change": "A",
-      "bytes": 28093,
-      "sha256": "1441210178af323e243bac3e93c409fa24270b25e56ca6b880a5eb0874ddb89d",
-      "line_ending_normalization_only": true
+      "bytes": 2217,
+      "sha256": "0edbc0e9f1ec283a9e329c045d1e08995a0bb96f8726f1795be44b2d46dd4a01",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_slides_current_error_reconciliation.json",
+      "change": "A",
+      "bytes": 2407,
+      "sha256": "038ac85fdd8023da46a32f973c815c160dbc85640aa09e3a80b80177a21950ea",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/github_577529b_canonical_receipt_before_stress54_snapshot.json",
+      "change": "A",
+      "bytes": 4472,
+      "sha256": "232dd7f69f069b887f6c04c4d13a21ad8e8e80268f2cc0bbf0a412a2e16437da",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/github_577529b_root_review_before_stress54_snapshot.json",
+      "change": "A",
+      "bytes": 8673,
+      "sha256": "29c2823f64947f0d97443e42408c7f8be325933bb8bb0a0c3ac428bfea83bd3a",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/github_gitdata_577529b_actual_publication_root_review.json",
+      "change": "A",
+      "bytes": 550,
+      "sha256": "e13085a39e59bff822fdcec3b89921f4239d6c42f7e09e38a8a6ec71f0f1c588",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/github_gitdata_577529b_verified_receipt.json",
+      "change": "A",
+      "bytes": 1059,
+      "sha256": "6bfbf637900a7c11a294f524bf2ebf04dbe1f31f357ed94aa26fe4f28d218e1f",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/github_gitdata_publication_577529b83d13f4bbcb1ed3c570d04479d70232fd_gino_known_dev_results_20261011_receipt.json",
+      "change": "A",
+      "bytes": 26085,
+      "sha256": "efb2db287a783f293624dfd6ca7ba8b79da65281d533354ba70ab9d558e9bbe3",
+      "line_ending_normalization_only": false
     },
     {
       "path": "notes/github_gitdata_publication_root_review.json",
       "change": "M",
-      "bytes": 9162,
-      "sha256": "64b7aab6fb5624ac181ffdd459fc5a5bc99329450205b673528c9b91a2664485",
-      "line_ending_normalization_only": true
+      "bytes": 8673,
+      "sha256": "29c2823f64947f0d97443e42408c7f8be325933bb8bb0a0c3ac428bfea83bd3a",
+      "line_ending_normalization_only": false
     },
     {
       "path": "notes/github_publish_plan.json",
       "change": "M",
-      "bytes": 74461,
-      "sha256": "9446c8ac18a11bbf6d27dfa70190ea5ad8f27533516a21fc808d8d0d3e6bcbbf",
+      "bytes": 75357,
+      "sha256": "2162132eccd3f9f87eb045f1c0b2ece46b5475ac5a7e421b74975eded18bf462",
       "line_ending_normalization_only": false
     },
     {
       "path": "results/SOLVER_BRIEF.md",
       "change": "M",
-      "bytes": 2389,
-      "sha256": "6dc6a2a150b5a6cb35a16a6db17f4e857a977249a42ee3fdcd1a95faf390cc67",
+      "bytes": 2551,
+      "sha256": "e9abc7f0d344e67b8e49121e58c176bdfcbfa38f9e7c6910c0e365047395d9fa",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_gino_knownDEV_v53/BRIEF.md",
+      "path": "results/geobc_fno_stress_v54/BRIEF.md",
       "change": "A",
-      "bytes": 810,
-      "sha256": "3d38938467b7a49bac2aa8606f747ba5d67b0f6d945f1fdf07d48b6f5aaad795",
+      "bytes": 1326,
+      "sha256": "70881bc7b0071f6453b67ac7d1b8f64431476c99cd1bbbb4f15cda821ec3bcc8",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_gino_knownDEV_v53/manifest.json",
+      "path": "results/geobc_fno_stress_v54/comparison.png",
       "change": "A",
-      "bytes": 1390,
-      "sha256": "4796231b110a2d4f3ca52a9bfd219c9aa1f66486cab7070aaf3ae4b72dea755e",
+      "bytes": 44279,
+      "sha256": "d1427f0870c03c057453d2cf4ebfad0e2aebf93323a3ae31f45549cd8b2e8894",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_gino_knownDEV_v53/metrics.json",
+      "path": "results/geobc_fno_stress_v54/manifest.json",
       "change": "A",
-      "bytes": 380444,
-      "sha256": "4ec6cd438a8d1fbe52b0e8b5dfb8e995d9f0a490a641eba641fa555db90e02db",
+      "bytes": 1196,
+      "sha256": "dcc944a765bd1afeaaa460e7f435c29ef78d9d535ff00a16dc13f92146d8f429",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_gino_knownDEV_v53/provenance/checkpoint_index.json",
+      "path": "results/geobc_fno_stress_v54/metrics.json",
       "change": "A",
-      "bytes": 798,
-      "sha256": "3210ffe377c564d9281cad865da3620587e7fc9f272d6c4f0ad800b15cc0009f",
+      "bytes": 799499,
+      "sha256": "2d5807d099b906d573053d9f57c8f2827b9d867ec9f4987c6cdb8427aeafaddc",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_gino_knownDEV_v53/provenance/manifest.json",
+      "path": "tools/export_geobc_fno_stress_v54.py",
       "change": "A",
-      "bytes": 4314,
-      "sha256": "cbb7b89f2fe06f3f674c97cc2fa04d52036d228c5a265479afb741ec66c55414",
+      "bytes": 5844,
+      "sha256": "02a6bf29b1811299275a36725743114ece86cad81fc908b297920f680d458be0",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_gino_knownDEV_v53/provenance/prediction_barrier.json",
+      "path": "tools/prepare_geobc_fno_stress_v54.py",
       "change": "A",
-      "bytes": 19600,
-      "sha256": "448ba3af90781aba851320350f9d0538f64285a5871b0a9198d25b25f115cdb0",
+      "bytes": 4552,
+      "sha256": "f02936f9e825192f45ec4b908bab3819e0992bfa9e136d48db0227c58d55970c",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_gino_knownDEV_v53/provenance/readout_external_terminal.json",
+      "path": "tools/run_geobc_fno_stress_guard_v54.py",
       "change": "A",
-      "bytes": 18914,
-      "sha256": "f0dda09ece274090467ba6997b41b0bc5ee7433a8431a08df56775d8d8e9be47",
+      "bytes": 4886,
+      "sha256": "75489e323488a8cdbc18199c1d83a2f8e277e6a35499f86b14c4b9f9a6e4df46",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_gino_knownDEV_v53/provenance/readout_plan.json",
+      "path": "tools/train_geobc_fno_stress_v54.py",
       "change": "A",
-      "bytes": 31338,
-      "sha256": "2012c360244a960bb61b54a498d6c684c57c203016cfd57646c1d7d401a4ef9f",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "results/geobc_gino_knownDEV_v53/provenance/readout_root_review.json",
-      "change": "A",
-      "bytes": 20365,
-      "sha256": "3f0ef0077752eee1de4a17a79a3ee21e4921d6f57a7d602e18373ea9cecccc87",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "results/geobc_gino_knownDEV_v53/provenance/readout_summary.json",
-      "change": "A",
-      "bytes": 516361,
-      "sha256": "ca8c1e8df957dfec9411a80ef8692e341be08fa82f87f6d96dbbac25a94d5a32",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "results/geobc_gino_knownDEV_v53/provenance/training_external_terminal.json",
-      "change": "A",
-      "bytes": 18549,
-      "sha256": "004b0450344f50b5fcdb5b306763ee05ceece726c3ac308cd029d2e38ec1bffb",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "results/geobc_gino_knownDEV_v53/provenance/training_summary.json",
-      "change": "A",
-      "bytes": 583425,
-      "sha256": "a985fb94ba4865b0ca8829355fda2a783aafd2d395b6e961e95d3de19b5f38ae",
+      "bytes": 22372,
+      "sha256": "b66a8dda551f917a13bad60502c035b220f62a2457f2278f01df7c34322843fc",
       "line_ending_normalization_only": false
     }
   ],
-  "attempt_id": "gino_known_dev_results_20261011",
+  "attempt_id": "matched_fno_stress_result_20261011",
   "untracked_local_preparation_receipt_not_in_target_tree": true,
-  "scope": "Actual 1hour GINO budget end and saved1320 vs committed1344, genuine full60 allN prediction-beforeGTonce diagnostic/149s cost, finite U/S/hot metrics and scalar provenance/checkpoint index; no formal5 or finalarchitecture claim; distinct stress specialization is proposal-only/actual0",
-  "review": "Actual all60 native/external/process/SCI/source/GTbarrier/onecheckpoint/oneGT/noTRAIN-update verified and scalar report content read; every exact snapshot blob checked against workspace canonical bytes/JSON/AST, no raw fields/PT/arrays/secrets/caches; immutable parent/main/origin/tree verified; unchanged reviewed helper one private FF publication"
+  "scope": "Actual matched physical5-parent loss ablation on100CAD/3loads:1500 added updates, native300TRAIN signed fields, no DEV/FINAL reads, <3pp TRAIN gain/stop branch. Slides metric scope reconciliation; shared-case batching only proposal/actual0.",
+  "review": "All exact blobs compared with workspace canonical bytes, new SOURCE AST/JSON parsed; no raw fields/checkpoints/arrays/credentials/caches. Concrete main/parent/origin/tree checked. Actual TRAIN terminal and same-parent control identity, fullN gradient, model/Adam/RNG preservation, separate clocks, CPU chart inspected. Helper byte-identical to reviewed implementation; one private fast-forward immutable publication."
 }

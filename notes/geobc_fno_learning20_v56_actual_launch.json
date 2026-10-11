@@ -1,0 +1,42 @@
+{
+  "actual_exec_session_id": 68429,
+  "captured_at_utc": "2026-10-11T16:16:01.407178+00:00",
+  "scientific_digest": "2d20f1878d937ae65742bb6a5b79ac92598bd578e727bd3ecfafdbace647df96",
+  "child_process": {
+    "pid": 39988,
+    "ppid": 39987,
+    "start_ticks": 5090620,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_fno_learning20_v56",
+      "--start",
+      "--plan",
+      "notes/geobc_fno_learning20_v56_plan.json"
+    ]
+  },
+  "guard_process": {
+    "pid": 39987,
+    "ppid": 39986,
+    "start_ticks": 5090430,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_fno_learning20_guard_v56",
+      "--start",
+      "--plan",
+      "notes/geobc_fno_learning20_v56_plan.json"
+    ]
+  },
+  "external_launch_identity": {
+    "path": "runs/geobc_exploration/FNO100_physical20_v56/external_launch.json",
+    "bytes": 12967,
+    "mtime_ns": 1791735328410185400,
+    "sha256": "6287e95915449ffdf7402f777ca9a3489aa23fca38d230555dd70f06bc20cf69"
+  },
+  "status_phase": "cache_setup",
+  "actual_added_updates": 0,
+  "exact_live_processes": true
+}

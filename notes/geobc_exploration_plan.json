@@ -7141,5 +7141,67 @@
     },
     "new_DEV_FINAL_reads": 0,
     "decision": "Stop this stress-only branch; .98pp S gain does not explain most current shared-fit error. Do not launch its DEV readout or extend training."
+  },
+  "latest_actual_case_batch_v55": {
+    "status": "completed_TRAIN_gate_negative",
+    "plan": "notes/geobc_fno_case_batch_v55_plan.json",
+    "SCI": "b8835c9bf785c4e3c45784e8f55bff486a5b8ce7a63b574fafee0dab5de2d10f",
+    "result": "results/geobc_fno_case_batch_v55/BRIEF.md",
+    "actual_terminal": "notes/geobc_fno_case_batch_v55_actual_terminal_receipt.json",
+    "additional_optimizer_updates": 375,
+    "additional_case_exposures": 1500,
+    "optimizer_cursor": 1875,
+    "exposure_cursor": 3000,
+    "TRAIN_gate": {
+      "passed": false,
+      "U_difference": 0.02420207256485371,
+      "S_difference": 0.021669249281951797,
+      "primary_difference": 0.022935660923402754,
+      "hotspot_difference": -0.001368634511110356,
+      "direction": "four-case-mean-gradient10 minus same-parent one-case-gradient10; same exposure, fewer Adam updates",
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "hotspot_deterioration_max": 0.02,
+        "fixed_denominator": 300
+      },
+      "fixed_denominator": 300,
+      "releases_DEV": false
+    },
+    "new_DEV_FINAL_reads": 0,
+    "decision": "Stop grouped recipe, U/S worsened; pursue justified limited learning trend for best jointFNO"
+  },
+  "latest_actual_FNO20_knownDEV_v57": {
+    "status": "completed",
+    "SCI": "2288dccc38f8a81d4e6051943bbdb4a2eea8988624ceccc2d236c684fad6dac7",
+    "results": "results/geobc_fno20_readout_v57/BRIEF.md",
+    "DEV_gate": {
+      "passed": true,
+      "U_difference": -0.04956252738654632,
+      "S_difference": -0.03314665122517263,
+      "primary_difference": -0.041354589305859474,
+      "hotspot_difference": -0.05085546830588622,
+      "direction": "samephysicalFNO20 minus ownphysicalFNO10; exposure difference",
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "hotspot_deterioration_max": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false
+    },
+    "seconds": 71.08712196350098,
+    "decision": "Prioritize this FNO trajectory; unresolved shared TRAIN fit and transfer; no automatic continuation or final architecture claim"
+  },
+  "next_macro_question_after_v57": {
+    "status": "design_pending_no_execution",
+    "question": "Separate shared-field fitting limitation from per-field capacity under the current identical physical loss and endpoint, before extending all models.",
+    "evidence": "FNO20 TRAIN stress35.74% vs DEV48.83%; 10to20 both improve. Old independent4800 fit used a different exposure/history and does not identify current shared-loss causality.",
+    "constraints": [
+      "Use TRAIN only for a small predeclared fixed-case fitting diagnostic; knownDEV and FINAL reads0",
+      "Retain existing FNO20 model and its Adam/RNG/cost metadata; independent branch cannot mutate shared checkpoint",
+      "No Hash microtuning, no automatic40/24000; bounded macro decision and source implementation still needed"
+    ]
   }
 }
