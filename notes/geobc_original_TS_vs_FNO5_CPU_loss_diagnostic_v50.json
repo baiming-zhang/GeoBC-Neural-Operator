@@ -1,0 +1,36 @@
+{
+  "status": "actual_CPU_scalar_loss_only_diagnostic",
+  "curves": {
+    "original_FNO5": [
+      0.8857663577905224,
+      0.522610777709593,
+      0.29313651413398956,
+      0.23410268648532603,
+      0.20227974503166873
+    ],
+    "original_TS5": [
+      0.965345887684984,
+      0.8745971189652791,
+      0.7947180323586883,
+      0.6877659661302578,
+      0.637513013656719
+    ]
+  },
+  "sources": {
+    "original_FNO5": {
+      "path": "runs/geobc_exploration/macro100_FNO9_physical5_v12/loss.jsonl",
+      "bytes": 195522,
+      "mtime_ns": 1791693787559977600,
+      "sha256": "540f36bf66ed734416ab4f164560f10a4f08d00735dcfa8c33b9c050a378696c"
+    },
+    "original_TS5": {
+      "path": "runs/geobc_exploration/coarse_three100_physical5_v20/transolver/loss.jsonl",
+      "bytes": 195059,
+      "mtime_ns": 1791702157453039500,
+      "sha256": "de7600c5cefd354970dd5b9af1d06eef277f3a326cb94c1908905fc4efcc5eca"
+    }
+  },
+  "CPU_seconds": 0.0956097590024001,
+  "new_GT_PT_array_GPU_reads": 0,
+  "interpretation": "Jointloss only, cannot infer separateS gain from this trajectory; mostrecent completepass stilldecreases, supports bounded5to10 convergencecheck, not automatic40 or familychoice."
+}

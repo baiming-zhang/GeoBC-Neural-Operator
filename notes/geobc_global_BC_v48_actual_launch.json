@@ -1,0 +1,46 @@
+{
+  "status": "actual_native_guard_child_live_identity_captured",
+  "SCI": "eb16f2286195435cc125f561206c0be36b3dc81d9b7f25ead4f72500889eb53f",
+  "exec_session": 63182,
+  "child_process": {
+    "pid": 33498,
+    "ppid": 33497,
+    "start_ticks": 3920672,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_global_BC_v48",
+      "--start",
+      "--plan",
+      "notes/geobc_global_BC_v48_plan.json"
+    ]
+  },
+  "guard_process": {
+    "pid": 33497,
+    "ppid": 33495,
+    "start_ticks": 3920601,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_global_BC_guard_v48",
+      "--start",
+      "--plan",
+      "notes/geobc_global_BC_v48_plan.json"
+    ]
+  },
+  "captured_epoch": 1791722391.192971,
+  "external_at_capture": {
+    "path": "runs/geobc_exploration/global_BC_two100_physical5_v48/external_launch.json",
+    "bytes": 12546,
+    "mtime_ns": 1791722365553714900,
+    "sha256": "e812f2be0b091fa9087e5a68b3e35427dca983da557d15111724ae4f95b506d3"
+  },
+  "execution_identity": {
+    "path": "runs/geobc_exploration/global_BC_two100_physical5_v48/execution.json",
+    "bytes": 1108,
+    "mtime_ns": 1791722366203740300,
+    "sha256": "2992e407cd3bbe595be9879726d252ad9c3d9f90e98d2d4eb81be57e0ec17e2a"
+  }
+}

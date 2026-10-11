@@ -22,11 +22,11 @@ FNO width9从5遍继续到10遍，新CAD位移／应力为25.60%／52.14%，追�
 
 R64→R128同参数／初值／顺序的5遍对照也未改善，纯训练窗口约1.90倍，不扩大网格。其他失败与局限保留于[阶段历史](results/README_STATE_PRE_V47_20261011.md)。
 
-## 下一阶段
+## 最新短筛选与下一步
 
-检验全局几何／边界条件的信息传递方式：把已有原生25输入中的载荷、材料及耦合／加载界面摘要送入全局32维上下文，比较FNO和原版TS的短训练。BC原本已存在于局部查询及栅格输入；这是信息路径实验，不是新增物理信息。
+全局BC分支已在FNO／原版TS各训练5遍并完成新CAD读出：FNO位移／应力31.15%／55.95%，TS50.05%／93.21%。相对各自原5遍，FNO改善0.46／0.15个百分点，TS位移改善2.01个百分点而应力基本不变；两者均未通过推进门槛，停止该分支。两arm训练整轮6.33分钟，knownDEV1.97分钟，CPU报告1.49秒；峰值及全节点资格见[一页报告](results/geobc_global_BC_v49/BRIEF.md)。
 
-目前只完成代码原型、合成CPU零初值／梯度检查，以及两CAD×三载荷的12份原始坐标／特征CPU输入读出；没有新全局BC模型的GPU训练、PT或GT读取。未来在实际全节点资格通过后才能启动。额外6496可训练／6496冻结参数，容量差异明确记录；若有明显增益，再作匹配零描述符控制。[下一方案](notes/geobc_global_bc_context_macro_proposal_v47.json)。
+原版TS的第4→5遍联合训练损失仍下降7.3%，但这不能证明应力改善。下一轮仅设计原版TS从已有5遍延续到10遍，保留Adam／RNG／曝光量，与已有FNO10作收敛和成本比较；尚无新运行代码或执行，不恢复已失败全局BC分支。[下一方案](notes/geobc_original_TS5_to10_convergence_proposal_v50.json)。
 
 初期5遍筛选，有证据再追加少数领先方法，不默认40遍或24,000步。旧FNO40遍整轮16.61分钟；全节点++40遍约4.3小时是整段外推总时间，不能再乘40。[时间策略](notes/geobc_early_screening_budget_policy.json)。
 
@@ -42,6 +42,6 @@ R64→R128同参数／初值／顺序的5遍对照也未改善，纯训练窗口
 
 WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`，RTX5090；显存上限30.5GB（30,500,000,000 bytes），公共非阻塞GPU锁。工具使用 `python -m tools.<模块名>`，按对应冻结计划及真实终态交接运行，不因旧status／SOURCE-ready重复启动。[依赖](requirements-lock-wsl.txt) · [TCNN安装](notes/install_tcnn.md)。
 
-新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复227个冻结依赖的LF／CRLF字节，未知内容拒绝写入。半小时监视器继续推进；健康后台任务只轻量检查。
+新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复236个冻结依赖的LF／CRLF字节，未知内容拒绝写入。半小时监视器继续推进；健康后台任务只轻量检查。
 
-[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`272d437`包含R128真实终态与残差CPU原型。最新残差真实结果／全局BC原型正在准备下一份隔离快照，尚未声称上传。[发布状态](notes/github_publish_plan.json)。
+[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`6527b7f`。本轮全局BC两个5遍真实训练／验证、一页报告及TS5→10设计已整理，正在准备有意义的新快照；上传后才更新远端状态。[发布状态](notes/github_publish_plan.json)。

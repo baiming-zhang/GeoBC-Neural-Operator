@@ -1,0 +1,74 @@
+{
+  "status": "actual_two_globalBC_short5_completed_gates_negative",
+  "SCI": "133bae0eb32563af7d08038e51d673b748b8b569657ec535ba76bef893a13cb5",
+  "report": "results/geobc_global_BC_v49/BRIEF.md",
+  "train_seconds": 379.6710250377655,
+  "readout_seconds": 118.04231572151184,
+  "CPU_export_seconds": 1.493999762002204,
+  "PNG_root_viewed": true,
+  "gates": {
+    "FNO9_GLOBAL_BC": {
+      "passed": false,
+      "reference": "FNO100_PHYSICAL_1500",
+      "U_difference": -0.004587476056253592,
+      "S_difference": -0.0015018845599008568,
+      "primary_difference": -0.0030446803080772245,
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "stress_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false,
+      "scope": "Fresh5 matched original core, order, physical loss, cases;6496 extra mutable parameters. Priority screen only; gain requires matched zero-descriptor capacity control, not final choice"
+    },
+    "R16_TRANSOLVER_GLOBAL_BC": {
+      "passed": false,
+      "reference": "R16_TRANSOLVER_1500",
+      "U_difference": -0.020087565418542286,
+      "S_difference": 0.00010934428961106857,
+      "primary_difference": -0.009989110564465609,
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "stress_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false,
+      "scope": "Fresh5 matched original core, order, physical loss, cases;6496 extra mutable parameters. Priority screen only; gain requires matched zero-descriptor capacity control, not final choice"
+    }
+  },
+  "rows": {
+    "FNO9_GLOBAL_BC": {
+      "case_mean_u_relative_l2": 0.3114984531021134,
+      "case_mean_stress_relative_l2": 0.5594652108992826,
+      "case_mean_stress_hotspot_relative_l2": 0.4526262175522507
+    },
+    "R16_TRANSOLVER_GLOBAL_BC": {
+      "case_mean_u_relative_l2": 0.5004766001820975,
+      "case_mean_stress_relative_l2": 0.9320630583867631,
+      "case_mean_stress_hotspot_relative_l2": 0.9327966689483741
+    },
+    "FNO100_PHYSICAL_1500": {
+      "case_mean_u_relative_l2": 0.316085929158367,
+      "case_mean_stress_relative_l2": 0.5609670954591834,
+      "case_mean_stress_hotspot_relative_l2": 0.4507680822518052
+    },
+    "R16_TRANSOLVER_1500": {
+      "case_mean_u_relative_l2": 0.5205641656006398,
+      "case_mean_stress_relative_l2": 0.931953714097152,
+      "case_mean_stress_hotspot_relative_l2": 0.9336385716612512
+    },
+    "FNO100_PHYSICAL_3000": {
+      "case_mean_u_relative_l2": 0.2560309559813769,
+      "case_mean_stress_relative_l2": 0.5214486656547538,
+      "case_mean_stress_hotspot_relative_l2": 0.4192565175206173
+    }
+  },
+  "decision": "Stop this GBC routing branch; effect fails material joint/stress gate, no matched-capacity control or GBC continuation. Preserve FNO current leading candidate and independent current TS curve evidence; short5 underfit is not architecture ceiling.",
+  "automatic40": false,
+  "automatic24000": false,
+  "final_solver_selected": false
+}

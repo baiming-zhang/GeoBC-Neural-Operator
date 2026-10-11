@@ -1,0 +1,187 @@
+{
+  "status": "actual_synthetic_CPU_two_globalBC_operators_zero_output_joint_physical_gradient_passed_not_nativeGPU",
+  "CPU_seconds": 2.61029833000066,
+  "methods": {
+    "FNO9_GLOBAL_BC": {
+      "profile": {
+        "method": "FNO9_GLOBAL_BC",
+        "grid_resolution": 64,
+        "parameter_count": 4539850,
+        "trainable_parameters": 4533354,
+        "old_backbone_parameters": 4526858,
+        "old_backbone_profile": {
+          "method": "FNO9",
+          "counts": {
+            "encoder": 16736,
+            "head": 26884,
+            "operator": 4483238,
+            "total": 4526858
+          },
+          "grid_resolution": 64
+        },
+        "BC_context": {
+          "descriptor_dim": 68,
+          "additional_trainable_parameters": 6496,
+          "additional_frozen_parameters": 6496,
+          "roles": "Actual RBE2 CM columns0:6 separately and loaded RBE3 member6; not groundedSPC",
+          "original_information_changed": false,
+          "adds_targets": false,
+          "load_material_length_scales": "Existing original25 constants, no scaler fit",
+          "effect": "Global BC branch minus fixed initialbranch adds to existing32 geometrycontext; initially exactoldcontext",
+          "initialized_backbone_changed": false,
+          "owns_case_or_launch": false
+        },
+        "old_backbone_initial_digest": "e3c06ebfb126495173ae11b94fb3ef0cf87392976d56ba36238358844dd516da",
+        "precision": "highest FP32; caller disables TF32",
+        "fresh_initialization": true,
+        "inherited_teacher_passes": 0,
+        "physical_constraint_enforced": false,
+        "baseline_information_unchanged": true,
+        "capacity_matched_to_old_baseline": false,
+        "independent_offnode_FEM_accuracy_measured": false
+      },
+      "old_backbone_initial_exact": true,
+      "initial_context_latent_prediction_exact_old": true,
+      "all_four_trainable_groups_L2": {
+        "geometry_encoder": 0.05462660883112378,
+        "global_BC_branch": 0.006955101851560896,
+        "head": 0.18506939892445837,
+        "operator": 0.0031174558025696577
+      },
+      "frozen_reference_gradients_none": true,
+      "current_case_descriptor_required": true,
+      "physical_loss": 0.19541961658430718,
+      "whole_synthetic_nodes": 257,
+      "leaf_gradients": {
+        "geometry_context_L2": 0.003584993304684758,
+        "operator_latent_L2": 0.006396704353392124,
+        "original_nodes_used": 257,
+        "node_sampling": false
+      }
+    },
+    "R16_TRANSOLVER_GLOBAL_BC": {
+      "profile": {
+        "method": "R16_TRANSOLVER_GLOBAL_BC",
+        "grid_resolution": 16,
+        "parameter_count": 1895164,
+        "trainable_parameters": 1888668,
+        "old_backbone_parameters": 1882172,
+        "old_backbone_profile": {
+          "method": "transolver",
+          "family": "R16_transolver",
+          "parameter_count": 1882172,
+          "architecture": {
+            "method": "transolver",
+            "repository": "https://github.com/thuml/Transolver",
+            "commit": "75e0f67643806a81cd1d3f6adc88dd8c02416fe7",
+            "model_file": "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py",
+            "file_sha256": {
+              "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py": "d1420f8176c73fac024d1f57cb816653e0ffb41580c954c1497d2ba914e71943",
+              "PDE-Solving-StandardBenchmark/model/Embedding.py": "e3a4f71c4378b7cce09a43b8c306d6d8a17edb4cd69db5eb069e55a57d2affe2",
+              "PDE-Solving-StandardBenchmark/model/Physics_Attention.py": "d746cd641f9c81313e205126bac6e0a9bb5bdbe5a9ef107e093a4fe065dbe0f5"
+            },
+            "license": "MIT; upstream LICENSE retained",
+            "constructor_kwargs": {
+              "n_layers": 5,
+              "n_hidden": 256,
+              "n_head": 8,
+              "slice_num": 32,
+              "mlp_ratio": 1,
+              "dropout": 0.0,
+              "space_dim": 3,
+              "fun_dim": 58,
+              "out_dim": 16,
+              "act": "gelu",
+              "unified_pos": false,
+              "ref": 8
+            },
+            "preset_source": "Model constructor defaults in the pinned irregular-mesh model: 5 layers, width 256, 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+            "slide_explicit": {},
+            "reference_gaps": [
+              "Original Transolver baseline was newly requested; the slides do not provide its run configuration.",
+              "The source-server commit and exact 25-feature schema are unavailable."
+            ],
+            "architecture_overrides": {},
+            "input": "xyz[3] + BC/material[25]; no sample ID",
+            "output": "uXYZ + source signed stress",
+            "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+            "checkpoint_blocks": true,
+            "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+            "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+            "chunk_size": null,
+            "eval_stochastic": false,
+            "gumbel_note": null,
+            "distributed": null,
+            "parameter_count": 1838552
+          },
+          "counts": {
+            "encoder": 16736,
+            "head": 26884,
+            "operator": 1838552
+          },
+          "global_tokens": 4096,
+          "grid_resolution": 16,
+          "precision": "highest FP32; caller must disable TF32",
+          "all_original_query_nodes": true,
+          "input_policy": "occupied-voxel means from original R64; no target pooling",
+          "query_policy": "true block-center trilinear latent; nearest-center boundary extension",
+          "capacity_matched": false,
+          "independent_offnode_FEM_accuracy_measured": false
+        },
+        "BC_context": {
+          "descriptor_dim": 68,
+          "additional_trainable_parameters": 6496,
+          "additional_frozen_parameters": 6496,
+          "roles": "Actual RBE2 CM columns0:6 separately and loaded RBE3 member6; not groundedSPC",
+          "original_information_changed": false,
+          "adds_targets": false,
+          "load_material_length_scales": "Existing original25 constants, no scaler fit",
+          "effect": "Global BC branch minus fixed initialbranch adds to existing32 geometrycontext; initially exactoldcontext",
+          "initialized_backbone_changed": false,
+          "owns_case_or_launch": false
+        },
+        "old_backbone_initial_digest": "13d31df15c487a1240b8f1f81f0a7ccf7a15a73f32cbbb29fb3dff34632e5abb",
+        "precision": "highest FP32; caller disables TF32",
+        "fresh_initialization": true,
+        "inherited_teacher_passes": 0,
+        "physical_constraint_enforced": false,
+        "baseline_information_unchanged": true,
+        "capacity_matched_to_old_baseline": false,
+        "independent_offnode_FEM_accuracy_measured": false
+      },
+      "old_backbone_initial_exact": true,
+      "initial_context_latent_prediction_exact_old": true,
+      "all_four_trainable_groups_L2": {
+        "geometry_encoder": 0.1858046846710554,
+        "global_BC_branch": 0.03956854614103248,
+        "head": 0.8280132922835041,
+        "operator": 0.6235944316339711
+      },
+      "frozen_reference_gradients_none": true,
+      "current_case_descriptor_required": true,
+      "physical_loss": 0.17696504454769524,
+      "whole_synthetic_nodes": 257,
+      "leaf_gradients": {
+        "geometry_context_L2": 0.01795557700097561,
+        "operator_latent_L2": 0.006218693219125271,
+        "original_nodes_used": 257,
+        "node_sampling": false
+      }
+    }
+  },
+  "GPU_calls": 0,
+  "dataset_GT_PT_numeric_reads": 0,
+  "optimizer_updates": 0,
+  "source": {
+    "path": "geobc/global_bc_solver_v48.py",
+    "bytes": 4066,
+    "mtime_ns": 1791721908560998600,
+    "sha256": "f3015185f3b96b297aeee4f79f8a1bd6d1128efd2b56c9cd97c06926985c8165"
+  },
+  "checker": {
+    "path": "tools/check_global_bc_solver_v48_CPU.py",
+    "bytes": 4675,
+    "mtime_ns": 1791722150003593000,
+    "sha256": "861ff436c5c27f83d24e8ad5ee965afec305a2b18695b45e9598e83242f18841"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "status": "actual_v48_completed_both_fresh1500_allTRAIN300_terminal_qualified",
+  "SCI": "eb16f2286195435cc125f561206c0be36b3dc81d9b7f25ead4f72500889eb53f",
+  "actual_exec_session": 63182,
+  "actual_exec_exit_code": 0,
+  "terminal_binding": {
+    "plan": {
+      "path": "notes/geobc_global_BC_v48_plan.json",
+      "bytes": 25488,
+      "mtime_ns": 1791722357848573500,
+      "sha256": "013c596262c6f76db2573c60fda952adfcdd42b8d834a8d1f5e09afc84eec8d3"
+    },
+    "terminal": {
+      "summary": {
+        "path": "runs/geobc_exploration/global_BC_two100_physical5_v48/summary.json",
+        "bytes": 475703,
+        "mtime_ns": 1791722742837241100,
+        "sha256": "2ef5d9b1e3b401029dde28be33561ca0a74b81d33b8d1558360339dde204d572"
+      },
+      "status": {
+        "path": "runs/geobc_exploration/global_BC_two100_physical5_v48/status.json",
+        "bytes": 475703,
+        "mtime_ns": 1791722742847795000,
+        "sha256": "2ef5d9b1e3b401029dde28be33561ca0a74b81d33b8d1558360339dde204d572"
+      },
+      "external": {
+        "path": "runs/geobc_exploration/global_BC_two100_physical5_v48/external_terminal.json",
+        "bytes": 12722,
+        "mtime_ns": 1791722743518097500,
+        "sha256": "333c292f84f56bdd53b3009aeedb1881590738b369a6cf86116f343ae584552f"
+      }
+    }
+  },
+  "child_process": {
+    "pid": 33498,
+    "ppid": 33497,
+    "start_ticks": 3920672,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_global_BC_v48",
+      "--start",
+      "--plan",
+      "notes/geobc_global_BC_v48_plan.json"
+    ]
+  },
+  "guard_process": {
+    "pid": 33497,
+    "ppid": 33495,
+    "start_ticks": 3920601,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_global_BC_guard_v48",
+      "--start",
+      "--plan",
+      "notes/geobc_global_BC_v48_plan.json"
+    ]
+  },
+  "exact_processes_exited": true,
+  "whole_epoch_seconds": 379.6710250377655,
+  "whole_monotonic_seconds": 347.145308618994,
+  "BC_descriptors_once": 300,
+  "physical_TRAIN_once": 300,
+  "cached_TRAIN_reuses": 600,
+  "DEV_FINAL_raw_PT_scaler_reads": 0
+}
