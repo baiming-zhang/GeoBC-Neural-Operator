@@ -1,0 +1,42 @@
+{
+  "observed_at_utc": "2026-10-11T18:48:07.596885+00:00",
+  "SCI": "a43bb00e17a2b5217ace138cabb008be1929a02ebfabeecdb50cfc6fb8a8a595",
+  "exec_session": 95077,
+  "child_process": {
+    "pid": 42139,
+    "ppid": 42138,
+    "start_ticks": 5914821,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_transolver_decoder_v64",
+      "--start",
+      "--plan",
+      "notes/geobc_transolver_decoder_v64_plan.json"
+    ]
+  },
+  "guard_process": {
+    "pid": 42138,
+    "ppid": 42137,
+    "start_ticks": 5914655,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_transolver_decoder_guard_v64",
+      "--start",
+      "--plan",
+      "notes/geobc_transolver_decoder_v64_plan.json"
+    ]
+  },
+  "both_live_now": true,
+  "phase": "Transolver_same_decoder_shared3",
+  "optimizer_updates": 0,
+  "execution_identity": {
+    "path": "runs/geobc_exploration/Transolver_continuous_decoder_shared3_v64/execution.json",
+    "bytes": 1144,
+    "mtime_ns": 1791744457979498700,
+    "sha256": "283ec39528f9d67e57f231ef459311e016f970ff256ddc01a52596074ee03bc2"
+  }
+}

@@ -14,6 +14,8 @@ Hash5→10：训练应力47.28%→39.32%，新CAD54.45%→50.85%。追加训练9
 
 同3个困难场共享一个模型，Hash应力0.76%、FNO19.62%，三个Hash场都<1%；这是已知场拟合，位移仍约5%。Slides单／双场<1%，共享50场15.11%，FNO网格2.46%／FEM节点14.38%，不能混比。[共享对照](geobc_shared_decoder_v61/BRIEF.md)。
 
-**下一步优先Transolver骨干＋相同连续解码器，先做固定共享3场与成本诊断，再决定100CAD阶段；暂不延长Hash训练。** 原紧凑TS10新CAD应力91.50%不能代表所有TS配置。下一阶段目前仅提案／未运行。[提案](../notes/geobc_transolver_continuous_decoder_v64_proposal.json)。
+**原版TS＋相同连续解码器：共享三场应力1.54%／位移9.33%，FNO条件Hash0.76%／4.85%。** TS学习792.3秒，FNO188.6秒；TS当前拟合更差、成本4.20倍。FP32原尝试预算negative成本909.41秒保留，没有最终端点。[新对照](geobc_transolver_bf16_v65/BRIEF.md)。
+
+**已实际启动TS同方案的fresh100CAD短五遍比较**，沿用数据／scaler／物理损失／完整原节点，三场权重不转移；尚无新大样本结果。不按小样本决定最终solver、不自动长训练。
 
 原版DeepJEB、CSV GRID对齐、signed U(mm)/S(MPa)、全部原节点；100TRAIN／20knownDEV／20FINAL按CAD隔离，scaler仅TRAIN。knownDEV已迭代、单seed、可用来源条件选择，旧FINAL不再调参；旧H5-only撤回，原配置缺失不声称精确数值复现。所有方法、逐载荷与配对案例完整结果在各报告JSON/CSV；[历史](SOLVER_BRIEF_PRE_V62_20261012.md)。

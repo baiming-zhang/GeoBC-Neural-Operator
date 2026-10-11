@@ -3696,7 +3696,7 @@
       "result": "notes/geobc_hash_bandwidth_pair_result.json",
       "matched_controls_passed": true,
       "clear_gain_gate_passed": false,
-      "readout": "valU22.23294\u219219.96714%,worst41.29291\u219234.39351%,P1626.229\u2192165.966%;3improvementcriteriaPASS,P1cap100%FAIL",
+      "readout": "valU22.23294→19.96714%,worst41.29291→34.39351%,P1626.229→165.966%;3improvementcriteriaPASS,P1cap100%FAIL",
       "next": "frozen_hash_condition_path_decomposition"
     },
     {
@@ -4104,7 +4104,7 @@
     "reporter_author": "/root/deepjeb_research",
     "actual_execution_released": true,
     "source_estimated_minutes": 15,
-    "source_expected_complete_Beijing": "2026-10-10 05:35\u201305:40",
+    "source_expected_complete_Beijing": "2026-10-10 05:35–05:40",
     "previous_coordinator_phase": "completed",
     "previous_coordinator_pid": 365,
     "launch_policy": "Prepare queue integration then sole waiting coordinator; do not restart any live coordinator/GPU process",
@@ -4128,7 +4128,7 @@
     "scientific_rules_frozen": true,
     "actual_execution_released": true,
     "began_at_utc": "2026-10-09T21:54:25.342739Z",
-    "expected_ready_Beijing": "2026-10-10 06:12\u201306:20",
+    "expected_ready_Beijing": "2026-10-10 06:12–06:20",
     "author": "/root/topology_train_impl",
     "reporter_author": "/root/deepjeb_research",
     "launch_policy": "Sole queue only after source pins and real root review; completed current coordinator394 is not GPU running",
@@ -4736,7 +4736,7 @@
     "no_new_label_or_array_reads": false,
     "sha256": "27d746477d36a5ec47bcf16e976dec76ba875508b8cb88cf0f326ee206db348a",
     "current_learning_TRAIN_CADs": 40,
-    "proposal": "40vs200 CAD \u00d7 all3 Transolver/FNO/MLP; fresh4800 full-case updates; newDEV20 direct original signed U/S; no solver preselected",
+    "proposal": "40vs200 CAD × all3 Transolver/FNO/MLP; fresh4800 full-case updates; newDEV20 direct original signed U/S; no solver preselected",
     "delivery_feasibility": "notes/geobc_coverage_data_delivery_feasibility.json",
     "delivery_sha256": "d099728ca42396e0a0e117150d857b4dcd400db3072f6d122dd1e34ca646a5b8",
     "reason": "Unseen-CAD full physical U passed; full signed S remains unresolved. Prioritize one macro direct-signed coverage comparison across two retained learning families.",
@@ -5505,7 +5505,7 @@
         "diagnostic_seconds": 0.03847573900020507,
         "actual24k_readout_complete": false,
         "path": "notes/geobc_pp_live_training_loss_diagnostic.json",
-        "interpretation": "Recent five full120 passes loss down55.7% vs passes36\u201340, supports completing frozen24k; TRAIN encoded4 objective only, not physical U/S gain/selection. No extra prediction or target read"
+        "interpretation": "Recent five full120 passes loss down55.7% vs passes36–40, supports completing frozen24k; TRAIN encoded4 objective only, not physical U/S gain/selection. No extra prediction or target read"
       },
       "report_sources_in_progress": {
         "FNO_local_pair": {
@@ -5777,7 +5777,7 @@
   },
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
-    "user_statement": "\u9884\u7b97\u662f30.5GB",
+    "user_statement": "预算是30.5GB",
     "memory_budget_GB": 30.5,
     "memory_budget_bytes": 30500000000,
     "memory_budget_GiB": 28.405338525772095,
@@ -7024,7 +7024,7 @@
         },
         "fixed_denominator": 60,
         "releases_continuation": false,
-        "scope": "SameFNO9 params/fullinitial/order/physical5; native grid rasterization and query resolution64\u2192128"
+        "scope": "SameFNO9 params/fullinitial/order/physical5; native grid rasterization and query resolution64→128"
       }
     },
     "same_full_initial_SHA": "e3c06ebfb126495173ae11b94fb3ef0cf87392976d56ba36238358844dd516da",
@@ -8179,13 +8179,7 @@
     "CPU_report_seconds": 2.4075601439981256,
     "PNG_visually_verified": true
   },
-  "current_goal_turn_classification": {
-    "previous_turn": "no_progress",
-    "previous_turn_reason": "Read-only slides scope explanation",
-    "this_turn": "progress",
-    "evidence": "ActualHash100 additional1500 updates plus complete knownDEV60 predictionbarrier and physicalGTonce; reports/PNG verified",
-    "full_goal_status": "active"
-  },
+  "current_goal_turn_classification": "progress: actual65completed/physicalreport and figures verified; originalTS100CAD fixed5stage actually launched",
   "latest_actual_global_hash10_readout_v63": {
     "status": "completed",
     "SCI": "615245692e5c6452da0c491f919e1be7e3261cf1595bf9771bcdd478b1af71b0",
@@ -8216,5 +8210,185 @@
     "CPU_report_seconds": 4.163279129003058,
     "PNG_visually_verified": true
   },
-  "next_macro_question_after_v63": "Keep FNO20 practical incumbent. Same10 Hash gains modest U/S and meaningful hotspots, unlike <1percent tiny fitting. Investigate official original Transolver backbone with identical continuousTCNN decoder/input/wholecasephysical loss on fixed shared3 before macro100; no Hash hyperparam search or automatic20/40."
+  "next_macro_question_after_v63": "Keep FNO20 practical incumbent. Same10 Hash gains modest U/S and meaningful hotspots, unlike <1percent tiny fitting. Investigate official original Transolver backbone with identical continuousTCNN decoder/input/wholecasephysical loss on fixed shared3 before macro100; no Hash hyperparam search or automatic20/40.",
+  "latest_actual_transolver_decoder_v64": {
+    "status": "verified_training_budget_negative",
+    "SCI": "a43bb00e17a2b5217ace138cabb008be1929a02ebfabeecdb50cfc6fb8a8a595",
+    "plan": "notes/geobc_transolver_decoder_v64_plan.json",
+    "exec_session": 95077,
+    "exec_exit_code": 1,
+    "receipt": "notes/geobc_transolver_decoder_v64_actual_budget_negative_receipt.json",
+    "complete_updates": 2285,
+    "actual_final_accuracy": null,
+    "phase_seconds": 909.4133677482605,
+    "cost_preserved": true
+  },
+  "latest_transolver_BF16_v65": {
+    "status": "actual_completed_exported",
+    "SCI": "fb27ed0e7184fbed8091a3f67868611f81ce2b277cd7ef0289a273c95c13d1db",
+    "plan": "notes/geobc_transolver_bf16_v65_plan.json",
+    "old_FP32_budget_reset": false,
+    "parameter_initialization_identical_required": true,
+    "scope": "same backbone/decoder precision cost and physical fitting diagnostic",
+    "exec_session": 80084,
+    "launch_receipt": "notes/geobc_transolver_bf16_v65_launch_receipt.json",
+    "execution": {
+      "run_process": {
+        "pid": 46646,
+        "ppid": 46645,
+        "start_ticks": 6013951,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.train_geobc_transolver_bf16_v65",
+          "--start",
+          "--plan",
+          "notes/geobc_transolver_bf16_v65_plan.json"
+        ]
+      },
+      "guard": {
+        "guard_process": {
+          "pid": 46645,
+          "ppid": 46644,
+          "start_ticks": 6013747,
+          "argv": [
+            "/home/research/.venvs/geobc/bin/python",
+            "-u",
+            "-m",
+            "tools.run_geobc_transolver_bf16_guard_v65",
+            "--start",
+            "--plan",
+            "notes/geobc_transolver_bf16_v65_plan.json"
+          ]
+        },
+        "scientific_digest": "fb27ed0e7184fbed8091a3f67868611f81ce2b277cd7ef0289a273c95c13d1db",
+        "entry_epoch": 1791745541.8290608,
+        "entry_monotonic": 60137.509232168,
+        "deadline_epoch": 1791746741.8290608,
+        "deadline_monotonic": 61337.509232168,
+        "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f"
+      },
+      "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+      "scientific_digest": "fb27ed0e7184fbed8091a3f67868611f81ce2b277cd7ef0289a273c95c13d1db"
+    },
+    "observed_at_utc": "2026-10-11T19:06:01.999704+00:00",
+    "exec_exit_code": 0,
+    "actual_terminal_receipt": "notes/geobc_transolver_bf16_v65_actual_terminal_receipt.json",
+    "stage_seconds": 800.1329400539398,
+    "full_TRAIN3": {
+      "fixed_denominator": 3,
+      "metrics_available_cases": 3,
+      "per_case": {
+        "53_482/ver": {
+          "nodes": 215881,
+          "u_relative_l2": 0.11321744471523296,
+          "stress_relative_l2": 0.014590050245065937,
+          "stress_hotspot_relative_l2": 0.022682263456882786,
+          "u_vector_error_RMS_mm": 0.026368903671369837,
+          "u_max_vector_error_mm": 0.3837652306660798,
+          "stress_RMSE_MPa": 1.6631221874148179,
+          "stress_MAE_MPa": 0.6091239370221938,
+          "stress_max_abs_error_MPa": 350.0797754134535,
+          "stress_hotspot_nodes": 2159,
+          "u_zero_reference": false,
+          "stress_zero_reference": false,
+          "hotspot_zero_reference": false
+        },
+        "229_200/ver": {
+          "nodes": 242936,
+          "u_relative_l2": 0.09278115195558952,
+          "stress_relative_l2": 0.012416603493560264,
+          "stress_hotspot_relative_l2": 0.013136895783614214,
+          "u_vector_error_RMS_mm": 0.019952310794259354,
+          "u_max_vector_error_mm": 0.3820718288799414,
+          "stress_RMSE_MPa": 1.2373861278166567,
+          "stress_MAE_MPa": 0.557553649804563,
+          "stress_max_abs_error_MPa": 287.9365081050801,
+          "stress_hotspot_nodes": 2430,
+          "u_zero_reference": false,
+          "stress_zero_reference": false,
+          "hotspot_zero_reference": false
+        },
+        "56_293/hor": {
+          "nodes": 213336,
+          "u_relative_l2": 0.07375694061160318,
+          "stress_relative_l2": 0.019286236368922596,
+          "stress_hotspot_relative_l2": 0.03794112486697154,
+          "u_vector_error_RMS_mm": 0.0081372066501003,
+          "u_max_vector_error_mm": 0.09986740096096143,
+          "stress_RMSE_MPa": 1.3612254994085984,
+          "stress_MAE_MPa": 0.3077065173593541,
+          "stress_max_abs_error_MPa": 309.5338964841959,
+          "stress_hotspot_nodes": 2134,
+          "u_zero_reference": false,
+          "stress_zero_reference": false,
+          "hotspot_zero_reference": false
+        }
+      },
+      "case_mean_u_relative_l2": 0.09325184576080854,
+      "worst_case_u_relative_l2": 0.11321744471523296,
+      "case_mean_stress_relative_l2": 0.015430963369182931,
+      "worst_case_stress_relative_l2": 0.019286236368922596,
+      "case_mean_stress_hotspot_relative_l2": 0.02458676136915618,
+      "worst_case_stress_hotspot_relative_l2": 0.03794112486697154,
+      "selection_score": 0.054341404564995734,
+      "all_cases_complete": true
+    },
+    "CPU_report_seconds": 3.763636346004205,
+    "PNG_visually_verified": true
+  },
+  "next_transolver_macro100_v66": {
+    "status": "actual_running_observed",
+    "source_review": "notes/geobc_transolver_macro100_v66_source_review.json",
+    "source_design": "notes/geobc_transolver_macro100_v66_SOURCE_design.json",
+    "short_exposure": 5,
+    "actual_GT_arrays": 0,
+    "actual_GPU_execution": 0,
+    "SCI": "8c8769b92ff0795a8c61a215886b292814d441d70e3f98abe3c4b01b27ac1e75",
+    "plan": "notes/geobc_transolver_macro100_v66_plan.json",
+    "exec_session": 32549,
+    "execution": {
+      "run_process": {
+        "pid": 46973,
+        "ppid": 46972,
+        "start_ticks": 6095440,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.train_geobc_transolver_macro100_v66",
+          "--start",
+          "--plan",
+          "notes/geobc_transolver_macro100_v66_plan.json"
+        ]
+      },
+      "guard": {
+        "guard_process": {
+          "pid": 46972,
+          "ppid": 46971,
+          "start_ticks": 6095170,
+          "argv": [
+            "/home/research/.venvs/geobc/bin/python",
+            "-u",
+            "-m",
+            "tools.run_geobc_transolver_macro100_guard_v66",
+            "--start",
+            "--plan",
+            "notes/geobc_transolver_macro100_v66_plan.json"
+          ]
+        },
+        "scientific_digest": "8c8769b92ff0795a8c61a215886b292814d441d70e3f98abe3c4b01b27ac1e75",
+        "entry_epoch": 1791746429.9578354,
+        "entry_monotonic": 60951.732469018,
+        "deadline_epoch": 1791748229.9578354,
+        "deadline_monotonic": 62751.732469018,
+        "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f"
+      },
+      "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+      "scientific_digest": "8c8769b92ff0795a8c61a215886b292814d441d70e3f98abe3c4b01b27ac1e75"
+    },
+    "launch_receipt": "notes/geobc_transolver_macro100_v66_actual_launch_receipt.json",
+    "observed_at_utc": "2026-10-11T19:20:54.260522+00:00"
+  }
 }
