@@ -5859,5 +5859,22 @@
     "joint_gap_percentage_points": 21.92512109299618,
     "role": "KnownDEV20 paired summary; not new trained model or final-test confidence",
     "stage_decision": "Keep real extended++/FNO comparison running; current gap is broad across this development pool, not a single-CAD outlier"
+  },
+  "current_exposure_midpoint_evidence": {
+    "report": "notes/geobc_exposure_12000_interim.json",
+    "exposures": 100,
+    "full_TRAIN_denominator": 120,
+    "FNO_U_S": [
+      0.17388854744683788,
+      0.306721597888344
+    ],
+    "PP_U_S": [
+      0.5266486896254988,
+      0.8189498717510587
+    ],
+    "interpretation": "PP stress modestly improves but U worsens relative own40exposure baseline; same100exposure fitting remains substantially behindFNO. Does not prove architecture limit or knownDEV gain",
+    "next_action": "Finish original fixed24000 and DEV without changes; prioritize meaningful representation/global conditioning/cross-CAD coverage comparison over more blind training-step or Hash microparameter increases",
+    "new_GT_inference_reads": 0,
+    "actual_scalar_export_seconds": 0.15289278699856368
   }
 }

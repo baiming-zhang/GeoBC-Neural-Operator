@@ -1,0 +1,22 @@
+{
+  "status": "SOURCE_reviewed_actual_scalar_export_completed",
+  "source": "tools/report_geobc_exposure_midpoint.py",
+  "source_sha256": "378e2f384e425f74447b7558d515bddf0e921e104f4f6c0a1afc0fa2b4423558",
+  "whole_source_reviewed": true,
+  "reviewer": "root",
+  "updated_UTC": "2026-10-11T00:18:49.392428+00:00",
+  "scope": "Saved scalarJSON/stat only, no model/arrays/GT/inference; same fullTRAIN120/scaler100 exposures for both arms",
+  "actual_first_notready_invocation": {
+    "result": "not_yet_ready",
+    "export_writes": 0,
+    "new_inference_GT_PT_reads": 0
+  },
+  "actual_export": 1,
+  "entry": "python -u -m tools.report_geobc_exposure_midpoint --export",
+  "precondition": "Both actual12000 fullphysical points with immutable checkpoint identities; genuine closed4800 baseline bound and sameSCI/current source; no terminal24k or newCAD claim",
+  "label_policy": "No whole-campaign or stage completion claim from partial savedTRAIN point; new24000+DEV scientific selection still pending",
+  "actual_export_CPU_seconds": 0.15289278699856368,
+  "actual_export_notes": "notes/geobc_exposure_12000_interim.json",
+  "actual_export_brief": "results/geobc_exposure_comparison/12000_INTERIM.md",
+  "actual_recovered_baseline_and_midpoint_complete_fullTRAIN120": true
+}

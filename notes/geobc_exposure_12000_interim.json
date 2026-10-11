@@ -1,0 +1,93 @@
+{
+  "status": "completed_actual_saved_TRAIN120_midpoint_comparison",
+  "scientific_digest": "91417c08784c30d9d8a191788916741190bd682418fe8a34987a51283b93ee53",
+  "observed_parent_status": "running",
+  "status_identity": {
+    "path": "runs/geobc_exploration/matched_exposure24000_v1/status.json",
+    "bytes": 281804,
+    "mtime_ns": 1791678000518104000,
+    "sha256": "3813d3b12e67019ece90a584a9bdbb8ee4350e8acb05b9d462a42c169a447b21"
+  },
+  "baseline_identity": {
+    "path": "runs/geobc_exploration/common_grid_matched4800_v1/summary.json",
+    "bytes": 175777,
+    "mtime_ns": 1791665775434748400,
+    "sha256": "edcb9c317605035d2d55cfad57aed64c0c63477fb5addc2e8307fd5a095f4bae"
+  },
+  "source_sha256": "378e2f384e425f74447b7558d515bddf0e921e104f4f6c0a1afc0fa2b4423558",
+  "case_denominator": 120,
+  "CAD_denominator": 40,
+  "case_exposures": 100,
+  "arms": {
+    "FNO9": {
+      "baseline40": {
+        "U": 0.19514234744971287,
+        "S": 0.38985869861709316,
+        "hot": 0.3937834241244324
+      },
+      "midpoint100": {
+        "U": 0.17388854744683788,
+        "S": 0.306721597888344,
+        "hot": 0.32305841431235827
+      },
+      "improvement_percentage_points": {
+        "U": 2.1253800002874996,
+        "S": 8.313710072874914,
+        "hot": 7.072500981207414
+      },
+      "new_training_epoch_seconds_before_readout": 230.818598985672,
+      "new_training_monotonic_seconds_before_readout": 210.65585222500005,
+      "actual_TRAIN_readout_epoch_seconds": 4.120604038238525,
+      "actual_TRAIN_readout_monotonic_seconds": 4.120603982999967,
+      "own_checkpoint_identity": {
+        "path": "runs/geobc_exploration/matched_exposure24000_v1/FNO9/step12000.pt",
+        "bytes": 54397963,
+        "mtime_ns": 1791668445905274800,
+        "sha256": "aa75c1fa4276f7e5422a71deeb8354a42b51812e6a1bc7d0cfd4f381e3742873"
+      }
+    },
+    "PP256": {
+      "baseline40": {
+        "U": 0.40600595241568904,
+        "S": 0.8591308353451186,
+        "hot": 0.9002803260612252
+      },
+      "midpoint100": {
+        "U": 0.5266486896254988,
+        "S": 0.8189498717510587,
+        "hot": 0.8494149883621934
+      },
+      "improvement_percentage_points": {
+        "U": -12.064273720980978,
+        "S": 4.0180963594059875,
+        "hot": 5.086533769903179
+      },
+      "new_training_epoch_seconds_before_readout": 9089.847909927368,
+      "new_training_monotonic_seconds_before_readout": 8297.497114467,
+      "actual_TRAIN_readout_epoch_seconds": 38.37516522407532,
+      "actual_TRAIN_readout_monotonic_seconds": 34.760808126000484,
+      "own_checkpoint_identity": {
+        "path": "runs/geobc_exploration/matched_exposure24000_v1/PP256/step12000.pt",
+        "bytes": 54772437,
+        "mtime_ns": 1791677924265989400,
+        "sha256": "0c53e7d74596b17725791181908e651fbc0a76066dc05fe69e212691d60a5254"
+      }
+    }
+  },
+  "physical_units": [
+    "mm",
+    "mm",
+    "mm",
+    "MPa"
+  ],
+  "signed_stress_unchanged": true,
+  "new_inference_or_GT_PT_array_reads": 0,
+  "this_report_does_not_evaluate_final24000_or_DEV": true,
+  "interpretation": "Same fullTRAIN120 and100 exposures, not newCAD generalization or final solver selection",
+  "PP_minus_FNO_midpoint_gap_percentage_points": {
+    "U": 35.27601421786609,
+    "S": 51.22282738627146,
+    "hot": 52.63565740498352
+  },
+  "elapsed_CPU_seconds": 0.15289278699856368
+}

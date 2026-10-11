@@ -22,7 +22,7 @@ Hash 的约0.4%来自单病例已知应力拟合，五病例约1.45%；它与跨
 两臂从各自完整4800检查点继续至12000／24000更新，保留Adam、RNG和病例顺序；比较每病例40／100／200次曝光，不改变损失或scaler。
 
 - FNO 已完成24000：TRAIN120位移／应力为 **10.5%／24.2%**，新增训练UTC10.23分钟。新的开发读出尚未执行。
-- ++仍在同端点训练；真实运行状态见[轻量监视收据](notes/geobc_exposure_live_milestone.json)。整个配对尚未完成。
+- ++12000的TRAIN位移／应力为 **52.7%／81.9%**；同曝光FNO为17.4%／30.7%。++应力略降，但位移较自身4800的40.6%恶化，延长训练尚未追上。继续原固定24000端点。[中间物理比较](results/geobc_exposure_comparison/12000_INTERIM.md) · [真实运行状态](notes/geobc_exposure_live_milestone.json)。
 - 两臂结束后固定读取相同开发60例，再决定推进原生网格Transolver、条件化连续Hash或数据覆盖度对照。[计划](notes/geobc_exposure_extension_plan.json) · [宏观问题](notes/geobc_macro_conditioning_source_review.json)。
 
 当前模型通过网格和查询特征接收边界条件；全局PointNet只编码几何。历史粗粒度约束／加载区点云消融未带来明确收益，下一轮避免重复该配方。 原生节点++接口也已实现，全部初始参数与R64对照一致，CPU合成接口检查1.106秒；真实CUDA和精度未验证。[原生接口准备](results/geobc_native_context_interface/BRIEF.md)。
@@ -59,6 +59,6 @@ python tools/plot_suite_fields.py
 
 研究阶段必须使用各自冻结计划和真实进程交接，不能因旧status、锁文件或SOURCE-ready重复启动GPU任务。30分钟监视器持续推进；活训练期间只作轻量检查。
 
-[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `022c53c` 包含420数据接口、兼容故障与原预算内修复、精简README及30.5GB资源预算；推送57.21秒，精确commit和private状态通过远端核验。[发布计划](notes/github_publish_plan.json)。
+[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `1f8c127` 包含共同基线CAD配对分析、原生++／条件化Hash／FNO的后续训练和评估接口，以及真实运行中的自动交接器；接口CPU证据与尚未执行的CUDA阶段分开。发布61.47秒，精确commit和private状态通过远端核验。[发布计划](notes/github_publish_plan.json)。
 
 更早逐阶段运行叙述存于[README历史快照](results/README_STATE_HISTORY_20261011.md)，状态以当前真实报告和运行收据为准。
