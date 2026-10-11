@@ -12948,10 +12948,23 @@
     "actual_stage_seconds": 124.7371621131897
   },
   "next_macro_v75": {
-    "status": "scientific_design_only_not_execution_released",
+    "status": "completed",
     "design": "notes/geobc_field_amplitude_shape_v75_design.json",
     "scientific_digest": "4bab6188831a376cbf0bdf831326aa0d6909a1a65e098966b58123a1662ea55d",
     "actual_runtime": 0,
-    "next_action": "Implement one bounded existing-predictions/knownGT diagnostic, freeze source and root review, then run once. No new model/training/PT/scaler."
+    "next_action": "Implement one bounded existing-predictions/knownGT diagnostic, freeze source and root review, then run once. No new model/training/PT/scaler.",
+    "plan": "notes/geobc_field_amplitude_shape_v75_plan.json",
+    "root_review": "notes/geobc_field_amplitude_shape_v75_root_review.json",
+    "terminal_receipt": "notes/geobc_field_amplitude_shape_v75_actual_terminal_receipt.json",
+    "report": "results/geobc_field_amplitude_shape_v75/BRIEF.md",
+    "decision": "notes/geobc_field_amplitude_shape_v75_actual_decision.json",
+    "actual_stage_seconds": 16.805819034576416
+  },
+  "next_macro_v76": {
+    "status": "scientific_design_only_not_execution_released",
+    "design": "notes/geobc_local_query_geometry_v76_design.json",
+    "scientific_digest": "f56782152938cb338bb1137f0541fc369519acf9bb31ec4f1e3078ab56bb1a8d",
+    "actual_execution": 0,
+    "next_action": "Implement independentmodel/backward/guard then freezeSOURCE/root. Firstmatchedshared9fieldfit only; noDEV or macro100 yet."
   }
 }

@@ -18,7 +18,7 @@
 
 **小场拟合和新几何预测的误差不能混比。** 共享三个已知困难场，条件Hash应力0.76%、TS1.54%；扩大到100CAD时Hash10新CAD应力50.85%。slides单／双场约0.1%，但共享50场平均15.11%、没有一例低于1%。当前训练误差也高，缺口同时包含共享拟合和迁移，不能全部归因泛化。[共享拟合对照](results/geobc_shared_decoder_v61/BRIEF.md)。
 
-下一步检查几何／边界条件的输入与查询表示，优先做能改变求解器选型的有界结构筛选；不继续Hash小超参或延长训练救某一种方法。完整旧结果、失败和成本留在各阶段JSON／CSV，不在首页堆叠。
+幅值诊断已完成（16.81秒）：即使用真值给每场最优缩放，应力仍约47.8%。下一步匹配比较局部query几何token与额外全局池化token，先固定3CAD×3载荷共享拟合，不直接扩大100CAD。[诊断](results/geobc_field_amplitude_shape_v75/BRIEF.md)。不继续Hash小超参或延长训练救某一种方法。完整旧结果、失败和成本留在各阶段JSON／CSV，不在首页堆叠。
 
 ## 数据、指标与复现范围
 
@@ -34,4 +34,4 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复冻结源文件字节，未知内容拒绝覆盖。短实验临时使用5分钟监视，后续长阶段恢复半小时监视。代码、配置、标量结果、图和检查点索引发布到[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)，原数据及检查点体积文件留本地。
 
-最新已验证远端提交`af8c7d5`，包含原网格TS三场完成结果与图、停止扩大该路线的决定和保留的失败成本，以及FNO固定30／40遍的源码与实际启动状态（尚无新端点结果）。发布49.06秒、30份变化文件，前中后private身份及确切远端commit/tree均核实；研究继续推进。[发布状态](notes/github_publish_plan.json)。
+最新已验证远端提交`c705c76`，包含FNO30／40遍完整TRAIN及新CAD配对结果、图与停止延长训练的决定，以及下一幅值／空间分布诊断的设计（不包含该后续诊断运行结果）。发布62.36秒、41份变化文件，前中后private身份及确切远端commit/tree均核实；研究继续推进。[发布状态](notes/github_publish_plan.json)。
