@@ -1,0 +1,42 @@
+{
+  "status": "handoff_identity_capture_failure_reviewed",
+  "observed_UTC": "2026-10-11T01:21:11.995427+00:00",
+  "failed_handoff_identity": {
+    "path": "runs/geobc_exploration/short_screen_handoff_v2/summary.json",
+    "bytes": 1433,
+    "mtime_ns": 1791681553784853900,
+    "sha256": "8ca37ecf9fbc6b10897e738fc652dd4b938627bf33e9e857e56742b1a3047401"
+  },
+  "early_incomplete_snapshot": {
+    "pid": 2647,
+    "ppid": 654,
+    "start_ticks": 165174,
+    "argv": []
+  },
+  "actual_guard_captured_identity": {
+    "pid": 2647,
+    "ppid": 654,
+    "start_ticks": 165174,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_macro_screen_readout_guard_v2",
+      "--start",
+      "--plan",
+      "notes/geobc_macro_screen_readout_v2_plan.json"
+    ]
+  },
+  "actual_same_PID_ppid_ticks": true,
+  "actual_readout_exit_code": 0,
+  "actual_readout_completed": true,
+  "actual_readout_seconds": 157.17778158187866,
+  "actual_exact_guard_child_controller_exits": true,
+  "source_science_unchanged": true,
+  "readout_replays": 0,
+  "GT_rereads": 0,
+  "training_replays": 0,
+  "CPU_export_released": true,
+  "direct_cause": "Handoff captured once without requiring nonempty argv; exact-exit validator correctly rejected incomplete identity. Actual guard captured complete matching PID/ppid/ticks/argv before executing readout; retain both receipts without rewriting original failure.",
+  "future_fix": "New process capture must wait boundedly for PID/startticks/argv matching intended command before persistence; no edit/replay of frozen actual campaign"
+}

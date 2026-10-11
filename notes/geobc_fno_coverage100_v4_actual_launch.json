@@ -1,0 +1,45 @@
+{
+  "status": "actual_launched",
+  "exec_session_id": 99080,
+  "captured_at_utc": "2026-10-11T01:46:48.922369+00:00",
+  "plan_path": "notes/geobc_fno_coverage100_v4_plan.json",
+  "scientific_digest": "9a64fee7d8df6d5dde45ac50f51f24f4d1e7947d3ca3119cc7a926123daa6d4c",
+  "external_identity": {
+    "path": "runs/geobc_exploration/macro_FNO9_100CAD_coverage_v4/external_launch.json",
+    "bytes": 5318,
+    "mtime_ns": 1791683184940422300,
+    "sha256": "75ee467ec5a0f2800bfac17b7da17f6988d3f0b70c2eaeb14ddec435f0d7cfe2"
+  },
+  "guard_process": {
+    "pid": 9804,
+    "ppid": 9803,
+    "start_ticks": 328922,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_fno_coverage_guard_v4",
+      "--start",
+      "--plan",
+      "notes/geobc_fno_coverage100_v4_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 9805,
+    "ppid": 9804,
+    "start_ticks": 329066,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_fno_coverage_v4",
+      "--start",
+      "--plan",
+      "notes/geobc_fno_coverage100_v4_plan.json"
+    ]
+  },
+  "actual_phase": "cache_setup",
+  "step": 0,
+  "elapsed_epoch_seconds": 20.702097415924072,
+  "deadline_epoch": 1791685586.1011553
+}

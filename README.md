@@ -17,26 +17,30 @@
 
 Hash 的约0.4%来自单病例已知应力拟合，五病例约1.45%；它与跨CAD、联合位移／应力任务不同。FNO 在独立单病例4800更新可达到位移3.9%／应力11.5%，表明共享训练误差包含拟合不足。[单例诊断](results/geobc_single_case_fit/BRIEF.md) · [Hash口径](notes/geobc_hash_error_comparability.json)。
 
-## 正在推进
+## 最新短筛与下一步
 
-初筛预算已缩短：后续候选先跑 **10遍／1200更新，每方法训练上限30分钟**，在同CAD、同标签和同指标下比较精度及成本；仅有竞争力的候选进入长训练。40遍指4800次更新，并非重复40次四小时实验。
+初筛使用同TRAIN40 CAD×三载荷、seed2026、10遍／1200更新、每方法训练上限30分钟、30.5GB。完整开发60例：FNO U/S50.7%/73.2%，几何条件Hash67.5%/74.3%，原生++69.7%/94.0%；阶段1.44/1.32/26.32分钟。当前原生++拟合差且慢，降低投入优先级，不宣布架构上限。[三行初筛](results/geobc_three_short_screens/BRIEF.md)。
 
-- FNO 已完成24000：TRAIN120位移／应力为 **10.5%／24.2%**，新增训练UTC10.23分钟。新的开发读出尚未执行。
-- ++12000的TRAIN位移／应力为 **52.7%／81.9%**；同曝光FNO为17.4%／30.7%。++应力略降，但位移较自身4800的40.6%恶化，延长训练尚未追上。继续原固定24000端点。[中间物理比较](results/geobc_exposure_comparison/12000_INTERIM.md) · [真实运行状态](notes/geobc_exposure_live_milestone.json)。
-- ++位移恶化集中在小／中位移病例（74/120病例、24/40 CAD）；节点能量合并误差反而44.4%→40.7%，实际平均RMS近乎不变。正式病例等权主指标不变，目标权重的因果作用未验证。[病例分布诊断](results/geobc_exposure_comparison/MIDPOINT_DIAGNOSTIC.md)。
-- ++延长训练已主动终止，真实非零退出、闭合时钟、检查点及全部日志保留；原双24k实验不宣称完成。同12000检查点的完整开发60例读出已完成（97.15秒）：FNO **26.5%／55.5%**，++ **52.4%／84.0%**；FNO联合评分在20/20 CAD更低。[同曝光结果](results/geobc_short_screen/BRIEF.md)。独立v2入口已启动FNO／原生Transolver++／条件化连续Hash各10遍短筛（先FNO，后++、Hash），使用30.5GB上限。[计划](notes/geobc_exposure_extension_plan.json) · [宏观问题](notes/geobc_macro_conditioning_source_review.json)。
+两个低成本方法从自身1200检查点保留model、Adam、四RNG和病例顺序，继续至总4800／40遍：
 
-当前模型通过网格和查询特征接收边界条件；全局PointNet只编码几何。历史粗粒度约束／加载区点云消融未带来明确收益，下一轮避免重复该配方。 原生节点++接口也已实现，全部初始参数与R64对照一致，CPU合成接口检查1.106秒；真实CUDA和精度未验证。[原生接口准备](results/geobc_native_context_interface/BRIEF.md)。
+| 方法 | 开发位移／应力误差 | 总训练阶段分钟 |
+|---|---:|---:|
+| FNO | **27.93%／56.06%** | 4.93 |
+| 几何条件化Hash | 49.19%／64.96% | 3.43 |
 
-后续宏观方法已共用全节点训练与开发集评估入口；开发标签仅在所有候选预测完整提交后读取。CPU合成协议检查通过，真实CUDA和新精度仍未执行。[评估接口](results/geobc_macro_readout_interface/BRIEF.md)。
+FNO在20/20个开发CAD的位移、应力更低，热点13/20更低。TRAIN120分别19.5%/39.0%与39.3%/52.1%，拟合及泛化问题同时存在。新增训练分别157.94／100.51秒，两阶段总费用完整保留；开发读出81.89秒，120完整预测先验证再共享GT60一次，图已验看。[两行确认](results/geobc_two_warm_screens_v3/BRIEF.md)。
+
+原双24000计划已主动终止，不冒充完成；同12000开发FNO26.5%/55.5%、R64++52.4%/84.0%，继续盲加步数收益不足。[同12000对照](results/geobc_short_screen/BRIEF.md)。初筛自动交接因初始argv空快照失败，实际评估完整且正常退出；根核对实际guard的相同PID/ticks完整身份后CPU导出，不重跑预测/GT，原失败保留，新guard已等待完整argv。[技术处理](notes/geobc_short_screen_handoff_failure_review.json)。
+
+下一宏观问题是**扩大FNO训练CAD覆盖40→100**：候选预算内检查同4800更新及同40遍12000更新，沿用old40-only scaler、knownDEV60及reservedFINAL；独立v4科学计划和源码已冻结并通过真实上游终态放行，100CAD任务已于北京时间09:46启动，exec99080；4800及12000检查点，训练最多30分钟、整体40分钟，实际结果待完成。不进行Hash微小调参；连续全局几何/BC字段验证仍是完整GeoBC目标，原节点误差不能替代独立离节点FEM精度。
 
 ## 数据与资源
 
 前瞻协议固定 **100 TRAIN／20 known DEV／20 reserved FINAL CAD**：TRAIN为旧40加新60，每CAD三载荷；scaler沿用仅旧TRAIN40拟合的版本。FINAL数值标签未读，不用于调参。[划分](notes/geobc_prospective_cad_split_v1.json)。
 
-420病例接口已整合：TRAIN300有已有目标，DEV60／FINAL60仅输入。两个实际TRAIN加载检查通过；旧int32／新int64索引兼容故障及原预算内修复保留，未验证全部300数值正文，也未启动新100CAD训练。[接口简报](results/geobc_prospective_dataset_interface/BRIEF.md)。后续入口为 `geobc.prospective_dataset_v2.load_case`，明确选择40或100范围。
+420病例接口已整合：TRAIN300有已有目标，DEV60／FINAL60仅输入。两个实际TRAIN加载检查通过；旧int32／新int64索引兼容故障及原预算内修复保留，未验证全部300数值正文，100CAD实际载入与最大全节点梯度正在本次预算内验证。[接口简报](results/geobc_prospective_dataset_interface/BRIEF.md)。后续入口为 `geobc.prospective_dataset_v2.load_case`，明确选择40或100范围。
 
-用户显存预算 **30.5 GB**（30,500,000,000 bytes）。100CAD R64全缓存加当前++工作空间估计28.64GB，后续优先GPU常驻；必须以实际全节点allocated／reserved各自峰值确认。[资源预算](notes/geobc_user_resource_budget.json) · [缓存估算](notes/geobc_prospective_cache_memory_plan.json)。当前运行实验保留自身较小的原24GiB上限。 共用TRAIN缓存接口已通过元数据与合成CPU检查（1.074秒），100CAD原生方法仅需约7.02GiB缓存；真实GPU载入仍未执行。[缓存接口](results/geobc_train_cache_interface/BRIEF.md)。
+用户显存预算 **30.5 GB**（30,500,000,000 bytes）。100CAD R64全缓存加当前++工作空间估计28.64GB，后续优先GPU常驻；必须以实际全节点allocated／reserved各自峰值确认。[资源预算](notes/geobc_user_resource_budget.json) · [缓存估算](notes/geobc_prospective_cache_memory_plan.json)。历史实验保留其原24GiB上限；当前v4采用用户30.5GB预算。 共用TRAIN缓存接口已通过元数据与合成CPU检查（1.074秒），100CAD原生方法仅需约7.02GiB缓存；真实GPU载入仍未执行。[缓存接口](results/geobc_train_cache_interface/BRIEF.md)。
 
 ## 复现与证据
 
@@ -60,6 +64,6 @@ python tools/plot_suite_fields.py
 
 研究阶段必须使用各自冻结计划和真实进程交接，不能因旧status、锁文件或SOURCE-ready重复启动GPU任务。30分钟监视器持续推进；活训练期间只作轻量检查。
 
-[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `2096c25` 包含同100次曝光的TRAIN120中间物理比较及++位移恶化的负结果；原双24000阶段现已主动终止；同12000开发读出已完成，10遍宏观短筛已启动；最新阶段结果正在整理发布。宏观接口与CAD配对证据在先前`1f8c127`保留。发布29.31秒，精确commit和private状态通过远端核验。[发布计划](notes/github_publish_plan.json)。
+[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `7d8d556` 包含同12000更新完整开发60例比较、原24k主动终止和三候选10遍短筛代码／计划。新10遍全部终态、warm40确认及100CAD新阶段现已在本地整理，待本次具体快照发布；不将本地文件冒充远端。上一发布50.63秒，精确commit和private状态均已核验。[发布计划](notes/github_publish_plan.json)。
 
 更早逐阶段运行叙述存于[README历史快照](results/README_STATE_HISTORY_20261011.md)，状态以当前真实报告和运行收据为准。

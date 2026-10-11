@@ -1,0 +1,34 @@
+{
+  "observed_UTC": "2026-10-11T00:56:30.151185+00:00",
+  "exec_session_id": 65648,
+  "controller_process": {
+    "pid": 654,
+    "ppid": 653,
+    "start_ticks": 51104,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.await_geobc_short_screen_handoff",
+      "--start"
+    ]
+  },
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "upstream_controller": {
+    "pid": 271,
+    "ppid": 270,
+    "start_ticks": 3856,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_three_short_screens",
+      "--start"
+    ]
+  },
+  "kernel_pidfd_upstream_count": 1,
+  "phase": "wait_exact_controller_exit",
+  "actual_readout_launches": 0,
+  "actual_CPU_exports": 0,
+  "source_sha256": "fa08d15e62e9732717a231b209d9dd3264d5b31f7018c6875baa07daa554972f"
+}
