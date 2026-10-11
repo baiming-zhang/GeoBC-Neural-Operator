@@ -1,0 +1,46 @@
+{
+  "observed_at_utc": "2026-10-11T19:37:56.585311+00:00",
+  "SCI": "9526777a7f278e7b84cf6835ff5f3a1a590e540fe954b3fa9ec05ca87e90b7d5",
+  "execution": {
+    "run_process": {
+      "pid": 47320,
+      "ppid": 47319,
+      "start_ticks": 6188822,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.evaluate_geobc_transolver_macro100_v67",
+        "--start",
+        "--plan",
+        "notes/geobc_transolver_macro100_readout_v67_plan.json"
+      ]
+    },
+    "guard": {
+      "guard_process": {
+        "pid": 47319,
+        "ppid": 47316,
+        "start_ticks": 6188244,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.run_geobc_transolver_macro100_readout_guard_v67",
+          "--start",
+          "--plan",
+          "notes/geobc_transolver_macro100_readout_v67_plan.json"
+        ]
+      },
+      "scientific_digest": "9526777a7f278e7b84cf6835ff5f3a1a590e540fe954b3fa9ec05ca87e90b7d5",
+      "entry_epoch": 1791747446.4329824,
+      "entry_monotonic": 61882.473713922,
+      "deadline_epoch": 1791748046.4329824,
+      "deadline_monotonic": 62482.473713922,
+      "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f"
+    },
+    "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+    "scientific_digest": "9526777a7f278e7b84cf6835ff5f3a1a590e540fe954b3fa9ec05ca87e90b7d5"
+  },
+  "exec_session": 34578,
+  "actual_child_and_guard_live": true
+}

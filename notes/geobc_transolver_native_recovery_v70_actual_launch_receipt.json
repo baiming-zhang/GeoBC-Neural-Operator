@@ -1,0 +1,45 @@
+{
+  "observed_at_utc": "2026-10-11T19:59:18.023706+00:00",
+  "SCI": "f021404bfc62e549ee894ed672fed3c14df7d7803cb8a29a8307ad068a4cfc96",
+  "exec_session": 78511,
+  "live_child": {
+    "pid": 47640,
+    "ppid": 47639,
+    "start_ticks": 6305606,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_transolver_native_recovery_v70",
+      "--start",
+      "--plan",
+      "notes/geobc_transolver_native_recovery_v70_plan.json"
+    ]
+  },
+  "live_guard": {
+    "pid": 47639,
+    "ppid": 47635,
+    "start_ticks": 6305330,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_transolver_native_recovery_guard_v70",
+      "--start",
+      "--plan",
+      "notes/geobc_transolver_native_recovery_v70_plan.json"
+    ]
+  },
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "original_deadline_epoch": 1791749795.4085007,
+  "original_deadline_monotonic": 64136.856228953,
+  "native_elapsed_seconds": 19.421064853668213,
+  "optimizer_step_completions": 50,
+  "source_pins_unchanged": true,
+  "current_status_identity": {
+    "path": "runs/geobc_exploration/Transolver_native_continuous_shared3_v70_recovery/status.json",
+    "bytes": 18180,
+    "mtime_ns": 1791748740693953000
+  },
+  "prior_failure_preserved": true
+}

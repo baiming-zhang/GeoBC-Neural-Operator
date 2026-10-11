@@ -20,7 +20,7 @@ Hash追加5遍后，训练集应力47.28%→39.32%，新CAD54.45%→50.85%。新
 
 **原版Transolver＋相同连续解码器已完成共享三场对照。** 每场1000次曝光，TS BF16位移9.33%／应力1.54%／热点2.46%，FNO条件Hash为4.85%／0.76%／0.43%；TS学习区间792.3秒，约为FNO188.6秒的4.20倍。原FP32因900秒学习预算结束于2285次更新，完整909.41秒的失败成本和检查点保留，没有最终1000端点。[TS真实对照](results/geobc_transolver_bf16_v65/BRIEF.md) · [FP32成本](results/geobc_transolver_decoder_v64_budget/BRIEF.md)。
 
-**现在实际运行原版TS同方案的fresh100CAD×三载荷短五遍比较。** 固定1500次全原节点更新，复用同划分、同scaler、同物理目标的既有FNO／Hash五遍参考。当前缓存准备阶段，尚无大样本结果；三场预训练权重不移植。依据后续全300训练与knownDEV60结果决定求解器方向，不自动40遍／24000步、不扫Hash小超参。
+**原版TS同方案的fresh100CAD×三载荷短五遍及knownDEV60已完成。** 全TRAIN位移62.85%／应力71.12%，knownDEV位移61.14%／应力72.72%；完整训练613.46秒、验证82.59秒，推进门槛未通过。当前FNO20仍领先，不自动加长TS训练；下一步先资格验证原网格节点上下文＋相同连续解码器，尚非新精度结果。旧去空体素TS与Native++负结果保留，不预设native表示能解决误差。[最新TS比较](results/geobc_transolver_macro100_readout_v67/BRIEF.md)。
 
 ## 数据、指标与复现范围
 
@@ -34,6 +34,6 @@ Hash追加5遍后，训练集应力47.28%→39.32%，新CAD54.45%→50.85%。新
 
 WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`，RTX5090；显存30.5GB SI，公共非阻塞GPU锁。用 `python -m tools.<模块名>` 按冻结计划与真实终态交接运行，不因旧status重复启动。[依赖](requirements-lock-wsl.txt) · [TCNN安装](notes/install_tcnn.md)。
 
-新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复354个冻结源文件字节，未知内容拒绝覆盖。短实验临时使用5分钟监视，后续长阶段恢复半小时监视。代码、配置、标量结果、图和检查点索引发布到[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)，原数据及检查点体积文件留本地。
+新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复冻结源文件字节，未知内容拒绝覆盖。短实验临时使用5分钟监视，后续长阶段恢复半小时监视。代码、配置、标量结果、图和检查点索引发布到[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)，原数据及检查点体积文件留本地。
 
-最新已验证远端提交`1bc1f5c`，包含本轮Hash100从5到10遍的训练与新CAD验证、两图、源码和真实终态，以及Transolver同连续解码器提案（尚未实施）。发布67.52秒、46份变化文件，前中后private身份和确切远端commit/tree均核实；研究继续推进。[发布状态](notes/github_publish_plan.json)。
+最新已验证远端提交`155126f`，包含真实原版TS三场BF16对照、FP32预算negative及成本、图表和源码，以及100CAD短五遍的源码与实际启动状态（大样本尚未完成）。发布72.45秒、53份变化文件，前中后private身份和确切远端commit/tree均核实；研究继续推进。[发布状态](notes/github_publish_plan.json)。
