@@ -10,7 +10,7 @@
   "description": "Original DeepJEB reproduction and broad geometry/boundary-conditioned solver selection, with held-out CAD physical metrics and accuracy/cost comparisons.",
   "authorization": "User explicitly requested creating a private GitHub repository named from this chat title with hyphens and pushing organized code and results after all experiments finish.",
   "publication_gate": "All 30 slides suite experiments remain completed. GeoBC autonomous exploration snapshots are published with explicit stage and ongoing/completed status; no claim that exploratory work has finished. Repository remains private.",
-  "commit_message": "Compare FNO shared fitting and validated 10-to-20 exposure gains",
+  "commit_message": "Diagnose hard-field sharing with matched FNO independent fitting",
   "research_authorization": "2026-10-09 user explicitly authorized autonomous sustained GeoBC exploration, evidence-driven next stages and a 30-minute watchdog; continue updating this project repository.",
   "results_manifest": "results/manifest.json",
   "results_export_command": "python tools/export_repo_results.py",
@@ -1234,7 +1234,20 @@
     "notes/github_cd6ccf6_publication_root_before_fno20_20261012.json",
     "notes/github_gitdata_cd6ccf6_actual_publication_root_review.json",
     "notes/github_gitdata_cd6ccf6_verified_receipt.json",
-    "notes/github_gitdata_publication_cd6ccf6dad447188ff864f07af39714e9cbb8c3b_matched_fno_stress_result_20261011_receipt.json"
+    "notes/github_gitdata_publication_cd6ccf6dad447188ff864f07af39714e9cbb8c3b_matched_fno_stress_result_20261011_receipt.json",
+    "notes/geobc_shared_fit_v58_CPU_metadata_verification.json",
+    "notes/geobc_shared_fit_v58_actual_launch_receipt.json",
+    "notes/geobc_shared_fit_v58_actual_terminal_receipt.json",
+    "notes/geobc_shared_fit_v58_exporter_root_review.json",
+    "notes/geobc_shared_fit_v58_plan.json",
+    "notes/geobc_shared_fit_v58_root_review.json",
+    "notes/geobc_shared_fit_v58_source_review.json",
+    "notes/geobc_single_field_learning_v59_proposal.json",
+    "notes/github_26f7893_canonical_before_shared_fit58.json",
+    "notes/github_26f7893_root_before_shared_fit58.json",
+    "notes/github_gitdata_26f7893_actual_publication_root_review.json",
+    "notes/github_gitdata_26f7893_verified_receipt.json",
+    "notes/github_gitdata_publication_26f789371734251fde155d0ad2e6b8a79ea7c633_fno_shared_fit20_result_20261012_receipt.json"
   ],
   "next_snapshot_wait_reason": "Wait for meaningful real training/DEV terminal or complete new pipeline; no metadata-only repush",
   "current_stage_publication_gate": "Meaningful PP negative report completed and plot visually verified; all source authors frozen; original30 completed manifest maintained",
@@ -1254,23 +1267,24 @@
   "current_pending_publication_receipt": "notes/github_gitdata_publication_ee8c466bd3a5703211a68881a7e9b396d42b9417_gino_physical5_actual_fulln_launch_20261011_receipt.json",
   "ongoing_stage": "v48/v49 completed andnegative GBC gates; originalTS5to10 convergence designonly",
   "latest_verified_publication": {
-    "status": "actual_private_publication_verified",
-    "actual_exec_session": 90813,
-    "actual_exec_exit_code": 0,
-    "commit": "ee8c466bd3a5703211a68881a7e9b396d42b9417",
-    "base_commit": "9e3214d9ede539304e4a4f6bd914c729f5756a32",
-    "tree": "f2beb0bcd5aecd9e9515334521fc2323e334044e",
-    "repository_url": "https://github.com/baiming-zhang/GeoBC-Neural-Operator",
-    "private": true,
+    "commit": "26f789371734251fde155d0ad2e6b8a79ea7c633",
+    "tree": "9c6366e9ffe44d25e3384af99274ad041508a255",
+    "base_commit": "cd6ccf6dad447188ff864f07af39714e9cbb8c3b",
+    "remote_main": "26f789371734251fde155d0ad2e6b8a79ea7c633",
+    "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
-    "actual_publication_seconds": 63.2236429,
-    "verified_at_utc": "2026-10-11T14:06:59.662171+00:00",
-    "permanent_receipt": "notes/github_gitdata_publication_ee8c466bd3a5703211a68881a7e9b396d42b9417_gino_physical5_actual_fulln_launch_20261011_receipt.json",
-    "receipt_sha256": "c78e422811aaf69250253eb76dd7b9e10e0d05e00b14a7017d83cdb9a084d4d8",
-    "changed_files_verified": 48,
-    "scope": "Full current GINO52 source and bounded recovery plans, two real zero-update failures retained, true325387-node physical qualification and active training; no final1500 or newDEV precision claim",
-    "credentials_printed_or_saved": false
+    "private": true,
+    "verified_at_utc": "2026-10-11T16:41:44.1896625Z",
+    "actual_exec_exit_code": 0,
+    "actual_exec_session": 70640,
+    "elapsed_seconds": 85.9979845,
+    "immutable_receipt": {
+      "path": "notes/github_gitdata_publication_26f789371734251fde155d0ad2e6b8a79ea7c633_fno_shared_fit20_result_20261012_receipt.json",
+      "bytes": 52183,
+      "mtime_ns": 1791736904191186500,
+      "sha256": "22aeeca43a713b7c4696660bc30789fc6a2d5b3fd033a5c7390fca229d3a15d8"
+    }
   },
   "legacy_index_correction": {
     "observed_UTC": "2026-10-10T19:28:14.260839+00:00",
@@ -1304,5 +1318,5 @@
     "credentials_printed_or_saved": false
   },
   "stage_scope": "Actual full60 GINO1320 diagnostic, 1hTRAIN/149sreadout cost, signed physical metrics, immutable scalar provenance, FNO priority and proposed(not executed) matched stress specialization",
-  "latest_local_research_status": "v55 negative completed; v56 TRAIN20 and v57 knownDEV60 completed; private snapshot pending verification"
+  "latest_local_research_status": "v58 completed matched selected9 fitting; v59 three-field learning proposal only; private snapshot pending"
 }

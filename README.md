@@ -4,6 +4,8 @@
 
 ## 当前结论
 
+高误差TRAIN3个CAD×三载荷的同曝光诊断已完成：原共享模型应力46.43%，仅9场共享拟合27.92%，9个独立模型25.11%。整轮131.66秒；独立与共享仅差2.81个百分点，且都未接近1%，不能把高误差主要归因多场共享。下一步是固定3个难场的有界单场学习曲线，当前仅提案。[三行诊断](results/geobc_shared_fit_v58/BRIEF.md)。
+
 **最新：同一FNO从10遍延续到20遍，新CAD位移／应力20.65%／48.83%，热点36.84%；目前验证结果优先保留这一FNO轨迹。** TRAIN位移／应力15.75%／35.74%，共享训练拟合仍是瓶颈。新增训练176.68秒、完整训练阶段347.95秒，knownDEV全60例验证71.09秒；没有自动40遍或24000步。[最新两行对比](results/geobc_fno20_readout_v57/BRIEF.md)。
 
 同父多病例梯度合并已实际完成：TRAIN应力46.42%反而高于原10遍44.25%，停止该分支；此前应力专门化仅改善0.98个百分点，也已停止。两者均未读取DEV。[病例合并](results/geobc_fno_case_batch_v55/BRIEF.md) · [训练趋势](results/geobc_fno_learning20_v56/BRIEF.md)。以下为此前筛选结果，不与新20遍视作等曝光架构比较。
@@ -54,6 +56,6 @@ GINO固定knownDEV60验证已完成：预算1320步（4.4遍）位移／应力30
 
 WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`，RTX5090；显存上限30.5GB（30,500,000,000 bytes），公共非阻塞GPU锁。工具使用 `python -m tools.<模块名>`，按对应冻结计划及真实终态交接运行，不因旧status／SOURCE-ready重复启动。[依赖](requirements-lock-wsl.txt) · [TCNN安装](notes/install_tcnn.md)。
 
-新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复291个冻结依赖的LF／CRLF字节，未知内容拒绝写入。半小时监视器继续推进；健康后台任务只轻量检查。
+新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复312个冻结依赖的LF／CRLF字节，未知内容拒绝写入。半小时监视器继续推进；健康后台任务只轻量检查。
 
-[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`cd6ccf6`，包含同父FNO应力专门化的实际TRAIN300结果、完整资格／终态／停止决定及slides口径核对；多病例梯度合并仍为下一阶段提案。发布45.99秒，31份文件、确切远端commit／tree及前中后私人身份均核实。[发布状态](notes/github_publish_plan.json)。
+[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`26f7893`，包含病例梯度合并负结果、FNO20训练曲线和全60例knownDEV验证；发布86.00秒、64份变化文件，前中后private身份与确切远端commit／tree均核实。研究仍在推进。[发布状态](notes/github_publish_plan.json)。
