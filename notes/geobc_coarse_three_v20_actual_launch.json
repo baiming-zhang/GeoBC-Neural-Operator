@@ -1,0 +1,44 @@
+{
+  "status": "actual_live_launch_verified",
+  "SCI": "542f0f1904b11d4d134ac491b9db0ba64efc43f2318d63fe317aca3644079d84",
+  "exec_session": 71432,
+  "verified_UTC": "2026-10-11T06:58:30.123242+00:00",
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "processes": {
+    "child_process": {
+      "pid": 20207,
+      "ppid": 20206,
+      "start_ticks": 2043326,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_coarse_three_v20",
+        "--start",
+        "--plan",
+        "notes/geobc_coarse_three100_physical5_v20_plan.json"
+      ]
+    },
+    "guard_process": {
+      "pid": 20206,
+      "ppid": 20205,
+      "start_ticks": 2043281,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_coarse_three_guard_v20",
+        "--start",
+        "--plan",
+        "notes/geobc_coarse_three100_physical5_v20_plan.json"
+      ]
+    }
+  },
+  "execution": {
+    "path": "runs/geobc_exploration/coarse_three100_physical5_v20/execution.json",
+    "bytes": 1146,
+    "mtime_ns": 1791701886366965700,
+    "sha256": "c816dc709f18d582a3056b0bcf36db287dbdc1394e5f30528a46c7b399dbd992"
+  },
+  "external_deadline_epoch": 1791707288.9802864
+}

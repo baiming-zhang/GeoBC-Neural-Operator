@@ -1,0 +1,141 @@
+{
+  "status": "actual_completed_knownDEV180_prediction_barrier_GT60once_closed_exact_exit",
+  "SCI": "a39201690003217c44eb01aa0e27a9309fef59ca459b2117f9249cbef9d8fed9",
+  "exec_session": 47183,
+  "execution_exit_code": 0,
+  "verified_UTC": "2026-10-11T07:19:02.968740+00:00",
+  "terminal": {
+    "summary": {
+      "path": "runs/geobc_exploration/coarse_three100_knownDEV_physical5_v21/summary.json",
+      "bytes": 444219,
+      "mtime_ns": 1791703049502676900,
+      "sha256": "bb742efbbc403039a8c95e1b266c05fff4f09ea429b3ce62f28e8b9fcb58c589"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/coarse_three100_knownDEV_physical5_v21/status.json",
+      "bytes": 444219,
+      "mtime_ns": 1791703049510693900,
+      "sha256": "bb742efbbc403039a8c95e1b266c05fff4f09ea429b3ce62f28e8b9fcb58c589"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/coarse_three100_knownDEV_physical5_v21/external_terminal.json",
+      "bytes": 12500,
+      "mtime_ns": 1791703050305209800,
+      "sha256": "a485eb217176380efeec94c8de6e1f2603cf1031af347cec35f8ab917ef299d9"
+    },
+    "barrier": {
+      "path": "runs/geobc_exploration/coarse_three100_knownDEV_physical5_v21/prediction_barrier.json",
+      "bytes": 58710,
+      "mtime_ns": 1791703022850832600,
+      "sha256": "46abc52cd74d6b0bec66da71e493775ba7d05c8c8eb8ed77b52c3f714004e2c8"
+    }
+  },
+  "processes": {
+    "child_process": {
+      "pid": 20843,
+      "ppid": 20842,
+      "start_ticks": 2134941,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.evaluate_geobc_coarse_three_v21",
+        "--start",
+        "--plan",
+        "notes/geobc_coarse_three_readout_v21_plan.json"
+      ]
+    },
+    "guard_process": {
+      "pid": 20842,
+      "ppid": 20841,
+      "start_ticks": 2134837,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_coarse_three_readout_guard_v21",
+        "--start",
+        "--plan",
+        "notes/geobc_coarse_three_readout_v21_plan.json"
+      ]
+    }
+  },
+  "whole_epoch_seconds": 166.9777638912201,
+  "whole_monotonic_seconds": 152.1994569749986,
+  "metrics": {
+    "R16_TRANSOLVER_1500": {
+      "case_mean_u_relative_l2": 0.5205641656006398,
+      "case_mean_stress_relative_l2": 0.931953714097152,
+      "case_mean_stress_hotspot_relative_l2": 0.9336385716612512,
+      "selection_score": 0.7262589398488959
+    },
+    "R16_TRANSOLVER_PP_1500": {
+      "case_mean_u_relative_l2": 0.5525673491381817,
+      "case_mean_stress_relative_l2": 0.9422591024338367,
+      "case_mean_stress_hotspot_relative_l2": 0.9522411027074958,
+      "selection_score": 0.7474132257860092
+    },
+    "R16_TS3_1500": {
+      "case_mean_u_relative_l2": 0.52814384651488,
+      "case_mean_stress_relative_l2": 0.9343445263256768,
+      "case_mean_stress_hotspot_relative_l2": 0.9373934515331073,
+      "selection_score": 0.7312441864202783
+    },
+    "FNO100_PHYSICAL_1500": {
+      "case_mean_u_relative_l2": 0.316085929158367,
+      "case_mean_stress_relative_l2": 0.5609670954591834,
+      "case_mean_stress_hotspot_relative_l2": 0.4507680822518052,
+      "selection_score": 0.4385265123087752
+    }
+  },
+  "eligible_best": [
+    "FNO100_PHYSICAL_1500"
+  ],
+  "DEV_gates": {
+    "R16_TRANSOLVER_1500": {
+      "passed": false,
+      "U_difference": 0.2044782364422728,
+      "S_difference": 0.37098661863796856,
+      "primary_difference": 0.2877324275401207,
+      "direction": "compact Transolver5 minus FNOphysical5; representation/capacity differ",
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false
+    },
+    "R16_TRANSOLVER_PP_1500": {
+      "passed": false,
+      "U_difference": 0.23648141997981476,
+      "S_difference": 0.38129200697465326,
+      "primary_difference": 0.308886713477234,
+      "direction": "compact Transolver5 minus FNOphysical5; representation/capacity differ",
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false
+    },
+    "R16_TS3_1500": {
+      "passed": false,
+      "U_difference": 0.21205791735651303,
+      "S_difference": 0.37337743086649333,
+      "primary_difference": 0.2927176741115032,
+      "direction": "compact Transolver5 minus FNOphysical5; representation/capacity differ",
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false
+    }
+  },
+  "FINAL_reads": 0,
+  "raw_GT_reads": 0,
+  "scaler_fits": 0
+}

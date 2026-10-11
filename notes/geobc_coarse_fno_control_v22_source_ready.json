@@ -1,0 +1,26 @@
+{
+  "status": "SOURCE_frozen_conditional_prototype_not_training",
+  "passed": true,
+  "whole_source_reviewed": true,
+  "actual_GPU_training_released": false,
+  "reviewer": "root",
+  "source_pins": {
+    "geobc/coarse_fno_control_v22.py": "7b42cc62e563c08d57f87180e0c7cc957fde5dadce8b91735015a0b9a133a85c",
+    "tools/check_coarse_fno_control_v22_CPU.py": "fa2d5ca3ce3056a91eec1ec71905c60683801427c86b73984a634e1340543faa"
+  },
+  "CPU_fixture": {
+    "path": "notes/geobc_coarse_fno_control_v22_CPU_fixture.json",
+    "bytes": 2651,
+    "mtime_ns": 1791702774152489200,
+    "sha256": "755986bd3ce68f22ac2693717d7fa3b8f413d789ee9d4f24b1ea545641e66789"
+  },
+  "capacity_count": 4244244,
+  "capacity_ratio_vs_compactPP": 0.9383136263427239,
+  "scope": [
+    "same pooledR16 XYZ-first61 input as compactTS; FNO16 width16/modes8/fourblocks fixed,not sweep",
+    "unchanged seeded encoder/head and compact native25 block-center trilinear query;allN physical helper reused",
+    "synthetic CPU37 allgroups/leaf gradients and exact seeded shared initialweights passed;not realGPU or100casequal",
+    "single profile-only correction honestly attached to original fixture receipt;first fixture failure channels preserved",
+    "actual release only after threeTS knownDEV result changes priority;new independent guard/plan/resourcegate required"
+  ]
+}

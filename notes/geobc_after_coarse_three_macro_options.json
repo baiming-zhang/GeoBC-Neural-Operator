@@ -1,0 +1,35 @@
+{
+  "status": "conditional_options_before_knownDEV_not_released",
+  "created_UTC": "2026-10-11T07:06:46.871289+00:00",
+  "actual_GPU_execution": 0,
+  "GT_reads": 0,
+  "current_question": "Can compact whole-geometry/BC token representation make any official Transolver competitive at practical short exposure?",
+  "current_fixed_evidence": "Original R16 TRAIN5 stress93.7% alone is not enough to rank new geometry; PP and3 pending",
+  "decision_after": "All three same5 knownDEV60 readout, loss curves,parameter/cost and pairedCAD20 complete",
+  "options": [
+    {
+      "name": "Extend competitive compactTS5to10",
+      "condition": "A TS passes preset same5 joint3pp/nofield2pp gate and training loss still improves",
+      "purpose": "Check extra balanced exposure versus its own5 endpoint; FNO10 only exposure-aware reference",
+      "replay": "own model/Adam/fourRNG/cursor,not fresh restart"
+    },
+    {
+      "name": "SharedR16_FNO representation control",
+      "condition": "All compactTS remain clearly worse or no meaningful stress fitting at5",
+      "purpose": "Distinguish sharedR16 pooling/decoder information loss from official TS operator or its training recipe",
+      "preserved": "same R64 inputs->frozenR16 pooling/stencil,shared seeded encoder/head,fullnodes,physical loss,100CAD300cases/5passes/oldTRAIN40scaler",
+      "changed": "only global operator to FNO compatible with16grid,explicit modes/width/parameter budget; own SOURCE/design/actual qualification before release",
+      "interpretation": "Good FNO16 while allTS16 poor points toward operator/recipe; allpoor points toward compact representation,not proof of specific feature cause",
+      "budget": "short5,one practical resource gate; no40default/noHash microtuning"
+    },
+    {
+      "name": "Condition magnitude/BC localization diagnostic",
+      "condition": "Representation control remains poor or measured logits/gradients suggest scale mismatch",
+      "purpose": "Small frozen target-free input statistics/BC information preservation check before changing normalization;no invented feature semantics",
+      "prohibited": "No newGT/scalerfit/FINAL tuning or broad hyperparameter sweep"
+    }
+  ],
+  "unreleased": true,
+  "architecture_ceiling_claim": false,
+  "final_solver_selected": false
+}

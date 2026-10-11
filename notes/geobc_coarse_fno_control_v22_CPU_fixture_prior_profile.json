@@ -1,0 +1,72 @@
+{
+  "status": "actual_synthetic_CPU_interface_passed_not_GPU",
+  "source": {
+    "path": "geobc/coarse_fno_control_v22.py",
+    "bytes": 2377,
+    "mtime_ns": 1791702719323705500,
+    "sha256": "6672349f81ed41ef3f3a248b42eb5a3da7eb877ec16951e721ede3c73179162c"
+  },
+  "profile": {
+    "method": "FNO16_control",
+    "family": "R16_FNO16_control",
+    "parameter_count": 4244244,
+    "counts": {
+      "encoder": 16736,
+      "head": 26884,
+      "operator": 4200624
+    },
+    "architecture": {
+      "in_channels": 61,
+      "out_channels": 16,
+      "width": 16,
+      "modes": 8,
+      "layers": 4,
+      "head_width": 128,
+      "padding": 0,
+      "checkpoint_blocks": true,
+      "layout": "B,C,X,Y,Z",
+      "xyz_channels": false,
+      "fft_norm": "backward",
+      "sources": {
+        "paper": "https://arxiv.org/abs/2010.08895v3",
+        "code_commit": "3b6bc307c63c64057d0496753bf1af5f44ac5108",
+        "spectral_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/basics.py",
+        "pointwise_code": "https://github.com/neuraloperator/physics_informed/blob/3b6bc307c63c64057d0496753bf1af5f44ac5108/models/fourier3d.py"
+      },
+      "unknown_reference_details": [
+        "18 input channel definitions",
+        "padding",
+        "projection width",
+        "optimizer/scaling schedule"
+      ]
+    },
+    "global_cells": 4096,
+    "grid_resolution": 16,
+    "input_policy": "exact same pooled R16/XYZ-first61 tensor as compact TS before token flattening",
+    "query_policy": "unchanged compact TS native25/head/block-center trilinear query",
+    "precision": "highest FP32; actual experiment must disable TF32",
+    "exact_capacity_matched": false,
+    "capacity_control": "fixed width16/modes8; compare measured parameter ratio to compactPP, no tuning sweep",
+    "actual_training_executed": false,
+    "independent_offnode_FEM_accuracy_measured": false
+  },
+  "actual_shared_encoder_head_equal_seeded_FNO": true,
+  "synthetic_nodes": 37,
+  "groups_L2": {
+    "encoder": 0.02395200333874725,
+    "head": 0.08859158006834464,
+    "operator": 0.0011526994309630485
+  },
+  "leaf_gradients": {
+    "geometry_context_L2": 0.0016996373888105154,
+    "operator_latent_L2": 0.0024267027620226145,
+    "original_nodes_used": 37,
+    "node_sampling": false
+  },
+  "synthetic_objective": 1.000454729962091,
+  "real_numeric_GT_reads": 0,
+  "GPU_calls": 0,
+  "optimizer_updates": 0,
+  "actual_training_execution": 0,
+  "CPU_seconds": 1.9787449229988852
+}
