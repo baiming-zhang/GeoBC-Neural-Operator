@@ -1,0 +1,78 @@
+{
+  "status": "actual_started_live",
+  "real_exec_session": 76845,
+  "observed_at_utc": "2026-10-11T21:31:58.729074+00:00",
+  "SCI": "663bca5e3ae8bcc4896f3a6ff5a17142533b3189dded6302acf139a6fda434fb",
+  "execution": {
+    "run_process": {
+      "pid": 48818,
+      "ppid": 48817,
+      "start_ticks": 6817630,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_decoder_packages_v77",
+        "--start",
+        "--plan",
+        "notes/geobc_decoder_packages_v77_plan.json"
+      ]
+    },
+    "guard": {
+      "guard_process": {
+        "pid": 48817,
+        "ppid": 48814,
+        "start_ticks": 6817472,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.run_geobc_decoder_packages_guard_v77",
+          "--start",
+          "--plan",
+          "notes/geobc_decoder_packages_v77_plan.json"
+        ]
+      },
+      "scientific_digest": "663bca5e3ae8bcc4896f3a6ff5a17142533b3189dded6302acf139a6fda434fb",
+      "entry_epoch": 1791754309.248041,
+      "entry_monotonic": 68174.753285425,
+      "deadline_epoch": 1791757609.248041,
+      "deadline_monotonic": 71474.753285425,
+      "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f"
+    },
+    "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+    "scientific_digest": "663bca5e3ae8bcc4896f3a6ff5a17142533b3189dded6302acf139a6fda434fb"
+  },
+  "live_identities": {
+    "child_process": {
+      "pid": 48818,
+      "ppid": 48817,
+      "start_ticks": 6817630,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_decoder_packages_v77",
+        "--start",
+        "--plan",
+        "notes/geobc_decoder_packages_v77_plan.json"
+      ]
+    },
+    "guard_process": {
+      "pid": 48817,
+      "ppid": 48814,
+      "start_ticks": 6817472,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_decoder_packages_guard_v77",
+        "--start",
+        "--plan",
+        "notes/geobc_decoder_packages_v77_plan.json"
+      ]
+    }
+  },
+  "phase": "training",
+  "elapsed_epoch_seconds": 7.432184219360352
+}

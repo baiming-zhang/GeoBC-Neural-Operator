@@ -12982,9 +12982,24 @@
     "PNG_visually_verified": true
   },
   "decoder_packages_v77": {
-    "status": "design_only_runtime0",
+    "status": "completed",
     "SCI": "663bca5e3ae8bcc4896f3a6ff5a17142533b3189dded6302acf139a6fda434fb",
     "design": "notes/geobc_decoder_packages_v77_design.json",
-    "next_action": "Implement frozen one-shot 3package decoder fit screen, root review once, then actual TRAIN9. No automatic100 or Hash tweaks."
+    "next_action": "Implement frozen one-shot 3package decoder fit screen, root review once, then actual TRAIN9. No automatic100 or Hash tweaks.",
+    "plan": "notes/geobc_decoder_packages_v77_plan.json",
+    "root_review": "notes/geobc_decoder_packages_v77_root_review.json",
+    "output": "runs/geobc_exploration/FNO_decoder_packages_TRAIN9_v77",
+    "real_exec_session": 76845,
+    "launch_receipt": "notes/geobc_decoder_packages_v77_actual_launch_receipt.json",
+    "actual_stage_seconds": 194.34514021873474,
+    "decision": "notes/geobc_decoder_packages_v77_actual_decision.json",
+    "report": "results/geobc_decoder_packages_v77/BRIEF.md",
+    "PNG_visually_verified": true
+  },
+  "matched20_solver_v78": {
+    "status": "design_only_SOURCE_arrays_GPU0",
+    "design": "notes/geobc_matched20_solver_v78_design.json",
+    "SCI": "a54c62bd406a2c17c3b13da0dc1c218f941cbc28358b26e3c6b6c44d7a20b1a9",
+    "next_action": "Implement guarded continuation with genuine own-checkpoint typed model/Adam/fourRNG/cursor prefix checks and real largest-case gradients; root source review once; preserve all parent costs. Then fixed20 endpoint DEV regardless TRAINgate."
   }
 }
