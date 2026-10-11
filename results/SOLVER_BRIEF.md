@@ -15,3 +15,5 @@
 Slides约0.1%主要是单／双已知场拟合；共享50场平均15.11%。本地共享三场条件Hash0.76%也验证了小规模拟合能力，不能替代新CAD结果。
 
 [最新配对与成本](geobc_fno40_pair_readout_v73/BRIEF.md) · [TRAIN趋势](geobc_fno_learning40_v72/BRIEF.md) · [TS比較](geobc_transolver_macro100_readout_v67/BRIEF.md)。原版DeepJEB、signed U(mm)/S(MPa)、全原节点、CAD隔离、scaler仅TRAIN；knownDEV已迭代／单seed／来源可用条件选择，不是独立盲测。旧H5-only撤回，原配置缺失，不声称精确数值复现。
+
+局部几何短对照已完成：同3CAD×三载荷、相同参数和初值，局部聚合只降低应力0.98个百分点，却使位移增加2.53个百分点，未通过推进门；完整2分13秒。停止扩大该方案。下一步比较普通、固定Fourier坐标及既有TCNN三种解码器包，先做同九场短拟合，再决定是否值得新CAD验证。 [短对照](geobc_local_query_geometry_v76/BRIEF.md)。

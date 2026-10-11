@@ -34,4 +34,6 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复冻结源文件字节，未知内容拒绝覆盖。短实验临时使用5分钟监视，后续长阶段恢复半小时监视。代码、配置、标量结果、图和检查点索引发布到[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)，原数据及检查点体积文件留本地。
 
-最新已验证远端提交`c705c76`，包含FNO30／40遍完整TRAIN及新CAD配对结果、图与停止延长训练的决定，以及下一幅值／空间分布诊断的设计（不包含该后续诊断运行结果）。发布62.36秒、41份变化文件，前中后private身份及确切远端commit/tree均核实；研究继续推进。[发布状态](notes/github_publish_plan.json)。
+最新已验证远端提交`1469813`，包含FNO30／40遍结果及幅值／空间分布诊断的实际结果、图与下一局部几何查询对照的设计（尚未实施该对照）。发布41.17秒、25份变化文件，前中后private身份及确切远端commit/tree均核实；研究继续推进。[发布状态](notes/github_publish_plan.json)。
+
+局部几何短对照已完成：同3CAD×三载荷、相同参数和初值，局部聚合只降低应力0.98个百分点，却使位移增加2.53个百分点，未通过推进门；完整2分13秒。停止扩大该方案。下一步比较普通、固定Fourier坐标及既有TCNN三种解码器包，先做同九场短拟合，再决定是否值得新CAD验证。 [短对照](results/geobc_local_query_geometry_v76/BRIEF.md)。
