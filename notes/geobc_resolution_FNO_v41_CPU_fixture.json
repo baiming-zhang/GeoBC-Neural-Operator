@@ -1,0 +1,45 @@
+{
+  "status": "actual_synthetic_CPU_raster_and_initialization_passed_not_FNO_forward_GPU_or_physical_training",
+  "CPU_seconds": 1.0985877369967056,
+  "source": {
+    "path": "geobc/resolution_fno_v41.py",
+    "bytes": 3701,
+    "mtime_ns": 1791715878550976400,
+    "sha256": "221d2fb22d66404063ffc1215c2f5a224ff0d87cd87a2b4035b6c38403e82e03"
+  },
+  "checks": {
+    "64": {
+      "shape": [
+        1,
+        29,
+        64,
+        64,
+        64
+      ],
+      "input_tensor_bytes": 30408704,
+      "occupied": 282,
+      "constant_features_query_recovered": true,
+      "both_cube_endpoints_covered": true
+    },
+    "128": {
+      "shape": [
+        1,
+        29,
+        128,
+        128,
+        128
+      ],
+      "input_tensor_bytes": 243269632,
+      "occupied": 282,
+      "constant_features_query_recovered": true,
+      "both_cube_endpoints_covered": true
+    }
+  },
+  "full_fresh_initial_SHA256": "e3c06ebfb126495173ae11b94fb3ef0cf87392976d56ba36238358844dd516da",
+  "parameter_count": 4526858,
+  "full_initial_state_matches_R64_FNO9": true,
+  "operator_forward_calls": 0,
+  "optimizer_updates": 0,
+  "GT_PT_dataset_reads": 0,
+  "GPU_calls": 0
+}

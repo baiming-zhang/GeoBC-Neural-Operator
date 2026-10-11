@@ -1,0 +1,43 @@
+{
+  "status": "finer_grid_FNO_target_free_SOURCE_prototype_runtime_not_implemented_or_released",
+  "predecessor": {
+    "path": "notes/geobc_structured_TS_v40_actual_decision.json",
+    "bytes": 1774,
+    "mtime_ns": 1791716034764867200,
+    "sha256": "767df54f2f75ba13ca1f1f0b5841d00ffea32744b11bf83c0de7285e357094af"
+  },
+  "question": "Does increasing spatial grid representation64→128 improve original full-node physical stress fitting and new-CAD transfer with identical FNO9 parameters/initial weights?",
+  "evidence": "SameR16 TS structured3D negative. FNO samephysical5 R16 S64.98% versus R64 S56.10% is compatible with representation sensitivity but configs differ, not resolution causality. R64 wide16 only2.11pp joint gain at3.138xcapacity. Older mesh/PointConv fixed480 screens negative; no repeated toy or Hash micros.",
+  "source": {
+    "path": "geobc/resolution_fno_v41.py",
+    "bytes": 3701,
+    "mtime_ns": 1791715878550976400,
+    "sha256": "221d2fb22d66404063ffc1215c2f5a224ff0d87cd87a2b4035b6c38403e82e03"
+  },
+  "CPU_fixture": {
+    "path": "notes/geobc_resolution_FNO_v41_CPU_fixture.json",
+    "bytes": 1161,
+    "mtime_ns": 1791715941961289000,
+    "sha256": "b9d2ffc4d3e9b89b9fce126fc59522a8132c85bf4fef99658c1e9aefaedea0c4"
+  },
+  "CPU_scope": "Synthetic37 nodes constant-feature weighted-splat/stencil partition/endpoints and exactfull initialstate/hash/params. No operatorforward, realdata/PT/GT/GPU orphysicalgradient. Not an experiment or memory qualification.",
+  "model": "OriginalFNO9 width9/modes12/layers4/head128, PointNet32+same native25 queryhead; 4526858params, exactallinitialweights e3c06ebfb126495173ae11b94fb3ef0cf87392976d56ba36238358844dd516da matchR64 baseline.",
+  "representation": "R128 direct sourceoriginalnode xyz/native25 weighted splat using unchanged _stencil/_splat math. Occupancy+XYZ+25. Do not interpolate old64 grid or target grid; query actualnew128 stencil, alloriginalN, no geometry/GT modification.",
+  "dataset": "Fixed100TRAIN/20knownDEV CAD×3, oldTRAIN40 scaler/seed2026 balanced300×5/1500, unchanged signedrelative physicalU/S loss/Adam. FINAL0.",
+  "runtime_todo": "Implement isolated native-input physicalTRAIN resident cache to avoid useless oldR64 grid bodies; no edit to frozen cache restrictedFNO9. Fixed complete300cache/max325387 real physical backward before updates, include grid reconstruction/FFT/H2D/save/failure costs. CPU proof does not release GPU.",
+  "memory_limit_bytes": 30500000000,
+  "GPU_lock": "runs/geobc_exploration/.coordinator.lock",
+  "proposed_limits_seconds": {
+    "cache": 600,
+    "setup": 120,
+    "train": 1500,
+    "TRAINreadout": 300,
+    "whole": 2700
+  },
+  "resource_gate": "Firstactual completeN/encoder/operator/head/jointleaves finitepositive gradient and sampledallocated/reservedtotal305GB; actual setup timing informs forecast, no syntheticpeak or guaranteedcompletion.",
+  "continuation": "Onlyfixed5 initially; DEV60 finiteimmutable predictions before GT60 once and priorR64FNO5 scalarreference. Improvement must be meaningful relativeerror/cost. Noautomatic10/40/24000; complete negative stops route.",
+  "runtime_implemented": false,
+  "actual_execution_released": false,
+  "actual_GPU_launches": 0,
+  "actual_dataset_PT_GT_reads": 0
+}

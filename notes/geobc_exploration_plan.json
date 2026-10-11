@@ -6596,17 +6596,17 @@
   },
   "latest_verified_GitHub_publication": {
     "status": "verified_private_remote_publication",
-    "commit": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
-    "base_commit": "0b3509b34a21ff286b3e927559a33936c28859ff",
-    "tree": "a493fed763edfc9d56d57ce636061f1cf41681d5",
+    "commit": "bff8d50fa99e799d4115172cee212b7f6b6743de",
+    "base_commit": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
+    "tree": "bec8f0c39201bb7a4756c9ed1226583132159e3b",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "elapsed_seconds": 58.8243166,
-    "finished_at_utc": "2026-10-11T09:56:11.6776078Z",
-    "receipt": "notes/github_gitdata_publication_50cdb5a5a36c71053e62d26a1080be0dd2b7853e_geometry_head_terminal_latent_cpu_20261011_receipt.json",
-    "actual_scope": "Actualcompleted v33/v34 TRAIN/knownDEV/acceptedreport and v35 syntheticCPU math prototype only; no real latent runtime at snapshot",
+    "elapsed_seconds": 56.1386128,
+    "finished_at_utc": "2026-10-11T10:30:24.8395875Z",
+    "receipt": "notes/github_gitdata_publication_bff8d50fa99e799d4115172cee212b7f6b6743de_node_latent_terminal_structured_cpu_20261011_receipt.json",
+    "actual_scope": "Completed v36/v37 node-latent TRAIN/knownDEV acceptedreport and v38 officialstructured3D syntheticCPU prototype only; no v39 runtime in snapshot",
     "actual_exec_exit_code": 0
   },
   "globalHash_physical5_completed": {
@@ -6913,6 +6913,66 @@
     "proposal": "notes/geobc_structured_TS_macro_proposal_v38.json",
     "source_ready": "notes/geobc_structured_TS_v38_source_ready.json",
     "actualCPU_seconds": 2.974971835999895,
+    "runtime_launches": 0
+  },
+  "structured_TS_physical5_actual": {
+    "plan": "notes/geobc_structured_TS_v39_plan.json",
+    "launch": "notes/geobc_structured_TS_v39_actual_launch.json",
+    "SCI": "d2a68034fa4f972f1cb81e98d1e768cd4640fd097317833b412eaf80f04587c3",
+    "latest_monitor": {
+      "status": "running",
+      "phase": "shared_cache_setup",
+      "whole_elapsed_seconds": 109.19419145584106,
+      "guard_live": true,
+      "child_live": true,
+      "cache_loaded_cases": 0
+    },
+    "automatic40": false,
+    "automatic24000": false
+  },
+  "structured_TS_physical5_completed": {
+    "status": "structured3D_physical5_scientific_negative_do_not_extend",
+    "SCI": "fb5639459187cd59a323fe5546311395829b6e10cb3d9a022da36472022c4667",
+    "actual_TRAIN_whole_seconds": 311.4211103916168,
+    "actual_pure_training_seconds": 153.2370834350586,
+    "actual_DEV_whole_seconds": 67.05850219726562,
+    "TRAIN_U": 0.5371051769336102,
+    "TRAIN_S": 0.9382093334182311,
+    "DEV_U": 0.5232829029835326,
+    "DEV_S": 0.9336214475406549,
+    "gates": {
+      "TS_own_improvement": {
+        "passed": false,
+        "reference": "R16_TRANSOLVER_1500",
+        "U_difference": 0.002718737382892855,
+        "S_difference": 0.0016677334435029056,
+        "primary_difference": 0.0021932354131978804,
+        "threshold": 0.05,
+        "fixed_denominator": 60,
+        "releases_continuation": false,
+        "scope": "Joint neighborhood/capacity fixed candidate; same physical5 exposure, not pure architecture causality"
+      },
+      "FNO_same_R16_priority": {
+        "passed": false,
+        "reference": "R16_FNO16_CONTROL_1500",
+        "U_difference": 0.21545098128825507,
+        "S_difference": 0.28385225537890046,
+        "primary_difference": 0.24965161833357777,
+        "threshold": 0.03,
+        "fixed_denominator": 60,
+        "releases_continuation": false,
+        "scope": "Joint neighborhood/capacity fixed candidate; same physical5 exposure, not pure architecture causality"
+      }
+    },
+    "automatic40": false,
+    "automatic24000": false,
+    "final_solver_selected": false,
+    "decision": "No physical fit improvement from this joint structured-neighborhood/capacity candidate. KeepFNO researchpriority; do not turn result into architecture ceiling. Next investigate representational spatial resolution, not more tinyTS/Hash hyperparameter changes.",
+    "report": "results/geobc_structured_TS_v40/BRIEF.md"
+  },
+  "resolution_FNO_next_SOURCE_prototype": {
+    "proposal": "notes/geobc_resolution_FNO_macro_proposal_v41.json",
+    "actual_CPU_seconds": 1.0985877369967056,
     "runtime_launches": 0
   }
 }

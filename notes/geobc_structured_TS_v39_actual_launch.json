@@ -1,0 +1,39 @@
+{
+  "status": "actual_live_launch_captured",
+  "exec_session": 96557,
+  "guard_process": {
+    "pid": 27997,
+    "ppid": 27996,
+    "start_ticks": 3259284,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_structured_TS_guard_v39",
+      "--start",
+      "--plan",
+      "notes/geobc_structured_TS_v39_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 27998,
+    "ppid": 27997,
+    "start_ticks": 3259354,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_structured_TS_v39",
+      "--start",
+      "--plan",
+      "notes/geobc_structured_TS_v39_plan.json"
+    ]
+  },
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "SCI": "d2a68034fa4f972f1cb81e98d1e768cd4640fd097317833b412eaf80f04587c3",
+  "guard_entry_epoch": 1791715154.6726882,
+  "observed_elapsed_seconds": 22.8133761882782,
+  "phase": "shared_cache_setup",
+  "method": null,
+  "source_pins_checked": true
+}
