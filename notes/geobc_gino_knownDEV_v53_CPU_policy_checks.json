@@ -1,0 +1,35 @@
+{
+  "status": "passed_CPU_metadata_policy_checks",
+  "at_utc": "2026-10-11T14:35:32.652698+00:00",
+  "seconds": 2.5030661779965158,
+  "checks": [
+    "budget_checkpoint_cannot_claim_formal5",
+    "completed_all300_full5_fixture_is_eligible",
+    "rejected_technical_failure",
+    "rejected_active_native",
+    "rejected_zero_checkpoint",
+    "rejected_unqualified_model",
+    "rejected_wrong_exposure_counter",
+    "rejected_nonfinite_memory",
+    "rejected_missing_native_case",
+    "actual_live_training_blocks_terminal_release",
+    "rejected_string_device",
+    "rejected_train_role",
+    "rejected_target_in_input",
+    "knownDEV20_constructor_metadata_only_no_CUDA"
+  ],
+  "synthetic_fixtures_not_actual_experiment": true,
+  "source_pins": {
+    "geobc/gino_knownDEV_radius_v53.py": "86eaa0b8b822784948fb00e2ec568017539f80f459b14cefadd120d12969c0a3",
+    "geobc/gino_readout_contract_v53.py": "28622fc50665c5412a7d6c7778dd7114dcbb5599d334ad4ae82653179bbed90e",
+    "tools/evaluate_geobc_gino_v53.py": "7d8c48d3d76a754fca577aba3fe0dbda28d4fe7ebffdd33b4f0bd21ef0aaf72b",
+    "tools/run_geobc_gino_readout_guard_v53.py": "cedac016060c579f790675f2674024da76e84942e72b6ae672abdc8fd4ea8062",
+    "tools/prepare_geobc_gino_readout_v53.py": "ef85d5cb7c464cdef1164d2449214e5eeae480923ca0c0ca802cd426067b7394"
+  },
+  "parent146_pins_unchanged": true,
+  "GT_array_reads": 0,
+  "PT_body_reads": 0,
+  "scientific_arrays_read": 0,
+  "GPU_execution": 0,
+  "CUDA_initialized": false
+}

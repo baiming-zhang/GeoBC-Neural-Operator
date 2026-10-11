@@ -1,0 +1,24 @@
+{
+  "updated_at_utc": "2026-10-11T14:31:44.747323+00:00",
+  "user_concern": "40 epochs at four hours per epoch would cost about a week; avoid long initial screening",
+  "screening_epochs_default": 5,
+  "automatic_10_epochs": false,
+  "automatic_40_epochs": false,
+  "automatic_24000_steps": false,
+  "extension_rule": "Extend only promising candidates after joint knownDEV physical U/S error, improvement trend, and wall cost comparison; use existing checkpoints; no automatic extension for weak candidates.",
+  "gpu_memory_budget_bytes": 30500000000,
+  "current_frozen_run_unchanged": true,
+  "current_run": "runs/geobc_exploration/GINO100_physical5_v52_device_recovery",
+  "current_training_budget_seconds": 3600,
+  "current_training_deadline_bjt": "2026-10-11T22:52:18.325366+08:00",
+  "budget_limited_checkpoint_is_not_completed_5_epochs": true,
+  "observation": {
+    "at_utc": "2026-10-11T14:31:07.892042+00:00",
+    "step": 840,
+    "planned_step": 1500,
+    "epochs": 2.8,
+    "training_epoch_seconds": 2270.1252834796906,
+    "exact_child_and_guard_live": true
+  },
+  "priority": "Solver selection rather than small Hash tuning; current FNO leads available knownDEV comparisons; no final architecture claim."
+}
