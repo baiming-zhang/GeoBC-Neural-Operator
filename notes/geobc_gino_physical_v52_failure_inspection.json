@@ -1,0 +1,55 @@
+{
+  "status": "actual_zero_update_GINO_state_metadata_technical_failure",
+  "reviewed_at_utc": "2026-10-11T13:46:46.487742+00:00",
+  "actual_exec_session": 72068,
+  "actual_exec_exit_code": 1,
+  "original_plan": {
+    "path": "notes/geobc_gino_physical_v52_plan.json",
+    "bytes": 60359,
+    "mtime_ns": 1791725965351317000,
+    "sha256": "f3db1f54156e1b88dae7cc6e09dd8cab5d997aa312034e030b73b6b6494fe908"
+  },
+  "original_failure_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/GINO100_physical5_v52/summary.json",
+      "bytes": 11003,
+      "mtime_ns": 1791726066831754600,
+      "sha256": "f0130b6aff32d64aad2c28abc24bf7e86d5b19b02a93a2f5e60dcf2381f5ff4b"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/GINO100_physical5_v52/status.json",
+      "bytes": 11003,
+      "mtime_ns": 1791726066837376100,
+      "sha256": "f0130b6aff32d64aad2c28abc24bf7e86d5b19b02a93a2f5e60dcf2381f5ff4b"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/GINO100_physical5_v52/external_terminal.json",
+      "bytes": 17532,
+      "mtime_ns": 1791726067250597400,
+      "sha256": "5ae748e7366a11d8474fcdee70102a525ff1c3add438ff9bd71224a233f2065e"
+    },
+    "process_log": {
+      "path": "runs/geobc_exploration/GINO100_physical5_v52/process.log",
+      "bytes": 893,
+      "mtime_ns": 1791726066893010300,
+      "sha256": "9c776f8393075701174986e8c3a3f5803af86a7834457fd2bb8368324c0e8c99"
+    }
+  },
+  "actual_child_and_guard_exact_exited": true,
+  "error_type": "AttributeError",
+  "error": "'dict' object has no attribute 'detach'",
+  "updates": 0,
+  "checkpoint": null,
+  "original_external_epoch_seconds": 57.64437985420227,
+  "original_external_monotonic_seconds": 50.414928885002155,
+  "original_native_epoch_seconds": 55.012131452560425,
+  "physical_TRAIN_reads": 300,
+  "diagnosis": "Upstream BaseModel.state_dict adds global _metadata dictionary; general tensor-only state_digest cannot hash it. Failure before optimizer construction/qualification/updates, not scientific performance.",
+  "repair": "Independent metadata-aware state helper and manual zero-update recovery; constructor metadata hashed/verified, all tensor entries retained; original failed source/results/costs immutable, original whole deadlines preserved",
+  "CPU_repair_receipt": {
+    "path": "notes/geobc_gino_state_v52_CPU_check.json",
+    "bytes": 611,
+    "mtime_ns": 1791726335338025400,
+    "sha256": "7a89e75effedf20a472e949251620517518e39540f86524aa985e87594bc4e6b"
+  }
+}

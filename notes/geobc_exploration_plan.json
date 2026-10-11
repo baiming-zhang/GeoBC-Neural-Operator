@@ -6976,19 +6976,23 @@
     "runtime_launches": 0
   },
   "latest_verified_private_publication": {
-    "status": "verified_private_remote_publication",
-    "commit": "653163097ba3aae1e2b18125a1dba955352e39db",
-    "base_commit": "bff8d50fa99e799d4115172cee212b7f6b6743de",
-    "tree": "7de93b2f8f6a0d6f0495bf773ac1301ed72828a1",
-    "repository": "baiming-zhang/GeoBC-Neural-Operator",
+    "status": "actual_private_publication_verified",
+    "actual_exec_session": 60681,
+    "actual_exec_exit_code": 0,
+    "commit": "9e3214d9ede539304e4a4f6bd914c729f5756a32",
+    "base_commit": "50cf0fe6bda0cb7a9b1607cb56c8a7a141732d68",
+    "tree": "4cc89bb9c62a29fbfb46b53ebf0f588072a1fa2b",
+    "repository_url": "https://github.com/baiming-zhang/GeoBC-Neural-Operator",
+    "private": true,
     "repository_id": 1410470321,
     "user_id": 174442095,
-    "private": true,
-    "elapsed_seconds": 54.580181,
-    "finished_at_utc": "2026-10-11T10:56:08.5576255Z",
-    "receipt": "notes/github_gitdata_publication_653163097ba3aae1e2b18125a1dba955352e39db_structured_terminal_resolution_cpu_20261011_receipt.json",
-    "actual_scope": "Completed v39 freshphysical5 TRAIN300 and v40 knownDEV60/acceptedreport; v41 finer-grid FNO syntheticCPU raster/init proof only, no v42 runtime.",
-    "actual_exec_exit_code": 0
+    "actual_publication_seconds": 64.8277419,
+    "verified_at_utc": "2026-10-11T13:27:01.414515+00:00",
+    "permanent_receipt": "notes/github_gitdata_publication_9e3214d9ede539304e4a4f6bd914c729f5756a32_ts10_terminal_gino_physical_preparation_20261011_receipt.json",
+    "receipt_sha256": "1df86238f70d785a3e2d7b96b675ca94635b92d50538612e0f0d8ce116d54f6f",
+    "changed_files_verified": 47,
+    "scope": "Real originalTS50/51 completed physical10 results and accepted report; GINO52 physical/native cache CPU preparations only; no new GINO GPU results",
+    "credentials_printed_or_saved": false
   },
   "resolution_FNO_completed": {
     "status": "sameparams_R128_physical5_scientific_negative_no_grid_extension",
@@ -7033,9 +7037,9 @@
     "actual_runtime_launches": 0
   },
   "latest_actual_stage": {
-    "updated_at_utc": "2026-10-11T13:23:42.026135+00:00",
+    "updated_at_utc": "2026-10-11T13:52:38.193134+00:00",
     "previous_goal_turn_classification": "progress",
-    "status": "TS50_train_and51_DEV_completed_report_accepted_GINO52_adapter_and_native_cache_implemented_GPU0",
+    "status": "actual_fullN_qualification_passed_fixed5_training_active",
     "TRAIN_external_seconds": 288.70301151275635,
     "DEV_external_seconds": 65.3809700012207,
     "CPU_report_seconds": 1.3487333489974844,
@@ -7046,7 +7050,7 @@
     "decision": "Stop TS long extension; maintain FNO current priority; one GINO structural physical5 candidate under implementation",
     "decision_file": "notes/geobc_original_TS_v51_actual_decision.json",
     "next_proposal": "notes/geobc_gino_physical5_proposal_v52.json",
-    "new_GPU_running": false,
+    "new_GPU_running": true,
     "new_GINO_GPU_updates": 0,
     "final_test_reads": 0,
     "remaining": [
@@ -7054,6 +7058,37 @@
       "Largest real fullN physical gradient/resources, once-only physical TRAIN300",
       "Single5-pass candidate/current knownDEV60 full barrier readout",
       "Evidence-based next solver decision and continued private delivery"
-    ]
+    ],
+    "private_delivery": {
+      "status": "actual_private_publication_verified",
+      "actual_exec_session": 60681,
+      "actual_exec_exit_code": 0,
+      "commit": "9e3214d9ede539304e4a4f6bd914c729f5756a32",
+      "base_commit": "50cf0fe6bda0cb7a9b1607cb56c8a7a141732d68",
+      "tree": "4cc89bb9c62a29fbfb46b53ebf0f588072a1fa2b",
+      "repository_url": "https://github.com/baiming-zhang/GeoBC-Neural-Operator",
+      "private": true,
+      "repository_id": 1410470321,
+      "user_id": 174442095,
+      "actual_publication_seconds": 64.8277419,
+      "verified_at_utc": "2026-10-11T13:27:01.414515+00:00",
+      "permanent_receipt": "notes/github_gitdata_publication_9e3214d9ede539304e4a4f6bd914c729f5756a32_ts10_terminal_gino_physical_preparation_20261011_receipt.json",
+      "receipt_sha256": "1df86238f70d785a3e2d7b96b675ca94635b92d50538612e0f0d8ce116d54f6f",
+      "changed_files_verified": 47,
+      "scope": "Real originalTS50/51 completed physical10 results and accepted report; GINO52 physical/native cache CPU preparations only; no new GINO GPU results",
+      "credentials_printed_or_saved": false
+    },
+    "current_GINO_CSR_metadata_seconds": 4.278598862998479,
+    "current_frozen_source_count": 279,
+    "next_implementation": "Only current actual guard runs; implement future knownDEV readout with metadata-aware strict PT load, after real terminal release",
+    "current_plan": "notes/geobc_gino_physical_v52_device_recovery_plan.json",
+    "current_SCI": "f5be0a2df542624509c205f674d3279fc16d923a3d62bbc6303c0357615d2ecf",
+    "actual_exec_session": 42827,
+    "actual_launch_receipt": "notes/geobc_gino_physical_v52_device_recovery_actual_launch.json",
+    "prior_zero_update_technical_failure_cost_seconds": 118.22868204116821,
+    "original_whole_deadline_epoch": 1791731414.8763142,
+    "actual_qualification_receipt": "notes/geobc_gino_physical_v52_actual_qualification_receipt.json",
+    "current_training_step_at_observation": 87,
+    "current_training_epoch_seconds_at_observation": 271.13919472694397
   }
 }

@@ -1,0 +1,1478 @@
+{
+  "kind": "GeoBC_GINO100_fullN_physical5_v52",
+  "scientific": {
+    "family": "GINO_PHYSICAL",
+    "seed": 2026,
+    "train_CAD_count": 100,
+    "passes": 5,
+    "fixed_updates": 1500,
+    "memory_limit_bytes": 30500000000,
+    "GPU_lock": "runs/geobc_exploration/.coordinator.lock",
+    "cache_setup_budget_seconds": 600,
+    "qualification_budget_seconds": 180,
+    "training_budget_seconds": 3600,
+    "TRAIN_readout_budget_seconds": 600,
+    "whole_budget_seconds": 5400,
+    "loss": "full_original_node_physical_relative_U_S_squared_equal_case",
+    "precision": "highest_FP32_TF32_disabled",
+    "expected_parameter_count": 7478973,
+    "expected_real_parameter_DOF": 14556861,
+    "architecture": {
+      "official_commit": "b307030d9b7ee530823d6a05bddb8238ba22a743",
+      "modes": [
+        24,
+        24,
+        22
+      ],
+      "width": 16,
+      "layers": 4,
+      "resolution": 64,
+      "radius": 0.033,
+      "query_chunk": 2048,
+      "geometry_dim": 32
+    },
+    "optimizer": {
+      "name": "Adam",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "foreach": true,
+      "fused": false
+    },
+    "DEV_GT_reads_allowed": 0,
+    "FINAL_reads_allowed": 0,
+    "scaler_fits_allowed": 0,
+    "automatic40": false,
+    "automatic24000": false,
+    "automatic_replay": false,
+    "predecessor_terminal": {
+      "plan": {
+        "path": "notes/geobc_original_TS_v51_plan.json",
+        "bytes": 20763,
+        "mtime_ns": 1791723879403385400,
+        "sha256": "a8c320a3edf18760a3df73b1887634b5f2df2ca4485100b2d34979000d1c47fc"
+      },
+      "terminal": {
+        "summary": {
+          "path": "runs/geobc_exploration/original_R16_TS100_physical10_knownDEV_v51/summary.json",
+          "bytes": 407342,
+          "mtime_ns": 1791724133821570300,
+          "sha256": "28590d51e96c78bf1f8ef5d9134203116e8112cde006df4ef6ae68b70828a887"
+        },
+        "status": {
+          "path": "runs/geobc_exploration/original_R16_TS100_physical10_knownDEV_v51/status.json",
+          "bytes": 407342,
+          "mtime_ns": 1791724133832110200,
+          "sha256": "28590d51e96c78bf1f8ef5d9134203116e8112cde006df4ef6ae68b70828a887"
+        },
+        "external": {
+          "path": "runs/geobc_exploration/original_R16_TS100_physical10_knownDEV_v51/external_terminal.json",
+          "bytes": 13823,
+          "mtime_ns": 1791724134119379600,
+          "sha256": "bfe5747e82ba6d72b36df391a21e9d875f8ff7e55c08ae223e6bbd9fcd8f4a02"
+        }
+      }
+    },
+    "dataset_identity": {
+      "path": "data/geobc_prospective_dataset_v1/manifest.json",
+      "bytes": 2006687,
+      "mtime_ns": 1791671623813764100,
+      "sha256": "68733fab6029ed0a182c09d73dcb61e06d1d7becfca9784498073a1c5dc19ddf"
+    },
+    "TRAIN_keys": [
+      "101_428/ver",
+      "101_428/hor",
+      "101_428/tor",
+      "101_479/ver",
+      "101_479/hor",
+      "101_479/tor",
+      "101_56/ver",
+      "101_56/hor",
+      "101_56/tor",
+      "101_78/ver",
+      "101_78/hor",
+      "101_78/tor",
+      "101_86/ver",
+      "101_86/hor",
+      "101_86/tor",
+      "102_240/ver",
+      "102_240/hor",
+      "102_240/tor",
+      "102_79/ver",
+      "102_79/hor",
+      "102_79/tor",
+      "107_113/ver",
+      "107_113/hor",
+      "107_113/tor",
+      "107_147/ver",
+      "107_147/hor",
+      "107_147/tor",
+      "107_150/ver",
+      "107_150/hor",
+      "107_150/tor",
+      "107_186/ver",
+      "107_186/hor",
+      "107_186/tor",
+      "107_233/ver",
+      "107_233/hor",
+      "107_233/tor",
+      "107_240/ver",
+      "107_240/hor",
+      "107_240/tor",
+      "107_248/ver",
+      "107_248/hor",
+      "107_248/tor",
+      "107_291/ver",
+      "107_291/hor",
+      "107_291/tor",
+      "107_320/ver",
+      "107_320/hor",
+      "107_320/tor",
+      "107_342/ver",
+      "107_342/hor",
+      "107_342/tor",
+      "107_459/ver",
+      "107_459/hor",
+      "107_459/tor",
+      "10_30/ver",
+      "10_30/hor",
+      "10_30/tor",
+      "10_421/ver",
+      "10_421/hor",
+      "10_421/tor",
+      "10_460/ver",
+      "10_460/hor",
+      "10_460/tor",
+      "10_492/ver",
+      "10_492/hor",
+      "10_492/tor",
+      "10_58/ver",
+      "10_58/hor",
+      "10_58/tor",
+      "10_80/ver",
+      "10_80/hor",
+      "10_80/tor",
+      "113_129/ver",
+      "113_129/hor",
+      "113_129/tor",
+      "113_170/ver",
+      "113_170/hor",
+      "113_170/tor",
+      "113_390/ver",
+      "113_390/hor",
+      "113_390/tor",
+      "113_86/ver",
+      "113_86/hor",
+      "113_86/tor",
+      "113_95/ver",
+      "113_95/hor",
+      "113_95/tor",
+      "114_28/ver",
+      "114_28/hor",
+      "114_28/tor",
+      "114_456/ver",
+      "114_456/hor",
+      "114_456/tor",
+      "114_525/ver",
+      "114_525/hor",
+      "114_525/tor",
+      "114_91/ver",
+      "114_91/hor",
+      "114_91/tor",
+      "116_102/ver",
+      "116_102/hor",
+      "116_102/tor",
+      "116_113/ver",
+      "116_113/hor",
+      "116_113/tor",
+      "116_30/ver",
+      "116_30/hor",
+      "116_30/tor",
+      "116_348/ver",
+      "116_348/hor",
+      "116_348/tor",
+      "119_221/ver",
+      "119_221/hor",
+      "119_221/tor",
+      "119_322/ver",
+      "119_322/hor",
+      "119_322/tor",
+      "119_559/ver",
+      "119_559/hor",
+      "119_559/tor",
+      "229_200/ver",
+      "229_200/hor",
+      "229_200/tor",
+      "230_12/ver",
+      "230_12/hor",
+      "230_12/tor",
+      "230_483/ver",
+      "230_483/hor",
+      "230_483/tor",
+      "248_319/ver",
+      "248_319/hor",
+      "248_319/tor",
+      "248_625/ver",
+      "248_625/hor",
+      "248_625/tor",
+      "257_485/ver",
+      "257_485/hor",
+      "257_485/tor",
+      "25_296/ver",
+      "25_296/hor",
+      "25_296/tor",
+      "25_395/ver",
+      "25_395/hor",
+      "25_395/tor",
+      "266_15/ver",
+      "266_15/hor",
+      "266_15/tor",
+      "268_129/ver",
+      "268_129/hor",
+      "268_129/tor",
+      "275_289/ver",
+      "275_289/hor",
+      "275_289/tor",
+      "280_202/ver",
+      "280_202/hor",
+      "280_202/tor",
+      "284_186/ver",
+      "284_186/hor",
+      "284_186/tor",
+      "290_422/ver",
+      "290_422/hor",
+      "290_422/tor",
+      "291_417/ver",
+      "291_417/hor",
+      "291_417/tor",
+      "291_511/ver",
+      "291_511/hor",
+      "291_511/tor",
+      "295_394/ver",
+      "295_394/hor",
+      "295_394/tor",
+      "316_479/ver",
+      "316_479/hor",
+      "316_479/tor",
+      "322_280/ver",
+      "322_280/hor",
+      "322_280/tor",
+      "323_59/ver",
+      "323_59/hor",
+      "323_59/tor",
+      "345_238/ver",
+      "345_238/hor",
+      "345_238/tor",
+      "34_78/ver",
+      "34_78/hor",
+      "34_78/tor",
+      "361_198/ver",
+      "361_198/hor",
+      "361_198/tor",
+      "388_513/ver",
+      "388_513/hor",
+      "388_513/tor",
+      "38_249/ver",
+      "38_249/hor",
+      "38_249/tor",
+      "394_19/ver",
+      "394_19/hor",
+      "394_19/tor",
+      "406_171/ver",
+      "406_171/hor",
+      "406_171/tor",
+      "415_511/ver",
+      "415_511/hor",
+      "415_511/tor",
+      "432_214/ver",
+      "432_214/hor",
+      "432_214/tor",
+      "432_533/ver",
+      "432_533/hor",
+      "432_533/tor",
+      "433_497/ver",
+      "433_497/hor",
+      "433_497/tor",
+      "440_206/ver",
+      "440_206/hor",
+      "440_206/tor",
+      "475_209/ver",
+      "475_209/hor",
+      "475_209/tor",
+      "489_611/ver",
+      "489_611/hor",
+      "489_611/tor",
+      "506_170/ver",
+      "506_170/hor",
+      "506_170/tor",
+      "507_217/ver",
+      "507_217/hor",
+      "507_217/tor",
+      "507_624/ver",
+      "507_624/hor",
+      "507_624/tor",
+      "50_295/ver",
+      "50_295/hor",
+      "50_295/tor",
+      "510_575/ver",
+      "510_575/hor",
+      "510_575/tor",
+      "518_209/ver",
+      "518_209/hor",
+      "518_209/tor",
+      "524_483/ver",
+      "524_483/hor",
+      "524_483/tor",
+      "537_142/ver",
+      "537_142/hor",
+      "537_142/tor",
+      "53_482/ver",
+      "53_482/hor",
+      "53_482/tor",
+      "548_225/ver",
+      "548_225/hor",
+      "548_225/tor",
+      "560_91/ver",
+      "560_91/hor",
+      "560_91/tor",
+      "56_293/ver",
+      "56_293/hor",
+      "56_293/tor",
+      "56_95/ver",
+      "56_95/hor",
+      "56_95/tor",
+      "587_248/ver",
+      "587_248/hor",
+      "587_248/tor",
+      "592_61/ver",
+      "592_61/hor",
+      "592_61/tor",
+      "610_21/ver",
+      "610_21/hor",
+      "610_21/tor",
+      "616_538/ver",
+      "616_538/hor",
+      "616_538/tor",
+      "62_202/ver",
+      "62_202/hor",
+      "62_202/tor",
+      "62_394/ver",
+      "62_394/hor",
+      "62_394/tor",
+      "630_205/ver",
+      "630_205/hor",
+      "630_205/tor",
+      "633_187/ver",
+      "633_187/hor",
+      "633_187/tor",
+      "66_524/ver",
+      "66_524/hor",
+      "66_524/tor",
+      "80_483/ver",
+      "80_483/hor",
+      "80_483/tor",
+      "81_417/ver",
+      "81_417/hor",
+      "81_417/tor",
+      "86_489/ver",
+      "86_489/hor",
+      "86_489/tor",
+      "8_497/ver",
+      "8_497/hor",
+      "8_497/tor"
+    ],
+    "scaler": {
+      "mean": [
+        -0.006059544265096125,
+        -0.0005008273527146082,
+        0.015260029003479832,
+        0.09629744183585241
+      ],
+      "std": [
+        0.05393032209940291,
+        0.011291299669602316,
+        0.07619646768716026,
+        0.5232191238243877
+      ],
+      "stress_scale": 90.46589813232424,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "full_order_digest": "170a44691b03f9d07bedd9bc645f5a0f7ee1138d60fae4d29c355d56bfd02374",
+    "geometry_inventory_identity": {
+      "path": "notes/geobc_gino_physical_v52_geometry_inventory.json",
+      "bytes": 65677,
+      "mtime_ns": 1791724857539978600,
+      "sha256": "41c8f2de916525301e074388a4bd6bc9045e1c8068d22add3ef2a507a3c1dd0c"
+    },
+    "old_GINO_summary_identity": {
+      "path": "runs/geobc_exploration/gino_screen_seed2026_480/summary.json",
+      "bytes": 993735,
+      "mtime_ns": 1791566472292028900,
+      "sha256": "2dc05962a39114c562e93f3339af186eda0b48d49ee208f6e6e48b1bab34eb74"
+    },
+    "geometries": {
+      "101_428": {
+        "cad_id": "101_428",
+        "num_nodes": 270276,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/101_428/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3243440,
+          "mtime_ns": 1791554048458419900
+        }
+      },
+      "101_479": {
+        "cad_id": "101_479",
+        "num_nodes": 179316,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/101_479/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2151920,
+          "mtime_ns": 1791554049062253300
+        }
+      },
+      "101_56": {
+        "cad_id": "101_56",
+        "num_nodes": 221213,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/101_56/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2654684,
+          "mtime_ns": 1791554049588741400
+        }
+      },
+      "101_78": {
+        "cad_id": "101_78",
+        "num_nodes": 192353,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/101_78/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2308364,
+          "mtime_ns": 1791554050152143900
+        }
+      },
+      "101_86": {
+        "cad_id": "101_86",
+        "num_nodes": 219150,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/101_86/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2629928,
+          "mtime_ns": 1791554050649162400
+        }
+      },
+      "102_240": {
+        "cad_id": "102_240",
+        "num_nodes": 204361,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/102_240/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2452460,
+          "mtime_ns": 1791554051181138400
+        }
+      },
+      "102_79": {
+        "cad_id": "102_79",
+        "num_nodes": 221650,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/102_79/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2659928,
+          "mtime_ns": 1791554051693491700
+        }
+      },
+      "107_113": {
+        "cad_id": "107_113",
+        "num_nodes": 229808,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_113/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2757824,
+          "mtime_ns": 1791554052238321700
+        }
+      },
+      "107_147": {
+        "cad_id": "107_147",
+        "num_nodes": 199727,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_147/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2396852,
+          "mtime_ns": 1791554052814361900
+        }
+      },
+      "107_150": {
+        "cad_id": "107_150",
+        "num_nodes": 325387,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_150/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3904772,
+          "mtime_ns": 1791554053441948300
+        }
+      },
+      "107_186": {
+        "cad_id": "107_186",
+        "num_nodes": 273651,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_186/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3283940,
+          "mtime_ns": 1791554054141430000
+        }
+      },
+      "107_233": {
+        "cad_id": "107_233",
+        "num_nodes": 236609,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_233/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2839436,
+          "mtime_ns": 1791554054758758600
+        }
+      },
+      "107_240": {
+        "cad_id": "107_240",
+        "num_nodes": 208405,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_240/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2500988,
+          "mtime_ns": 1791554055331087100
+        }
+      },
+      "107_248": {
+        "cad_id": "107_248",
+        "num_nodes": 206054,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_248/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2472776,
+          "mtime_ns": 1791554055937795400
+        }
+      },
+      "107_291": {
+        "cad_id": "107_291",
+        "num_nodes": 211839,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_291/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2542196,
+          "mtime_ns": 1791554056540861400
+        }
+      },
+      "107_320": {
+        "cad_id": "107_320",
+        "num_nodes": 210675,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_320/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2528228,
+          "mtime_ns": 1791554057085132100
+        }
+      },
+      "107_342": {
+        "cad_id": "107_342",
+        "num_nodes": 205599,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_342/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2467316,
+          "mtime_ns": 1791554057602947100
+        }
+      },
+      "107_459": {
+        "cad_id": "107_459",
+        "num_nodes": 206544,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/107_459/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2478656,
+          "mtime_ns": 1791554058120131500
+        }
+      },
+      "10_30": {
+        "cad_id": "10_30",
+        "num_nodes": 158221,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/10_30/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1898780,
+          "mtime_ns": 1791554058608647800
+        }
+      },
+      "10_421": {
+        "cad_id": "10_421",
+        "num_nodes": 189704,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/10_421/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2276576,
+          "mtime_ns": 1791554059054520200
+        }
+      },
+      "10_460": {
+        "cad_id": "10_460",
+        "num_nodes": 200331,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/10_460/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2404100,
+          "mtime_ns": 1791554059593853400
+        }
+      },
+      "10_492": {
+        "cad_id": "10_492",
+        "num_nodes": 213235,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/10_492/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2558948,
+          "mtime_ns": 1791554060146576500
+        }
+      },
+      "10_58": {
+        "cad_id": "10_58",
+        "num_nodes": 254645,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/10_58/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3055868,
+          "mtime_ns": 1791554060683022800
+        }
+      },
+      "10_80": {
+        "cad_id": "10_80",
+        "num_nodes": 162082,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/10_80/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1945112,
+          "mtime_ns": 1791554061236800200
+        }
+      },
+      "113_129": {
+        "cad_id": "113_129",
+        "num_nodes": 236193,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/113_129/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2834444,
+          "mtime_ns": 1791554061690026200
+        }
+      },
+      "113_170": {
+        "cad_id": "113_170",
+        "num_nodes": 254021,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/113_170/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3048380,
+          "mtime_ns": 1791554062255078000
+        }
+      },
+      "113_390": {
+        "cad_id": "113_390",
+        "num_nodes": 198740,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/113_390/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2385008,
+          "mtime_ns": 1791554062828365600
+        }
+      },
+      "113_86": {
+        "cad_id": "113_86",
+        "num_nodes": 249986,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/113_86/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2999960,
+          "mtime_ns": 1791554063373117900
+        }
+      },
+      "113_95": {
+        "cad_id": "113_95",
+        "num_nodes": 212909,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/113_95/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2555036,
+          "mtime_ns": 1791554064103364000
+        }
+      },
+      "114_28": {
+        "cad_id": "114_28",
+        "num_nodes": 184824,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/114_28/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2218016,
+          "mtime_ns": 1791554064613570700
+        }
+      },
+      "114_456": {
+        "cad_id": "114_456",
+        "num_nodes": 190969,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/114_456/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2291756,
+          "mtime_ns": 1791554065086263300
+        }
+      },
+      "114_525": {
+        "cad_id": "114_525",
+        "num_nodes": 266509,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/114_525/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3198236,
+          "mtime_ns": 1791554065609471500
+        }
+      },
+      "114_91": {
+        "cad_id": "114_91",
+        "num_nodes": 175194,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/114_91/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2102456,
+          "mtime_ns": 1791554066248696500
+        }
+      },
+      "116_102": {
+        "cad_id": "116_102",
+        "num_nodes": 225262,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/116_102/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2703272,
+          "mtime_ns": 1791554066788065200
+        }
+      },
+      "116_113": {
+        "cad_id": "116_113",
+        "num_nodes": 224078,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/116_113/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2689064,
+          "mtime_ns": 1791554067336563300
+        }
+      },
+      "116_30": {
+        "cad_id": "116_30",
+        "num_nodes": 152853,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/116_30/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1834364,
+          "mtime_ns": 1791554067864454500
+        }
+      },
+      "116_348": {
+        "cad_id": "116_348",
+        "num_nodes": 193268,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/116_348/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2319344,
+          "mtime_ns": 1791554068310646500
+        }
+      },
+      "119_221": {
+        "cad_id": "119_221",
+        "num_nodes": 260275,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/119_221/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3123428,
+          "mtime_ns": 1791554068832157400
+        }
+      },
+      "119_322": {
+        "cad_id": "119_322",
+        "num_nodes": 223170,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/119_322/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2678168,
+          "mtime_ns": 1791554069435111700
+        }
+      },
+      "119_559": {
+        "cad_id": "119_559",
+        "num_nodes": 244209,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_solver_selection/geometry/119_559/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2930636,
+          "mtime_ns": 1791554070007017100
+        }
+      },
+      "229_200": {
+        "cad_id": "229_200",
+        "num_nodes": 242936,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/229_200/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2915360,
+          "mtime_ns": 1791670517961154800
+        }
+      },
+      "230_12": {
+        "cad_id": "230_12",
+        "num_nodes": 202814,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/230_12/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2433896,
+          "mtime_ns": 1791670523982181800
+        }
+      },
+      "230_483": {
+        "cad_id": "230_483",
+        "num_nodes": 210930,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/230_483/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2531288,
+          "mtime_ns": 1791670530009218600
+        }
+      },
+      "248_319": {
+        "cad_id": "248_319",
+        "num_nodes": 256940,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/248_319/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3083408,
+          "mtime_ns": 1791670550890053600
+        }
+      },
+      "248_625": {
+        "cad_id": "248_625",
+        "num_nodes": 186735,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/248_625/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2240948,
+          "mtime_ns": 1791670556523800300
+        }
+      },
+      "257_485": {
+        "cad_id": "257_485",
+        "num_nodes": 207350,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/257_485/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2488328,
+          "mtime_ns": 1791670562231702700
+        }
+      },
+      "25_296": {
+        "cad_id": "25_296",
+        "num_nodes": 146964,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/25_296/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1763696,
+          "mtime_ns": 1791670566815650200
+        }
+      },
+      "25_395": {
+        "cad_id": "25_395",
+        "num_nodes": 208662,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/25_395/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2504072,
+          "mtime_ns": 1791670572447072900
+        }
+      },
+      "266_15": {
+        "cad_id": "266_15",
+        "num_nodes": 222940,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/266_15/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2675408,
+          "mtime_ns": 1791670579182669100
+        }
+      },
+      "268_129": {
+        "cad_id": "268_129",
+        "num_nodes": 209731,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/268_129/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2516900,
+          "mtime_ns": 1791670585030682700
+        }
+      },
+      "275_289": {
+        "cad_id": "275_289",
+        "num_nodes": 204451,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/275_289/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2453540,
+          "mtime_ns": 1791670590896102500
+        }
+      },
+      "280_202": {
+        "cad_id": "280_202",
+        "num_nodes": 183590,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/280_202/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2203208,
+          "mtime_ns": 1791670597096502500
+        }
+      },
+      "284_186": {
+        "cad_id": "284_186",
+        "num_nodes": 270843,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/284_186/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3250244,
+          "mtime_ns": 1791670604483910400
+        }
+      },
+      "290_422": {
+        "cad_id": "290_422",
+        "num_nodes": 238778,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/290_422/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2865464,
+          "mtime_ns": 1791670610844751300
+        }
+      },
+      "291_417": {
+        "cad_id": "291_417",
+        "num_nodes": 205703,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/291_417/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2468564,
+          "mtime_ns": 1791670616805266000
+        }
+      },
+      "291_511": {
+        "cad_id": "291_511",
+        "num_nodes": 175983,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/291_511/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2111924,
+          "mtime_ns": 1791670621745228500
+        }
+      },
+      "295_394": {
+        "cad_id": "295_394",
+        "num_nodes": 217387,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/295_394/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2608772,
+          "mtime_ns": 1791670628082754100
+        }
+      },
+      "316_479": {
+        "cad_id": "316_479",
+        "num_nodes": 184418,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/316_479/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2213144,
+          "mtime_ns": 1791670634018524900
+        }
+      },
+      "322_280": {
+        "cad_id": "322_280",
+        "num_nodes": 189155,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/322_280/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2269988,
+          "mtime_ns": 1791670646114494200
+        }
+      },
+      "323_59": {
+        "cad_id": "323_59",
+        "num_nodes": 139147,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/323_59/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1669892,
+          "mtime_ns": 1791670650275137100
+        }
+      },
+      "345_238": {
+        "cad_id": "345_238",
+        "num_nodes": 267509,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/345_238/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3210236,
+          "mtime_ns": 1791670657167008000
+        }
+      },
+      "34_78": {
+        "cad_id": "34_78",
+        "num_nodes": 191858,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/34_78/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2302424,
+          "mtime_ns": 1791670662455973700
+        }
+      },
+      "361_198": {
+        "cad_id": "361_198",
+        "num_nodes": 201067,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/361_198/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2412932,
+          "mtime_ns": 1791670668646699600
+        }
+      },
+      "388_513": {
+        "cad_id": "388_513",
+        "num_nodes": 185906,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/388_513/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2231000,
+          "mtime_ns": 1791670675302811300
+        }
+      },
+      "38_249": {
+        "cad_id": "38_249",
+        "num_nodes": 171170,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/38_249/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2054168,
+          "mtime_ns": 1791670681211307000
+        }
+      },
+      "394_19": {
+        "cad_id": "394_19",
+        "num_nodes": 215997,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/394_19/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2592092,
+          "mtime_ns": 1791670695528738900
+        }
+      },
+      "406_171": {
+        "cad_id": "406_171",
+        "num_nodes": 211176,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/406_171/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2534240,
+          "mtime_ns": 1791670701546818300
+        }
+      },
+      "415_511": {
+        "cad_id": "415_511",
+        "num_nodes": 158827,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/415_511/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1906052,
+          "mtime_ns": 1791670706216007200
+        }
+      },
+      "432_214": {
+        "cad_id": "432_214",
+        "num_nodes": 244971,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/432_214/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2939780,
+          "mtime_ns": 1791670717750862900
+        }
+      },
+      "432_533": {
+        "cad_id": "432_533",
+        "num_nodes": 186627,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/432_533/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2239652,
+          "mtime_ns": 1791670723058940100
+        }
+      },
+      "433_497": {
+        "cad_id": "433_497",
+        "num_nodes": 183331,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/433_497/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2200100,
+          "mtime_ns": 1791670728399611400
+        }
+      },
+      "440_206": {
+        "cad_id": "440_206",
+        "num_nodes": 189969,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/440_206/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2279756,
+          "mtime_ns": 1791670733746042500
+        }
+      },
+      "475_209": {
+        "cad_id": "475_209",
+        "num_nodes": 323449,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/475_209/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3881516,
+          "mtime_ns": 1791670776887184000
+        }
+      },
+      "489_611": {
+        "cad_id": "489_611",
+        "num_nodes": 171155,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/489_611/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2053988,
+          "mtime_ns": 1791670796005952500
+        }
+      },
+      "506_170": {
+        "cad_id": "506_170",
+        "num_nodes": 189458,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/506_170/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2273624,
+          "mtime_ns": 1791670809697007400
+        }
+      },
+      "507_217": {
+        "cad_id": "507_217",
+        "num_nodes": 225091,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/507_217/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2701220,
+          "mtime_ns": 1791670815993645100
+        }
+      },
+      "507_624": {
+        "cad_id": "507_624",
+        "num_nodes": 159839,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/507_624/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1918196,
+          "mtime_ns": 1791670820936965500
+        }
+      },
+      "50_295": {
+        "cad_id": "50_295",
+        "num_nodes": 138087,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/50_295/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1657172,
+          "mtime_ns": 1791670825252723400
+        }
+      },
+      "510_575": {
+        "cad_id": "510_575",
+        "num_nodes": 237056,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/510_575/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2844800,
+          "mtime_ns": 1791670831497384200
+        }
+      },
+      "518_209": {
+        "cad_id": "518_209",
+        "num_nodes": 277760,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/518_209/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3333248,
+          "mtime_ns": 1791670843507218000
+        }
+      },
+      "524_483": {
+        "cad_id": "524_483",
+        "num_nodes": 152813,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/524_483/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1833884,
+          "mtime_ns": 1791670854411719000
+        }
+      },
+      "537_142": {
+        "cad_id": "537_142",
+        "num_nodes": 228969,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/537_142/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2747756,
+          "mtime_ns": 1791670860495780200
+        }
+      },
+      "53_482": {
+        "cad_id": "53_482",
+        "num_nodes": 215881,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/53_482/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2590700,
+          "mtime_ns": 1791670872790036700
+        }
+      },
+      "548_225": {
+        "cad_id": "548_225",
+        "num_nodes": 231372,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/548_225/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2776592,
+          "mtime_ns": 1791670879230489900
+        }
+      },
+      "560_91": {
+        "cad_id": "560_91",
+        "num_nodes": 176888,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/560_91/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2122784,
+          "mtime_ns": 1791670889566423500
+        }
+      },
+      "56_293": {
+        "cad_id": "56_293",
+        "num_nodes": 213336,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/56_293/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2560160,
+          "mtime_ns": 1791670895323589400
+        }
+      },
+      "56_95": {
+        "cad_id": "56_95",
+        "num_nodes": 230454,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/56_95/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2765576,
+          "mtime_ns": 1791670901696556100
+        }
+      },
+      "587_248": {
+        "cad_id": "587_248",
+        "num_nodes": 200619,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/587_248/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2407556,
+          "mtime_ns": 1791670907484515600
+        }
+      },
+      "592_61": {
+        "cad_id": "592_61",
+        "num_nodes": 236130,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/592_61/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2833688,
+          "mtime_ns": 1791670914020586200
+        }
+      },
+      "610_21": {
+        "cad_id": "610_21",
+        "num_nodes": 171760,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/610_21/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2061248,
+          "mtime_ns": 1791670919206760700
+        }
+      },
+      "616_538": {
+        "cad_id": "616_538",
+        "num_nodes": 241741,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/616_538/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2901020,
+          "mtime_ns": 1791670925777875400
+        }
+      },
+      "62_202": {
+        "cad_id": "62_202",
+        "num_nodes": 142546,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/62_202/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1710680,
+          "mtime_ns": 1791670936731177900
+        }
+      },
+      "62_394": {
+        "cad_id": "62_394",
+        "num_nodes": 270512,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/62_394/xyz.npy",
+        "xyz_stat": {
+          "bytes": 3246272,
+          "mtime_ns": 1791670943762703000
+        }
+      },
+      "630_205": {
+        "cad_id": "630_205",
+        "num_nodes": 190071,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/630_205/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2280980,
+          "mtime_ns": 1791670955060054800
+        }
+      },
+      "633_187": {
+        "cad_id": "633_187",
+        "num_nodes": 199040,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/633_187/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2388608,
+          "mtime_ns": 1791670960913962100
+        }
+      },
+      "66_524": {
+        "cad_id": "66_524",
+        "num_nodes": 182398,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/66_524/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2188904,
+          "mtime_ns": 1791670966240294600
+        }
+      },
+      "80_483": {
+        "cad_id": "80_483",
+        "num_nodes": 170542,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/80_483/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2046632,
+          "mtime_ns": 1791670971102605900
+        }
+      },
+      "81_417": {
+        "cad_id": "81_417",
+        "num_nodes": 170117,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/81_417/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2041532,
+          "mtime_ns": 1791670975957517800
+        }
+      },
+      "86_489": {
+        "cad_id": "86_489",
+        "num_nodes": 211010,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/86_489/xyz.npy",
+        "xyz_stat": {
+          "bytes": 2532248,
+          "mtime_ns": 1791670981891107000
+        }
+      },
+      "8_497": {
+        "cad_id": "8_497",
+        "num_nodes": 155246,
+        "xyz_path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_prospective_CPU_inputs_v1/geometry/8_497/xyz.npy",
+        "xyz_stat": {
+          "bytes": 1863080,
+          "mtime_ns": 1791670986708427700
+        }
+      }
+    },
+    "radius_plan": {
+      "radius_cache": "data/geobc_gino_radius_train100_v52",
+      "radius_pilot_summary": "runs/geobc_exploration/gino_radius_input_pilot_101_479/summary.json"
+    },
+    "qualification": "First real largest325387-node complete physical graph; all6 groups/latent leaf finite nonzero; params/emptyAdam/fourRNG unchanged",
+    "checkpoint_interval": 30,
+    "failure_policy": "No fallback or replay; preserve actual costs/exposures/last Adam-RNG-cursor checkpoint; technical review before any recovery",
+    "reference": "Current physical5 FNO scalar full60, different capacity/backend, no GNO-only causal claim",
+    "knownDEV_release": "Separate actual training terminal/closed/exact-exit gate then complete60 immutable prediction barrier before once-only knownGT; no TRAIN gate cherry-picking"
+  },
+  "scientific_digest": "e1ea115561136e12b5ae136871cc856793737dd933dd6f0bbf718f235c372a32",
+  "source_pins": {
+    "geobc/macro_warm_readout_contract_v3.py": "8ae49f8cf92fbe75a6972b835240d8b93f25f0c7aaa79514e17e1f3163ce09e5",
+    "geobc/macro_readout_protocol.py": "cc338e7eee3c7fb81d9e8d0a56a837b09a07a730f47d3e7a0599295c95841bd9",
+    "tools/evaluate_geobc_macro_warm_v3.py": "ea8631ffea334a94365c70a8a06cd21d39f9aece4a64e9cdb26613894b37828a",
+    "tools/run_geobc_macro_warm_readout_guard_v3.py": "408990edba392818d250144dbd28cd2574a7f7eea123cf3018df8f5de3cbb008",
+    "geobc/prospective_dataset_v2.py": "454af6e029169c58877ea0dc00afdc6cbc569d29b462f29ebd33be778a654b49",
+    "geobc/prospective_dataset.py": "e1085d7889fba8ddd0ca29e9e16cfb76e9f5f0d111a248f2b607d123bd2b9317",
+    "geobc/macro_training.py": "9df8c35f070da4935260785c55361dad0580cb6b79d8393c99c35452e987c3c9",
+    "geobc/macro_warm_screen_contract_v3.py": "67f518540c5c8a7e1aecb4b19a20d67ea14d98f0995495a0f45a9ef5f60fb649",
+    "geobc/available_cad_pilot_eval.py": "aa0644e27e4fc849f7cd59c6b57284a1120135ea87e8e0fa2a029d1d5ef229a3",
+    "geobc/available_cad_pilot_data.py": "fe6a1b8ac1a001dc14a5eefd1e64cb75d71359a3ba77903479d4051fd0eb127a",
+    "geobc/coverage_comparison_train.py": "bbf3832d144a689d0c8c32d27673953dd9a1d24b5976313e3e6a966d08f55e00",
+    "geobc/benchmark.py": "7ae6bfbb6a2b4d838c67db0e28465e2e0f8603757007f31d9e97ea0392330f4f",
+    "geobc/train_resident_cache.py": "79dfcc3602e8062fefab8d31afd8380e936806efc4befddae518293233597d3d",
+    "geobc/native_context_solver.py": "e13291d837b72da948101479b56fd0b7df83133fd1e4bcc9a727237e9f98b7d9",
+    "geobc/common_grid_solver.py": "b9271091c20faf9f2edad12e9d9afc0a9382ca45accdfce9048e79028601fd80",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef",
+    "geobc/fno.py": "095368095f99b2d41762d5e187abd68e12f42ed535a42dd9aba680ec4048501a",
+    "geobc/fno_arbitrary_query.py": "f116f228ff83a1ec682b9d9e93f24259f42bef27d1768e1f632ccd70fa2fe620",
+    "geobc/models.py": "9e5c16ca1d4fca77a58bb6579f0fdb33c8765e876692cee3f5b580ea0bccf6d2",
+    "geobc/train.py": "af3004566071e751c3e4909e4eca28af4572ed7f76a9211b22718fc936b867e7",
+    "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+    "third_party/transformer_sources.json": "1a46270136d2f58e081ea7be050c46fca5378b9853fc3e703c945129769aefb6",
+    "tools/train_geobc_macro_warm_screen_v3.py": "6db5963b2f982aef845107f660598dbf050ab936e2b68146b930dc537434842a",
+    "tools/run_geobc_macro_warm_screen_guard_v3.py": "473c762a53a0259b61777b5d8e3d02546fef1ec9ee3be1198dd2b970d7c3ab2b",
+    "tools/export_geobc_short_screen.py": "de31fe65101570517253332a508ab2e376ce27fdd2f362a8afcbd3b4510ae89b",
+    "tools/evaluate_geobc_short_screen.py": "1a7921b678abf833672a7d949d2d25ba2d598465d6b97a21cf68e0c21127e6f1",
+    "tools/train_geobc_single_case_diagnostic.py": "d38357f1b7510c21cedb48955360d3f3cf333b8131154f352f8bbfaf268580ab",
+    "geobc/macro_screen_contract_v2.py": "4c59de31b879f098690a97ac10763983742c27ba112eb0c220bfdc58648782ad",
+    "tools/train_geobc_macro_screen_v2.py": "3f1d97399e1be08d83cce5999029dc1556465c13b5b29aaf29c3810dc35c291c",
+    "tools/run_geobc_macro_screen_guard_v2.py": "2f7afd938b78e75319bddd8ccdeb876cc0f548357512d66dec5a8a969a9de5fe",
+    "tools/export_geobc_exposure_comparison.py": "52864d731b455b9fda60fba175524872fe89b34b0483a441b0144aaeee1f00c0",
+    "geobc/macro_screen_readout_contract_v2.py": "54dcf82abbeec712c4d5e1c783d1d97d0c1bb58d96ca8771924dd60e3b022b5d",
+    "tools/evaluate_geobc_macro_screen_v2.py": "3564113b6d93e5e04ec2c999e1425ea5ddb18ff9786c406d46b40fd7c2f372f8",
+    "tools/run_geobc_macro_screen_readout_guard_v2.py": "d417b4802f05525d73b48051473e7d405175327c68e72134bcb82bf406d469c2",
+    "geobc/fno_coverage_contract_v4.py": "ac89d612fd59629c555a6c0ec497045286b4ec2641c26e13e48ffa47c9c3fb11",
+    "tools/train_geobc_fno_coverage_v4.py": "dc7d2ab39b708905fe690cca4adf16ee565d513e0bdb749887b4c12ccc448750",
+    "tools/run_geobc_fno_coverage_guard_v4.py": "5996c9b88b2c7cfee2abd0eacbfed157815db49e3ced08f5857d7f86986bf008",
+    "geobc/fno_coverage_readout_contract_v4.py": "f07ca6b7cf904ac39e05d5233d5d331e08e68298a6c285d2ea8fd7e902abb3be",
+    "tools/evaluate_geobc_fno_coverage_v4.py": "34ae4d5675081d57c0bbfae248a778eccb414a42b43f5c7668f874e949097e04",
+    "tools/run_geobc_fno_coverage_readout_guard_v4.py": "5e222165dad293338b7e656a55a7bfead219618becb0d47bc9fe8a816c675c7d",
+    "geobc/operator_hash_campaign_contract_v5.py": "6bb890ede61f7c86f1c8fbd7d0b4d5ed6a8e47137a1e1e591b31e7ed84182270",
+    "geobc/operator_hash_training.py": "dba20bd1a1f0465b0b4b9f55079d2a926456790a0a4a9c79cb2c79bfbc7366d1",
+    "geobc/operator_conditioned_hash.py": "64a74a1fd0c8230cd363cdab02f135549446d3d518110827be9c45703b2bfda0",
+    "tools/train_geobc_operator_hash_v5.py": "0659dcf8889f00565475b44ff1c45611b405c2228970e04bd906da5066a9f6ae",
+    "tools/run_geobc_operator_hash_guard_v5.py": "d9c74958779bcb43980b12ad5b4247477403a9c60988e9ea3f8811b721662f8c",
+    "geobc/operator_hash_metadata_v6.py": "c5fd5e1ad8c91660b6057c5c4be6b103a179525da2c536aa8435a1946f5da799",
+    "geobc/operator_hash_recovery_contract_v6.py": "f730ef47f0e48c2a78af40c75653e8d2dd2a6935808eef89078ad45cd8fb0a85",
+    "tools/train_geobc_operator_hash_recovery_v6.py": "aa4f597c65dce6b616d089485471279d1f2856fdba16025cae7a7ca647944fc7",
+    "tools/run_geobc_operator_hash_recovery_guard_v6.py": "1ca74b27dcd9f396223d1db01bf0aff42e748c64730e3226f6f2146b729a36ed",
+    "geobc/operator_hash_readout_contract_v5.py": "7c284c2a119f1db6a16b16bf5899c4c150cc1fd19766bd579165108e787f0f08",
+    "tools/evaluate_geobc_operator_hash_v5.py": "c39d20d8258c0ee9a71ae3fd552bfe327822cf925c6e16ef814d3d24e45a7af6",
+    "tools/run_geobc_operator_hash_readout_guard_v5.py": "9a945620f3f2f7b69dbaf5f65b95cf5bf17e02a2430070a5d5c118c2440bff18",
+    "tools/check_trained_operator_hash_queries.py": "07a82c573c426c833c600f055b4cff11151b065e355f866eaf80d90f984844d0",
+    "geobc/operator_hash_extension_contract_v7.py": "d5fa840da29b060f539d6d016b1a2aa86a09b84b9a88417171f9606f5e2fcc2a",
+    "tools/train_geobc_operator_hash_extension_v7.py": "40d265ee7d0f9d29f9e1eba237a4354f024a8a1908578313b9260c9e8ef4a266",
+    "tools/run_geobc_operator_hash_extension_guard_v7.py": "ce2ec5e645d71a1cf6435d12b1f7d7e8d0b40cb7e8f409d4526d09cc3dbe93ad",
+    "geobc/operator_hash_matched_readout_contract_v8.py": "e9c50ec3e323aefd7dd4826d0d861b875c7ef0c22bbdff711f8010656898013f",
+    "tools/evaluate_geobc_operator_hash_matched_v8.py": "2dd94ce5ce4fb34fd4964359f904ec81b4dd761f27b8654ecffdf7c400b4442f",
+    "tools/run_geobc_operator_hash_matched_readout_guard_v8.py": "4dc765c76bb197bf606a7624c14fd308c917384492d4c54d878c75760f32720e",
+    "geobc/final_cad_contract_v9.py": "b351803974e65e3a47ffe8b2b481da2905a8131601b33ee98e94a948fddf2e7d",
+    "geobc/final_cad_truth_v9.py": "c9e4b2d1ba4c52e1bf8cf79a27f96392e0c23ab48445a26106b5fdd3d6f45441",
+    "tools/evaluate_geobc_FINAL_v9.py": "8db6cc3c14ead741cd2ea2d8e19e09d09077a959d2b8d408a82ac32c0d64004d",
+    "tools/run_geobc_FINAL_guard_v9.py": "daa7acc7d268cefb600e62ae8a3dee09c8a5a3f34da9d35f8f25904b6db78af0",
+    "geobc/pp100_feasibility_contract_v10.py": "4107f6fcb019235f92afe7780d7e61e6484cbb034e4a9d0e235f7af1814d747b",
+    "tools/probe_geobc_pp100_v10.py": "3ca6e402e7dd3d4ebbb9e883891e42a662772ca862ced13a09a7d1a0c10af2bc",
+    "tools/run_geobc_pp100_feasibility_guard_v10.py": "32fa50c42ced768a21f6aec590ddd86eceb5b3729d5623aa436a1271ae188b76",
+    "geobc/macro_screen_contract_v11.py": "2623729fc457cf868933830e9061fea1f85f465bbd319fb2bf9961d7876964d3",
+    "tools/train_geobc_macro_screen_v11.py": "058028a7fba1e019942225b10520e0c54e30588d6a33a0ab257a97d68d095589",
+    "tools/run_geobc_macro_screen_guard_v11.py": "25cb2eb1e9609eeaf96bd443fd34048306a3ac66a89de4256e8aabd9ec4d2dc7",
+    "geobc/train_physical_cache_v12.py": "1efa5a3d0e8ce782a8e1033cb299b6e03b13ae5f7a23c034742944b89705a181",
+    "geobc/macro_physical_contract_v12.py": "647810cbcfaa03a529bdd081357d90d85c1d68c5096fc47199dbedaee2ce5549",
+    "tools/train_geobc_macro_physical_v12.py": "60009f6e286bad5aab247940e7372ca74041f99bdc909b782af3d0e112db5e12",
+    "tools/run_geobc_macro_physical_guard_v12.py": "542c3007f36c9d86c5040327745f3ac720469ede3f6a47db0992baf5eaa76760",
+    "geobc/physical_field_loss.py": "9e386b771f86906ed1fb4524286cea57d2521698c2f582d4595c7cb24fa3de00",
+    "tools/bind_geobc_macro100_v11.py": "179d0cca4272024e055fe1c399dc9eefbd8bf44f19759b7cd6ec1b6484d9c357",
+    "geobc/macro100_readout_contract_v11.py": "2cad9d780930b349f86c9a1c547cf35ae6e1fa0603719a441af5e81dc02a54ac",
+    "geobc/global_hash_physical_contract_v17.py": "a4ac7167379d6cdeeb06aba8f6642ae5367eb270b1dbedf55a720e380a30fcf8",
+    "tools/train_geobc_global_hash_physical_v17.py": "730d38a8be266a4d9dc0bece78bdf10d30ea7fa13597db90edb7326b43fcd046",
+    "tools/run_geobc_global_hash_physical_guard_v17.py": "7300d73c8101dc6d2bcda4b93c9d33db463758c72d6f2d006fb78b6c8a5d16fa",
+    "geobc/global_hash_physical_recovery_contract_v18.py": "17e5bfd8b8d68bfbe90f24e7162b33f3825fee1b35a7037043c24e63519899b4",
+    "tools/train_geobc_global_hash_physical_recovery_v18.py": "8d1237b8795649f53f1214e0773e1a9587faf889d504eccb22575f6f8fdb1daf",
+    "tools/run_geobc_global_hash_physical_recovery_guard_v18.py": "aac22ef29561ce50ae4e0171b049179030eb8da09b69ce1abb1460282f137bd9",
+    "geobc/coarse_transolver_v19.py": "40bfc7ea2c4bc39fd2eb25632a2895040f2ed70cf44132d79e64e02623302e61",
+    "tools/check_coarse_transolver_v19_CPU.py": "0f7d9f94d03fb0d5c550eb2ee2b91a01f1b689907608eb0e46a0d223e91490ef",
+    "geobc/coarse_transolver_probe_contract_v19.py": "7fe6f3952fc1e9c4631949c88bb2fdcf8c7f0a851f04677dc44eb2c1998191d9",
+    "tools/probe_geobc_coarse_transolver_v19.py": "580117b6317153316964857c6b0c5e1b3c91b6fe4d4e0ba80435020f6c48af5e",
+    "tools/run_geobc_coarse_transolver_probe_guard_v19.py": "2de74a0097b749ace3e1e46b3d0e1f71bf3f5667ce011cc5a4d7bfd1efaa43ca",
+    "geobc/coarse_transolver_training_contract_v20.py": "6b3fc2ea4331ce724abd52c2ed09edad7b044659840a0b7a7ca99839eb9c569b",
+    "tools/train_geobc_coarse_three_v20.py": "83983861cf8f0ebd6891e42d81f5f65826a17662673f9552f4c1bd5bd9a2e2a1",
+    "tools/run_geobc_coarse_three_guard_v20.py": "ce842afe2dc428ada6543f936ad80e7f2730afa1b98853af950ec7582f65d841",
+    "geobc/global_bc_solver_v48.py": "f3015185f3b96b297aeee4f79f8a1bd6d1128efd2b56c9cd97c06926985c8165",
+    "tools/check_global_bc_solver_v48_CPU.py": "861ff436c5c27f83d24e8ad5ee965afec305a2b18695b45e9598e83242f18841",
+    "geobc/global_bc_training_contract_v48.py": "8694a35a8f03b7bdbbdf21e7c91ffd52fb737891e895417cfb1acabc1d1b53c8",
+    "tools/train_geobc_global_BC_v48.py": "be131638fe7d6f19ea08d5cced2813249500223b38458a08efef93446e60c62d",
+    "tools/run_geobc_global_BC_guard_v48.py": "7cf914eed2cc3bc2a034d3ffa7efda6145332085b27d22dd0384c087c885efbb",
+    "geobc/global_bc_context_v47.py": "2f6254bba33202d965262d840c393561f164b96b7bfec9ef42e52983d7f0ed90",
+    "geobc/geometry_head_transfer_v32.py": "8bd557fd338140aff2c8d351a28320cf3afb50b85ede4459097234db6897e2a4",
+    "geobc/resolution_training_contract_v42.py": "9edfa57ef7dbc40d9a445f203d4030eb3679fc513d2f454f58ca7fe406be85c4",
+    "geobc/global_hash_physical_readout_contract_v18.py": "f4f17ca159c813d00336d524c4157fd2224548acca1d69fe32c017391f676204",
+    "geobc/global_bc_readout_contract_v49.py": "d155073fe81b061341d5a5b134bd56a58a48b32293d658543ab02efffcf11143",
+    "tools/evaluate_geobc_global_BC_v49.py": "7c7cb05b1654b24c7ab0d787cd6a29a22beb01465ebc9007f73209a9cca4038a",
+    "tools/run_geobc_global_BC_readout_guard_v49.py": "ec369ea5028ac9d8cee447c483c80f8b73b71a929d27015cd076f1106d111603",
+    "geobc/original_TS_continuation_contract_v50.py": "ff9d772b6f298b195899ae13d53db079a6a8440665c2352f8372344628106403",
+    "tools/train_geobc_original_TS_continuation_v50.py": "eb62b62362fb649d796737014f1db0197f724359e9cfb9c313965e049157b703",
+    "tools/run_geobc_original_TS_continuation_guard_v50.py": "b0ab6ed5fed4dd56fc66c4ac2ebd8b0910b026077a59cdd4f0de594d3c2c5db6",
+    "geobc/original_TS_readout_contract_v51.py": "8754a07c22241aec001d6c4d073c0d439c429b0fa3ed4df51534280d52454e3d",
+    "tools/evaluate_geobc_original_TS_v51.py": "873d3a83fa2ac7ef390f895b76ee730046a40be8ff8230ae032093ad354a3c7f",
+    "tools/run_geobc_original_TS_readout_guard_v51.py": "5042954c07e8b0f8e4c28250227ae9c55d93d7b759dd039bbefca01b704c482e",
+    "third_party/neuraloperator/neuralop/models/gino.py": "543791b2c5aa9582fa0049744479d574187d5f6d0d2abbff0d3b73dd7161c05a",
+    "third_party/neuraloperator/neuralop/models/base_model.py": "a77cdf6672f38ada626f9bfafe4b0a3f90cac3fce3e5176146eea5d226204711",
+    "third_party/neuraloperator/neuralop/layers/channel_mlp.py": "f874b8ef4e60fe9e38d43fd19032e77ef0b7c3d37bdf08f3f4629ebebd8b07b4",
+    "third_party/neuraloperator/neuralop/layers/embeddings.py": "68bfbb087c7be990978d7215b130eb793e09425f88cdf87debdadd563e28a1cd",
+    "third_party/neuraloperator/neuralop/layers/fno_block.py": "f5d31aa651fe97a2f5b9172efd8296af67856037ac95266c4002504a49b6b843",
+    "third_party/neuraloperator/neuralop/layers/spectral_convolution.py": "7f00c9d692cab75f65fe83f147c2964d480b58498f6cc4b43e2962e2d3d2712c",
+    "third_party/neuraloperator/neuralop/layers/gno_block.py": "d915da4f8896bedaee03111bcc2fac9d711e8a0d53fe6231a6f274cfbdedafb5",
+    "third_party/neuraloperator/neuralop/layers/gno_weighting_functions.py": "d86af8c7388f35b53aadd0903ca035a307743e2497fc582e54c3ac9514dbd931",
+    "third_party/neuraloperator/neuralop/layers/complex.py": "4f2481942d7730459012c9a6e8487c8ecc80711bf348d1ae5e1f931c4445b93c",
+    "third_party/neuraloperator/neuralop/layers/normalization_layers.py": "f08cfc1b11764e124177c00d0302779b730129206b7445e583edc247d4229b14",
+    "third_party/neuraloperator/neuralop/layers/skip_connections.py": "4257437fe7f9792fae2cbf532fdcf272d30055019f3dcf672f56d365341fc543",
+    "third_party/neuraloperator/neuralop/layers/einsum_utils.py": "28f6ba56b991534958db1ccd99f37945fba8bd4b4000be4f1996aa440e24a5e5",
+    "third_party/neuraloperator/neuralop/layers/base_spectral_conv.py": "29acbbc16d55e08a0f9d36fa461171bb3a53f15d1ca2408a9371099fed66a6f9",
+    "third_party/neuraloperator/neuralop/layers/resample.py": "8b4cf964a3e71095faa703314c50fe8bee1bbc439c36f8416a66aeba9bce1932",
+    "third_party/neuraloperator/neuralop/layers/integral_transform.py": "af2161f65fae0a6a554c015d76d549a4084046e6869d7dc2155afbec3182af61",
+    "third_party/neuraloperator/neuralop/layers/neighbor_search.py": "10041be4c58aa32a47016fa83554c0124126ac16557ef6bc1afd9ecd62ec3343",
+    "third_party/neuraloperator/neuralop/layers/segment_csr.py": "fae11715063c9ae79f863485d8f190a77b39c0405e9cc5c6874dd4074c135c19",
+    "third_party/neuraloperator/neuralop/utils.py": "a9b5b61fe7f9fac08c7d6a4c53bf2da501e548541410564a26a7dd2e96bd25cb",
+    "geobc/gino_physical_training_v52.py": "bb6e6c9d57a9b79c1b101fe2f6726caa35d03ba529d88c242dfc26e21fe67800",
+    "geobc/gino_physical_cache_v52.py": "e3698184d5e0a5c74d51e95bad2ca9575f6ddd2d9fe28f1bed75da7d37536387",
+    "geobc/gino_radius_cache_v52.py": "885f02d997f46ecafcda1ebe812ecd61b6a7c806d05211cbcbcca895baeec860",
+    "geobc/gino_physical_contract_v52.py": "c613a28491aeb262394e24598fe9e511dc89ee4199b9d800bbbd4aa86d1c9077",
+    "tools/train_geobc_gino_physical_v52.py": "b042dcdd94fc0517dfd1cf817ea9677fb341016292a19ae814302d1343ba2d00",
+    "tools/run_geobc_gino_physical_guard_v52.py": "43fecaf2d929dc74eae1c7104c30529e1b79f1c142bab6b287684773512059e6",
+    "geobc/gino_train.py": "2d34ac072a6d7e1cd770c76cfda090ed42787f5f14394cf4720db56e76b2a4ed",
+    "geobc/gino_solver.py": "39d08af2fbcb1a59b407066f45e224e9c3f7e7bca1025ad86463b5567fdf9de1",
+    "geobc/regular_grid_radius.py": "14f0b96b780ea27f668f5c7a98f50c4cabab6f7ec2a47ad060dfef6079d34ef7",
+    "geobc/solver_selection_data.py": "974aff62e56a405e93fd2c65cda9832b8c2a2130595f64a82c484275d83e67a6",
+    "geobc/solver_selection_train.py": "391c9d30d8a20aec3929610fcc0bb17ea948baaf051ac3e6c5e6cebc546cfb8a",
+    "third_party/neuraloperator_source.json": "342108ac2d250366c8fb913da3d1c6284b989fdf1835dcc2ba13665fd28840c1"
+  },
+  "output": "runs/geobc_exploration/GINO100_physical5_v52",
+  "root_review": "notes/geobc_gino_physical_v52_root_review.json"
+}

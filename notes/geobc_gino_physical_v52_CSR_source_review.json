@@ -1,0 +1,28 @@
+{
+  "status": "current_CSR_source_and_metadata_reuse_reviewed",
+  "passed": true,
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-10-11T13:29:02.093819+00:00",
+  "source_identity": {
+    "path": "geobc/gino_radius_cache_v52.py",
+    "bytes": 3859,
+    "mtime_ns": 1791725285906396300,
+    "sha256": "885f02d997f46ecafcda1ebe812ecd61b6a7c806d05211cbcbcca895baeec860"
+  },
+  "actual_metadata_receipt_identity": {
+    "path": "notes/geobc_gino_physical_v52_CSR_metadata.json",
+    "bytes": 561,
+    "mtime_ns": 1791725335933560600,
+    "sha256": "a8fe3d2a175e3ba36c032b777b4354b6f09dd119d8f9e028132210cd3939418d"
+  },
+  "checks": [
+    "Exact fixed100 TRAIN coordinates/metadata witnesses",
+    "Reuse original40 in place, no old manifest/CSR writes",
+    "Separate directory and unchanged exact GPU builder for new60",
+    "No fallback radius/edge/node/chunk reduction",
+    "Temporary case copy prevents retaining100 GPU CSR dictionaries in resident cases",
+    "One active CAD only; old native real-model qualification not re-run"
+  ],
+  "actual_execution_released": false,
+  "actual_GPU_attach_qualified": false
+}

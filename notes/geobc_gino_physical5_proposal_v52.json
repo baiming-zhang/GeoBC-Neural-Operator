@@ -1,5 +1,5 @@
 {
-  "status": "implementation_in_progress_no_GPU_release",
+  "status": "actual_fullN_qualification_passed_fixed5_training_active",
   "updated_at_utc": "2026-10-11T13:20:57.491237+00:00",
   "purpose": "One structural GINO candidate under current CAD-isolated physical protocol, not old encoded480 rerun or Hash microtuning",
   "previous_actual_GINO": {
@@ -66,10 +66,10 @@
     "1500_update_linear_TRAIN_seconds_estimate": 2312.874105909373,
     "scope": "Old recipe/40CAD/backend only, not measured new ETA; new physical FP64/100CAD/cache changes and60 new CSR builds unmeasured"
   },
-  "source_runtime_complete": false,
-  "actual_GPU_qualification": false,
+  "source_runtime_complete": true,
+  "actual_GPU_qualification": true,
   "actual_training_updates": 0,
-  "actual_new_GT_reads": 0,
+  "actual_new_GT_reads": "Prior two caches600; current cache in progress, exact current status receipt authoritative",
   "limits": [
     "Not a GNO-only causal ablation; model frequency/capacity/backend differences disclosed",
     "knownDEV iterative; no final or blind claim",
@@ -89,5 +89,28 @@
     "sha256": "38d77eee5c4faef6ee2f71cf67e142a01083c5e22b03cf77ae3532f37da41458"
   },
   "native_cache_disk_bytes_upper": 7532826400,
-  "next_implementation": "Integrate exact current perCAD CSR inventory+new60 construction and one bounded real fullN qualification/training guard; GPU actual0"
+  "next_implementation": "Single bounded native driver and real process guard; integrate frozen physical/native/current-CSR adapters. No new GPU qualification or updates.",
+  "current_CSR_adapter_identity": {
+    "path": "geobc/gino_radius_cache_v52.py",
+    "bytes": 3859,
+    "mtime_ns": 1791725285906396300,
+    "sha256": "885f02d997f46ecafcda1ebe812ecd61b6a7c806d05211cbcbcca895baeec860"
+  },
+  "current_CSR_source_review_identity": {
+    "path": "notes/geobc_gino_physical_v52_CSR_source_review.json",
+    "bytes": 1116,
+    "mtime_ns": 1791725335955642300,
+    "sha256": "e0abc11c7ef37821c872221c483fb8f2bce84bd835a2f21bfef7ef3fa13a1456"
+  },
+  "current_plan": "notes/geobc_gino_physical_v52_device_recovery_plan.json",
+  "current_SCI": "f5be0a2df542624509c205f674d3279fc16d923a3d62bbc6303c0357615d2ecf",
+  "actual_execution_handle": 42827,
+  "actual_start_identity_receipt": "notes/geobc_gino_physical_v52_device_recovery_actual_launch.json",
+  "prior_technical_failure_updates": 0,
+  "prior_active_setup_cost_seconds": 118.22868204116821,
+  "whole_deadline_reset": false,
+  "actual_training_updates_at_last_observation": 87,
+  "actual_qualification_receipt": "notes/geobc_gino_physical_v52_actual_qualification_receipt.json",
+  "actual_current_cache_physical_reads": 300,
+  "actual_total_cache_physical_reads_across_attempts": 900
 }
