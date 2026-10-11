@@ -10,7 +10,7 @@
   "description": "Original DeepJEB reproduction and broad geometry/boundary-conditioned solver selection, with held-out CAD physical metrics and accuracy/cost comparisons.",
   "authorization": "User explicitly requested creating a private GitHub repository named from this chat title with hyphens and pushing organized code and results after all experiments finish.",
   "publication_gate": "All 30 slides suite experiments remain completed. GeoBC autonomous exploration snapshots are published with explicit stage and ongoing/completed status; no claim that exploratory work has finished. Repository remains private.",
-  "commit_message": "Measure hard-field FNO learning through1000 physical updates",
+  "commit_message": "Compare fresh FNO and conditioned Hash fitting on three hard fields",
   "research_authorization": "2026-10-09 user explicitly authorized autonomous sustained GeoBC exploration, evidence-driven next stages and a 30-minute watchdog; continue updating this project repository.",
   "results_manifest": "results/manifest.json",
   "results_export_command": "python tools/export_repo_results.py",
@@ -1260,7 +1260,20 @@
     "notes/github_df1f2bc_root_before_single_field59.json",
     "notes/github_gitdata_df1f2bc_actual_publication_root_review.json",
     "notes/github_gitdata_df1f2bc_verified_receipt.json",
-    "notes/github_gitdata_publication_df1f2bc8c6e5ae4427cb6aa7014a17407478197c_matched_shared_independent_fit_20261012_receipt.json"
+    "notes/github_gitdata_publication_df1f2bc8c6e5ae4427cb6aa7014a17407478197c_matched_shared_independent_fit_20261012_receipt.json",
+    "notes/geobc_single_decoder_v60_actual_launch_receipt.json",
+    "notes/geobc_single_decoder_v60_exporter_root_review.json",
+    "notes/geobc_single_decoder_v60_plan.json",
+    "notes/geobc_single_decoder_v60_prelaunch_failure_receipt.json",
+    "notes/geobc_single_decoder_v60_root_review.json",
+    "notes/geobc_single_decoder_v60_source_review.json",
+    "notes/geobc_single_decoder_v60_actual_terminal_receipt.json",
+    "notes/github_a5c1c0c_canonical_before_decoder60.json",
+    "notes/github_a5c1c0c_root_before_decoder60.json",
+    "notes/github_gitdata_a5c1c0c_verified_receipt.json",
+    "notes/github_gitdata_a5c1c0c_actual_publication_root_review.json",
+    "notes/github_gitdata_publication_a5c1c0c4bbaa267ee519cac875dbd99cb8b86bde_three_single_field_learning_20261012_receipt.json",
+    "notes/geobc_shared_decoder_v61_proposal.json"
   ],
   "next_snapshot_wait_reason": "Wait for meaningful real training/DEV terminal or complete new pipeline; no metadata-only repush",
   "current_stage_publication_gate": "Meaningful PP negative report completed and plot visually verified; all source authors frozen; original30 completed manifest maintained",
@@ -1280,23 +1293,23 @@
   "current_pending_publication_receipt": "notes/github_gitdata_publication_ee8c466bd3a5703211a68881a7e9b396d42b9417_gino_physical5_actual_fulln_launch_20261011_receipt.json",
   "ongoing_stage": "v48/v49 completed andnegative GBC gates; originalTS5to10 convergence designonly",
   "latest_verified_publication": {
-    "commit": "df1f2bc8c6e5ae4427cb6aa7014a17407478197c",
-    "tree": "050a7ff6206acab97b63d9c335659eb00f58b997",
-    "base_commit": "26f789371734251fde155d0ad2e6b8a79ea7c633",
-    "remote_main": "df1f2bc8c6e5ae4427cb6aa7014a17407478197c",
+    "commit": "a5c1c0c4bbaa267ee519cac875dbd99cb8b86bde",
+    "tree": "148ea74882e2ac42d2c998284a3076d004b56929",
+    "base_commit": "df1f2bc8c6e5ae4427cb6aa7014a17407478197c",
+    "remote_main": "a5c1c0c4bbaa267ee519cac875dbd99cb8b86bde",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "verified_at_utc": "2026-10-11T16:57:37.8115690Z",
+    "verified_at_utc": "2026-10-11T17:15:24.1885995Z",
     "actual_exec_exit_code": 0,
-    "actual_exec_session": 53098,
-    "elapsed_seconds": 44.8738854,
+    "actual_exec_session": 69441,
+    "elapsed_seconds": 43.9440247,
     "immutable_receipt": {
-      "path": "notes/github_gitdata_publication_df1f2bc8c6e5ae4427cb6aa7014a17407478197c_matched_shared_independent_fit_20261012_receipt.json",
-      "bytes": 27134,
-      "mtime_ns": 1791737857815675800,
-      "sha256": "2481417f4468e92d0436617b3fb475e820bf7ff5863359aad27d7ef630f0a25d"
+      "path": "notes/github_gitdata_publication_a5c1c0c4bbaa267ee519cac875dbd99cb8b86bde_three_single_field_learning_20261012_receipt.json",
+      "bytes": 27140,
+      "mtime_ns": 1791738924189754500,
+      "sha256": "4e08f150b8da3a965de29a2424046e8dc7f35f6d291451667e6420f58fe5db1e"
     }
   },
   "legacy_index_correction": {
@@ -1310,7 +1323,7 @@
   "latest_verified_commit": "ee8c466bd3a5703211a68881a7e9b396d42b9417",
   "current_research_stage": "TS50_train_and51_DEV_completed_report_accepted_GINO52_adapter_and_native_cache_implemented_GPU0",
   "current_research_stage_UTC": "2026-10-11T12:52:12.426665+00:00",
-  "next_publication_scope": "GINO52 complete source/current plan, two real zero-update failures and exact-budget recoveries, actual fullN physical qualification and active training status; no new DEV precision claimed",
+  "next_publication_scope": "Actual fresh three-field FNO/conditionedHash paired fit, scalar curves and cloud, source/proofs/prelaunchfailure, shared3 next proposal",
   "latest_verified": {
     "status": "actual_private_publication_verified",
     "actual_exec_session": 8215,
@@ -1331,5 +1344,5 @@
     "credentials_printed_or_saved": false
   },
   "stage_scope": "Actual full60 GINO1320 diagnostic, 1hTRAIN/149sreadout cost, signed physical metrics, immutable scalar provenance, FNO priority and proposed(not executed) matched stress specialization",
-  "latest_local_research_status": "v59 actual three-field100-to1000 completed; v60 fresh decoder pair proposal only; private snapshot pending"
+  "latest_local_research_status": "v60 completed and twoPNG inspected; v61 shared3 paired6000update macro stage remains proposal/actual0"
 }

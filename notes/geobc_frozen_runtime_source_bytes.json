@@ -1581,6 +1581,31 @@
       "frozen_runtime_sha256": "dcb0f1cb5889737c3f29b307a38f2e486c52bd39bf567bb8c2023f890d18d0a2",
       "canonical_LF_sha256": "dcb0f1cb5889737c3f29b307a38f2e486c52bd39bf567bb8c2023f890d18d0a2",
       "line_endings": "LF"
+    },
+    "geobc/single_decoder_pair_contract_v60.py": {
+      "frozen_runtime_sha256": "c4788e87efcf974a3cc6b08b154be160711435e2b3709514d4cd85a144f24c0b",
+      "canonical_LF_sha256": "c4788e87efcf974a3cc6b08b154be160711435e2b3709514d4cd85a144f24c0b",
+      "line_endings": "LF"
+    },
+    "tools/train_geobc_single_decoder_v60.py": {
+      "frozen_runtime_sha256": "b5d75e893f7af2c0d519f3090806addc21487960efafdd4f0acd7f0a2ff5b1cd",
+      "canonical_LF_sha256": "a0c001f519af903aae5857a8af83fd69cdefcedd2cc60798a89d04fd2578e889",
+      "line_endings": "CRLF"
+    },
+    "tools/run_geobc_single_decoder_guard_v60.py": {
+      "frozen_runtime_sha256": "aa40a160b2b96551c64ec20679d775e4d0cbbe5dff17eb77c17aaaf67802f28a",
+      "canonical_LF_sha256": "9fa606e8806bb97c706ecb12ed6d94b29937c1f5f51fc5336e66dd1e3bf32d85",
+      "line_endings": "CRLF"
+    },
+    "tools/prepare_geobc_single_decoder_v60.py": {
+      "frozen_runtime_sha256": "bbc8237c343ecaae8896d4b6554504dad56d7f3984487bf7ff346298e238ad4f",
+      "canonical_LF_sha256": "bbc8237c343ecaae8896d4b6554504dad56d7f3984487bf7ff346298e238ad4f",
+      "line_endings": "LF"
+    },
+    "tools/export_geobc_single_decoder_v60.py": {
+      "frozen_runtime_sha256": "1d5ad8404c8bae231eb3e1f32ba2b0a69402c2f4e0c00defb038adca64ecd6cd",
+      "canonical_LF_sha256": "1d5ad8404c8bae231eb3e1f32ba2b0a69402c2f4e0c00defb038adca64ecd6cd",
+      "line_endings": "LF"
     }
   },
   "additional_scientific_digest": "943582670d1dc999a940524c68daafc407f06d483603cdc0915aaf4b578774ee",
@@ -1591,5 +1616,9 @@
   ],
   "operator_residual_v45_scientific_digest": "a233be15dbf2770cd619a9e54805006e80e549601665b379ba5ceaa6eace3c35",
   "operator_residual_v46_scientific_digest": "83d312dab717a83d5d1ceb1657b94a0bd25a69ef171c3a9bf8b98530718fa94d",
-  "latest_source_extension": "v56 evidence-gated same FNO10-to20 learning-trend source, no automatic extension"
+  "latest_source_extension": {
+    "stage": "v60 scalar CPU exporter",
+    "source": "tools/export_geobc_single_decoder_v60.py",
+    "actual_runtime_execution": 0
+  }
 }
