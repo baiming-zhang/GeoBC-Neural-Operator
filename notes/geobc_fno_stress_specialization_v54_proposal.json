@@ -1,0 +1,35 @@
+{
+  "status": "scientific_proposal_only_not_SOURCE_frozen_not_released",
+  "at_utc": "2026-10-11T15:05:43.232407+00:00",
+  "question": "Does current100CAD physical jointU/S optimization impede stress fitting, or is stress fitting poor even with dedicated supervision?",
+  "evidence": {
+    "path": "notes/geobc_current_physical5_TRAIN_DEV_gap.json",
+    "bytes": 3813,
+    "mtime_ns": 1791729866029810800,
+    "sha256": "997af8f92213ed1c8a3871f255b28611b58dd9cf99bee77b1b84a68b86c64c51"
+  },
+  "stage": "Current100CAD whole-node physical FNO9 joint-vs-stress-specialized continuation",
+  "candidate": "One stress-only additional5 continuation from genuine existing FNO9 physical5 state; Adam/fourRNG/exposure schedule retained. Retain exact0.5 stress coefficient of original joint objective, remove only U loss; no loss-weight scan or newrepresentation/scaler.",
+  "control": "Reuse existing same-parent FNO9 joint5-to10 fullTRAIN300/fullknownDEV60 immutable scalar endpoints; do not rerun control training/inference.",
+  "reported_U": "Explicit frozen existing jointFNO10 predicted U3; stress from specialist, no U truth. Composite prediction method with two model/checkpoint and actual historical/inference cost disclosed; do not call stress specialist joint solver.",
+  "training": "Fixed1500 new updates/5exposures, same100CAD/3loads/scaler/order/seed/native node objective; estimated fewminutes from prior97s joint continuation. Future fresh independent frozen campaign <=1800whole /600training seconds,30.5GB/no budget resets.",
+  "evaluation": "All60 composite full-node encoded/physical predictions committed/revalidated before shared knownGT60 once, complete U/S/hot/perload20/CADpaired20; FINAL0. Old control physical U prediction bodies may be read target-free inside released evaluation budget, exact hashes/geometry/checkpoint identities required; no old inference replay.",
+  "advance_gate_proposal": {
+    "absolute_S_gain_at_least_percentage_points": 3,
+    "maximum_hotspot_deterioration_percentage_points": 2,
+    "maximum_worst_S_relative_regression": 0.1,
+    "complete60_required": true,
+    "U_exactly_matches_frozen_reference": true,
+    "automatic_extension": false
+  },
+  "limits": [
+    "KnownDEV iterative/single-seed, fixed-endpoint diagnostic, no unbiasedfinal/architecturecausal claim",
+    "Different two-model composite cost/capacity must be reported; cost-backed priority only",
+    "Old stress-only teacher/magnitude/strain branches exist on previous datasets/recipes; this current physical100 matched-parent contrast must be checked against old histories before source release; no duplicate old stage"
+  ],
+  "actual_SOURCE_implementation": 0,
+  "actual_new_training_updates": 0,
+  "actual_new_GT_reads": 0,
+  "actual_GPU": 0,
+  "execution_released": false
+}

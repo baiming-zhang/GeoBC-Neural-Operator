@@ -1,0 +1,38 @@
+{
+  "status": "actual_evidence_decision",
+  "at_utc": "2026-10-11T15:05:43.212356+00:00",
+  "GINO_percent": {
+    "U": 30.63993360198015,
+    "S": 57.61768578328997,
+    "hot": 49.015036975505616
+  },
+  "wideFNO5_percent": {
+    "U": 29.03365463591599,
+    "S": 54.454395300947326,
+    "hot": 42.80659140528778
+  },
+  "GINO_minus_wideFNO_percentage_points": {
+    "U": 1.6062789660641599,
+    "S": 3.1632904823426458,
+    "hot": 6.208445570217833
+  },
+  "actual_training_epoch_cost_ratio": 40.99677679395241,
+  "GINO_actual_training_seconds": 3600.4676678180695,
+  "wideFNO5_actual_training_seconds": 87.82318878173828,
+  "GINO_checkpoint_step": 1320,
+  "actual_committed_updates": 1344,
+  "formal_equal5_comparison": false,
+  "source_summary_identity": {
+    "path": "runs/geobc_exploration/GINO100_knownDEV60_v53/summary.json",
+    "bytes": 516361,
+    "mtime_ns": 1791730628881746900,
+    "sha256": "ca8c1e8df957dfec9411a80ef8692e341be08fa82f87f6d96dbbac25a94d5a32"
+  },
+  "decision": "Stop extending this GINO configuration: no observed U/S/hot advantage at current cost; maintain FNO priority. Not an architecture upper-bound or matched exposure causal claim.",
+  "next_question": "Does current100CAD physical jointU/S optimization impede stress fitting, or is stress fitting poor even with dedicated supervision?",
+  "not_allowed": [
+    "Automatic moreGINO/40epoch/24000step",
+    "Repeat old FNO/TS inference or knownGT for a diagnostic",
+    "Conclude architecture upper bound from partial budget or single knownDEV seed"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "status": "actual_readout_launched",
+  "at_utc": "2026-10-11T14:55:16.805783+00:00",
+  "actual_exec_session": 47870,
+  "scientific_digest": "a9d393de37db615331fccabdd4cad45afe0715428df6607043c3f56cc036635b",
+  "plan": "notes/geobc_gino_knownDEV_v53_plan.json",
+  "execution_identity": {
+    "path": "runs/geobc_exploration/GINO100_knownDEV60_v53/execution.json",
+    "bytes": 1115,
+    "mtime_ns": 1791730483616090600,
+    "sha256": "84139ae0806c8eb795ed44413c24a8e38c404df590818d6a0ae5b7cfbd341024"
+  },
+  "child_process": {
+    "pid": 34806,
+    "ppid": 34805,
+    "start_ticks": 4654422,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.evaluate_geobc_gino_v53",
+      "--start",
+      "--plan",
+      "notes/geobc_gino_knownDEV_v53_plan.json"
+    ]
+  },
+  "guard_process": {
+    "pid": 34805,
+    "ppid": 34801,
+    "start_ticks": 4654246,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_gino_readout_guard_v53",
+      "--start",
+      "--plan",
+      "notes/geobc_gino_knownDEV_v53_plan.json"
+    ]
+  },
+  "exact_child_live": true,
+  "exact_guard_live": true,
+  "endpoint_step": 1320,
+  "formal5_eligible": false,
+  "deadline_epoch": 1791732284.6118631,
+  "actual_NEW_training_updates": 0,
+  "actual_status_observation": {
+    "status": "running",
+    "phase": "prediction_commit",
+    "committed_finite_predictions": 11,
+    "owned_GT_array_reads": 0,
+    "owned_GT_read_attempts": 0,
+    "checkpoint_reads": 1,
+    "checkpoint_body_hash_reads": 1,
+    "elapsed_epoch_seconds": 29.76240611076355
+  }
+}
