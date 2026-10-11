@@ -1,0 +1,28 @@
+{
+  "status": "scientific_proposal_only_no_SOURCE_no_runtime",
+  "at_utc": "2026-10-11T15:43:20.221320+00:00",
+  "question": "Does one-case-per-Adam-update impede shared physical fitting across heterogeneous CADs?",
+  "evidence": [
+    "results/geobc_fno_stress_v54/BRIEF.md",
+    "results/geobc_shared_fit_diagnostic/BRIEF.md",
+    "results/geobc_single_case_fit/BRIEF.md"
+  ],
+  "prior_independent_fit_not_replayed": "Old FNO9 10_58/tor encoded objective fitted S11.5% at4800 independent updates vs shared50.9%; different objective/exposure, informative capacity evidence but not causal/current100 matching. Do not rerun this old stage.",
+  "candidate": "Current100 FNO9 whole-node joint physical U/S: restore existing physical5 parent, process exactly same next1500 ordered case exposures, average four complete-case gradients per optimizer step instead of one. One sequential GPU case graph at a time; no four-graph memory spike.",
+  "control": "Reuse same-parent joint10 v15/v16 immutable endpoints; no replay",
+  "exposure_and_optimizer": "1500 additional case exposures,375 additional Adam updates versus control1500; inherited1500 optimizer steps end1875, case exposure10. Record separate exposure cursor3000 and optimizer cursor1875, no false same-step claim. No LR or loss scan. Adam betas/lr/eps unchanged.",
+  "scientific_limit": "Optimizer granularity and number of updates change together; matched exposure and input/order/model/scaler, not a sole gradient-conflict proof. Test as a practical shared training recipe, not architecture ceiling.",
+  "proposed_budget": {
+    "cache_seconds": 600,
+    "TRAIN_seconds": 600,
+    "TRAIN_readout_seconds": 300,
+    "whole_seconds": 1800,
+    "memory_bytes": 30500000000
+  },
+  "endpoint": "TRAIN300 physical U/S/hot first, frozen gate and complete denominator. Separate knownDEV60 prediction barrier/onceGT only after meaningful TRAIN gain; FINAL0.",
+  "allowed_next_action": "Inspect older whole-node FNO batching histories, implement exact case-mean gradient accumulation with CPU parity and separate exposure/Adam counters; freeze recipe before runtime.",
+  "actual_SOURCE": 0,
+  "actual_GPU": 0,
+  "actual_new_GT_reads": 0,
+  "execution_released": false
+}

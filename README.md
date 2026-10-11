@@ -30,7 +30,7 @@ R64→R128同参数／初值／顺序的5遍对照也未改善，纯训练窗口
 
 GINO已接入当前物理损失／100CAD，并启动有界5遍筛选；模型为原有实际GINO，保留完整节点与邻域。原节点缓存约7.53GB，40个已有CSR复用，另60个使用同一精确GPU构建器。两次启动在训练前遇到状态元数据／设备类型接口错误，更新均为0；已独立修复，累计118.23秒失败准备成本及原绝对截止时间保留。真实最大325,387节点物理梯度资格已通过，六组梯度有限非零；训练已于22:52达到1小时预算结束，实际1344次更新，最后原子检查点1320步（4.4遍），另24次更新成本保留。固定knownDEV60例验证已完成，未满5遍仅作诊断；采样显存峰值约14.89GB。[当前计划](notes/geobc_gino_physical_v52_device_recovery_plan.json)。
 
-初期最多5遍筛选，按验证误差／改善趋势／成本决定是否延长，不自动追加10、40遍或24,000步。GINO本次训练1小时到点保留检查点；未满5遍只能作为诊断。knownDEV60验证代码与简报导出已完成源码检查，尚未释放或执行。[成本约束](notes/geobc_screening_cost_policy_20261011.json)。旧FNO40遍整轮16.61分钟；全节点++40遍约4.3小时是整段外推总时间，不能再乘40。[时间策略](notes/geobc_early_screening_budget_policy.json)。
+初期最多5遍筛选，按验证误差／改善趋势／成本决定是否延长，不自动追加10、40遍或24,000步。GINO本次训练1小时到点保留检查点；未满5遍只能作为诊断。knownDEV60验证及简报导出已实际完成，按预算检查点诊断解释。[成本约束](notes/geobc_screening_cost_policy_20261011.json)。旧FNO40遍整轮16.61分钟；全节点++40遍约4.3小时是整段外推总时间，不能再乘40。[时间策略](notes/geobc_early_screening_budget_policy.json)。
 
 补充复用已有fullTRAIN300／knownDEV60指标：宽FNO训练／新CAD应力47.64%／54.45%，原版TS93.67%／93.20%。当前短配置共享训练误差本身也高，不能只归因于新CAD迁移。CPU诊断0.11秒、简报／图导出0.37秒；没有新GT／推理。[共享拟合诊断](results/geobc_shared_fit_diagnostic/BRIEF.md)。
 
@@ -44,10 +44,12 @@ GINO固定knownDEV60验证已完成：预算1320步（4.4遍）位移／应力30
 
 30项可恢复slides实验已完成。原实验目录、部分25特征schema／网格原点／50样本集合缺失，不能称精确数值复现。原200CAD获取及旧++作者制度中断的失败成本均保留。[一分钟结果](results/SOLVER_BRIEF.md) · [Slides总表](ALL_METHODS_RESULTS.md) · [复现报告](results/REPORT.md)。
 
+同一个FNO5检查点追加5遍，仅移除位移损失：TRAIN300应力44.25%→43.27%、热点39.47%→37.90%，新增训练80.58秒，完整阶段232.42秒。改善不足3个百分点，停止该应力专门化分支，不追加训练或读取DEV；当前任务干扰不足以解释高共享拟合误差。[同父损失对照](results/geobc_fno_stress_v54/BRIEF.md)。原slides单／两场小于1%对应已知场拟合，50场共享平均15.11%，不能混同新CAD结果。[口径核对](notes/geobc_slides_current_error_reconciliation.json)。下一阶段考察共享训练的病例梯度合并，不重复旧独立4800步诊断。
+
 ## 运行与私人仓库
 
 WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`，RTX5090；显存上限30.5GB（30,500,000,000 bytes），公共非阻塞GPU锁。工具使用 `python -m tools.<模块名>`，按对应冻结计划及真实终态交接运行，不因旧status／SOURCE-ready重复启动。[依赖](requirements-lock-wsl.txt) · [TCNN安装](notes/install_tcnn.md)。
 
-新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复285个冻结依赖的LF／CRLF字节，未知内容拒绝写入。半小时监视器继续推进；健康后台任务只轻量检查。
+新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复291个冻结依赖的LF／CRLF字节，未知内容拒绝写入。半小时监视器继续推进；健康后台任务只轻量检查。
 
-[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`1404926`，包含GINO条件式全节点验证代码、CPU策略检查，以及已有训练／新CAD共享拟合诊断与图；尚无本轮GINO新CAD验证结果。发布43.61秒，31份文件、确切远端commit／tree及前中后私人身份均核实。[发布状态](notes/github_publish_plan.json)。
+[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`577529b`，包含GINO预算检查点全60例物理误差／成本、简报、精确终态与预测屏障标量来源，以及停止延长决定；应力专门化短对照已在本地完成，下一次发布将包含新实际结果。发布44.22秒，28份文件、确切远端commit／tree及前中后私人身份均核实。[发布状态](notes/github_publish_plan.json)。

@@ -1,5 +1,5 @@
 {
-  "status": "scientific_proposal_only_not_SOURCE_frozen_not_released",
+  "status": "actual_TRAIN_completed_gate_negative_no_DEV",
   "at_utc": "2026-10-11T15:05:43.232407+00:00",
   "question": "Does current100CAD physical jointU/S optimization impede stress fitting, or is stress fitting poor even with dedicated supervision?",
   "evidence": {
@@ -27,9 +27,29 @@
     "Different two-model composite cost/capacity must be reported; cost-backed priority only",
     "Old stress-only teacher/magnitude/strain branches exist on previous datasets/recipes; this current physical100 matched-parent contrast must be checked against old histories before source release; no duplicate old stage"
   ],
-  "actual_SOURCE_implementation": 0,
-  "actual_new_training_updates": 0,
-  "actual_new_GT_reads": 0,
-  "actual_GPU": 0,
-  "execution_released": false
+  "actual_SOURCE_implementation": 1,
+  "actual_new_training_updates": 1500,
+  "actual_new_GT_reads": 300,
+  "actual_GPU": 1,
+  "execution_released": false,
+  "plan": "notes/geobc_fno_stress_v54_plan.json",
+  "scientific_digest": "692e85b42e2a6fbfbfad1516a4d82957508c708eb2311b1ec4021f2f3ac4148b",
+  "actual_training_epoch_seconds": 80.57534885406494,
+  "actual_result": "results/geobc_fno_stress_v54/BRIEF.md",
+  "actual_gate": {
+    "passed": false,
+    "S_difference": -0.009811942297075493,
+    "hotspot_difference": -0.01568338010829501,
+    "direction": "stress-specialized10 minus same-parent joint10",
+    "thresholds": {
+      "absolute_S_improvement_min": 0.03,
+      "hotspot_deterioration_max": 0.02,
+      "fixed_denominator": 300
+    },
+    "fixed_denominator": 300,
+    "releases_DEV": false
+  },
+  "followup": "No specialist DEV readout or long continuation; macro shared optimization diagnosis next",
+  "actual_GT_read_scope": "Existing cached physical TRAIN300 targets; no raw CSV or DEV/FINAL truth",
+  "actual_new_DEV_FINAL_GT_reads": 0
 }

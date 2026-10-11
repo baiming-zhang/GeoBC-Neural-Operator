@@ -1,0 +1,30 @@
+{
+  "purpose": "Explain the user's observed gap between the original slides and current shared GeoBC experiments; no new training or inference.",
+  "source": "results/metadata/slides_text.json",
+  "reference_values_are_slide_claims_not_recovered_run_artifacts": true,
+  "slides": {
+    "15": {"task": "One known FEM stress field, direct nodal supervision", "stress_relative_L2_percent": 0.077, "updates": 1000},
+    "16": {"task": "Two known CAD/load stress fields, shared neural field", "stress_relative_L2_percent": [0.088, 0.108], "updates": 1000},
+    "17": {"task": "50 known training CAD stress fields", "mean_stress_relative_L2_percent": 15.11, "continuation_updates": 218000, "selected_update": 215820},
+    "19": {"task": "Worst training case from the same shared 50-case checkpoint", "stress_relative_L2_percent": 28.44},
+    "13": {"task": "192-cubed FNO fitting", "grid_stress_relative_L2_percent": 2.46, "FEM_node_stress_relative_L2_percent": 14.38}
+  },
+  "current": {
+    "task": "100 TRAIN CAD x 3 loads; 20 knownDEV CAD x 3 loads; all native FEM nodes",
+    "FNO9_physical10_knownDEV_mean_stress_relative_L2_percent": 52.1449,
+    "wide_FNO_physical5_TRAIN_mean_stress_relative_L2_percent": 47.6374,
+    "wide_FNO_physical5_knownDEV_mean_stress_relative_L2_percent": 54.4544,
+    "source_for_TRAIN_DEV_gap": "results/geobc_shared_fit_diagnostic/metrics.json"
+  },
+  "interpretation": [
+    "The sub-percent slides demonstrate fitting of supplied fields, not held-out CAD transfer.",
+    "The slides themselves report substantial error for the shared 50-case fitting task; small-case fitting is not representative of every slide result.",
+    "Current TRAIN error is also high: attributing the whole gap to unseen CADs is unsupported.",
+    "Both the original slide errors and current reported errors decode to source physical units; normalization alone is not an established explanation. Grid/teacher errors must stay separate from FEM-node errors.",
+    "Dataset size, load coverage, training exposure, representation and reconstructed configuration differ. The unavailable original run artifacts prevent exact numerical reproduction claims.",
+    "Further screening should establish shared training-field fitting before treating architecture rankings or long training as settled. The exact cause remains unresolved."
+  ],
+  "new_GPU_tasks": 0,
+  "new_GT_reads": 0,
+  "new_inference": 0
+}

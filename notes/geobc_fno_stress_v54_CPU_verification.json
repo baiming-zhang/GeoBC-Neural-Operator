@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "checks": {
+    "linear": {
+      "loss_gradient_chunk_parity": true,
+      "U_gradient_zero": true
+    },
+    "asinh": {
+      "loss_gradient_chunk_parity": true,
+      "U_gradient_zero": true
+    },
+    "whole_chain_rule": {
+      "synthetic_CPU_only": true,
+      "nodes": 65539,
+      "three_chunks": true,
+      "max_parameter_gradient_difference": 8.940696716308594e-08,
+      "TRAIN_role_enforced": true
+    },
+    "typed_state_hash": true,
+    "actual_parents_terminal_and_300_60_complete": true
+  },
+  "elapsed_seconds": 1.1984439239968196,
+  "source_pins": {
+    "geobc/fno_stress_specialist_v54.py": "0322edbf5bfc70527b8a540b2e28c26b69785f85eca94307357a2be43f21ccc7",
+    "geobc/fno_stress_contract_v54.py": "6cc5d9c1be457592a139c832fb7fc7764b08cb3406a78651d7f67d728dc2ce7a",
+    "tools/train_geobc_fno_stress_v54.py": "b66a8dda551f917a13bad60502c035b220f62a2457f2278f01df7c34322843fc",
+    "tools/run_geobc_fno_stress_guard_v54.py": "75489e323488a8cdbc18199c1d83a2f8e277e6a35499f86b14c4b9f9a6e4df46",
+    "tools/prepare_geobc_fno_stress_v54.py": "f02936f9e825192f45ec4b908bab3819e0992bfa9e136d48db0227c58d55970c"
+  },
+  "CUDA_initialized": false,
+  "new_GT_reads": 0,
+  "PT_body_reads": 0,
+  "actual_FNO_GPU_qualification": false
+}

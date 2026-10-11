@@ -1,0 +1,42 @@
+{
+  "actual_exec_session_id": 97908,
+  "captured_at_utc": "2026-10-11T15:35:25.938514+00:00",
+  "scientific_digest": "692e85b42e2a6fbfbfad1516a4d82957508c708eb2311b1ec4021f2f3ac4148b",
+  "child_process": {
+    "pid": 35136,
+    "ppid": 35135,
+    "start_ticks": 4871802,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_fno_stress_v54",
+      "--start",
+      "--plan",
+      "notes/geobc_fno_stress_v54_plan.json"
+    ]
+  },
+  "guard_process": {
+    "pid": 35135,
+    "ppid": 35134,
+    "start_ticks": 4871659,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_fno_stress_guard_v54",
+      "--start",
+      "--plan",
+      "notes/geobc_fno_stress_v54_plan.json"
+    ]
+  },
+  "external_launch_identity": {
+    "path": "runs/geobc_exploration/FNO100_stress_specialist_v54/external_launch.json",
+    "bytes": 11918,
+    "mtime_ns": 1791732897093692800,
+    "sha256": "e6b7e0e9bf6bc1ae9ab9d47243d700ff5ca2f3a2a45bf4234b3312d4b4c3cd0b"
+  },
+  "status_phase": "cache_setup",
+  "actual_updates": 0,
+  "exact_live_processes": true
+}
