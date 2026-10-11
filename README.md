@@ -18,7 +18,9 @@ Hash只比FNO好0.27／0.49个百分点，未通过3个百分点DEV推进门；�
 
 已有FNO30／40开发集应力48.07%／49.48%，与本轮接近，停止自动增加遍数。真值oracle整体缩放仍留下约47.8%误差，空间／signed模式问题更值得探索。局部几何短对照负结果已关闭；三解码器九场短拟合的TCNN优点只作为拟合证据，不替代迁移。
 
-下一阶段设计为原网格Transolver在100CAD上的固定5／10遍短比较，检验上下文表示是否造成差距；目前设计未执行。不重跑旧occupied-R16／Native++负结果，不继续Hash微调。[下一设计](notes/geobc_nativeTS100_matched10_v80_design.json)。
+原网格Transolver短比较已结束：同10遍训练应力55.23%，R64版54.77%；5遍时约10个百分点的优势没有保留，关闭这条表示分支，不自动扩大或用开发集小调。完整13.40分钟。[原网格比较](results/geobc_nativeTS100_matched10_v80/BRIEF.md)。
+
+下一步设计为FNO与FNO加Hash的配对随机种子确认：另加2027／2028两个seed，各方案固定20遍，连同已有2026共三组；检验0.49个百分点的应力差是否可重复，并比较容量／实际成本。保留原配方，不换超参数、不给每个模型跑24000步。目前仅设计，未执行。[种子确认设计](notes/geobc_solver_seed_confirmation_v81_design.json)。
 
 ## 数据、指标与复现范围
 
@@ -34,4 +36,4 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复冻结源文件字节，未知内容拒绝覆盖。短实验临时使用5分钟监视，后续长阶段恢复半小时监视。代码、配置、标量结果、图和检查点索引发布到[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)，原数据及检查点体积文件留本地。
 
-最新已验证远端提交`19111d0`包含v77三解码器实际结果与v78设计。本地现已完成v78同20遍训练和v79验证，正在整理下一次私人仓库更新；尚未声称这些新结果已上传。[发布状态](notes/github_publish_plan.json)。
+最新已验证私人仓库提交`30ae940`，包含同20遍的实际训练／验证结果、代码、曲线和已检查的图，以及下一原网格Transolver短比较的设计（未执行）。发布70.83秒、48份变化文件，前中后private身份与确切远端commit/tree核实。[发布状态](notes/github_publish_plan.json)。

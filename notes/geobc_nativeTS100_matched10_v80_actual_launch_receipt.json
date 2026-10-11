@@ -1,0 +1,48 @@
+{
+  "status": "actual_running",
+  "observed_at_utc": "2026-10-11T22:37:57.183142+00:00",
+  "exec_session": 78650,
+  "SCI": "cdaaafc029d031f90797f89f4ddaea420ee5a5911ae6ef21b2bebb8adfe3214f",
+  "child": {
+    "pid": 50348,
+    "ppid": 50346,
+    "start_ticks": 7179569,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_nativeTS100_v80",
+      "--start",
+      "--plan",
+      "notes/geobc_nativeTS100_matched10_v80_plan.json"
+    ]
+  },
+  "guard": {
+    "pid": 50346,
+    "ppid": 50342,
+    "start_ticks": 7179190,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_nativeTS100_guard_v80",
+      "--start",
+      "--plan",
+      "notes/geobc_nativeTS100_matched10_v80_plan.json"
+    ]
+  },
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "execution_identity": {
+    "path": "runs/geobc_exploration/Native_originalTS100_matched10_v80/execution.json",
+    "bytes": 1136,
+    "mtime_ns": 1791758257587577600,
+    "sha256": "fb764f55a7552d6878d242076fcfa64fb402d929801cf95b31e69630117b41b5"
+  },
+  "external_launch_identity_at_capture": {
+    "path": "runs/geobc_exploration/Native_originalTS100_matched10_v80/external_launch.json",
+    "bytes": 28118,
+    "mtime_ns": 1791758253587078500,
+    "sha256": "f2031b97b20d0afe94e1aaf21092e57457a0b35dbe30d68ba9fff0756e8de233"
+  },
+  "exact_live_process_identities": true
+}
