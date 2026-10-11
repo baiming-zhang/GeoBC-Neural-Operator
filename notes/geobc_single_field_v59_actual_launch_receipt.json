@@ -1,0 +1,44 @@
+{
+  "status": "actual_live_identities_captured",
+  "actual_exec_session_id": 12353,
+  "SCI": "1e398318b7ce04f8b5be7c8ab848b902d6a014b075af49b0b59783160e7a2e63",
+  "external_launch_identity": {
+    "path": "runs/geobc_exploration/FNO_three_single_fields_learning_v59/external_launch.json",
+    "bytes": 14317,
+    "mtime_ns": 1791738287529685600,
+    "sha256": "46362b1060edb524db7f95e64dfa229e20ec475626fc51f9f81424655b01f050"
+  },
+  "processes": {
+    "guard_process": {
+      "pid": 40729,
+      "ppid": 40728,
+      "start_ticks": 5356844,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_single_field_guard_v59",
+        "--start",
+        "--plan",
+        "notes/geobc_single_field_v59_plan.json"
+      ]
+    },
+    "child_process": {
+      "pid": 40730,
+      "ppid": 40729,
+      "start_ticks": 5356941,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_single_field_v59",
+        "--start",
+        "--plan",
+        "notes/geobc_single_field_v59_plan.json"
+      ]
+    }
+  },
+  "captured_at_utc": "2026-10-11T17:05:17.199368+00:00",
+  "actual_updates_at_capture": 300,
+  "physical_TRAIN_reads_at_capture": 3
+}
