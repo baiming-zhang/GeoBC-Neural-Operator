@@ -1,0 +1,1462 @@
+{
+  "kind": "reviewed_exact_immutable_private_snapshot_gitdata_publication",
+  "status": "completed",
+  "completed": true,
+  "started_at_utc": "2026-10-11T09:55:12.8537604Z",
+  "finished_at_utc": "2026-10-11T09:56:11.6776078Z",
+  "source_sha256": "f9ab1692564f03ef4f0419c7c7a01ca13f8223fe5ef313f3dc8b16ebc064bef9",
+  "root_review_sha256": "3a14c40e6fff3a101b69d6ad0e7a0b6ab17f5a9c92e21e4a60a52a113fd15fab",
+  "attempt_id": "geometry_head_terminal_latent_cpu_20261011",
+  "target_commit": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
+  "base_commit": "0b3509b34a21ff286b3e927559a33936c28859ff",
+  "expected_changed_files": 43,
+  "expected_identity": {
+    "owner": "baiming-zhang",
+    "user_id": 174442095,
+    "private": true,
+    "repository_id": 1410470321
+  },
+  "route": {
+    "HTTP_version": "1.1",
+    "REST_proxy": "UseProxy=false",
+    "REST_hard_timeout_seconds": 45,
+    "direct": true,
+    "redirects_allowed": false,
+    "local_Git_hard_timeout_seconds": 45,
+    "TLS_policy_changes": 0,
+    "GCM_hard_timeout_seconds": 30,
+    "global_proxy_changes": 0,
+    "automatic_retry_count": 0
+  },
+  "local_head_before": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
+  "local_head_after": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
+  "local_target_tree": "a493fed763edfc9d56d57ce636061f1cf41681d5",
+  "local_base_tree": "9413c9f0ec780ced285ce6341cb327da1eabb815",
+  "local_raw_commit_sha_verified": true,
+  "representable_raw_commit_verified": true,
+  "local_changed_files": 43,
+  "local_deleted_files": 0,
+  "local_blob_bytes": 3183838,
+  "locally_verified_blobs": 43,
+  "verification_before": {
+    "owner": "baiming-zhang",
+    "user_id": 174442095,
+    "passed": true,
+    "private": true,
+    "repository_id": 1410470321
+  },
+  "verification_before_ref_update": {
+    "owner": "baiming-zhang",
+    "user_id": 174442095,
+    "passed": true,
+    "private": true,
+    "repository_id": 1410470321
+  },
+  "verification_after": {
+    "owner": "baiming-zhang",
+    "user_id": 174442095,
+    "passed": true,
+    "private": true,
+    "repository_id": 1410470321
+  },
+  "remote_main_before": "0b3509b34a21ff286b3e927559a33936c28859ff",
+  "remote_main_before_ref_update": "0b3509b34a21ff286b3e927559a33936c28859ff",
+  "remote_main_after": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
+  "created_blob_requests": 43,
+  "created_blob_requests_verified": 43,
+  "reused_previously_SHA_verified_blob_prefix": 0,
+  "prior_blob_receipt": null,
+  "created_blob_requests_unconfirmed": 0,
+  "UTF8_blob_requests": 42,
+  "base64_blob_requests": 1,
+  "tree_creation_attempted": true,
+  "created_tree_sha": "a493fed763edfc9d56d57ce636061f1cf41681d5",
+  "exact_tree_verified": true,
+  "commit_creation_attempted": true,
+  "created_commit_sha": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
+  "exact_commit_verified": true,
+  "ref_update_attempted": true,
+  "ref_update_response_confirmed": true,
+  "remote_outcome": "exact_target_private_identity_and_immutable_local_HEAD_confirmed",
+  "object_outcome": "objects_creation_attempted_not_branch_publication",
+  "operations": [
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_HEAD_before",
+      "elapsed_seconds": 0.047551,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_branch",
+      "elapsed_seconds": 0.0415519,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_remote_metadata",
+      "elapsed_seconds": 0.0484918,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_raw_commit",
+      "elapsed_seconds": 0.0441845,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_target_tree",
+      "elapsed_seconds": 0.0430463,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_base_tree",
+      "elapsed_seconds": 0.0400449,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_reviewed_delta",
+      "elapsed_seconds": 0.044519,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0432564,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0485846,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0431363,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.043732,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0433031,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0417681,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0503199,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0663275,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0534485,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0745472,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0437421,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0447107,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.044789,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0452559,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0435387,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0416717,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0423771,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0474148,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0382759,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0424977,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0432753,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0653046,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0643055,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0605258,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0562337,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0667533,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0576205,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0631936,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0607707,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0665711,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0612882,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0577733,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0625907,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0682316,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0587728,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0671562,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0457504,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0467108,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0437459,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0434365,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0405794,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0450963,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0414807,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0480267,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0447199,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0467483,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0469694,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0490931,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0474191,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0451571,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0521793,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0423821,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0453563,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0460108,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0428495,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0440509,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.042985,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0518631,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0440346,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0423201,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0426859,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0595621,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.042348,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0437288,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0463827,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.043496,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0420229,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.050485,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0495603,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0469778,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0481227,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.047896,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0489572,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0531397,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0458685,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0457455,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0459784,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0466654,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0450122,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0442283,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0469152,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0438519,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0434615,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0478331,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_size",
+      "elapsed_seconds": 0.0466246,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_preflight",
+      "elapsed_seconds": 0.0486175,
+      "category": "unspecified"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "GCM_credential_fill",
+      "elapsed_seconds": 0.2636505,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.5052211,
+      "operation": "user_before",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7402392,
+      "operation": "repository_before",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.6672475,
+      "operation": "main_before",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.6592462,
+      "operation": "reviewed_base_commit",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0408437,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.793408,
+      "operation": "blob_1",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0382971,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.786809,
+      "operation": "blob_2",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0461283,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8018539,
+      "operation": "blob_3",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0413331,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7906744,
+      "operation": "blob_4",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.049868,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.6399102,
+      "operation": "blob_5",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.04726,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.2893754,
+      "operation": "blob_6",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.043883,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8113056,
+      "operation": "blob_7",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0408669,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7984066,
+      "operation": "blob_8",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0430059,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7746565,
+      "operation": "blob_9",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.050607,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8717627,
+      "operation": "blob_10",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.050202,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.5034827,
+      "operation": "blob_11",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0602124,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8811458,
+      "operation": "blob_12",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0464064,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7511524,
+      "operation": "blob_13",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0461007,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.7823992,
+      "operation": "blob_14",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0458945,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.85392,
+      "operation": "blob_15",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0422559,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8158378,
+      "operation": "blob_16",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0628898,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7900879,
+      "operation": "blob_17",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0667274,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8167339,
+      "operation": "blob_18",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0457314,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.0410742,
+      "operation": "blob_19",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0406189,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8305916,
+      "operation": "blob_20",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0426205,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7971367,
+      "operation": "blob_21",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0428158,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7744555,
+      "operation": "blob_22",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0468415,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7902279,
+      "operation": "blob_23",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0450478,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7432258,
+      "operation": "blob_24",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0460397,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7680228,
+      "operation": "blob_25",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0415977,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8274373,
+      "operation": "blob_26",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0416347,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7635483,
+      "operation": "blob_27",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0461732,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7893566,
+      "operation": "blob_28",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0413326,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7950833,
+      "operation": "blob_29",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.038594,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8154091,
+      "operation": "blob_30",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0528389,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.0341838,
+      "operation": "blob_31",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0471438,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8013578,
+      "operation": "blob_32",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0407417,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7570984,
+      "operation": "blob_33",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0416423,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7657143,
+      "operation": "blob_34",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0447478,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8340015,
+      "operation": "blob_35",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0438946,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7648555,
+      "operation": "blob_36",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0497518,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 2.1348755,
+      "operation": "blob_37",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0449691,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8006897,
+      "operation": "blob_38",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0477694,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.8058548,
+      "operation": "blob_39",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0455503,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7885421,
+      "operation": "blob_40",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.042612,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7355897,
+      "operation": "blob_41",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.038901,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.7924702,
+      "operation": "blob_42",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_blob_for_API",
+      "elapsed_seconds": 0.0419601,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.4271316,
+      "operation": "blob_43",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.4951953,
+      "operation": "tree_create",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.9753177,
+      "operation": "commit_create",
+      "HTTP_code": 201,
+      "method": "POST"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.6492806,
+      "operation": "user_before_ref_update",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.6872496,
+      "operation": "repository_before_ref_update",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.6509178,
+      "operation": "main_before_ref_update",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_HEAD_before_ref_update",
+      "elapsed_seconds": 0.0468125,
+      "category": "unspecified"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 1.1446644,
+      "operation": "main_fast_forward_exact_target",
+      "HTTP_code": 200,
+      "method": "PATCH"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.6905537,
+      "operation": "main_after",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.6651369,
+      "operation": "user_after",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "raw_response_persisted": false,
+      "elapsed_seconds": 0.6938256,
+      "operation": "repository_after",
+      "HTTP_code": 200,
+      "method": "GET"
+    },
+    {
+      "exit_code": 0,
+      "timeout": false,
+      "operation": "local_HEAD_after",
+      "elapsed_seconds": 0.0455192,
+      "category": "unspecified"
+    }
+  ],
+  "failure_category": null,
+  "immutable_local_checkout": true,
+  "local_staging_operations": 0,
+  "local_commit_operations": 0,
+  "Git_network_operations": 0,
+  "fetch_operations": 0,
+  "push_operations": 0,
+  "repository_creations": 0,
+  "force_update": false,
+  "credentials_written_by_script": false,
+  "raw_response_persisted": false,
+  "raw_process_output_persisted": false,
+  "elapsed_seconds": 58.8243166
+}

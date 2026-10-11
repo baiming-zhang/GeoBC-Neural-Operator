@@ -1,0 +1,126 @@
+{
+  "status": "structured3D_syntheticCPU_interface_ready_real_physical_runtime_not_implemented_or_released",
+  "question": "Does retaining local3Dgrid neighborhood in official structuredTS improve earlyphysical fitting on ourregularR16 representation?",
+  "evidence": "Fixedteacher latentfit TS TRAIN/DEV~99% vsFNO~8%; originalTS evenTRAINphysicalS~94%. CurrentTS uses official irregular token projections, FNO uses regulargrid topology. Officialstructured3D has Conv3d kernel3 projections. Localneighborhood is a hypothesis, not an established cause.",
+  "predecessor": {
+    "path": "notes/geobc_node_latent_teacher_v37_terminal_receipt.json",
+    "bytes": 1717,
+    "mtime_ns": 1791714367440716500,
+    "sha256": "8ce0b6a36c7f6ef0815a8ecb4e8e4c6921041e682d2b8fd00429c53fea594d84"
+  },
+  "model": {
+    "variant": "OfficialTransolver structured3D",
+    "upstream": {
+      "path": "third_party/Transolver/PDE-Solving-StandardBenchmark/model/Transolver_Structured_Mesh_3D.py",
+      "bytes": 7959,
+      "mtime_ns": 1791453260322810000,
+      "sha256": "af84ac8252ad0c065617a3e8e4339ecf982df0feb55a1ec3d947c182be2e1126"
+    },
+    "source_commit": "75e0f67643806a81cd1d3f6adc88dd8c02416fe7",
+    "profile": {
+      "method": "transolver_structured3d",
+      "family": "R16_transolver_structured3d",
+      "parameter_count": 4776636,
+      "architecture": {
+        "repository": "https://github.com/thuml/Transolver",
+        "commit": "75e0f67643806a81cd1d3f6adc88dd8c02416fe7",
+        "model_file": "third_party/Transolver/PDE-Solving-StandardBenchmark/model/Transolver_Structured_Mesh_3D.py",
+        "file_sha256": "af84ac8252ad0c065617a3e8e4339ecf982df0feb55a1ec3d947c182be2e1126",
+        "constructor_kwargs": {
+          "space_dim": 3,
+          "fun_dim": 58,
+          "out_dim": 16,
+          "n_layers": 5,
+          "n_hidden": 128,
+          "n_head": 8,
+          "slice_num": 32,
+          "mlp_ratio": 1,
+          "dropout": 0.0,
+          "act": "gelu",
+          "unified_pos": false,
+          "ref": 8,
+          "H": 16,
+          "W": 16,
+          "D": 16
+        },
+        "dependency_hashes": {
+          "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py": "d1420f8176c73fac024d1f57cb816653e0ffb41580c954c1497d2ba914e71943",
+          "PDE-Solving-StandardBenchmark/model/Embedding.py": "e3a4f71c4378b7cce09a43b8c306d6d8a17edb4cd69db5eb069e55a57d2affe2",
+          "PDE-Solving-StandardBenchmark/model/Physics_Attention.py": "d746cd641f9c81313e205126bac6e0a9bb5bdbe5a9ef107e093a4fe065dbe0f5"
+        },
+        "variant": "official structured3D, not irregular/++/3",
+        "macro_difference": "Conv3d(kernel3) spatial projections in Physics_Attention",
+        "capacity_choice": "hidden128 once, approximate FNO16-sized candidate; not exact capacity matching",
+        "upstream_forward_preserved": true,
+        "placeholder_unused_when_features_supplied": true,
+        "allowed_unused_parameters": [
+          "backbone.placeholder"
+        ]
+      },
+      "counts": {
+        "encoder": 16736,
+        "head": 26884,
+        "operator": 4733016
+      },
+      "global_tokens": 4096,
+      "grid_resolution": 16,
+      "precision": "highest FP32; caller must disable TF32",
+      "all_original_query_nodes": true,
+      "input_policy": "occupied-voxel means from original R64; no target pooling",
+      "query_policy": "true block-center trilinear latent; nearest-center boundary extension",
+      "capacity_matched": false,
+      "independent_offnode_FEM_accuracy_measured": false
+    },
+    "seed": 2026,
+    "fresh_full_SHA256": "9634f587089e40d86b1f447c455f1dd3b7d494a59110a842d315e7b626cf990c",
+    "hidden": 128,
+    "layers": 5,
+    "heads": 8,
+    "slices": 32,
+    "mlp_ratio": 1,
+    "dropout": 0.0,
+    "grid_R": 16
+  },
+  "controls": "OriginalirregularTS physical5 andR16FNO16 physical5 existing completeTRAIN/knownDEV scalar endpoints; R64FNO5/10/40 context separately. Newfresh encoder/head initialsameoriginal SHA. No teacher copied weights or teacher targets for new physical training.",
+  "capacity": "4.776636M vsR16FNO16 4.244244M andoriginalirregularTS1.882172M; spatialconv plus width256→128 changes representation/capacity jointly. One fixed approximatecapacity candidate, no widths/slices sweep, notpurearchitecturecause.",
+  "upstream_forward": "Originalstructured fx-present branch does not addplaceholder. Checkpointedbranch preserves that; one unused trainable operator.backbone.placeholder explicitly source-backed, gradientNone expected, no fabricatedallparameterpositive claim.",
+  "CPU_fixture": {
+    "path": "notes/geobc_structured_TS_v38_CPU_fixture.json",
+    "bytes": 3511,
+    "mtime_ns": 1791714203964946100,
+    "sha256": "3302311140a73e91d126dbba7aca869d98fe77d5611f4668f4f7ad592940d1b7"
+  },
+  "CPU_seconds": 2.974971835999895,
+  "CPU_scope": "Onlynewofficial4096tokenoperator forward/backward equivalence+exactinputgradient andnamedparameter gradients, unusedplaceholder explicit. Commonnativequery/fullphysicalchain unchanged and previouslychecked; actualallN/GPUresourcequalification still required.",
+  "intended_training": {
+    "CADs": 100,
+    "cases": 300,
+    "passes": 5,
+    "updates": 1500,
+    "loss": "Originalfullnode physicalrelative squared equalU/S/equalcase",
+    "scaler": "OldTRAIN40 unchanged",
+    "order": "Existingbalanced300×5seed2026order pin beforelaunch",
+    "optimizer": "OriginalfreshfusedAdam lr.001 WD0 betas.9/.999 eps1e-8, no new scheduler",
+    "encoder_head_trainable": true,
+    "teacher_targets": false
+  },
+  "memory_limit_bytes": 30500000000,
+  "public_GPU_lock": "runs/geobc_exploration/.coordinator.lock",
+  "initial_fullN_resource_qualification": "ActualTRAIN300 cache andmax325387nodes encoder/operator/head+jointcontext/latent positivefinite; onlysource-backedplaceholderunused; preserveRNGbeforeupdates. CPUequivalence notGPUpass.",
+  "intended_budget_seconds": {
+    "cache": 600,
+    "setup": 120,
+    "training": 900,
+    "TRAINreadout": 300,
+    "whole": 2100
+  },
+  "intended_DEV": "60fullN newstudent immutable finite predictions/hash before GT60sharedonce; existing controls scalaronly, noFINAL/scalerfit. Studentwholephysicsbaseline sameclassification/exposure butcapacity explicit.",
+  "failure_policy": "One boundedattempt/earliestUTCmono/publiclock/completeI/OinitCUDAtrainlogscheckpointsfail-exitcost, preserveAdam/RNG/cursor/cost ontechnicalinterruption; noautoreset/replay orscience-negative rerun.",
+  "automatic_40": false,
+  "automatic_24000": false,
+  "actual_training_launches": 0,
+  "actual_teacher_PT_reads": 0,
+  "actual_numeric_GT_reads": 0,
+  "runtime_driver_implemented": false,
+  "actual_execution_released": false
+}

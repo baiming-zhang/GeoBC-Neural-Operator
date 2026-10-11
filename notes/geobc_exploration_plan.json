@@ -6596,15 +6596,18 @@
   },
   "latest_verified_GitHub_publication": {
     "status": "verified_private_remote_publication",
-    "commit": "0b3509b34a21ff286b3e927559a33936c28859ff",
+    "commit": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
+    "base_commit": "0b3509b34a21ff286b3e927559a33936c28859ff",
+    "tree": "a493fed763edfc9d56d57ce636061f1cf41681d5",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "elapsed_seconds": 40.9861966,
-    "finished_at_utc": "2026-10-11T09:13:32.0931439Z",
-    "receipt": "notes/github_gitdata_publication_0b3509b34a21ff286b3e927559a33936c28859ff_gain_terminal_transfer_cpu_20261011_receipt.json",
-    "actual_scope": "v30/v31 truecompleted responsegain negative report/acceptedPNG and strict v32 learned encoder-head transfer prototype with actual synthetic CPU check; no real teacher PT loading or warm training yet"
+    "elapsed_seconds": 58.8243166,
+    "finished_at_utc": "2026-10-11T09:56:11.6776078Z",
+    "receipt": "notes/github_gitdata_publication_50cdb5a5a36c71053e62d26a1080be0dd2b7853e_geometry_head_terminal_latent_cpu_20261011_receipt.json",
+    "actual_scope": "Actualcompleted v33/v34 TRAIN/knownDEV/acceptedreport and v35 syntheticCPU math prototype only; no real latent runtime at snapshot",
+    "actual_exec_exit_code": 0
   },
   "globalHash_physical5_completed": {
     "status": "actual_completed_same5_knownDEV",
@@ -6777,12 +6780,139 @@
     "DEV_external_seconds": 167.8709237575531,
     "decision": "TSheadwarm negative; FNO intact5to10 learns; frozen encoder/head latent mapping is next diagnostic"
   },
-  "current_stage": "operator_teacher_latent_macro_preparation",
+  "current_stage": "structured_TS_physical5_runtime_preparation",
   "node_latent_operator_diagnostic_SOURCE": {
     "proposal": "notes/geobc_node_latent_teacher_macro_proposal_v35.json",
     "source_ready": "notes/geobc_node_latent_teacher_v35_source_ready.json",
     "CPU_seconds": 2.6920743480004603,
     "actual_training_launches": 0,
     "next": "Implement bounded2-arm TRAIN runtime and guard, freeze scientific order/source, then one real GPU qualification and5 passes. No default40."
+  },
+  "node_latent_operator_runtime_SOURCE": {
+    "plan": "notes/geobc_node_latent_teacher_v36_plan.json",
+    "root_review": "notes/geobc_node_latent_teacher_v36_root_review.json",
+    "source_ready": "notes/geobc_node_latent_teacher_v36_source_ready.json",
+    "actual_training_launches": 0,
+    "release": true
+  },
+  "node_latent_operator_actual_launch": {
+    "status": "actual_guard_child_live_captured",
+    "actual_exec_session_id": 53532,
+    "captured_at_utc": "2026-10-11T10:03:32.467450+00:00",
+    "guard_process": {
+      "pid": 26802,
+      "ppid": 26801,
+      "start_ticks": 3060507,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_node_latent_guard_v36",
+        "--start",
+        "--plan",
+        "notes/geobc_node_latent_teacher_v36_plan.json"
+      ]
+    },
+    "child_process": {
+      "pid": 26803,
+      "ppid": 26802,
+      "start_ticks": 3060589,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_node_latent_teacher_v36",
+        "--start",
+        "--plan",
+        "notes/geobc_node_latent_teacher_v36_plan.json"
+      ]
+    },
+    "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+    "scientific_digest": "def943b025a2cc01a18c7732a36aa4476d02364820479f4ae8aa122b711cbdf1",
+    "guard_entry_epoch": 1791712986.5645018,
+    "observed_elapsed_seconds": 25.90296983718872,
+    "phase": "shared_cache_setup",
+    "actual_real_GPU_gradient_passed_yet": false,
+    "shared_physical_TRAIN_target_reads": 0,
+    "source_pins_verified": true
+  },
+  "latest_goal_turn_progress": {
+    "previous_turn_classification": "progress: actualv36 launch/private50publication",
+    "current_turn_classification": "progress: actualv36/v37 terminals/acceptedreport plusstructured3D CPUprototype",
+    "goal_remaining": "Implementandtest spatial-neighborhood solver candidate, then evidence-driven macro stages andprivateupdates; finalsolver unchosen"
+  },
+  "node_latent_operator_TRAIN_completed": {
+    "terminal": "notes/geobc_node_latent_teacher_v36_terminal_receipt.json",
+    "whole_seconds": 449.3339352607727,
+    "full300": true,
+    "FEM_used_for_updates": false,
+    "TS_teacher_node_L2": 0.9861715442018237,
+    "FNO_teacher_node_L2": 0.07559944507500518
+  },
+  "node_latent_operator_DEV_SOURCE": {
+    "plan": "notes/geobc_node_latent_teacher_v37_plan.json",
+    "root_review": "notes/geobc_node_latent_teacher_v37_root_review.json",
+    "actual_launches": 0
+  },
+  "node_latent_knownDEV_actual_launch": {
+    "status": "actual_guard_child_live_captured",
+    "actual_exec_session_id": 55089,
+    "observed_at_utc": "2026-10-11T10:14:59.638996+00:00",
+    "guard_process": {
+      "pid": 27265,
+      "ppid": 27259,
+      "start_ticks": 3123965,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_node_latent_readout_guard_v37",
+        "--start",
+        "--plan",
+        "notes/geobc_node_latent_teacher_v37_plan.json"
+      ]
+    },
+    "child_process": {
+      "pid": 27266,
+      "ppid": 27265,
+      "start_ticks": 3124125,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.evaluate_geobc_node_latent_teacher_v37",
+        "--start",
+        "--plan",
+        "notes/geobc_node_latent_teacher_v37_plan.json"
+      ]
+    },
+    "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+    "SCI": "5254f3eabf382f1882563593a4e0f715d3fb8534477ca038c9856302f0278b95",
+    "guard_entry_epoch": 1791713680.2606044,
+    "observed_elapsed_seconds": 19.378406524658203,
+    "phase": "prediction_commit",
+    "committed_finite_predictions": 24,
+    "owned_knownDEV_GT_reads": 0
+  },
+  "node_latent_diagnostic_completed": {
+    "status": "completed_operator_fit_diagnostic_TS_negative_FNO_teacher_fit_positive_but_not_FEM_solution",
+    "report": "results/geobc_node_latent_teacher_v37/BRIEF.md",
+    "actual_TRAIN_whole_seconds": 449.3339352607727,
+    "actual_DEV_whole_seconds": 203.14383792877197,
+    "TS_TRAIN_latent_relative_L2": 0.9861715442018237,
+    "TS_DEV_latent_relative_L2": 0.9866348645813144,
+    "FNO_TRAIN_latent_relative_L2": 0.07559944507500518,
+    "FNO_DEV_latent_relative_L2": 0.08729322746597395,
+    "interpretation": "BothTRAINandDEV TS underfit samefixed teacher latent after5passes; encoder/head transfer alone not sufficient. FNO samearchitecture can approximate its learned teacher but teacher alreadyhas~65%DEV FEMstress error. Not purecapacity cause orTS architecture ceiling.",
+    "automatic_latent_extension": false,
+    "automatic_40": false,
+    "final_solver_selected": false,
+    "next_macro": "One official structured3D TS candidate on sameR16 inputs with explicit neighborhoodConv3d, fresh physical5 supervision. This tests grid-structure compatibility, hidden128 approximateFNOcapacity, not a purecausal architecture ablation."
+  },
+  "structured_TS_macro_SOURCE": {
+    "proposal": "notes/geobc_structured_TS_macro_proposal_v38.json",
+    "source_ready": "notes/geobc_structured_TS_v38_source_ready.json",
+    "actualCPU_seconds": 2.974971835999895,
+    "runtime_launches": 0
   }
 }

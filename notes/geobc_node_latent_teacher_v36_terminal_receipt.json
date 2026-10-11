@@ -1,0 +1,59 @@
+{
+  "status": "completed",
+  "SCI": "def943b025a2cc01a18c7732a36aa4476d02364820479f4ae8aa122b711cbdf1",
+  "terminal": {
+    "summary": {
+      "path": "runs/geobc_exploration/node_latent_teacher100_short5_v36/summary.json",
+      "bytes": 1185924,
+      "mtime_ns": 1791713429954630600,
+      "sha256": "7ec8ae944e501401175ecdb2d4a81dcd44df91638d78478dfba198da13ad1baa"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/node_latent_teacher100_short5_v36/status.json",
+      "bytes": 1185924,
+      "mtime_ns": 1791713429974395800,
+      "sha256": "7ec8ae944e501401175ecdb2d4a81dcd44df91638d78478dfba198da13ad1baa"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/node_latent_teacher100_short5_v36/external_terminal.json",
+      "bytes": 18897,
+      "mtime_ns": 1791713430788956500,
+      "sha256": "6507a4a68f2010b58a5b2f43420f1694d2b70aeba85ce842f610993bb3bf0736"
+    }
+  },
+  "child_process": {
+    "pid": 26803,
+    "ppid": 26802,
+    "start_ticks": 3060589,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_node_latent_teacher_v36",
+      "--start",
+      "--plan",
+      "notes/geobc_node_latent_teacher_v36_plan.json"
+    ]
+  },
+  "guard_process": {
+    "pid": 26802,
+    "ppid": 26801,
+    "start_ticks": 3060507,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_node_latent_guard_v36",
+      "--start",
+      "--plan",
+      "notes/geobc_node_latent_teacher_v36_plan.json"
+    ]
+  },
+  "exact_processes_exited": true,
+  "actual_external_seconds": 449.3339352607727,
+  "teacher_latent_cache_complete": true,
+  "physical_TRAIN_reads": 300,
+  "FEM_used_for_updates": false,
+  "teacher_original_FEM": 0.4387395389183337,
+  "verified_at_utc": "2026-10-11T10:13:21.806423+00:00"
+}

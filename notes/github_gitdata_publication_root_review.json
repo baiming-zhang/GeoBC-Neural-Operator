@@ -8,193 +8,319 @@
   "passed": true,
   "whole_source_reviewed": true,
   "reviewer": "root",
-  "reviewed_at_utc": "2026-10-11T09:12:41.356004+00:00",
+  "reviewed_at_utc": "2026-10-11T09:55:05.480968+00:00",
   "decision": "one_bounded_exact_immutable_gitdata_API_publication_attempt",
   "source_sha256": "f9ab1692564f03ef4f0419c7c7a01ca13f8223fe5ef313f3dc8b16ebc064bef9",
-  "target_commit": "0b3509b34a21ff286b3e927559a33936c28859ff",
-  "base_commit": "999564b8d6064de11a1d44b4ae54678ea50d7aae",
-  "target_tree": "9413c9f0ec780ced285ce6341cb327da1eabb815",
-  "changed_file_count": 25,
+  "target_commit": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
+  "base_commit": "0b3509b34a21ff286b3e927559a33936c28859ff",
+  "target_tree": "a493fed763edfc9d56d57ce636061f1cf41681d5",
+  "changed_file_count": 43,
   "changed_file_identities": [
     {
       "path": "README.md",
       "change": "M",
-      "bytes": 6968,
-      "sha256": "a3217f50436007a9101f027fade56c7b234b432b0557d32a57cf5b0f4267de4f",
+      "bytes": 7311,
+      "sha256": "47c5b90fc9582974892a0ca53e6e3c5478a69f04b33d37f4b17a4ac9e4a06cbc",
       "line_ending_normalization_only": false
     },
     {
-      "path": "geobc/geometry_head_transfer_v32.py",
+      "path": "geobc/geometry_head_readout_contract_v34.py",
       "change": "A",
-      "bytes": 2363,
-      "sha256": "8bd557fd338140aff2c8d351a28320cf3afb50b85ede4459097234db6897e2a4",
+      "bytes": 10236,
+      "sha256": "1222907e86a03f6921f288d2b07c69fec09cd150118f4238268942bd9d0c44b2",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "geobc/geometry_head_training_contract_v33.py",
+      "change": "A",
+      "bytes": 7786,
+      "sha256": "f1b03cfd8a5603fb3271d41306b4b35b2fb30e95bfe86f1d22833022ac444749",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "geobc/node_latent_teacher_v35.py",
+      "change": "A",
+      "bytes": 4512,
+      "sha256": "736ee6d6073eedcd1f71ebfc229cc8f01ee7b95f8a70079d1c36f8e19a65fef2",
       "line_ending_normalization_only": false
     },
     {
       "path": "notes/geobc_exploration_plan.json",
       "change": "M",
-      "bytes": 270345,
-      "sha256": "039a712ee379480b3088899498702e493280fe5566e9a1aad1529934f19427d5",
+      "bytes": 271451,
+      "sha256": "e097e82eeef72d18c551ec0367851a74468202abaa6fb21f0f7bf0d4ea229163",
       "line_ending_normalization_only": false
     },
     {
       "path": "notes/geobc_frozen_runtime_source_bytes.json",
       "change": "M",
-      "bytes": 50546,
-      "sha256": "0778f6d1b1748104ab3ed0a573334c81cf74cae83c494b708cb21ce949504619",
+      "bytes": 53105,
+      "sha256": "40d9b3d9f5c725de5fedbd21cd798f49be7d0e3e091ef1947669513656f4de27",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_geometry_head_transfer_macro_proposal_v32.json",
+      "path": "notes/geobc_geometry_head_transfer_v33_actual_launch.json",
       "change": "A",
-      "bytes": 5027,
-      "sha256": "0e8df22ff6477b456a87dfd32dbcbb3ace480e814ef6d6dd5810e2463175a948",
+      "bytes": 19228,
+      "sha256": "b10bffb8c031f6b854309640d636f871f4e8d471a6a4a275b65f32494049c85f",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_geometry_head_transfer_v32_CPU_fixture.json",
+      "path": "notes/geobc_geometry_head_transfer_v33_light_monitor.json",
       "change": "A",
-      "bytes": 3321,
-      "sha256": "0ca9ca1cb37db0caf43167fe928a11c7c9e4b8fc2f6e1a9ec005c380a779643e",
+      "bytes": 821,
+      "sha256": "e652d9a829b15da0a90ae882e0f0075ebcdf6c301dbd45fdc74fd0db1682afd5",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_geometry_head_transfer_v32_source_ready.json",
+      "path": "notes/geobc_geometry_head_transfer_v33_metadata_preflight.json",
       "change": "A",
-      "bytes": 674,
-      "sha256": "47215b31692f98d7c45faec24b372ea88671b71d3cc032f7d4e256d9d0a090a4",
+      "bytes": 188,
+      "sha256": "a0540be5ad0cab19a6341d80effad27229e00176d38c02e0513957befe2bbfab",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_response_gain_v30_terminal_receipt.json",
+      "path": "notes/geobc_geometry_head_transfer_v33_plan.json",
       "change": "A",
-      "bytes": 1799,
-      "sha256": "20a065c528831dbb571de0022c87918715b1ab80a47f52d69ad8f070d2ad53b9",
+      "bytes": 30633,
+      "sha256": "6d6a6ec4b68794e393fef0def0dd873a0e51ba3cbb9da7980269f56fe66d32d5",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_response_gain_v31_actual_decision.json",
+      "path": "notes/geobc_geometry_head_transfer_v33_root_review.json",
       "change": "A",
-      "bytes": 695,
-      "sha256": "b24bdcdd151890ea00e220005df59d9f68b995ee8830eaf96cfd493e5fead8ee",
+      "bytes": 17741,
+      "sha256": "a31db7b1bec190c89ca0bfc93e2667eed64dd56749d1cbe73aa413efa5d6db60",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_response_gain_v31_actual_launch.json",
+      "path": "notes/geobc_geometry_head_transfer_v33_source_ready.json",
       "change": "A",
-      "bytes": 18588,
-      "sha256": "5f6c3a715c38dece36c9ab7fac2660db1bddb3265a46341d070b3dfacefb7b31",
+      "bytes": 16857,
+      "sha256": "ddf6459efac43030704ee37535efab4367bd65bc0892f3675bbaf7d2bc3d2c28",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_response_gain_v31_actual_metadata_release.json",
+      "path": "notes/geobc_geometry_head_transfer_v33_terminal_receipt.json",
       "change": "A",
-      "bytes": 1073,
-      "sha256": "39799060ddc92d340a17c7eea05bb9b157e5306fb5dd54a6128ebfad141b4ade",
+      "bytes": 1970,
+      "sha256": "72712dc6ea01500b5a821948b5e8f566e7a5b77b25a036be429f43680f6015f2",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_response_gain_v31_root_review.json",
-      "change": "M",
-      "bytes": 17573,
-      "sha256": "9eb5967aedb417c2b889142a690b90e864e2146ec611bc0786234d0d56ba5b4a",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_response_gain_v31_terminal_receipt.json",
+      "path": "notes/geobc_geometry_head_v34_actual_decision.json",
       "change": "A",
-      "bytes": 1723,
-      "sha256": "386973fcca3023ebe3e45f92f1babb93984f6a0e1b1cefecf06ff4bb70e5c4e6",
+      "bytes": 593,
+      "sha256": "66b085170b367801f2be5638bdc9fd932562eeb12263757bda0931238e1ff9e4",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/github_gitdata_999564b_actual_publication_root_review.json",
+      "path": "notes/geobc_geometry_head_v34_actual_launch.json",
       "change": "A",
-      "bytes": 412,
-      "sha256": "53dffaa80456b2fee43b099cf5a5cac4b02a85955aa03e7e3cc00f17076a0f43",
+      "bytes": 19559,
+      "sha256": "6c7f24f52c2bbf69423c677d5c68f228c6b8a18ae2602a6f2372dda5d96ccf6d",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/github_gitdata_999564b_verified_receipt.json",
+      "path": "notes/geobc_geometry_head_v34_actual_metadata_release.json",
       "change": "A",
-      "bytes": 687,
-      "sha256": "9cc45a85e3ab282e703b7535d150fed6ef201baeeb5878a0cd938931faeb93be",
+      "bytes": 1085,
+      "sha256": "2f20c8060ca8be90f2c1fc875356cd21b78a834b83eb1f6fc1c1a9262ca338c0",
       "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_geometry_head_v34_exporter_root_review.json",
+      "change": "A",
+      "bytes": 716,
+      "sha256": "03ae29b57acd7cd348929e09d90285a7f1d5254b091328abe02e06c16ef21fdb",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_geometry_head_v34_exporter_source_ready.json",
+      "change": "A",
+      "bytes": 252,
+      "sha256": "cbc894e74ca7700e10a8bdb900ae202ddfb1591770b932de1a10e35d603126a2",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_geometry_head_v34_plan.json",
+      "change": "A",
+      "bytes": 23870,
+      "sha256": "41b9777d446ff2066865af310ca3c1eca25d6fd4c7a4bb483739f21b505ba25c",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_geometry_head_v34_root_review.json",
+      "change": "A",
+      "bytes": 18650,
+      "sha256": "347bc6fec62b62531c88855b2c9f09c242f2d871d17c63a706b8d8075d170eb2",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_geometry_head_v34_source_ready.json",
+      "change": "A",
+      "bytes": 17209,
+      "sha256": "c0f516b433b2c7b9184fba10f08d8188ec43e52e7f6054a6e2140dcf7af58571",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_geometry_head_v34_terminal_receipt.json",
+      "change": "A",
+      "bytes": 1734,
+      "sha256": "0299240890e70bc211c91427f7c3f3fe017f71b895f855b21f243c57e516f5b4",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_node_latent_teacher_macro_proposal_v35.json",
+      "change": "A",
+      "bytes": 13015,
+      "sha256": "5eb5c3961aef6b36ff0fa1a17d70945e2b0541f170a86433110d9eddf2801fbe",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_node_latent_teacher_v35_CPU_fixture.json",
+      "change": "A",
+      "bytes": 4385,
+      "sha256": "ea5433bef61ac57b32648153be1552ddf94fc7ced28326107c71f4a1b247d9aa",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_node_latent_teacher_v35_source_ready.json",
+      "change": "A",
+      "bytes": 667,
+      "sha256": "9b70901eb264a9d124d6b7fce5e131f01a8a0cd8ceacf840a792c208f935ab1d",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/github_gitdata_0b3509b_actual_publication_root_review.json",
+      "change": "A",
+      "bytes": 418,
+      "sha256": "19e4180f483fbff789174ec6167a6078dbc0588c230c6cc71de375c8c15d3a34",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/github_gitdata_0b3509b_verified_receipt.json",
+      "change": "A",
+      "bytes": 684,
+      "sha256": "7e5f6431cb932a6d9592554731b33ffbf1f059096340c35bd8f1739536e76c36",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/github_gitdata_publication_0b3509b34a21ff286b3e927559a33936c28859ff_gain_terminal_transfer_cpu_20261011_receipt.json",
+      "change": "A",
+      "bytes": 24091,
+      "sha256": "1233bd8ca862576c11c87ea54fc3c95d0d8994751d05600e65a0a41a8d5ef775",
+      "line_ending_normalization_only": true
     },
     {
       "path": "notes/github_gitdata_publication_root_review.json",
       "change": "M",
-      "bytes": 12145,
-      "sha256": "cd4aa195cc12e0437fc69b9ff6462399751f256768b83ccd139a8b574208f4e1",
-      "line_ending_normalization_only": false
+      "bytes": 7671,
+      "sha256": "ab3a54ca17db42d8b8be320272a81354a2f3a7dd06f44f8ff21785e3d39e48f9",
+      "line_ending_normalization_only": true
     },
     {
-      "path": "notes/github_gitdata_root_999564b_before_gain_terminal.json",
+      "path": "notes/github_gitdata_root_0b3509b_before_geometry_head_terminal.json",
       "change": "A",
-      "bytes": 12145,
-      "sha256": "cd4aa195cc12e0437fc69b9ff6462399751f256768b83ccd139a8b574208f4e1",
-      "line_ending_normalization_only": false
+      "bytes": 7671,
+      "sha256": "ab3a54ca17db42d8b8be320272a81354a2f3a7dd06f44f8ff21785e3d39e48f9",
+      "line_ending_normalization_only": true
     },
     {
       "path": "notes/github_publish_plan.json",
       "change": "M",
-      "bytes": 59530,
-      "sha256": "6213da409eea549b68365551df5764d49359f9a26805c397c6350b5d17bb0b0b",
+      "bytes": 61044,
+      "sha256": "7a7d89b206da61a1d0ada4cb2904f516645bfe0128419c94ac4e29190e510d41",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/github_publish_receipt_999564b_before_gain_terminal.json",
+      "path": "notes/github_publish_receipt_0b3509b_before_geometry_head_terminal.json",
       "change": "A",
-      "bytes": 2436,
-      "sha256": "a75fafe1d21c709207d51d62df417887778efb60e7ab2089cc3b1cc1c15c84db",
+      "bytes": 2442,
+      "sha256": "0b474de597585cd4a83715f5ab514a2a993c1943a2474b234f2ccaea30d8ede4",
       "line_ending_normalization_only": false
     },
     {
       "path": "results/SOLVER_BRIEF.md",
       "change": "M",
-      "bytes": 2703,
-      "sha256": "3f8631dbc9e60d649888a829e3d8d29e04fe0cedfca65fd187c67f5086939a5a",
+      "bytes": 2158,
+      "sha256": "14c0fbc92281f83a8418363fd5f59c092ec1fffd727ed7cfd87eb245ffb51525",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_response_gain_v31/BRIEF.md",
+      "path": "results/geobc_geometry_head_v34/BRIEF.md",
       "change": "A",
-      "bytes": 2284,
-      "sha256": "013238a29a91db27dc41f3ab0834fc9197ccbeeba4a0acd583ea901a969c815d",
+      "bytes": 3679,
+      "sha256": "2efa42fadc4541bc6b522d446a4b944e10b56ffafc6c9223776d97298ee486c6",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_response_gain_v31/comparison.png",
+      "path": "results/geobc_geometry_head_v34/comparison.png",
       "change": "A",
-      "bytes": 79255,
-      "sha256": "0cb16189e225a3cf8abf4d9b7e282bb066a46f8f06b4605e349c281199486f70",
+      "bytes": 88791,
+      "sha256": "4a3bb58cb533702254b664e74c0bc7c05d5bd4f5eff64c8f656be2651c0a3ff6",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_response_gain_v31/manifest.json",
+      "path": "results/geobc_geometry_head_v34/manifest.json",
       "change": "A",
-      "bytes": 1106,
-      "sha256": "3ea3891c8f1bc0fd715db1349b94a012435ca402cc264da7af8c3770925eb4a4",
+      "bytes": 1660,
+      "sha256": "50362908dc5941624458e189e680caacd7598bc5b24cf49a38833e5e32b6070b",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_response_gain_v31/metrics.json",
+      "path": "results/geobc_geometry_head_v34/metrics.json",
       "change": "A",
-      "bytes": 1724256,
-      "sha256": "0c8a03f4c2b8236761693ea86b68ccd5e21d3dbb27fc055af2708e35bfb08525",
+      "bytes": 2375645,
+      "sha256": "7494a6148d25c89edb050229eb7a2a520d62f4075b76b1336c075ad8883b2e60",
       "line_ending_normalization_only": false
     },
     {
-      "path": "tools/check_geometry_head_transfer_v32_CPU.py",
+      "path": "tools/check_node_latent_teacher_v35_CPU.py",
       "change": "A",
-      "bytes": 3658,
-      "sha256": "042dc10d4e2d22ba6c630610e13f27a83a31576997e9686c95402df2ec45bdc3",
+      "bytes": 4700,
+      "sha256": "61258ecf54f0ad4e0e10a9963c2a5877114f653136f983f11ea5561249056f2d",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "tools/evaluate_geobc_geometry_head_v34.py",
+      "change": "A",
+      "bytes": 17227,
+      "sha256": "76d786986bd48fd8237ba69a5f397e394396dea9cf7e607a061411f08aed7d61",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "tools/export_geobc_geometry_head_v34.py",
+      "change": "A",
+      "bytes": 10277,
+      "sha256": "4e9cb37ae09ba72714b4b26af282add42c790ca24aa23a9a1984622e419c603c",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "tools/run_geobc_geometry_head_guard_v33.py",
+      "change": "A",
+      "bytes": 4903,
+      "sha256": "79173cda36ab040de61a7df072acee3d9f0a5953a2d8d14d696ba0dd67aeb261",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "tools/run_geobc_geometry_head_readout_guard_v34.py",
+      "change": "A",
+      "bytes": 4917,
+      "sha256": "d7a814a5bab28aa00c24f6c49f13a7c18b251d450abefa5d2607e1f5ca1d2c31",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "tools/train_geobc_geometry_head_transfer_v33.py",
+      "change": "A",
+      "bytes": 22286,
+      "sha256": "2be3ca2058734fe30e9c6cd8d2a423f8ccdce41197bd315d3561a7709dadb56e",
       "line_ending_normalization_only": false
     }
   ],
-  "attempt_id": "gain_terminal_transfer_cpu_20261011",
+  "attempt_id": "geometry_head_terminal_latent_cpu_20261011",
   "untracked_local_preparation_receipt_not_in_target_tree": true,
-  "actual_completed_scope": "v30/v31 truecompleted negative inputgain control, whole300TRAIN/120predictions/GT60/acceptedPNG. New v32 strict weight-transfer helper and syntheticCPU proof only, no teacher PT reads or real warm training.",
+  "actual_completed_scope": "v33 all3 actualfullTRAIN+v34actual180wholeNpredictions/knownGT60/acceptedreport; v35 syntheticCPU node-latent math only, real runtime0",
   "credential_or_raw_data_included": false,
-  "review": "Exact immutable target/base/tree/current changed blobs match source, all changed AST/JSON valid, no raw arrays/checkpoints/cache/credentials; mainreport only2 deduplicated roles/all11 scalar detail. Future3arm warm initialization versus continuation exposure explicit; no actualtrialclaim. Full unchanged GitData helper review reused."
+  "review": "Exact immutable target/base/tree/blob workspace equivalence, changed AST/JSON valid, accepted actualplot, inherited5+additional5 explicitly distinguished. Full unchanged GitData helper review reused; old successful receipts archived; no raw PT/arrays/cache/credentials."
 }

@@ -25,7 +25,7 @@ R64 FNO容量控制已完成同5遍训练和DEV：隐藏width9→16、参数4.52
 
 原版TS空token控制也已完成：TRAIN300平均仅10.67%的R16单元有节点；剔除空token并将其latent设零后，TRAIN应力93.62%（原版93.67%）、DEV93.15%（原版93.20%），基本无改善，停止该路线。整轮训练5.31分钟、DEV1.61分钟；初始完整权重SHA与原版一致。[空token对照](results/geobc_occupied_ts_v27/BRIEF.md)。
 
-同R16双模型训练目标对照已完成：标准化MSE使TS新几何U/S变差至65.62%／94.60%，FNO16至48.71%／72.14%，停止此路线。训练整轮6.69分钟，DEV1.97分钟，保持原物理损失。[目标控制](results/geobc_encoded_pair_v29/BRIEF.md)。固定输入F/M/E/L幅值先验同5遍也已完成：TS新几何U/S58.05%／94.18%，FNO16 30.60%／68.92%，均未改善联合误差；训练7.45分钟、DEV2.00分钟，停止追加。[幅值先验](results/geobc_response_gain_v31/BRIEF.md)。TRAIN编码器／查询头迁移对照已完成：TS新几何U/S53.01%／94.37%，FNO重置29.61%／61.86%，FNO完整5→10遍27.65%／58.96%；新整轮训练9.03分钟、DEV2.80分钟，teacher旧4.19分钟另列。迁移未帮助TS；完整FNO续训改善自身5遍，但仍不能抹平与R64基线的表示及曝光差异。[迁移对照](results/geobc_geometry_head_v34/BRIEF.md)。下一诊断用固定TRAIN teacher中间latent目标检查TS能否学得该映射，teacher拟合与FEM误差分离；合成33337节点完整分块反传已通过（CPU2.69秒），真实训练入口尚未实现／启动。先5遍，有证据再延长，不默认40遍或24000步。
+同R16双模型训练目标对照已完成：标准化MSE使TS新几何U/S变差至65.62%／94.60%，FNO16至48.71%／72.14%，停止此路线。训练整轮6.69分钟，DEV1.97分钟，保持原物理损失。[目标控制](results/geobc_encoded_pair_v29/BRIEF.md)。固定输入F/M/E/L幅值先验同5遍也已完成：TS新几何U/S58.05%／94.18%，FNO16 30.60%／68.92%，均未改善联合误差；训练7.45分钟、DEV2.00分钟，停止追加。[幅值先验](results/geobc_response_gain_v31/BRIEF.md)。TRAIN编码器／查询头迁移对照已完成：TS新几何U/S53.01%／94.37%，FNO重置29.61%／61.86%，FNO完整5→10遍27.65%／58.96%；新整轮训练9.03分钟、DEV2.80分钟，teacher旧4.19分钟另列。迁移未帮助TS；完整FNO续训改善自身5遍，但仍不能抹平与R64基线的表示及曝光差异。[迁移对照](results/geobc_geometry_head_v34/BRIEF.md)。固定teacher中间场诊断已完成：TRAIN节点latent误差TS98.62%、FNO7.56%；新CAD98.66%／8.73%，但teacher原FEM应力误差64.98%，FNO学生仍65.90%，没有解决绝对精度。新训练整轮7.49分钟、DEV3.39分钟，停止该latent路线的长训。[诊断简报](results/geobc_node_latent_teacher_v37/BRIEF.md)。下一检查规则网格与算子空间结构：官方structured3D TS加入邻域Conv3d，固定hidden128／4.777M参数，先fresh物理5遍；CPU官方／checkpoint完整算子反传一致已通过（2.97秒），真实训练入口尚未实现／启动。当前旧TS与FNO差距不是架构上限结论。
 原全节点++物理5遍训练耗时31.81分钟，TRAIN应力误差93.81%，没有通过训练门槛，因此该配方新DEV未运行。[负结果](results/geobc_native_physical_TRAIN_v13/BRIEF.md)。紧凑表示已通过真实GPU全节点反传验证；R16池化与容量差异明确记录，不能视为纯架构消融。[资源验证](results/geobc_coarse_transolver_resource_v19/BRIEF.md) · [当前计划](notes/geobc_coarse_three100_physical5_v20_plan.json) · [真实启动身份](notes/geobc_coarse_three_v20_actual_launch.json)。
 
 ## 数据与证据
@@ -44,6 +44,6 @@ R64 FNO容量控制已完成同5遍训练和DEV：隐藏width9→16、参数4.52
 
 WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`，RTX5090；显存上限30.5GB（30,500,000,000 bytes），公共非阻塞GPU锁。[依赖](requirements-lock-wsl.txt) · [TCNN安装](notes/install_tcnn.md)。研究工具在WSL项目根目录使用 `python -m tools.<模块名>`，按对应冻结计划／真实终态交接运行；不能因旧status或SOURCE-ready重复启动。
 
-新克隆先执行 `python tools/restore_geobc_source_line_endings.py --check`，仅行尾不同可执行 `--restore`，恢复187个冻结运行依赖的LF／CRLF字节；未知内容拒绝写入。半小时监视器持续推进，健康后台训练只作轻量检查。
+新克隆先执行 `python tools/restore_geobc_source_line_endings.py --check`，仅行尾不同可执行 `--restore`，恢复197个冻结运行依赖的LF／CRLF字节；未知内容拒绝写入。半小时监视器持续推进，健康后台训练只作轻量检查。
 
-[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`0b3509b`，包含幅值先验同5遍训练／DEV负结果与已验看图表，以及下一几何编码器／查询头迁移原型和合成CPU检查；v33／v34新迁移训练及DEV已在本地完成，尚未包含在该远端提交中。[发布状态](notes/github_publish_plan.json)。
+[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`50cdb5a`，包含v33／v34已完成的迁移训练、新几何评估、验看图表与负结果，以及v35中间场诊断的合成CPU原型；随后v36两组中间场训练已在本地启动，未包含在该提交中。发布耗时58.82秒，远端确切提交／tree与私人身份已核实。[发布状态](notes/github_publish_plan.json)。
