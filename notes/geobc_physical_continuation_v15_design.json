@@ -1,0 +1,30 @@
+{
+  "status": "SOURCE_only_no_selected_family_no_SCI_no_execution",
+  "created_UTC": "2026-10-11T05:32:27.546118+00:00",
+  "question": "Is early physical-loss fitting still improving enough after5passes to justify oneadditional5passes?",
+  "candidate_families": [
+    "FNO9",
+    "PP256_NATIVE"
+  ],
+  "selected_family": null,
+  "source_pins": {
+    "geobc/physical_continuation_contract_v15.py": "1fd5020ecb703ebeffcebcef01664e4483a800c7a8bafcea0e089cd3e109991f",
+    "tools/train_geobc_physical_continuation_v15.py": "a306d3f8482194864c82ceea2d4da43e03d92bee1f4f4953f06040f1761fa37f",
+    "tools/run_geobc_physical_continuation_guard_v15.py": "60eafbf51e2d014418d477ecaa6b2f346b2f2533aee5beab78c24dffa0055b83"
+  },
+  "actual_execution": 0,
+  "prerequisite": "Genuine nativephysical5 knownDEV terminal and root outcome-based decision; cannot run now.",
+  "parent_step": 1500,
+  "additional_updates": 1500,
+  "fixed_endpoint": 3000,
+  "passes": 10,
+  "fresh": false,
+  "precision": "highest_FP32_TF32_disabled",
+  "TRAIN_gate": {
+    "primary_absolute_improvement_at_least": 0.03,
+    "maximum_either_field_absolute_deterioration": 0.02,
+    "fixed_denominator": 300
+  },
+  "later_knownDEV": "Separate scientific freeze/barrier/60newpredictions before existingknownGT60 once; reuse samefamily5 and competitor5 immutable scalars, mark differentexposure; no originalCSV/FINAL.",
+  "interpretation": "An exposure continuation, not a new-loss orarchitecture causal contrast. More passes not automatically authorized after10. TF32 variant requires separate science/source review and matched accuracy validation."
+}

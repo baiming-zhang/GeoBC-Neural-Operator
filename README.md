@@ -16,7 +16,7 @@
 
 FNO主模型由knownDEV联合误差在FINAL标签读取前选定。FINAL两端点120份全节点预测先保存／重验，再20个CSV各解析一次并共享60例场，完整阶段155.38秒；CPU报告13.27秒。云图色条排版另用已有数组修复13.42秒，原图／评分保留，修复图已验看，无CSV重读或新推理。[位移云图](results/geobc_FINAL_v9/plots_v2/field_U.png) · [应力云图](results/geobc_FINAL_v9/plots_v2/field_S.png)。
 
-这一批FINAL现已揭盲，不能再当作未来选型的盲测。停止Hash追加；下一项宏观候选是100CAD上的Transolver++短筛，与FNO配对，先检验GPU常驻缓存、实际显存与训练速度，再决定短端点预算。资源验证已实际完成70秒，最大节点全反传通过，allocated／reserved峰值18.91／20.09GB；native++100CAD的5遍／1500步短筛已正常完成，总耗时34.68分钟，训练集全300例位移／应力误差65.81%／95.02%，仍明显未拟合；不能据此宣称架构上限。FNO的同样5遍对照及knownDEV20个新CAD×三载荷评估均已完成：FNO位移／应力60.56%／74.58%，native++67.43%／94.86%；纯训练1.45／32.08分钟。两者均未充分拟合，当前FNO初筛更优；[5遍简报](results/geobc_macro100_short5_v11/BRIEF.md)。物理相对误差损失的FNO100CAD／5遍验证已完成：新几何knownDEV位移／应力从60.56%／74.58%降至31.61%／56.10%，热点从70.09%降至45.08%；整轮4.27分钟，DEV读出68.07秒，CPU简报3.12秒，图已验看。[物理损失简报](results/geobc_shared_physical_v12/BRIEF.md)。native++同模型／同5遍／同物理损失对照已于北京时间13:03:22实际启动，初估约35分钟，固定1500更新，显存30.5GB；不自动延长。不预设赢家，不默认40遍或24000步。
+这一批FINAL现已揭盲，不能再当作未来选型的盲测。停止Hash追加；下一项宏观候选是100CAD上的Transolver++短筛，与FNO配对，先检验GPU常驻缓存、实际显存与训练速度，再决定短端点预算。资源验证已实际完成70秒，最大节点全反传通过，allocated／reserved峰值18.91／20.09GB；native++100CAD的5遍／1500步短筛已正常完成，总耗时34.68分钟，训练集全300例位移／应力误差65.81%／95.02%，仍明显未拟合；不能据此宣称架构上限。FNO的同样5遍对照及knownDEV20个新CAD×三载荷评估均已完成：FNO位移／应力60.56%／74.58%，native++67.43%／94.86%；纯训练1.45／32.08分钟。两者均未充分拟合，当前FNO初筛更优；[5遍简报](results/geobc_macro100_short5_v11/BRIEF.md)。物理相对误差损失的FNO100CAD／5遍验证已完成：新几何knownDEV位移／应力从60.56%／74.58%降至31.61%／56.10%，热点从70.09%降至45.08%；整轮4.27分钟，DEV读出68.07秒，CPU简报3.12秒，图已验看。[物理损失简报](results/geobc_shared_physical_v12/BRIEF.md)。native++同模型／同5遍／同物理损失对照已正常完成：TRAIN位移／应力55.72%／93.81%，应力仅改善1.21个百分点，未通过预设门槛；完整阶段34.64分钟、纯训练31.81分钟。新++DEV未执行，结果不能当作新几何误差。[训练负结果](results/geobc_native_physical_TRAIN_v13/BRIEF.md)。FNO从自身5遍完整状态继续到10遍已完成：knownDEV位移／应力25.60%／52.14%，热点41.93%，较5遍改善6.01／3.95／3.15个百分点。追加5遍纯训练97.18秒、完整阶段4.24分钟，开发评估77.76秒，CPU简报7.73秒；图已验看。[5→10遍简报](results/geobc_physical10_v16/BRIEF.md)。这是增加曝光量的结果，不能冒充同训练量方法比较；应力仍高，不默认40遍或24000步。下一项同损失、同100CAD、同5遍的全局FNO控制Hash已于14:04:33启动，尚无新误差；模型和Hash超参数不改，容量及TCNN精度差异明确保留。
 
 ## 数据与资源
 
@@ -48,8 +48,8 @@ python tools/plot_suite_fields.py
 
 研究阶段必须使用各自冻结计划和真实进程交接，不能因旧status、锁文件或SOURCE-ready重复启动GPU任务。30分钟监视器持续推进；活训练期间只作轻量检查。
 
-[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最新已验收提交 `93651e7`。本地已完成12000步同曝光比较及FINAL测试；本批12000端点和独立测试代码／结果已推送并验收 `50d45b4`（68.66秒），v10资源验证与v11短筛／配对评估代码结果已推送验收 `93651e7`（70.77秒），新v12物理损失结果已本地完成、v13 native++物理5遍实际训练中，尚未新增远端发布，远端状态以[最新验收记录](notes/github_publish_plan.json)为准。[发布计划](notes/github_publish_plan.json)。
+[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最新已验收提交 `aa40a0a`。本地已完成12000步同曝光比较及FINAL测试；本批12000端点和独立测试代码／结果已推送并验收 `50d45b4`（68.66秒），v10资源验证与v11短筛／配对评估代码结果已推送验收 `93651e7`（70.77秒），v12物理损失结果和v13 native++物理5遍启动代码已推送验收 `aa40a0a`（63.19秒）；本地v13已负结果终态、v15／v16已完成；这些新增端点暂未上传，远端状态以[最新验收记录](notes/github_publish_plan.json)为准。[发布计划](notes/github_publish_plan.json)。
 
 更早逐阶段运行叙述存于[README历史快照](results/README_STATE_HISTORY_20261011.md)，状态以当前真实报告和运行收据为准。
 
-冻结source pins记录的是原运行文件字节，Git可能规范化行尾。新克隆运行当前v7／v8／v9／v10／v11／v12／v13协议前，先执行 `python tools/restore_geobc_source_line_endings.py --check`；如提示仅行尾不同，执行 `--restore` 可恢复匹配的原LF／CRLF字节。仅校验当前88个冻结依赖与交接工具，未知内容拒绝写入，不改科学pins、目标或代码逻辑；旧历史版本的代码差异不由此恢复。在WSL从项目根目录执行研究工具时使用 `python -m tools.<模块名>`，以保证项目包可导入。
+冻结source pins记录的是原运行文件字节，Git可能规范化行尾。新克隆运行当前v7／v8／v9／v10／v11／v12／v13／v15／v16协议前，先执行 `python tools/restore_geobc_source_line_endings.py --check`；如提示仅行尾不同，执行 `--restore` 可恢复匹配的原LF／CRLF字节。仅校验当前109个冻结依赖与交接工具，未知内容拒绝写入，不改科学pins、目标或代码逻辑；旧历史版本的代码差异不由此恢复。在WSL从项目根目录执行研究工具时使用 `python -m tools.<模块名>`，以保证项目包可导入。

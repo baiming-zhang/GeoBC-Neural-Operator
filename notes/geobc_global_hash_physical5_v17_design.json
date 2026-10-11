@@ -1,0 +1,22 @@
+{
+  "status": "SOURCE_design_not_execution",
+  "created_UTC": "2026-10-11T06:03:06.013126+00:00",
+  "question": "Does the existing global FNO-controlled continuous Hash decoder remain competitive against the MLP decoder under the physical objective at equal5passes?",
+  "why_now": "FNO physical objective produced a large change in short-screen ranking; extending only FNO before giving the retained global Hash the same objective would conflate recipe and solver choice.",
+  "changed_variable": "existing global Hash vs MLP decoder package; capacity and TCNN precision differ explicitly",
+  "frozen": "100CAD/300 TRAIN,5passes/1500,seed2026,balanced original schedule,oldTRAIN40-only scaler,original signed aligned fields,Adam .001,no new architecture or hash hyperparameters",
+  "backbone": "same original FNO9 geometry encoder/operator; actual initial bytes must be checked within setup with RNG restored",
+  "TRAIN_gate": "complete finite300 and real wholeN joint gradients; no accuracy filtering before knownDEV",
+  "DEV_policy": "future separate readout after true terminal:60 new finite immutable predictions before knownGT60once; baseline own physical FNO5 scalars reused; no FINAL/rawCSV/old inference",
+  "decision": "compare complete60 primary .5(meanU+meanS), hot/worst/cost/perload/paired20; no automatic exposure extension or finalsolver selection",
+  "budgets_seconds": {
+    "cache": 600,
+    "training": 900,
+    "TRAIN_readout": 300,
+    "whole": 1800
+  },
+  "memory_limit_bytes": 30500000000,
+  "actual_GPU_execution": 0,
+  "not_Hash_microtuning": true,
+  "not_capacity_or_precision_matched": true
+}

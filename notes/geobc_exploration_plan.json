@@ -5764,15 +5764,14 @@
     }
   },
   "current_next_stage": {
-    "status": "native_PP_physical_short5_actually_running",
-    "plan": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_plan.json",
-    "SCI": "4acc9c5499657f110dde75ec77adee34802a2725ea26a430da356d361e1f245d",
-    "exec_session": 92307,
-    "receipt": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_actual_launch.json",
-    "fixed_updates": 1500,
-    "passes": 5,
-    "estimated_minutes": 35,
-    "after_real_terminal": "Analyze TRAIN physical full300; separately qualify knownDEV60 predictions-first comparing immutable FNO physical5 baseline; no automatic40passes/24000"
+    "status": "globalHash_physical5_actual_running",
+    "plan": "notes/geobc_global_hash_physical5_v17_plan.json",
+    "SCI": "fe204ae0f8703b6aaa7b716a4ed35fbec499db861f63a6e7049f5d2b4f7f7dba",
+    "exec_session": 34564,
+    "receipt": "notes/geobc_global_hash_physical5_v17_actual_launch.json",
+    "question": "same physical objective/100CAD/5passes against FNO5; no decoder hyperparameter changes",
+    "future_DEV_source_ready": "notes/geobc_global_hash_physical_readout_v17_source_ready.json",
+    "future_DEV_actual_execution": 0
   },
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
@@ -6539,5 +6538,58 @@
     "CPU_export_seconds": 3.118227,
     "FINAL_reads": 0,
     "new_recipe_final_solver_selected": false
+  },
+  "native_precision_feasibility_SOURCE": {
+    "status": "SOURCE_only_not_executed",
+    "design": "notes/geobc_native_TF32_feasibility_v14_design.json",
+    "review": "notes/geobc_native_precision_v14_SOURCE_root_review.json",
+    "upstream": "nativephysical TRAIN/knownDEV actual terminal before root actual release",
+    "actual_GPU_execution": 0
+  },
+  "physical5to10_SOURCE_preparation": {
+    "status": "SOURCE_only_no_selected_family_no_SCI_no_execution",
+    "design": "notes/geobc_physical_continuation_v15_design.json",
+    "review": "notes/geobc_physical_continuation_v15_SOURCE_root_review.json",
+    "actual_execution": 0,
+    "model_selection_pending": true
+  },
+  "native_physical5_completed": {
+    "status": "completed_scientific_TRAIN_gate_negative",
+    "report": "results/geobc_native_physical_TRAIN_v13/BRIEF.md",
+    "TRAIN_U_S": [
+      0.5571922729061015,
+      0.9381377106586609
+    ],
+    "training_seconds": 1908.5712597370148,
+    "whole_seconds": 2078.1738607883453,
+    "new_native_DEV_actual_execution": 0
+  },
+  "physical5to10_completed": {
+    "status": "actual_completed_TRAIN_and_knownDEV_gate_pass",
+    "TRAIN_terminal_receipt": "notes/geobc_macro100_FNO9_physical10_v15_terminal_receipt.json",
+    "DEV_terminal_receipt": "notes/geobc_physical10_readout_v16_terminal_receipt.json",
+    "report": "results/geobc_physical10_v16/BRIEF.md",
+    "DEV_U": 0.2560309559813769,
+    "DEV_S": 0.5214486656547538,
+    "DEV_hot": 0.4192565175206173,
+    "DEV_gate": {
+      "passed": true,
+      "U_difference": -0.0600549731769901,
+      "S_difference": -0.039518429804429656,
+      "primary_difference": -0.04978670149070988,
+      "direction": "samephysicalFNO10 minus ownphysicalFNO5; exposure difference",
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false
+    },
+    "additional_training_epoch_seconds": 97.1752290725708,
+    "stage_epoch_seconds": 254.5824282169342,
+    "DEV_epoch_seconds": 77.75668716430664,
+    "CPU_report_seconds": 7.724099447001208,
+    "actual_visual_accepted": true
   }
 }

@@ -1,0 +1,32 @@
+{
+  "status": "SOURCE_only_no_numerical_execution",
+  "passed": true,
+  "whole_source_reviewed": true,
+  "reviewer": "root",
+  "reviewed_UTC": "2026-10-11T05:17:53.882405+00:00",
+  "source_pins": {
+    "geobc/native_precision_contract_v14.py": "46ffc658877bebcbc5e2f2fcb599e953418c70e3b3ae310c798ee862782d42c8",
+    "tools/probe_geobc_native_precision_v14.py": "128847908ba28cee18511438cb27a335546327085d4ace4e0c812af9ea9ea1d0",
+    "tools/run_geobc_native_precision_guard_v14.py": "2ca7c68a54fa6148e153cebb842c1e5a726aa87e556562605f2b61053e1c4607"
+  },
+  "design_SHA": "5ea5bbc04af4e63eb143bb5e32fb68fc4c0158a7e7c37dce99b3fdea0d55cbb0",
+  "actual_execution_released": false,
+  "scientific_digest": null,
+  "reviewed": [
+    "All new precision contract/driver plus exact guardnamespace diff read; numerical imports/IO occur only after approved SCI and own publicGPU lock.",
+    "Fixed6 TRAIN cases selected only by median/maxN metadata and allthree loads; onecheckpoint/inputonce/phys6, nooptim/DEV/FINAL/scalerfit.",
+    "HighestFP32 and TF32 modes use only old API consistently, unchanged fixedweight/RNG beforeeachwarmup and eachmeasurement; modelparams/buffers exact state hash aftereachmode and final.",
+    "FullN physical objective/reused exact backward and globalcontext; three real measured backprops pluswarmup per modecase; GPU events and dual host clocks separate; input/hash/validation/failedexit count whole600.",
+    "Complete finite named gradients expected exact unused embedding only; all/encoder/operator/head norm/cosine/drift, physical U/S sameweight prediction drift, no droppedcase/epsilon/tolerance rescue.",
+    "ROOT release waits actual completed native knownDEV result/closed clocks/exact exits/SCI match and scientific prioritization; no currentruntime or new modelaccuracy claims.",
+    "Cost counters and timing boundaries reviewed; 48 fullN backward attempts/completions and12 inference modes fixed, onecheckpoint/6physical reads; policy evidence explicitly does not assert kernel datatype."
+  ],
+  "actual_GPU_execution": 0,
+  "actual_GT_array_reads": 0,
+  "source_revision_history": [
+    {
+      "source_sha256": "68ed6e5b2881ed1ab22252d8dfa1bd40f0a6ef61e88e1bce32dc0f9363b1a8a0",
+      "reason": "Added actual backward/prediction attempts-completions and actual backend metadata before any runtime; mathematical mode/thresholds unchanged"
+    }
+  ]
+}

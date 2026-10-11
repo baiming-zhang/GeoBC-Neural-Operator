@@ -1,0 +1,86 @@
+{
+  "status": "scientific_design_SOURCE_implementation_next_no_release",
+  "created_UTC": "2026-10-11T05:14:49.268499+00:00",
+  "question": "Can nativeTransolver++wholeN training gain materially from TensorFloat32 without material fixed-weight prediction/gradient drift, before extending expensive screening?",
+  "motivation": "Actual100CAD5pass highestFP32 native32.08min vs FNO1.45min; current scientific physical-loss comparison unchanged. Hardware feasibility is not solver accuracy or architecture superiority.",
+  "family": "PP256_NATIVE",
+  "parent_TRAIN_plan": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_plan.json",
+  "checkpoint_step": 1500,
+  "prerequisite": "Actual completed native physical5 and subsequent knownDEV evaluation/analysis; closed inactive exact child/guard exits and sole GPU free. Full TRAINgate failure may deprioritize this branch; no automatic execution.",
+  "fixed_case_selection": "TRAIN100 node-count median and maximumCAD, tie byCADID, allthree original loads; metadata only selection",
+  "case_keys": [
+    "257_485/ver",
+    "257_485/hor",
+    "257_485/tor",
+    "107_150/ver",
+    "107_150/hor",
+    "107_150/tor"
+  ],
+  "node_counts": {
+    "257_485/ver": 207350,
+    "257_485/hor": 207350,
+    "257_485/tor": 207350,
+    "107_150/ver": 325387,
+    "107_150/hor": 325387,
+    "107_150/tor": 325387
+  },
+  "precision_modes": {
+    "IEEE_FP32": {
+      "float32_matmul_precision": "highest",
+      "matmul_allow_tf32": false,
+      "cudnn_allow_tf32": false
+    },
+    "TF32": {
+      "float32_matmul_precision": "high",
+      "matmul_allow_tf32": true,
+      "cudnn_allow_tf32": true
+    }
+  },
+  "precision_API": "Only legacy settings matching livebaseline; never mix fp32_precision API with allow_tf32. Supported2.14 docs consulted, deprecation acknowledged.",
+  "official_reference": "https://docs.pytorch.org/docs/2.14/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices",
+  "implementation_constraints": {
+    "full_original_nodes": true,
+    "whole_encoder_operator_backward": true,
+    "decoder_chunk_size": 32768,
+    "physical_loss_source_SHA": "9e386b771f86906ed1fb4524286cea57d2521698c2f582d4595c7cb24fa3de00",
+    "weight_updates": 0,
+    "checkpoint_reads": 1,
+    "TRAIN_physical_array_reads": 6,
+    "DEV_FINAL_GT_reads": 0,
+    "new_CSV_parses": 0,
+    "scaler_fits": 0,
+    "RNG_restore_before_each_trial": true,
+    "train_mode_backward_then_eval_predictions": true,
+    "all_named_parameters_and_buffers_hash_before_after": true
+  },
+  "benchmark": {
+    "warmup_backward_per_mode_case": 1,
+    "measured_backward_repeats": 3,
+    "precision_order": "AB for evencaseindices,BA for odd",
+    "timer": "CUDAevent and synchronized epoch/monotonic wall separately; whole includesIO/hash/cache/validation/costs",
+    "six_cases_fixed_no_substitution": true
+  },
+  "acceptance": {
+    "all6_complete": true,
+    "minimum_geometric_mean_GPU_training_speedup": 2.0,
+    "maximum_each_physical_U_prediction_relative_drift": 0.001,
+    "maximum_each_physical_S_prediction_relative_drift": 0.001,
+    "minimum_each_parameter_gradient_cosine": 0.999,
+    "maximum_each_parameter_gradient_relative_L2_drift": 0.01,
+    "maximum_each_relative_objective_drift": 0.005,
+    "state_hash_unchanged": true,
+    "all_gradients_finite": true,
+    "zero_norm_policy": "Failqualification; no epsilon, no droppedcase or denominator subset",
+    "interpretation": "Preliminary numerical/speed qualification only; must separately validate trainedTF32 trajectories before accepting comparable solver accuracy"
+  },
+  "resource": {
+    "memory_limit_bytes": 30500000000,
+    "whole_budget_seconds": 600,
+    "GPU_lock": "runs/geobc_exploration/.coordinator.lock"
+  },
+  "actual_GPU_execution": 0,
+  "actual_numeric_arrays": 0,
+  "source_implemented": false,
+  "source_review_passed": false,
+  "actual_execution_released": false
+}
