@@ -1,0 +1,38 @@
+{
+  "status": "actual_launched",
+  "exec_session_id": 32311,
+  "captured_at_utc": "2026-10-11T02:04:02.637095+00:00",
+  "scientific_digest": "146ca895bfa4f75360d20015d72a643212662821f3fbbc8f6aaf340d7983995d",
+  "guard_process": {
+    "pid": 10512,
+    "ppid": 10509,
+    "start_ticks": 424167,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_fno_coverage_readout_guard_v4",
+      "--start",
+      "--plan",
+      "notes/geobc_fno_coverage_readout_v4_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 10514,
+    "ppid": 10512,
+    "start_ticks": 424462,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.evaluate_geobc_fno_coverage_v4",
+      "--start",
+      "--plan",
+      "notes/geobc_fno_coverage_readout_v4_plan.json"
+    ]
+  },
+  "phase": "prediction_commit",
+  "committed_predictions": 17,
+  "owned_GT_reads": 0,
+  "whole_budget_seconds": 600
+}

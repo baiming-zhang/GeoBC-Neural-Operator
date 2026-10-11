@@ -1,0 +1,37 @@
+{
+  "status": "actual_launched",
+  "exec_session_id": 73397,
+  "captured_at_utc": "2026-10-11T02:11:27.202915+00:00",
+  "scientific_digest": "bac560d62423ec8378c0897832de8dcc10c514a498f1fb1e4ee36b84aa0cd105",
+  "guard_process": {
+    "pid": 10915,
+    "ppid": 10913,
+    "start_ticks": 460378,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_operator_hash_guard_v5",
+      "--start",
+      "--plan",
+      "notes/geobc_operator_hash_v5_HASH_PN_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 10917,
+    "ppid": 10915,
+    "start_ticks": 460673,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_operator_hash_v5",
+      "--start",
+      "--plan",
+      "notes/geobc_operator_hash_v5_HASH_PN_plan.json"
+    ]
+  },
+  "phase": "training",
+  "step": 270,
+  "whole_budget_seconds": 1200
+}

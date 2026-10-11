@@ -6175,13 +6175,55 @@
     "future_continuous_hash": "Investigate wholeoperator-conditioned continuous field only as macrorepresentation control after baselinecoverage, not smallHashparameter rescue"
   },
   "coverage100_v4": {
-    "status": "actual_launched",
+    "status": "completed_training_and_DEV_export",
     "plan": "notes/geobc_fno_coverage100_v4_plan.json",
     "actual_launch": "notes/geobc_fno_coverage100_v4_actual_launch.json",
     "exec_session": 99080,
     "scientific_digest": "9a64fee7d8df6d5dde45ac50f51f24f4d1e7947d3ca3119cc7a926123daa6d4c",
     "training_budget_seconds": 1800,
     "whole_budget_seconds": 2400,
-    "not_a_completed_result": true
+    "not_a_completed_result": false,
+    "result_manifest": "results/geobc_fno_coverage_v4/manifest.json",
+    "current_main_FNO_U_S_percent": [
+      23.1685301028625,
+      50.845743732417034
+    ],
+    "plot_visually_reviewed": true
+  },
+  "whole_operator_conditioned_hash": {
+    "status": "CPU_interface_completed_actual_training0",
+    "model_source": "geobc/operator_conditioned_hash.py",
+    "interface_manifest": "results/geobc_operator_hash_interface/manifest.json",
+    "elapsed_seconds": 0.9728158960001565,
+    "why": "Shape-only PointNet Hash has no wholeBC operator; add whole-case FNO geometry/BC latent while retaining continuous Hash decoder as macrorepresentation candidate",
+    "actual_GPU_training": 0,
+    "actual_accuracy_qualified": false,
+    "next_condition": "After100CAD FNO real DEV results, choose paired shortbudget experiment; no preset Hashwinner or microtuning"
+  },
+  "operator_hash_v5": {
+    "status": "HASH_PN_actual_started_global_hash_queued",
+    "created": [
+      {
+        "family": "HASH_PN",
+        "plan": "notes/geobc_operator_hash_v5_HASH_PN_plan.json",
+        "scientific_digest": "bac560d62423ec8378c0897832de8dcc10c514a498f1fb1e4ee36b84aa0cd105",
+        "actual_GPU_execution": 0
+      },
+      {
+        "family": "FNO_GLOBAL_HASH",
+        "plan": "notes/geobc_operator_hash_v5_FNO_GLOBAL_HASH_plan.json",
+        "scientific_digest": "3e91c4bf1213142c358a61f44087af8f9511aff59e76d81022362518069c5cf5",
+        "actual_GPU_execution": 0
+      }
+    ],
+    "parent_result": "results/geobc_fno_coverage_v4/manifest.json",
+    "why": "Coverage helped only with enough exposure; remaining stress50.85% warrants macrocondition representation test, not tinyHashhyperparameters",
+    "main_FNO_U_S_percent": [
+      23.1685301028625,
+      50.845743732417034
+    ],
+    "main_FNO_training_whole_seconds": 996.5279881954193,
+    "current_solver_not_final": true,
+    "maximum_training_seconds_perarm": 600
   }
 }

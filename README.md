@@ -4,41 +4,25 @@
 
 ## 目前结论
 
-**当前配方 FNO 领先，Transolver 系列优先保留 ++；Hash 仍是连续场候选。** 最新共同对照使用相同 R64 输入、native25 查询头、约4.53M参数、TRAIN40 CAD×三载荷和4800次更新。
+**最新学习候选优先FNO：100个训练CAD×三载荷、12000更新，在knownDEV20 CAD×三载荷上位移／signed应力误差23.17%／50.85%。最终求解器尚未选定。**
 
-| 方法 | TRAIN 位移／应力误差 | 新20 CAD×三载荷位移／应力误差 | 训练 UTC 分钟 |
-|---|---:|---:|---:|
-| FNO | 19.5%／39.0% | 27.9%／56.1% | 26.97 |
-| Transolver++ | 40.6%／85.9% | 41.4%／86.4% | 144.36 |
+同40CAD／12000更新、R64/native25、约4.53M参数的历史公平对照：FNO26.50%／55.55%，Transolver++52.35%／83.99%。目前TS系列以++为主，FNO优先；不宣布架构上限。[同配置比较](results/geobc_short_screen/BRIEF.md)。
 
-以上为全原节点、物理单位 relative-L2 的病例均值；新20 CAD是已知开发池，不能当作最终测试。这说明当前配方的差距，不能宣布某个架构的上限。见[共同配置比较](results/geobc_common_grid_comparison/BRIEF.md)。
+Hash低于1%来自单／双已知病例的应力拟合，不能直接比较新CAD的联合位移／应力。几何条件Hash在同40CAD／4800更新的新60病例上49.19%／64.96%，FNO27.93%／56.06%；总训练阶段3.43／4.93分钟。[40遍确认](results/geobc_two_warm_screens_v3/BRIEF.md)。
 
-按CAD配对分析，当前FNO联合评分领先20/20 CAD，平均差21.9个百分点；逐一移除一个CAD后仍领先21.0–22.5个百分点。这是已知开发池的单seed结果。[CAD配对证据](results/geobc_common_grid_CAD_pair_analysis/BRIEF.md)。
+## 最新进展
 
-Hash 的约0.4%来自单病例已知应力拟合，五病例约1.45%；它与跨CAD、联合位移／应力任务不同。FNO 在独立单病例4800更新可达到位移3.9%／应力11.5%，表明共享训练误差包含拟合不足。[单例诊断](results/geobc_single_case_fit/BRIEF.md) · [Hash口径](notes/geobc_hash_error_comparability.json)。
+FNO扩大TRAIN40→100：同4800更新没有改善（28.59%／56.49%）；给予相同40遍曝光、12000更新后改善至23.17%／50.85%，位移19/20、应力20/20 CAD更低。整轮训练996.53秒（16.61分钟），开发读出98.23秒，CPU导出4.38秒，图已验看；120份完整有限预测先验证再共享knownGT60一次。未读FINAL／原CSV、新拟合scaler0。同更新数与同曝光数分别解释，不能声称纯数据单因素。[三行覆盖报告](results/geobc_fno_coverage_v4/BRIEF.md)。
 
-## 最新短筛与下一步
+下一宏观比较使用同100CAD／4800更新：几何条件Hash对照已启动，全局几何／边界条件算子控制的连续Hash排队。新模型复用FNO完整R64几何／BC／材料上下文，TCNN解码器沿用已有配置；每臂训练最多10分钟、整体20分钟、30.5GB。初始FNO骨干字节、真实最大全节点梯度及资源在预算内验证。CPU接口检查0.97秒已通过，不能据此宣称GPU精度或新算法。不重复训练既有FNO100基线，不进行Hash微小救参。[接口范围](results/geobc_operator_hash_interface/BRIEF.md)。
 
-初筛使用同TRAIN40 CAD×三载荷、seed2026、10遍／1200更新、每方法训练上限30分钟、30.5GB。完整开发60例：FNO U/S50.7%/73.2%，几何条件Hash67.5%/74.3%，原生++69.7%/94.0%；阶段1.44/1.32/26.32分钟。当前原生++拟合差且慢，降低投入优先级，不宣布架构上限。[三行初筛](results/geobc_three_short_screens/BRIEF.md)。
-
-两个低成本方法从自身1200检查点保留model、Adam、四RNG和病例顺序，继续至总4800／40遍：
-
-| 方法 | 开发位移／应力误差 | 总训练阶段分钟 |
-|---|---:|---:|
-| FNO | **27.93%／56.06%** | 4.93 |
-| 几何条件化Hash | 49.19%／64.96% | 3.43 |
-
-FNO在20/20个开发CAD的位移、应力更低，热点13/20更低。TRAIN120分别19.5%/39.0%与39.3%/52.1%，拟合及泛化问题同时存在。新增训练分别157.94／100.51秒，两阶段总费用完整保留；开发读出81.89秒，120完整预测先验证再共享GT60一次，图已验看。[两行确认](results/geobc_two_warm_screens_v3/BRIEF.md)。
-
-原双24000计划已主动终止，不冒充完成；同12000开发FNO26.5%/55.5%、R64++52.4%/84.0%，继续盲加步数收益不足。[同12000对照](results/geobc_short_screen/BRIEF.md)。初筛自动交接因初始argv空快照失败，实际评估完整且正常退出；根核对实际guard的相同PID/ticks完整身份后CPU导出，不重跑预测/GT，原失败保留，新guard已等待完整argv。[技术处理](notes/geobc_short_screen_handoff_failure_review.json)。
-
-下一宏观问题是**扩大FNO训练CAD覆盖40→100**：候选预算内检查同4800更新及同40遍12000更新，沿用old40-only scaler、knownDEV60及reservedFINAL；独立v4科学计划和源码已冻结并通过真实上游终态放行，100CAD任务已于北京时间09:46启动，exec99080；4800及12000检查点，训练最多30分钟、整体40分钟，实际结果待完成。不进行Hash微小调参；连续全局几何/BC字段验证仍是完整GeoBC目标，原节点误差不能替代独立离节点FEM精度。
+此前原生++10遍／1200更新阶段26.32分钟，开发69.68%／94.05%，当前配方贵且欠拟合，暂降低投入优先级。原双24000计划已主动终止，真实非零退出、日志和成本保留；技术交接空argv快照失败已用实际完整进程身份核对，未重跑预测／GT、不冒称完成。[三候选初筛](results/geobc_three_short_screens/BRIEF.md)。
 
 ## 数据与资源
 
 前瞻协议固定 **100 TRAIN／20 known DEV／20 reserved FINAL CAD**：TRAIN为旧40加新60，每CAD三载荷；scaler沿用仅旧TRAIN40拟合的版本。FINAL数值标签未读，不用于调参。[划分](notes/geobc_prospective_cad_split_v1.json)。
 
-420病例接口已整合：TRAIN300有已有目标，DEV60／FINAL60仅输入。两个实际TRAIN加载检查通过；旧int32／新int64索引兼容故障及原预算内修复保留，未验证全部300数值正文，100CAD实际载入与最大全节点梯度正在本次预算内验证。[接口简报](results/geobc_prospective_dataset_interface/BRIEF.md)。后续入口为 `geobc.prospective_dataset_v2.load_case`，明确选择40或100范围。
+420病例接口已整合：TRAIN300有已有目标，DEV60／FINAL60仅输入。两个实际TRAIN加载检查通过；旧int32／新int64索引兼容故障及原预算内修复保留，未验证全部300数值正文，本次100CAD缓存18.39GB、最大全节点梯度已通过，设备使用峰值21.83GB。[接口简报](results/geobc_prospective_dataset_interface/BRIEF.md)。后续入口为 `geobc.prospective_dataset_v2.load_case`，明确选择40或100范围。
 
 用户显存预算 **30.5 GB**（30,500,000,000 bytes）。100CAD R64全缓存加当前++工作空间估计28.64GB，后续优先GPU常驻；必须以实际全节点allocated／reserved各自峰值确认。[资源预算](notes/geobc_user_resource_budget.json) · [缓存估算](notes/geobc_prospective_cache_memory_plan.json)。历史实验保留其原24GiB上限；当前v4采用用户30.5GB预算。 共用TRAIN缓存接口已通过元数据与合成CPU检查（1.074秒），100CAD原生方法仅需约7.02GiB缓存；真实GPU载入仍未执行。[缓存接口](results/geobc_train_cache_interface/BRIEF.md)。
 
@@ -64,6 +48,6 @@ python tools/plot_suite_fields.py
 
 研究阶段必须使用各自冻结计划和真实进程交接，不能因旧status、锁文件或SOURCE-ready重复启动GPU任务。30分钟监视器持续推进；活训练期间只作轻量检查。
 
-[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `7d8d556` 包含同12000更新完整开发60例比较、原24k主动终止和三候选10遍短筛代码／计划。新10遍全部终态、warm40确认及100CAD新阶段现已在本地整理，待本次具体快照发布；不将本地文件冒充远端。上一发布50.63秒，精确commit和private状态均已核验。[发布计划](notes/github_publish_plan.json)。
+[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `5a8d1d7` 包含三候选10遍与双候选40遍真实结果、代码及100CAD初始启动状态。本次100CAD完成结果和新宏观比较正在整理为下一快照；仅在远端精确commit、owner/repo ID及private状态核验后声明发布。[发布计划](notes/github_publish_plan.json)。
 
 更早逐阶段运行叙述存于[README历史快照](results/README_STATE_HISTORY_20261011.md)，状态以当前真实报告和运行收据为准。

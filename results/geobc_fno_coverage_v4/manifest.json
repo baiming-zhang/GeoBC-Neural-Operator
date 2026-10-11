@@ -1,0 +1,71 @@
+{
+  "status": "completed",
+  "scientific_digest": "146ca895bfa4f75360d20015d72a643212662821f3fbbc8f6aaf340d7983995d",
+  "exporter_source_sha256": "95f1003adbf6cf8b400b71ca836ef74023e8ee2b1e5b0130890caa06f00660e4",
+  "points": [
+    {
+      "name": "FNO9_40pass_v3",
+      "TRAIN_CAD": 40,
+      "updates": 4800,
+      "passes": 40,
+      "U_percent": 27.927404695826745,
+      "S_percent": 56.06007901499266,
+      "hot_percent": 44.73977175665473,
+      "joint_score": 0.41993741855409705
+    },
+    {
+      "name": "FNO100_step4800",
+      "TRAIN_CAD": 100,
+      "updates": 4800,
+      "passes": 16,
+      "U_percent": 28.59155488055618,
+      "S_percent": 56.48891744649227,
+      "hot_percent": 46.94254597937703,
+      "joint_score": 0.42540236163524225
+    },
+    {
+      "name": "FNO100_step12000",
+      "TRAIN_CAD": 100,
+      "updates": 12000,
+      "passes": 40,
+      "U_percent": 23.1685301028625,
+      "S_percent": 50.845743732417034,
+      "hot_percent": 41.65191842983057,
+      "joint_score": 0.3700713691763977
+    }
+  ],
+  "cost": {
+    "whole_training_campaign_UTC_seconds": 996.5279881954193,
+    "whole_training_campaign_monotonic_seconds": 913.7561916050004,
+    "training_UTC_seconds": 879.4019341468811,
+    "intermediate_readout_and_checkpoint_cost_included": true,
+    "lower_endpoint_isolated_whole_cost_exact": false,
+    "lower_endpoint_isolated_whole_cost_seconds": null,
+    "DEV_readout_UTC_seconds": 98.22959637641907
+  },
+  "summary_identity": {
+    "path": "runs/geobc_exploration/macro_DEV_FNO100_coverage_v4/summary.json",
+    "bytes": 219978,
+    "mtime_ns": 1791684323135775600,
+    "sha256": "768dad8215a5f16688a6148ae3a0196f34c09bf6d23224e61c2c66cec50f95fa"
+  },
+  "external_identity": {
+    "path": "runs/geobc_exploration/macro_DEV_FNO100_coverage_v4/external_terminal.json",
+    "bytes": 5881,
+    "mtime_ns": 1791684323405618800,
+    "sha256": "aaeb50c84699bc146219986f0bab109ea0b823d79d3ce7f1ea4a85baf0c6e2ac"
+  },
+  "reference_summary_identity": {
+    "path": "runs/geobc_exploration/macro_DEV_warm40_v3/summary.json",
+    "bytes": 222498,
+    "mtime_ns": 1791682489239019100,
+    "sha256": "0c28070cf3303fded250d16fe3d786946aa806f43cd5c544370c8de694591bea"
+  },
+  "actual_CPU_export_seconds": 4.375715603000572,
+  "final_solver_selected": false,
+  "files": [
+    "BRIEF.md",
+    "metrics.json",
+    "comparison.png"
+  ]
+}

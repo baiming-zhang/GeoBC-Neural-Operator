@@ -19,7 +19,8 @@ def main():
         write(prior, read('notes/github_publish_receipt.json'))
     plan = read('notes/github_publish_plan.json')
     markers = ('macro_screen_', 'macro_warm_', 'two_warm_', 'three_short_',
-               'short_screen_handoff', 'warm40_actual', 'fno_coverage100_')
+               'short_screen_handoff', 'warm40_actual', 'fno_coverage100_',
+               'fno_coverage_readout_', 'fno_coverage_v4_', 'operator_hash_')
     for file in sorted((ROOT / 'notes').glob('geobc_*.json')):
         if any(marker in file.name for marker in markers):
             relative = file.relative_to(ROOT).as_posix()
