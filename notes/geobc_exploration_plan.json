@@ -13017,8 +13017,43 @@
     "decision": "notes/geobc_nativeTS100_matched10_v80_actual_decision.json"
   },
   "solver_seed_confirmation_v81": {
+    "status": "failed_zero_update_technical_preserved",
+    "receipt": "notes/geobc_solver_seed_confirmation_v81_technical_failure_receipt.json",
+    "optimizer_updates": 0
+  },
+  "solver_seed_metadata_recovery_v82": {
+    "status": "completed",
+    "plan": "notes/geobc_solver_seed_metadata_recovery_v82_plan.json",
+    "actual_launch": "notes/geobc_solver_seed_metadata_recovery_v82_actual_launch_receipt.json",
+    "exec_session": 62868,
+    "SCI": "d3195a78e367d5921aa2bb5378cea245d3a7ce28be1cbdd58e329e5e123da50e",
+    "terminal_receipt": "notes/geobc_solver_seed_metadata_recovery_v82_actual_terminal_receipt.json",
+    "actual_decision": "notes/geobc_solver_seed_metadata_recovery_v82_actual_decision.json",
+    "report": "results/geobc_solver_seeds_training_v82/BRIEF.md",
+    "actual_exec_exit": 0
+  },
+  "solver_seed_readout_v83": {
+    "status": "completed",
+    "source_review": "notes/geobc_solver_seed_readout_v83_source_review.json",
+    "source_ready": "notes/geobc_solver_seed_readout_v83_source_ready.json",
+    "exporter_review": "notes/geobc_solver_seed_readout_v83_exporter_root_review.json",
+    "actual_prepare": 1,
+    "actual_eval": 1,
+    "actual_export": 1,
+    "PT_GT_arrays_GPU": 0,
+    "plan": "notes/geobc_solver_seed_readout_v83_plan.json",
+    "actual_launch": "notes/geobc_solver_seed_readout_v83_actual_launch_receipt.json",
+    "exec_session": 46144,
+    "actual_terminal": "notes/geobc_solver_seed_readout_v83_actual_terminal_receipt.json",
+    "actual_decision": "notes/geobc_solver_seed_readout_v83_actual_decision.json",
+    "report": "results/geobc_solver_seed_readout_v83/BRIEF.md",
+    "default_package": "FNO9_plain_query_MLP",
+    "practical_Hash_gate": false
+  },
+  "signed_stress_bottleneck_v84": {
     "status": "design_only",
-    "design": "notes/geobc_solver_seed_confirmation_v81_design.json",
-    "actual_GPU": 0
+    "design": "notes/geobc_signed_stress_bottleneck_v84_design.json",
+    "actual_source": 0,
+    "actual_GT_PT_arrays_GPU": 0
   }
 }

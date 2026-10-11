@@ -1,0 +1,48 @@
+{
+  "status": "actual_running",
+  "observed_at_utc": "2026-10-11T23:08:30.897871+00:00",
+  "exec_session": 12545,
+  "SCI": "d3195a78e367d5921aa2bb5378cea245d3a7ce28be1cbdd58e329e5e123da50e",
+  "guard": {
+    "pid": 50544,
+    "ppid": 50542,
+    "start_ticks": 7345450,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_solver_seeds_guard_v81",
+      "--start",
+      "--plan",
+      "notes/geobc_solver_seed_confirmation_v81_plan.json"
+    ]
+  },
+  "child": {
+    "pid": 50549,
+    "ppid": 50544,
+    "start_ticks": 7345782,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_solver_seeds_v81",
+      "--start",
+      "--plan",
+      "notes/geobc_solver_seed_confirmation_v81_plan.json"
+    ]
+  },
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "execution_identity": {
+    "path": "runs/geobc_exploration/FNO_Hash_paired_seeds_TRAIN100_v81/execution.json",
+    "bytes": 1140,
+    "mtime_ns": 1791760070486433500,
+    "sha256": "f7569c5f5b687be6020e1c93bced2f56c1ce7b8d58e1234e3ef67d5344edd17c"
+  },
+  "external_launch_identity_at_capture": {
+    "path": "runs/geobc_exploration/FNO_Hash_paired_seeds_TRAIN100_v81/external_launch.json",
+    "bytes": 28579,
+    "mtime_ns": 1791760066821978700,
+    "sha256": "bc2a8da45de606029689d9f543d34d19f9d0d1ad1170628fe40424722779e2df"
+  },
+  "exact_live_processes": true
+}

@@ -1,0 +1,30 @@
+{
+  "observed_at_utc": "2026-10-11T23:32:28.476139+00:00",
+  "status": "actual_running_partial_qualification",
+  "exec_session": 62868,
+  "recovery_epoch_seconds": 860.0609741210938,
+  "original_campaign_epoch_seconds": 1477.590472459793,
+  "completed_arms": {
+    "FNO20_seed2027": {
+      "step": 6000,
+      "training_epoch_seconds": 352.0671281814575
+    },
+    "Hash20_seed2027": {
+      "step": 6000,
+      "training_epoch_seconds": 382.8221378326416
+    }
+  },
+  "current_arm": "Hash20_seed2028",
+  "current_step": 30,
+  "actual_qualified": [
+    "FNO20_seed2027",
+    "Hash20_seed2027",
+    "Hash20_seed2028"
+  ],
+  "seed2027_shared_body_initialization_equal": true,
+  "seed2028_pair_not_yet_proven": true,
+  "exact_guard_child_live": true,
+  "identity_source": "notes/geobc_solver_seed_metadata_recovery_v82_actual_launch_receipt.json",
+  "new_GT_PT_arrays_inference_GPU": 0,
+  "whole_terminal": false
+}
