@@ -3696,7 +3696,7 @@
       "result": "notes/geobc_hash_bandwidth_pair_result.json",
       "matched_controls_passed": true,
       "clear_gain_gate_passed": false,
-      "readout": "valU22.23294→19.96714%,worst41.29291→34.39351%,P1626.229→165.966%;3improvementcriteriaPASS,P1cap100%FAIL",
+      "readout": "valU22.23294\u219219.96714%,worst41.29291\u219234.39351%,P1626.229\u2192165.966%;3improvementcriteriaPASS,P1cap100%FAIL",
       "next": "frozen_hash_condition_path_decomposition"
     },
     {
@@ -4104,7 +4104,7 @@
     "reporter_author": "/root/deepjeb_research",
     "actual_execution_released": true,
     "source_estimated_minutes": 15,
-    "source_expected_complete_Beijing": "2026-10-10 05:35–05:40",
+    "source_expected_complete_Beijing": "2026-10-10 05:35\u201305:40",
     "previous_coordinator_phase": "completed",
     "previous_coordinator_pid": 365,
     "launch_policy": "Prepare queue integration then sole waiting coordinator; do not restart any live coordinator/GPU process",
@@ -4128,7 +4128,7 @@
     "scientific_rules_frozen": true,
     "actual_execution_released": true,
     "began_at_utc": "2026-10-09T21:54:25.342739Z",
-    "expected_ready_Beijing": "2026-10-10 06:12–06:20",
+    "expected_ready_Beijing": "2026-10-10 06:12\u201306:20",
     "author": "/root/topology_train_impl",
     "reporter_author": "/root/deepjeb_research",
     "launch_policy": "Sole queue only after source pins and real root review; completed current coordinator394 is not GPU running",
@@ -4736,7 +4736,7 @@
     "no_new_label_or_array_reads": false,
     "sha256": "27d746477d36a5ec47bcf16e976dec76ba875508b8cb88cf0f326ee206db348a",
     "current_learning_TRAIN_CADs": 40,
-    "proposal": "40vs200 CAD × all3 Transolver/FNO/MLP; fresh4800 full-case updates; newDEV20 direct original signed U/S; no solver preselected",
+    "proposal": "40vs200 CAD \u00d7 all3 Transolver/FNO/MLP; fresh4800 full-case updates; newDEV20 direct original signed U/S; no solver preselected",
     "delivery_feasibility": "notes/geobc_coverage_data_delivery_feasibility.json",
     "delivery_sha256": "d099728ca42396e0a0e117150d857b4dcd400db3072f6d122dd1e34ca646a5b8",
     "reason": "Unseen-CAD full physical U passed; full signed S remains unresolved. Prioritize one macro direct-signed coverage comparison across two retained learning families.",
@@ -5505,7 +5505,7 @@
         "diagnostic_seconds": 0.03847573900020507,
         "actual24k_readout_complete": false,
         "path": "notes/geobc_pp_live_training_loss_diagnostic.json",
-        "interpretation": "Recent five full120 passes loss down55.7% vs passes36–40, supports completing frozen24k; TRAIN encoded4 objective only, not physical U/S gain/selection. No extra prediction or target read"
+        "interpretation": "Recent five full120 passes loss down55.7% vs passes36\u201340, supports completing frozen24k; TRAIN encoded4 objective only, not physical U/S gain/selection. No extra prediction or target read"
       },
       "report_sources_in_progress": {
         "FNO_local_pair": {
@@ -5777,7 +5777,7 @@
   },
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
-    "user_statement": "预算是30.5GB",
+    "user_statement": "\u9884\u7b97\u662f30.5GB",
     "memory_budget_GB": 30.5,
     "memory_budget_bytes": 30500000000,
     "memory_budget_GiB": 28.405338525772095,
@@ -7024,7 +7024,7 @@
         },
         "fixed_denominator": 60,
         "releases_continuation": false,
-        "scope": "SameFNO9 params/fullinitial/order/physical5; native grid rasterization and query resolution64→128"
+        "scope": "SameFNO9 params/fullinitial/order/physical5; native grid rasterization and query resolution64\u2192128"
       }
     },
     "same_full_initial_SHA": "e3c06ebfb126495173ae11b94fb3ef0cf87392976d56ba36238358844dd516da",
@@ -8148,5 +8148,73 @@
       "Retain old5 setup failure and recovery costs; newphase no reset/replay or discardparent"
     ],
     "next_macro_option": "If data supports decoder benefit on100CAD, investigate Transolver backbone with the same continuous decoder package rather than declaring any backbone ceiling"
-  }
+  },
+  "latest_actual_global_hash_learning10_v62": {
+    "status": "completed",
+    "SCI": "67eecc9502b258f673f84f57a0089aeb21567fdd6a3743b08026df410360bec5",
+    "plan": "notes/geobc_global_hash_learning10_v62_plan.json",
+    "report": "results/geobc_global_hash_learning10_v62",
+    "terminal_binding": {
+      "summary": {
+        "path": "runs/geobc_exploration/GlobalHash100_physical10_v62/summary.json",
+        "bytes": 600228,
+        "mtime_ns": 1791743296145372000,
+        "sha256": "412639e4898f154adc22be47ac0fc35e95702a6d77f5a4372d3985fea8630daf"
+      },
+      "status": {
+        "path": "runs/geobc_exploration/GlobalHash100_physical10_v62/status.json",
+        "bytes": 600228,
+        "mtime_ns": 1791743296159409600,
+        "sha256": "412639e4898f154adc22be47ac0fc35e95702a6d77f5a4372d3985fea8630daf"
+      },
+      "external": {
+        "path": "runs/geobc_exploration/GlobalHash100_physical10_v62/external_terminal.json",
+        "bytes": 16851,
+        "mtime_ns": 1791743296910870200,
+        "sha256": "245c5fbe40bf42f464b7265de5d8a1af8444ef96a379bd3c8492be3245935dab"
+      }
+    },
+    "exec_session": 67953,
+    "exec_exit_code": 0,
+    "CPU_report_seconds": 2.4075601439981256,
+    "PNG_visually_verified": true
+  },
+  "current_goal_turn_classification": {
+    "previous_turn": "no_progress",
+    "previous_turn_reason": "Read-only slides scope explanation",
+    "this_turn": "progress",
+    "evidence": "ActualHash100 additional1500 updates plus complete knownDEV60 predictionbarrier and physicalGTonce; reports/PNG verified",
+    "full_goal_status": "active"
+  },
+  "latest_actual_global_hash10_readout_v63": {
+    "status": "completed",
+    "SCI": "615245692e5c6452da0c491f919e1be7e3261cf1595bf9771bcdd478b1af71b0",
+    "plan": "notes/geobc_global_hash10_readout_v63_plan.json",
+    "report": "results/geobc_global_hash10_readout_v63",
+    "terminal_binding": {
+      "summary": {
+        "path": "runs/geobc_exploration/GlobalHash100_knownDEV60_physical10_v63/summary.json",
+        "bytes": 415850,
+        "mtime_ns": 1791743570277790800,
+        "sha256": "edb2494ab4947345ac9d801867fe08ea84dd751f2947d75b6d13cf5d5899d660"
+      },
+      "status": {
+        "path": "runs/geobc_exploration/GlobalHash100_knownDEV60_physical10_v63/status.json",
+        "bytes": 415850,
+        "mtime_ns": 1791743570302191000,
+        "sha256": "edb2494ab4947345ac9d801867fe08ea84dd751f2947d75b6d13cf5d5899d660"
+      },
+      "external": {
+        "path": "runs/geobc_exploration/GlobalHash100_knownDEV60_physical10_v63/external_terminal.json",
+        "bytes": 17708,
+        "mtime_ns": 1791743570632436300,
+        "sha256": "8f67fd1e5d1b16242f648e0b10f332cf95c6623703e1cd1e759cb3f61ac76984"
+      }
+    },
+    "exec_session": 57988,
+    "exec_exit_code": 0,
+    "CPU_report_seconds": 4.163279129003058,
+    "PNG_visually_verified": true
+  },
+  "next_macro_question_after_v63": "Keep FNO20 practical incumbent. Same10 Hash gains modest U/S and meaningful hotspots, unlike <1percent tiny fitting. Investigate official original Transolver backbone with identical continuousTCNN decoder/input/wholecasephysical loss on fixed shared3 before macro100; no Hash hyperparam search or automatic20/40."
 }

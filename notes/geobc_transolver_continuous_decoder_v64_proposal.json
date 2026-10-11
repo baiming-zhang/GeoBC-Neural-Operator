@@ -1,0 +1,50 @@
+{
+  "status": "proposal_only_not_source_ready",
+  "actual_GPU_execution": 0,
+  "actual_GT_array_reads": 0,
+  "stage": "v64 Transolver backbone with same continuous decoder",
+  "upstream_actual_knownDEV_report": "results/geobc_global_hash10_readout_v63/manifest.json",
+  "question": "Can the same continuous decoder remove a bottleneck in the Transolver path, rather than treating current direct-output TS errors as architecture ceiling?",
+  "design": {
+    "backbone": "Pinned official originalTransolver default5layers/width256/heads8/slices32; not compactR16 TS used by priorv51",
+    "input": "Same fullR64 target-free61 channels and original queries/native25/PointNet32 as existing FNO_GLOBAL_HASH; reorderxyz forofficial adapter, no independent attention chunks",
+    "output": "Wholecase16 latent R64 and same nativeTCNN12levels/fused64x2/condition73 continuous decoder",
+    "initial_encoder_and_decoder": "Reuse only fresh untrained encoder and TCNNhead from seed2026 reference build; verify reference fullinitialdigest against actualv61 before replacing only backbone",
+    "fixed_TRAIN_keys": [
+      "53_482/ver",
+      "229_200/ver",
+      "56_293/hor"
+    ],
+    "same_as": "Actual sharedv61",
+    "updates_per_field": 1000,
+    "balanced_shared_updates": 3000,
+    "endpoints": [
+      0,
+      100,
+      1000
+    ],
+    "same_seed_scaler_physical_loss": true,
+    "reference": "Reuse actual FNO_GLOBAL_HASH sharedv61 metrics, no reference retraining or GT replay",
+    "budgets": {
+      "whole_seconds": 1200,
+      "training_seconds": 900,
+      "memory_bytes": 30500000000
+    },
+    "release": "Implement actual model/driver/contract and resource gate first, frozen SCI/root before runtime; real wholeN backbone/context/latent gradients, no sampled qualification",
+    "limits": [
+      "Input/decoder matched, backbonecapacity differs and officialTS fullR64 cost may exceed cap; honest resource failure no solver accuracy rank",
+      "Tiny sharedTRAIN fitting diagnosis cannot substitute same100CAD knownDEV comparison; advance macro100 only if actual fitting/cost evidence supports",
+      "No newDEV/FINAL/scalerfit, no Hash microtuning, no automatic longtraining"
+    ]
+  },
+  "rationale": {
+    "same10_knownDEV_Hash_minus_FNO_pp": {
+      "case_mean_u_relative_l2": -0.343494503325098,
+      "case_mean_stress_relative_l2": -1.2964317298935546,
+      "case_mean_stress_hotspot_relative_l2": -6.854351055397517
+    },
+    "current_practical_incumbent": "FNO20",
+    "Hash5to10_gain_real": true,
+    "not_final_solver": true
+  }
+}

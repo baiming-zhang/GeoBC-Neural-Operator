@@ -1,0 +1,43 @@
+{
+  "observed_at_utc": "2026-10-11T18:32:03.017552+00:00",
+  "SCI": "615245692e5c6452da0c491f919e1be7e3261cf1595bf9771bcdd478b1af71b0",
+  "exec_session": 57988,
+  "child_process": {
+    "pid": 41916,
+    "ppid": 41915,
+    "start_ticks": 5827299,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.evaluate_geobc_global_hash10_v63",
+      "--start",
+      "--plan",
+      "notes/geobc_global_hash10_readout_v63_plan.json"
+    ]
+  },
+  "guard_process": {
+    "pid": 41915,
+    "ppid": 41914,
+    "start_ticks": 5826964,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_global_hash10_readout_guard_v63",
+      "--start",
+      "--plan",
+      "notes/geobc_global_hash10_readout_v63_plan.json"
+    ]
+  },
+  "both_live_now": true,
+  "phase": "prediction_commit",
+  "committed_predictions": 14,
+  "owned_GT_reads": 0,
+  "execution_identity": {
+    "path": "runs/geobc_exploration/GlobalHash100_knownDEV60_physical10_v63/execution.json",
+    "bytes": 1151,
+    "mtime_ns": 1791743505075871700,
+    "sha256": "8c5977400696d5fd7493c2568f3e33f277c9da176ada916e8708964bc4974f5d"
+  }
+}
