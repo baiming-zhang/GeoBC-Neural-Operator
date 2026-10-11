@@ -1,0 +1,71 @@
+{
+  "status": "actual_v45_completed_full_twoarm_physical5_terminal_qualified",
+  "actual_exec_session": 97612,
+  "actual_exec_exit_code": 0,
+  "checked_at_utc": "2026-10-11T11:51:54.278653+00:00",
+  "SCI": "a233be15dbf2770cd619a9e54805006e80e549601665b379ba5ceaa6eace3c35",
+  "terminal_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/frozen_FNO5_two_residual_physical5_v45/summary.json",
+      "bytes": 474022,
+      "mtime_ns": 1791719211995626900,
+      "sha256": "68c57088071280e38295c34473e187e6095c1d137e7513d7820f9021a9f9b3c9"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/frozen_FNO5_two_residual_physical5_v45/status.json",
+      "bytes": 474022,
+      "mtime_ns": 1791719212005929100,
+      "sha256": "68c57088071280e38295c34473e187e6095c1d137e7513d7820f9021a9f9b3c9"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/frozen_FNO5_two_residual_physical5_v45/external_terminal.json",
+      "bytes": 22448,
+      "mtime_ns": 1791719212634269700,
+      "sha256": "943605529cae177bb84a3d092c73be15280aa3204fb9ea546e20f5d455f7a765"
+    }
+  },
+  "guard_process": {
+    "pid": 33099,
+    "ppid": 33096,
+    "start_ticks": 3609254,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_operator_residual_guard_v45",
+      "--start",
+      "--plan",
+      "notes/geobc_operator_residual_v45_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 33124,
+    "ppid": 33099,
+    "start_ticks": 3609426,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_operator_residual_v45",
+      "--start",
+      "--plan",
+      "notes/geobc_operator_residual_v45_plan.json"
+    ]
+  },
+  "exact_processes_exited": true,
+  "whole_epoch_seconds": 244.1334948539734,
+  "whole_monotonic_seconds": 223.44007196299935,
+  "within_budget": true,
+  "teacher_PT_numeric_loads": 1,
+  "teacher_feature_forwards": 300,
+  "physical_TRAIN_array_reads": 300,
+  "cached_TRAIN_readout_reuses": 600,
+  "raw_GT_DEV_FINAL_scaler_fits": 0,
+  "all_two_arms_1500_complete": true,
+  "all_two_native_fullN_qualification_passed": true,
+  "actual_global_GPU_peaks": {
+    "peak_allocated_bytes": 20233944064,
+    "peak_reserved_bytes": 20680015872,
+    "peak_total_device_used_bytes_sampled": 22579576832
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "status": "actual_two_residual_physical5_knownDEV_completed_no_automatic_extension",
+  "SCI": "83d312dab717a83d5d1ceb1657b94a0bd25a69ef171c3a9bf8b98530718fa94d",
+  "actual_TRAIN_external_seconds": 244.1334948539734,
+  "actual_knownDEV_external_seconds": 119.12883472442627,
+  "actual_CPU_export_seconds": 1.1509182749941829,
+  "candidates": {
+    "FNO5_MLP_RESIDUAL": {
+      "case_mean_u_relative_l2": 0.3114121331410542,
+      "case_mean_stress_relative_l2": 0.5586944011581542,
+      "case_mean_stress_hotspot_relative_l2": 0.44752953667748696,
+      "selection_score": 0.4350532671496042
+    },
+    "FNO5_TCNN_RESIDUAL": {
+      "case_mean_u_relative_l2": 0.31516014955891924,
+      "case_mean_stress_relative_l2": 0.5375482100019509,
+      "case_mean_stress_hotspot_relative_l2": 0.39017810334013947,
+      "selection_score": 0.42635417978043505
+    },
+    "FNO100_PHYSICAL_1500": {
+      "case_mean_u_relative_l2": 0.316085929158367,
+      "case_mean_stress_relative_l2": 0.5609670954591834,
+      "case_mean_stress_hotspot_relative_l2": 0.4507680822518052,
+      "selection_score": 0.4385265123087752
+    },
+    "FNO100_PHYSICAL_3000": {
+      "case_mean_u_relative_l2": 0.2560309559813769,
+      "case_mean_stress_relative_l2": 0.5214486656547538,
+      "case_mean_stress_hotspot_relative_l2": 0.4192565175206173,
+      "selection_score": 0.3887398108180653
+    }
+  },
+  "gates": {
+    "FNO5_MLP_RESIDUAL": {
+      "passed": false,
+      "reference": "FNO100_PHYSICAL_1500",
+      "U_difference": -0.00467379601731277,
+      "S_difference": -0.0022726943010292766,
+      "primary_difference": -0.0034732451591710234,
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "stress_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false,
+      "scope": "Inherited frozen FNO5 plus decoder5; priority screen, not final or architecture causality"
+    },
+    "FNO5_TCNN_RESIDUAL": {
+      "passed": false,
+      "reference": "FNO100_PHYSICAL_1500",
+      "U_difference": -0.0009257795994477291,
+      "S_difference": -0.023418885457232586,
+      "primary_difference": -0.012172332528340157,
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "stress_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false,
+      "scope": "Inherited frozen FNO5 plus decoder5; priority screen, not final or architecture causality"
+    }
+  },
+  "qualified_native_mutable_parameters": {
+    "FNO5_MLP_RESIDUAL": 26884,
+    "FNO5_TCNN_RESIDUAL": 7745920
+  },
+  "decision": "IntactFNO10 remainsjointleader inthisfixedpool. FrozenHash improveshotspots6.06pp vsparent5/2.91pp vsintact10, butU is5.91pp andS1.61pp worse thanintact10; retainhotspotcontrast, nohashlongtraining orparameter tune. Next testwholeoperatorglobalgeometry-BC informationrouting ratherthanfreeze/localdecoder/resolution/capacity micros.",
+  "exposure_scope": "Teacher5+decoder5 vsintact10mixedtraining; notsinglefactorarchitecturecausality",
+  "automatic40": false,
+  "automatic24000": false,
+  "final_solver_selected": false,
+  "report": "results/geobc_operator_residual_v46/BRIEF.md"
+}

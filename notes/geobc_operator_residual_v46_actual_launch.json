@@ -1,0 +1,50 @@
+{
+  "actual_exec_session": 94696,
+  "checked_at_utc": "2026-10-11T11:52:19.581202+00:00",
+  "scientific_digest": "83d312dab717a83d5d1ceb1657b94a0bd25a69ef171c3a9bf8b98530718fa94d",
+  "guard_process": {
+    "pid": 33226,
+    "ppid": 33225,
+    "start_ticks": 3659128,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_operator_residual_readout_guard_v46",
+      "--start",
+      "--plan",
+      "notes/geobc_operator_residual_readout_v46_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 33227,
+    "ppid": 33226,
+    "start_ticks": 3659278,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.evaluate_geobc_operator_residual_v46",
+      "--start",
+      "--plan",
+      "notes/geobc_operator_residual_readout_v46_plan.json"
+    ]
+  },
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "actual_live": true,
+  "actual_exit_verified": false,
+  "actual_start_epoch": 1791719516.7277381,
+  "deadline_epoch": 1791721316.7277381,
+  "execution": {
+    "path": "runs/geobc_exploration/frozen_FNO5_two_residual_knownDEV_v46/execution.json",
+    "bytes": 1167,
+    "mtime_ns": 1791719516024454300,
+    "sha256": "932bf5c20ec79e11d2cd60d23fa3047d4afd805fe2a2f7431f05a19eb13bb0ab"
+  },
+  "external_launch": {
+    "path": "runs/geobc_exploration/frozen_FNO5_two_residual_knownDEV_v46/external_launch.json",
+    "bytes": 22679,
+    "mtime_ns": 1791719514559072800,
+    "sha256": "b66d85ff790f915aeb6f5defc0edb35b665ca633f51089a6b5b71be432e7de7e"
+  }
+}
