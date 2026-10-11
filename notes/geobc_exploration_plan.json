@@ -5858,7 +5858,7 @@
     "joint_FNO_better_CAD_count": 20,
     "joint_gap_percentage_points": 21.92512109299618,
     "role": "KnownDEV20 paired summary; not new trained model or final-test confidence",
-    "stage_decision": "Keep real extended++/FNO comparison running; current gap is broad across this development pool, not a single-CAD outlier"
+    "stage_decision": "Current24k extension curtailed for initial-screen cost; preserve negative12k evidence and use independent same12kDEV readout"
   },
   "current_exposure_midpoint_evidence": {
     "report": "notes/geobc_exposure_12000_interim.json",
@@ -5873,8 +5873,72 @@
       0.8189498717510587
     ],
     "interpretation": "PP stress modestly improves but U worsens relative own40exposure baseline; same100exposure fitting remains substantially behindFNO. Does not prove architecture limit or knownDEV gain",
-    "next_action": "Finish original fixed24000 and DEV without changes; prioritize meaningful representation/global conditioning/cross-CAD coverage comparison over more blind training-step or Hash microparameter increases",
+    "next_action": "Intentional curtailment; compare existing same12k checkpoints on knownDEV60, then broad10-pass/30-minute capped representation screen",
     "new_GT_inference_reads": 0,
     "actual_scalar_export_seconds": 0.15289278699856368
+  },
+  "current_midpoint_weighting_evidence": {
+    "report": "results/geobc_exposure_comparison/MIDPOINT_DIAGNOSTIC.md",
+    "evidence": "notes/geobc_exposure_midpoint_weighting_diagnostic.json",
+    "actual_CPU_seconds": 0.1343045390003681,
+    "PP_U_worsened_cases": 74,
+    "PP_U_worsened_CAD_count": 24,
+    "PP_case_mean_U": {
+      "40": 0.40600595241568904,
+      "100": 0.5266486896254988
+    },
+    "PP_node_pooled_U": {
+      "40": 0.44368226128653215,
+      "100": 0.4071590546157295
+    },
+    "PP_case_mean_error_RMSmm": {
+      "40": 0.03238326001326695,
+      "100": 0.03233569317261179
+    },
+    "direction": "Small/middle reference displacement deteriorates, largest reference improves; not uniform physical divergence. Objective/metric weighting needs separate controlled evidence, not assumed causal",
+    "primary_selection_metric_changed": false,
+    "live_experiment_changed": false,
+    "new_training_or_GT_array_reads": 0
+  },
+  "screening_budget_revision": {
+    "reason": "User asks whether24k is necessary and objects to long40-pass initial screening; reduce cost and compare solver representations broadly",
+    "initial_TRAIN_CAD": 40,
+    "cases_per_pass": 120,
+    "initial_passes": 10,
+    "initial_updates": 1200,
+    "per_candidate_training_wall_cap_seconds": 1800,
+    "memory_cap_bytes": 30500000000,
+    "candidates": [
+      "FNO9",
+      "PP256_NATIVE",
+      "HASH_PN"
+    ],
+    "fixed_primary": ".5(mean physical relative-L2 U + mean signed S), complete knownDEV60; hot/worst/cost separate",
+    "same_seed": 2026,
+    "long_training": "Only competitive candidates or clearly improving curves; independently freeze equal-exposure extension after short-screen evidence",
+    "current_action": "Both actual12k checkpoints evaluated without further training by independent short-screen readout",
+    "old24000_campaign": "intentionally curtailed, original plan/source/log/checkpoints preserved; never completed",
+    "old_macro_contract_gate": "Still requires original both24k; cannot run as-is or falsify marker. Independently revise source/SCI to accept completedshortscreen after actual result.",
+    "new_macro_training_started": true,
+    "actual_campaign": "runs/geobc_exploration/three_short_screens_v2",
+    "actual_exec_session": 11280,
+    "actual_training_entry_version": "geobc/macro_screen_contract_v2.py; tools/train_geobc_macro_screen_v2.py / run_geobc_macro_screen_guard_v2.py; independently frozen, binds true shortreadout"
+  },
+  "current_short_readout": {
+    "report": "results/geobc_short_screen/BRIEF.md",
+    "full60": true,
+    "actual_seconds": 97.14879608154297,
+    "FNO_U_S_percent": [
+      26.5,
+      55.55
+    ],
+    "PP_U_S_percent": [
+      52.35,
+      83.99
+    ],
+    "FNO_better_CAD": 20,
+    "joint_gap_pp": 27.139815599305777,
+    "raw_FINAL_reads": 0,
+    "original_24k_completed": false
   }
 }

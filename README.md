@@ -19,11 +19,12 @@ Hash 的约0.4%来自单病例已知应力拟合，五病例约1.45%；它与跨
 
 ## 正在推进
 
-两臂从各自完整4800检查点继续至12000／24000更新，保留Adam、RNG和病例顺序；比较每病例40／100／200次曝光，不改变损失或scaler。
+初筛预算已缩短：后续候选先跑 **10遍／1200更新，每方法训练上限30分钟**，在同CAD、同标签和同指标下比较精度及成本；仅有竞争力的候选进入长训练。40遍指4800次更新，并非重复40次四小时实验。
 
 - FNO 已完成24000：TRAIN120位移／应力为 **10.5%／24.2%**，新增训练UTC10.23分钟。新的开发读出尚未执行。
 - ++12000的TRAIN位移／应力为 **52.7%／81.9%**；同曝光FNO为17.4%／30.7%。++应力略降，但位移较自身4800的40.6%恶化，延长训练尚未追上。继续原固定24000端点。[中间物理比较](results/geobc_exposure_comparison/12000_INTERIM.md) · [真实运行状态](notes/geobc_exposure_live_milestone.json)。
-- 两臂结束后固定读取相同开发60例，再决定推进原生网格Transolver、条件化连续Hash或数据覆盖度对照。[计划](notes/geobc_exposure_extension_plan.json) · [宏观问题](notes/geobc_macro_conditioning_source_review.json)。
+- ++位移恶化集中在小／中位移病例（74/120病例、24/40 CAD）；节点能量合并误差反而44.4%→40.7%，实际平均RMS近乎不变。正式病例等权主指标不变，目标权重的因果作用未验证。[病例分布诊断](results/geobc_exposure_comparison/MIDPOINT_DIAGNOSTIC.md)。
+- ++延长训练已主动终止，真实非零退出、闭合时钟、检查点及全部日志保留；原双24k实验不宣称完成。同12000检查点的完整开发60例读出已完成（97.15秒）：FNO **26.5%／55.5%**，++ **52.4%／84.0%**；FNO联合评分在20/20 CAD更低。[同曝光结果](results/geobc_short_screen/BRIEF.md)。独立v2入口已启动FNO／原生Transolver++／条件化连续Hash各10遍短筛（先FNO，后++、Hash），使用30.5GB上限。[计划](notes/geobc_exposure_extension_plan.json) · [宏观问题](notes/geobc_macro_conditioning_source_review.json)。
 
 当前模型通过网格和查询特征接收边界条件；全局PointNet只编码几何。历史粗粒度约束／加载区点云消融未带来明确收益，下一轮避免重复该配方。 原生节点++接口也已实现，全部初始参数与R64对照一致，CPU合成接口检查1.106秒；真实CUDA和精度未验证。[原生接口准备](results/geobc_native_context_interface/BRIEF.md)。
 
@@ -59,6 +60,6 @@ python tools/plot_suite_fields.py
 
 研究阶段必须使用各自冻结计划和真实进程交接，不能因旧status、锁文件或SOURCE-ready重复启动GPU任务。30分钟监视器持续推进；活训练期间只作轻量检查。
 
-[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `1f8c127` 包含共同基线CAD配对分析、原生++／条件化Hash／FNO的后续训练和评估接口，以及真实运行中的自动交接器；接口CPU证据与尚未执行的CUDA阶段分开。发布61.47秒，精确commit和private状态通过远端核验。[发布计划](notes/github_publish_plan.json)。
+[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `2096c25` 包含同100次曝光的TRAIN120中间物理比较及++位移恶化的负结果；原双24000阶段现已主动终止；同12000开发读出已完成，10遍宏观短筛已启动；最新阶段结果正在整理发布。宏观接口与CAD配对证据在先前`1f8c127`保留。发布29.31秒，精确commit和private状态通过远端核验。[发布计划](notes/github_publish_plan.json)。
 
 更早逐阶段运行叙述存于[README历史快照](results/README_STATE_HISTORY_20261011.md)，状态以当前真实报告和运行收据为准。
