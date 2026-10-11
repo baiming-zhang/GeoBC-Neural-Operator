@@ -1,0 +1,74 @@
+{
+  "status": "actual_launched_identity_verified",
+  "verified_UTC": "2026-10-11T06:11:59.835639+00:00",
+  "exec_session": 49590,
+  "SCI": "0d55e85c93dd4e186c460a0ca573ae63a981306c33496399edfd63f930ee3e2a",
+  "processes": {
+    "guard_process": {
+      "pid": 18707,
+      "ppid": 18701,
+      "start_ticks": 1784818,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_global_hash_physical_recovery_guard_v18",
+        "--start",
+        "--plan",
+        "notes/geobc_global_hash_physical_recovery_v18_plan.json"
+      ]
+    },
+    "child_process": {
+      "pid": 18708,
+      "ppid": 18707,
+      "start_ticks": 1784963,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_global_hash_physical_recovery_v18",
+        "--start",
+        "--plan",
+        "notes/geobc_global_hash_physical_recovery_v18_plan.json"
+      ]
+    }
+  },
+  "actual_processes": {
+    "guard_process": {
+      "pid": 18707,
+      "ppid": 18701,
+      "start_ticks": 1784818,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_global_hash_physical_recovery_guard_v18",
+        "--start",
+        "--plan",
+        "notes/geobc_global_hash_physical_recovery_v18_plan.json"
+      ]
+    },
+    "child_process": {
+      "pid": 18708,
+      "ppid": 18707,
+      "start_ticks": 1784963,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_global_hash_physical_recovery_v18",
+        "--start",
+        "--plan",
+        "notes/geobc_global_hash_physical_recovery_v18_plan.json"
+      ]
+    }
+  },
+  "external_launch": {
+    "path": "runs/geobc_exploration/macro_FNO_GLOBAL_HASH_100CAD_physical5_recovery_v18/external_launch.json",
+    "bytes": 10683,
+    "mtime_ns": 1791699067410015300,
+    "sha256": "7b9b668c08141abafa12101f802fe667c327403f5ff838570d42d6250464fe81"
+  },
+  "start_epoch": 1791699070.8095257,
+  "original_deadline_epoch": 1791700473.7302604
+}

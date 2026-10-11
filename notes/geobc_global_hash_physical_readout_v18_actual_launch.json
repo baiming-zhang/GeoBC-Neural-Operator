@@ -1,0 +1,74 @@
+{
+  "status": "actual_launched_identity_verified",
+  "verified_UTC": "2026-10-11T06:17:47.649081+00:00",
+  "exec_session": 59707,
+  "SCI": "da8c0faeb7ecb150eae6e07e03442c033ab1bb72ff46061d022f337258d2d5b5",
+  "processes": {
+    "guard_process": {
+      "pid": 18916,
+      "ppid": 18912,
+      "start_ticks": 1817501,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_global_hash_physical_readout_guard_v18",
+        "--start",
+        "--plan",
+        "notes/geobc_global_hash_physical_readout_v18_plan.json"
+      ]
+    },
+    "child_process": {
+      "pid": 18920,
+      "ppid": 18916,
+      "start_ticks": 1817993,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.evaluate_geobc_global_hash_physical_v18",
+        "--start",
+        "--plan",
+        "notes/geobc_global_hash_physical_readout_v18_plan.json"
+      ]
+    }
+  },
+  "actual_processes": {
+    "guard_process": {
+      "pid": 18916,
+      "ppid": 18912,
+      "start_ticks": 1817501,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_global_hash_physical_readout_guard_v18",
+        "--start",
+        "--plan",
+        "notes/geobc_global_hash_physical_readout_v18_plan.json"
+      ]
+    },
+    "child_process": {
+      "pid": 18920,
+      "ppid": 18916,
+      "start_ticks": 1817993,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.evaluate_geobc_global_hash_physical_v18",
+        "--start",
+        "--plan",
+        "notes/geobc_global_hash_physical_readout_v18_plan.json"
+      ]
+    }
+  },
+  "external_launch": {
+    "path": "runs/geobc_exploration/macro_DEV100_globalHash_physical5_v18/external_launch.json",
+    "bytes": 11056,
+    "mtime_ns": 1791699427744815200,
+    "sha256": "e73db84f6d9cb8059f81045392ff8d053a464bfe162429e274df0613c5dc2d1d"
+  },
+  "start_epoch": 1791699427.2247233,
+  "deadline_epoch": 1791701227.2247233
+}

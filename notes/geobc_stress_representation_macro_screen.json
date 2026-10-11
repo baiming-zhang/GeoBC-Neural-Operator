@@ -1,0 +1,13 @@
+{
+  "status": "actual_scalar_design_screen",
+  "created_UTC": "2026-10-11T06:25:31.524999+00:00",
+  "TRAIN_scope": "old40CAD120 only; existing norm JSON, no scalar refit or new model",
+  "candidate": "replace signed asinh decode with zero-centered linear RMS output",
+  "TRAIN40_stress_RMS_MPa": 59.34440702885052,
+  "current_decoded_S_at_head0_MPa": 8.725104925366667,
+  "current_dS_dhead_at0_MPa": 47.553123991929546,
+  "proposed_to_current_center_slope_ratio": 1.2479602189526418,
+  "decision": "defer: center slope differs only1.25x, not strong evidence for a large optimization cure. Tail gradients remain unmeasured. Do not assume asinh explains native93.8% stress or run32min on this conjecture now.",
+  "PT_arrays_GT_GPU_reads": 0,
+  "new_training": 0
+}

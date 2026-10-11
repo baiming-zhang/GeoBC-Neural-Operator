@@ -1,0 +1,383 @@
+{
+  "methods": {
+    "transolver": {
+      "profile": {
+        "method": "transolver",
+        "family": "R16_transolver",
+        "parameter_count": 1882172,
+        "architecture": {
+          "method": "transolver",
+          "repository": "https://github.com/thuml/Transolver",
+          "commit": "75e0f67643806a81cd1d3f6adc88dd8c02416fe7",
+          "model_file": "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py",
+          "file_sha256": {
+            "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py": "d1420f8176c73fac024d1f57cb816653e0ffb41580c954c1497d2ba914e71943",
+            "PDE-Solving-StandardBenchmark/model/Embedding.py": "e3a4f71c4378b7cce09a43b8c306d6d8a17edb4cd69db5eb069e55a57d2affe2",
+            "PDE-Solving-StandardBenchmark/model/Physics_Attention.py": "d746cd641f9c81313e205126bac6e0a9bb5bdbe5a9ef107e093a4fe065dbe0f5"
+          },
+          "license": "MIT; upstream LICENSE retained",
+          "constructor_kwargs": {
+            "n_layers": 5,
+            "n_hidden": 256,
+            "n_head": 8,
+            "slice_num": 32,
+            "mlp_ratio": 1,
+            "dropout": 0.0,
+            "space_dim": 3,
+            "fun_dim": 58,
+            "out_dim": 16,
+            "act": "gelu",
+            "unified_pos": false,
+            "ref": 8
+          },
+          "preset_source": "Model constructor defaults in the pinned irregular-mesh model: 5 layers, width 256, 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+          "slide_explicit": {},
+          "reference_gaps": [
+            "Original Transolver baseline was newly requested; the slides do not provide its run configuration.",
+            "The source-server commit and exact 25-feature schema are unavailable."
+          ],
+          "architecture_overrides": {},
+          "input": "xyz[3] + BC/material[25]; no sample ID",
+          "output": "uXYZ + source signed stress",
+          "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+          "checkpoint_blocks": true,
+          "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+          "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+          "chunk_size": null,
+          "eval_stochastic": false,
+          "gumbel_note": null,
+          "distributed": null,
+          "parameter_count": 1838552
+        },
+        "counts": {
+          "encoder": 16736,
+          "head": 26884,
+          "operator": 1838552
+        },
+        "global_tokens": 4096,
+        "grid_resolution": 16,
+        "precision": "highest FP32; caller must disable TF32",
+        "all_original_query_nodes": true,
+        "input_policy": "occupied-voxel means from original R64; no target pooling",
+        "query_policy": "true block-center trilinear latent; nearest-center boundary extension",
+        "capacity_matched": false,
+        "independent_offnode_FEM_accuracy_measured": false
+      },
+      "cases": {
+        "257_485/ver": {
+          "passed": true,
+          "original_nodes": 207350,
+          "global_tokens": 4096,
+          "groups_L2": {
+            "encoder": 0.10526656158192194,
+            "head": 0.4017542749032672,
+            "operator": 0.33194652163114974
+          },
+          "allowed_unused": [],
+          "leaf_gradients": {
+            "geometry_context_L2": 0.009796896018087864,
+            "operator_latent_L2": 0.0008334662998095155,
+            "original_nodes_used": 207350,
+            "node_sampling": false
+          },
+          "qualification_objective": 0.9089167790365279,
+          "epoch_seconds": 1.6169230937957764,
+          "monotonic_seconds": 1.6169239549999475,
+          "CUDA_event_seconds": 1.7638111572265625,
+          "timing_scope": "One real full forward/backward; no hidden warmup or optimizer"
+        },
+        "107_150/ver": {
+          "passed": true,
+          "original_nodes": 325387,
+          "global_tokens": 4096,
+          "groups_L2": {
+            "encoder": 0.11826573772044698,
+            "head": 0.4530581085087761,
+            "operator": 0.3773085775402471
+          },
+          "allowed_unused": [],
+          "leaf_gradients": {
+            "geometry_context_L2": 0.01094835251569748,
+            "operator_latent_L2": 0.0010099193314090371,
+            "original_nodes_used": 325387,
+            "node_sampling": false
+          },
+          "qualification_objective": 0.8741045675502319,
+          "epoch_seconds": 0.0763540267944336,
+          "monotonic_seconds": 0.07635443000253872,
+          "CUDA_event_seconds": 0.08314492797851562,
+          "timing_scope": "One real full forward/backward; no hidden warmup or optimizer"
+        }
+      },
+      "actual_parameter_dtypes": [
+        "torch.float32"
+      ],
+      "kernel_precision_profiled": false,
+      "actual_shared_initial_encoder_head_equal_seeded_FNO": true
+    },
+    "transolver_pp": {
+      "profile": {
+        "method": "transolver_pp",
+        "family": "R16_transolver_pp",
+        "parameter_count": 4523268,
+        "architecture": {
+          "method": "transolver_pp",
+          "repository": "https://github.com/thuml/Transolver_plus",
+          "commit": "d5a23bc734a0ebac56384cf72049a26af9673452",
+          "model_file": "models/Transolver_plus.py",
+          "file_sha256": {
+            "models/Transolver_plus.py": "7104ad5b90294d1d97b1e7e86b3eeb2ccbe11eec93d2e7bf566bcb3a8ab6e858"
+          },
+          "license": "MIT; upstream LICENSE retained",
+          "constructor_kwargs": {
+            "n_layers": 16,
+            "n_hidden": 256,
+            "n_head": 8,
+            "slice_num": 32,
+            "mlp_ratio": 1,
+            "dropout": 0.0,
+            "space_dim": 3,
+            "fun_dim": 58,
+            "out_dim": 16,
+            "act": "gelu",
+            "unified_pos": false,
+            "ref": 8
+          },
+          "preset_source": "Slide 5 fixes 16 layers / width 256; other settings are official Model constructor defaults: 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+          "slide_explicit": {
+            "output_scaling": [
+              "linear",
+              "invertible asinh stress"
+            ],
+            "updates": 1000,
+            "n_layers": 16,
+            "epochs": 500,
+            "n_hidden": 256,
+            "selection": "decoded physical normalized MSE",
+            "learning_rate": 0.003
+          },
+          "reference_gaps": [
+            "Head count, slice count, MLP ratio and dropout are not present in slide notes; official constructor defaults are used and are not claimed as exact reference settings.",
+            "Official Airplane launcher instead uses 4 layers, MLP ratio 2 and dropout 0.1; those task-specific settings are not substituted.",
+            "The source-server commit and exact target normalization constants are unavailable."
+          ],
+          "architecture_overrides": {},
+          "input": "xyz[3] + BC/material[25]; no sample ID",
+          "output": "uXYZ + source signed stress",
+          "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+          "checkpoint_blocks": true,
+          "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+          "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+          "chunk_size": null,
+          "eval_stochastic": true,
+          "gumbel_note": "Upstream ++ draws Gumbel noise during both train and eval; no guard or replacement added.",
+          "distributed": "world_size=1 process group for unchanged official all_reduce calls",
+          "parameter_count": 4479648
+        },
+        "counts": {
+          "encoder": 16736,
+          "head": 26884,
+          "operator": 4479648
+        },
+        "global_tokens": 4096,
+        "grid_resolution": 16,
+        "precision": "highest FP32; caller must disable TF32",
+        "all_original_query_nodes": true,
+        "input_policy": "occupied-voxel means from original R64; no target pooling",
+        "query_policy": "true block-center trilinear latent; nearest-center boundary extension",
+        "capacity_matched": false,
+        "independent_offnode_FEM_accuracy_measured": false
+      },
+      "cases": {
+        "257_485/ver": {
+          "passed": true,
+          "original_nodes": 207350,
+          "global_tokens": 4096,
+          "groups_L2": {
+            "encoder": 0.12341990402388613,
+            "head": 0.4112974017860861,
+            "operator": 0.5093645924885373
+          },
+          "allowed_unused": [
+            "operator.backbone.embedding.weight",
+            "operator.backbone.embedding.bias"
+          ],
+          "leaf_gradients": {
+            "geometry_context_L2": 0.00941759068518877,
+            "operator_latent_L2": 0.0008275386062450707,
+            "original_nodes_used": 207350,
+            "node_sampling": false
+          },
+          "qualification_objective": 0.9078108942012398,
+          "epoch_seconds": 0.9192612171173096,
+          "monotonic_seconds": 0.9192615499996464,
+          "CUDA_event_seconds": 1.002707763671875,
+          "timing_scope": "One real full forward/backward; no hidden warmup or optimizer"
+        },
+        "107_150/ver": {
+          "passed": true,
+          "original_nodes": 325387,
+          "global_tokens": 4096,
+          "groups_L2": {
+            "encoder": 0.1397340090909056,
+            "head": 0.4607087001680299,
+            "operator": 0.5794318452023468
+          },
+          "allowed_unused": [
+            "operator.backbone.embedding.weight",
+            "operator.backbone.embedding.bias"
+          ],
+          "leaf_gradients": {
+            "geometry_context_L2": 0.010525234043598175,
+            "operator_latent_L2": 0.0009933203691616654,
+            "original_nodes_used": 325387,
+            "node_sampling": false
+          },
+          "qualification_objective": 0.8731078125606502,
+          "epoch_seconds": 0.13286399841308594,
+          "monotonic_seconds": 0.13286449999941397,
+          "CUDA_event_seconds": 0.144840576171875,
+          "timing_scope": "One real full forward/backward; no hidden warmup or optimizer"
+        }
+      },
+      "actual_parameter_dtypes": [
+        "torch.float32"
+      ],
+      "kernel_precision_profiled": false,
+      "actual_shared_initial_encoder_head_equal_seeded_FNO": true
+    },
+    "ts3": {
+      "profile": {
+        "method": "ts3",
+        "family": "R16_ts3",
+        "parameter_count": 7675636,
+        "architecture": {
+          "method": "ts3",
+          "repository": "https://github.com/thuml/Transolver-3",
+          "commit": "ef4fee9fa08dbfc5af13f9d9b42202dfb34dba37",
+          "model_file": "models/Transolver_chunk_opt_matrix_mul.py",
+          "file_sha256": {
+            "models/Transolver_chunk_opt_matrix_mul.py": "49292aa1ee7be2e143db5b9c75d0128f8767f8a2ae74479cdc06aeb9d41fb71a"
+          },
+          "license": "No LICENSE file present at pinned upstream commit; no license inferred",
+          "constructor_kwargs": {
+            "n_layers": 16,
+            "n_hidden": 256,
+            "n_head": 8,
+            "slice_num": 64,
+            "mlp_ratio": 2,
+            "dropout": 0.0,
+            "space_dim": 3,
+            "fun_dim": 58,
+            "out_dim": 16,
+            "act": "gelu",
+            "unified_pos": false,
+            "ref": 8
+          },
+          "preset_source": "Official main_drivaerml_volume.py MODEL_KWARGS: 16 layers, width 256, 8 heads, 64 slices, MLP ratio 2, dropout 0, GELU, unified_pos false",
+          "slide_explicit": {
+            "long_epochs": 5000,
+            "short_stopped_update": 897,
+            "short_reported_update": 800,
+            "input_channels": 28,
+            "long_updates": 10000,
+            "output_channels": 4
+          },
+          "reference_gaps": [
+            "TS3 is identified as the official Transolver-3 family, but the exact server model file/commit cannot be verified.",
+            "Slide 4 does not specify depth, heads, slices, width, MLP ratio or optimizer settings; the official volume preset is a stated substitute.",
+            "Model constructor defaults are 5 layers / 32 slices / MLP ratio 1; official surface preset uses 24 layers. The chosen volume preset is explicit rather than silently treating either as slide settings.",
+            "The exact 25-feature schema and long-run target scaling constants are unavailable."
+          ],
+          "architecture_overrides": {},
+          "input": "xyz[3] + BC/material[25]; no sample ID",
+          "output": "uXYZ + source signed stress",
+          "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+          "checkpoint_blocks": true,
+          "checkpoint_strategy": "official global chunk stats and chunk deslice/MLP",
+          "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+          "chunk_size": 32768,
+          "eval_stochastic": false,
+          "gumbel_note": null,
+          "distributed": null,
+          "parameter_count": 7632016
+        },
+        "counts": {
+          "encoder": 16736,
+          "head": 26884,
+          "operator": 7632016
+        },
+        "global_tokens": 4096,
+        "grid_resolution": 16,
+        "precision": "highest FP32; caller must disable TF32",
+        "all_original_query_nodes": true,
+        "input_policy": "occupied-voxel means from original R64; no target pooling",
+        "query_policy": "true block-center trilinear latent; nearest-center boundary extension",
+        "capacity_matched": false,
+        "independent_offnode_FEM_accuracy_measured": false
+      },
+      "cases": {
+        "257_485/ver": {
+          "passed": true,
+          "original_nodes": 207350,
+          "global_tokens": 4096,
+          "groups_L2": {
+            "encoder": 0.126832951229517,
+            "head": 0.3898786945758375,
+            "operator": 0.3848194856359073
+          },
+          "allowed_unused": [],
+          "leaf_gradients": {
+            "geometry_context_L2": 0.009574065916240215,
+            "operator_latent_L2": 0.000827825628221035,
+            "original_nodes_used": 207350,
+            "node_sampling": false
+          },
+          "qualification_objective": 0.9033302397711609,
+          "epoch_seconds": 0.16904902458190918,
+          "monotonic_seconds": 0.16904954399797134,
+          "CUDA_event_seconds": 0.18431391906738281,
+          "timing_scope": "One real full forward/backward; no hidden warmup or optimizer"
+        },
+        "107_150/ver": {
+          "passed": true,
+          "original_nodes": 325387,
+          "global_tokens": 4096,
+          "groups_L2": {
+            "encoder": 0.14126971846696293,
+            "head": 0.4306083882242654,
+            "operator": 0.437732312612394
+          },
+          "allowed_unused": [],
+          "leaf_gradients": {
+            "geometry_context_L2": 0.01050742156803608,
+            "operator_latent_L2": 0.0010039892513304949,
+            "original_nodes_used": 325387,
+            "node_sampling": false
+          },
+          "qualification_objective": 0.8679405838880978,
+          "epoch_seconds": 0.15012431144714355,
+          "monotonic_seconds": 0.1501243489983608,
+          "CUDA_event_seconds": 0.1636880340576172,
+          "timing_scope": "One real full forward/backward; no hidden warmup or optimizer"
+        }
+      },
+      "actual_parameter_dtypes": [
+        "torch.float32"
+      ],
+      "kernel_precision_profiled": false,
+      "actual_shared_initial_encoder_head_equal_seeded_FNO": true
+    }
+  },
+  "cost_epoch_seconds": 8.187458038330078,
+  "cost_monotonic_seconds": 8.187458536998747,
+  "peak_memory": {
+    "peak_allocated_bytes": 545771008,
+    "peak_reserved_bytes": 624951296,
+    "peak_total_device_used_bytes_sampled": 2971205632
+  },
+  "physical_TRAIN_reads": 2,
+  "DEV_FINAL_reads": 0,
+  "optimizer_updates": 0,
+  "full100_cache_qualified": false
+}

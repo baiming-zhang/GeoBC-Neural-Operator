@@ -5764,14 +5764,14 @@
     }
   },
   "current_next_stage": {
-    "status": "globalHash_physical5_actual_running",
-    "plan": "notes/geobc_global_hash_physical5_v17_plan.json",
-    "SCI": "fe204ae0f8703b6aaa7b716a4ed35fbec499db861f63a6e7049f5d2b4f7f7dba",
-    "exec_session": 34564,
-    "receipt": "notes/geobc_global_hash_physical5_v17_actual_launch.json",
-    "question": "same physical objective/100CAD/5passes against FNO5; no decoder hyperparameter changes",
-    "future_DEV_source_ready": "notes/geobc_global_hash_physical_readout_v17_source_ready.json",
-    "future_DEV_actual_execution": 0
+    "status": "coarse_Transolver_all3_real_resource_probe_passed_training_SOURCE_pending",
+    "design": "notes/geobc_coarse_transolver_v19_design.json",
+    "model": "geobc/coarse_transolver_v19.py",
+    "resource_report": "results/geobc_coarse_transolver_resource_v19/BRIEF.md",
+    "resource_terminal": "notes/geobc_coarse_transolver_probe_v19_terminal_receipt.json",
+    "actual_real_gradients": 6,
+    "actual_100CAD_training": 0,
+    "campaign_nominal_budget_seconds": 5400
   },
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
@@ -6590,6 +6590,45 @@
     "stage_epoch_seconds": 254.5824282169342,
     "DEV_epoch_seconds": 77.75668716430664,
     "CPU_report_seconds": 7.724099447001208,
+    "actual_visual_accepted": true
+  },
+  "latest_verified_GitHub_publication": {
+    "status": "verified_private_remote_publication",
+    "commit": "54f86166e6432dd8b5597a65c54bdf40a9c904e3",
+    "repository": "baiming-zhang/GeoBC-Neural-Operator",
+    "repository_id": 1410470321,
+    "user_id": 174442095,
+    "private": true,
+    "elapsed_seconds": 94.5479155,
+    "finished_at_utc": "2026-10-11T06:09:32.3158447Z",
+    "receipt": "notes/github_gitdata_publication_54f86166e6432dd8b5597a65c54bdf40a9c904e3_physical10_and_native_negative_20261011_receipt.json",
+    "actual_scope": "native physical5 TRAIN negative; FNOphysical5to10 TRAIN/knownDEV and figures; globalHash v17 original launch, not endpoint/recovery"
+  },
+  "globalHash_physical5_completed": {
+    "status": "actual_completed_same5_knownDEV",
+    "report": "results/geobc_global_hash_physical_v18/BRIEF.md",
+    "gate": {
+      "passed": false,
+      "U_difference": -0.002345448346736334,
+      "S_difference": -0.016506479312952682,
+      "primary_difference": -0.009425963829844508,
+      "direction": "globalHashphysical5 minus FNOphysical5; decoder package capacity/precision differ",
+      "thresholds": {
+        "primary_absolute_improvement_at_least": 0.03,
+        "maximum_either_field_absolute_deterioration": 0.02,
+        "fixed_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false
+    },
+    "DEV_U": 0.31374048081163064,
+    "DEV_S": 0.5444606161462308,
+    "DEV_hot": 0.40853090342892184,
+    "CPU_report_seconds": 5.112634843000706,
+    "TRAIN_seconds": 104.75961661338806,
+    "successful_segment_seconds": 235.40386247634888,
+    "original_failure_seconds": 138.6764371395111,
+    "repair_and_failure_campaign_span_seconds": 631.828804731369,
     "actual_visual_accepted": true
   }
 }

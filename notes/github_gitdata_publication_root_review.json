@@ -2,396 +2,628 @@
   "passed": true,
   "whole_source_reviewed": true,
   "reviewer": "root",
-  "reviewed_at_utc": "2026-10-11T05:06:47.862271+00:00",
+  "reviewed_at_utc": "2026-10-11T06:07:50.285111+00:00",
   "decision": "one_bounded_exact_immutable_gitdata_API_publication_attempt",
   "source_sha256": "f9ab1692564f03ef4f0419c7c7a01ca13f8223fe5ef313f3dc8b16ebc064bef9",
-  "target_commit": "aa40a0ab83b958c0de0c514ce5e368c4d4abdb1b",
-  "base_commit": "93651e783057bcbf552740951b753ec3ad30c9ce",
-  "target_tree": "1b061f4cf6a0c6303f228086086b7c932292932f",
-  "changed_file_count": 48,
+  "target_commit": "54f86166e6432dd8b5597a65c54bdf40a9c904e3",
+  "base_commit": "aa40a0ab83b958c0de0c514ce5e368c4d4abdb1b",
+  "target_tree": "85d004265ae6261be7748f248c6a54fcfaf885f0",
+  "changed_file_count": 77,
   "changed_file_identities": [
     {
       "path": "README.md",
-      "bytes": 8251,
-      "sha256": "37c7ad75f222d52756d02998f029d5ad6f8a7aecdd9053be2d58342b8966d1b2",
-      "checkout_bytes": 8306,
-      "checkout_sha256": "45bf3fb438be2ac580eac74ea1b76f73682b734028aa19f1b6a20f0aae114618",
+      "bytes": 9085,
+      "sha256": "a634f29d13dc296acee185ee7527ea71c8112e86be4b6d77112d06e42d9298f3",
+      "checkout_bytes": 9140,
+      "checkout_sha256": "b26eb991ed87bc0469e59fdb6f96adf61ec172571cf6d96e2a6dacdb9834c8da",
       "line_ending_normalization_only": true
     },
     {
-      "path": "geobc/macro_physical_contract_v12.py",
-      "bytes": 3353,
-      "sha256": "647810cbcfaa03a529bdd081357d90d85c1d68c5096fc47199dbedaee2ce5549",
-      "checkout_bytes": 3353,
-      "checkout_sha256": "647810cbcfaa03a529bdd081357d90d85c1d68c5096fc47199dbedaee2ce5549",
+      "path": "geobc/global_hash_physical_contract_v17.py",
+      "bytes": 5296,
+      "sha256": "a4ac7167379d6cdeeb06aba8f6642ae5367eb270b1dbedf55a720e380a30fcf8",
+      "checkout_bytes": 5296,
+      "checkout_sha256": "a4ac7167379d6cdeeb06aba8f6642ae5367eb270b1dbedf55a720e380a30fcf8",
       "line_ending_normalization_only": false
     },
     {
-      "path": "geobc/native_physical_contract_v13.py",
-      "bytes": 4470,
-      "sha256": "a83eec71d2a19129b14b8f4bd97ea9386e2f6d691a998796da5177b0428f58ca",
-      "checkout_bytes": 4525,
-      "checkout_sha256": "74e8d1ae789d8b1c905039b224a040471fb21f162271bbcb4d21f2377c4c23e6",
+      "path": "geobc/global_hash_physical_readout_contract_v17.py",
+      "bytes": 10909,
+      "sha256": "cedba8e9259f376d94c3405d7df5bcd712a569c53a5446e31371b15818e10575",
+      "checkout_bytes": 11049,
+      "checkout_sha256": "6a1d7c7d0d5eef3cbda1a1ced188e6f94652dc0f2182abe1dbf0d69f44d90163",
       "line_ending_normalization_only": true
     },
     {
-      "path": "geobc/physical_readout_contract_v12.py",
-      "bytes": 10541,
-      "sha256": "4bbb313891c99aeab8c57ee8bd42b1c5ede4e48067351e76753d0b13a3cc71bf",
-      "checkout_bytes": 10678,
-      "checkout_sha256": "2d1118d9a9788e6d7d47981bb8917f29305c8b20e7536b3989c60f554e01ba85",
+      "path": "geobc/native_physical_readout_contract_v13.py",
+      "bytes": 12096,
+      "sha256": "64302619a2f26334f218970898da483c16c21bca60b5e5825915ba0585c67479",
+      "checkout_bytes": 12250,
+      "checkout_sha256": "249c788e8080f1c1349127c5df00e2789f893879c6f7fa907c4e21bbe104e906",
       "line_ending_normalization_only": true
     },
     {
-      "path": "geobc/train_native_physical_cache_v13.py",
-      "bytes": 4969,
-      "sha256": "9de5bdee9559aba6482eb41fc07828fdab77686656d9f63707f6c0a5d4b2cc2e",
-      "checkout_bytes": 5055,
-      "checkout_sha256": "c3e50089009b71c8ccda0ac8923d5245c37a0763f562617aaba97b5432a4712f",
-      "line_ending_normalization_only": true
-    },
-    {
-      "path": "geobc/train_physical_cache_v12.py",
-      "bytes": 4019,
-      "sha256": "1efa5a3d0e8ce782a8e1033cb299b6e03b13ae5f7a23c034742944b89705a181",
-      "checkout_bytes": 4019,
-      "checkout_sha256": "1efa5a3d0e8ce782a8e1033cb299b6e03b13ae5f7a23c034742944b89705a181",
+      "path": "geobc/native_precision_contract_v14.py",
+      "bytes": 3163,
+      "sha256": "46ffc658877bebcbc5e2f2fcb599e953418c70e3b3ae310c798ee862782d42c8",
+      "checkout_bytes": 3163,
+      "checkout_sha256": "46ffc658877bebcbc5e2f2fcb599e953418c70e3b3ae310c798ee862782d42c8",
       "line_ending_normalization_only": false
+    },
+    {
+      "path": "geobc/physical10_readout_contract_v16.py",
+      "bytes": 10810,
+      "sha256": "2d057f478b1a6d30df03b6ea9bf6fec55fd79c4532b439b65888376fb1b74293",
+      "checkout_bytes": 10949,
+      "checkout_sha256": "e75eac4ed1883af5204c8acb64f12869a0205b1063d37ac1580515471395d6b8",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "geobc/physical_continuation_contract_v15.py",
+      "bytes": 7241,
+      "sha256": "fbb0f6947332bc6ef280cd4cca5d0fa2a63f89ae6680e1eff49e8e158085e0ae",
+      "checkout_bytes": 7326,
+      "checkout_sha256": "5e18a84843ee27f4e4d3cd0a7d367efa320e235e6754c48c3079e18d909979fa",
+      "line_ending_normalization_only": true
     },
     {
       "path": "notes/geobc_exploration_plan.json",
-      "bytes": 260000,
-      "sha256": "0eddf47dc27ac483d78a3bfda73b22d212ba74788ff60d8e026d8d334d42ccf8",
-      "checkout_bytes": 266543,
-      "checkout_sha256": "c095777774a81aabdc78b845739675781642793a5e04dd0411d13a818a74e7fa",
+      "bytes": 262186,
+      "sha256": "42a262ab32f5bd3d18c0d738296c0060ae289aae3d119114e9aaa4c67202f38d",
+      "checkout_bytes": 268781,
+      "checkout_sha256": "3255fdbe107e2cc88ab6500e4c29e833a3e3377b72426da2155813b061fd017f",
       "line_ending_normalization_only": true
     },
     {
       "path": "notes/geobc_frozen_runtime_source_bytes.json",
-      "bytes": 25096,
-      "sha256": "d452a10dcffd56574c46798f569fdd0b397f78534041dc3636cf9f8a0fb7a859",
-      "checkout_bytes": 25549,
-      "checkout_sha256": "2cd7ca08c82370bccf536f7531fe2ca0cce77428bb2a2922147ae3713c987335",
+      "bytes": 31116,
+      "sha256": "fdbb698b57f274d2d93c3f237d934c9ac2ac0657916a49d7f89fb4512ccd1cbe",
+      "checkout_bytes": 31674,
+      "checkout_sha256": "b62f22c1644d20e57655a05495052c9e99912d129b897c9cbed670e20c3259bf",
       "line_ending_normalization_only": true
     },
     {
-      "path": "notes/geobc_macro100_FNO9_physical5_v12_actual_launch.json",
-      "bytes": 11825,
-      "sha256": "05042a11b766d78f4ccf9136a77ebf299749d6d252b199b022df20fb1267b00b",
-      "checkout_bytes": 11825,
-      "checkout_sha256": "05042a11b766d78f4ccf9136a77ebf299749d6d252b199b022df20fb1267b00b",
+      "path": "notes/geobc_global_hash_physical5_v17_actual_launch.json",
+      "bytes": 2014,
+      "sha256": "88d1a59fd3dadfb689c17cf5cd44592d22f3f783fe6a8418fe10e1d418f28859",
+      "checkout_bytes": 2014,
+      "checkout_sha256": "88d1a59fd3dadfb689c17cf5cd44592d22f3f783fe6a8418fe10e1d418f28859",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/geobc_macro100_FNO9_physical5_v12_plan.json",
-      "bytes": 213774,
-      "sha256": "429c29ff07fedd69a5551271b89765c3b995b36aec51e177749645204cc26ede",
-      "checkout_bytes": 213774,
-      "checkout_sha256": "429c29ff07fedd69a5551271b89765c3b995b36aec51e177749645204cc26ede",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_macro100_FNO9_physical5_v12_root_review.json",
-      "bytes": 10256,
-      "sha256": "e6c47f2638f7ac47c4cfd5c6bd590cd4fde5b522e8814e4de9480e14a10a3660",
-      "checkout_bytes": 10256,
-      "checkout_sha256": "e6c47f2638f7ac47c4cfd5c6bd590cd4fde5b522e8814e4de9480e14a10a3660",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_macro100_FNO9_physical5_v12_terminal_receipt.json",
-      "bytes": 2201,
-      "sha256": "4c558616197e35d17bcba3a578a5dda3f4a56cb612cec5ef0ad699bb607220db",
-      "checkout_bytes": 2201,
-      "checkout_sha256": "4c558616197e35d17bcba3a578a5dda3f4a56cb612cec5ef0ad699bb607220db",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_actual_launch.json",
-      "bytes": 1466,
-      "sha256": "dabf5b9169022dec65e98281eb71f3137256d66a5cce2e8fe713a90231ccb371",
-      "checkout_bytes": 1466,
-      "checkout_sha256": "dabf5b9169022dec65e98281eb71f3137256d66a5cce2e8fe713a90231ccb371",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_plan.json",
-      "bytes": 215867,
-      "sha256": "954a8420e75d17773e45dc78041dd4049631cd3fedbd41e27578bb4adc36d44a",
-      "checkout_bytes": 215867,
-      "checkout_sha256": "954a8420e75d17773e45dc78041dd4049631cd3fedbd41e27578bb4adc36d44a",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_root_review.json",
-      "bytes": 11518,
-      "sha256": "8b840ff45b60fb4946c1aa985dc5c9fd12e8ff10aa5d4175cb91ed85d0b3c75d",
-      "checkout_bytes": 11518,
-      "checkout_sha256": "8b840ff45b60fb4946c1aa985dc5c9fd12e8ff10aa5d4175cb91ed85d0b3c75d",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_native_physical_v13_actual_metadata_release.json",
-      "bytes": 717,
-      "sha256": "281bdbba9dbc8d855e406d4c773ab269699ee257842cfa08cd177b8dd90614f5",
-      "checkout_bytes": 717,
-      "checkout_sha256": "281bdbba9dbc8d855e406d4c773ab269699ee257842cfa08cd177b8dd90614f5",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_physical100_readout_v12_actual_launch.json",
-      "bytes": 11939,
-      "sha256": "b6bd74a7fef82b60777f360d68f7df758bddd44366669d95ffada6c7bf251de7",
-      "checkout_bytes": 11939,
-      "checkout_sha256": "b6bd74a7fef82b60777f360d68f7df758bddd44366669d95ffada6c7bf251de7",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_physical100_readout_v12_actual_metadata_release.json",
-      "bytes": 1037,
-      "sha256": "be2ade2e2a12d2e49877e9539c8978c023094db18224ab9b55e9abddbd56703a",
-      "checkout_bytes": 1037,
-      "checkout_sha256": "be2ade2e2a12d2e49877e9539c8978c023094db18224ab9b55e9abddbd56703a",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_physical100_readout_v12_plan.json",
-      "bytes": 14270,
-      "sha256": "466e44c8bada0e30c46d19ee26975675d66f00d41ea3d9613706d99afd002217",
-      "checkout_bytes": 14270,
-      "checkout_sha256": "466e44c8bada0e30c46d19ee26975675d66f00d41ea3d9613706d99afd002217",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_physical100_readout_v12_root_review.json",
-      "bytes": 10945,
-      "sha256": "6ff39c715ad4ae8d1f98d6e1ba3d8ab95c2d0c50ce6e30afdf417933328f46e0",
-      "checkout_bytes": 10945,
-      "checkout_sha256": "6ff39c715ad4ae8d1f98d6e1ba3d8ab95c2d0c50ce6e30afdf417933328f46e0",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_physical100_readout_v12_source_ready.json",
-      "bytes": 9582,
-      "sha256": "d2bad4a99e3a51411be8609e18744f754f340866fe3639dc553b611af4b7784f",
-      "checkout_bytes": 9582,
-      "checkout_sha256": "d2bad4a99e3a51411be8609e18744f754f340866fe3639dc553b611af4b7784f",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_physical100_readout_v12_terminal_receipt.json",
-      "bytes": 2174,
-      "sha256": "eaf86151b09e959715539b4885d75e64307ed51879cb4ed0c930893cc424fec9",
-      "checkout_bytes": 2174,
-      "checkout_sha256": "eaf86151b09e959715539b4885d75e64307ed51879cb4ed0c930893cc424fec9",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_shared_physical_v12_actual_decision.json",
-      "bytes": 1495,
-      "sha256": "dc5d8724167f859474322b3727d08e9e1212dc48754f4e984442e94f9393ddc7",
-      "checkout_bytes": 1495,
-      "checkout_sha256": "dc5d8724167f859474322b3727d08e9e1212dc48754f4e984442e94f9393ddc7",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_shared_physical_v12_actual_metadata_release.json",
-      "bytes": 9648,
-      "sha256": "6f1a70f07760a7f4eeb9e564b97f4d0b810a3df21d313abc70b3de5525fdb585",
-      "checkout_bytes": 9648,
-      "checkout_sha256": "6f1a70f07760a7f4eeb9e564b97f4d0b810a3df21d313abc70b3de5525fdb585",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_shared_physical_v12_exporter_root_review.json",
-      "bytes": 704,
-      "sha256": "76a2fe3c72372395c2107cd38ed8dfea1d09794e5a4abee4f3453be1e910b96b",
-      "checkout_bytes": 704,
-      "checkout_sha256": "76a2fe3c72372395c2107cd38ed8dfea1d09794e5a4abee4f3453be1e910b96b",
-      "line_ending_normalization_only": false
-    },
-    {
-      "path": "notes/geobc_shared_physical_v12_science_draft.json",
-      "bytes": 194958,
-      "sha256": "14a968a66510b55d79e1d1eced2feffb24fcf09ec753d3ea58ac0a8a9645c1e5",
-      "checkout_bytes": 199880,
-      "checkout_sha256": "fa998b7720eb94d2347836b0fb5755769f82530524769a818244dd410875925d",
+      "path": "notes/geobc_global_hash_physical5_v17_design.json",
+      "bytes": 1619,
+      "sha256": "7d3332ab3a37e28641e0014aa4c69f1600ad5420e9db83c8374b0a205f8b5728",
+      "checkout_bytes": 1641,
+      "checkout_sha256": "6bf9f23d33fa922ff4ecde0e127e20930d325bdc4fe7a3af83a3abab54217059",
       "line_ending_normalization_only": true
     },
     {
-      "path": "notes/geobc_shared_physical_v12_source_ready.json",
-      "bytes": 9364,
-      "sha256": "db905e21cc18da9b795bb54405f88a46a2e2c6577c6e3428af28ac3b3dec7800",
-      "checkout_bytes": 9364,
-      "checkout_sha256": "db905e21cc18da9b795bb54405f88a46a2e2c6577c6e3428af28ac3b3dec7800",
+      "path": "notes/geobc_global_hash_physical5_v17_plan.json",
+      "bytes": 214708,
+      "sha256": "89552863ba62e9363b5d1705924fe61cd90ae25059fdd0aae05730e10baeabe1",
+      "checkout_bytes": 214708,
+      "checkout_sha256": "89552863ba62e9363b5d1705924fe61cd90ae25059fdd0aae05730e10baeabe1",
       "line_ending_normalization_only": false
     },
     {
-      "path": "notes/github_gitdata_50d45_prior_publication_root_review.json",
-      "bytes": 20028,
-      "sha256": "dc23e59e915f2e163423a063d2ef00ab6fea68388d48eec37a129e92e648e897",
-      "checkout_bytes": 20488,
-      "checkout_sha256": "0e4bf8d40e31e7408f899f63706c98fcb4fc334dea593e63f487eb7689df9538",
+      "path": "notes/geobc_global_hash_physical5_v17_root_review.json",
+      "bytes": 10047,
+      "sha256": "4f2bcce7907b0b765a2f0e34057dbd0b615f05d40a3079af1da7cf15e9601174",
+      "checkout_bytes": 10047,
+      "checkout_sha256": "4f2bcce7907b0b765a2f0e34057dbd0b615f05d40a3079af1da7cf15e9601174",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_global_hash_physical5_v17_source_ready.json",
+      "bytes": 238,
+      "sha256": "a42234a3f5ecd93232988b57a8c534cee47104a3f00f955e3e4e2adbe79ec5d8",
+      "checkout_bytes": 238,
+      "checkout_sha256": "a42234a3f5ecd93232988b57a8c534cee47104a3f00f955e3e4e2adbe79ec5d8",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_global_hash_physical_readout_v17_SOURCE_root_review.json",
+      "bytes": 1166,
+      "sha256": "681e9f24d65ddb49539798512de4c802cabde2c20733ac1c578668f7c5baf34d",
+      "checkout_bytes": 1192,
+      "checkout_sha256": "4a5bb37df8255bf9e9066d7d95557497857697172e71692429715717e603a170",
       "line_ending_normalization_only": true
     },
     {
-      "path": "notes/github_gitdata_93651_actual_publication_root_review.json",
-      "bytes": 21896,
-      "sha256": "80b3073481f360d54ac6c9ed0e8d16c5772755126b8072fc5249c484620b4f54",
-      "checkout_bytes": 22391,
-      "checkout_sha256": "b8dfb050e1515a7091257300a17d2297a0fecb19ed8eca70e63cb69930d34698",
+      "path": "notes/geobc_global_hash_physical_readout_v17_source_ready.json",
+      "bytes": 573,
+      "sha256": "8c3ef3061461d1b05d3dc8191a5387854e31eb6751a06602081b3c7b99b6d1bb",
+      "checkout_bytes": 585,
+      "checkout_sha256": "8333d1c23ecb9162b3d7f90ed56ec86346781e80091edbb658d504edc726f91a",
       "line_ending_normalization_only": true
     },
     {
-      "path": "notes/github_gitdata_93651_prior_publication_root_review.json",
-      "bytes": 21615,
-      "sha256": "0db9f7d45bd2b2489bca06b1c0cbfcc641e66c8110b1b5b7107c2856a0ab44cc",
-      "checkout_bytes": 22106,
-      "checkout_sha256": "afda25f5039bf76c8549acdc9072d9dfade962f6bf8fbb17dc7ee92b9ba756e1",
+      "path": "notes/geobc_macro100_FNO9_physical10_v15_actual_launch.json",
+      "bytes": 1290,
+      "sha256": "7457514a9b1053ab2410ae35a0dc052bb812e98c89e6466303c1316d6838992b",
+      "checkout_bytes": 1290,
+      "checkout_sha256": "7457514a9b1053ab2410ae35a0dc052bb812e98c89e6466303c1316d6838992b",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_macro100_FNO9_physical10_v15_plan.json",
+      "bytes": 224509,
+      "sha256": "e6680d066f002f24d32547a9940fae7e37a71c78605fe93fdfef87e32d74c46d",
+      "checkout_bytes": 224509,
+      "checkout_sha256": "e6680d066f002f24d32547a9940fae7e37a71c78605fe93fdfef87e32d74c46d",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_macro100_FNO9_physical10_v15_root_review.json",
+      "bytes": 11120,
+      "sha256": "bc28984df6cc6fe50bda718f00af916f5bccf817606c4d4ef68e5d240ccd49ae",
+      "checkout_bytes": 11120,
+      "checkout_sha256": "bc28984df6cc6fe50bda718f00af916f5bccf817606c4d4ef68e5d240ccd49ae",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_macro100_FNO9_physical10_v15_terminal_receipt.json",
+      "bytes": 2463,
+      "sha256": "6f90e82f03a5da3c3e09ed8dbcfdd34c90dda649df7705dcf97989a47ead6e65",
+      "checkout_bytes": 2463,
+      "checkout_sha256": "6f90e82f03a5da3c3e09ed8dbcfdd34c90dda649df7705dcf97989a47ead6e65",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_live_progress.json",
+      "bytes": 1541,
+      "sha256": "199336f870639a1f1b100fb4bf776eb5b8603c5a68d94de98826504b9ac3efd5",
+      "checkout_bytes": 1541,
+      "checkout_sha256": "199336f870639a1f1b100fb4bf776eb5b8603c5a68d94de98826504b9ac3efd5",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_macro100_PP256_NATIVE_physical5_v13_terminal_receipt.json",
+      "bytes": 2430,
+      "sha256": "70dff968b639e5cadeef60cd0881363933d9ce74077f9179ec94e5b6c9793454",
+      "checkout_bytes": 2430,
+      "checkout_sha256": "70dff968b639e5cadeef60cd0881363933d9ce74077f9179ec94e5b6c9793454",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_native_TF32_feasibility_v14_design.json",
+      "bytes": 4185,
+      "sha256": "9d17b885afef05b472a982fb5008cba911c8d77cfa8810ff8af300d4e6531c50",
+      "checkout_bytes": 4278,
+      "checkout_sha256": "5ea5bbc04af4e63eb143bb5e32fb68fc4c0158a7e7c37dce99b3fdea0d55cbb0",
       "line_ending_normalization_only": true
     },
     {
-      "path": "notes/github_gitdata_93651_verified_receipt.json",
-      "bytes": 650,
-      "sha256": "98da6b4b3fcfe0c186bff3ed30fb6ea68aee117ea829496a31f0bc13155b6d62",
-      "checkout_bytes": 667,
-      "checkout_sha256": "1b5f7be282e86ce8ef3620d95be7f844f563816917f7b6a5130823df0688ca67",
+      "path": "notes/geobc_native_TF32_feasibility_v14_initial_design.json",
+      "bytes": 3876,
+      "sha256": "70a26e125fabcffa262ccb78ed243343f31beaaf92e51965f6ef8b8d1098db2d",
+      "checkout_bytes": 3962,
+      "checkout_sha256": "31762e4084dfc18887ce6737841be600195cd85d9ca66945eb899be6ab697b61",
       "line_ending_normalization_only": true
     },
     {
-      "path": "notes/github_gitdata_macro100_short5_exact_local_review.json",
-      "bytes": 21615,
-      "sha256": "0db9f7d45bd2b2489bca06b1c0cbfcc641e66c8110b1b5b7107c2856a0ab44cc",
-      "checkout_bytes": 22106,
-      "checkout_sha256": "afda25f5039bf76c8549acdc9072d9dfade962f6bf8fbb17dc7ee92b9ba756e1",
+      "path": "notes/geobc_native_physical100_readout_v13_SOURCE_root_review.json",
+      "bytes": 948,
+      "sha256": "e61f1f60f2b3125d6ec2f0ba8ef5d404a4c34babfef9f6c86b07f3a3001fd6d1",
+      "checkout_bytes": 963,
+      "checkout_sha256": "1675fe52433782360379f5075e965738080288b48262e37690727c8b9ab0207b",
       "line_ending_normalization_only": true
     },
     {
-      "path": "notes/github_gitdata_publication_93651e783057bcbf552740951b753ec3ad30c9ce_macro100_short5_20261011_receipt.json",
-      "bytes": 45443,
-      "sha256": "4181998e17e5330d0a4f5f072f50aba59e60352e948da1ad5a6cd1a5916658e8",
-      "checkout_bytes": 47296,
-      "checkout_sha256": "32ee3ced72d39f3c757bef6622bb35919bcf8ad7884746b100e85d4a2308ac0a",
+      "path": "notes/geobc_native_physical100_readout_v13_source_ready.json",
+      "bytes": 1238,
+      "sha256": "1e6cb43016509e51282c8afdf8a82b25727eb6f7ba9a86d60c458f067643bf33",
+      "checkout_bytes": 1255,
+      "checkout_sha256": "224d00653c1d06f97bc29ec9aad0da6cb68de9800c7390d7326b4261249f933b",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_native_physical_TRAIN_negative_v13_exporter_root_review.json",
+      "bytes": 664,
+      "sha256": "5585d5d32fdc59ddb5cb2be387f77b375a66510967253331a2c1e4747339d352",
+      "checkout_bytes": 675,
+      "checkout_sha256": "1d4a5296c16a1b37255e97a9f287196ca3e03088fed9761b67f287e4501a9ccd",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_native_physical_TRAIN_v13_visual_review.json",
+      "bytes": 420,
+      "sha256": "7309fa5c415f7fcad202f3bb3a0724375f485b2590921d09327024d889933ae0",
+      "checkout_bytes": 429,
+      "checkout_sha256": "5b34226c87590e3a540b8e4ab281727ba46d5057d9a9b1f0b0c25af4936bf704",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_native_physical_v13_actual_decision.json",
+      "bytes": 374097,
+      "sha256": "bcaec118433084439b241a78537141fae64e23c873d721365608ca786effb716",
+      "checkout_bytes": 374097,
+      "checkout_sha256": "bcaec118433084439b241a78537141fae64e23c873d721365608ca786effb716",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_native_physical_v13_exporter_root_review.json",
+      "bytes": 721,
+      "sha256": "48f1273e478b531cff86519ec99cd623df527fd4bdd162b19ebec2746130171a",
+      "checkout_bytes": 733,
+      "checkout_sha256": "462c9fd0c1bf7958ffa13d3660f2ad8f20f70c95b0ad54513c30d14489923530",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_native_precision_v14_SOURCE_root_review.json",
+      "bytes": 2387,
+      "sha256": "63a4fd94c262d37967983427563f8a0aa472683d273ce157895cb19174920ab5",
+      "checkout_bytes": 2419,
+      "checkout_sha256": "08ca59d07aeacf71904ce4bdba5dcc75bbce5b904fb90275b07ebd12704ea0ce",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_physical10_readout_v16_SOURCE_root_review.json",
+      "bytes": 1003,
+      "sha256": "dc7d75386c9f7790b0c52d3178c04ff7b8685751d4db8b0abfe40c67896d3d92",
+      "checkout_bytes": 1018,
+      "checkout_sha256": "89cccaf9f2208509f671dc96a5c341b884251066e7347e368e708a0d368d0319",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_physical10_readout_v16_actual_launch.json",
+      "bytes": 1896,
+      "sha256": "f8b6acd14e4f328b832a54c48dd2aa45a75bcfecda8ced334444b09c5c804a44",
+      "checkout_bytes": 1896,
+      "checkout_sha256": "f8b6acd14e4f328b832a54c48dd2aa45a75bcfecda8ced334444b09c5c804a44",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_physical10_readout_v16_actual_metadata_release.json",
+      "bytes": 282,
+      "sha256": "dc8e861a2d445958b31ca912542d12936a5219c1aebc4ca51e0f3ce814cc07c5",
+      "checkout_bytes": 282,
+      "checkout_sha256": "dc8e861a2d445958b31ca912542d12936a5219c1aebc4ca51e0f3ce814cc07c5",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_physical10_readout_v16_plan.json",
+      "bytes": 15546,
+      "sha256": "f656d2f2b785f932dc54a9d09b54d6670ba5683db633e9ebaeab4537462aa926",
+      "checkout_bytes": 15546,
+      "checkout_sha256": "f656d2f2b785f932dc54a9d09b54d6670ba5683db633e9ebaeab4537462aa926",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_physical10_readout_v16_root_review.json",
+      "bytes": 12002,
+      "sha256": "9f5db559c9016c563e4571b002141abfeebded7a4f4f165ace08f8f7b5f13f1d",
+      "checkout_bytes": 12002,
+      "checkout_sha256": "9f5db559c9016c563e4571b002141abfeebded7a4f4f165ace08f8f7b5f13f1d",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_physical10_readout_v16_terminal_receipt.json",
+      "bytes": 2243,
+      "sha256": "dc762ae6458d511a288c986370f135cf70078c171d6736be5a081d3c0bb960b6",
+      "checkout_bytes": 2243,
+      "checkout_sha256": "dc762ae6458d511a288c986370f135cf70078c171d6736be5a081d3c0bb960b6",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_physical10_v15_actual_metadata_release.json",
+      "bytes": 400,
+      "sha256": "769a34335ae3d4003763db6618469874e36a91188ec6fab5ff868d644d1dc4b3",
+      "checkout_bytes": 400,
+      "checkout_sha256": "769a34335ae3d4003763db6618469874e36a91188ec6fab5ff868d644d1dc4b3",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_physical10_v16_exporter_root_review.json",
+      "bytes": 786,
+      "sha256": "c55d34e3676d6ce662e0ad0296e7fdaf9e86b019275533324146ea29ac671a13",
+      "checkout_bytes": 807,
+      "checkout_sha256": "972182c584f42bdeed2cfddf6f9254b02c1e2fdb472fe2be2b64952aa56ed028",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_physical10_v16_exporter_source_ready.json",
+      "bytes": 277,
+      "sha256": "26c4a8063a9bbdfb37c7658505fc092a45d1851837e1c3d5adb0fb2583824338",
+      "checkout_bytes": 284,
+      "checkout_sha256": "7a4f83b20812e765e504d63a3edcdad1b0f850929fdd07a36ddcf47beb18d6d0",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_physical10_v16_visual_review.json",
+      "bytes": 386,
+      "sha256": "ae06606b06d8bec999071e11706923676124ba3dc4c13d913e5a8a1529ccdd42",
+      "checkout_bytes": 396,
+      "checkout_sha256": "faa56a50bee581ce2fa708867ac95cfc60379bb472e7a23d69111052ad399f85",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_physical_continuation_v15_SOURCE_root_review.json",
+      "bytes": 2709,
+      "sha256": "e6599054bfcc308a3c91dc7050e7f3daca29ac87ff8a427d291e515d487b0b3a",
+      "checkout_bytes": 2743,
+      "checkout_sha256": "c0e2a8f07127f1af61f5d7253f882d0849ac75de3cd262332c97d4eabbd01e7a",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_physical_continuation_v15_design.json",
+      "bytes": 1610,
+      "sha256": "c66158a49d148647b867f37368d7f9da5514ba69bb1586e4f844c9ba5016401f",
+      "checkout_bytes": 1640,
+      "checkout_sha256": "4fc6ba27e578c09061e28e085054c144c8e786b61f2fdcfdbdbf216fa7ba1914",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_physical_continuation_v15_schedule_prefix_check.json",
+      "bytes": 648,
+      "sha256": "84fdc33c890de2202369b520229300f3d4ab46fa19f8704912edd02c19faf95c",
+      "checkout_bytes": 648,
+      "checkout_sha256": "84fdc33c890de2202369b520229300f3d4ab46fa19f8704912edd02c19faf95c",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "notes/geobc_shared_physical_v12_amplitude_scalar_diagnostic.json",
+      "bytes": 78914,
+      "sha256": "ec5d99840d91924fbc87bb06e59316d8acdae2035b5d47d119bf8c2ff6d759b4",
+      "checkout_bytes": 81679,
+      "checkout_sha256": "cb271221208e883adb4b1448fb69a98dd18e91912af5e2532be580a28e0b7839",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/geobc_shared_physical_v12_paired_scalar_diagnostic.json",
+      "bytes": 4452,
+      "sha256": "880bb5a08347e04ceaf2af772664a6ecb0f473b697eeebaaed23d71ff45c2c66",
+      "checkout_bytes": 4592,
+      "checkout_sha256": "6ecc0dc14b419dae6020c1e8edb027ae66fcd03dc9f48032c196ae79024dbf83",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/github_gitdata_aa40_actual_publication_root_review.json",
+      "bytes": 21325,
+      "sha256": "15ce1e19795faf052f16f96bb7ed6d8cb14b9a2464b226a250a7df00006a2b76",
+      "checkout_bytes": 21790,
+      "checkout_sha256": "7236caa1e2735ad35ac3e92b7820c9e7279c53d026bfa4d268ea416c5a0c4190",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/github_gitdata_aa40_verified_receipt.json",
+      "bytes": 657,
+      "sha256": "4aaa8b2b3390142b56cf42089bb87b0c4af94e1e8763665752dedd492d5a4560",
+      "checkout_bytes": 674,
+      "checkout_sha256": "2a4dd8fbefe56357df1616e822dc31a4d1dee6f078b4efe8a8276a20c9e5feab",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/github_gitdata_physical100_short5_exact_local_review.json",
+      "bytes": 21325,
+      "sha256": "15ce1e19795faf052f16f96bb7ed6d8cb14b9a2464b226a250a7df00006a2b76",
+      "checkout_bytes": 21790,
+      "checkout_sha256": "7236caa1e2735ad35ac3e92b7820c9e7279c53d026bfa4d268ea416c5a0c4190",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "notes/github_gitdata_publication_aa40a0ab83b958c0de0c514ce5e368c4d4abdb1b_physical100_short5_v12_20261011_receipt.json",
+      "bytes": 39436,
+      "sha256": "99d9a305cf8a7876b2dc2133e926ceffffb8684264a0d4b52040ccd3800da552",
+      "checkout_bytes": 41037,
+      "checkout_sha256": "3ff8f1d7fbfe456bd9ce4e5e09dffc2e97af2628e9f9c33898a6e58663c2c1ec",
       "line_ending_normalization_only": true
     },
     {
       "path": "notes/github_gitdata_publication_root_review.json",
-      "bytes": 21615,
-      "sha256": "0db9f7d45bd2b2489bca06b1c0cbfcc641e66c8110b1b5b7107c2856a0ab44cc",
-      "checkout_bytes": 22106,
-      "checkout_sha256": "afda25f5039bf76c8549acdc9072d9dfade962f6bf8fbb17dc7ee92b9ba756e1",
+      "bytes": 21325,
+      "sha256": "15ce1e19795faf052f16f96bb7ed6d8cb14b9a2464b226a250a7df00006a2b76",
+      "checkout_bytes": 21790,
+      "checkout_sha256": "7236caa1e2735ad35ac3e92b7820c9e7279c53d026bfa4d268ea416c5a0c4190",
       "line_ending_normalization_only": true
     },
     {
       "path": "notes/github_publish_plan.json",
-      "bytes": 45674,
-      "sha256": "6b73cb3dccd73fea2091db4dc637d339ef65989f8e50c4de214212966355161c",
-      "checkout_bytes": 46497,
-      "checkout_sha256": "979fd420eeeea87859f4c541bd27aa20ef6dd34cabf6d2731d4e39e5694718e0",
+      "bytes": 48803,
+      "sha256": "27d49131497441157553c91642a0f4ba1271b8ec7427651a1a67cd51fd011a04",
+      "checkout_bytes": 49671,
+      "checkout_sha256": "2d63545279b5e0fe12617d493d7feb8cfd5dcc39c4d5caa6bdd454346a907726",
       "line_ending_normalization_only": true
     },
     {
-      "path": "notes/github_publish_receipt_pre_physical_v12_93651.json",
-      "bytes": 2404,
-      "sha256": "1be649bdb4a2c982888dee3deb3ca405d923f238596f7e5a31bff9d7bdf5b060",
-      "checkout_bytes": 2454,
-      "checkout_sha256": "834b27c5e48320f99fa1fbae063bf3eed7a654a653711eeff703d7f71181bc90",
+      "path": "notes/source_revisions/physical_continuation_v15_before_native_TRAIN_negative.py",
+      "bytes": 5318,
+      "sha256": "25127801eb08799cdfb2b895b734ae14b7b687d867b0c21881f4fcabc63f7ff6",
+      "checkout_bytes": 5382,
+      "checkout_sha256": "1fd5020ecb703ebeffcebcef01664e4483a800c7a8bafcea0e089cd3e109991f",
       "line_ending_normalization_only": true
     },
     {
       "path": "results/SOLVER_BRIEF.md",
-      "bytes": 3057,
-      "sha256": "307e679a2ef2cc32383ffc0679a68ef8130d657564c64ab929b285378601b225",
-      "checkout_bytes": 3077,
-      "checkout_sha256": "f4dfe7709c53ecc5580af8f9d180eecff934b0716be59229558d3a93a64559ac",
+      "bytes": 3604,
+      "sha256": "afcf8cf247da20679b614b88b473e213c9bb1bcc539c46f6b87d3f740a0b2e9c",
+      "checkout_bytes": 3624,
+      "checkout_sha256": "75db12896debe8357b0b8ada3f280eddc841cf4bc2a1bc193b3b9e629c619050",
       "line_ending_normalization_only": true
     },
     {
-      "path": "results/geobc_shared_physical_v12/BRIEF.md",
-      "bytes": 1494,
-      "sha256": "b5dc966f61f5d44c45622193540aefb9821b88586c39a433ef2a7aad75ffb001",
-      "checkout_bytes": 1494,
-      "checkout_sha256": "b5dc966f61f5d44c45622193540aefb9821b88586c39a433ef2a7aad75ffb001",
+      "path": "results/geobc_native_physical_TRAIN_v13/BRIEF.md",
+      "bytes": 1674,
+      "sha256": "59dc85fb05128c65418e821378d6b27f1e67bfead6781e0c0c1dbbdd412e4463",
+      "checkout_bytes": 1674,
+      "checkout_sha256": "59dc85fb05128c65418e821378d6b27f1e67bfead6781e0c0c1dbbdd412e4463",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_shared_physical_v12/comparison.png",
-      "bytes": 65237,
-      "sha256": "8169f841cf394c2f8845465a9370d22851ab3e5508cf89959f1e85f046996070",
-      "checkout_bytes": 65237,
-      "checkout_sha256": "8169f841cf394c2f8845465a9370d22851ab3e5508cf89959f1e85f046996070",
+      "path": "results/geobc_native_physical_TRAIN_v13/comparison.png",
+      "bytes": 46838,
+      "sha256": "180f3badf6caae92dbe0fcd3bffa09297831f0e4b6a117169a9708f271993ced",
+      "checkout_bytes": 46838,
+      "checkout_sha256": "180f3badf6caae92dbe0fcd3bffa09297831f0e4b6a117169a9708f271993ced",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_shared_physical_v12/manifest.json",
-      "bytes": 959,
-      "sha256": "100970974f0b6503f08c542c306e94845e8afef56cf21b733f71aff48602d367",
-      "checkout_bytes": 959,
-      "checkout_sha256": "100970974f0b6503f08c542c306e94845e8afef56cf21b733f71aff48602d367",
+      "path": "results/geobc_native_physical_TRAIN_v13/manifest.json",
+      "bytes": 997,
+      "sha256": "d75b8274e08806eebe0750c8028226c45024702a9ac65b7c9c0b642399c66a5b",
+      "checkout_bytes": 997,
+      "checkout_sha256": "d75b8274e08806eebe0750c8028226c45024702a9ac65b7c9c0b642399c66a5b",
       "line_ending_normalization_only": false
     },
     {
-      "path": "results/geobc_shared_physical_v12/metrics.json",
-      "bytes": 554815,
-      "sha256": "9c9a95e78bdfcb4b5bf445ac6e6560990c441597f712aab315fd066745af1e58",
-      "checkout_bytes": 554815,
-      "checkout_sha256": "9c9a95e78bdfcb4b5bf445ac6e6560990c441597f712aab315fd066745af1e58",
+      "path": "results/geobc_native_physical_TRAIN_v13/metrics.json",
+      "bytes": 559741,
+      "sha256": "d959d007fb4e89dfe15e84ec2677ef21d2e651870811d7f1161ceac38ea276ba",
+      "checkout_bytes": 559741,
+      "checkout_sha256": "d959d007fb4e89dfe15e84ec2677ef21d2e651870811d7f1161ceac38ea276ba",
       "line_ending_normalization_only": false
     },
     {
-      "path": "tools/evaluate_geobc_physical100_v12.py",
-      "bytes": 14191,
-      "sha256": "5e5a8b1b3ae611bc2f92fa894b7f2b3b4b92dd359316a6ded64692016d23a4ea",
-      "checkout_bytes": 14390,
-      "checkout_sha256": "9e0e709b49e25518b2ad1e981a9cd63efff1ba281eeda391dff9a164702cc69a",
+      "path": "results/geobc_physical10_v16/BRIEF.md",
+      "bytes": 1621,
+      "sha256": "4c7c168af2e3f96ee36a7e55c4385bb664f0cd6c828e08f791f2a0a917742920",
+      "checkout_bytes": 1621,
+      "checkout_sha256": "4c7c168af2e3f96ee36a7e55c4385bb664f0cd6c828e08f791f2a0a917742920",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "results/geobc_physical10_v16/comparison.png",
+      "bytes": 59177,
+      "sha256": "fc710b4a61c3e26f75a78e250a7a4baaa625a0709dd12ea84b7312cc7073cefd",
+      "checkout_bytes": 59177,
+      "checkout_sha256": "fc710b4a61c3e26f75a78e250a7a4baaa625a0709dd12ea84b7312cc7073cefd",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "results/geobc_physical10_v16/manifest.json",
+      "bytes": 961,
+      "sha256": "05f6469d8d46dc59198af5db4cdea0f12064dd2ea0e5c6a1a00cb84e54dac159",
+      "checkout_bytes": 961,
+      "checkout_sha256": "05f6469d8d46dc59198af5db4cdea0f12064dd2ea0e5c6a1a00cb84e54dac159",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "results/geobc_physical10_v16/metrics.json",
+      "bytes": 558375,
+      "sha256": "a5503a6b4bf650e1eaf487ebda29cbfce02a4e4713bc72c5c579c5e15cc3040a",
+      "checkout_bytes": 558375,
+      "checkout_sha256": "a5503a6b4bf650e1eaf487ebda29cbfce02a4e4713bc72c5c579c5e15cc3040a",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "tools/evaluate_geobc_global_hash_physical_v17.py",
+      "bytes": 14334,
+      "sha256": "76ff45fdf837d8546e80a34df379335ef24680da07adf617820a40a5b8628701",
+      "checkout_bytes": 14534,
+      "checkout_sha256": "d0d94592647996998f22ec13bdb2c1944992876c2240df6e38010822697320f3",
       "line_ending_normalization_only": true
     },
     {
-      "path": "tools/export_geobc_shared_physical_v12.py",
-      "bytes": 8267,
-      "sha256": "125c80df98cf7fde3d0c090d5d7658da864f9162d92bb1fde82140ef63f9f20e",
-      "checkout_bytes": 8267,
-      "checkout_sha256": "125c80df98cf7fde3d0c090d5d7658da864f9162d92bb1fde82140ef63f9f20e",
+      "path": "tools/evaluate_geobc_native_physical100_v13.py",
+      "bytes": 14649,
+      "sha256": "4fedef5605dac354067f7bda2d7217bb0eee99a4c4930107d46d3cdfef9b96d5",
+      "checkout_bytes": 14853,
+      "checkout_sha256": "de5a5566221fcbf807c09e142f63d0361dc4a46dc71a2806dde82f4af553571e",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "tools/evaluate_geobc_physical10_v16.py",
+      "bytes": 14586,
+      "sha256": "e77905aab81b783bd9ec86d306319bdcdfd4412197818045b1b0a752880564c1",
+      "checkout_bytes": 14789,
+      "checkout_sha256": "ca6a1ab0eee00cbe1a6b9864c31d77097fdfd48b96cc81665379e037c6e7fbfb",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "tools/export_geobc_native_physical_TRAIN_negative_v13.py",
+      "bytes": 8243,
+      "sha256": "1161b155329ddacf7456b9fce8a91254bfff61a9792d5b8a8faedeefd524392b",
+      "checkout_bytes": 8323,
+      "checkout_sha256": "477a460401433cd13988def05c38a906bcb89ae9ee9ef5cb0eb31790c1199520",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "tools/export_geobc_native_physical_v13.py",
+      "bytes": 9080,
+      "sha256": "e356ab8c12cb29bf37c66e2b9e5728c356125915d5a96d1f9b6cc53a649210d9",
+      "checkout_bytes": 9178,
+      "checkout_sha256": "bb0e1ff17dfc101e4b6f91cddd2d43ffc3b5b40eb0af3cdc4cc6d71cb1afb2e4",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "tools/export_geobc_physical10_v16.py",
+      "bytes": 9063,
+      "sha256": "dc6d2ceefe8d82cb4deff36033023aaec869a0cfe1899168ec88f5ff7c4e3d39",
+      "checkout_bytes": 9063,
+      "checkout_sha256": "dc6d2ceefe8d82cb4deff36033023aaec869a0cfe1899168ec88f5ff7c4e3d39",
       "line_ending_normalization_only": false
     },
     {
-      "path": "tools/run_geobc_macro_physical_guard_v12.py",
-      "bytes": 4888,
-      "sha256": "6cb7e19fd1f0a96c00db552a6089e16518b98029a5299852f855f9df2535d4a2",
-      "checkout_bytes": 4994,
-      "checkout_sha256": "542c3007f36c9d86c5040327745f3ac720469ede3f6a47db0992baf5eaa76760",
+      "path": "tools/probe_geobc_native_precision_v14.py",
+      "bytes": 13198,
+      "sha256": "5ae398d92d8ac5197905e07221ec2a356809d7046513851b4c07720c61e243c0",
+      "checkout_bytes": 13373,
+      "checkout_sha256": "128847908ba28cee18511438cb27a335546327085d4ace4e0c812af9ea9ea1d0",
       "line_ending_normalization_only": true
     },
     {
-      "path": "tools/run_geobc_native_physical_guard_v13.py",
-      "bytes": 4891,
-      "sha256": "93dff3f0a87ec28372fd7602894650cea480ae25018515176205f25c7b62f418",
-      "checkout_bytes": 4997,
-      "checkout_sha256": "775b98a0642e847c2ffd3198043b8062fbdc69926ddd562f8eb9668d4dd36239",
+      "path": "tools/run_geobc_global_hash_physical_guard_v17.py",
+      "bytes": 4906,
+      "sha256": "c593bf6c57aeb8f91eae9f5c81bd6ca0901c45b25e3a3fd084f5822e5b794d69",
+      "checkout_bytes": 5012,
+      "checkout_sha256": "7300d73c8101dc6d2bcda4b93c9d33db463758c72d6f2d006fb78b6c8a5d16fa",
       "line_ending_normalization_only": true
     },
     {
-      "path": "tools/run_geobc_physical100_readout_guard_v12.py",
+      "path": "tools/run_geobc_global_hash_physical_readout_guard_v17.py",
+      "bytes": 4938,
+      "sha256": "e3519b4e7667485a7bd726d7730305248a032361149df52250430ba40538fe2e",
+      "checkout_bytes": 5044,
+      "checkout_sha256": "6602186eb9a87f7b4fdf6e0c3bfcb085c8b80169c35c46a7b549eb85c6569b99",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "tools/run_geobc_native_physical100_readout_guard_v13.py",
+      "bytes": 4929,
+      "sha256": "91bfac5e83a512edcdd6a5830d4388ff1beff2377ddb5f8c63d45303e750e352",
+      "checkout_bytes": 5035,
+      "checkout_sha256": "f47ca35726f9809326ab77d19bc64df58492a03a133cd5c82b5e4c13b4cb8923",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "tools/run_geobc_native_precision_guard_v14.py",
+      "bytes": 4898,
+      "sha256": "b9c45234b70cd8bc11dcbff67faef439ef3ae07234bec618ad54dcef260643b8",
+      "checkout_bytes": 5004,
+      "checkout_sha256": "2ca7c68a54fa6148e153cebb842c1e5a726aa87e556562605f2b61053e1c4607",
+      "line_ending_normalization_only": true
+    },
+    {
+      "path": "tools/run_geobc_physical10_readout_guard_v16.py",
       "bytes": 4908,
-      "sha256": "3c062b8d87de522339f764f499ced92ea7dff55608526f013dd55567cec00e7b",
+      "sha256": "57f029732486d548f98e04fd6afa28c217bd280f6da004db72a622ab6cb8d665",
       "checkout_bytes": 5014,
-      "checkout_sha256": "95b8eb3d580536185f5a1803852e8636cd02f4cf3ed0ae8316b04a04897c3983",
+      "checkout_sha256": "54add2409fdb47b6f7fa00d41d056865e88ade5d6fd28ab329ee2e8cea093afd",
       "line_ending_normalization_only": true
     },
     {
-      "path": "tools/train_geobc_macro_physical_v12.py",
-      "bytes": 18599,
-      "sha256": "3941d902b6a124887de91632e9e37f441a1f06e96e8f617a62f372b2499b04d4",
-      "checkout_bytes": 18911,
-      "checkout_sha256": "60009f6e286bad5aab247940e7372ca74041f99bdc909b782af3d0e112db5e12",
+      "path": "tools/run_geobc_physical_continuation_guard_v15.py",
+      "bytes": 4909,
+      "sha256": "bc57cab5b0b1d3a7a9180c8df5af8ef40b0f40558c9214701524fb831399a977",
+      "checkout_bytes": 5015,
+      "checkout_sha256": "60eafbf51e2d014418d477ecaa6b2f346b2f2533aee5beab78c24dffa0055b83",
       "line_ending_normalization_only": true
     },
     {
-      "path": "tools/train_geobc_native_physical_v13.py",
-      "bytes": 18620,
-      "sha256": "ea61e29613c92e62dc4bebd9f8d3e9b845d543395d626fb119ca9bb289cbcd4d",
-      "checkout_bytes": 18932,
-      "checkout_sha256": "a5078fdf4ececefe3948cae85a527b098e51fa0d441e850a444eb789c4f0efab",
+      "path": "tools/train_geobc_global_hash_physical_v17.py",
+      "bytes": 20976,
+      "sha256": "730d38a8be266a4d9dc0bece78bdf10d30ea7fa13597db90edb7326b43fcd046",
+      "checkout_bytes": 20976,
+      "checkout_sha256": "730d38a8be266a4d9dc0bece78bdf10d30ea7fa13597db90edb7326b43fcd046",
+      "line_ending_normalization_only": false
+    },
+    {
+      "path": "tools/train_geobc_physical_continuation_v15.py",
+      "bytes": 22107,
+      "sha256": "fe10d49991f687225c5441001db8c077c9e0f1716730dfcac2e477f879995683",
+      "checkout_bytes": 22455,
+      "checkout_sha256": "a306d3f8482194864c82ceea2d4da43e03d92bee1f4f4953f06040f1761fa37f",
       "line_ending_normalization_only": true
     }
   ],
@@ -401,65 +633,13 @@
     "repository_id": 1410470321,
     "private": true
   },
-  "attempt_id": "physical100_short5_v12_20261011",
-  "source_review": "Unchanged exact GitData helper inherits genuine complete review936; all actual changed blobs compared with local source/result bytes or LF-only normalization, AST and JSON parsed. New v12 TRAIN/knownDEV/export and v13 native same-loss source complete diff reviewed and matching source pins. Original physics unchanged; v13 running not terminal.",
-  "AST_files": [
-    "geobc/macro_physical_contract_v12.py",
-    "geobc/native_physical_contract_v13.py",
-    "geobc/physical_readout_contract_v12.py",
-    "geobc/train_native_physical_cache_v13.py",
-    "geobc/train_physical_cache_v12.py",
-    "tools/evaluate_geobc_physical100_v12.py",
-    "tools/export_geobc_shared_physical_v12.py",
-    "tools/run_geobc_macro_physical_guard_v12.py",
-    "tools/run_geobc_native_physical_guard_v13.py",
-    "tools/run_geobc_physical100_readout_guard_v12.py",
-    "tools/train_geobc_macro_physical_v12.py",
-    "tools/train_geobc_native_physical_v13.py"
-  ],
-  "JSON_files": [
-    "notes/geobc_exploration_plan.json",
-    "notes/geobc_frozen_runtime_source_bytes.json",
-    "notes/geobc_macro100_FNO9_physical5_v12_actual_launch.json",
-    "notes/geobc_macro100_FNO9_physical5_v12_plan.json",
-    "notes/geobc_macro100_FNO9_physical5_v12_root_review.json",
-    "notes/geobc_macro100_FNO9_physical5_v12_terminal_receipt.json",
-    "notes/geobc_macro100_PP256_NATIVE_physical5_v13_actual_launch.json",
-    "notes/geobc_macro100_PP256_NATIVE_physical5_v13_plan.json",
-    "notes/geobc_macro100_PP256_NATIVE_physical5_v13_root_review.json",
-    "notes/geobc_native_physical_v13_actual_metadata_release.json",
-    "notes/geobc_physical100_readout_v12_actual_launch.json",
-    "notes/geobc_physical100_readout_v12_actual_metadata_release.json",
-    "notes/geobc_physical100_readout_v12_plan.json",
-    "notes/geobc_physical100_readout_v12_root_review.json",
-    "notes/geobc_physical100_readout_v12_source_ready.json",
-    "notes/geobc_physical100_readout_v12_terminal_receipt.json",
-    "notes/geobc_shared_physical_v12_actual_decision.json",
-    "notes/geobc_shared_physical_v12_actual_metadata_release.json",
-    "notes/geobc_shared_physical_v12_exporter_root_review.json",
-    "notes/geobc_shared_physical_v12_science_draft.json",
-    "notes/geobc_shared_physical_v12_source_ready.json",
-    "notes/github_gitdata_50d45_prior_publication_root_review.json",
-    "notes/github_gitdata_93651_actual_publication_root_review.json",
-    "notes/github_gitdata_93651_prior_publication_root_review.json",
-    "notes/github_gitdata_93651_verified_receipt.json",
-    "notes/github_gitdata_macro100_short5_exact_local_review.json",
-    "notes/github_gitdata_publication_93651e783057bcbf552740951b753ec3ad30c9ce_macro100_short5_20261011_receipt.json",
-    "notes/github_gitdata_publication_root_review.json",
-    "notes/github_publish_plan.json",
-    "notes/github_publish_receipt_pre_physical_v12_93651.json",
-    "results/geobc_shared_physical_v12/manifest.json",
-    "results/geobc_shared_physical_v12/metrics.json"
-  ],
+  "attempt_id": "physical10_and_native_negative_20261011",
   "raw_numeric_data_or_checkpoints_included": false,
   "credentials_included": false,
-  "actual_result_scope": "Actual FNOphysical100/5pass TRAIN and knownDEV60 with accepted CPU plot; native++physical100/5pass genuinely launched and fullN gradient qualified, endpoint pending",
-  "protocol": {
-    "predictions": 60,
-    "owned_knownDEV_fields": 60,
-    "raw_GT_reads": 0,
-    "FINAL_reuse": false
-  },
-  "visual_QA": "v12 comparison PNG actually viewed and accepted; no new native endpoint claimed",
-  "next_macro_metadata_only": false
+  "actual_result_scope": "Nativephysical5 TRAIN negative and FNO samephysical5to10 TRAIN/knownDEV results and accepted CPU figures; globalHash matchedphysical5 genuine launch only, endpoint unknown",
+  "visual_QA": "both actual report PNGs viewed and accepted",
+  "JSON_parsed": 49,
+  "Python_AST_parsed": 22,
+  "snapshot_byte_equality_verified": true,
+  "helper_whole_source_review_inherited": "notes/github_gitdata_aa40_prior_publication_root_review.json"
 }
