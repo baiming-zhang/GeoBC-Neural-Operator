@@ -1,0 +1,82 @@
+{
+  "status": "completed",
+  "entry_epoch": 1791751568.8485749,
+  "entry_monotonic": 1239121.031,
+  "source_pin": "b307030d9b7ee530823d6a05bddb8238ba22a743",
+  "scope": "Independent bounded source acquisition via known GitHub API domain, partial source only",
+  "budget_seconds": 45,
+  "GET_attempts": 6,
+  "GET_completed": 6,
+  "files": {
+    "LICENSE": {
+      "path": "third_party/neuraloperator_gino_reference_b307030/LICENSE",
+      "bytes": 1082,
+      "sha256": "5f335b0603acfb1d180bf3117492e2076562075cc9b6353a3b94d5d5bc03ef33",
+      "git_blob_sha": "5637378e3734ad545887a7e782f1cf22e4ced42f",
+      "source_url": "https://api.github.com/repos/neuraloperator/neuraloperator/contents/LICENSE?ref=b307030d9b7ee530823d6a05bddb8238ba22a743"
+    },
+    "neuralop/models/gino.py": {
+      "path": "third_party/neuraloperator_gino_reference_b307030/neuralop/models/gino.py",
+      "bytes": 24145,
+      "sha256": "a06fbe7b597b6affd03e06416293c4fbd38dceb4d63342b3decb129ff7d09ea6",
+      "git_blob_sha": "b3ba79c22adaab7306710b4b584fc9a99ba7a645",
+      "source_url": "https://api.github.com/repos/neuraloperator/neuraloperator/contents/neuralop/models/gino.py?ref=b307030d9b7ee530823d6a05bddb8238ba22a743"
+    },
+    "neuralop/layers/gno_block.py": {
+      "path": "third_party/neuraloperator_gino_reference_b307030/neuralop/layers/gno_block.py",
+      "bytes": 10922,
+      "sha256": "35145268083a58c0e4473f138d73d7fdad1da8c96d0c2c5f19cf228fd7e59964",
+      "git_blob_sha": "12a3602ba69e1d4f37b31cd325e9b067608458e1",
+      "source_url": "https://api.github.com/repos/neuraloperator/neuraloperator/contents/neuralop/layers/gno_block.py?ref=b307030d9b7ee530823d6a05bddb8238ba22a743"
+    },
+    "neuralop/layers/integral_transform.py": {
+      "path": "third_party/neuraloperator_gino_reference_b307030/neuralop/layers/integral_transform.py",
+      "bytes": 8979,
+      "sha256": "e95c698adf158b80ab2fe1c4ac34e989a84d8496032a155bce76ca95b2a006d4",
+      "git_blob_sha": "7010db16913e55aef4b7aaa1b9349defc67c43d6",
+      "source_url": "https://api.github.com/repos/neuraloperator/neuraloperator/contents/neuralop/layers/integral_transform.py?ref=b307030d9b7ee530823d6a05bddb8238ba22a743"
+    },
+    "neuralop/layers/neighbor_search.py": {
+      "path": "third_party/neuraloperator_gino_reference_b307030/neuralop/layers/neighbor_search.py",
+      "bytes": 4553,
+      "sha256": "6ffd59ca75d65a3c01d6dabb841b79f0152d14975c42f795f33e156f26450b30",
+      "git_blob_sha": "9900bbae2896db8c0cfcdc6610379d575c781413",
+      "source_url": "https://api.github.com/repos/neuraloperator/neuraloperator/contents/neuralop/layers/neighbor_search.py?ref=b307030d9b7ee530823d6a05bddb8238ba22a743"
+    },
+    "neuralop/layers/gno_weighting_functions.py": {
+      "path": "third_party/neuraloperator_gino_reference_b307030/neuralop/layers/gno_weighting_functions.py",
+      "bytes": 2776,
+      "sha256": "4e16cc222589168ff8d8cd680e8756444dba06d84f9f00f69ad7fc2a71d42492",
+      "git_blob_sha": "c8f69fa920608a1914c572c8e3ebdfb18a059dfa",
+      "source_url": "https://api.github.com/repos/neuraloperator/neuraloperator/contents/neuralop/layers/gno_weighting_functions.py?ref=b307030d9b7ee530823d6a05bddb8238ba22a743"
+    }
+  },
+  "total_download_bytes": 52457,
+  "GT_reads": 0,
+  "PT_reads": 0,
+  "GPU": 0,
+  "model_or_dependency_install": false,
+  "automatic_retry": false,
+  "prior_failed_receipt": "notes/geobc_gino_v74_official_source_acquisition.json",
+  "prior_raw_domain_seconds": 10.513999700546265,
+  "transport": "Public GitHub contents API, stdlib direct HTTP1.1, TLS verification unchanged, no credentials",
+  "closed": true,
+  "active": false,
+  "elapsed_epoch_seconds": 8.820327043533325,
+  "elapsed_monotonic_seconds": 8.812000000150874,
+  "duplicate_existing_pinned_checkout_detected": true,
+  "all6_canonical_LF_equal_existing_checkout": {
+    "LICENSE": true,
+    "neuralop/models/gino.py": true,
+    "neuralop/layers/gno_block.py": true,
+    "neuralop/layers/integral_transform.py": true,
+    "neuralop/layers/neighbor_search.py": true,
+    "neuralop/layers/gno_weighting_functions.py": true
+  },
+  "only_difference": "Existing checkout uses CRLF; acquired immutable upstream uses LF. Frozen original bytes unchanged.",
+  "existing_checkout": "third_party/neuraloperator",
+  "existing_GeoBC_GINO_actual_report": "results/geobc_gino_knownDEV_v53/BRIEF.md",
+  "new_method_or_experiment": false,
+  "disposition": "Redundant source retained in notes/local_source_archive/gino_reference_20261012, excluded from publication allowlist; deletion auto-review rejected, native bounded Move-Item succeeded. Existing original checkout unchanged.",
+  "current_archive": "notes/local_source_archive/gino_reference_20261012"
+}

@@ -3696,7 +3696,7 @@
       "result": "notes/geobc_hash_bandwidth_pair_result.json",
       "matched_controls_passed": true,
       "clear_gain_gate_passed": false,
-      "readout": "valU22.23294\u219219.96714%,worst41.29291\u219234.39351%,P1626.229\u2192165.966%;3improvementcriteriaPASS,P1cap100%FAIL",
+      "readout": "valU22.23294→19.96714%,worst41.29291→34.39351%,P1626.229→165.966%;3improvementcriteriaPASS,P1cap100%FAIL",
       "next": "frozen_hash_condition_path_decomposition"
     },
     {
@@ -4104,7 +4104,7 @@
     "reporter_author": "/root/deepjeb_research",
     "actual_execution_released": true,
     "source_estimated_minutes": 15,
-    "source_expected_complete_Beijing": "2026-10-10 05:35\u201305:40",
+    "source_expected_complete_Beijing": "2026-10-10 05:35–05:40",
     "previous_coordinator_phase": "completed",
     "previous_coordinator_pid": 365,
     "launch_policy": "Prepare queue integration then sole waiting coordinator; do not restart any live coordinator/GPU process",
@@ -4128,7 +4128,7 @@
     "scientific_rules_frozen": true,
     "actual_execution_released": true,
     "began_at_utc": "2026-10-09T21:54:25.342739Z",
-    "expected_ready_Beijing": "2026-10-10 06:12\u201306:20",
+    "expected_ready_Beijing": "2026-10-10 06:12–06:20",
     "author": "/root/topology_train_impl",
     "reporter_author": "/root/deepjeb_research",
     "launch_policy": "Sole queue only after source pins and real root review; completed current coordinator394 is not GPU running",
@@ -4736,7 +4736,7 @@
     "no_new_label_or_array_reads": false,
     "sha256": "27d746477d36a5ec47bcf16e976dec76ba875508b8cb88cf0f326ee206db348a",
     "current_learning_TRAIN_CADs": 40,
-    "proposal": "40vs200 CAD \u00d7 all3 Transolver/FNO/MLP; fresh4800 full-case updates; newDEV20 direct original signed U/S; no solver preselected",
+    "proposal": "40vs200 CAD × all3 Transolver/FNO/MLP; fresh4800 full-case updates; newDEV20 direct original signed U/S; no solver preselected",
     "delivery_feasibility": "notes/geobc_coverage_data_delivery_feasibility.json",
     "delivery_sha256": "d099728ca42396e0a0e117150d857b4dcd400db3072f6d122dd1e34ca646a5b8",
     "reason": "Unseen-CAD full physical U passed; full signed S remains unresolved. Prioritize one macro direct-signed coverage comparison across two retained learning families.",
@@ -5505,7 +5505,7 @@
         "diagnostic_seconds": 0.03847573900020507,
         "actual24k_readout_complete": false,
         "path": "notes/geobc_pp_live_training_loss_diagnostic.json",
-        "interpretation": "Recent five full120 passes loss down55.7% vs passes36\u201340, supports completing frozen24k; TRAIN encoded4 objective only, not physical U/S gain/selection. No extra prediction or target read"
+        "interpretation": "Recent five full120 passes loss down55.7% vs passes36–40, supports completing frozen24k; TRAIN encoded4 objective only, not physical U/S gain/selection. No extra prediction or target read"
       },
       "report_sources_in_progress": {
         "FNO_local_pair": {
@@ -5766,7 +5766,7 @@
   "current_next_stage": "Allfinite30/40 TRAIN then separately frozenknownDEV120predictions beforeoneGT60 pass",
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
-    "user_statement": "\u9884\u7b97\u662f30.5GB",
+    "user_statement": "预算是30.5GB",
     "memory_budget_GB": 30.5,
     "memory_budget_bytes": 30500000000,
     "memory_budget_GiB": 28.405338525772095,
@@ -6585,27 +6585,27 @@
   },
   "latest_verified_GitHub_publication": {
     "status": "actual_private_publication_verified",
-    "commit": "bb16d952a3562bd54059a0838689193cc37cfd5e",
-    "tree": "4d2a87b180721d61eebb304772531aa991cac7fa",
-    "base_commit": "155126f32dc09163ce808bc0e51f6963f7b820df",
-    "remote_main": "bb16d952a3562bd54059a0838689193cc37cfd5e",
+    "commit": "af8c7d515e0ffcd57a152f8f794b6ce23b8d804a",
+    "tree": "e147ad8b95fe2a7780d8bfe3ff6edfddd22bb6db",
+    "base_commit": "bb16d952a3562bd54059a0838689193cc37cfd5e",
+    "remote_main": "af8c7d515e0ffcd57a152f8f794b6ce23b8d804a",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "verified_at_utc": "2026-10-11T20:05:02.3747274Z",
+    "verified_at_utc": "2026-10-11T20:23:36.1069505Z",
     "actual_exec_exit_code": 0,
-    "actual_exec_session": 44522,
-    "elapsed_seconds": 82.6534923,
+    "actual_exec_session": 91536,
+    "elapsed_seconds": 49.0606885,
     "immutable_receipt": {
-      "path": "notes/github_gitdata_publication_bb16d952a3562bd54059a0838689193cc37cfd5e_ts100_native_qualification_actual_20261012_receipt.json",
-      "bytes": 51498,
-      "mtime_ns": 1791749102376421000,
-      "sha256": "2aedcf2b7d409051c82a3049e0cee489d02e6ad771a2a541dc7a0573a5d21bdd"
+      "path": "notes/github_gitdata_publication_af8c7d515e0ffcd57a152f8f794b6ce23b8d804a_native_ts_actual_and_fno_dose_launch_20261012_receipt.json",
+      "bytes": 28535,
+      "mtime_ns": 1791750216108013600,
+      "sha256": "064635b00f811193c9d8d3f10000161fc3411be45febb705e1fb87bfdb725831"
     },
     "exact_tree_verified": true,
     "exact_commit_verified": true,
-    "changed_blobs_verified": 63
+    "changed_blobs_verified": 30
   },
   "globalHash_physical5_completed": {
     "status": "actual_completed_same5_knownDEV",
@@ -6980,27 +6980,27 @@
   },
   "latest_verified_private_publication": {
     "status": "actual_private_publication_verified",
-    "commit": "bb16d952a3562bd54059a0838689193cc37cfd5e",
-    "tree": "4d2a87b180721d61eebb304772531aa991cac7fa",
-    "base_commit": "155126f32dc09163ce808bc0e51f6963f7b820df",
-    "remote_main": "bb16d952a3562bd54059a0838689193cc37cfd5e",
+    "commit": "af8c7d515e0ffcd57a152f8f794b6ce23b8d804a",
+    "tree": "e147ad8b95fe2a7780d8bfe3ff6edfddd22bb6db",
+    "base_commit": "bb16d952a3562bd54059a0838689193cc37cfd5e",
+    "remote_main": "af8c7d515e0ffcd57a152f8f794b6ce23b8d804a",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "verified_at_utc": "2026-10-11T20:05:02.3747274Z",
+    "verified_at_utc": "2026-10-11T20:23:36.1069505Z",
     "actual_exec_exit_code": 0,
-    "actual_exec_session": 44522,
-    "elapsed_seconds": 82.6534923,
+    "actual_exec_session": 91536,
+    "elapsed_seconds": 49.0606885,
     "immutable_receipt": {
-      "path": "notes/github_gitdata_publication_bb16d952a3562bd54059a0838689193cc37cfd5e_ts100_native_qualification_actual_20261012_receipt.json",
-      "bytes": 51498,
-      "mtime_ns": 1791749102376421000,
-      "sha256": "2aedcf2b7d409051c82a3049e0cee489d02e6ad771a2a541dc7a0573a5d21bdd"
+      "path": "notes/github_gitdata_publication_af8c7d515e0ffcd57a152f8f794b6ce23b8d804a_native_ts_actual_and_fno_dose_launch_20261012_receipt.json",
+      "bytes": 28535,
+      "mtime_ns": 1791750216108013600,
+      "sha256": "064635b00f811193c9d8d3f10000161fc3411be45febb705e1fb87bfdb725831"
     },
     "exact_tree_verified": true,
     "exact_commit_verified": true,
-    "changed_blobs_verified": 63
+    "changed_blobs_verified": 30
   },
   "resolution_FNO_completed": {
     "status": "sameparams_R128_physical5_scientific_negative_no_grid_extension",
@@ -7027,7 +7027,7 @@
         },
         "fixed_denominator": 60,
         "releases_continuation": false,
-        "scope": "SameFNO9 params/fullinitial/order/physical5; native grid rasterization and query resolution64\u2192128"
+        "scope": "SameFNO9 params/fullinitial/order/physical5; native grid rasterization and query resolution64→128"
       }
     },
     "same_full_initial_SHA": "e3c06ebfb126495173ae11b94fb3ef0cf87392976d56ba36238358844dd516da",
@@ -12926,6 +12926,32 @@
       40
     ],
     "model_unchanged": true,
-    "final_solver_selected": false
+    "final_solver_selected": false,
+    "status": "completed",
+    "terminal_receipt": "notes/geobc_fno_learning40_v72_actual_terminal_receipt.json",
+    "report": "results/geobc_fno_learning40_v72/BRIEF.md",
+    "decision": "notes/geobc_fno_learning40_v72_actual_decision.json",
+    "actual_stage_seconds": 503.3500292301178
+  },
+  "FNO30_40_v73_readout": {
+    "status": "completed",
+    "plan": "notes/geobc_fno40_pair_readout_v73_plan.json",
+    "scientific_digest": "5513e9be91d6a782be3b96b93481c53a0588d51ad9ae8805f8602d18c0a974ec",
+    "fixed_prediction_denominator": 120,
+    "knownDEV_case_denominator": 60,
+    "FINAL_reads": 0,
+    "exec_session": 41055,
+    "launch_receipt": "notes/geobc_fno40_pair_readout_v73_actual_launch_receipt.json",
+    "terminal_receipt": "notes/geobc_fno40_pair_readout_v73_actual_terminal_receipt.json",
+    "decision": "notes/geobc_fno40_pair_readout_v73_actual_decision.json",
+    "report": "results/geobc_fno40_pair_readout_v73/BRIEF.md",
+    "actual_stage_seconds": 124.7371621131897
+  },
+  "next_macro_v75": {
+    "status": "scientific_design_only_not_execution_released",
+    "design": "notes/geobc_field_amplitude_shape_v75_design.json",
+    "scientific_digest": "4bab6188831a376cbf0bdf831326aa0d6909a1a65e098966b58123a1662ea55d",
+    "actual_runtime": 0,
+    "next_action": "Implement one bounded existing-predictions/knownGT diagnostic, freeze source and root review, then run once. No new model/training/PT/scaler."
   }
 }
