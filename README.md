@@ -14,7 +14,9 @@ Hash低于1%来自单／双已知病例的应力拟合，不能直接比较新CA
 
 FNO扩大TRAIN40→100：同4800更新没有改善（28.59%／56.49%）；给予相同40遍曝光、12000更新后改善至23.17%／50.85%，位移19/20、应力20/20 CAD更低。整轮训练996.53秒（16.61分钟），开发读出98.23秒，CPU导出4.38秒，图已验看；120份完整有限预测先验证再共享knownGT60一次。未读FINAL／原CSV、新拟合scaler0。同更新数与同曝光数分别解释，不能声称纯数据单因素。[三行覆盖报告](results/geobc_fno_coverage_v4/BRIEF.md)。
 
-下一宏观比较使用同100CAD／4800更新：几何条件Hash对照已启动，全局几何／边界条件算子控制的连续Hash排队。新模型复用FNO完整R64几何／BC／材料上下文，TCNN解码器沿用已有配置；每臂训练最多10分钟、整体20分钟、30.5GB。初始FNO骨干字节、真实最大全节点梯度及资源在预算内验证。CPU接口检查0.97秒已通过，不能据此宣称GPU精度或新算法。不重复训练既有FNO100基线，不进行Hash微小救参。[接口范围](results/geobc_operator_hash_interface/BRIEF.md)。
+同100CAD／4800更新宏观比较已完成：FNO28.59%／56.49%，几何条件Hash41.27%／61.61%，全局算子Hash29.86%／54.01%。全局Hash20/20开发CAD应力与热点更低，但位移较差、参数及混合精度不同；未全面胜出。全局latent置零导致83.73%／100.00%，仅为推理依赖诊断。240完整有限预测先提交／重验再knownGT60共享一次，开发整轮240.66秒，CPU导出18.22秒，实际图已验看。[三行比较](results/geobc_operator_hash_v5/BRIEF.md)。
+
+真实TCNN全节点梯度／FNO初始化字节检查通过；训练后真实CUDA连续查询整轮4.83秒通过节点／chunk／perm一致性和输入梯度，GT／更新0。原全局阶段元数据getter技术失败126秒与修复间隔469秒均保留，原20分钟绝对budget未重置；恢复训练287.95秒、原完整campaign1011.26秒。只将有竞争力的全局Hash从自身4800恢复model／Adam／四RNG／cursor，追加7200到与FNO相同12000／40遍：训练最多10分钟、整体20分钟、30.5GB。不延长几何Hash、不调微小参数；新端点尚未完成，不声称最终选型。[CUDA接口](results/geobc_trained_operator_hash_queries/BRIEF.md)。
 
 此前原生++10遍／1200更新阶段26.32分钟，开发69.68%／94.05%，当前配方贵且欠拟合，暂降低投入优先级。原双24000计划已主动终止，真实非零退出、日志和成本保留；技术交接空argv快照失败已用实际完整进程身份核对，未重跑预测／GT、不冒称完成。[三候选初筛](results/geobc_three_short_screens/BRIEF.md)。
 
@@ -48,6 +50,6 @@ python tools/plot_suite_fields.py
 
 研究阶段必须使用各自冻结计划和真实进程交接，不能因旧status、锁文件或SOURCE-ready重复启动GPU任务。30分钟监视器持续推进；活训练期间只作轻量检查。
 
-[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `5a8d1d7` 包含三候选10遍与双候选40遍真实结果、代码及100CAD初始启动状态。本次100CAD完成结果和新宏观比较正在整理为下一快照；仅在远端精确commit、owner/repo ID及private状态核验后声明发布。[发布计划](notes/github_publish_plan.json)。
+[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `5c89902` 包含FNO100CAD实际完成结果。全局Hash宏观对照、必要依赖诊断、CUDA连续接口和续训启动状态正在整理为下一快照；仅在远端精确commit、owner/repo ID及private状态核验后声明发布。[发布计划](notes/github_publish_plan.json)。
 
 更早逐阶段运行叙述存于[README历史快照](results/README_STATE_HISTORY_20261011.md)，状态以当前真实报告和运行收据为准。

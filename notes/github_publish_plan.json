@@ -10,7 +10,7 @@
   "description": "Original DeepJEB reproduction and broad geometry/boundary-conditioned solver selection, with held-out CAD physical metrics and accuracy/cost comparisons.",
   "authorization": "User explicitly requested creating a private GitHub repository named from this chat title with hyphens and pushing organized code and results after all experiments finish.",
   "publication_gate": "All 30 slides suite experiments remain completed. GeoBC autonomous exploration snapshots are published with explicit stage and ongoing/completed status; no claim that exploratory work has finished. Repository remains private.",
-  "commit_message": "Report FNO CAD coverage results and start whole-case BC continuous Hash comparison",
+  "commit_message": "Compare whole-BC Hash against FNO on unseen CAD and validate native continuous queries",
   "research_authorization": "2026-10-09 user explicitly authorized autonomous sustained GeoBC exploration, evidence-driven next stages and a 30-minute watchdog; continue updating this project repository.",
   "results_manifest": "results/manifest.json",
   "results_export_command": "python tools/export_repo_results.py",
@@ -675,13 +675,35 @@
     "notes/geobc_operator_hash_v5_source_revision_before_actual_launch.json",
     "notes/github_gitdata_5a8d_root_review.json",
     "notes/github_gitdata_5a8d_verified_receipt.json",
-    "notes/github_publish_prior_5a8d_canonical_receipt.json"
+    "notes/github_publish_prior_5a8d_canonical_receipt.json",
+    "notes/geobc_operator_hash_extension_v7_actual_launch.json",
+    "notes/geobc_operator_hash_extension_v7_plan.json",
+    "notes/geobc_operator_hash_extension_v7_root_review.json",
+    "notes/geobc_operator_hash_readout_v5_actual_launch.json",
+    "notes/geobc_operator_hash_readout_v5_plan.json",
+    "notes/geobc_operator_hash_readout_v5_root_review.json",
+    "notes/geobc_operator_hash_recovery_v6_actual_launch.json",
+    "notes/geobc_operator_hash_recovery_v6_live_progress.json",
+    "notes/geobc_operator_hash_recovery_v6_metadata_regression.json",
+    "notes/geobc_operator_hash_recovery_v6_plan.json",
+    "notes/geobc_operator_hash_recovery_v6_root_review.json",
+    "notes/geobc_operator_hash_recovery_v6_terminal_receipt.json",
+    "notes/geobc_operator_hash_v5_actual_result_decision.json",
+    "notes/geobc_operator_hash_v5_exporter_review.json",
+    "notes/geobc_operator_hash_v5_FNO_GLOBAL_HASH_actual_launch.json",
+    "notes/geobc_operator_hash_v5_HASH_PN_terminal_receipt.json",
+    "notes/geobc_trained_operator_hash_queries_plan.json",
+    "notes/geobc_trained_operator_hash_queries_root_review.json",
+    "notes/github_gitdata_5c89_preflight_rejection.json",
+    "notes/github_gitdata_5c89_root_review.json",
+    "notes/github_gitdata_5c89_verified_receipt.json",
+    "notes/github_publish_prior_5c89_canonical_receipt.json"
   ],
   "next_snapshot_wait_reason": "Wait for meaningful actual new exposure results; future readout source-only changes do not trigger another snapshot",
   "current_stage_publication_gate": "Meaningful PP negative report completed and plot visually verified; all source authors frozen; original30 completed manifest maintained",
-  "latest_verified_private_commit": "5a8d1d7c27e80f9ebe3409699f3617cffd0ac6ca",
-  "latest_verified_private_at_utc": "2026-10-11T01:50:24.7029058Z",
-  "latest_verified_private_receipt": "notes/github_gitdata_publication_5a8d1d7c27e80f9ebe3409699f3617cffd0ac6ca_short40coverage100_20261011_receipt.json",
+  "latest_verified_private_commit": "5c89902e2ef51df50febeada805ca18ae0a0edf0",
+  "latest_verified_private_at_utc": "2026-10-11T02:16:24.8214567Z",
+  "latest_verified_private_receipt": "notes/github_gitdata_publication_5c89902e2ef51df50febeada805ca18ae0a0edf0_coverage100_wholebc_20261011_receipt.json",
   "current_snapshot_verified": true,
   "current_work_after_snapshot": "Current local new results complete; matched exposure24000 actually launched, endpoints pending",
   "current_wait_reason": "None for new local result snapshot; publish reviewed immutable commit",
@@ -696,20 +718,20 @@
   "ongoing_stage": "matched_exposure24000_v1 live launch; no12000/24000 results yet",
   "latest_verified_publication": {
     "status": "verified_private_remote_publication",
-    "commit": "5a8d1d7c27e80f9ebe3409699f3617cffd0ac6ca",
-    "tree": "a6fec0deeb5d3cebf6ea0f4db66b91a054dba998",
-    "base": "7d8d5566284d2929ec5cc22bfb2143d9dd5f285c",
-    "actual_seconds": 71.1037406,
-    "finished_UTC": "2026-10-11T01:50:24.7029058Z",
+    "commit": "5c89902e2ef51df50febeada805ca18ae0a0edf0",
+    "tree": "b979a0c89c07337b5847006d418bbfb0c7969c6c",
+    "base": "5a8d1d7c27e80f9ebe3409699f3617cffd0ac6ca",
+    "actual_seconds": 58.4326811,
+    "finished_UTC": "2026-10-11T02:16:24.8214567Z",
     "repo_url": "https://github.com/baiming-zhang/GeoBC-Neural-Operator",
     "identity": {
-      "repository_id": 1410470321,
       "user_id": 174442095,
-      "private": true,
+      "passed": true,
+      "repository_id": 1410470321,
       "owner": "baiming-zhang",
-      "passed": true
+      "private": true
     },
-    "receipt": "notes/github_gitdata_publication_5a8d1d7c27e80f9ebe3409699f3617cffd0ac6ca_short40coverage100_20261011_receipt.json"
+    "receipt": "notes/github_gitdata_publication_5c89902e2ef51df50febeada805ca18ae0a0edf0_coverage100_wholebc_20261011_receipt.json"
   },
   "legacy_index_correction": {
     "observed_UTC": "2026-10-10T19:28:14.260839+00:00",
@@ -718,5 +740,5 @@
     "verification_receipt": "notes/github_gitdata_publication_84f4a4898e44c81c2234eb74fc3fe996e556e7fc_query_matched_scalar_20261010t1808_receipt.json",
     "new_network_or_publication": false
   },
-  "latest_verified_private_publication_UTC": "2026-10-11T01:50:24.7029058Z"
+  "latest_verified_private_publication_UTC": "2026-10-11T02:16:24.8214567Z"
 }

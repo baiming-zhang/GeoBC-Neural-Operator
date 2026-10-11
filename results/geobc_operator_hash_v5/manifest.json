@@ -1,0 +1,104 @@
+{
+  "status": "completed",
+  "scientific_digest": "4788adee821063aaf6a675f4fabdf5f81e587ce79c9c66b4fbcf9149990de19a",
+  "exporter_source_sha256": "c35d874601892e061d08b34e384344c159ae2320739e68cb9974ce6806f32e3e",
+  "summary_identity": {
+    "path": "runs/geobc_exploration/macro_DEV_operator_hash100_v5/summary.json",
+    "bytes": 470242,
+    "mtime_ns": 1791686820021594900,
+    "sha256": "f8b8d12e2682a8790f10b734f1c8249b57baa14bbef8c48152de4fa17f753164"
+  },
+  "external_identity": {
+    "path": "runs/geobc_exploration/macro_DEV_operator_hash100_v5/external_terminal.json",
+    "bytes": 7288,
+    "mtime_ns": 1791686820348258400,
+    "sha256": "017300c28d2265ac103119d4e21564a17b503cc826cea22bce5582464bcbd766"
+  },
+  "points": [
+    {
+      "name": "FNO100_4800",
+      "label": "FNO",
+      "U_percent": 28.59155488055618,
+      "S_percent": 56.48891744649227,
+      "hot_percent": 46.94254597937703,
+      "joint_score": 0.42540236163524225,
+      "inference_UTC_seconds": 1.510627269744873,
+      "parameters": 4526858
+    },
+    {
+      "name": "HASH_PN100_4800",
+      "label": "Geometry Hash",
+      "U_percent": 41.27096661367472,
+      "S_percent": 61.60735079940402,
+      "hot_percent": 49.854406397723075,
+      "joint_score": 0.5143915870653937,
+      "inference_UTC_seconds": 0.9054276943206787,
+      "parameters": 7761632
+    },
+    {
+      "name": "GLOBAL_HASH100_4800",
+      "label": "Whole-BC operator Hash",
+      "U_percent": 29.864734213364624,
+      "S_percent": 54.00627450883505,
+      "hot_percent": 40.202506955805305,
+      "joint_score": 0.4193550436109984,
+      "inference_UTC_seconds": 0.9963717460632324,
+      "parameters": 12245894
+    }
+  ],
+  "costs": {
+    "FNO100_4800": {
+      "isolated_4800_campaign_cost_exact": false,
+      "whole_stage_UTC_seconds": null,
+      "reason": "Intermediate checkpoint of previously completed12000 campaign; exact isolatedwholecost unknown"
+    },
+    "HASH_PN100_4800": {
+      "isolated_4800_campaign_cost_exact": true,
+      "whole_stage_UTC_seconds": 172.13602447509766,
+      "whole_stage_monotonic_seconds": 160.31005101899973,
+      "training_UTC_seconds": 96.64733028411865
+    },
+    "GLOBAL_HASH100_4800": {
+      "isolated_4800_campaign_cost_exact": true,
+      "whole_stage_UTC_seconds": 1011.2617523670197,
+      "whole_stage_monotonic_seconds": 925.5328755099999,
+      "training_UTC_seconds": 287.951051235199,
+      "original_failed_attempt_outer_UTC_seconds": 126.14469194412231,
+      "recovery_attempt_outer_UTC_seconds": 416.109423160553,
+      "both_active_attempts_UTC_seconds": 542.2541151046753,
+      "repair_gap_UTC_seconds": 469.00755190849304,
+      "repair_gap_monotonic_seconds": 430.5732206729999,
+      "original_absolute_deadlines_retained": true
+    }
+  },
+  "ablations": [
+    {
+      "name": "GLOBAL_HASH_head_latent_zero",
+      "mode": "operator_latent_zero",
+      "eligible_for_selection": false,
+      "U_percent": 83.72906826773871,
+      "S_percent": 99.99697552231176,
+      "U_change_points": 53.8643340543741,
+      "S_change_points": 45.99070101347671
+    },
+    {
+      "name": "GLOBAL_HASH_head_geometry_zero",
+      "mode": "geometry_context_zero",
+      "eligible_for_selection": false,
+      "U_percent": 35.43261442684826,
+      "S_percent": 64.29486528186445,
+      "U_change_points": 5.567880213483639,
+      "S_change_points": 10.288590773029394
+    }
+  ],
+  "eligible_same4800_leaders": [
+    "GLOBAL_HASH100_4800"
+  ],
+  "actual_CPU_export_seconds": 18.213029675000143,
+  "final_solver_selected": false,
+  "files": [
+    "BRIEF.md",
+    "metrics.json",
+    "comparison.png"
+  ]
+}

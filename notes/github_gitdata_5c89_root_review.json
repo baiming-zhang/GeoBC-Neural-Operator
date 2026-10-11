@@ -1,0 +1,297 @@
+{
+  "passed": true,
+  "whole_source_reviewed": true,
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-10-11T02:14:52.804492+00:00",
+  "decision": "one_bounded_exact_immutable_gitdata_API_publication_attempt",
+  "source_sha256": "f9ab1692564f03ef4f0419c7c7a01ca13f8223fe5ef313f3dc8b16ebc064bef9",
+  "target_commit": "5c89902e2ef51df50febeada805ca18ae0a0edf0",
+  "base_commit": "5a8d1d7c27e80f9ebe3409699f3617cffd0ac6ca",
+  "target_tree": "b979a0c89c07337b5847006d418bbfb0c7969c6c",
+  "changed_file_count": 44,
+  "changed_files": [
+    "README.md",
+    "geobc/fno_coverage_readout_contract_v4.py",
+    "geobc/operator_conditioned_hash.py",
+    "geobc/operator_hash_campaign_contract_v5.py",
+    "geobc/operator_hash_training.py",
+    "notes/geobc_exploration_plan.json",
+    "notes/geobc_fno_coverage100_v4_TRAIN12000_subset.json",
+    "notes/geobc_fno_coverage100_v4_TRAIN4800_subset.json",
+    "notes/geobc_fno_coverage100_v4_actual_result_decision.json",
+    "notes/geobc_fno_coverage100_v4_live_progress.json",
+    "notes/geobc_fno_coverage_readout_v4_actual_launch.json",
+    "notes/geobc_fno_coverage_readout_v4_before_actual_release.json",
+    "notes/geobc_fno_coverage_readout_v4_plan.json",
+    "notes/geobc_fno_coverage_readout_v4_root_review.json",
+    "notes/geobc_fno_coverage_v4_exporter_review.json",
+    "notes/geobc_operator_hash_source_readiness.json",
+    "notes/geobc_operator_hash_v5_FNO_GLOBAL_HASH_plan.json",
+    "notes/geobc_operator_hash_v5_FNO_GLOBAL_HASH_root_review.json",
+    "notes/geobc_operator_hash_v5_HASH_PN_actual_launch.json",
+    "notes/geobc_operator_hash_v5_HASH_PN_plan.json",
+    "notes/geobc_operator_hash_v5_HASH_PN_root_review.json",
+    "notes/geobc_operator_hash_v5_macro_decision.json",
+    "notes/geobc_operator_hash_v5_source_revision_before_actual_launch.json",
+    "notes/github_gitdata_5a8d_root_review.json",
+    "notes/github_gitdata_5a8d_verified_receipt.json",
+    "notes/github_gitdata_publication_root_review.json",
+    "notes/github_publish_plan.json",
+    "notes/github_publish_prior_5a8d_canonical_receipt.json",
+    "results/SOLVER_BRIEF.md",
+    "results/TRANSOLVER_COMPARISON.md",
+    "results/geobc_fno_coverage_v4/BRIEF.md",
+    "results/geobc_fno_coverage_v4/comparison.png",
+    "results/geobc_fno_coverage_v4/manifest.json",
+    "results/geobc_fno_coverage_v4/metrics.json",
+    "results/geobc_operator_hash_interface/BRIEF.md",
+    "results/geobc_operator_hash_interface/manifest.json",
+    "tools/check_operator_conditioned_hash_interface.py",
+    "tools/evaluate_geobc_fno_coverage_v4.py",
+    "tools/export_geobc_fno_coverage_v4.py",
+    "tools/prepare_geobc_short_results_publication.py",
+    "tools/run_geobc_fno_coverage_readout_guard_v4.py",
+    "tools/run_geobc_operator_hash_guard_v5.py",
+    "tools/train_geobc_operator_hash_v5.py",
+    "tools/update_geobc_coverage_report.py"
+  ],
+  "changed_file_identities": [
+    {
+      "path": "README.md",
+      "bytes": 6301,
+      "sha256": "eaffbe69732ff42bf770f67c8945b955de315b2b381c953eaa05ca2c0f3c9499"
+    },
+    {
+      "path": "geobc/fno_coverage_readout_contract_v4.py",
+      "bytes": 8580,
+      "sha256": "f07ca6b7cf904ac39e05d5233d5d331e08e68298a6c285d2ea8fd7e902abb3be"
+    },
+    {
+      "path": "geobc/operator_conditioned_hash.py",
+      "bytes": 5457,
+      "sha256": "64a74a1fd0c8230cd363cdab02f135549446d3d518110827be9c45703b2bfda0"
+    },
+    {
+      "path": "geobc/operator_hash_campaign_contract_v5.py",
+      "bytes": 5481,
+      "sha256": "6bb890ede61f7c86f1c8fbd7d0b4d5ed6a8e47137a1e1e591b31e7ed84182270"
+    },
+    {
+      "path": "geobc/operator_hash_training.py",
+      "bytes": 4280,
+      "sha256": "dba20bd1a1f0465b0b4b9f55079d2a926456790a0a4a9c79cb2c79bfbc7366d1"
+    },
+    {
+      "path": "notes/geobc_exploration_plan.json",
+      "bytes": 253908,
+      "sha256": "66d0ea1650e155ee0aa9a8864d30572b951ee06531800338064ce5591ea32fac"
+    },
+    {
+      "path": "notes/geobc_fno_coverage100_v4_TRAIN12000_subset.json",
+      "bytes": 275497,
+      "sha256": "ea10abadebc0cd88d62a9edf244ea45691fbc341bc75f043de88cf2543d5f4ec"
+    },
+    {
+      "path": "notes/geobc_fno_coverage100_v4_TRAIN4800_subset.json",
+      "bytes": 275114,
+      "sha256": "7c4337cfb2f8dfcc90edf5a9cf1249f76be8dff6eaf18ee377c95f570c0fd6df"
+    },
+    {
+      "path": "notes/geobc_fno_coverage100_v4_actual_result_decision.json",
+      "bytes": 1480,
+      "sha256": "08cfaa3201c2a757f43f08d84a45b4283b9baab40ad60e4ef66f8a5c701522cc"
+    },
+    {
+      "path": "notes/geobc_fno_coverage100_v4_live_progress.json",
+      "bytes": 565,
+      "sha256": "6fa70c068305d3cbcd7cf92f9277d1c7bbc88cc451a9532e84aa74bf5a8ba6d9"
+    },
+    {
+      "path": "notes/geobc_fno_coverage_readout_v4_actual_launch.json",
+      "bytes": 966,
+      "sha256": "7906c6438b6846c66885b4a52277b75c12db0cb0065f0e4e64a183e8b08dbfd5"
+    },
+    {
+      "path": "notes/geobc_fno_coverage_readout_v4_before_actual_release.json",
+      "bytes": 5514,
+      "sha256": "c9e89dfd91193c8d518de037989f251f9f7dc8f9c3bb211d1e44d99c7498bf6f"
+    },
+    {
+      "path": "notes/geobc_fno_coverage_readout_v4_plan.json",
+      "bytes": 8426,
+      "sha256": "4212f2ead396df936bcd4934da26438668f5f38767a861fb331d2d8b872a9319"
+    },
+    {
+      "path": "notes/geobc_fno_coverage_readout_v4_root_review.json",
+      "bytes": 7238,
+      "sha256": "e39a472e7e01f0d32153334be0f2aa4966af8df76de9198da6f9805e9a520931"
+    },
+    {
+      "path": "notes/geobc_fno_coverage_v4_exporter_review.json",
+      "bytes": 970,
+      "sha256": "c4911a398f3b136532f7b9404351d9c94c26a0c6c8f6a405500cc20b2b02abc4"
+    },
+    {
+      "path": "notes/geobc_operator_hash_source_readiness.json",
+      "bytes": 2008,
+      "sha256": "86d126694b691bef1b0718164c4349b9a6bdd4c2239498ea59031e2ca4a22ed1"
+    },
+    {
+      "path": "notes/geobc_operator_hash_v5_FNO_GLOBAL_HASH_plan.json",
+      "bytes": 14222,
+      "sha256": "7669e86b4beee3f4aeffd6d685665dc3e5d39aa70462e8ebb74caac579cf27d6"
+    },
+    {
+      "path": "notes/geobc_operator_hash_v5_FNO_GLOBAL_HASH_root_review.json",
+      "bytes": 6743,
+      "sha256": "c9444b77e041364cfbb0fe3852c00e3d63e1cb8904ac40755664ce41a2e6aa17"
+    },
+    {
+      "path": "notes/geobc_operator_hash_v5_HASH_PN_actual_launch.json",
+      "bytes": 912,
+      "sha256": "5d368b8920815fb1afcb9e8a8fe10575e21d799a57c024bb3c08e7f73931918c"
+    },
+    {
+      "path": "notes/geobc_operator_hash_v5_HASH_PN_plan.json",
+      "bytes": 14198,
+      "sha256": "eaececfb9f5959e6cc432085461eb3c33a9b7239b3a23a5978c8ba8d125edddf"
+    },
+    {
+      "path": "notes/geobc_operator_hash_v5_HASH_PN_root_review.json",
+      "bytes": 6743,
+      "sha256": "8b65287e784288e33fac4b1e0621ce1a6810f3874c4769862e56da1aa3451320"
+    },
+    {
+      "path": "notes/geobc_operator_hash_v5_macro_decision.json",
+      "bytes": 986,
+      "sha256": "7b446aad3e928883dec0736bdc7b60a3648830aa21ed3cc7386e3e58af0d28f6"
+    },
+    {
+      "path": "notes/geobc_operator_hash_v5_source_revision_before_actual_launch.json",
+      "bytes": 499,
+      "sha256": "c9a7fa38fce1fe154db43425380fe7bb55d22cac713f5cbf47bf5ef633ec099a"
+    },
+    {
+      "path": "notes/github_gitdata_5a8d_root_review.json",
+      "bytes": 14974,
+      "sha256": "276c87964ae2c3a5cc7f0610489e5ce54755a1d735126b8f7d448a5d310d293e"
+    },
+    {
+      "path": "notes/github_gitdata_5a8d_verified_receipt.json",
+      "bytes": 670,
+      "sha256": "89808632cd6bc7ba50e9db7406310b3479d7dfd55eed4fb4a14cf9de028ef1a9"
+    },
+    {
+      "path": "notes/github_gitdata_publication_root_review.json",
+      "bytes": 14974,
+      "sha256": "276c87964ae2c3a5cc7f0610489e5ce54755a1d735126b8f7d448a5d310d293e"
+    },
+    {
+      "path": "notes/github_publish_plan.json",
+      "bytes": 39973,
+      "sha256": "a64be6693510a1c93ca38e8457123a6314436177e075172cb226770bf9605616"
+    },
+    {
+      "path": "notes/github_publish_prior_5a8d_canonical_receipt.json",
+      "bytes": 2440,
+      "sha256": "8a4bdac2b3a954524c113f6b3f4d674f266b9bb1c297533d6c0cf47a5553dd75"
+    },
+    {
+      "path": "results/SOLVER_BRIEF.md",
+      "bytes": 1994,
+      "sha256": "d69a0bf26e77ee789b758331982db6190ded4a12222892e59094554b736306fe"
+    },
+    {
+      "path": "results/TRANSOLVER_COMPARISON.md",
+      "bytes": 3574,
+      "sha256": "fa8bd51b81dac61ebe5351ade589c3c1f782210e7d52b94efee7ae2fbe2e00ca"
+    },
+    {
+      "path": "results/geobc_fno_coverage_v4/BRIEF.md",
+      "bytes": 1157,
+      "sha256": "5f4406721cdef8b79b3942cf080abb39755155859a5bf3c7444beab8e73a9a5c"
+    },
+    {
+      "path": "results/geobc_fno_coverage_v4/comparison.png",
+      "bytes": 48460,
+      "sha256": "4a1048cc9e3d7b047f81b3f5cd6f54b832a3f4f553e10ae5b68615053965e621"
+    },
+    {
+      "path": "results/geobc_fno_coverage_v4/manifest.json",
+      "bytes": 2373,
+      "sha256": "7ac6585e2a4c13a2a93e29d345c060790a08b67a9aa605e579bc9e9974b65e31"
+    },
+    {
+      "path": "results/geobc_fno_coverage_v4/metrics.json",
+      "bytes": 269393,
+      "sha256": "1d98bdceb4f0edce37694cb4a46290f00899e7d4fd6b2dfcc0750475884a2e95"
+    },
+    {
+      "path": "results/geobc_operator_hash_interface/BRIEF.md",
+      "bytes": 727,
+      "sha256": "71a8e502069e846894222bd78a6f81c0bf2f6d9c7faaebb9902361a00ef13914"
+    },
+    {
+      "path": "results/geobc_operator_hash_interface/manifest.json",
+      "bytes": 990,
+      "sha256": "3a5d6aeed7e53f470f3d6646e63edc6344f43df68b88de5193ab59d7342e9a11"
+    },
+    {
+      "path": "tools/check_operator_conditioned_hash_interface.py",
+      "bytes": 5339,
+      "sha256": "b1bd9de89ff3f274ccf1c3fbb111815438db42b7bd59de2c4c7bcbf8c6071991"
+    },
+    {
+      "path": "tools/evaluate_geobc_fno_coverage_v4.py",
+      "bytes": 13195,
+      "sha256": "34ae4d5675081d57c0bbfae248a778eccb414a42b43f5c7668f874e949097e04"
+    },
+    {
+      "path": "tools/export_geobc_fno_coverage_v4.py",
+      "bytes": 7587,
+      "sha256": "95f1003adbf6cf8b400b71ca836ef74023e8ee2b1e5b0130890caa06f00660e4"
+    },
+    {
+      "path": "tools/prepare_geobc_short_results_publication.py",
+      "bytes": 3552,
+      "sha256": "7fe9dcea651d5686cad8acab6edc8c65913ea9b714c6055e41a3c6dda6eca616"
+    },
+    {
+      "path": "tools/run_geobc_fno_coverage_readout_guard_v4.py",
+      "bytes": 5247,
+      "sha256": "5e222165dad293338b7e656a55a7bfead219618becb0d47bc9fe8a816c675c7d"
+    },
+    {
+      "path": "tools/run_geobc_operator_hash_guard_v5.py",
+      "bytes": 5228,
+      "sha256": "d9c74958779bcb43980b12ad5b4247477403a9c60988e9ea3f8811b721662f8c"
+    },
+    {
+      "path": "tools/train_geobc_operator_hash_v5.py",
+      "bytes": 18533,
+      "sha256": "0659dcf8889f00565475b44ff1c45611b405c2228970e04bd906da5066a9f6ae"
+    },
+    {
+      "path": "tools/update_geobc_coverage_report.py",
+      "bytes": 9792,
+      "sha256": "5aa6f86bc68eded2830d229c3f0cf7ceea15fd733c14bfa66801e8ec62a81f80"
+    }
+  ],
+  "required_identity": {
+    "owner": "baiming-zhang",
+    "user_id": 174442095,
+    "repository_id": 1410470321,
+    "private": true
+  },
+  "attempt_id": "coverage100_wholebc_20261011",
+  "review_basis": [
+    "Immutable helperSHA unchanged from fullrootreviews and realprivate publication",
+    "Each changed snapshot matches current bytes, JSON/AST parsed, no rawPT/arrays/GT/credentials",
+    "ActualFNO100 true2400budget terminal12000 and knownDEV120predictionbarrier/GT60completed; CPUplot visually reviewed",
+    "Realcoverage23.17/50.85 and16.61min disclosed fixedupdates/fixedexposure differences",
+    "WholecontextHash CPUinterface notrealaccuracy; twofixed4800 shortarms genuinelyrootreleased, HASH_PN actualstarted/wholeBCqueued only",
+    "SourceRNG correction beforeactualstart preservesallRNG; no live/sourceSCI or budgetreset",
+    "Exact priorverifiedmain5a8d base and owner/repo IDs/private enforced; singlebounded nonforce API attempt",
+    "Local preflight rejected uppercase attempt_id before claim/credentials/API; lowerASCII fixed only, exacttarget/base/source remain unchanged"
+  ]
+}

@@ -6201,29 +6201,96 @@
     "next_condition": "After100CAD FNO real DEV results, choose paired shortbudget experiment; no preset Hashwinner or microtuning"
   },
   "operator_hash_v5": {
-    "status": "HASH_PN_actual_started_global_hash_queued",
-    "created": [
+    "status": "actual_completed",
+    "source_manifest": {
+      "path": "results/geobc_operator_hash_v5/manifest.json",
+      "bytes": 3617,
+      "mtime_ns": 1791686877879346100,
+      "sha256": "1845bf8b17d2c8c8e5723fe5dff3db3531c8e72a65f1636185a5c721bb173776"
+    },
+    "points": [
       {
-        "family": "HASH_PN",
-        "plan": "notes/geobc_operator_hash_v5_HASH_PN_plan.json",
-        "scientific_digest": "bac560d62423ec8378c0897832de8dcc10c514a498f1fb1e4ee36b84aa0cd105",
-        "actual_GPU_execution": 0
+        "name": "FNO100_4800",
+        "label": "FNO",
+        "U_percent": 28.59155488055618,
+        "S_percent": 56.48891744649227,
+        "hot_percent": 46.94254597937703,
+        "joint_score": 0.42540236163524225,
+        "inference_UTC_seconds": 1.510627269744873,
+        "parameters": 4526858
       },
       {
-        "family": "FNO_GLOBAL_HASH",
-        "plan": "notes/geobc_operator_hash_v5_FNO_GLOBAL_HASH_plan.json",
-        "scientific_digest": "3e91c4bf1213142c358a61f44087af8f9511aff59e76d81022362518069c5cf5",
-        "actual_GPU_execution": 0
+        "name": "HASH_PN100_4800",
+        "label": "Geometry Hash",
+        "U_percent": 41.27096661367472,
+        "S_percent": 61.60735079940402,
+        "hot_percent": 49.854406397723075,
+        "joint_score": 0.5143915870653937,
+        "inference_UTC_seconds": 0.9054276943206787,
+        "parameters": 7761632
+      },
+      {
+        "name": "GLOBAL_HASH100_4800",
+        "label": "Whole-BC operator Hash",
+        "U_percent": 29.864734213364624,
+        "S_percent": 54.00627450883505,
+        "hot_percent": 40.202506955805305,
+        "joint_score": 0.4193550436109984,
+        "inference_UTC_seconds": 0.9963717460632324,
+        "parameters": 12245894
       }
     ],
-    "parent_result": "results/geobc_fno_coverage_v4/manifest.json",
-    "why": "Coverage helped only with enough exposure; remaining stress50.85% warrants macrocondition representation test, not tinyHashhyperparameters",
-    "main_FNO_U_S_percent": [
-      23.1685301028625,
-      50.845743732417034
+    "ablations": [
+      {
+        "name": "GLOBAL_HASH_head_latent_zero",
+        "mode": "operator_latent_zero",
+        "eligible_for_selection": false,
+        "U_percent": 83.72906826773871,
+        "S_percent": 99.99697552231176,
+        "U_change_points": 53.8643340543741,
+        "S_change_points": 45.99070101347671
+      },
+      {
+        "name": "GLOBAL_HASH_head_geometry_zero",
+        "mode": "geometry_context_zero",
+        "eligible_for_selection": false,
+        "U_percent": 35.43261442684826,
+        "S_percent": 64.29486528186445,
+        "U_change_points": 5.567880213483639,
+        "S_change_points": 10.288590773029394
+      }
     ],
-    "main_FNO_training_whole_seconds": 996.5279881954193,
-    "current_solver_not_final": true,
-    "maximum_training_seconds_perarm": 600
+    "FNO_vs_GLOBAL_paired": {
+      "direction": "left minus right; negative favors left",
+      "better_CAD_counts": {
+        "U": 15,
+        "S": 0,
+        "hot": 0
+      },
+      "mean_difference": {
+        "U": -0.012731793328084417,
+        "S": 0.02482642937657211,
+        "hot": 0.06740039023571728
+      }
+    },
+    "native_interface": {
+      "path": "runs/geobc_exploration/macro_operator_hash_native_interface/summary.json",
+      "bytes": 2295,
+      "mtime_ns": 1791686879271745700,
+      "sha256": "28c3aaf365e54247b008dc555d9ab0cf53435623b1bc6d2a9c8a70fab57caf74"
+    },
+    "PNG_root_viewed": true,
+    "next_stage": "notes/geobc_operator_hash_extension_v7_plan.json",
+    "main_candidate_until_matched_endpoint": "FNO10012000",
+    "final_solver_selected": false,
+    "actual_updates_next": 0,
+    "decision": "One fixed matched40pass extension of globalcandidate due20/20S+hot improvement and strongoperator dependence; do not extendPN or retuneHash",
+    "recorded_utc": "2026-10-11T02:50:01.477656+00:00"
+  },
+  "operator_hash_extension_v7": {
+    "plan": "notes/geobc_operator_hash_extension_v7_plan.json",
+    "status": "released_actual_started_endpoint_pending",
+    "main_until_completed": "FNO10012000",
+    "final_solver_selected": false
   }
 }
