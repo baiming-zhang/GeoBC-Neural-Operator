@@ -1,0 +1,43 @@
+{
+  "status": "actual_shared3_native_representation_no_substantive_gain",
+  "observed_at_utc": "2026-10-11T20:15:32.628553+00:00",
+  "SCI": "f021404bfc62e549ee894ed672fed3c14df7d7803cb8a29a8307ad068a4cfc96",
+  "terminal_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/Transolver_native_continuous_shared3_v70_recovery/summary.json",
+      "bytes": 33284,
+      "mtime_ns": 1791749469509026100,
+      "sha256": "fd71b2657297e76653c0e9ca8de206c244cf3c9ac4018da215312d178480e1f4"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/Transolver_native_continuous_shared3_v70_recovery/status.json",
+      "bytes": 33284,
+      "mtime_ns": 1791749469513542200,
+      "sha256": "fd71b2657297e76653c0e9ca8de206c244cf3c9ac4018da215312d178480e1f4"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/Transolver_native_continuous_shared3_v70_recovery/external_terminal.json",
+      "bytes": 24615,
+      "mtime_ns": 1791749470081671300,
+      "sha256": "630471cac067d36cccc6e2165e30765dd05ac6d9d1166f8d7c0c9da52202fb95"
+    }
+  },
+  "report_identity": {
+    "path": "results/geobc_transolver_native_shared3_v70/manifest.json",
+    "bytes": 1302,
+    "mtime_ns": 1791749548466777200,
+    "sha256": "be249acf45058f465c1a4baa3b79b63371384ff45d51d8a7f1c450f1a73fc026"
+  },
+  "PNG_visually_verified": true,
+  "native_minus_R64_TS_pp": {
+    "case_mean_u_relative_l2": 0.2671391403184675,
+    "case_mean_stress_relative_l2": -0.021492323755452347,
+    "case_mean_stress_hotspot_relative_l2": -0.2057408263791874
+  },
+  "learning_cost_ratio": 0.9393693645813281,
+  "ability_gate_passed": true,
+  "decision": "Stop native TS route at this diagnostic: U slightlyworse,S essentiallysame,6%learningcost reduction; no100CAD run. AbilityPASS doesnotmean better solver or require optionalmacro. Preserveunusedv71 cache SOURCE asnotreleased.",
+  "policy_is_descriptive_after_actual_not_predeclared_promote_gate": true,
+  "final_solver_selected": false,
+  "next": "OneboundedcurrentFNO20to40 trend confirmation based on actual10to20 TRAIN andknownDEV improvement, unchangedweights/Adam/RNG/scaler/order; noautomatic80 or other methods"
+}

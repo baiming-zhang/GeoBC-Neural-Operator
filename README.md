@@ -20,7 +20,9 @@ Hash追加5遍后，训练集应力47.28%→39.32%，新CAD54.45%→50.85%。新
 
 **原版Transolver＋相同连续解码器已完成共享三场对照。** 每场1000次曝光，TS BF16位移9.33%／应力1.54%／热点2.46%，FNO条件Hash为4.85%／0.76%／0.43%；TS学习区间792.3秒，约为FNO188.6秒的4.20倍。原FP32因900秒学习预算结束于2285次更新，完整909.41秒的失败成本和检查点保留，没有最终1000端点。[TS真实对照](results/geobc_transolver_bf16_v65/BRIEF.md) · [FP32成本](results/geobc_transolver_decoder_v64_budget/BRIEF.md)。
 
-**原版TS同方案的fresh100CAD×三载荷短五遍及knownDEV60已完成。** 全TRAIN位移62.85%／应力71.12%，knownDEV位移61.14%／应力72.72%；完整训练613.46秒、验证82.59秒，推进门槛未通过。当前FNO20仍领先，不自动加长TS训练；下一步先资格验证原网格节点上下文＋相同连续解码器，尚非新精度结果。旧去空体素TS与Native++负结果保留，不预设native表示能解决误差。[最新TS比较](results/geobc_transolver_macro100_readout_v67/BRIEF.md)。
+**原版TS同方案的fresh100CAD×三载荷短五遍及knownDEV60已完成。** 全TRAIN位移62.85%／应力71.12%，knownDEV位移61.14%／应力72.72%；完整训练613.46秒、验证82.59秒，推进门槛未通过。当前FNO20仍领先，不自动加长TS训练。旧去空体素TS与Native++负结果保留，不预设native表示能解决误差。[最新TS比较](results/geobc_transolver_macro100_readout_v67/BRIEF.md)。
+
+**原网格TS三场对照也已完成：应力1.52%／位移9.59%，与R64 TS的1.54%／9.33%基本相同，学习时间只省约6%。** 该路线暂停扩大100CAD，能力门通过不代表实际优势。原启动的元数据错误发生在0更新；恢复保留原绝对截止与失败成本，完整结果及两张图已验收。[原网格比较](results/geobc_transolver_native_shared3_v70/BRIEF.md)。当前实际进行同一FNO20检查点的固定30／40遍趋势诊断，预计新增约6分钟学习区间，检查更多曝光是否同时改善TRAIN和新CAD；不自动80遍或其他方法长训，目前没有新端点结果。
 
 ## 数据、指标与复现范围
 
@@ -36,4 +38,4 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore` 恢复冻结源文件字节，未知内容拒绝覆盖。短实验临时使用5分钟监视，后续长阶段恢复半小时监视。代码、配置、标量结果、图和检查点索引发布到[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)，原数据及检查点体积文件留本地。
 
-最新已验证远端提交`155126f`，包含真实原版TS三场BF16对照、FP32预算negative及成本、图表和源码，以及100CAD短五遍的源码与实际启动状态（大样本尚未完成）。发布72.45秒、53份变化文件，前中后private身份和确切远端commit/tree均核实；研究继续推进。[发布状态](notes/github_publish_plan.json)。
+最新已验证远端提交`bb16d95`，包含已完成的TS100CAD短五遍与knownDEV60物理报告及图、原网格资格证据和技术失败记录，以及保持原截止时间的三场拟合恢复源码与启动状态（尚无新拟合结果）。发布82.65秒、63份变化文件，前中后private身份及确切远端commit/tree均核实；研究继续推进。[发布状态](notes/github_publish_plan.json)。

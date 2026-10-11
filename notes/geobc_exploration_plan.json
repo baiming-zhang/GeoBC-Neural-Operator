@@ -5700,7 +5700,7 @@
       ]
     }
   },
-  "updated_at_utc": "2026-10-11T20:01:11.774314+00:00",
+  "updated_at_utc": "2026-10-11T20:21:20.730047+00:00",
   "prospective_final_reservation": {
     "path": "notes/geobc_prospective_cad_split_v1.json",
     "scientific_digest": "7a4f5ab3a6fcb32e19897246eeceeb64d8e3a06eb1511003b86da470d6267dc9",
@@ -5763,7 +5763,7 @@
       "updated_UTC": "2026-10-10T22:55:18.984988+00:00"
     }
   },
-  "current_next_stage": "Wait verified70 fitting endpoint; macro100 not pre-released",
+  "current_next_stage": "Allfinite30/40 TRAIN then separately frozenknownDEV120predictions beforeoneGT60 pass",
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
     "user_statement": "\u9884\u7b97\u662f30.5GB",
@@ -6584,19 +6584,28 @@
     "actual_visual_accepted": true
   },
   "latest_verified_GitHub_publication": {
-    "status": "verified_private_remote_publication",
-    "commit": "bff8d50fa99e799d4115172cee212b7f6b6743de",
-    "base_commit": "50cdb5a5a36c71053e62d26a1080be0dd2b7853e",
-    "tree": "bec8f0c39201bb7a4756c9ed1226583132159e3b",
+    "status": "actual_private_publication_verified",
+    "commit": "bb16d952a3562bd54059a0838689193cc37cfd5e",
+    "tree": "4d2a87b180721d61eebb304772531aa991cac7fa",
+    "base_commit": "155126f32dc09163ce808bc0e51f6963f7b820df",
+    "remote_main": "bb16d952a3562bd54059a0838689193cc37cfd5e",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "elapsed_seconds": 56.1386128,
-    "finished_at_utc": "2026-10-11T10:30:24.8395875Z",
-    "receipt": "notes/github_gitdata_publication_bff8d50fa99e799d4115172cee212b7f6b6743de_node_latent_terminal_structured_cpu_20261011_receipt.json",
-    "actual_scope": "Completed v36/v37 node-latent TRAIN/knownDEV acceptedreport and v38 officialstructured3D syntheticCPU prototype only; no v39 runtime in snapshot",
-    "actual_exec_exit_code": 0
+    "verified_at_utc": "2026-10-11T20:05:02.3747274Z",
+    "actual_exec_exit_code": 0,
+    "actual_exec_session": 44522,
+    "elapsed_seconds": 82.6534923,
+    "immutable_receipt": {
+      "path": "notes/github_gitdata_publication_bb16d952a3562bd54059a0838689193cc37cfd5e_ts100_native_qualification_actual_20261012_receipt.json",
+      "bytes": 51498,
+      "mtime_ns": 1791749102376421000,
+      "sha256": "2aedcf2b7d409051c82a3049e0cee489d02e6ad771a2a541dc7a0573a5d21bdd"
+    },
+    "exact_tree_verified": true,
+    "exact_commit_verified": true,
+    "changed_blobs_verified": 63
   },
   "globalHash_physical5_completed": {
     "status": "actual_completed_same5_knownDEV",
@@ -6769,7 +6778,7 @@
     "DEV_external_seconds": 167.8709237575531,
     "decision": "TSheadwarm negative; FNO intact5to10 learns; frozen encoder/head latent mapping is next diagnostic"
   },
-  "current_stage": "Native originalTS shared3 actual recovery70, fixed originaldeadline;66/67 completed",
+  "current_stage": "FNO20to40 actual cache_setup, nativeTS70 completed no substantivegain",
   "node_latent_operator_diagnostic_SOURCE": {
     "proposal": "notes/geobc_node_latent_teacher_macro_proposal_v35.json",
     "source_ready": "notes/geobc_node_latent_teacher_v35_source_ready.json",
@@ -6971,22 +6980,27 @@
   },
   "latest_verified_private_publication": {
     "status": "actual_private_publication_verified",
-    "actual_exec_session": 8215,
-    "actual_exec_exit_code": 0,
-    "commit": "577529b83d13f4bbcb1ed3c570d04479d70232fd",
-    "base_commit": "14049264089c817cbcaebdcac8a77eaff950250a",
-    "tree": "cafa4dd1c08e16dfd68a2186a0d747ff94a32315",
-    "repository_url": "https://github.com/baiming-zhang/GeoBC-Neural-Operator",
-    "private": true,
+    "commit": "bb16d952a3562bd54059a0838689193cc37cfd5e",
+    "tree": "4d2a87b180721d61eebb304772531aa991cac7fa",
+    "base_commit": "155126f32dc09163ce808bc0e51f6963f7b820df",
+    "remote_main": "bb16d952a3562bd54059a0838689193cc37cfd5e",
+    "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
-    "actual_publication_seconds": 44.2164836,
-    "verified_at_utc": "2026-10-11T15:12:39.286991+00:00",
-    "permanent_receipt": "notes/github_gitdata_publication_577529b83d13f4bbcb1ed3c570d04479d70232fd_gino_known_dev_results_20261011_receipt.json",
-    "receipt_sha256": "69c75ee31fcf141e69c5123d0ad1b29f2f7be637c094c967eabf91cace874e67",
-    "changed_files_verified": 28,
-    "scope": "Actual GINO1320 budget-prefix full60 allN physical diagnostic/cost and exact scalar provenance/checkpoint index; no formal5 or finalsolver claim; stress specialization54 remains proposal-only/actual0",
-    "credentials_printed_or_saved": false
+    "private": true,
+    "verified_at_utc": "2026-10-11T20:05:02.3747274Z",
+    "actual_exec_exit_code": 0,
+    "actual_exec_session": 44522,
+    "elapsed_seconds": 82.6534923,
+    "immutable_receipt": {
+      "path": "notes/github_gitdata_publication_bb16d952a3562bd54059a0838689193cc37cfd5e_ts100_native_qualification_actual_20261012_receipt.json",
+      "bytes": 51498,
+      "mtime_ns": 1791749102376421000,
+      "sha256": "2aedcf2b7d409051c82a3049e0cee489d02e6ad771a2a541dc7a0573a5d21bdd"
+    },
+    "exact_tree_verified": true,
+    "exact_commit_verified": true,
+    "changed_blobs_verified": 63
   },
   "resolution_FNO_completed": {
     "status": "sameparams_R128_physical5_scientific_negative_no_grid_extension",
@@ -7030,7 +7044,7 @@
     "actual_CPU_seconds": 1.0284905919979792,
     "actual_runtime_launches": 0
   },
-  "latest_actual_stage": 70,
+  "latest_actual_stage": 72,
   "latest_actual_stress_specialization_v54": {
     "status": "completed_TRAIN_gate_negative",
     "plan": "notes/geobc_fno_stress_v54_plan.json",
@@ -7125,14 +7139,7 @@
     "original_proposal": "notes/geobc_single_field_learning_v59_proposal.json",
     "result": "Fixed3 mean S27.33->16.68, U7.89->3.93, hot30.60->19.28; neither convergence nor1percent claimed"
   },
-  "goal_turn_classification": {
-    "previous_turn": "progress",
-    "previous_evidence": "v60 actual6000 updates completed/metrics/twoPNG/private1d4fe57",
-    "current_turn": "progress",
-    "current_evidence": "v61actual6000shared updates/exactexit/physicalfull3 metrics/twoPNG/report; modest100CAD5to10 proposal based onnew sharedfit evidence",
-    "full_goal_preserved": true,
-    "epoch": 1791741560.8773098
-  },
+  "goal_turn_classification": "progress: real70 terminalreport/PNGdecision; fixed72 doseexperimentrootreleasedandactualstart",
   "latest_actual_single_field_v59": {
     "status": "completed",
     "SCI": "1e398318b7ce04f8b5be7c8ab848b902d6a014b075af49b0b59783160e7a2e63",
@@ -12894,6 +12901,31 @@
     "prior_v69_failure_preserved": true,
     "original_deadline_preserved": true,
     "prior_failed_physical_TRAIN_reads": 3,
+    "final_solver_selected": false,
+    "status": "completed",
+    "terminal_receipt": "notes/geobc_transolver_native_recovery_v70_actual_terminal_receipt.json",
+    "report": "results/geobc_transolver_native_shared3_v70/BRIEF.md",
+    "decision": "notes/geobc_transolver_native_v70_actual_decision.json"
+  },
+  "native_TS_v71_macro": {
+    "status": "SOURCE_storage_ready_not_released_no_experiment",
+    "profile": "notes/geobc_native_macro_cache_v71_SOURCE_profile.json",
+    "decision": "No substantialactual70 gain; do not launch100CAD"
+  },
+  "FNO40_v72_actual": {
+    "plan": "notes/geobc_fno_learning40_v72_plan.json",
+    "launch_receipt": "notes/geobc_fno_learning40_v72_actual_launch_receipt.json",
+    "exec_session": 37221,
+    "status_at_capture": "running_cache_setup",
+    "scientific_digest": "0caa9fc7a59541c6b2a718d8d896c6f08d5f28a43108d22d3516f7b93f1a038f",
+    "no_previous_training_replay": true,
+    "parent_steps": 6000,
+    "new_updates": 6000,
+    "endpoints": [
+      30,
+      40
+    ],
+    "model_unchanged": true,
     "final_solver_selected": false
   }
 }
