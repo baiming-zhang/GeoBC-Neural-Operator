@@ -1,0 +1,78 @@
+{
+  "status": "completed_analysed",
+  "SCI": "5322cb72978aa7f2d57277c83e811097afcfb2cc536a2139ba6250a9870ed6c7",
+  "terminal_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/Hash_TS_matched20_knownDEV60_v79/summary.json",
+      "bytes": 1358185,
+      "mtime_ns": 1791757576594831400,
+      "sha256": "3d6235c3c93cb2eb8cf28b88c9cdc545d4fafcd31c2e6426e40267b9b40485b9"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/Hash_TS_matched20_knownDEV60_v79/status.json",
+      "bytes": 1358185,
+      "mtime_ns": 1791757576620425700,
+      "sha256": "3d6235c3c93cb2eb8cf28b88c9cdc545d4fafcd31c2e6426e40267b9b40485b9"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/Hash_TS_matched20_knownDEV60_v79/external_terminal.json",
+      "bytes": 27734,
+      "mtime_ns": 1791757576983750900,
+      "sha256": "6f95e679c9277801d483ec5241e24449e88fe08c23161d03039d618268cfe4b8"
+    }
+  },
+  "actual_report_manifest": {
+    "path": "results/geobc_matched20_readout_v79/manifest.json",
+    "bytes": 1248,
+    "mtime_ns": 1791757603631023700,
+    "sha256": "49d2ed6e6b5d2bdd0788b3a7f6c044b69793823e6223676873043c51a88c43fe"
+  },
+  "PNG_visual_QA_passed": true,
+  "matched20_leaders": [
+    "FNO_GLOBAL_HASH20"
+  ],
+  "gates": {
+    "FNO_GLOBAL_HASH20": {
+      "passed": false,
+      "U_difference": -0.0027230278214558645,
+      "S_difference": -0.004912899767893442,
+      "primary_difference": -0.003817963794674653,
+      "hotspot_difference": -0.03702037795073787,
+      "direction": "matched20 candidate minus FNO20; same exposures, capacity/precision differ",
+      "thresholds": {
+        "primary_absolute_improvement_min": 0.03,
+        "stress_absolute_improvement_min": 0.03,
+        "field_deterioration_max": 0.02,
+        "hotspot_deterioration_max": 0.02,
+        "fixed_DEV_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false
+    },
+    "TS_CONTINUOUS20": {
+      "passed": false,
+      "U_difference": 0.15145691822873397,
+      "S_difference": 0.10550503712449405,
+      "primary_difference": 0.128480977676614,
+      "hotspot_difference": 0.01841439094106112,
+      "direction": "matched20 candidate minus FNO20; same exposures, capacity/precision differ",
+      "thresholds": {
+        "primary_absolute_improvement_min": 0.03,
+        "stress_absolute_improvement_min": 0.03,
+        "field_deterioration_max": 0.02,
+        "hotspot_deterioration_max": 0.02,
+        "fixed_DEV_denominator": 60
+      },
+      "fixed_denominator": 60,
+      "releases_continuation": false
+    }
+  },
+  "conclusion": "Hash20 narrowly leads FNO20 by U0.27/S0.49pp but fails3pp gate; TS20 remains worse U15.15/S10.55pp. Retain FNO family shortlist; no automatic long training or Hash tweak; representation macro next.",
+  "final_solver_selected": false,
+  "next_design": {
+    "path": "notes/geobc_nativeTS100_matched10_v80_design.json",
+    "bytes": 12444,
+    "mtime_ns": 1791757669506851900,
+    "sha256": "a5e070a30730b3b253f4d1e89b9b24b5a907f32e82cf34e46ee0c412f2f8f5cf"
+  }
+}

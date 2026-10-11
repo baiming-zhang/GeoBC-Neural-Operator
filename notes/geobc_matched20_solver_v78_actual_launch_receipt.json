@@ -1,0 +1,78 @@
+{
+  "status": "actual_started_live",
+  "real_exec_session": 7144,
+  "observed_at_utc": "2026-10-11T21:53:29.719774+00:00",
+  "SCI": "a54c62bd406a2c17c3b13da0dc1c218f941cbc28358b26e3c6b6c44d7a20b1a9",
+  "execution": {
+    "run_process": {
+      "pid": 49133,
+      "ppid": 49127,
+      "start_ticks": 6935931,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_matched20_solver_v78",
+        "--start",
+        "--plan",
+        "notes/geobc_matched20_solver_v78_plan.json"
+      ]
+    },
+    "guard": {
+      "guard_process": {
+        "pid": 49127,
+        "ppid": 49123,
+        "start_ticks": 6935630,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.run_geobc_matched20_solver_guard_v78",
+          "--start",
+          "--plan",
+          "notes/geobc_matched20_solver_v78_plan.json"
+        ]
+      },
+      "scientific_digest": "a54c62bd406a2c17c3b13da0dc1c218f941cbc28358b26e3c6b6c44d7a20b1a9",
+      "entry_epoch": 1791755597.247666,
+      "entry_monotonic": 69356.328769433,
+      "deadline_epoch": 1791759797.247666,
+      "deadline_monotonic": 73556.328769433,
+      "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f"
+    },
+    "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+    "scientific_digest": "a54c62bd406a2c17c3b13da0dc1c218f941cbc28358b26e3c6b6c44d7a20b1a9"
+  },
+  "live_identities": {
+    "child_process": {
+      "pid": 49133,
+      "ppid": 49127,
+      "start_ticks": 6935931,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_matched20_solver_v78",
+        "--start",
+        "--plan",
+        "notes/geobc_matched20_solver_v78_plan.json"
+      ]
+    },
+    "guard_process": {
+      "pid": 49127,
+      "ppid": 49123,
+      "start_ticks": 6935630,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_matched20_solver_guard_v78",
+        "--start",
+        "--plan",
+        "notes/geobc_matched20_solver_v78_plan.json"
+      ]
+    }
+  },
+  "phase": "cache_setup",
+  "elapsed_epoch_seconds": 3.8679795265197754
+}
