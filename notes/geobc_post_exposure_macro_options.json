@@ -13,5 +13,19 @@
     "No earlystop, no deviation from running24000, no DEV adjustments",
     "ReservedFINAL remains unread; new scientific source/budgets/protocol required before experiments"
   ],
-  "actual_execution": 0
+  "actual_execution": 0,
+  "native_reference_candidate": {
+    "source": "geobc/native_context_solver.py",
+    "ready": "notes/geobc_native_context_source_ready.json",
+    "status": "implemented_and_synthetic_CPU_contract_passed_actual_GPU_unqualified",
+    "GPU_execution_released": false,
+    "comparison_requires_actual_current_exposure_readout": true
+  },
+  "shared_training_primitives": {
+    "source": "geobc/macro_training.py",
+    "ready": "notes/geobc_macro_training_source_ready.json",
+    "CPU_contract_passed": true,
+    "actual_GPU_training": false,
+    "next_plan_frozen": false
+  }
 }

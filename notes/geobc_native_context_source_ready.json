@@ -1,0 +1,61 @@
+{
+  "status": "implemented_and_synthetic_CPU_contract_passed_actual_GPU_unqualified",
+  "updated_UTC": "2026-10-10T23:14:16.923950+00:00",
+  "source_sha256": {
+    "geobc/native_context_solver.py": "e13291d837b72da948101479b56fd0b7df83133fd1e4bcc9a727237e9f98b7d9",
+    "tools/probe_native_context_cpu.py": "eb9dfa4d8b4b07eb69d127bc1eb4f4553f5e38514af0a924922bfe8f81f264a8",
+    "geobc/common_grid_solver.py": "b9271091c20faf9f2edad12e9d9afc0a9382ca45accdfce9048e79028601fd80",
+    "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/fno_arbitrary_query.py": "f116f228ff83a1ec682b9d9e93f24259f42bef27d1768e1f632ccd70fa2fe620"
+  },
+  "whole_new_module_source_reviewed": true,
+  "reviewer": "root",
+  "model": "NativeContextSolver / PP256_NATIVE",
+  "scientific_training_plan_frozen": false,
+  "GPU_execution_released": false,
+  "new_training_released": false,
+  "CPU_probe": "notes/geobc_native_context_CPU_probe.json",
+  "CPU_probe_seconds": 1.106327772140503,
+  "controls": {
+    "all_initial_parameters_equal_to_common_R64_PP": true,
+    "parameter_count": 4523268,
+    "shared_encoder_head_identity": "a7e147323a978876a43fd76b00c1b6f5e518c44235002607dcd1e21cf2409b57",
+    "input_layout": [
+      "xyz3",
+      "occupancy1(native=1)",
+      "original25",
+      "global_geometry32"
+    ],
+    "output": "latent16 then same76-to4query head",
+    "original_reference_context": "All original FEM nodes in one official forward; no independent operator chunks",
+    "full_case_objective": "Same encoded4 MSE with exact bounded decoder-chain-rule chunks"
+  },
+  "changed_representation": [
+    "native FEM tokens instead of R64 voxels",
+    "native occupancy=1 instead of occupied/unoccupied voxel field",
+    "native node latent lookup instead of grid-trilinear latent lookup"
+  ],
+  "interpretation": "Joint representation/context intervention; not single occupancy or token-count causal isolation.",
+  "continuous_query": {
+    "fixed_reference_context": true,
+    "latent_and_features_extension": "Explicit conforming native TET10 quadratic shape functions",
+    "cell_location_provided_by_caller": true,
+    "nodal_reproduction_verified": "Synthetic exact",
+    "AD_FD_encoded_per_mm_max_absolute_difference": 5.814945325255394e-08,
+    "independent_offnode_FEM_accuracy_verified": false,
+    "wholeCAD_locator_connectivity_path_verified": false,
+    "binary_BC_interpolation_is_not_Dirichlet_enforcement": true
+  },
+  "future_real_qualification": [
+    "PublicGPUlock and genuine prior process exit",
+    "Fixed TRAIN40/100 identities via protected v2 loader; inherited oldTRAIN40-only scaler",
+    "True largest fixed TRAIN wholeN official ++ forward/backward and all required parameter gradients",
+    "Both allocated/reserved peaks <=30500000000 bytes, separately; cache/readout/checkpoint/failed cost recorded",
+    "Same fixed endpoints and full original-node signed U/S/hot comparison; knownDEV only after prediction barrier; FINAL unopened"
+  ],
+  "official_CUDA_forward_backward_count": 0,
+  "actual_model_optimizer_updates": 0,
+  "actual_dataset_GT_PT_reads": 0,
+  "reserved_FINAL_target_reads": 0
+}

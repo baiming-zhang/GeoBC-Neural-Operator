@@ -1,0 +1,304 @@
+{
+  "status": "completed",
+  "CPU_contract_passed": true,
+  "budget_seconds": 120,
+  "synthetic_forward_operators": true,
+  "actual_dataset_input_GT_PT_array_reads": 0,
+  "actual_CUDA_forwards": 0,
+  "actual_optimizer_updates": 0,
+  "official_GPU_qualified": false,
+  "actual_training_released": false,
+  "families": {
+    "FNO9": {
+      "construction_profile": {
+        "family": "FNO9",
+        "parameter_count": 4526858,
+        "global_geometry_context_dim": 32,
+        "local_BC_material_channels": 25,
+        "output": "encoded signed uXYZ and source S; scaler owned by protocol",
+        "geometry_sampling": "same supplied target-independent 1024 cloud/mask",
+        "requires_R64_members": true,
+        "precision": "highest FP32, TF32 disabled by caller",
+        "architecture": {
+          "encoder": 16736,
+          "head": 26884,
+          "operator": 4483238,
+          "total": 4526858
+        },
+        "capacity_matched_across_families": false,
+        "continuous_query_policy": "Declared native25/latent extension needed; original-node accuracy alone is insufficient",
+        "actual_CPU_fixture_only": false
+      },
+      "full_vs_chunk_gradient_checks": [
+        {
+          "chunk_size": 7,
+          "max_parameter_gradient_absolute_difference": 1.30385160446167e-08,
+          "leafs": {
+            "geometry_context_L2": 0.004511379171162844,
+            "operator_latent_L2": 0.002025885507464409,
+            "original_nodes_used": 23,
+            "node_sampling": false
+          }
+        },
+        {
+          "chunk_size": 23,
+          "max_parameter_gradient_absolute_difference": 0.0,
+          "leafs": {
+            "geometry_context_L2": 0.004511379636824131,
+            "operator_latent_L2": 0.002025885507464409,
+            "original_nodes_used": 23,
+            "node_sampling": false
+          }
+        }
+      ],
+      "protected_case_rejections_before_encoding": 3
+    },
+    "PP256_NATIVE": {
+      "construction_profile": {
+        "family": "PP256_NATIVE",
+        "parameter_count": 4523268,
+        "global_geometry_context_dim": 32,
+        "local_BC_material_channels": 25,
+        "output": "encoded signed uXYZ and source S; scaler owned by protocol",
+        "geometry_sampling": "same supplied target-independent 1024 cloud/mask",
+        "requires_R64_members": false,
+        "precision": "highest FP32, TF32 disabled by caller",
+        "architecture": {
+          "method": "transolver_pp",
+          "repository": "https://github.com/thuml/Transolver_plus",
+          "commit": "d5a23bc734a0ebac56384cf72049a26af9673452",
+          "model_file": "models/Transolver_plus.py",
+          "file_sha256": {
+            "models/Transolver_plus.py": "7104ad5b90294d1d97b1e7e86b3eeb2ccbe11eec93d2e7bf566bcb3a8ab6e858"
+          },
+          "license": "MIT; upstream LICENSE retained",
+          "constructor_kwargs": {
+            "n_layers": 16,
+            "n_hidden": 256,
+            "n_head": 8,
+            "slice_num": 32,
+            "mlp_ratio": 1,
+            "dropout": 0.0,
+            "space_dim": 3,
+            "fun_dim": 58,
+            "out_dim": 16,
+            "act": "gelu",
+            "unified_pos": false,
+            "ref": 8
+          },
+          "preset_source": "Slide 5 fixes 16 layers / width 256; other settings are official Model constructor defaults: 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+          "slide_explicit": {
+            "output_scaling": [
+              "linear",
+              "invertible asinh stress"
+            ],
+            "updates": 1000,
+            "n_layers": 16,
+            "epochs": 500,
+            "n_hidden": 256,
+            "selection": "decoded physical normalized MSE",
+            "learning_rate": 0.003
+          },
+          "reference_gaps": [
+            "Head count, slice count, MLP ratio and dropout are not present in slide notes; official constructor defaults are used and are not claimed as exact reference settings.",
+            "Official Airplane launcher instead uses 4 layers, MLP ratio 2 and dropout 0.1; those task-specific settings are not substituted.",
+            "The source-server commit and exact target normalization constants are unavailable."
+          ],
+          "architecture_overrides": {},
+          "input": "xyz[3] + BC/material[25]; no sample ID",
+          "output": "uXYZ + source signed stress",
+          "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+          "checkpoint_blocks": true,
+          "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+          "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+          "chunk_size": null,
+          "eval_stochastic": true,
+          "gumbel_note": "Upstream ++ draws Gumbel noise during both train and eval; no guard or replacement added.",
+          "distributed": "world_size=1 process group for unchanged official all_reduce calls",
+          "parameter_count": 4479648
+        },
+        "capacity_matched_across_families": false,
+        "continuous_query_policy": "Declared native25/latent extension needed; original-node accuracy alone is insufficient",
+        "actual_CPU_fixture_only": false
+      },
+      "full_vs_chunk_gradient_checks": [
+        {
+          "chunk_size": 7,
+          "max_parameter_gradient_absolute_difference": 1.6763806343078613e-08,
+          "leafs": {
+            "geometry_context_L2": 0.00884976889938116,
+            "operator_latent_L2": 0.0065872506238520145,
+            "original_nodes_used": 23,
+            "node_sampling": false
+          }
+        },
+        {
+          "chunk_size": 23,
+          "max_parameter_gradient_absolute_difference": 0.0,
+          "leafs": {
+            "geometry_context_L2": 0.00884976889938116,
+            "operator_latent_L2": 0.006587251089513302,
+            "original_nodes_used": 23,
+            "node_sampling": false
+          }
+        }
+      ],
+      "protected_case_rejections_before_encoding": 3
+    },
+    "HASH_PN": {
+      "construction_profile": {
+        "family": "HASH_PN",
+        "parameter_count": 20900,
+        "global_geometry_context_dim": 32,
+        "local_BC_material_channels": 25,
+        "output": "encoded signed uXYZ and source S; scaler owned by protocol",
+        "geometry_sampling": "same supplied target-independent 1024 cloud/mask",
+        "requires_R64_members": false,
+        "precision": "CPU injected fixture; TCNN precision untested",
+        "architecture": {
+          "geometry_mode": "shape",
+          "descriptor_dim": 32,
+          "condition_dim": 25,
+          "cloud_points": 1024,
+          "point_width": 64,
+          "out_channels": 4,
+          "seed": 2026,
+          "n_levels": 12,
+          "n_features_per_level": 2,
+          "log2_hashmap_size": 19,
+          "base_resolution": 8,
+          "per_level_scale": 1.6,
+          "hidden_dim": 64,
+          "hidden_layers": 2,
+          "method": "PointNet-conditioned continuous hash field",
+          "claim": "GeoBC candidate baseline; no new-algorithm or generalization claim",
+          "decoder": {
+            "out_channels": 4,
+            "input_mode": "both",
+            "condition_dim": 57,
+            "n_levels": 12,
+            "n_features_per_level": 2,
+            "log2_hashmap_size": 19,
+            "base_resolution": 8,
+            "per_level_scale": 1.6,
+            "hidden_dim": 64,
+            "hidden_layers": 2,
+            "seed": 2026,
+            "source": "https://github.com/NVlabs/tiny-cuda-nn/tree/3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+            "source_commit": "3daa6e5b8b8e0fa17971a1a20acfbb3754494b38",
+            "encoding": {
+              "otype": "Composite",
+              "nested": [
+                {
+                  "otype": "HashGrid",
+                  "n_levels": 12,
+                  "n_features_per_level": 2,
+                  "log2_hashmap_size": 19,
+                  "base_resolution": 8,
+                  "per_level_scale": 1.6,
+                  "interpolation": "Linear",
+                  "hash": "CoherentPrime",
+                  "n_dims_to_encode": 3
+                },
+                {
+                  "otype": "Identity",
+                  "n_dims_to_encode": 57,
+                  "scale": 1.0,
+                  "offset": 0.0
+                }
+              ]
+            },
+            "network": {
+              "otype": "FullyFusedMLP",
+              "activation": "ReLU",
+              "output_activation": "None",
+              "n_neurons": 64,
+              "n_hidden_layers": 2
+            },
+            "sample_id": false,
+            "raw_xyz_after_encoding": false,
+            "bias_parameters": false,
+            "jit_fusion": false,
+            "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+            "alignment": "native TCNN channel/batch padding retained",
+            "layout": "xyz[N,3], features[N,condition_dim] -> prediction[N,out_channels]"
+          },
+          "encoder": {
+            "point_mlp": [
+              3,
+              32,
+              64,
+              64
+            ],
+            "pooling": "concatenated masked max and masked mean",
+            "head": [
+              128,
+              64,
+              32
+            ],
+            "activation": "ReLU",
+            "output": "non-affine LayerNorm then tanh, bounded [-1,1]",
+            "batch_norm": false,
+            "dropout": false
+          },
+          "conditioning": "existing local BC/material features followed by global geometry descriptor",
+          "geometry_source": "fixed per-CAD normalized xyz only; prefer unique original boundary FEM nodes",
+          "geometry_sampling": "CAD-key/seed-stable sampling without replacement; masked padding for small clouds",
+          "geometry_target_independent": true,
+          "geometry_load_independent": true,
+          "context_gradient": "index_select/concatenate preserve gradients through native TCNN inputs",
+          "context_training_cache": "clouds only; re-encode once per unique CAD each optimizer step",
+          "control": "none/id retain the same decoder condition dimension and width as shape",
+          "id_policy": "fixed case identity codes for a diagnostic only; cannot encode unseen geometry",
+          "actual_decoder_backend": "injected_cpu_interface_decoder",
+          "decoder_parameters": 4164,
+          "geometry_encoder_parameters": 16736
+        },
+        "capacity_matched_across_families": false,
+        "continuous_query_policy": "Declared native25/latent extension needed; original-node accuracy alone is insufficient",
+        "actual_CPU_fixture_only": true
+      },
+      "full_vs_chunk_gradient_checks": [
+        {
+          "chunk_size": 7,
+          "max_parameter_gradient_absolute_difference": 2.9802322387695312e-08,
+          "leafs": {
+            "geometry_context_L2": 0.036438629031181335,
+            "operator_latent_L2": null,
+            "original_nodes_used": 23,
+            "node_sampling": false
+          }
+        },
+        {
+          "chunk_size": 23,
+          "max_parameter_gradient_absolute_difference": 0.0,
+          "leafs": {
+            "geometry_context_L2": 0.036438629031181335,
+            "operator_latent_L2": null,
+            "original_nodes_used": 23,
+            "node_sampling": false
+          }
+        }
+      ],
+      "protected_case_rejections_before_encoding": 3
+    }
+  },
+  "failure": null,
+  "actual_metadata_reads": 2,
+  "TRAIN40_schedule_equals_existing_frozen_24000": true,
+  "TRAIN100_schedule_cases": 300,
+  "TRAIN100_schedule_updates_at200passes": 60000,
+  "actual_initial_geometry_encoder_equal_all_families": true,
+  "CUDA_initialized": false,
+  "epoch_seconds": 1.2279510498046875,
+  "monotonic_seconds": 1.2279513509993194,
+  "budget_passed": true,
+  "source_sha256": {
+    "geobc/macro_training.py": "9df8c35f070da4935260785c55361dad0580cb6b79d8393c99c35452e987c3c9",
+    "tools/probe_macro_training_cpu.py": "15d2a6b95e903d9f8ec540cc97e46da8c515e1d22544a3e770171175a3bcb5c5",
+    "geobc/native_context_solver.py": "e13291d837b72da948101479b56fd0b7df83133fd1e4bcc9a727237e9f98b7d9",
+    "geobc/common_grid_solver.py": "b9271091c20faf9f2edad12e9d9afc0a9382ca45accdfce9048e79028601fd80",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/tcnn_fields.py": "ae8d4f10deea2dfccfe77432ae218791fea27d279673120ddedafc5009a271ef"
+  }
+}

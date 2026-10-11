@@ -13,6 +13,8 @@
 
 以上为全原节点、物理单位 relative-L2 的病例均值；新20 CAD是已知开发池，不能当作最终测试。这说明当前配方的差距，不能宣布某个架构的上限。见[共同配置比较](results/geobc_common_grid_comparison/BRIEF.md)。
 
+按CAD配对分析，当前FNO联合评分领先20/20 CAD，平均差21.9个百分点；逐一移除一个CAD后仍领先21.0–22.5个百分点。这是已知开发池的单seed结果。[CAD配对证据](results/geobc_common_grid_CAD_pair_analysis/BRIEF.md)。
+
 Hash 的约0.4%来自单病例已知应力拟合，五病例约1.45%；它与跨CAD、联合位移／应力任务不同。FNO 在独立单病例4800更新可达到位移3.9%／应力11.5%，表明共享训练误差包含拟合不足。[单例诊断](results/geobc_single_case_fit/BRIEF.md) · [Hash口径](notes/geobc_hash_error_comparability.json)。
 
 ## 正在推进
@@ -23,7 +25,9 @@ Hash 的约0.4%来自单病例已知应力拟合，五病例约1.45%；它与跨
 - ++仍在同端点训练；真实运行状态见[轻量监视收据](notes/geobc_exposure_live_milestone.json)。整个配对尚未完成。
 - 两臂结束后固定读取相同开发60例，再决定推进原生网格Transolver、条件化连续Hash或数据覆盖度对照。[计划](notes/geobc_exposure_extension_plan.json) · [宏观问题](notes/geobc_macro_conditioning_source_review.json)。
 
-当前模型通过网格和查询特征接收边界条件；全局PointNet只编码几何。历史粗粒度约束／加载区点云消融未带来明确收益，下一轮避免重复该配方。
+当前模型通过网格和查询特征接收边界条件；全局PointNet只编码几何。历史粗粒度约束／加载区点云消融未带来明确收益，下一轮避免重复该配方。 原生节点++接口也已实现，全部初始参数与R64对照一致，CPU合成接口检查1.106秒；真实CUDA和精度未验证。[原生接口准备](results/geobc_native_context_interface/BRIEF.md)。
+
+后续宏观方法已共用全节点训练与开发集评估入口；开发标签仅在所有候选预测完整提交后读取。CPU合成协议检查通过，真实CUDA和新精度仍未执行。[评估接口](results/geobc_macro_readout_interface/BRIEF.md)。
 
 ## 数据与资源
 
@@ -31,7 +35,7 @@ Hash 的约0.4%来自单病例已知应力拟合，五病例约1.45%；它与跨
 
 420病例接口已整合：TRAIN300有已有目标，DEV60／FINAL60仅输入。两个实际TRAIN加载检查通过；旧int32／新int64索引兼容故障及原预算内修复保留，未验证全部300数值正文，也未启动新100CAD训练。[接口简报](results/geobc_prospective_dataset_interface/BRIEF.md)。后续入口为 `geobc.prospective_dataset_v2.load_case`，明确选择40或100范围。
 
-用户显存预算 **30.5 GB**（30,500,000,000 bytes）。100CAD R64全缓存加当前++工作空间估计28.64GB，后续优先GPU常驻；必须以实际全节点allocated／reserved各自峰值确认。[资源预算](notes/geobc_user_resource_budget.json) · [缓存估算](notes/geobc_prospective_cache_memory_plan.json)。当前运行实验保留自身较小的原24GiB上限。
+用户显存预算 **30.5 GB**（30,500,000,000 bytes）。100CAD R64全缓存加当前++工作空间估计28.64GB，后续优先GPU常驻；必须以实际全节点allocated／reserved各自峰值确认。[资源预算](notes/geobc_user_resource_budget.json) · [缓存估算](notes/geobc_prospective_cache_memory_plan.json)。当前运行实验保留自身较小的原24GiB上限。 共用TRAIN缓存接口已通过元数据与合成CPU检查（1.074秒），100CAD原生方法仅需约7.02GiB缓存；真实GPU载入仍未执行。[缓存接口](results/geobc_train_cache_interface/BRIEF.md)。
 
 ## 复现与证据
 
@@ -55,6 +59,6 @@ python tools/plot_suite_fields.py
 
 研究阶段必须使用各自冻结计划和真实进程交接，不能因旧status、锁文件或SOURCE-ready重复启动GPU任务。30分钟监视器持续推进；活训练期间只作轻量检查。
 
-[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `49f137b` 包含CPU80输入准备与FNO24000训练端点。当前420数据接口、兼容修复及新资源预算正在形成下一次快照，尚不声称已上传。[发布计划](notes/github_publish_plan.json)。
+[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；最近已验收提交 `022c53c` 包含420数据接口、兼容故障与原预算内修复、精简README及30.5GB资源预算；推送57.21秒，精确commit和private状态通过远端核验。[发布计划](notes/github_publish_plan.json)。
 
 更早逐阶段运行叙述存于[README历史快照](results/README_STATE_HISTORY_20261011.md)，状态以当前真实报告和运行收据为准。

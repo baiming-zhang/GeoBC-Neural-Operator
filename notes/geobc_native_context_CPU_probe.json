@@ -1,0 +1,62 @@
+{
+  "status": "completed",
+  "scope": "Synthetic CPU contract only; actual official model constructors but synthetic forward operator",
+  "started_UTC": "2026-10-10T23:13:09.206619+00:00",
+  "source_sha256": {
+    "geobc/native_context_solver.py": "e13291d837b72da948101479b56fd0b7df83133fd1e4bcc9a727237e9f98b7d9",
+    "tools/probe_native_context_cpu.py": "eb9dfa4d8b4b07eb69d127bc1eb4f4553f5e38514af0a924922bfe8f81f264a8",
+    "geobc/common_grid_solver.py": "b9271091c20faf9f2edad12e9d9afc0a9382ca45accdfce9048e79028601fd80",
+    "geobc/transformers.py": "3aba849daced6f46a90961ba091848dbe3ee75aa8dd29508cd52da636dda8813",
+    "geobc/conditioned_field.py": "a7c76c3d9ab94ecee042c39f60d90708a32bf1e1455299aff9e8519bbbc3c9e0",
+    "geobc/fno_arbitrary_query.py": "f116f228ff83a1ec682b9d9e93f24259f42bef27d1768e1f632ccd70fa2fe620"
+  },
+  "budget_seconds": 120,
+  "actual_dataset_GT_PT_reads": 0,
+  "actual_CUDA_operator_forwards": 0,
+  "actual_training_updates": 0,
+  "official_wholeN_resource_gradient_qualified": false,
+  "new_training_released": false,
+  "failure": null,
+  "actual_official_initial_parameters_equal": true,
+  "parameter_counts": {
+    "encoder": 16736,
+    "head": 26884,
+    "operator": 4479648,
+    "total": 4523268
+  },
+  "shared_initial_identity": "a7e147323a978876a43fd76b00c1b6f5e518c44235002607dcd1e21cf2409b57",
+  "synthetic_full_vs_chunked_chain_rule": [
+    {
+      "chunk_size": 7,
+      "max_parameter_gradient_absolute_difference": 1.4901161193847656e-08,
+      "context_latent_gradient_norms": {
+        "context": 0.010256367735564709,
+        "latent": 0.00618555024266243
+      }
+    },
+    {
+      "chunk_size": 9,
+      "max_parameter_gradient_absolute_difference": 1.4901161193847656e-08,
+      "context_latent_gradient_norms": {
+        "context": 0.010256366804242134,
+        "latent": 0.006185551173985004
+      }
+    },
+    {
+      "chunk_size": 23,
+      "max_parameter_gradient_absolute_difference": 0.0,
+      "context_latent_gradient_norms": {
+        "context": 0.010256367735564709,
+        "latent": 0.006185550708323717
+      }
+    }
+  ],
+  "TET10_nodal_reproduction_exact": true,
+  "synthetic_encoded_field_physical_gradient_AD_FD_max_absolute_difference": 5.814945325255394e-08,
+  "invalid_queries_rejected": 2,
+  "CPU_contract_passed": true,
+  "CUDA_initialized": false,
+  "epoch_seconds": 1.106327772140503,
+  "monotonic_seconds": 1.1063282599998274,
+  "budget_passed": true
+}

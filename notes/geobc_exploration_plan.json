@@ -5790,5 +5790,74 @@
     "scope": "Future separately frozen GPU stages; existing live experiment remains within its own smaller immutable24GiB cap",
     "current_actual_new_GPU_tasks": 0,
     "updated_UTC": "2026-10-10T23:03:23.446594+00:00"
+  },
+  "prepared_macro_training_interface": {
+    "ready": "notes/geobc_macro_training_source_ready.json",
+    "source": "geobc/macro_training.py",
+    "actual_CPU_probe_seconds": 1.2279510498046875,
+    "actual_new_GPU_training": 0,
+    "evidence_waiting": "Fixed current paired24000 TRAIN and ownedDEV60 endpoints"
+  },
+  "prepared_macro_TRAIN_cache": {
+    "source": "geobc/train_resident_cache.py",
+    "ready": "notes/geobc_train_cache_source_ready.json",
+    "actual_CPU_probe_seconds": 1.0740325450897217,
+    "actual_GPU_execution": 0
+  },
+  "prepared_macro_campaign_wrapper": {
+    "ready": "notes/geobc_macro_campaign_source_ready.json",
+    "actual_SOURCE_check_seconds": 0.0792686939239502,
+    "actual_GPU_execution": 0,
+    "next_plan_frozen": false
+  },
+  "current_exposure_event_handoff": {
+    "status": "actual_live_kernel_parent_exit_wait",
+    "source": "tools/await_geobc_exposure_handoff.py",
+    "root_review": "notes/geobc_exposure_handoff_root_review.json",
+    "actual_launch": "notes/geobc_exposure_handoff_actual_launch.json",
+    "controller_process": {
+      "pid": 10622,
+      "ppid": 10618,
+      "start_ticks": 739098,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.await_geobc_exposure_handoff",
+        "--start"
+      ]
+    },
+    "boot_id": "c768cff3-9091-4a9a-a7fe-b11f1634f5ff",
+    "exec_session_id": 93101,
+    "pidfd_wait_parent_guard": {
+      "pid": 278,
+      "ppid": 277,
+      "start_ticks": 5963,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_exposure_guard",
+        "--start"
+      ]
+    },
+    "GPU_tasks_started": 0,
+    "existing_readout_and_CPU_export_after_actual_parent_terminal": true,
+    "watchdog_must_not_duplicate_launch_while_controller_actual_live": true
+  },
+  "prepared_macro_knownDEV_readout": {
+    "ready": "notes/geobc_macro_readout_source_ready.json",
+    "actual_CPU_probe_seconds": 0.19289422035217285,
+    "actual_new_GPU_execution": 0,
+    "new_science_frozen": false,
+    "purpose": "Same knownDEV60 and original signed jointU/S/hot metrics for broad macro candidates; separate fixed prediction barrier, no FINAL targets"
+  },
+  "current_common_grid_CAD_pair_evidence": {
+    "report": "results/geobc_common_grid_CAD_pair_analysis/BRIEF.md",
+    "actual_CPU_seconds": 0.15259432792663574,
+    "joint_FNO_better_CAD_count": 20,
+    "joint_gap_percentage_points": 21.92512109299618,
+    "role": "KnownDEV20 paired summary; not new trained model or final-test confidence",
+    "stage_decision": "Keep real extended++/FNO comparison running; current gap is broad across this development pool, not a single-CAD outlier"
   }
 }

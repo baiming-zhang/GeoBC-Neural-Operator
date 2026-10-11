@@ -1,0 +1,157 @@
+{
+  "status": "completed",
+  "CPU_contract_passed": true,
+  "original_numeric_array_GT_PT_reads": 0,
+  "original_metadata_reads": 1,
+  "actual_GPU_reads_or_allocations": 0,
+  "actual_new_training_updates": 0,
+  "actual_GPU_resource_qualified": false,
+  "metadata_profiles": {
+    "40_FNO9": {
+      "family": "FNO9",
+      "cases": 120,
+      "unique_files": 560,
+      "disk_bytes_with_headers_upper": 7335605720,
+      "memory_limit_bytes": 30500000000,
+      "numeric_bodies_read": 0,
+      "physical_DEV_FINAL_read": false,
+      "actual_GPU_cache_loaded": false,
+      "actual_model_gradient_resource_qualified": false
+    },
+    "40_PP256_NATIVE": {
+      "family": "PP256_NATIVE",
+      "cases": 120,
+      "unique_files": 360,
+      "disk_bytes_with_headers_upper": 3130164760,
+      "memory_limit_bytes": 30500000000,
+      "numeric_bodies_read": 0,
+      "physical_DEV_FINAL_read": false,
+      "actual_GPU_cache_loaded": false,
+      "actual_model_gradient_resource_qualified": false
+    },
+    "40_HASH_PN": {
+      "family": "HASH_PN",
+      "cases": 120,
+      "unique_files": 360,
+      "disk_bytes_with_headers_upper": 3130164760,
+      "memory_limit_bytes": 30500000000,
+      "numeric_bodies_read": 0,
+      "physical_DEV_FINAL_read": false,
+      "actual_GPU_cache_loaded": false,
+      "actual_model_gradient_resource_qualified": false
+    },
+    "100_FNO9": {
+      "family": "FNO9",
+      "cases": 300,
+      "unique_files": 1400,
+      "disk_bytes_with_headers_upper": 18385684160,
+      "memory_limit_bytes": 30500000000,
+      "numeric_bodies_read": 0,
+      "physical_DEV_FINAL_read": false,
+      "actual_GPU_cache_loaded": false,
+      "actual_model_gradient_resource_qualified": false
+    },
+    "100_PP256_NATIVE": {
+      "family": "PP256_NATIVE",
+      "cases": 300,
+      "unique_files": 900,
+      "disk_bytes_with_headers_upper": 7532826400,
+      "memory_limit_bytes": 30500000000,
+      "numeric_bodies_read": 0,
+      "physical_DEV_FINAL_read": false,
+      "actual_GPU_cache_loaded": false,
+      "actual_model_gradient_resource_qualified": false
+    },
+    "100_HASH_PN": {
+      "family": "HASH_PN",
+      "cases": 300,
+      "unique_files": 900,
+      "disk_bytes_with_headers_upper": 7532826400,
+      "memory_limit_bytes": 30500000000,
+      "numeric_bodies_read": 0,
+      "physical_DEV_FINAL_read": false,
+      "actual_GPU_cache_loaded": false,
+      "actual_model_gradient_resource_qualified": false
+    }
+  },
+  "synthetic_checks": {
+    "FNO9": {
+      "receipt": {
+        "input_array_read_attempts": 8,
+        "input_array_reads": 8,
+        "encoded_TRAIN_target_read_attempts": 3,
+        "encoded_TRAIN_target_reads": 3,
+        "physical_TRAIN_target_reads": 0,
+        "DEV_FINAL_target_reads": 0,
+        "source_CSV_H5_reads": 0,
+        "scaler_fits": 0,
+        "loaded_cases": 120,
+        "actual_tensor_bytes": 30428640,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null
+      },
+      "unique_files": 11,
+      "shared_geometry_aliases": true,
+      "original_signed_fixture_targets_exact": true,
+      "premature_partial_cache_rejected": true,
+      "out_of_scope_rejections": 3,
+      "replay_rejected": true
+    },
+    "PP256_NATIVE": {
+      "receipt": {
+        "input_array_read_attempts": 4,
+        "input_array_reads": 4,
+        "encoded_TRAIN_target_read_attempts": 3,
+        "encoded_TRAIN_target_reads": 3,
+        "physical_TRAIN_target_reads": 0,
+        "DEV_FINAL_target_reads": 0,
+        "source_CSV_H5_reads": 0,
+        "scaler_fits": 0,
+        "loaded_cases": 120,
+        "actual_tensor_bytes": 16992,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null
+      },
+      "unique_files": 7,
+      "shared_geometry_aliases": true,
+      "original_signed_fixture_targets_exact": true,
+      "premature_partial_cache_rejected": true,
+      "out_of_scope_rejections": 3,
+      "replay_rejected": true
+    },
+    "HASH_PN": {
+      "receipt": {
+        "input_array_read_attempts": 4,
+        "input_array_reads": 4,
+        "encoded_TRAIN_target_read_attempts": 3,
+        "encoded_TRAIN_target_reads": 3,
+        "physical_TRAIN_target_reads": 0,
+        "DEV_FINAL_target_reads": 0,
+        "source_CSV_H5_reads": 0,
+        "scaler_fits": 0,
+        "loaded_cases": 120,
+        "actual_tensor_bytes": 16992,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null
+      },
+      "unique_files": 7,
+      "shared_geometry_aliases": true,
+      "original_signed_fixture_targets_exact": true,
+      "premature_partial_cache_rejected": true,
+      "out_of_scope_rejections": 3,
+      "replay_rejected": true
+    }
+  },
+  "failure": null,
+  "metadata_and_impossible_budget_before_array_library_imports": true,
+  "CUDA_initialized": false,
+  "epoch_seconds": 1.0740325450897217,
+  "monotonic_seconds": 1.0740332539999145,
+  "budget_passed": true,
+  "source_sha256": {
+    "geobc/train_resident_cache.py": "79dfcc3602e8062fefab8d31afd8380e936806efc4befddae518293233597d3d",
+    "tools/probe_train_cache_cpu.py": "2065a5b846fb7b70f30c83601b169db0e3cd72f50b673e24e01c2a7ebeb18f0b",
+    "geobc/prospective_dataset.py": "e1085d7889fba8ddd0ca29e9e16cfb76e9f5f0d111a248f2b607d123bd2b9317",
+    "geobc/available_cad_pilot_data.py": "fe6a1b8ac1a001dc14a5eefd1e64cb75d71359a3ba77903479d4051fd0eb127a"
+  }
+}

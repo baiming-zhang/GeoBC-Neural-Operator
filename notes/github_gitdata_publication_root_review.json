@@ -2,58 +2,56 @@
   "passed": true,
   "whole_source_reviewed": true,
   "reviewer": "root",
-  "reviewed_at_utc": "2026-10-10T22:25:00.546217+00:00",
+  "reviewed_at_utc": "2026-10-10T23:09:00.142042+00:00",
   "decision": "one_bounded_exact_immutable_gitdata_API_publication_attempt",
   "source_sha256": "f9ab1692564f03ef4f0419c7c7a01ca13f8223fe5ef313f3dc8b16ebc064bef9",
-  "target_commit": "49f137bb0b9a114fef27dd465601070602628a72",
-  "base_commit": "e5a052535a2c308fa3e7c78314ab70352160267e",
-  "target_tree": "01f074cfedbe10244a6c47fb723e7f0b8f21d548",
-  "changed_file_count": 44,
+  "target_commit": "022c53c3547a6fee0e6b5dd8344a8e753adb3dca",
+  "base_commit": "49f137bb0b9a114fef27dd465601070602628a72",
+  "target_tree": "251d00de0ebddf27110c1511145f6a0a2c41c324",
+  "changed_file_count": 42,
   "changed_files": [
     "README.md",
-    "notes/geobc_cpu_input_probe_plan.json",
-    "notes/geobc_cpu_input_probe_root_review.json",
-    "notes/geobc_cpu_inputs80_exporter_root_review.json",
-    "notes/geobc_cpu_inputs80_live_milestone.json",
-    "notes/geobc_cpu_inputs80_plan.json",
-    "notes/geobc_cpu_inputs80_root_review.json",
+    "geobc/prospective_dataset.py",
+    "geobc/prospective_dataset_v2.py",
     "notes/geobc_exploration_plan.json",
-    "notes/geobc_exposure_FNO24000_interim.json",
-    "notes/geobc_exposure_exporter_root_review.json",
     "notes/geobc_exposure_live_milestone.json",
-    "notes/geobc_exposure_readout_plan.json",
-    "notes/geobc_exposure_readout_root_review.json",
-    "notes/geobc_hash_error_comparability.json",
-    "notes/geobc_post_exposure_macro_options.json",
-    "notes/github_gitdata_84f_root_review_preserved.json",
-    "notes/github_gitdata_e5a_root_review.json",
-    "notes/github_gitdata_e5a_root_review_preserved.json",
-    "notes/github_gitdata_e5a_verified_receipt.json",
+    "notes/geobc_macro_conditioning_source_review.json",
+    "notes/geobc_prospective_cache_memory_plan.json",
+    "notes/geobc_prospective_dataset_plan.json",
+    "notes/geobc_prospective_dataset_ready.json",
+    "notes/geobc_prospective_dataset_root_review.json",
+    "notes/geobc_prospective_loader_dtype_inspection.json",
+    "notes/geobc_prospective_loader_probe_plan.json",
+    "notes/geobc_prospective_loader_probe_root_review.json",
+    "notes/geobc_prospective_loader_recovery_plan.json",
+    "notes/geobc_prospective_loader_recovery_root_review.json",
+    "notes/geobc_user_resource_budget.json",
+    "notes/github_gitdata_49f_root_review.json",
+    "notes/github_gitdata_49f_root_review_preserved.json",
+    "notes/github_gitdata_49f_verified_receipt.json",
+    "notes/github_gitdata_publication_49f137bb0b9a114fef27dd465601070602628a72_cpu80_exposure_20261010t2227_receipt.json",
     "notes/github_gitdata_publication_root_review.json",
     "notes/github_publish_plan.json",
-    "notes/github_publish_prior_84f_canonical_receipt.json",
-    "notes/github_publish_prior_e5a_canonical_receipt.json",
-    "results/TRANSOLVER_COMPARISON.md",
-    "results/geobc_prospective_input_preparation/BRIEF.md",
-    "results/geobc_prospective_input_preparation/manifest.json",
-    "results/geobc_prospective_input_preparation/metrics.json",
-    "results/geobc_prospective_input_preparation/source_cache_index.json",
-    "results/geobc_prospective_input_preparation/source_evidence/CPU_probe_external.json",
-    "results/geobc_prospective_input_preparation/source_evidence/CPU_probe_summary.json",
-    "results/geobc_prospective_input_preparation/source_evidence/external.json",
-    "results/geobc_prospective_input_preparation/source_evidence/manifest.json",
-    "results/geobc_prospective_input_preparation/source_evidence/plan.json",
-    "results/geobc_prospective_input_preparation/source_evidence/read_receipt.json",
-    "results/geobc_prospective_input_preparation/source_evidence/summary.json",
-    "tools/evaluate_geobc_exposure_endpoints.py",
-    "tools/export_geobc_cpu_inputs80.py",
-    "tools/export_geobc_exposure_comparison.py",
-    "tools/geobc_cpu_input_probe.py",
-    "tools/prepare_geobc_cpu_inputs80.py",
-    "tools/prepare_geobc_exposure_readout.py",
-    "tools/run_geobc_cpu_input_probe.py",
-    "tools/run_geobc_cpu_inputs80.py",
-    "tools/run_geobc_exposure_readout_guard.py"
+    "notes/github_publish_prior_49f_canonical_receipt.json",
+    "results/README_STATE_HISTORY_20261011.md",
+    "results/geobc_prospective_dataset_interface/BRIEF.md",
+    "results/geobc_prospective_dataset_interface/dataset_index.json",
+    "results/geobc_prospective_dataset_interface/manifest.json",
+    "results/geobc_prospective_dataset_interface/metrics.json",
+    "results/geobc_prospective_dataset_interface/source_evidence/assembly_external.json",
+    "results/geobc_prospective_dataset_interface/source_evidence/assembly_summary.json",
+    "results/geobc_prospective_dataset_interface/source_evidence/immutable_input_manifest.json",
+    "results/geobc_prospective_dataset_interface/source_evidence/original_failed_external.json",
+    "results/geobc_prospective_dataset_interface/source_evidence/original_failed_summary.json",
+    "results/geobc_prospective_dataset_interface/source_evidence/probe_recovery_external.json",
+    "results/geobc_prospective_dataset_interface/source_evidence/probe_recovery_summary.json",
+    "tools/export_geobc_prospective_dataset.py",
+    "tools/prepare_geobc_prospective_dataset.py",
+    "tools/probe_geobc_prospective_loader.py",
+    "tools/probe_geobc_prospective_loader_recovery.py",
+    "tools/run_geobc_dataset_assembly_guard.py",
+    "tools/run_geobc_loader_probe_guard.py",
+    "tools/run_geobc_loader_recovery_guard.py"
   ],
   "required_identity": {
     "owner": "baiming-zhang",
@@ -61,13 +59,225 @@
     "repository_id": 1410470321,
     "private": true
   },
-  "attempt_id": "cpu80_exposure_20261010t2227",
+  "attempt_id": "dataset420_conditioning_20261011",
   "review_basis": [
-    "Unchanged bounded API helper matches previously whole-source reviewed SHA",
-    "All105 delta paths inspected; raw arrays/checkpoints/data/runs absent",
-    "Actual completed common4800/development60/single-case/physical-loss scalar reports and viewed PNGs",
-    "New exposure study launch/source only, no unexecuted endpoint claim",
-    "Ordinary exact fast-forward from verified84f; remote IDs/private checked before and after by helper; no force"
+    "Unchanged helper matches prior complete source review; no redundant helper audit",
+    "42 exact changed paths and snapshot/current bytes verified; JSON/AST valid; raw numeric arrays/checkpoints/data/runs absent",
+    "Dataset assembly and same-budget int32 compatibility recovery actual completed; original failed attempt preserved",
+    "README condensed; running PP and prospective future training not claimed completed",
+    "30.5GB user correction; future actual peak qualification still required"
   ],
-  "review": "Exact44-path immutable child of verified e5a inspected. Fixed80 actual CPU preparation and scalar source receipts; FNO24000 explicitly TRAIN-only; PP/live and future readout/export actual0 distinguished. New code reviewed/frozen. No raw arrays/PT/GT or secrets. Helper unchanged from prior full review; one bounded ordinary fast-forward REST publication."
+  "review": "Exact child of verified49f; dataset/loader code already source-reviewed and actual CPU-qualified in recorded stages. Only metadata and allowed scalar input-index provenance exported; no new GPU experiment. Normal nonforce Git Data fast-forward with exact owner/repo/private checks.",
+  "changed_file_identities": [
+    {
+      "path": "README.md",
+      "bytes": 5682,
+      "sha256": "020e69cad12e5a46541db9d504923be432e4bac583f3c82c2005719fbb24c87c"
+    },
+    {
+      "path": "geobc/prospective_dataset.py",
+      "bytes": 4426,
+      "sha256": "e1085d7889fba8ddd0ca29e9e16cfb76e9f5f0d111a248f2b607d123bd2b9317"
+    },
+    {
+      "path": "geobc/prospective_dataset_v2.py",
+      "bytes": 2453,
+      "sha256": "454af6e029169c58877ea0dc00afdc6cbc569d29b462f29ebd33be778a654b49"
+    },
+    {
+      "path": "notes/geobc_exploration_plan.json",
+      "bytes": 228632,
+      "sha256": "f76b29cccb68cd8b1e6f8dfe171ab989b43b16b412e0e1b30c36f1e2aca2273e"
+    },
+    {
+      "path": "notes/geobc_exposure_live_milestone.json",
+      "bytes": 2290,
+      "sha256": "ee29e228d7fad0cbc588f25abad3c3c5ffc917aedd9463e8eca4f74f345e4424"
+    },
+    {
+      "path": "notes/geobc_macro_conditioning_source_review.json",
+      "bytes": 2460,
+      "sha256": "dba27018eb5c995c72f39c6aa0d6364d80c7dc51c37511b7ed339dc07fd98433"
+    },
+    {
+      "path": "notes/geobc_prospective_cache_memory_plan.json",
+      "bytes": 2650,
+      "sha256": "66458bfe0d8442c67b6a0870197d98685ca6603c86765b58d251660146375885"
+    },
+    {
+      "path": "notes/geobc_prospective_dataset_plan.json",
+      "bytes": 3405,
+      "sha256": "6094ce4890e95f46b6df90db4de21bb912b691683ae37c56bee083b24c95b01c"
+    },
+    {
+      "path": "notes/geobc_prospective_dataset_ready.json",
+      "bytes": 1315,
+      "sha256": "5ec42e2bc044071abf821a8d177463a5e0afed33e64832ee84a42aa2db8e395d"
+    },
+    {
+      "path": "notes/geobc_prospective_dataset_root_review.json",
+      "bytes": 1595,
+      "sha256": "42f7fe6ad5c9d9d318caca29b98796389683af4e454a680f0932e5333a1bdb46"
+    },
+    {
+      "path": "notes/geobc_prospective_loader_dtype_inspection.json",
+      "bytes": 346,
+      "sha256": "4192a2efd5666dbb0603f799804bbb16168c993e50b8e601c77aab1665cd9771"
+    },
+    {
+      "path": "notes/geobc_prospective_loader_probe_plan.json",
+      "bytes": 3077,
+      "sha256": "0106e664398feabe93187c6a56b17c57f13b856022b59696906989220d2058b1"
+    },
+    {
+      "path": "notes/geobc_prospective_loader_probe_root_review.json",
+      "bytes": 1905,
+      "sha256": "9bb0e7be229ae8517cd2feccc59631b787096434cd0d57866d7c77d3f2c75e22"
+    },
+    {
+      "path": "notes/geobc_prospective_loader_recovery_plan.json",
+      "bytes": 4332,
+      "sha256": "b46ae9d31d5874d954015a188ebd9fd11127f4db2c790d9dced9e8d8bcf733bb"
+    },
+    {
+      "path": "notes/geobc_prospective_loader_recovery_root_review.json",
+      "bytes": 2251,
+      "sha256": "664552b82159f4cd80579802938b7130a62fd6fcb7e4b1dac4f7566c8ef7751f"
+    },
+    {
+      "path": "notes/geobc_user_resource_budget.json",
+      "bytes": 720,
+      "sha256": "eefb01f7bfbdfbf2218f1f57a46b2733a7a3167a5a92e8d9cbb503f4d86b4225"
+    },
+    {
+      "path": "notes/github_gitdata_49f_root_review.json",
+      "bytes": 4079,
+      "sha256": "e1d28c04caa3a7b0bef4bf586eb7845a0d3dcdbbce566cd5c4f30a751eb026ef"
+    },
+    {
+      "path": "notes/github_gitdata_49f_root_review_preserved.json",
+      "bytes": 4079,
+      "sha256": "e1d28c04caa3a7b0bef4bf586eb7845a0d3dcdbbce566cd5c4f30a751eb026ef"
+    },
+    {
+      "path": "notes/github_gitdata_49f_verified_receipt.json",
+      "bytes": 644,
+      "sha256": "39fbaad57446fc5370fe442bf7ea8f77522a0d75c62fb8ec99bc056903e3d982"
+    },
+    {
+      "path": "notes/github_gitdata_publication_49f137bb0b9a114fef27dd465601070602628a72_cpu80_exposure_20261010t2227_receipt.json",
+      "bytes": 38260,
+      "sha256": "cca7db59fa611892074820e8609b6883316b06230607c9d9caf912169fdc6c74"
+    },
+    {
+      "path": "notes/github_gitdata_publication_root_review.json",
+      "bytes": 4079,
+      "sha256": "e1d28c04caa3a7b0bef4bf586eb7845a0d3dcdbbce566cd5c4f30a751eb026ef"
+    },
+    {
+      "path": "notes/github_publish_plan.json",
+      "bytes": 34411,
+      "sha256": "aeeff6bc169c2cda42f3ea2a6f334ece5dd85ee2759b260b6ff126400b8a0cc6"
+    },
+    {
+      "path": "notes/github_publish_prior_49f_canonical_receipt.json",
+      "bytes": 1696,
+      "sha256": "574bc751f2e5c8ebe038b8f39093f17f1b30f523b2f04f2591df6a07ba3f57ee"
+    },
+    {
+      "path": "results/README_STATE_HISTORY_20261011.md",
+      "bytes": 22346,
+      "sha256": "6a546c42b584734f2a2abdcd9fbef2dffa1e42035ef873313a153a131029d711"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/BRIEF.md",
+      "bytes": 1219,
+      "sha256": "eb667959d3c45303bcd579cc78a229515315fe0cb0c3b42302184b1fe62907e3"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/dataset_index.json",
+      "bytes": 2006687,
+      "sha256": "68733fab6029ed0a182c09d73dcb61e06d1d7becfca9784498073a1c5dc19ddf"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/manifest.json",
+      "bytes": 1213,
+      "sha256": "9ddcdf4677384e5ada3dcbff7bf6ec1cd9d3cda6068b9216f2e79debaf055ed5"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/metrics.json",
+      "bytes": 5352,
+      "sha256": "c65d2e451b29bbd88a3fbdc009e06a1846eb56dbe2c04029227d19a54ed3e769"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/source_evidence/assembly_external.json",
+      "bytes": 1685,
+      "sha256": "25a030d769c25b6da6134bdc38080f60ab06d167382be7a18f3b51af82ca0865"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/source_evidence/assembly_summary.json",
+      "bytes": 1762,
+      "sha256": "8c35dcdee8995c1e687393ae93e47f5ce0f81917b05fd10f75974f1f08fbb423"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/source_evidence/immutable_input_manifest.json",
+      "bytes": 2006687,
+      "sha256": "68733fab6029ed0a182c09d73dcb61e06d1d7becfca9784498073a1c5dc19ddf"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/source_evidence/original_failed_external.json",
+      "bytes": 1908,
+      "sha256": "6df0cb3abff096994c9957e39828f9b92ce518d0a4dd77d50a7a635406e7f5e7"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/source_evidence/original_failed_summary.json",
+      "bytes": 1785,
+      "sha256": "299b751edf4e36f6770a1f8e07ec4cba34a0cf9a91fc15589033ea75494eced7"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/source_evidence/probe_recovery_external.json",
+      "bytes": 2364,
+      "sha256": "6aadf7c8ff6622af1015ceb23eb749dbc269d867afc1a18124195ba2accaf052"
+    },
+    {
+      "path": "results/geobc_prospective_dataset_interface/source_evidence/probe_recovery_summary.json",
+      "bytes": 3848,
+      "sha256": "1e24f5b6187e56636fde4432a6cea91a56f802e0faeed363e6ad00d0afa6cf03"
+    },
+    {
+      "path": "tools/export_geobc_prospective_dataset.py",
+      "bytes": 7265,
+      "sha256": "a183914d98b08004e72d57073f9dc9f6e7b58f9ca11fdd3edf951872bcd6329f"
+    },
+    {
+      "path": "tools/prepare_geobc_prospective_dataset.py",
+      "bytes": 10863,
+      "sha256": "634137f6fa39549e4b4449f3aced6a13fa27d7bfeedf7b11478d577157363fa8"
+    },
+    {
+      "path": "tools/probe_geobc_prospective_loader.py",
+      "bytes": 9772,
+      "sha256": "5c1bbc502e7f7f6a79b4f4405d831526a6292b4e8136bee5a22cdf848abc14f4"
+    },
+    {
+      "path": "tools/probe_geobc_prospective_loader_recovery.py",
+      "bytes": 9778,
+      "sha256": "b7791de8ab495f33b6c7f2726d690223ce476892b4b83e3662ba5a76866de55e"
+    },
+    {
+      "path": "tools/run_geobc_dataset_assembly_guard.py",
+      "bytes": 4159,
+      "sha256": "5a44f18a59db609e1e8496aec704ebd4143b725738b43cc7a95f359b3288e9ee"
+    },
+    {
+      "path": "tools/run_geobc_loader_probe_guard.py",
+      "bytes": 4157,
+      "sha256": "f8c8d1abf10d7471afd0f5309e8823c8f4d06f2e2f9a2e81e1c91521e874ca07"
+    },
+    {
+      "path": "tools/run_geobc_loader_recovery_guard.py",
+      "bytes": 4827,
+      "sha256": "03d26e0c5aba69f2309cb95af73017cadb6699953b22a16fb42f5fddff836367"
+    }
+  ]
 }
