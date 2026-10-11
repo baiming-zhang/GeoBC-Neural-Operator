@@ -1,0 +1,65 @@
+{
+  "status": "actual_completed_and_plot_accepted",
+  "observed_UTC": "2026-10-11T04:21:03.045811+00:00",
+  "exec_session": 95100,
+  "real_exec_exit_code": 0,
+  "scientific_digest": "943582670d1dc999a940524c68daafc407f06d483603cdc0915aaf4b578774ee",
+  "identities": {
+    "summary.json": {
+      "path": "runs/geobc_exploration/macro_DEV100_short5_v11/summary.json",
+      "bytes": 221077,
+      "mtime_ns": 1791692261205917600,
+      "sha256": "b399226be796930c57f8af8f02ed2849cc6de934a73ea0ce378f8763d3c22c8f"
+    },
+    "status.json": {
+      "path": "runs/geobc_exploration/macro_DEV100_short5_v11/status.json",
+      "bytes": 221077,
+      "mtime_ns": 1791692261214131500,
+      "sha256": "b399226be796930c57f8af8f02ed2849cc6de934a73ea0ce378f8763d3c22c8f"
+    },
+    "external_terminal.json": {
+      "path": "runs/geobc_exploration/macro_DEV100_short5_v11/external_terminal.json",
+      "bytes": 9713,
+      "mtime_ns": 1791692261548112500,
+      "sha256": "8f6884f3fb36ed805ac6a2eadb052e3b9d10524e92a9e5a937093925131f4de4"
+    }
+  },
+  "comparison_points": [
+    {
+      "name": "FNO100_1500",
+      "U_percent": 60.55639058618393,
+      "S_percent": 74.57661422816298,
+      "hot_percent": 70.09384904778454,
+      "parameter_count": 4526858,
+      "training_seconds": 86.85371851921082,
+      "whole_training_stage_seconds": 221.25987243652344,
+      "inference_seconds": 1.3494746685028076
+    },
+    {
+      "name": "PP_NATIVE100_1500",
+      "U_percent": 67.43084540150444,
+      "S_percent": 94.85730876533206,
+      "hot_percent": 95.55494903800252,
+      "parameter_count": 4523268,
+      "training_seconds": 1924.834956407547,
+      "whole_training_stage_seconds": 2081.9412326812744,
+      "inference_seconds": 17.217000007629395
+    }
+  ],
+  "comparison_png": {
+    "path": "results/geobc_macro100_short5_v11/comparison.png",
+    "bytes": 41844,
+    "mtime_ns": 1791692272318047700,
+    "sha256": "2131b5e04cf83258525acb8f695ba1b615584a6f9044ebe5b8696e345b047841"
+  },
+  "visual_review": "Root actually viewed comparison PNG; labels, units and all six bars readable, no overlap",
+  "export_CPU_seconds": 1.678089502000148,
+  "protocol_qualified": true,
+  "committed_finite_predictions": 120,
+  "owned_GT_array_reads": 60,
+  "raw_GT_reads": 0,
+  "training_updates": 0,
+  "scaler_fits": 0,
+  "architecture_upper_bound_established": false,
+  "final_solver_selected": false
+}

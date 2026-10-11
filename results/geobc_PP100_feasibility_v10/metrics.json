@@ -1,0 +1,161 @@
+{
+  "status": "actual_completed",
+  "observed_UTC": "2026-10-11T03:34:10.640160+00:00",
+  "actual_exec_session": 62526,
+  "scientific_digest": "c3dbdef30853b515ea1b3032d63b04035342ac3a85d1d653ffe76b58be27d968",
+  "summary": {
+    "path": "runs/geobc_exploration/PP100_resident_feasibility_v10/summary.json",
+    "bytes": 7862,
+    "mtime_ns": 1791689592127743500,
+    "sha256": "3d024684593b39aa576fe5919779bd8848be225049eb2c5c0a10f0d294342869"
+  },
+  "external": {
+    "path": "runs/geobc_exploration/PP100_resident_feasibility_v10/external_terminal.json",
+    "bytes": 8908,
+    "mtime_ns": 1791689593036130300,
+    "sha256": "1282ed8b6845cdcb28ed71f4306517bf3a10d52d0e956c0ec761b0c82ac0471a"
+  },
+  "exact_process_exits": true,
+  "whole_epoch_seconds": 69.79264855384827,
+  "cache_setup_epoch_seconds": 61.087209939956665,
+  "observations": [
+    {
+      "index": 1,
+      "original_nodes": 325387,
+      "encoded_TRAIN_MSE": 0.8237395556643605,
+      "epoch_seconds": 3.7104644775390625,
+      "monotonic_seconds": 3.710465543999817,
+      "group_gradient_L2": {
+        "encoder": 0.10086973941091101,
+        "operator": 0.44196166351908084,
+        "head": 0.3129715368419437
+      },
+      "leaf_gradients": {
+        "geometry_context_L2": 0.0072027225978672504,
+        "operator_latent_L2": 3.711335739353672e-05,
+        "original_nodes_used": 325387,
+        "node_sampling": false
+      },
+      "allowed_unused": [
+        "operator.backbone.embedding.weight",
+        "operator.backbone.embedding.bias"
+      ]
+    },
+    {
+      "index": 2,
+      "original_nodes": 325387,
+      "encoded_TRAIN_MSE": 0.7948370147496462,
+      "epoch_seconds": 1.90291428565979,
+      "monotonic_seconds": 1.9029149859998142,
+      "group_gradient_L2": {
+        "encoder": 0.03973165389364652,
+        "operator": 0.07989948425593547,
+        "head": 0.21210596427811296
+      },
+      "leaf_gradients": {
+        "geometry_context_L2": 0.0038298701401799917,
+        "operator_latent_L2": 3.4507000236772e-05,
+        "original_nodes_used": 325387,
+        "node_sampling": false
+      },
+      "allowed_unused": [
+        "operator.backbone.embedding.weight",
+        "operator.backbone.embedding.bias"
+      ]
+    },
+    {
+      "index": 3,
+      "original_nodes": 325387,
+      "encoded_TRAIN_MSE": 0.7809346094727516,
+      "epoch_seconds": 1.9103965759277344,
+      "monotonic_seconds": 1.9103971370004729,
+      "group_gradient_L2": {
+        "encoder": 0.019105011949689558,
+        "operator": 0.02847750377014886,
+        "head": 0.134003562713479
+      },
+      "leaf_gradients": {
+        "geometry_context_L2": 0.0019438816234469414,
+        "operator_latent_L2": 3.691445817821659e-05,
+        "original_nodes_used": 325387,
+        "node_sampling": false
+      },
+      "allowed_unused": [
+        "operator.backbone.embedding.weight",
+        "operator.backbone.embedding.bias"
+      ]
+    }
+  ],
+  "peak_allocated_bytes": 18911473152,
+  "peak_reserved_bytes": 20090716160,
+  "peak_total_device_used_bytes_sampled": 22506176512,
+  "model_profile": {
+    "family": "PP256_NATIVE",
+    "parameter_count": 4523268,
+    "global_geometry_context_dim": 32,
+    "local_BC_material_channels": 25,
+    "output": "encoded signed uXYZ and source S; scaler owned by protocol",
+    "geometry_sampling": "same supplied target-independent 1024 cloud/mask",
+    "requires_R64_members": false,
+    "precision": "highest FP32, TF32 disabled by caller",
+    "architecture": {
+      "method": "transolver_pp",
+      "repository": "https://github.com/thuml/Transolver_plus",
+      "commit": "d5a23bc734a0ebac56384cf72049a26af9673452",
+      "model_file": "models/Transolver_plus.py",
+      "file_sha256": {
+        "models/Transolver_plus.py": "7104ad5b90294d1d97b1e7e86b3eeb2ccbe11eec93d2e7bf566bcb3a8ab6e858"
+      },
+      "license": "MIT; upstream LICENSE retained",
+      "constructor_kwargs": {
+        "n_layers": 16,
+        "n_hidden": 256,
+        "n_head": 8,
+        "slice_num": 32,
+        "mlp_ratio": 1,
+        "dropout": 0.0,
+        "space_dim": 3,
+        "fun_dim": 58,
+        "out_dim": 16,
+        "act": "gelu",
+        "unified_pos": false,
+        "ref": 8
+      },
+      "preset_source": "Slide 5 fixes 16 layers / width 256; other settings are official Model constructor defaults: 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+      "slide_explicit": {
+        "output_scaling": [
+          "linear",
+          "invertible asinh stress"
+        ],
+        "updates": 1000,
+        "n_layers": 16,
+        "epochs": 500,
+        "n_hidden": 256,
+        "selection": "decoded physical normalized MSE",
+        "learning_rate": 0.003
+      },
+      "reference_gaps": [
+        "Head count, slice count, MLP ratio and dropout are not present in slide notes; official constructor defaults are used and are not claimed as exact reference settings.",
+        "Official Airplane launcher instead uses 4 layers, MLP ratio 2 and dropout 0.1; those task-specific settings are not substituted.",
+        "The source-server commit and exact target normalization constants are unavailable."
+      ],
+      "architecture_overrides": {},
+      "input": "xyz[3] + BC/material[25]; no sample ID",
+      "output": "uXYZ + source signed stress",
+      "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+      "checkpoint_blocks": true,
+      "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+      "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+      "chunk_size": null,
+      "eval_stochastic": true,
+      "gumbel_note": "Upstream ++ draws Gumbel noise during both train and eval; no guard or replacement added.",
+      "distributed": "world_size=1 process group for unchanged official all_reduce calls",
+      "parameter_count": 4479648
+    },
+    "capacity_matched_across_families": false,
+    "continuous_query_policy": "Declared native25/latent extension needed; original-node accuracy alone is insufficient",
+    "actual_CPU_fixture_only": false
+  },
+  "diagnostic_model_not_retained": true,
+  "DEV_FINAL_GT_reads": 0
+}

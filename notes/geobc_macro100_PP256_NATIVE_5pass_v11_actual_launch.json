@@ -1,0 +1,73 @@
+{
+  "observed_UTC": "2026-10-11T03:36:58.914358+00:00",
+  "actual_exec_session": 10318,
+  "scientific_digest": "175cda588f1c626791213c6382285c3c4f62b7d9bba374c9a853f203cc8ac7c8",
+  "processes": {
+    "guard_process": {
+      "recorded": {
+        "pid": 13853,
+        "ppid": 13849,
+        "start_ticks": 934692,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.run_geobc_macro_screen_guard_v11",
+          "--start",
+          "--plan",
+          "notes/geobc_macro100_PP256_NATIVE_5pass_v11_plan.json"
+        ]
+      },
+      "observed": {
+        "pid": 13853,
+        "ppid": 13849,
+        "start_ticks": 934692,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.run_geobc_macro_screen_guard_v11",
+          "--start",
+          "--plan",
+          "notes/geobc_macro100_PP256_NATIVE_5pass_v11_plan.json"
+        ]
+      },
+      "exact_live": true
+    },
+    "child_process": {
+      "recorded": {
+        "pid": 13854,
+        "ppid": 13853,
+        "start_ticks": 934735,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.train_geobc_macro_screen_v11",
+          "--start",
+          "--plan",
+          "notes/geobc_macro100_PP256_NATIVE_5pass_v11_plan.json"
+        ]
+      },
+      "observed": {
+        "pid": 13854,
+        "ppid": 13853,
+        "start_ticks": 934735,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-u",
+          "-m",
+          "tools.train_geobc_macro_screen_v11",
+          "--start",
+          "--plan",
+          "notes/geobc_macro100_PP256_NATIVE_5pass_v11_plan.json"
+        ]
+      },
+      "exact_live": true
+    }
+  },
+  "phase": "cache_setup",
+  "step": 0,
+  "entry_epoch": 1791689793.673083,
+  "deadline_epoch": 1791693993.673083
+}

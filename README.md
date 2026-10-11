@@ -16,7 +16,7 @@
 
 FNO主模型由knownDEV联合误差在FINAL标签读取前选定。FINAL两端点120份全节点预测先保存／重验，再20个CSV各解析一次并共享60例场，完整阶段155.38秒；CPU报告13.27秒。云图色条排版另用已有数组修复13.42秒，原图／评分保留，修复图已验看，无CSV重读或新推理。[位移云图](results/geobc_FINAL_v9/plots_v2/field_U.png) · [应力云图](results/geobc_FINAL_v9/plots_v2/field_S.png)。
 
-这一批FINAL现已揭盲，不能再当作未来选型的盲测。停止Hash追加；下一项宏观候选是100CAD上的Transolver++短筛，与FNO配对，先检验GPU常驻缓存、实际显存与训练速度，再决定短端点预算。设计尚未执行，不预设赢家；不让所有方法默认跑40遍或24000步。
+这一批FINAL现已揭盲，不能再当作未来选型的盲测。停止Hash追加；下一项宏观候选是100CAD上的Transolver++短筛，与FNO配对，先检验GPU常驻缓存、实际显存与训练速度，再决定短端点预算。资源验证已实际完成70秒，最大节点全反传通过，allocated／reserved峰值18.91／20.09GB；native++100CAD的5遍／1500步短筛已正常完成，总耗时34.68分钟，训练集全300例位移／应力误差65.81%／95.02%，仍明显未拟合；不能据此宣称架构上限。FNO的同样5遍对照及knownDEV20个新CAD×三载荷评估均已完成：FNO位移／应力60.56%／74.58%，native++67.43%／94.86%；纯训练1.45／32.08分钟。两者均未充分拟合，当前FNO初筛更优；[5遍简报](results/geobc_macro100_short5_v11/BRIEF.md)。下一宏观假设是让训练损失对齐物理相对误差，先低成本检验，不直接延长所有候选。不预设赢家，不默认40遍或24000步。
 
 ## 数据与资源
 
@@ -48,8 +48,8 @@ python tools/plot_suite_fields.py
 
 研究阶段必须使用各自冻结计划和真实进程交接，不能因旧status、锁文件或SOURCE-ready重复启动GPU任务。30分钟监视器持续推进；活训练期间只作轻量检查。
 
-[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；上次已验收提交 `4fa0900`。本地已完成12000步同曝光比较及FINAL测试；本批代码／结果正在整理发布，远端状态以[最新验收记录](notes/github_publish_plan.json)为准。[发布计划](notes/github_publish_plan.json)。
+[私人仓库 GeoBC-Neural-Operator](https://github.com/baiming-zhang/GeoBC-Neural-Operator)；上次已验收提交 `4fa0900`。本地已完成12000步同曝光比较及FINAL测试；本批12000端点和独立测试代码／结果已推送并验收 `50d45b4`（68.66秒），后续v10资源验证／v11短筛在本地继续，远端状态以[最新验收记录](notes/github_publish_plan.json)为准。[发布计划](notes/github_publish_plan.json)。
 
 更早逐阶段运行叙述存于[README历史快照](results/README_STATE_HISTORY_20261011.md)，状态以当前真实报告和运行收据为准。
 
-冻结source pins记录的是原运行文件字节，Git可能规范化行尾。新克隆运行当前v7／v8／v9协议前，先执行 `python tools/restore_geobc_source_line_endings.py --check`；如提示仅行尾不同，执行 `--restore` 可恢复匹配的原LF／CRLF字节。仅校验当前64个冻结依赖，未知内容拒绝写入，不改科学pins、目标或代码逻辑；旧历史版本的代码差异不由此恢复。在WSL从项目根目录执行研究工具时使用 `python -m tools.<模块名>`，以保证项目包可导入。
+冻结source pins记录的是原运行文件字节，Git可能规范化行尾。新克隆运行当前v7／v8／v9／v10／v11协议前，先执行 `python tools/restore_geobc_source_line_endings.py --check`；如提示仅行尾不同，执行 `--restore` 可恢复匹配的原LF／CRLF字节。仅校验当前75个冻结依赖与交接工具，未知内容拒绝写入，不改科学pins、目标或代码逻辑；旧历史版本的代码差异不由此恢复。在WSL从项目根目录执行研究工具时使用 `python -m tools.<模块名>`，以保证项目包可导入。

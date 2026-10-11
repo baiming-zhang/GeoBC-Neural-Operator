@@ -1,0 +1,37 @@
+{
+  "status": "actual_short5_pair_completed",
+  "observed_UTC": "2026-10-11T04:21:03.056823+00:00",
+  "primary_preserved": "FNO100_12000 previously frozen primary",
+  "initial_screen_leader": "FNO100_1500",
+  "evidence": [
+    {
+      "name": "FNO100_1500",
+      "U_percent": 60.55639058618393,
+      "S_percent": 74.57661422816298,
+      "hot_percent": 70.09384904778454,
+      "parameter_count": 4526858,
+      "training_seconds": 86.85371851921082,
+      "whole_training_stage_seconds": 221.25987243652344,
+      "inference_seconds": 1.3494746685028076
+    },
+    {
+      "name": "PP_NATIVE100_1500",
+      "U_percent": 67.43084540150444,
+      "S_percent": 94.85730876533206,
+      "hot_percent": 95.55494903800252,
+      "parameter_count": 4523268,
+      "training_seconds": 1924.834956407547,
+      "whole_training_stage_seconds": 2081.9412326812744,
+      "inference_seconds": 17.217000007629395
+    }
+  ],
+  "interpretation": "Same100CAD/5pass fresh recipe: FNO lower U/S/hot and much faster; both TRAIN fits poor, no Transolver architectural ceiling proven",
+  "PP_TRAIN_U_percent": 65.81137756054224,
+  "PP_TRAIN_S_percent": 95.02029651119047,
+  "FNO_TRAIN_U_percent": 56.03002038861127,
+  "FNO_TRAIN_S_percent": 72.2131149318844,
+  "no_automatic_PP40pass_or_24000": true,
+  "FINAL_v9_reread": false,
+  "next_macro_hypothesis": "Inspect global boundary/load signal encoding before another expensive Transolver run; avoid repeating existing single-case experiments without a changed hypothesis",
+  "next_GPU_execution_released": false
+}
