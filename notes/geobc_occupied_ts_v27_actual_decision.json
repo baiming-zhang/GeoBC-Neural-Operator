@@ -1,0 +1,23 @@
+{
+  "status": "actual_occupied_token_control_negative",
+  "report": "results/geobc_occupied_ts_v27/BRIEF.md",
+  "DEV_metrics": {
+    "case_mean_u_relative_l2": 0.5228742457593017,
+    "case_mean_stress_relative_l2": 0.9315200115852275,
+    "case_mean_stress_hotspot_relative_l2": 0.9327660905774888
+  },
+  "DEV_minus_denseTS": {
+    "case_mean_u_relative_l2": 0.0023100801586619646,
+    "case_mean_stress_relative_l2": -0.00043370251192453857,
+    "case_mean_stress_hotspot_relative_l2": -0.0008724810837623664
+  },
+  "TRAIN_whole_seconds": 318.86052107810974,
+  "pure_TRAIN_seconds": 146.94099879264832,
+  "DEV_seconds": 96.57121205329895,
+  "CPU_seconds": 17.595241348000854,
+  "visual_accepted": true,
+  "occupied_fraction": 0.106748046875,
+  "interpretation": "About89.3% emptytokens removed plus zeroextension did not restore originalTS fitting: TRAIN stress93.62 vs93.67%; DEV93.15 vs93.20%. No support for this routing package as main bottleneck; stop route, no longtrain.",
+  "next": "Pair originaldenseTS/FNO16 standardizedencoded4 MSE under sameR16/initialstate/1500updates and compare fullphysicalmetrics against own physicalloss baselines; trainingobjective is a macro conditioning+relativeweight package, not pure onefactor or finalsolver",
+  "final_solver_selected": false
+}

@@ -1,0 +1,38 @@
+{
+  "status": "running",
+  "phase": "training",
+  "elapsed_epoch": 168.33899903297424,
+  "SCI": "d02e88af3057de3790a91ce12e9f05a4da0d5f6542203821a9da0458eee9d534",
+  "live": {
+    "child_process": true,
+    "guard_process": true
+  },
+  "methods": {
+    "transolver_encoded": {
+      "step": 300,
+      "training_epoch_seconds": 28.169313669204712,
+      "actual_initial_state_equal_own_physical_control": true,
+      "actual_largest_fullN_gradient_check": {
+        "passed": true,
+        "key": "107_150/ver",
+        "nodes": 325387,
+        "groups_L2": {
+          "encoder": 0.0704300452537896,
+          "head": 0.29860707932808406,
+          "operator": 0.2739798795300769
+        },
+        "allowed_unused": [],
+        "leaf_gradients": {
+          "geometry_context_L2": 0.006936782505363226,
+          "operator_latent_L2": 0.0008029891178011894,
+          "original_nodes_used": 325387,
+          "node_sampling": false,
+          "loss": "mean standardized encoded4 squared error"
+        },
+        "full300_physical_cache_qualified": true,
+        "optimizer_updates": 0
+      }
+    }
+  },
+  "verified_UTC": "2026-10-11T08:27:47.893738+00:00"
+}

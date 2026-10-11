@@ -1,0 +1,41 @@
+{
+  "status": "actual_occupiedTS_GPU_job_live_common_WSL_proc",
+  "SCI": "164e9b2f1ca7c883d46df67bab251c82586239f1f81cb6df366bc6859f1e1655",
+  "exec_session": 46109,
+  "processes": {
+    "child_process": {
+      "pid": 22780,
+      "ppid": 22771,
+      "start_ticks": 2421607,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.train_geobc_occupied_ts_v26",
+        "--start",
+        "--plan",
+        "notes/geobc_occupied_TS100_physical5_v26_plan.json"
+      ]
+    },
+    "guard_process": {
+      "pid": 22771,
+      "ppid": 22766,
+      "start_ticks": 2420782,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_occupied_ts_guard_v26",
+        "--start",
+        "--plan",
+        "notes/geobc_occupied_TS100_physical5_v26_plan.json"
+      ]
+    }
+  },
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "elapsed_epoch_seconds": 26.338547229766846,
+  "phase": "shared_cache_setup",
+  "actual_optimizer_steps": 0,
+  "verified_UTC": "2026-10-11T08:07:13.272125+00:00",
+  "deadline_epoch": 1791707806.9335718
+}

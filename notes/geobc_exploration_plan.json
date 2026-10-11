@@ -5764,10 +5764,12 @@
     }
   },
   "current_next_stage": {
-    "status": "v24_v25_completed_next_TS_occupied_token_macro_design",
-    "decision": "notes/geobc_wide_fno_v25_actual_decision.json",
-    "no_active_GPU_job": true,
-    "automatic_40_or24000": false,
+    "status": "encoded4_objective_TS_FNO_pair_actual_GPU_live",
+    "plan": "notes/geobc_encoded_pair_v28b_plan.json",
+    "actual_launch": "notes/geobc_encoded_pair_v28b_actual_launch.json",
+    "exec_session": 78198,
+    "future_readout_plan": "notes/geobc_encoded_pair_readout_v29_plan.json",
+    "initial_fivepasses": true,
     "final_solver_selected": false
   },
   "user_resource_budget": {
@@ -6591,15 +6593,15 @@
   },
   "latest_verified_GitHub_publication": {
     "status": "verified_private_remote_publication",
-    "commit": "ee4550de73946e9bf76ea21db1366f6fd2f2e95e",
+    "commit": "b7999d63d7d206c1a8066165bce6172b66fcfadd",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "elapsed_seconds": 61.1451479,
-    "finished_at_utc": "2026-10-11T07:22:26.5812553Z",
-    "receipt": "notes/github_gitdata_publication_ee4550de73946e9bf76ea21db1366f6fd2f2e95e_coarse_three_physical5_20261011_receipt.json",
-    "actual_scope": "Completed allthree compactTS same5 TRAIN/knownDEV/report/acceptedPNG; FNO16 SOURCE prototype only. Future v22 training is local and not part of this snapshot."
+    "elapsed_seconds": 79.6479818,
+    "finished_at_utc": "2026-10-11T08:03:28.1875601Z",
+    "receipt": "notes/github_gitdata_publication_b7999d63d7d206c1a8066165bce6172b66fcfadd_fno_capacity5_20261011_receipt.json",
+    "actual_scope": "Completed R16 FNO control v22/v23 and R64width16 capacity v24/v25; full TRAIN/knownDEV/reports/acceptedPNG; neither finalsolver nor new TS occupancy experiment completed"
   },
   "globalHash_physical5_completed": {
     "status": "actual_completed_same5_knownDEV",
@@ -6729,6 +6731,29 @@
     "next_hypothesis": "Sparse occupied global TS tokens: current4096-token TS includes emptycells with XYZ/globalcontext; test whether excluding emptytokens restores fitting. One fixed originalTS best among TS family, same physical5 and source head/query; scatter emptylatent0 explicit package confound.",
     "next_must_measure": "TRAIN-only occupied-token fraction and fullN gradients; then fixed5 DEV60 barrier. No claim emptytokens cause known errors until actualcomparison.",
     "automatic_continuation": false,
+    "final_solver_selected": false
+  },
+  "occupied_TS_control_completed": {
+    "status": "actual_occupied_token_control_negative",
+    "report": "results/geobc_occupied_ts_v27/BRIEF.md",
+    "DEV_metrics": {
+      "case_mean_u_relative_l2": 0.5228742457593017,
+      "case_mean_stress_relative_l2": 0.9315200115852275,
+      "case_mean_stress_hotspot_relative_l2": 0.9327660905774888
+    },
+    "DEV_minus_denseTS": {
+      "case_mean_u_relative_l2": 0.0023100801586619646,
+      "case_mean_stress_relative_l2": -0.00043370251192453857,
+      "case_mean_stress_hotspot_relative_l2": -0.0008724810837623664
+    },
+    "TRAIN_whole_seconds": 318.86052107810974,
+    "pure_TRAIN_seconds": 146.94099879264832,
+    "DEV_seconds": 96.57121205329895,
+    "CPU_seconds": 17.595241348000854,
+    "visual_accepted": true,
+    "occupied_fraction": 0.106748046875,
+    "interpretation": "About89.3% emptytokens removed plus zeroextension did not restore originalTS fitting: TRAIN stress93.62 vs93.67%; DEV93.15 vs93.20%. No support for this routing package as main bottleneck; stop route, no longtrain.",
+    "next": "Pair originaldenseTS/FNO16 standardizedencoded4 MSE under sameR16/initialstate/1500updates and compare fullphysicalmetrics against own physicalloss baselines; trainingobjective is a macro conditioning+relativeweight package, not pure onefactor or finalsolver",
     "final_solver_selected": false
   }
 }

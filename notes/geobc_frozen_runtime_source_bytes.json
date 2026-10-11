@@ -1,5 +1,5 @@
 {
-  "scope": "Current frozen runtime sources through v25 capacity-control readout",
+  "scope": "Current frozen runtime sources through v29 paired trainingobjective readout",
   "scientific_digest": "9648e958224a07f1daa8c3eb97a6cf44dbb5eaa5cbb1bcb57649829b06ecc1d9",
   "source_pins_changed": false,
   "files": {
@@ -731,6 +731,106 @@
     "tools/export_geobc_wide_fno64_v25.py": {
       "frozen_runtime_sha256": "a4659861a4ce9d6e43c535e055911a9114b55bf13e4e188c6728c8c953ca2432",
       "canonical_LF_sha256": "a4659861a4ce9d6e43c535e055911a9114b55bf13e4e188c6728c8c953ca2432",
+      "line_endings": "LF"
+    },
+    "geobc/occupied_transolver_v26.py": {
+      "frozen_runtime_sha256": "6442659e98fca8e3542efbaa253c320742d82cbe9ab503c6a22378985d7432c2",
+      "canonical_LF_sha256": "6442659e98fca8e3542efbaa253c320742d82cbe9ab503c6a22378985d7432c2",
+      "line_endings": "LF"
+    },
+    "tools/check_occupied_transolver_v26_CPU.py": {
+      "frozen_runtime_sha256": "40237dbceab5b2e4f46124b57a2a107c6c3bf12c2e87c9666ffa486cd21a9e25",
+      "canonical_LF_sha256": "40237dbceab5b2e4f46124b57a2a107c6c3bf12c2e87c9666ffa486cd21a9e25",
+      "line_endings": "LF"
+    },
+    "geobc/occupied_ts_training_contract_v26.py": {
+      "frozen_runtime_sha256": "d09a490a4e7952cdd52183754183e83284e83d7be8d17197eda1ea4731647b60",
+      "canonical_LF_sha256": "d09a490a4e7952cdd52183754183e83284e83d7be8d17197eda1ea4731647b60",
+      "line_endings": "LF"
+    },
+    "tools/train_geobc_occupied_ts_v26.py": {
+      "frozen_runtime_sha256": "5c52ebda841bc3b72522ff98c9ba6680d82251ec3c708e5b2c87e7a3926165cd",
+      "canonical_LF_sha256": "5c52ebda841bc3b72522ff98c9ba6680d82251ec3c708e5b2c87e7a3926165cd",
+      "line_endings": "LF"
+    },
+    "tools/run_geobc_occupied_ts_guard_v26.py": {
+      "frozen_runtime_sha256": "e9a04b20e0b13e69c2aee7d236e7e240fa25a3d1fa67629b835d83cd193d65e5",
+      "canonical_LF_sha256": "e9a04b20e0b13e69c2aee7d236e7e240fa25a3d1fa67629b835d83cd193d65e5",
+      "line_endings": "LF"
+    },
+    "geobc/occupied_ts_readout_contract_v27.py": {
+      "frozen_runtime_sha256": "7124e38c7e02893cde8febe75f2495d839e2aa13a441c53ba77ea5995cf0f191",
+      "canonical_LF_sha256": "7124e38c7e02893cde8febe75f2495d839e2aa13a441c53ba77ea5995cf0f191",
+      "line_endings": "LF"
+    },
+    "tools/evaluate_geobc_occupied_ts_v27.py": {
+      "frozen_runtime_sha256": "6f7745437949baafab320a152cc4e05762cc8a1654feee853e4b960b27ca2de8",
+      "canonical_LF_sha256": "6f7745437949baafab320a152cc4e05762cc8a1654feee853e4b960b27ca2de8",
+      "line_endings": "LF"
+    },
+    "tools/run_geobc_occupied_ts_readout_guard_v27.py": {
+      "frozen_runtime_sha256": "3ae6173b350c4bd93144662f1840bae711adac27c3f791f9c0986ed83ed0c296",
+      "canonical_LF_sha256": "3ae6173b350c4bd93144662f1840bae711adac27c3f791f9c0986ed83ed0c296",
+      "line_endings": "LF"
+    },
+    "tools/export_geobc_occupied_ts_v27.py": {
+      "frozen_runtime_sha256": "8f2e9807799e8e68592f8b12e4b64da36bd6ef6f968a6a11c84d7ed590c26b36",
+      "canonical_LF_sha256": "8f2e9807799e8e68592f8b12e4b64da36bd6ef6f968a6a11c84d7ed590c26b36",
+      "line_endings": "LF"
+    },
+    "geobc/encoded_objective_v28.py": {
+      "frozen_runtime_sha256": "9286a21ab4a330871c97117d73078b65f9d07adbeb176002fd10f59613aca511",
+      "canonical_LF_sha256": "9286a21ab4a330871c97117d73078b65f9d07adbeb176002fd10f59613aca511",
+      "line_endings": "LF"
+    },
+    "tools/check_encoded_objective_v28_CPU.py": {
+      "frozen_runtime_sha256": "7e1ce58a566bb643f02e6abdd76cd57823aa81884a008b2b231f52708f7b13b2",
+      "canonical_LF_sha256": "7e1ce58a566bb643f02e6abdd76cd57823aa81884a008b2b231f52708f7b13b2",
+      "line_endings": "LF"
+    },
+    "geobc/encoded_pair_training_contract_v28.py": {
+      "frozen_runtime_sha256": "acb087fbaea621c7a964506ea0c6ecd7a9e57486e9674111c5441a631f35cad9",
+      "canonical_LF_sha256": "acb087fbaea621c7a964506ea0c6ecd7a9e57486e9674111c5441a631f35cad9",
+      "line_endings": "LF"
+    },
+    "tools/train_geobc_encoded_pair_v28.py": {
+      "frozen_runtime_sha256": "5559b86610f3d3ba92048bec4308d4da7bb47b39787b027a575da158fe43641f",
+      "canonical_LF_sha256": "5559b86610f3d3ba92048bec4308d4da7bb47b39787b027a575da158fe43641f",
+      "line_endings": "LF"
+    },
+    "tools/run_geobc_encoded_pair_guard_v28.py": {
+      "frozen_runtime_sha256": "af6ba0091fcaf587f3c93d4561fc66f0cd62556c87bbcb5e5d62f1b61dc92b95",
+      "canonical_LF_sha256": "af6ba0091fcaf587f3c93d4561fc66f0cd62556c87bbcb5e5d62f1b61dc92b95",
+      "line_endings": "LF"
+    },
+    "geobc/encoded_pair_flat_contract_v28b.py": {
+      "frozen_runtime_sha256": "2f3cd8ea2e048b605d57c4bc2c670e78098e62d602265535658d35859473aa58",
+      "canonical_LF_sha256": "2f3cd8ea2e048b605d57c4bc2c670e78098e62d602265535658d35859473aa58",
+      "line_endings": "LF"
+    },
+    "tools/train_geobc_encoded_pair_v28b.py": {
+      "frozen_runtime_sha256": "6502b9ca0fe756786e3aec196f09de34ce9cde29619dd71f9a9629d7d8779992",
+      "canonical_LF_sha256": "6502b9ca0fe756786e3aec196f09de34ce9cde29619dd71f9a9629d7d8779992",
+      "line_endings": "LF"
+    },
+    "tools/run_geobc_encoded_pair_guard_v28b.py": {
+      "frozen_runtime_sha256": "f8df56cf6ade2c77fc36c26d49842bac75893776d0688f93d9c63c89fd76eb28",
+      "canonical_LF_sha256": "f8df56cf6ade2c77fc36c26d49842bac75893776d0688f93d9c63c89fd76eb28",
+      "line_endings": "LF"
+    },
+    "geobc/encoded_pair_readout_contract_v29.py": {
+      "frozen_runtime_sha256": "c1455f44a95f1467f244efb65c2cab213e265d8cea62d565a0bb71e4785da889",
+      "canonical_LF_sha256": "c1455f44a95f1467f244efb65c2cab213e265d8cea62d565a0bb71e4785da889",
+      "line_endings": "LF"
+    },
+    "tools/evaluate_geobc_encoded_pair_v29.py": {
+      "frozen_runtime_sha256": "fbe0a763e3fe72d04be85917206934cce533584cb02c0983d1c47cf5b00a6651",
+      "canonical_LF_sha256": "fbe0a763e3fe72d04be85917206934cce533584cb02c0983d1c47cf5b00a6651",
+      "line_endings": "LF"
+    },
+    "tools/run_geobc_encoded_pair_readout_guard_v29.py": {
+      "frozen_runtime_sha256": "e5dc6ae50cc330a73a44f71da9888cf852928b7332332eb34f30e4b83decf2c1",
+      "canonical_LF_sha256": "e5dc6ae50cc330a73a44f71da9888cf852928b7332332eb34f30e4b83decf2c1",
       "line_endings": "LF"
     }
   },

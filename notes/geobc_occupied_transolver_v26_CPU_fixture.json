@@ -1,0 +1,95 @@
+{
+  "status": "actual_synthetic_occupied_TS_CPU_passed_not_GPU",
+  "source": {
+    "path": "geobc/occupied_transolver_v26.py",
+    "bytes": 1973,
+    "mtime_ns": 1791705802789085000,
+    "sha256": "6442659e98fca8e3542efbaa253c320742d82cbe9ab503c6a22378985d7432c2"
+  },
+  "profile": {
+    "method": "occupied_transolver",
+    "family": "R16_occupied_transolver",
+    "parameter_count": 1882172,
+    "architecture": {
+      "method": "transolver",
+      "repository": "https://github.com/thuml/Transolver",
+      "commit": "75e0f67643806a81cd1d3f6adc88dd8c02416fe7",
+      "model_file": "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py",
+      "file_sha256": {
+        "PDE-Solving-StandardBenchmark/model/Transolver_Irregular_Mesh.py": "d1420f8176c73fac024d1f57cb816653e0ffb41580c954c1497d2ba914e71943",
+        "PDE-Solving-StandardBenchmark/model/Embedding.py": "e3a4f71c4378b7cce09a43b8c306d6d8a17edb4cd69db5eb069e55a57d2affe2",
+        "PDE-Solving-StandardBenchmark/model/Physics_Attention.py": "d746cd641f9c81313e205126bac6e0a9bb5bdbe5a9ef107e093a4fe065dbe0f5"
+      },
+      "license": "MIT; upstream LICENSE retained",
+      "constructor_kwargs": {
+        "n_layers": 5,
+        "n_hidden": 256,
+        "n_head": 8,
+        "slice_num": 32,
+        "mlp_ratio": 1,
+        "dropout": 0.0,
+        "space_dim": 3,
+        "fun_dim": 58,
+        "out_dim": 16,
+        "act": "gelu",
+        "unified_pos": false,
+        "ref": 8
+      },
+      "preset_source": "Model constructor defaults in the pinned irregular-mesh model: 5 layers, width 256, 8 heads, 32 slices, MLP ratio 1, dropout 0, GELU, unified_pos false",
+      "slide_explicit": {},
+      "reference_gaps": [
+        "Original Transolver baseline was newly requested; the slides do not provide its run configuration.",
+        "The source-server commit and exact 25-feature schema are unavailable."
+      ],
+      "architecture_overrides": {},
+      "input": "xyz[3] + BC/material[25]; no sample ID",
+      "output": "uXYZ + source signed stress",
+      "timm_initializer_binding": "torch.nn.init.trunc_normal_ (same standard truncated-normal initializer)",
+      "checkpoint_blocks": true,
+      "checkpoint_strategy": "whole upstream blocks, RNG preserved",
+      "context": "every supplied mesh node contributes at every layer; no independent chunk evaluation",
+      "chunk_size": null,
+      "eval_stochastic": false,
+      "gumbel_note": null,
+      "distributed": null,
+      "parameter_count": 1838552
+    },
+    "counts": {
+      "encoder": 16736,
+      "head": 26884,
+      "operator": 1838552
+    },
+    "global_tokens": "all occupied R16 cells, input-only selection; at most4096",
+    "grid_resolution": 16,
+    "precision": "highest FP32; caller must disable TF32",
+    "all_original_query_nodes": true,
+    "input_policy": "occupied-voxel means from original R64; no target pooling",
+    "query_policy": "true block-center trilinear latent; nearest-center boundary extension",
+    "capacity_matched": false,
+    "independent_offnode_FEM_accuracy_measured": false,
+    "empty_latent_extension": "exact zero; same old center-trilinear query",
+    "additional_parameters": 0,
+    "owns_training_or_data": false
+  },
+  "all_initial_state_equal_dense_originalTS": true,
+  "synthetic_selected_tokens": 3,
+  "synthetic_empty_tokens": 4093,
+  "exact_empty_latent_zero": true,
+  "groups_L2": {
+    "encoder": 0.0170708130050818,
+    "head": 0.07199786760647944,
+    "operator": 0.06253292806895618
+  },
+  "leaf_gradients": {
+    "geometry_context_L2": 0.001462788786739111,
+    "operator_latent_L2": 0.0018230915302410722,
+    "original_nodes_used": 37,
+    "node_sampling": false
+  },
+  "synthetic_original_nodes": 37,
+  "synthetic_objective": 0.9993075450707163,
+  "real_numeric_GT_reads": 0,
+  "GPU_calls": 0,
+  "optimizer_updates": 0,
+  "CPU_seconds": 1.7332520269992528
+}
