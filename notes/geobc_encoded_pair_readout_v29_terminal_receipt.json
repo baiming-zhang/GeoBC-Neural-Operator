@@ -1,0 +1,49 @@
+{
+  "status": "completed",
+  "actual_verified_UTC": "2026-10-11T08:49:42.301600+00:00",
+  "summary_identity": {
+    "path": "runs/geobc_exploration/encoded4_TS_FNO100_knownDEV_short5_v29/summary.json",
+    "bytes": 977319,
+    "mtime_ns": 1791707777546929300,
+    "sha256": "e1bf927fe849003d714743d0a9b7b398453e43eb7b5dc2caf8e74ca6a34c92d1"
+  },
+  "external_identity": {
+    "path": "runs/geobc_exploration/encoded4_TS_FNO100_knownDEV_short5_v29/external_terminal.json",
+    "bytes": 16560,
+    "mtime_ns": 1791707777890716700,
+    "sha256": "a453f77b7a809b770f96dca45fc9c4b97c5d0507451d01f42766fb42b97fb00f"
+  },
+  "child_process": {
+    "pid": 23779,
+    "ppid": 23775,
+    "start_ticks": 2572637,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.evaluate_geobc_encoded_pair_v29",
+      "--start",
+      "--plan",
+      "notes/geobc_encoded_pair_readout_v29_plan.json"
+    ]
+  },
+  "guard_process": {
+    "pid": 23775,
+    "ppid": 23774,
+    "start_ticks": 2572487,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_encoded_pair_readout_guard_v29",
+      "--start",
+      "--plan",
+      "notes/geobc_encoded_pair_readout_v29_plan.json"
+    ]
+  },
+  "exact_processes_exited": true,
+  "actual_external_seconds": 118.16257405281067,
+  "finite_predictions": 120,
+  "shared_knownDEV_case_reads": 60,
+  "source_science": "ff355ab10d2ba949cdca2dd1579a841d624fa239a49bc4e9fe36d88cf79354d3"
+}

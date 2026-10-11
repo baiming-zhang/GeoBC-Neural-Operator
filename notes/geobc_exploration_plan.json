@@ -3,7 +3,7 @@
   "objective": "Select a suitable geometry- and boundary-conditioned solver for original DeepJEB by comparing multiple solver families on held-out CADs before architecture-specific optimization.",
   "dataset": "original DeepJEB v1.0",
   "source_alignment": "official CSV GRID coordinates -> H5 vertices",
-  "stage": "solver_coverage_comparison_all_versions",
+  "stage": "input_response_gain_TS_FNO_same5_actual_running",
   "parent_model": null,
   "prior_completed_slides_experiments": 30,
   "watchdog": {
@@ -5764,13 +5764,13 @@
     }
   },
   "current_next_stage": {
-    "status": "encoded4_objective_TS_FNO_pair_actual_GPU_live",
-    "plan": "notes/geobc_encoded_pair_v28b_plan.json",
-    "actual_launch": "notes/geobc_encoded_pair_v28b_actual_launch.json",
-    "exec_session": 78198,
-    "future_readout_plan": "notes/geobc_encoded_pair_readout_v29_plan.json",
-    "initial_fivepasses": true,
-    "final_solver_selected": false
+    "plan": "notes/geobc_response_gain_v30_plan.json",
+    "question": "Can a fixed input-derived dimensional U/S amplitude prior improve the same R16 TS and FNO under original physical loss and five balanced passes?",
+    "actual_launches": 1,
+    "default_passes": 5,
+    "automatic_40": false,
+    "exec_session": 56268,
+    "actual_launch": "notes/geobc_response_gain_v30_actual_launch.json"
   },
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
@@ -6593,15 +6593,15 @@
   },
   "latest_verified_GitHub_publication": {
     "status": "verified_private_remote_publication",
-    "commit": "b7999d63d7d206c1a8066165bce6172b66fcfadd",
+    "commit": "bc640ad7bd2aeb11e690fdd73db8443cce42e8f6",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "elapsed_seconds": 79.6479818,
-    "finished_at_utc": "2026-10-11T08:03:28.1875601Z",
-    "receipt": "notes/github_gitdata_publication_b7999d63d7d206c1a8066165bce6172b66fcfadd_fno_capacity5_20261011_receipt.json",
-    "actual_scope": "Completed R16 FNO control v22/v23 and R64width16 capacity v24/v25; full TRAIN/knownDEV/reports/acceptedPNG; neither finalsolver nor new TS occupancy experiment completed"
+    "elapsed_seconds": 82.3026108,
+    "finished_at_utc": "2026-10-11T08:31:43.2695024Z",
+    "receipt": "notes/github_gitdata_publication_bc640ad7bd2aeb11e690fdd73db8443cce42e8f6_occupied_ts_short5_20261011_receipt.json",
+    "actual_scope": "Completed occupiedoriginalTS v26/v27 fullTRAIN/knownDEV/acceptedreport; source v28b actualfirstTSqualification and ongoing training snapshot, v29 SOURCE pending at snapshot. Later v28b terminal/v29 live not part of remote commit"
   },
   "globalHash_physical5_completed": {
     "status": "actual_completed_same5_knownDEV",
@@ -6755,5 +6755,11 @@
     "interpretation": "About89.3% emptytokens removed plus zeroextension did not restore originalTS fitting: TRAIN stress93.62 vs93.67%; DEV93.15 vs93.20%. No support for this routing package as main bottleneck; stop route, no longtrain.",
     "next": "Pair originaldenseTS/FNO16 standardizedencoded4 MSE under sameR16/initialstate/1500updates and compare fullphysicalmetrics against own physicalloss baselines; trainingobjective is a macro conditioning+relativeweight package, not pure onefactor or finalsolver",
     "final_solver_selected": false
+  },
+  "encoded_objective_control_completed": {
+    "report": "results/geobc_encoded_pair_v29/BRIEF.md",
+    "decision": "negative fixed5; no extension",
+    "training_seconds": 401.2245366573,
+    "readout_seconds": 118.1625740528
   }
 }

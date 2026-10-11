@@ -1,16 +1,16 @@
 {
-  "status": "running",
-  "phase": "training",
-  "elapsed_epoch": 168.33899903297424,
+  "status": "completed",
+  "phase": "terminal",
+  "elapsed_epoch": 419.5915105342865,
   "SCI": "d02e88af3057de3790a91ce12e9f05a4da0d5f6542203821a9da0458eee9d534",
   "live": {
-    "child_process": true,
-    "guard_process": true
+    "child_process": false,
+    "guard_process": false
   },
   "methods": {
     "transolver_encoded": {
-      "step": 300,
-      "training_epoch_seconds": 28.169313669204712,
+      "step": 1500,
+      "training_epoch_seconds": 136.29021644592285,
       "actual_initial_state_equal_own_physical_control": true,
       "actual_largest_fullN_gradient_check": {
         "passed": true,
@@ -32,7 +32,44 @@
         "full300_physical_cache_qualified": true,
         "optimizer_updates": 0
       }
+    },
+    "FNO16_encoded": {
+      "step": 1500,
+      "training_epoch_seconds": 100.92072057723999,
+      "actual_initial_state_equal_own_physical_control": true,
+      "actual_largest_fullN_gradient_check": {
+        "passed": true,
+        "key": "107_150/ver",
+        "nodes": 325387,
+        "groups_L2": {
+          "encoder": 0.07551605564784845,
+          "head": 0.28922098253484135,
+          "operator": 0.00791894910189674
+        },
+        "allowed_unused": [],
+        "leaf_gradients": {
+          "geometry_context_L2": 0.006677170284092426,
+          "operator_latent_L2": 0.0008076949161477387,
+          "original_nodes_used": 325387,
+          "node_sampling": false,
+          "loss": "mean standardized encoded4 squared error"
+        },
+        "full300_physical_cache_qualified": true,
+        "optimizer_updates": 0
+      }
     }
   },
-  "verified_UTC": "2026-10-11T08:27:47.893738+00:00"
+  "metrics": {
+    "transolver_encoded": {
+      "case_mean_u_relative_l2": 0.6453962952811905,
+      "case_mean_stress_relative_l2": 0.9476745921218783,
+      "case_mean_stress_hotspot_relative_l2": 0.9605164536322232
+    },
+    "FNO16_encoded": {
+      "case_mean_u_relative_l2": 0.4271317284160948,
+      "case_mean_stress_relative_l2": 0.6855841240004152,
+      "case_mean_stress_hotspot_relative_l2": 0.7362616249978517
+    }
+  },
+  "verified_UTC": "2026-10-11T08:31:59.146174+00:00"
 }

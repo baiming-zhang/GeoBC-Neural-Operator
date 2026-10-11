@@ -25,7 +25,7 @@ R64 FNO容量控制已完成同5遍训练和DEV：隐藏width9→16、参数4.52
 
 原版TS空token控制也已完成：TRAIN300平均仅10.67%的R16单元有节点；剔除空token并将其latent设零后，TRAIN应力93.62%（原版93.67%）、DEV93.15%（原版93.20%），基本无改善，停止该路线。整轮训练5.31分钟、DEV1.61分钟；初始完整权重SHA与原版一致。[空token对照](results/geobc_occupied_ts_v27/BRIEF.md)。
 
-正在进行同R16的原TS／FNO双模型训练目标对照：改用旧TRAIN40 scaler编码的signed四通道MSE，保持各自原架构、完整初始权重、数据、顺序、Adam和5遍预算。最终仍按物理U/S与热点指标判断；目标的条件化／通道权重不同明确记录，不宣称精度已改善。先5遍，有证据再延长，不默认40遍或24000步。
+同R16双模型训练目标对照已完成：标准化MSE使TS新几何U/S变差至65.62%／94.60%，FNO16至48.71%／72.14%，停止此路线。训练整轮6.69分钟，DEV1.97分钟，保持原物理损失。[目标控制](results/geobc_encoded_pair_v29/BRIEF.md)。下一轮用固定输入F/M/E/L构造量纲一致的响应幅值先验，保持各自权重、原输入与物理损失，TS/FNO各5遍；不是精确FEM相似律。已实际启动，TS通过真实325387节点完整梯度检查；整轮仍在训练，暂无新精度结论。先5遍，有证据再延长，不默认40遍或24000步。
 原全节点++物理5遍训练耗时31.81分钟，TRAIN应力误差93.81%，没有通过训练门槛，因此该配方新DEV未运行。[负结果](results/geobc_native_physical_TRAIN_v13/BRIEF.md)。紧凑表示已通过真实GPU全节点反传验证；R16池化与容量差异明确记录，不能视为纯架构消融。[资源验证](results/geobc_coarse_transolver_resource_v19/BRIEF.md) · [当前计划](notes/geobc_coarse_three100_physical5_v20_plan.json) · [真实启动身份](notes/geobc_coarse_three_v20_actual_launch.json)。
 
 ## 数据与证据
@@ -44,6 +44,6 @@ R64 FNO容量控制已完成同5遍训练和DEV：隐藏width9→16、参数4.52
 
 WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`，RTX5090；显存上限30.5GB（30,500,000,000 bytes），公共非阻塞GPU锁。[依赖](requirements-lock-wsl.txt) · [TCNN安装](notes/install_tcnn.md)。研究工具在WSL项目根目录使用 `python -m tools.<模块名>`，按对应冻结计划／真实终态交接运行；不能因旧status或SOURCE-ready重复启动。
 
-新克隆先执行 `python tools/restore_geobc_source_line_endings.py --check`，仅行尾不同可执行 `--restore`，恢复166个冻结运行依赖的LF／CRLF字节；未知内容拒绝写入。半小时监视器持续推进，健康后台训练只作轻量检查。
+新克隆先执行 `python tools/restore_geobc_source_line_endings.py --check`，仅行尾不同可执行 `--restore`，恢复176个冻结运行依赖的LF／CRLF字节；未知内容拒绝写入。半小时监视器持续推进，健康后台训练只作轻量检查。
 
-[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`b7999d6`，已包含紧凑三TS、R16 FNO与R64容量控制的完整同5遍训练／DEV结果及图；空token控制与新训练目标对照目前在本地推进，尚未包括在此远端提交。[发布状态](notes/github_publish_plan.json)。
+[私人仓库](https://github.com/baiming-zhang/GeoBC-Neural-Operator)最新已验收提交`bc640ad`，已包含空token控制的完整同5遍训练／DEV负结果与图，以及训练目标对照的实际启动状态；其后训练目标对照已完成训练／DEV并导出图表，这些新终态及下一幅值先验源码尚未推送。[发布状态](notes/github_publish_plan.json)。

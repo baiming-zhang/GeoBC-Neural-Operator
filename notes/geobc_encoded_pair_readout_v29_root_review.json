@@ -1,7 +1,7 @@
 {
   "passed": true,
   "whole_source_reviewed": true,
-  "actual_execution_released": false,
+  "actual_execution_released": true,
   "reviewer": "root",
   "scientific_digest": "ff355ab10d2ba949cdca2dd1579a841d624fa239a49bc4e9fe36d88cf79354d3",
   "source_pins": {
@@ -138,8 +138,28 @@
     "tools/evaluate_geobc_encoded_pair_v29.py": "fbe0a763e3fe72d04be85917206934cce533584cb02c0983d1c47cf5b00a6651",
     "tools/run_geobc_encoded_pair_readout_guard_v29.py": "e5dc6ae50cc330a73a44f71da9888cf852928b7332332eb34f30e4b83decf2c1"
   },
-  "training_binding": {},
+  "training_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/encoded4_TS_FNO100_short5_v28/summary.json",
+      "bytes": 473436,
+      "mtime_ns": 1791707497109582800,
+      "sha256": "d602fbb30096a16eca9298809b6a3fd38bd987faa1caa61c590c00fda7f2c816"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/encoded4_TS_FNO100_short5_v28/status.json",
+      "bytes": 473436,
+      "mtime_ns": 1791707497120632100,
+      "sha256": "d602fbb30096a16eca9298809b6a3fd38bd987faa1caa61c590c00fda7f2c816"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/encoded4_TS_FNO100_short5_v28/external_terminal.json",
+      "bytes": 16167,
+      "mtime_ns": 1791707497891171900,
+      "sha256": "1a09dd0e2a0ddd54a6b336fb6c5c6f287f7a064f489629d7efe80ce14ddd0204"
+    }
+  },
   "review": "Full validatedv27 body plus narrow diff: direct v28b contract, both1500 and readout600reuse/onephysical300file load; wholeTRAIN3600 with eacharm budgets unchanged; two constructors with exact family/native modelprofile alias; only new120 finite arrays beforeGT60once; seven oldscalar scores from realv27terminal. No baselineinfer/arrays/FINAL/scaler. FuturetruebothTRAINterminal/exact exits/sourceSCI/budgets required before binding and release.",
   "actual_GPU_launches": 0,
-  "unreleased_metadata_preflight_denied": true
+  "unreleased_metadata_preflight_denied": true,
+  "actual_terminal_evidence_verified": true
 }
