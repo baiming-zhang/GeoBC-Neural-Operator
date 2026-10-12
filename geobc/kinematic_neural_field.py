@@ -4,7 +4,7 @@ import torch
 from torch import nn
 from .neural_field import FNOField
 from .fno import query_grid
-MODES = ("ZERO", "ACTUAL")
+MODES = ("ZERO", "ACTUAL", "U_ONLY", "GRAD_ONLY")
 
 class KinematicCovariateFNO(FNOField):
 
@@ -33,6 +33,10 @@ class KinematicCovariateFNO(FNOField):
         assert cov.dtype == torch.float32 and cov.shape == (stop - start, 12) and bool(torch.isfinite(cov).all())
         if self.input_mode == 'ZERO':
             cov = torch.zeros_like(cov)
+        elif self.input_mode == 'U_ONLY':
+            cov = torch.cat((cov[:, :3], torch.zeros_like(cov[:, 3:])), dim=1)
+        elif self.input_mode == 'GRAD_ONLY':
+            cov = torch.cat((torch.zeros_like(cov[:, :3]), cov[:, 3:]), dim=1)
         values = query_grid(latent[0], case['query_indices'][start:stop], case['query_weights'][start:stop], 32768)
         native = torch.cat((case['xyz'][start:stop], case['features'][start:stop], context.expand(stop - start, -1), values), dim=1)
         assert native.shape == (stop - start, 76)

@@ -10,6 +10,7 @@ class LearningCache:
     def __init__(self,catalog,guard):
         self.catalog=catalog; self.guard=guard; self.shared={}; self.cases={}; self.targets={}
         self.input_reads=0; self.training_target_reads=0; self.feature_reads=0
+        self.physical_covariates={}
 
     def array(self,path,shape,allowed,device='cuda'):
         resolved=str(local_path(path))
@@ -24,7 +25,7 @@ class LearningCache:
             self.guard()
         return self.shared[resolved]
 
-    def load_predictors(self,records,features,role,device='cuda'):
+    def load_predictors(self,records,features,role,device='cuda',keep_physical_covariates=False):
         cad_features={}
         for key,record in records.items():
             self.guard(); n=record['num_nodes']; cad,load=key.split('/')
@@ -40,6 +41,8 @@ class LearningCache:
                 value=np.load(local_path(item['path']),allow_pickle=False)
                 if value.dtype!=np.float64 or value.shape!=(3,n,12) or not np.isfinite(value).all():
                     raise ValueError('Physical covariate dimensions differ')
+                if keep_physical_covariates:
+                    self.physical_covariates[cad]=torch.as_tensor(value,device=device)
                 cad_features[cad]=torch.as_tensor(value,device=device,dtype=torch.float32); self.feature_reads+=1
                 self.guard()
             case['kinematic_inputs']=cad_features[cad][['ver','hor','tor'].index(load)]

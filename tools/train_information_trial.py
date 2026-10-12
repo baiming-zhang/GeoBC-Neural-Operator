@@ -93,7 +93,7 @@ def run(args):
             if len(witness['xyz'])!=325387:
                 raise ValueError('Actual maximum training geometry differs')
             for seed,modes in zip(config['seeds'],config['arm_order']):
-                reference={k:v.detach().clone() for k,v in KinematicCovariateFNO('ZERO',seed).state_dict().items()}
+                reference={k:v.detach().clone() for k,v in KinematicCovariateFNO(modes[0],seed).state_dict().items()}
                 generator=random.Random(seed); order=[]
                 for _ in range(config['passes']):
                     exposure=list(train_keys); generator.shuffle(exposure); order.extend(exposure)
@@ -121,8 +121,12 @@ def run(args):
                         if norm<=0: raise ArithmeticError('Zero model gradient')
                         gradients[name]=norm
                     extra=float(model.head[0].weight.grad[:,76:].norm())
-                    if mode=='ZERO' and extra!=0 or mode=='ACTUAL' and extra<=0:
+                    active_columns={'ZERO':[], 'ACTUAL':list(range(12)), 'U_ONLY':list(range(3)), 'GRAD_ONLY':list(range(3,12))}[mode]
+                    inactive_columns=[i for i in range(12) if i not in active_columns]
+                    if mode=='ZERO' and extra!=0 or mode!='ZERO' and extra<=0:
                         raise ArithmeticError('Covariate control gradient differs')
+                    if inactive_columns and not bool((model.head[0].weight.grad[:,[76+i for i in inactive_columns]]==0).all()):
+                        raise ArithmeticError('Masked-column gradient is not zero')
                     optimizer.step()
                     if any(not bool(torch.isfinite(p).all()) for p in model.parameters()):
                         raise FloatingPointError('Nonfinite Adam qualification step')
@@ -141,8 +145,10 @@ def run(args):
                     xyzgrad,covgrad=torch.autograd.grad(prediction.square().sum(),(xyz,cov),allow_unused=True)
                     if xyzgrad is None or not bool(torch.isfinite(xyzgrad).all()) or float(xyzgrad.norm())<=0:
                         raise ArithmeticError('Actual coordinate gradient missing')
-                    if mode=='ACTUAL' and (covgrad is None or not bool(torch.isfinite(covgrad).all()) or float(covgrad.norm())<=0):
+                    if mode!='ZERO' and (covgrad is None or not bool(torch.isfinite(covgrad).all()) or float(covgrad.norm())<=0):
                         raise ArithmeticError('Actual physical-input gradient missing')
+                    if covgrad is not None and inactive_columns and not bool((covgrad[:,inactive_columns]==0).all()):
+                        raise ArithmeticError('Inactive covariate gradient is not zero')
                     with torch.no_grad():
                         alternate=torch.cat([model.query(query,start,min(start+17,64),context,latent) for start in range(0,64,17)])
                         norm=float(prediction.norm()); discrepancy=float((alternate-prediction).norm())
@@ -219,11 +225,12 @@ def run(args):
                     S=float(np.linalg.norm(prediction[:,3]-truth[:,3])/snorm)*100
                     state['metrics'][name].append(dict(key=key,U=U,S=S,primary=.5*(U+S)))
             state['aggregate']={name:{field:sum(row[field] for row in rows)/60 for field in ['U','S','primary']} for name,rows in state['metrics'].items()}
-            differences=[{field:state['aggregate']['zero_seed'+str(seed)][field]-state['aggregate']['actual_seed'+str(seed)][field] for field in ['U','S','primary']} for seed in config['seeds']]
+            baseline=config.get('baseline_mode','ZERO').lower();candidate=config.get('candidate_mode','ACTUAL').lower()
+            differences=[{field:state['aggregate'][baseline+'_seed'+str(seed)][field]-state['aggregate'][candidate+'_seed'+str(seed)][field] for field in ['U','S','primary']} for seed in config['seeds']]
             means={field:sum(row[field] for row in differences)/3 for field in ['U','S','primary']}
-            gate=config['practical_benefit']
+            gate=config.get('practical_benefit')
             state.update(paired_improvement_pp=means,paired_primary_seed_wins=sum(row['primary']>0 for row in differences),
-                         practical_benefit_passed=means['primary']>=gate['mean_primary_reduction_pp'] and means['S']>=gate['mean_stress_reduction_pp'] and sum(row['primary']>0 for row in differences)>=gate['primary_seed_wins'],
+                         practical_benefit_passed=means['primary']>=gate['mean_primary_reduction_pp'] and means['S']>=gate['mean_stress_reduction_pp'] and sum(row['primary']>0 for row in differences)>=gate['primary_seed_wins'] if gate else None,
                          status='completed',phase='terminal')
     except Exception as error:
         state['possible_partial_optimizer_update']=state['optimizer_step_in_progress']

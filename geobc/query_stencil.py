@@ -3,7 +3,8 @@ import torch
 
 
 def stencil(xyz,resolution=64):
-    if not bool(torch.isfinite(xyz).all()) or float(xyz.min()) < -2e-6 or float(xyz.max()) > 1+2e-6:
+    bounds=xyz.detach()
+    if not bool(torch.isfinite(bounds).all()) or float(bounds.min()) < -2e-6 or float(bounds.max()) > 1+2e-6:
         raise ValueError('Query outside normalized cube')
     position=xyz.clamp(0,1)*(resolution-1)
     low=position.floor().long().clamp(max=resolution-2); frac=position-low

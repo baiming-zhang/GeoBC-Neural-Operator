@@ -20,6 +20,7 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 ## Results
 
 - [Physical-information learning](results/physical_information_learning/README.md)
+- [Continuous learned U/S response](results/continuous_neural_response/README.md)
 - [Neural baselines](results/neural_baselines/README.md)
 - [Development displacement accuracy](results/displacement_accuracy/README.md)
 - [Reserve displacement accuracy](results/reserve_displacement_accuracy/README.md)

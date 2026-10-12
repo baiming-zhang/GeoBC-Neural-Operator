@@ -19,5 +19,16 @@ class InformationControl(unittest.TestCase):
         value.square().sum().backward()
         self.assertTrue(torch.isfinite(encoded.grad).all())
 
+    def test_component_masks(self):
+        case=dict(xyz=torch.ones(2,3),features=torch.ones(2,25),kinematic_inputs=torch.ones(2,12,requires_grad=True),
+                  query_indices=torch.zeros(2,8,dtype=torch.int64),query_weights=torch.ones(2,8)/8)
+        context=torch.ones(1,32);latent=torch.ones(1,16,2,2,2)
+        for mode,inactive in [('U_ONLY',slice(3,12)),('GRAD_ONLY',slice(0,3))]:
+            model=KinematicCovariateFNO(mode,2026)
+            prediction=model.query(case,0,2,context,latent)
+            grad,=torch.autograd.grad(prediction.sum(),case['kinematic_inputs'])
+            self.assertTrue((grad[:,inactive]==0).all())
+            self.assertGreater(float(grad.norm()),0)
+
 
 if __name__=='__main__': unittest.main()
