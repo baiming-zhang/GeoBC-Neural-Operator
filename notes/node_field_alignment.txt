@@ -1,8 +1,0 @@
-Official DeepJEB H5 vertex/field alignment defect confirmed independently using original CSV GRID rows.
-10_30/ver: wrong same-index max/RMS=1605.060539/159.789893 MPa; permutation identity=0.000000%; corrected stress max CSV difference=5.000e-07 MPa.
-10_421/hor: wrong same-index max/RMS=639.716224/86.327755 MPa; permutation identity=0.000000%; corrected stress max CSV difference=5.000e-07 MPa.
-10_460/dia: wrong same-index max/RMS=466.907299/48.777188 MPa; permutation identity=0.000499%; corrected stress max CSV difference=5.000e-07 MPa.
-10_492/tor: wrong same-index max/RMS=358.159012/41.930718 MPa; permutation identity=0.000000%; corrected stress max CSV difference=5.000e-07 MPa.
-10_58/ver: wrong same-index max/RMS=1030.537208/89.751629 MPa; permutation identity=0.000785%; corrected stress max CSV difference=5.000e-07 MPa.
-All CSV node IDs are 1..N; H5 vertices and stress have N entries; FEM has N+5 GRID entries, and its 5 RBE reference node IDs are absent from CSV/H5 body nodes.
-data/prepared_multifield aligns raw signed stress and uXYZ with H5 vertices by official CSV coordinates. Old prepared/results remain intact and must not be used as valid physical-field replication results.

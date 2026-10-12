@@ -1,1 +1,1 @@
-"""Original DeepJEB nodal stress fitting experiments."""
+"""Geometry, loads and boundary conditions for DeepJEB field prediction."""

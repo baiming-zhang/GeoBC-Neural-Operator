@@ -1,0 +1,94 @@
+{
+  "seed": 2026,
+  "geometry_guard": {
+    "finite": true,
+    "maximum_J_condition": 1000000000000,
+    "minimum_abs_detJ_over_length_cubed": 1e-14,
+    "orientation_consistent_per_cell_at_center_and_four_Q": true,
+    "geometry_repair": false
+  },
+  "load_transfer": {
+    "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+    "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+    "minimum_rank": 6,
+    "maximum_normal_condition": 1000000000000,
+    "relative_guard_tolerance": 1e-09,
+    "guards": [
+      "H B=I6",
+      "virtual work",
+      "net force",
+      "net moment about true reference"
+    ],
+    "fallback_or_pseudoinverse": false,
+    "OptiStruct_exact": false
+  },
+  "reader_scope": {
+    "deck_coordinate_relative_tolerance": 1e-05,
+    "material_relative_tolerance": 1e-08,
+    "allowed_static_params": {
+      "POST": [
+        "-1",
+        "0",
+        "1",
+        "2"
+      ],
+      "AUTOSPC": [
+        "YES",
+        "NO"
+      ],
+      "GRDPNT": [
+        "0"
+      ],
+      "LGDISP": [
+        "0",
+        "NO"
+      ],
+      "INREL": [
+        "0"
+      ],
+      "CHECKEL": [
+        "NO"
+      ],
+      "RENUMOK": [
+        "YES"
+      ],
+      "PRINFACC": [
+        "1"
+      ],
+      "CONTFEL": [
+        "AUTO"
+      ]
+    },
+    "allowed_gapprm_names": [
+      "GAPCMPL"
+    ],
+    "ignored_output_cards": [
+      "ENDDATA",
+      "OUTPUT",
+      "OUTPUT2",
+      "DISPLACEMENT",
+      "GPSTRESS",
+      "STRESS",
+      "STRAIN",
+      "SPCFORCE",
+      "OLOAD",
+      "GPFORCE",
+      "ECHO",
+      "FORMAT",
+      "ELFORCE",
+      "ESE"
+    ],
+    "explicit_proprietary_control_exclusions": [
+      {
+        "output_only_claim": false,
+        "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+        "card": "DEBUG",
+        "original_effect": "unknown",
+        "value": "0.0",
+        "classification": "definition_unverified_explicitly_not_reproduced",
+        "inactive_claim": false,
+        "name": "LGSHPSNS"
+      }
+    ]
+  }
+}

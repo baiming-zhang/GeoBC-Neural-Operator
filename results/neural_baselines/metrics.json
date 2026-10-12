@@ -1,0 +1,96 @@
+{
+  "status": "completed",
+  "whole_utc_seconds": 235.40798425674438,
+  "whole_monotonic_seconds": 214.7130921880016,
+  "native_utc_seconds": 232.20239734649658,
+  "native_monotonic_seconds": 211.50750517200504,
+  "three_seed_comparison": {
+    "package_means": {
+      "FNO9_plain_query_MLP": {
+        "case_mean_u_relative_l2": 0.21723223842426484,
+        "case_mean_stress_relative_l2": 0.4933259948616846,
+        "case_mean_stress_hotspot_relative_l2": 0.3753400594343124
+      },
+      "FNO9_TCNN_query": {
+        "case_mean_u_relative_l2": 0.21973563214822542,
+        "case_mean_stress_relative_l2": 0.48711231492613294,
+        "case_mean_stress_hotspot_relative_l2": 0.3323897365162613
+      }
+    },
+    "package_ranges": {
+      "FNO9_plain_query_MLP": {
+        "case_mean_u_relative_l2": [
+          0.20646842859483056,
+          0.23005269396295674
+        ],
+        "case_mean_stress_relative_l2": [
+          0.48830201442958115,
+          0.5008440447059723
+        ],
+        "case_mean_stress_hotspot_relative_l2": [
+          0.3684010492147311,
+          0.38394928257187855
+        ]
+      },
+      "FNO9_TCNN_query": {
+        "case_mean_u_relative_l2": [
+          0.2037454007733747,
+          0.24180306800403184
+        ],
+        "case_mean_stress_relative_l2": [
+          0.4833891146616877,
+          0.4916114910078338
+        ],
+        "case_mean_stress_hotspot_relative_l2": [
+          0.32844958555702347,
+          0.3373389527277671
+        ]
+      }
+    },
+    "per_seed_differences": {
+      "2026": {
+        "case_mean_u_relative_l2": -0.0027230278214558645,
+        "case_mean_stress_relative_l2": -0.004912899767893442,
+        "case_mean_stress_hotspot_relative_l2": -0.03702037795073787
+      },
+      "2027": {
+        "case_mean_u_relative_l2": -0.0015171650477375231,
+        "case_mean_stress_relative_l2": -0.004495586340623026,
+        "case_mean_stress_hotspot_relative_l2": -0.04522026095930426
+      },
+      "2028": {
+        "case_mean_u_relative_l2": 0.011750374041075096,
+        "case_mean_stress_relative_l2": -0.009232553698138524,
+        "case_mean_stress_hotspot_relative_l2": -0.04661032984411145
+      }
+    },
+    "mean_U_difference": 0.0025033937239605786,
+    "mean_S_difference": -0.006213679935551664,
+    "mean_hotspot_difference": -0.04295032291805112,
+    "mean_primary_difference": -0.0018551431057955425,
+    "paired_primary_wins": 2,
+    "paired_seed_denominator": 3,
+    "distinct_CAD_denominator": 20,
+    "fixed_seed_case_denominator": 60,
+    "gate": {
+      "passed": false,
+      "thresholds": {
+        "mean_primary_gain_min": 0.03,
+        "mean_stress_gain_min": 0.03,
+        "mean_any_field_deterioration_max": 0.02,
+        "mean_hotspot_deterioration_max": 0.02,
+        "paired_seed_primary_wins_at_least": 2,
+        "paired_seed_denominator": 3,
+        "fixed_seed_case_denominator": 60,
+        "distinct_CAD_denominator": 20
+      }
+    },
+    "preferred_default_package": "FNO9_plain_query_MLP",
+    "decision": "No predeclared practical Hash advantage; plain FNO is smaller default baseline",
+    "final_solver_selected": false,
+    "statistical_significance_claimed": false,
+    "FINAL_blind_test": false
+  },
+  "peak_allocated_bytes": 529608192,
+  "peak_reserved_bytes": 704643072
+}
