@@ -53,9 +53,11 @@ GPU物理张量树模型已完成（整阶段19.90秒／GPU学习9.52秒）：�
 
 统一接口已实际通过（13.89秒）：`LocatedForce6UResponse.query(xyz_mm, force6)`不需要调用者单元编号，三CAD新72位移查询／24定位／48外点拒绝先完整提交，后置同场值差0，坐标／六维力矩梯度与直接物理API一致。另3个“8内部＋1外部”批次整批拒绝，无子集输出。查询／拒绝／分块每CAD0.370–0.605秒，属于已有基解缓存接口，不含新几何冷求解；GT／K／PCG重播0，无独立新载荷或离节点GT精度结论，S仍未提供。 [接口结果](results/geobc_located_force6_U_response_v109/BRIEF.md)。
 
-冻结响应清单已实际加载验收（整阶段8.021秒）：3CAD各一次几何＋六基解严格hash/load，9份篡改清单均在body／constructor前拒绝；36位移查询／12定位／3外点拒绝完整提交后同场差0。单CAD加载0.806–1.101秒，查询／分块／拒绝0.315–0.522秒；只加载已有基解，非新几何全冷求解，GT／K／PCG重播0，S仍open。 [清单加载结果](results/geobc_physical_U_response_package_v110/BRIEF.md)。
+冻结响应清单已实际加载验收（外UTC8.021秒／mono12.649秒，双时轴均保留）：3CAD各一次几何＋六基解严格hash/load，9份篡改清单均在body／constructor前拒绝；36位移查询／12定位／3外点拒绝完整提交后同场差0。单CAD加载0.806–1.101秒，查询／分块／拒绝0.315–0.522秒；只加载已有基解，非新几何全冷求解，GT／K／PCG重播0，S仍open。 [清单加载结果](results/geobc_physical_U_response_package_v110/BRIEF.md)。
 
-下一步验证真正新几何cache-miss部署：固定v93已揭盲但未求物理解的50_380／624_483，从targetfree源、一次新K／粗预条件到六个独立零基解，再生成清单和调用无单元ID的XYZ／force6接口，完整记录源到响应成本；不读GT／CSV标签，不把缓存秒数当冷求解。当前设计＋一个已审SOURCE新RHS原型，实际源／构造／求解／GPU0。 [冷部署设计](notes/geobc_physical_U_new_geometry_deployment_v111_design.json)。
+两份新物理几何完整部署与原规范U准确率已验收：50_380／624_483每CAD一次源／新K／粗预条件，18独立零初值数值场和24接口查询／8定位／2拒绝通过；源到六基解77.940／63.438秒，整阶段外UTC315.596／mono297.088秒，含98.621秒根审等待及额外独立混合验证。 [部署结果](results/geobc_physical_U_new_geometry_deployment_v111/BRIEF.md)。另独立CPU读出7.858秒，六场原signed U均值0.015735%、最差0.026198%，原节点／GRID完整对齐；S值选择0，不重跑物理或调参，两个reserve已揭盲不是新盲测。 [原U精度](results/geobc_physical_U_reserve_accuracy_v112/BRIEF.md)。
+
+下一步补齐真实RBE参考点的六维运动与能量接口：参考点不在实体单元内，用其实际weighted-LS成员定义返回mm位移／rad转角和Nmm能量，不用空间定位回退投影。固定两CAD新六DOF观测，对独立mixed解做同方程对照，仍GT0／KPCG0／Sopen。当前设计＋一个已审SOURCE原型，constructor／数组／GPU0。 [参考点接口设计](notes/geobc_reference_motion_response_v113_design.json)。
 
 固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 

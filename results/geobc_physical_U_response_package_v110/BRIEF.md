@@ -1,6 +1,6 @@
 # 冻结物理位移响应包的单次加载
 
-整阶段实际8.021秒，清单加载门：PASS。
+整阶段外UTC8.021秒／monotonic12.649秒，原时轴差异保留、不缩放，清单加载门：PASS。
 
 `load_response(d, np, torch, descriptor, reviewed_digest, guard)`单次加载完整几何与六个收敛基解，返回可直接调用的`query(xyz_mm, force6)`对象。descriptor身份必须来自独立冻结的计划／根审，不依赖调用者清单的自称digest。
 

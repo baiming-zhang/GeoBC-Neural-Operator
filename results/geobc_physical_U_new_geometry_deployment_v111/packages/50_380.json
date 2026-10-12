@@ -1,0 +1,647 @@
+{
+  "schema": "GeoBC_physical_U_response_package_v1",
+  "payload": {
+    "kind": "independent_approximate_P2_physical_U_force6",
+    "CAD": "50_380",
+    "basis_order": [
+      "ver",
+      "hor",
+      "tor",
+      "Fy",
+      "Mx",
+      "My"
+    ],
+    "geometry_identity": {
+      "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/geometry_and_rhs_input.npz",
+      "bytes": 57711864,
+      "mtime_ns": 1791809535387495500,
+      "sha256": "372f01a735d7f578627f97f481a176ff1fec439ff8ea51b12d937efe204f30f8"
+    },
+    "geometry_schema": {
+      "nodes": 212721,
+      "cells": 132233,
+      "characteristic_length_mm": 184.2684783935547
+    },
+    "basis_records": {
+      "ver": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/canonical_basis/ver/manifest.json",
+          "bytes": 909,
+          "mtime_ns": 1791809573897929300,
+          "sha256": "1d92661cc96d6bc8753f21ffc7636429afd1337b8d77d561eb166f927aa77fd4"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/canonical_basis/ver/physical_U_mm.npy",
+          "bytes": 5105432,
+          "mtime_ns": 1791809573869899200,
+          "shape": [
+            212721,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "d4c06c548aacec320f1fbbc12c357bee846b990a5e5d4f38022603f07d2d2a37"
+        }
+      },
+      "hor": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/canonical_basis/hor/manifest.json",
+          "bytes": 910,
+          "mtime_ns": 1791809573958936500,
+          "sha256": "35a6d856144b7f86ac8dbfb0798a7732b51096640d42d04db14b8efc61f7de65"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/canonical_basis/hor/physical_U_mm.npy",
+          "bytes": 5105432,
+          "mtime_ns": 1791809573929658200,
+          "shape": [
+            212721,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "474abb96eb6683a1b786aee18f10b31ad2be04d8706a1d33d88981b7fbcf6766"
+        }
+      },
+      "tor": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/canonical_basis/tor/manifest.json",
+          "bytes": 910,
+          "mtime_ns": 1791809574019636300,
+          "sha256": "16925bc9a52044b7ada28c5bbc56fcb9a5881130adb344071a07062ccb5f6653"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/canonical_basis/tor/physical_U_mm.npy",
+          "bytes": 5105432,
+          "mtime_ns": 1791809573990637000,
+          "shape": [
+            212721,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "1353b69751ad6557731b644bdec0da3b74acb0a8e6e2026cfbbd47dbef4e7f93"
+        }
+      },
+      "Fy": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/added_basis/Fy/manifest.json",
+          "bytes": 902,
+          "mtime_ns": 1791809608911550900,
+          "sha256": "0e1fef8ddc6f88ae8b1f00fb75532ec8592d90bb81f356b038648da1eee4d089"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/added_basis/Fy/physical_U_mm.npy",
+          "bytes": 5105432,
+          "mtime_ns": 1791809608883551200,
+          "shape": [
+            212721,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "baf3c59b08284125abedda9df4709b572b1f43978f9a49699899de71816afba9"
+        }
+      },
+      "Mx": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/added_basis/Mx/manifest.json",
+          "bytes": 906,
+          "mtime_ns": 1791809608972567400,
+          "sha256": "c84518e5c2def0c8b54b59c86cd130e03d0afab79a577c06d2c3ccb771ad3aaa"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/added_basis/Mx/physical_U_mm.npy",
+          "bytes": 5105432,
+          "mtime_ns": 1791809608942053600,
+          "shape": [
+            212721,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "f02dcdb5f50621984c682f842101988fda1df814d5c50ccc1cd644771ff2b0fa"
+        }
+      },
+      "My": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/added_basis/My/manifest.json",
+          "bytes": 901,
+          "mtime_ns": 1791809609062100600,
+          "sha256": "3a127848459bb3226011a08e79744646fee91909c99f7cfb2c2e078c72cb2e76"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/two_new_geometry_physical_U_deployment_v111/50_380/added_basis/My/physical_U_mm.npy",
+          "bytes": 5105432,
+          "mtime_ns": 1791809609010096400,
+          "shape": [
+            212721,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "dbaa8a5e6cefc5a278cb876fb0ee0505c3c63f5b08645e5a0dab2ba3c516ea64"
+        }
+      }
+    },
+    "reference_load6_columns": [
+      [
+        0.0,
+        0.0,
+        35585.77,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -37809.9,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        564924.2
+      ],
+      [
+        0.0,
+        37809.9,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        564924.2,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        564924.2,
+        0.0
+      ]
+    ],
+    "scope": {
+      "REFC": "123456",
+      "reference_GRID_ID": 213001,
+      "material_constraints_fixed": true,
+      "physical_U_units": "mm",
+      "force_units": "N",
+      "moment_units": "Nmm"
+    },
+    "source_provenance": {
+      "SCI": "ee6f245fce04e9c9e7786ba0c3e145ff03c0ed696fd2ffd34d30b0227a7a25bc",
+      "execution": {
+        "run_process": {
+          "pid": 414,
+          "ppid": 413,
+          "start_ticks": 3455,
+          "argv": [
+            "/home/research/.venvs/geobc/bin/python",
+            "-u",
+            "-m",
+            "tools.run_geobc_physical_U_new_geometry_v111",
+            "--start",
+            "--plan",
+            "notes/geobc_physical_U_new_geometry_deployment_v111_plan.json"
+          ]
+        },
+        "guard": {
+          "guard_process": {
+            "pid": 413,
+            "ppid": 408,
+            "start_ticks": 3264,
+            "argv": [
+              "/home/research/.venvs/geobc/bin/python",
+              "-u",
+              "-m",
+              "tools.guard_geobc_physical_U_new_geometry_v111",
+              "--start",
+              "--plan",
+              "notes/geobc_physical_U_new_geometry_deployment_v111_plan.json"
+            ]
+          },
+          "scientific_digest": "ee6f245fce04e9c9e7786ba0c3e145ff03c0ed696fd2ffd34d30b0227a7a25bc",
+          "entry_epoch": 1791809535.3661015,
+          "entry_monotonic": 32.6722068,
+          "deadline_epoch": 1791811335.3661015,
+          "deadline_monotonic": 1832.6722068,
+          "boot_id": "097ce70a-5d06-42b3-abae-4e249ec03d33"
+        },
+        "scientific_digest": "ee6f245fce04e9c9e7786ba0c3e145ff03c0ed696fd2ffd34d30b0227a7a25bc",
+        "boot_id": "097ce70a-5d06-42b3-abae-4e249ec03d33"
+      },
+      "source_input_identities": {
+        "FieldMesh": {
+          "path": "data/raw_geobc_coverage/FieldMesh/50_380.h5",
+          "bytes": 39536136,
+          "mtime_ns": 1791604728072169400,
+          "sha256": "a9a9a63fba751fcd3d7eb39139044d87f68e3a9d86caaf70448c812bd0aa4e14"
+        },
+        "SolverDeck": {
+          "path": "data/raw_geobc_coverage/SolverDeck/50_380.fem",
+          "bytes": 30001544,
+          "mtime_ns": 1791604757998003800,
+          "sha256": "f2637d22095118577ac676d075cc864ce888637385623cae822ab81820ee2997"
+        }
+      },
+      "GRID_map_identity": {
+        "path": "runs/geobc_exploration/reserved2_frozen3_same20_v93/inputs/geometry/50_380/grid_node_ids.npy",
+        "bytes": 1701896,
+        "mtime_ns": 1791779971532753300,
+        "sha256": "ceb1c9843435740b94582ad1e8c553139f7b5350afe6bfbb21082fb763955c0b",
+        "shape": [
+          212721
+        ],
+        "dtype": "int64"
+      },
+      "actual_source_facts": {
+        "original": {
+          "node_count": 212721,
+          "cell_count": 132233,
+          "used_cell_nodes": 212721,
+          "free_nodes": 210961,
+          "fixed_nodes": 1760,
+          "derived_nodes": 0,
+          "allN_partition_exact": true,
+          "deck_coordinate_max_error_over_length": 4.107245813812659e-08,
+          "ctetra_all_cells_material_edge_association": true,
+          "material": {
+            "MID": 926,
+            "E_MPa": 113800.0,
+            "nu": 0.342,
+            "G_MPa": 42399.40387481371,
+            "explicit_G_relative_error": 0.0,
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "constraints": {
+            "support_reference_GRID_IDs": [
+              213002,
+              213003,
+              213004,
+              213005
+            ],
+            "RBE2_count": 4,
+            "actual_card_CM": [
+              "123456",
+              "123456",
+              "123456",
+              "123456"
+            ],
+            "active_SPC_DOF_count": 24,
+            "direct_fixed_physical_nodes": 0,
+            "derived_output_only": true,
+            "role_flags_used": false
+          },
+          "load_guard": {
+            "reference_GRID_ID": 213001,
+            "member_count": 796,
+            "REFC": "123456",
+            "weight": 1.0,
+            "length_mm": 17.21521500112396,
+            "normal_rank": 6,
+            "normal_condition": 3.268169778068914,
+            "HB_max_error": 4.440892098500626e-16,
+            "virtual_work_relative_error": 1.1922455193199448e-17,
+            "force_relative_error": 2.0446255944956163e-16,
+            "moment_relative_error": 1.217377322456431e-16,
+            "reference_load6": [
+              0.0,
+              0.0,
+              35585.77,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "passed": true
+          },
+          "cards": {
+            "GAPPRM": 1,
+            "PARAM": 4,
+            "GRID": 212726,
+            "CTETRA": 132233,
+            "RBE2": 4,
+            "RBE3": 1,
+            "PSOLID": 1,
+            "MAT1": 1,
+            "FORCE": 3,
+            "MOMENT": 1,
+            "SPC": 4,
+            "EIGRL": 1,
+            "LOAD": 4,
+            "SPCADD": 4
+          },
+          "selected_controls": {
+            "LABEL": "Vertical",
+            "ANALYSIS": "STATICS",
+            "SPC": 935,
+            "LOAD": 933
+          },
+          "ignored_controls": [
+            {
+              "line": 12,
+              "card": "FORMAT",
+              "fields": [
+                "FORMAT       H3D"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 13,
+              "card": "DEBUG",
+              "fields": [
+                "LGSHPSNS",
+                "0.0"
+              ],
+              "reason": "definition_unverified_explicitly_not_reproduced",
+              "original_setting_effect": "unknown; not asserted inactive or output-only"
+            },
+            {
+              "line": 14,
+              "card": "ELFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 15,
+              "card": "ESE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 16,
+              "card": "GPSTRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 17,
+              "card": "SPCFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 18,
+              "card": "STRAIN",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 19,
+              "card": "STRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 60,
+              "card": "METHOD",
+              "fields": [
+                954
+              ],
+              "subcase": 5,
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            },
+            {
+              "line": 66,
+              "card": "GAPPRM",
+              "fields": [
+                "GAPCMPL",
+                "NO"
+              ],
+              "reason": "gap_contact_compliance_control_excluded_no_contact_cards_supported",
+              "does_not_disable_contact": true
+            },
+            {
+              "line": 67,
+              "card": "PARAM",
+              "fields": [
+                "CHECKEL",
+                "NO"
+              ],
+              "reason": "original_quality_check_control_not_reproduced_own_mathematical_guards_retained"
+            },
+            {
+              "line": 68,
+              "card": "PARAM",
+              "fields": [
+                "RENUMOK",
+                "YES"
+              ],
+              "reason": "original_reordering_not_reproduced_canonical_connectivity_unchanged"
+            },
+            {
+              "line": 69,
+              "card": "PARAM",
+              "fields": [
+                "PRINFACC",
+                "1"
+              ],
+              "reason": "inertia_relief_output_control_not_reproduced"
+            },
+            {
+              "line": 70,
+              "card": "PARAM",
+              "fields": [
+                "CONTFEL",
+                "AUTO"
+              ],
+              "reason": "contact_friendly_control_excluded_no_contact_cards_supported"
+            },
+            {
+              "line": 477975,
+              "card": "EIGRL",
+              "fields": [
+                "954",
+                "1.",
+                "",
+                "8",
+                "",
+                "",
+                "",
+                "MASS"
+              ],
+              "unselected_subcases": [
+                5
+              ],
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            }
+          ],
+          "GRDSET": {
+            "CP": "",
+            "CD": "",
+            "PS": "",
+            "SEID": ""
+          },
+          "PSOLID_original_controls_not_replicated": {
+            "926": {
+              "MID": 926,
+              "original_controls_not_replicated": []
+            }
+          },
+          "K_applications": 0,
+          "labels_read": 0,
+          "stress_reads": 0,
+          "GPU_calls": 0
+        },
+        "all_three_source_LOAD_expansion": {
+          "ver": {
+            "active_actions": [
+              {
+                "kind": "FORCE",
+                "node": 213001,
+                "vector": [
+                  0.0,
+                  0.0,
+                  35585.77
+                ]
+              }
+            ],
+            "selected_controls": {
+              "LABEL": "Vertical",
+              "ANALYSIS": "STATICS",
+              "SPC": 935,
+              "LOAD": 933
+            },
+            "reference_load6": [
+              0.0,
+              0.0,
+              35585.77,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "force_relative_error": 2.0446255944956163e-16,
+            "moment_relative_error": 1.217377322456431e-16,
+            "virtual_work_relative_error": 1.1922455193199448e-17
+          },
+          "hor": {
+            "active_actions": [
+              {
+                "kind": "FORCE",
+                "node": 213001,
+                "vector": [
+                  -37809.9,
+                  0.0,
+                  0.0
+                ]
+              }
+            ],
+            "selected_controls": {
+              "LABEL": "Horizontal",
+              "ANALYSIS": "STATICS",
+              "SPC": 939,
+              "LOAD": 937
+            },
+            "reference_load6": [
+              -37809.9,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "force_relative_error": 2.116787766061737e-15,
+            "moment_relative_error": 2.7421541131341044e-17,
+            "virtual_work_relative_error": 4.833709602278366e-17
+          },
+          "tor": {
+            "active_actions": [
+              {
+                "kind": "MOMENT",
+                "node": 213001,
+                "vector": [
+                  0.0,
+                  0.0,
+                  564924.2
+                ]
+              }
+            ],
+            "selected_controls": {
+              "LABEL": "Torsion",
+              "ANALYSIS": "STATICS",
+              "SPC": 947,
+              "LOAD": 945
+            },
+            "reference_load6": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              564924.2
+            ],
+            "force_relative_error": 9.732897989919395e-17,
+            "moment_relative_error": 2.2667971032154103e-15,
+            "virtual_work_relative_error": 2.2130393535628684e-17
+          }
+        },
+        "full_card_inventory": {
+          "GAPPRM": 1,
+          "PARAM": 4,
+          "GRID": 212726,
+          "CTETRA": 132233,
+          "RBE2": 4,
+          "RBE3": 1,
+          "PSOLID": 1,
+          "MAT1": 1,
+          "FORCE": 3,
+          "MOMENT": 1,
+          "SPC": 4,
+          "EIGRL": 1,
+          "LOAD": 4,
+          "SPCADD": 4
+        },
+        "zero_same_constraints": true,
+        "GRID_order": "Inherited CSV-aligned geometry IDs;actual full deck coordinates/CTETRA coverage checked",
+        "independent_approx_P2_not_original_OptiStruct": true
+      },
+      "recipe": "curvedP2_fourQ_weightedLS_RBE3;originalDEBUG_PSOLID_unknown"
+    },
+    "inherited_cost": {
+      "source_operator_seconds": 7.763973589999999,
+      "coarse_setup_seconds": 0.9169862270355225,
+      "source_to_six_basis_ready_seconds": 77.94036316871643,
+      "groups": {
+        "canonical_basis": {
+          "wall_seconds": 34.36478543281555,
+          "solver_reported_seconds": 34.36472129821777,
+          "initial_guess": "independent_zero_all3"
+        },
+        "added_basis": {
+          "wall_seconds": 34.76851940155029,
+          "solver_reported_seconds": 34.76843976974487,
+          "initial_guess": "independent_zero_all3"
+        },
+        "independent_mixed": {
+          "wall_seconds": 35.02311706542969,
+          "solver_reported_seconds": 35.023051023483276,
+          "initial_guess": "independent_zero_all3"
+        }
+      },
+      "fresh_engineering_fullcold_seconds": null
+    },
+    "new_OptiStruct_GT_accuracy": false,
+    "signedS_provided": false
+  },
+  "payload_digest": "3039f028bb2abf10af90226d6b05917250aa2c83df29aea518166f5ae954488d"
+}
