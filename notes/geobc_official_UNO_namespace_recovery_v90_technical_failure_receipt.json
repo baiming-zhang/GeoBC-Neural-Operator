@@ -1,0 +1,76 @@
+{
+  "status": "actual_preGT_configuration_failure",
+  "observed_at_utc": "2026-10-12T02:51:11.951690+00:00",
+  "actual_exec_chunk": "e9a71e",
+  "actual_exit_code": 1,
+  "SCI": "d27603ea31dd372fbb946f29312f2b391e10594c5d508f789b35d411c90f6c32",
+  "guard_process": {
+    "pid": 271,
+    "ppid": 270,
+    "start_ticks": 2591,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_official_UNO_recovery_guard_v90",
+      "--start",
+      "--plan",
+      "notes/geobc_official_UNO_namespace_recovery_v90_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 353,
+    "ppid": 271,
+    "start_ticks": 2758,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_official_UNO_recovery_v90",
+      "--start",
+      "--plan",
+      "notes/geobc_official_UNO_namespace_recovery_v90_plan.json"
+    ]
+  },
+  "boot_id": "1a6da01d-633a-4f60-bccf-99dd559ecb0e",
+  "exact_processes_exited": true,
+  "optimizer_attempts": 0,
+  "optimizer_updates": 0,
+  "GT_arrays_reads": 0,
+  "cache_constructed": false,
+  "model_Adam_RNG_checkpoints_exist": false,
+  "old_native_epoch_seconds": 3.561447858810425,
+  "old_external_epoch_seconds": 5.585991859436035,
+  "old_external_monotonic_seconds": 5.585992607000001,
+  "original_campaign_epoch_seconds": 538.2752799987793,
+  "original_monotonic_lifetime_known": false,
+  "identities": {
+    "summary.json": {
+      "path": "runs/geobc_exploration/Official_UNO_TRAIN9_namespace_recovery_v90/summary.json",
+      "bytes": 2546,
+      "mtime_ns": 1791773313797001700,
+      "sha256": "2d5aa6313aef8968e42089ff273d6ae0dfc1a7f2092bc5893ab0901002b2973c"
+    },
+    "status.json": {
+      "path": "runs/geobc_exploration/Official_UNO_TRAIN9_namespace_recovery_v90/status.json",
+      "bytes": 2546,
+      "mtime_ns": 1791773313801002200,
+      "sha256": "2d5aa6313aef8968e42089ff273d6ae0dfc1a7f2092bc5893ab0901002b2973c"
+    },
+    "external_terminal.json": {
+      "path": "runs/geobc_exploration/Official_UNO_TRAIN9_namespace_recovery_v90/external_terminal.json",
+      "bytes": 32510,
+      "mtime_ns": 1791773314440196400,
+      "sha256": "f310d40a19e95ff6db026a71d9090282b0fe794150a929f830d21c90379d59fe"
+    },
+    "process.log": {
+      "path": "runs/geobc_exploration/Official_UNO_TRAIN9_namespace_recovery_v90/process.log",
+      "bytes": 1830,
+      "mtime_ns": 1791773313863000700,
+      "sha256": "f73d0117b6d4110272342e8fa5654e2bc76fd84c1cfad25d3efed7bce661cbe4"
+    }
+  },
+  "direct_cause": "Got in_features=16 and out_features=32, but these two must be the same for soft-gating",
+  "scientific_negative": false,
+  "root_decision": "Variable-channel officialUNO requires a dimensional linear channelMLP skip; source official test_uno.py uses linear. Explicit new SCI for this one invalid-constructor amendment before anyGT/gradient/update, not unchangedmath claim or result-driven tuning. Preserve original89 absolute deadline and both costs."
+}

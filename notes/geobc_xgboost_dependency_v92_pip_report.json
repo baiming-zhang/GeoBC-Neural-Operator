@@ -1,0 +1,156 @@
+{
+  "version": "1",
+  "pip_version": "26.2.1",
+  "install": [
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/64/ad/61a86228e981b15361ff963e84648b1a29ab43debd95f7c2b3ef9d94dca1/xgboost-3.0.5-py3-none-manylinux_2_28_x86_64.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "a03210a3e54c9e543f480db9636fee57247cfcd1ae850b353aeac59eea5ca350"
+          },
+          "hash": "sha256=a03210a3e54c9e543f480db9636fee57247cfcd1ae850b353aeac59eea5ca350"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "xgboost",
+        "version": "3.0.5",
+        "summary": "XGBoost Python Package",
+        "description": "======================\nXGBoost Python Package\n======================\n\n|PyPI version|\n\nInstallation\n============\n\nFrom `PyPI <https://pypi.python.org/pypi/xgboost>`_\n---------------------------------------------------\n\nFor a stable version, install using ``pip``::\n\n    pip install xgboost\n\n.. |PyPI version| image:: https://badge.fury.io/py/xgboost.svg\n   :target: http://badge.fury.io/py/xgboost\n\nFor building from source, see `build <https://xgboost.readthedocs.io/en/latest/build.html>`_.\n",
+        "description_content_type": "text/x-rst",
+        "author_email": "Hyunsu Cho <chohyu01@cs.washington.edu>, Jiaming Yuan <jm.yuan@outlook.com>",
+        "license": "Apache-2.0",
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "License :: OSI Approved :: Apache Software License",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Typing :: Typed"
+        ],
+        "requires_dist": [
+          "numpy",
+          "nvidia-nccl-cu12; platform_system == 'Linux' and platform_machine != 'aarch64'",
+          "scipy",
+          "dask; extra == 'dask'",
+          "distributed; extra == 'dask'",
+          "pandas; extra == 'dask'",
+          "pandas>=1.2; extra == 'pandas'",
+          "graphviz; extra == 'plotting'",
+          "matplotlib; extra == 'plotting'",
+          "cloudpickle; extra == 'pyspark'",
+          "pyspark; extra == 'pyspark'",
+          "scikit-learn; extra == 'pyspark'",
+          "scikit-learn; extra == 'scikit-learn'"
+        ],
+        "requires_python": ">=3.10",
+        "project_url": [
+          "documentation, https://xgboost.readthedocs.io/en/stable/",
+          "repository, https://github.com/dmlc/xgboost"
+        ],
+        "provides_extra": [
+          "dask",
+          "pandas",
+          "plotting",
+          "pyspark",
+          "scikit-learn"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/f3/f8/9dce3698eed6fae28078eb38f748feb1665767693d8017c099de9fbf0b08/nvidia_nccl_cu12-2.32.3-py3-none-manylinux_2_27_x86_64.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "bb94b2348e4861d5e8aa00b36c3d12d9bdf9c6369b82cbb723de0b582280a21c"
+          },
+          "hash": "sha256=bb94b2348e4861d5e8aa00b36c3d12d9bdf9c6369b82cbb723de0b582280a21c"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "nvidia-nccl-cu12",
+        "version": "2.32.3",
+        "dynamic": [
+          "author",
+          "author-email",
+          "classifier",
+          "description",
+          "description-content-type",
+          "home-page",
+          "keywords",
+          "license",
+          "license-file",
+          "license-expression",
+          "requires-python",
+          "summary"
+        ],
+        "summary": "NVIDIA Collective Communication Library (NCCL) Runtime",
+        "description": "NCCL (pronounced \"Nickel\") is a stand-alone library of standard collective communication routines for GPUs, implementing all-reduce, all-gather, reduce, broadcast, and reduce-scatter. It has been optimized to achieve high bandwidth on any platform using PCIe, NVLink, NVswitch, as well as networking using InfiniBand Verbs or TCP/IP sockets.\n",
+        "description_content_type": "text/plain",
+        "keywords": [
+          "cuda",
+          "nvidia",
+          "runtime",
+          "machine learning",
+          "deep learning"
+        ],
+        "home_page": "https://developer.nvidia.com/cuda-zone",
+        "author": "Nvidia CUDA Installer Team",
+        "author_email": "compute_installer@nvidia.com",
+        "license_expression": "LicenseRef-NVIDIA-Proprietary",
+        "license_file": [
+          "License.txt"
+        ],
+        "classifier": [
+          "Development Status :: 4 - Beta",
+          "Intended Audience :: Developers",
+          "Intended Audience :: Education",
+          "Intended Audience :: Science/Research",
+          "Natural Language :: English",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.5",
+          "Programming Language :: Python :: 3.6",
+          "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3 :: Only",
+          "Topic :: Scientific/Engineering",
+          "Topic :: Scientific/Engineering :: Mathematics",
+          "Topic :: Scientific/Engineering :: Artificial Intelligence",
+          "Topic :: Software Development",
+          "Topic :: Software Development :: Libraries",
+          "Operating System :: Microsoft :: Windows",
+          "Operating System :: POSIX :: Linux"
+        ],
+        "requires_python": ">=3"
+      }
+    }
+  ],
+  "environment": {
+    "implementation_name": "cpython",
+    "implementation_version": "3.12.3",
+    "os_name": "posix",
+    "platform_machine": "x86_64",
+    "platform_release": "6.18.33.2-microsoft-standard-WSL2",
+    "platform_system": "Linux",
+    "platform_version": "#1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026",
+    "python_full_version": "3.12.3",
+    "platform_python_implementation": "CPython",
+    "python_version": "3.12",
+    "sys_platform": "linux"
+  }
+}

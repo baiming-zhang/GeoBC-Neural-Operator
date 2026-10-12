@@ -1,0 +1,13 @@
+{
+  "status": "cached_official_binary_metadata_inspected",
+  "wheel": {
+    "path": "runs/dependency_cache_v92/http-v2/1/c/a/2/d/1ca2d2778ddafaea04afbd6cde877eca3046993e73fe45aa4d5a388b.body",
+    "bytes": 94872848,
+    "sha256": "a03210a3e54c9e543f480db9636fee57247cfcd1ae850b353aeac59eea5ca350",
+    "metadata_header": "Metadata-Version: 2.4\nName: xgboost\nVersion: 3.0.5\nSummary: XGBoost Python Package\nProject-URL: documentation, https://xgboost.readthedocs.io/en/stable/\nProject-URL: repository, https://github.com/dmlc/xgboost\nAuthor-email: Hyunsu Cho <chohyu01@cs.washington.edu>, Jiaming Yuan <jm.yuan@outlook.com>\nLicense: Apache-2.0\nClassifier: Development Status :: 5 - Production/Stable\nClassifier: License :: OSI Approved :: Apache Software License\nClassifier: Operating System :: OS Independent\nClassifier: Programming Language :: Python\nClassifier: Programming Language :: Python :: 3\nClassifier: Programming Language :: Python :: 3.10\nClassifier: Programming Language :: Python :: 3.11\nClassifier: Programming Language :: Python :: 3.12\nClassifier: Programming Language :: Python :: 3.13\nClassifier: Typing :: Typed\nRequires-Python: >=3.10\nRequires-Dist: numpy\nRequires-Dist: nvidia-nccl-cu12; platform_system == 'Linux' and platform_machine != 'aarch64'\nRequires-Dist: scipy\nProvides-Extra: dask\nRequires-Dist: dask; extra == 'dask'\nRequires-Dist: distributed; extra == 'dask'\nRequires-Dist: pandas; extra == 'dask'\nProvides-Extra: pandas\nRequires-Dist: pandas>=1.2; extra == 'pandas'\nProvides-Extra: plotting\nRequires-Dist: graphviz; extra == 'plotting'\nRequires-Dist: matplotlib; extra == 'plotting'\nProvides-Extra: pyspark\nRequires-Dist: cloudpickle; extra == 'pyspark'\nRequires-Dist: pyspark; extra == 'pyspark'\nRequires-Dist: scikit-learn; extra == 'pyspark'\nProvides-Extra: scikit-learn\nRequires-Dist: scikit-learn; extra == 'scikit-learn'\nDescription-Content-Type: text/x-rst\n\n======================"
+  },
+  "library_for_dependency_inspection": "runs\\dependency_cache_v92\\inspection\\libxgboost.so",
+  "no_network_repeated": true,
+  "scientific_GT_PT_GPU": 0,
+  "decision": "Original95MBxgboost wheel is complete and cached; timedout while fetching351MBNCCL. Inspect actual binary dependency before choosing minimal singleGPU install, never blindly retry same full download."
+}

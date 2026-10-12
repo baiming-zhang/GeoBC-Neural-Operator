@@ -1,0 +1,74 @@
+{
+  "status": "actual_running",
+  "observed_at_utc": "2026-10-12T02:54:49.878017+00:00",
+  "exec_session": 64191,
+  "SCI": "824deacc955c406dee5d23c5f258829e49df77f25b355ca0e6b2c481c7dfeb45",
+  "guard_process": {
+    "pid": 274,
+    "ppid": 273,
+    "start_ticks": 3194,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_official_UNO_valid_skip_guard_v91",
+      "--start",
+      "--plan",
+      "notes/geobc_official_UNO_valid_skip_recovery_v91_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 356,
+    "ppid": 274,
+    "start_ticks": 3368,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_official_UNO_valid_skip_v91",
+      "--start",
+      "--plan",
+      "notes/geobc_official_UNO_valid_skip_recovery_v91_plan.json"
+    ]
+  },
+  "boot_id": "763495e2-e50c-4fda-8085-340ebe0f869b",
+  "exact_live": [
+    true,
+    true
+  ],
+  "phase": "training",
+  "elapsed_epoch_seconds": 48.52114725112915,
+  "step": 693,
+  "original_deadline_epoch": 1791773984.6815581,
+  "released_remaining_seconds": 344.96736764907837,
+  "original_monotonic_lifetime_known": false,
+  "parameter_profile": {
+    "encoder": {
+      "storage_numel": 16736,
+      "real_degrees_of_freedom": 16736,
+      "complex_storage_numel": 0,
+      "dtypes": [
+        "torch.float32"
+      ]
+    },
+    "head": {
+      "storage_numel": 26884,
+      "real_degrees_of_freedom": 26884,
+      "complex_storage_numel": 0,
+      "dtypes": [
+        "torch.float32"
+      ]
+    },
+    "operator": {
+      "storage_numel": 4666016,
+      "real_degrees_of_freedom": 9310880,
+      "complex_storage_numel": 4644864,
+      "dtypes": [
+        "torch.complex64",
+        "torch.float32"
+      ]
+    },
+    "total_storage_numel": 4709636,
+    "total_real_degrees_of_freedom": 9354500
+  }
+}

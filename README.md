@@ -21,7 +21,11 @@ Hash应力只好0.62个百分点，联合误差好0.19个百分点，未达到�
 
 局部空间FNO对照已完成（47.10秒）：位移22.69%→21.13%，应力41.69%→42.00%，未通过门，固定分支关闭。[结果](results/geobc_local_spatial_operator_v88/BRIEF.md)。
 
-下一项**仅设计，尚未实现或运行**：用已在本地的官方U-NO实现，比较双尺度U形场算子与普通FNO。先九TRAIN场／900更新，保持原输入／查询头／物理标签；容量和复数谱参数的Adam实现差异如实记录。[设计](notes/geobc_official_UNO_v89_design.json)。
+官方U-NO短筛选已完成：有效训练／读出63.42秒，九TRAIN场位移31.40%、应力56.21%，均劣于原FNO22.69%／41.69%，固定配置关闭。两次训练前接口失败均0标签／0更新，含修复等待的原任务总918.45秒；原1200秒总截止未重置。[结果](results/geobc_official_UNO_valid_skip_recovery_v91/BRIEF.md)。
+
+下一项**仅设计，求解器代码和训练尚未开始**：用已有GT-free有限元张量配合GPU树模型直接回归原signed应力，复用旧3TRAIN／2knownDEV／ver缓存，无新FEM求解或数据下载。它不是主100／20三载荷协议的公平架构排名，也不是可微连续hash场替代；用于检验物理信息与学习器的准确率／冷启动成本。[设计](notes/geobc_physical_tensor_GBDT_v92_design.json)。
+
+固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。仅证明导入和GPU编译支持，尚未验证实际GPU训练。
 
 ## 数据与复现边界
 
@@ -37,4 +41,4 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore`，未知内容拒绝覆盖。[私人GitHub](https://github.com/baiming-zhang/GeoBC-Neural-Operator)发布代码、配置、标量报告、图和检查点索引；原数据及项目训练检查点留本地。
 
-前一次私人提交 `d9b31b1` 已验证。**本快照新增47.10秒局部空间算子的实际负结果、源码、图表和真实收据，并仅包含下一官方U-NO的设计。** 不把新算法设计当成已训练结果。[发布状态](notes/github_publish_plan.json)。
+前一次私人提交 `41e177a` 已验证。本快照新增官方U-NO有效短筛选的真实负结果、两次零更新技术失败与恢复代码／图表／收据，以及仅设计的物理树模型和其依赖准备。树模型未训练，不把设计当结果。[发布状态](notes/github_publish_plan.json)。
