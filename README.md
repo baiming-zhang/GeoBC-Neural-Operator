@@ -4,7 +4,7 @@ Geometry, loads and boundary conditions for displacement and signed-stress predi
 
 The physical displacement route reached **0.01589% mean error** and **0.02621% worst error** across 20 known development CADs and three loads. The joint U/S neural baseline remains the smaller FNO; signed stress is the main unresolved accuracy bottleneck.
 
-Physical U and full-gradient inputs are complete for **100/100 training CADs and 300 loads**. The final stage reused 95 qualified inputs and completed the remaining five in **114.51 s UTC / 104.26 s monotonic**. Development inputs are also complete for **20/20 CADs and 60 loads** (62.40 s UTC / 56.49 s monotonic). The next experiment compares ZERO and ACTUAL physical inputs with matched FNO models.
+Physical U and full-gradient inputs are complete for **100/100 training CADs and 300 loads**. The final stage reused 95 qualified inputs and completed the remaining five in **114.51 s UTC / 104.26 s monotonic**. Development inputs are also complete for **20/20 CADs and 60 loads** (62.40 s UTC / 56.49 s monotonic). The three-seed matched FNO experiment is complete: actual physical inputs reduced mean U error from **21.746% to 15.361%** and signed S error from **49.419% to 35.998%**. All three seeds improved the joint score. This hybrid route uses finite-element inputs in addition to the original neural inputs.
 
 A fixed comparison on the next unused training CAD reduced three-load solve cost from **56.60 s to 22.18 s** with a degree-32 Chebyshev coarse correction, including its construction/checks: **60.81% lower cost**. All six true residuals met 1e-8 and same-equation U differed by at most 1.23e-10. The changed method completed the remaining inputs; the original budget-limited run remains a separate cost.
 
@@ -19,6 +19,7 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 
 ## Results
 
+- [Physical-information learning](results/physical_information_learning/README.md)
 - [Neural baselines](results/neural_baselines/README.md)
 - [Development displacement accuracy](results/displacement_accuracy/README.md)
 - [Reserve displacement accuracy](results/reserve_displacement_accuracy/README.md)

@@ -15,8 +15,17 @@ def run(args):
                committed_predictions=0,development_GT_reads=0,training_target_reads=0,
                optimizer_step_in_progress=False,possible_partial_optimizer_update=False,
                scaler_fits=0,FINAL_reads=0,peak_allocated_bytes=0,peak_reserved_bytes=0)
+    if args.resume_from:
+        prior=json.loads((Path(args.resume_from)/'summary.json').read_text())
+        if prior['status']!='failed' or prior['arms'] or prior['predictions']:
+            raise ValueError('This cache recovery requires zero model progress')
+        terminal=json.loads((Path(args.resume_from)/'terminal.json').read_text())
+        state['prior_cache_failure']=dict(seconds=terminal['elapsed_seconds'],reason=prior['error'],
+                                         prior_array_read_counts_available=False,resident_cache_not_persisted=True)
     torch=None; cache=None; model=None; optimizer=None; arm=None; cursor=0; order=None
     def persist():
+        if cache is not None:
+            state.update(training_target_reads=cache.training_target_reads,input_reads=cache.input_reads,physical_covariate_reads=cache.feature_reads)
         state['native_seconds']=dict(UTC=time.time()-ENTRY_EPOCH,monotonic=time.monotonic()-ENTRY_MONOTONIC)
         temporary=output/'status.json.tmp'; temporary.write_text(json.dumps(state,indent=2)+'\n',encoding='utf-8')
         os.replace(temporary,output/'status.json')
@@ -73,7 +82,7 @@ def run(args):
             state['phase']='cache'; persist(); tick=(time.time(),time.monotonic())
             cache=LearningCache(catalog,guard)
             cache.load_predictors(catalog['TRAIN'],catalog['training_features'],'TRAIN')
-            cache.load_predictors(catalog['DEV'],catalog['development_features'],'DEV')
+            cache.load_predictors(catalog['DEV'],catalog['development_features'],'DEV',device='cpu')
             cache.load_training_targets()
             state.update(training_target_reads=cache.training_target_reads,cache_seconds=dict(UTC=time.time()-tick[0],monotonic=time.monotonic()-tick[1]),
                          input_reads=cache.input_reads,physical_covariate_reads=cache.feature_reads)
@@ -140,7 +149,8 @@ def run(args):
                         matched=discrepancy<=config['query_chunk_relative_tolerance']*norm if norm>0 else float((alternate-prediction).abs().max())<=config['query_chunk_zero_absolute_tolerance']
                         if not matched:
                             raise ArithmeticError('Actual query chunk mismatch')
-                        largest=max((cache.cases[key] for key in dev_keys),key=lambda case:len(case['xyz']))
+                        largest_cpu=max((cache.cases[key] for key in dev_keys),key=lambda case:len(case['xyz']))
+                        largest={key:value.to('cuda') if isinstance(value,torch.Tensor) else value for key,value in largest_cpu.items()}
                         dc,dl=model.encode_case(largest)
                         for start in range(0,len(largest['xyz']),32768):
                             guard(); value=model.query(largest,start,min(start+32768,len(largest['xyz'])),dc,dl)
@@ -153,6 +163,8 @@ def run(args):
                                                             query_chunk_difference=discrepancy,
                                                             Adam_step_restored=True,seconds=max(time.time()-qt[0],time.monotonic()-qt[1]))
                     del context,latent,xyz,cov,ids,weights,query,prediction,alternate,xyzgrad,covgrad,dc,dl,value
+                    del largest
+                    torch.cuda.empty_cache()
                     state['phase']=arm+'/training'; tick=(time.time(),time.monotonic()); persist()
                     for key in order:
                         guard()
@@ -173,7 +185,8 @@ def run(args):
                     state['predictions'][arm]={}
                     with torch.no_grad():
                         for key in dev_keys:
-                            guard(); case=cache.cases[key]; context,latent=model.encode_case(case); chunks=[]
+                            guard(); case={name:value.to('cuda') if isinstance(value,torch.Tensor) else value for name,value in cache.cases[key].items()}
+                            context,latent=model.encode_case(case); chunks=[]
                             for start in range(0,len(case['xyz']),32768):
                                 guard(); stop=min(start+32768,len(case['xyz']))
                                 chunks.append(decode(model.query(case,start,stop,context,latent),scale).cpu().numpy())
@@ -182,6 +195,8 @@ def run(args):
                                 raise ValueError('Development prediction incomplete')
                             path=output/arm/'predictions'/(key.replace('/','_')+'.npy'); save_prediction(path,value)
                             state['predictions'][arm][key]=str(path.resolve()); state['committed_predictions']+=1
+                            del case,context,latent,chunks,value
+                            torch.cuda.empty_cache()
                         state['arms'][arm]['prediction_seconds']=dict(UTC=time.time()-predict_tick[0],monotonic=time.monotonic()-predict_tick[1])
                     persist(); model=None; optimizer=None; gc.collect(); torch.cuda.empty_cache()
                 del reference
@@ -224,4 +239,5 @@ def run(args):
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
     for name in ['config','source','output','lock']: parser.add_argument('--'+name,required=True)
+    parser.add_argument('--resume-from')
     run(parser.parse_args())

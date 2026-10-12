@@ -1,4 +1,4 @@
-"""Paired zero/actual physical-input model; training is pending."""
+"""Matched zero/actual physical-input model for original signed U/S."""
 
 import torch
 from torch import nn
