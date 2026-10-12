@@ -1,0 +1,68 @@
+{
+  "status": "completed",
+  "observed_at_utc": "2026-10-12T06:18:34.267078+00:00",
+  "SCI": "4128568d16c3014198e6aa23c04a48a2557a1176d0316d80d3a31ad6efb3a2bb",
+  "exec_session": 87830,
+  "actual_exit_code": 0,
+  "guard_process": {
+    "pid": 6638,
+    "ppid": 6633,
+    "start_ticks": 858255,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_load_amplitude_guard_v95",
+      "--start",
+      "--plan",
+      "notes/geobc_load_amplitude_homogeneity_v95_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 6639,
+    "ppid": 6638,
+    "start_ticks": 858569,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.evaluate_geobc_load_amplitude_v95",
+      "--start",
+      "--plan",
+      "notes/geobc_load_amplitude_homogeneity_v95_plan.json"
+    ]
+  },
+  "boot_id": "51be6ba9-7d55-4571-a69a-4ba0ce89f547",
+  "exact_processes_exited": true,
+  "budget_true": true,
+  "terminal_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/frozen3_load_amplitude_TRAIN9_v95/summary.json",
+      "bytes": 77061,
+      "mtime_ns": 1791785401765171100,
+      "sha256": "42f21ef0d782e1ebcc98b71f0072509d11eb84797c091faee93241d6f2dbd9ba"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/frozen3_load_amplitude_TRAIN9_v95/status.json",
+      "bytes": 77061,
+      "mtime_ns": 1791785401769208200,
+      "sha256": "42f21ef0d782e1ebcc98b71f0072509d11eb84797c091faee93241d6f2dbd9ba"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/frozen3_load_amplitude_TRAIN9_v95/external_terminal.json",
+      "bytes": 34374,
+      "mtime_ns": 1791785402219394900,
+      "sha256": "f8f320e42aeaffb15e14d147fca3285f5a2d43cae6a650629bdf9b5897950249"
+    }
+  },
+  "whole_epoch_seconds": 51.251585245132446,
+  "whole_monotonic_seconds": 47.63328690399976,
+  "prediction_barrier81": true,
+  "property_rows54": true,
+  "GT0": true,
+  "training0": true,
+  "source_deck_parses": 3,
+  "input_arrays": 33,
+  "strict_own_checkpoints": 3,
+  "original_inputs_and_models_unchanged": true
+}
