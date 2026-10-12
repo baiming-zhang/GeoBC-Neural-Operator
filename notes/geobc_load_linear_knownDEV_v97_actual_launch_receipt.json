@@ -1,0 +1,48 @@
+{
+  "observed_at_utc": "2026-10-12T07:33:46.647659+00:00",
+  "SCI": "1b8f0e98ef19df68a4debf05788066b0e73237fcc63ec5fd6fb380ccb86722d7",
+  "exec_session": 54466,
+  "actual_external_launch_identity": {
+    "path": "runs/geobc_exploration/frozen3_load_linear_knownDEV_v97/external_launch.json",
+    "bytes": 35450,
+    "mtime_ns": 1791790376730249800,
+    "sha256": "2202790238bdb71610d1663aea5b90a140b1bab749103f02add1907eb275e14b"
+  },
+  "guard_process": {
+    "pid": 359,
+    "ppid": 358,
+    "start_ticks": 6632,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_load_linear_knownDEV_guard_v97",
+      "--start",
+      "--plan",
+      "notes/geobc_load_linear_knownDEV_v97_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 362,
+    "ppid": 359,
+    "start_ticks": 6937,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.evaluate_geobc_load_linear_knownDEV_v97",
+      "--start",
+      "--plan",
+      "notes/geobc_load_linear_knownDEV_v97_plan.json"
+    ]
+  },
+  "boot_id": "6b0af7e5-658a-42dc-b286-e34906c7ad10",
+  "root_observed_exact_live": {
+    "guard": true,
+    "child": true
+  },
+  "phase": "source_gate20",
+  "elapsed_epoch_seconds": 4.587621450424194,
+  "source_parses": 0,
+  "GT_reads": 0
+}

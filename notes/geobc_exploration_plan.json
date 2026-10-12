@@ -6778,7 +6778,7 @@
     "DEV_external_seconds": 167.8709237575531,
     "decision": "TSheadwarm negative; FNO intact5to10 learns; frozen encoder/head latent mapping is next diagnostic"
   },
-  "current_stage": "load_linear_API_verified_then_knownDEV_load_accuracy",
+  "current_stage": "load_linear_knownDEV_conditional_gain_then_independent_physics",
   "node_latent_operator_diagnostic_SOURCE": {
     "proposal": "notes/geobc_node_latent_teacher_macro_proposal_v35.json",
     "source_ready": "notes/geobc_node_latent_teacher_v35_source_ready.json",
@@ -6980,23 +6980,23 @@
   },
   "latest_verified_private_publication": {
     "status": "actual_private_publication_verified",
-    "commit": "7a6d00259af824bb166ed2c9edcd7a5a0aa50072",
-    "tree": "f29758c64d46353f1b3bd86768ed2ced1a5faf9f",
-    "base_commit": "da716a20430a9b22be2387c56075722009516521",
-    "remote_main": "7a6d00259af824bb166ed2c9edcd7a5a0aa50072",
+    "commit": "997196e18fd78fae07e376b8dfa2a1a53c8eb197",
+    "tree": "90e3a89f85ae21dc9ccf361928d72e030af487ae",
+    "base_commit": "7a6d00259af824bb166ed2c9edcd7a5a0aa50072",
+    "remote_main": "997196e18fd78fae07e376b8dfa2a1a53c8eb197",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "verified_at_utc": "2026-10-12T06:35:07.7581543Z",
+    "verified_at_utc": "2026-10-12T07:15:26.9667513Z",
     "actual_exec_exit_code": 0,
-    "actual_exec_session": 8111,
-    "elapsed_seconds": 41.6652037,
+    "actual_exec_session": 19469,
+    "elapsed_seconds": 51.0675504,
     "immutable_receipt": {
-      "path": "notes/github_gitdata_publication_7a6d00259af824bb166ed2c9edcd7a5a0aa50072_load_response_actual_20261012_receipt.json",
+      "path": "notes/github_gitdata_publication_997196e18fd78fae07e376b8dfa2a1a53c8eb197_linear_api_actual_20261012_receipt.json",
       "bytes": 29911,
-      "mtime_ns": 1791786907758777400,
-      "sha256": "0ebf528bce46da3a4d48b97a437429bc250777cfe91ed2db4020ae9ab0766dfb"
+      "mtime_ns": 1791789326967291600,
+      "sha256": "5714b2594d2098d97d4d5c11bbc0970c2388261eae4efe46a43a5622221eae58"
     },
     "exact_tree_verified": true,
     "exact_commit_verified": true,
@@ -13183,7 +13183,7 @@
     "report": "results/geobc_edgeconv_geometry_v94/BRIEF.md",
     "PNG_accepted": true
   },
-  "latest_verified_private_commit": "7a6d00259af824bb166ed2c9edcd7a5a0aa50072",
+  "latest_verified_private_commit": "997196e18fd78fae07e376b8dfa2a1a53c8eb197",
   "load_amplitude_homogeneity_v95": {
     "status": "completed_property_negative",
     "design": "notes/geobc_load_amplitude_homogeneity_v95_design.json",
@@ -13213,5 +13213,40 @@
     "next_design": "notes/geobc_load_linear_knownDEV_v97_design.json",
     "next_execution": "Implement necessary frozen evaluator/guard/meta source;verify active source assumptions then one540 prediction-first sharedGT60 run",
     "no_more_hash_microtuning": true
+  },
+  "latest_verified": {
+    "status": "actual_private_publication_verified",
+    "commit": "997196e18fd78fae07e376b8dfa2a1a53c8eb197",
+    "tree": "90e3a89f85ae21dc9ccf361928d72e030af487ae",
+    "base_commit": "7a6d00259af824bb166ed2c9edcd7a5a0aa50072",
+    "remote_main": "997196e18fd78fae07e376b8dfa2a1a53c8eb197",
+    "repository": "baiming-zhang/GeoBC-Neural-Operator",
+    "repository_id": 1410470321,
+    "user_id": 174442095,
+    "private": true,
+    "verified_at_utc": "2026-10-12T07:15:26.9667513Z",
+    "actual_exec_exit_code": 0,
+    "actual_exec_session": 19469,
+    "elapsed_seconds": 51.0675504,
+    "immutable_receipt": {
+      "path": "notes/github_gitdata_publication_997196e18fd78fae07e376b8dfa2a1a53c8eb197_linear_api_actual_20261012_receipt.json",
+      "bytes": 29911,
+      "mtime_ns": 1791789326967291600,
+      "sha256": "5714b2594d2098d97d4d5c11bbc0970c2388261eae4efe46a43a5622221eae58"
+    },
+    "exact_tree_verified": true,
+    "exact_commit_verified": true,
+    "changed_blobs_verified": 32
+  },
+  "after_v99_actual": {
+    "status": "completed_conditional_U_gain_all3",
+    "actual_CPU_recovery_seconds": 228.38404297828674,
+    "whole_original_UTC_seconds": 1085.1848757266998,
+    "original_CAN_predictions_preserved": true,
+    "independent_newload_FEM_GT": false,
+    "report": "results/geobc_load_linear_identity_readout_v99/BRIEF.md",
+    "next_design": "notes/geobc_load_linear_independent_physics_v100_design.json",
+    "next_direct_action": "Implement necessary source extension/newloadGPUphysics sixthree-RHS fixedCAD, no oldlibrary fullaudit/replay or Hash microtuning",
+    "no_GPU_pending": true
   }
 }

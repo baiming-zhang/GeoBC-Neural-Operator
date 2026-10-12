@@ -33,7 +33,9 @@ GPU物理张量树模型已完成（整阶段19.90秒／GPU学习9.52秒）：�
 
 显式载荷线性位移接口已实际验证（66.48秒）：三个冻结骨干共108份全节点预测，幅值／叠加一致性偏差降至浮点舍入量级，旧三TRAIN CAD的规范U预测和原encodedS保持，真实坐标／秩3载荷系数梯度通过。GT／训练0；这不是新载荷准确率改善。 [接口结果](results/geobc_load_linear_adapter_v96/BRIEF.md)。
 
-下一步固定原20个knownDEV CAD，检验规范载荷原GT精度保持与新混合载荷的条件线性派生U参考；540份预测先提交再共享GT60，原signedS不生成伪参考。设计已冻结，实际SOURCE／PT／GT／GPU尚0；来源适用性与原数值控制局限单列。 [设计](notes/geobc_load_linear_knownDEV_v97_design.json)。
+新载荷对照已完成：20个knownDEV CAD的条件混合位移误差，FNO 41.93%→22.07%，Hash 37.42%→21.25%，Transolver 58.48%→37.54%；原规范载荷U／encodedS逐案例变化0，原GT误差保持。完整540预测先提交／复核再共享GT60一次。原计算217.09秒、CPU恢复228.38秒；含路径校验失败、WSL时轴恢复及工程等待的原总UTC跨度1085.18秒，预算未重置。原常驻输入的最终digest检查未执行，该项证据未知；不重读输入／PT或重播推理。**混合U参考仍为条件线性派生值，尚非独立新FEM真值。** [结果](results/geobc_load_linear_identity_readout_v99/BRIEF.md)。
+
+下一步以固定120_153开发CAD的三个规范载荷和三个混合载荷，做六次零初值GPU近似P2物理解算；核实原GT兼容性、独立近似混合U参考与精度／冷启动成本。既有五例ver物理解算U误差约0.016%，不能直接外推新CAD／hor／tor；不冒充OptiStruct精确结果，也不生成应力伪参考。设计已冻结，SOURCE／数组／GT／GPU尚0。 [设计](notes/geobc_load_linear_independent_physics_v100_design.json)。
 
 固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 
