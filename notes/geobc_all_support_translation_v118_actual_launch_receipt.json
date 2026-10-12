@@ -1,0 +1,85 @@
+{
+  "observed_at_utc": "2026-10-12T15:33:18.393429+00:00",
+  "actual_exec_session": 34330,
+  "actual_live_observed": true,
+  "guard_process": {
+    "pid": 788,
+    "ppid": 787,
+    "start_ticks": 89389,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.guard_geobc_all_support_translation_v118",
+      "--start",
+      "--plan",
+      "notes/geobc_all_support_translation_v118_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 789,
+    "ppid": 788,
+    "start_ticks": 89820,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.evaluate_geobc_all_support_translation_v118",
+      "--start",
+      "--plan",
+      "notes/geobc_all_support_translation_v118_plan.json"
+    ]
+  },
+  "boot_id": "9bf6f4a7-df84-4bdb-b650-a9ad2a660037",
+  "SCI": "591be0f74ea2bc43cc9689e9f077b4d0542dfb9e2eefd45e7d711036ab5514a2",
+  "phase": "50_380/support_port3",
+  "elapsed_epoch_seconds": 127.11957263946533,
+  "committed_finite_endpoints": 6,
+  "exact_identity_matched": true,
+  "source_pins_count": 389,
+  "actual_exec_exit_code": null,
+  "real_current_qualification": {
+    "50_380": {
+      "passed": true,
+      "ports": [
+        {
+          "source_reference_GRID_ID": 213002,
+          "physical_member_rows": 440,
+          "actual_reference_output_rows": 0,
+          "actual_port_rows": 440,
+          "source_CM": "123456",
+          "reference_row_invented": false
+        },
+        {
+          "source_reference_GRID_ID": 213003,
+          "physical_member_rows": 440,
+          "actual_reference_output_rows": 0,
+          "actual_port_rows": 440,
+          "source_CM": "123456",
+          "reference_row_invented": false
+        },
+        {
+          "source_reference_GRID_ID": 213004,
+          "physical_member_rows": 440,
+          "actual_reference_output_rows": 0,
+          "actual_port_rows": 440,
+          "source_CM": "123456",
+          "reference_row_invented": false
+        },
+        {
+          "source_reference_GRID_ID": 213005,
+          "physical_member_rows": 440,
+          "actual_reference_output_rows": 0,
+          "actual_port_rows": 440,
+          "source_CM": "123456",
+          "reference_row_invented": false
+        }
+      ],
+      "source_regions_disjoint": true,
+      "source_fixed_union_exact": true,
+      "actual_all_fixed_rows": 1760,
+      "actual_other_fixed_rows": 0,
+      "rotations_prescribed_zero": true
+    }
+  }
+}

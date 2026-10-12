@@ -65,7 +65,9 @@ GPU物理张量树模型已完成（整阶段19.90秒／GPU学习9.52秒）：�
 
 首个真实源RBE2支撑端口已实际完成：213002／188002各440成员，master H5输出行0／未造节点；两个CAD共12新独立零初值场，先完整屏障后12旧加载六基解读出，最大真自由残差9.994e-9、固定边界差0、九方向响应对独立mixed U相对差1.024e-8、支撑运动能量做功差3.921e-11。外UTC159.314秒／mono146.116秒，双时轴均保留；新支撑三基解34.765／34.901秒，独立混合41.803／34.672秒，缓存API＋全N .014623／.000986秒，未知工程coldnull／非NN公平排名。 [实际新支撑端口结果](results/geobc_support_translation_port_v117/BRIEF.md)。
 
-下一步覆盖全部四个实际源支撑的12平移方向：只求剩余三端口新基解，已有port0不重跑，独立四端口混合与整体刚体平移兼容性验收；所有支撑转角仍0，不造新GT／signedS。当前设计＋一个已审冻结SOURCE原型，import／constructor／科学数组／GPU0。 [四端口设计](notes/geobc_all_support_translation_v118_design.json)。
+四个真实源支撑的12平移方向已实际覆盖：v118仅求剩余端口1／2／3基解，旧port0不重跑；24新独立零初值场先完整屏障，再18旧force／port0字段各一次。全场混合最大相对差4.14e-08、真自由残差9.99e-09、固定边界最大差0mm，四端口同平移的刚体数值兼容门通过。实际外UTC391.924秒／mono359.587秒，两时轴不缩放。 [四端口实际结果](results/geobc_all_support_translation_v118/BRIEF.md)。
+
+下一步把实际force6＋四端口12平移接入无caller单元ID的连续XYZ响应，验证真实坐标／载荷／支撑梯度、定位拒绝和值保持。当前设计＋一个已审冻结SOURCE原型，import／constructor／科学数组／GPU0；旧旋转固定0，signedS仍open。 [连续多边界接口设计](notes/geobc_located_all_support_U_response_v119_design.json)。
 
 固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 
