@@ -1,0 +1,169 @@
+{
+  "mean_errors": {
+    "Joint input model": {
+      "U": 15.361334234417514,
+      "S": 35.998054163887325,
+      "primary": 25.67969419915242
+    },
+    "Two-model field route": {
+      "U": 11.716985549703535,
+      "S": 35.47139737975774,
+      "primary": 23.59419146473064
+    },
+    "Shared-trunk field heads": {
+      "U": 11.568782250796682,
+      "S": 34.81884133123278,
+      "primary": 23.193811791014728
+    }
+  },
+  "per_seed": {
+    "fieldwise_seed2026": {
+      "U": 11.700968573311266,
+      "S": 34.7098822433093,
+      "primary": 23.205425408310287
+    },
+    "fieldwise_seed2027": {
+      "U": 13.753177631032104,
+      "S": 34.09929032541698,
+      "primary": 23.92623397822454
+    },
+    "fieldwise_seed2028": {
+      "U": 9.252200548046675,
+      "S": 35.64735142497206,
+      "primary": 22.449775986509362
+    }
+  },
+  "compact_field_gate_passed": true,
+  "parameters": 4554762,
+  "stage_seconds": {
+    "UTC": 3127.1813867092133,
+    "monotonic": 2830.391278425999
+  },
+  "arms": {
+    "fieldwise_seed2026": {
+      "seed": 2026,
+      "mode": "FIELDWISE",
+      "parameters": 4554762,
+      "updates": 6000,
+      "status": "trained",
+      "qualification": {
+        "original_nodes": 325387,
+        "loss": 0.8737741592083559,
+        "leaf_gradients": {
+          "context": 0.010596348904073238,
+          "latent": 0.00020793806470464915
+        },
+        "parameter_gradients": {
+          "encoder": 0.1320955129079257,
+          "operator": 0.013101497735509565,
+          "head": 0.4573159621695924
+        },
+        "extra_column_gradient": 0.04405313524685053,
+        "maximum_development_nodes": 352321,
+        "coordinate_gradient": 0.018312864005565643,
+        "physical_input_gradient": 0.028411392122507095,
+        "query_chunk_difference": 7.107401245320943e-08,
+        "Adam_step_restored": true,
+        "seconds": 2.062823143998685,
+        "field_input_gradients": {
+          "U": 0.023441240191459656,
+          "S": 0.016053520143032074
+        }
+      },
+      "last_key": "440_206/tor",
+      "last_loss": 0.06904563883697828,
+      "training_seconds": {
+        "UTC": 992.0058054924011,
+        "monotonic": 891.3520427410003
+      },
+      "prediction_seconds": {
+        "UTC": 9.09329891204834,
+        "monotonic": 9.093302388999291
+      }
+    },
+    "fieldwise_seed2027": {
+      "seed": 2027,
+      "mode": "FIELDWISE",
+      "parameters": 4554762,
+      "updates": 6000,
+      "status": "trained",
+      "qualification": {
+        "original_nodes": 325387,
+        "loss": 0.8895550870912443,
+        "leaf_gradients": {
+          "context": 0.01096478383988142,
+          "latent": 0.0002983070444315672
+        },
+        "parameter_gradients": {
+          "encoder": 0.12586999835342547,
+          "operator": 0.017973278263385753,
+          "head": 0.5194733977260265
+        },
+        "extra_column_gradient": 0.040425685011051926,
+        "maximum_development_nodes": 352321,
+        "coordinate_gradient": 0.012639562599360943,
+        "physical_input_gradient": 0.01892758160829544,
+        "query_chunk_difference": 5.094257815585479e-08,
+        "Adam_step_restored": true,
+        "seconds": 0.2870049476623535,
+        "field_input_gradients": {
+          "U": 0.01816720888018608,
+          "S": 0.00531092518940568
+        }
+      },
+      "last_key": "107_233/ver",
+      "last_loss": 0.05438851805350644,
+      "training_seconds": {
+        "UTC": 992.2435190677643,
+        "monotonic": 893.167066596001
+      },
+      "prediction_seconds": {
+        "UTC": 12.333698749542236,
+        "monotonic": 8.749677648000215
+      }
+    },
+    "fieldwise_seed2028": {
+      "seed": 2028,
+      "mode": "FIELDWISE",
+      "parameters": 4554762,
+      "updates": 6000,
+      "status": "trained",
+      "qualification": {
+        "original_nodes": 325387,
+        "loss": 0.87873621598208,
+        "leaf_gradients": {
+          "context": 0.009111674502491951,
+          "latent": 0.00023177493130788207
+        },
+        "parameter_gradients": {
+          "encoder": 0.08065206320363902,
+          "operator": 0.01297089974653847,
+          "head": 0.4829863311265126
+        },
+        "extra_column_gradient": 0.022208605498408175,
+        "maximum_development_nodes": 352321,
+        "coordinate_gradient": 0.020838670432567596,
+        "physical_input_gradient": 0.01101652067154646,
+        "query_chunk_difference": 5.655819990124655e-08,
+        "Adam_step_restored": true,
+        "seconds": 0.29604434967041016,
+        "field_input_gradients": {
+          "U": 0.006493321154266596,
+          "S": 0.008899467065930367
+        }
+      },
+      "last_key": "266_15/tor",
+      "last_loss": 0.06943893929339985,
+      "training_seconds": {
+        "UTC": 976.6206419467926,
+        "monotonic": 896.912090099002
+      },
+      "prediction_seconds": {
+        "UTC": 11.724996566772461,
+        "monotonic": 8.766653745999065
+      }
+    }
+  },
+  "predictions": 180,
+  "development_GT_reads": 60
+}

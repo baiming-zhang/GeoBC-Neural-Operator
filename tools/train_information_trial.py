@@ -66,6 +66,9 @@ def run(args):
         from geobc.learning_data import LearningCache
         from geobc.physics_inputs import local_path
         from geobc.kinematic_neural_field import KinematicCovariateFNO
+        from geobc.fieldwise_neural_field import FieldwiseCovariateFNO
+        def make_model(mode,seed):
+            return FieldwiseCovariateFNO(seed) if mode=='FIELDWISE' else KinematicCovariateFNO(mode,seed)
         from geobc.physical_loss import backward_case,decode
         from geobc.query_stencil import stencil
         scale=json.loads(Path('configs/output_scaler.json').read_text())
@@ -93,7 +96,7 @@ def run(args):
             if len(witness['xyz'])!=325387:
                 raise ValueError('Actual maximum training geometry differs')
             for seed,modes in zip(config['seeds'],config['arm_order']):
-                reference={k:v.detach().clone() for k,v in KinematicCovariateFNO(modes[0],seed).state_dict().items()}
+                reference={k:v.detach().clone() for k,v in make_model(modes[0],seed).state_dict().items()}
                 generator=random.Random(seed); order=[]
                 for _ in range(config['passes']):
                     exposure=list(train_keys); generator.shuffle(exposure); order.extend(exposure)
@@ -101,11 +104,11 @@ def run(args):
                     raise ValueError('Full balanced exposure schedule differs')
                 for mode in modes:
                     guard(); arm=mode.lower()+'_seed'+str(seed); cursor=0
-                    model=KinematicCovariateFNO(mode,seed).cuda()
+                    model=make_model(mode,seed).cuda()
                     if not all(torch.equal(v.detach().cpu(),reference[k]) for k,v in model.state_dict().items()):
                         raise ValueError('Paired initial weights differ')
                     count=sum(v.numel() for v in model.parameters())
-                    if count!=4528394:
+                    if count!=config.get('expected_parameters',4528394):
                         raise ValueError('Model capacity differs')
                     opt=config['optimizer']
                     optimizer=torch.optim.Adam(model.parameters(),lr=opt['lr'],betas=tuple(opt['betas']),eps=opt['eps'],weight_decay=opt['weight_decay'],fused=opt['fused'])
@@ -120,8 +123,8 @@ def run(args):
                         norm=sum(float(p.grad.double().square().sum()) for p in module.parameters())**.5
                         if norm<=0: raise ArithmeticError('Zero model gradient')
                         gradients[name]=norm
-                    extra=float(model.head[0].weight.grad[:,76:].norm())
-                    active_columns={'ZERO':[], 'ACTUAL':list(range(12)), 'U_ONLY':list(range(3)), 'GRAD_ONLY':list(range(3,12))}[mode]
+                    extra=(sum(float(head[0].weight.grad[:,76:].square().sum()) for head in model.head.values())**.5 if mode=='FIELDWISE' else float(model.head[0].weight.grad[:,76:].norm()))
+                    active_columns={'ZERO':[], 'ACTUAL':list(range(12)), 'U_ONLY':list(range(3)), 'GRAD_ONLY':list(range(3,12)), 'FIELDWISE':list(range(12))}[mode]
                     inactive_columns=[i for i in range(12) if i not in active_columns]
                     if mode=='ZERO' and extra!=0 or mode!='ZERO' and extra<=0:
                         raise ArithmeticError('Covariate control gradient differs')
@@ -142,13 +145,23 @@ def run(args):
                     ids,weights=stencil(xyz)
                     query=dict(xyz=xyz,kinematic_inputs=cov,features=witness['features'][selected],query_indices=ids,query_weights=weights)
                     prediction=model.query(query,0,64,context,latent)
-                    xyzgrad,covgrad=torch.autograd.grad(prediction.square().sum(),(xyz,cov),allow_unused=True)
+                    xyzgrad,covgrad=torch.autograd.grad(prediction.square().sum(),(xyz,cov),allow_unused=True,retain_graph=mode=='FIELDWISE')
                     if xyzgrad is None or not bool(torch.isfinite(xyzgrad).all()) or float(xyzgrad.norm())<=0:
                         raise ArithmeticError('Actual coordinate gradient missing')
                     if mode!='ZERO' and (covgrad is None or not bool(torch.isfinite(covgrad).all()) or float(covgrad.norm())<=0):
                         raise ArithmeticError('Actual physical-input gradient missing')
                     if covgrad is not None and inactive_columns and not bool((covgrad[:,inactive_columns]==0).all()):
                         raise ArithmeticError('Inactive covariate gradient is not zero')
+                    field_input_gradients=None
+                    if mode=='FIELDWISE':
+                        # The shared trunk uses native inputs, so each head's covariates stay separate.
+                        field_value=model.query(query,0,64,context,latent)
+                        gu,=torch.autograd.grad(field_value[:,:3].square().sum(),cov,retain_graph=True)
+                        gs,=torch.autograd.grad(field_value[:,3].square().sum(),cov)
+                        if not bool((gu[:,3:]==0).all()) or not bool((gs[:,:3]==0).all()) or float(gu[:,:3].norm())<=0 or float(gs[:,3:].norm())<=0:
+                            raise ArithmeticError('Field-specific covariate path differs')
+                        field_input_gradients=dict(U=float(gu[:,:3].norm()),S=float(gs[:,3:].norm()))
+                        del field_value,gu,gs
                     with torch.no_grad():
                         alternate=torch.cat([model.query(query,start,min(start+17,64),context,latent) for start in range(0,64,17)])
                         norm=float(prediction.norm()); discrepancy=float((alternate-prediction).norm())
@@ -168,6 +181,8 @@ def run(args):
                                                             physical_input_gradient=float(covgrad.norm()) if covgrad is not None else 0.,
                                                             query_chunk_difference=discrepancy,
                                                             Adam_step_restored=True,seconds=max(time.time()-qt[0],time.monotonic()-qt[1]))
+                    if field_input_gradients is not None:
+                        state['arms'][arm]['qualification']['field_input_gradients']=field_input_gradients
                     del context,latent,xyz,cov,ids,weights,query,prediction,alternate,xyzgrad,covgrad,dc,dl,value
                     del largest
                     torch.cuda.empty_cache()
@@ -206,8 +221,8 @@ def run(args):
                         state['arms'][arm]['prediction_seconds']=dict(UTC=time.time()-predict_tick[0],monotonic=time.monotonic()-predict_tick[1])
                     persist(); model=None; optimizer=None; gc.collect(); torch.cuda.empty_cache()
                 del reference
-            if state['committed_predictions']!=config['prediction_denominator'] or len(state['predictions'])!=6:
-                raise ValueError('All-six prediction barrier incomplete')
+            if state['committed_predictions']!=config['prediction_denominator'] or len(state['predictions'])!=sum(map(len,config['arm_order'])):
+                raise ValueError('Complete registered prediction barrier required')
             state['phase']='shared_development_truth'; persist()
             state['metrics']={name:[] for name in state['predictions']}
             for key in dev_keys:
@@ -225,13 +240,22 @@ def run(args):
                     S=float(np.linalg.norm(prediction[:,3]-truth[:,3])/snorm)*100
                     state['metrics'][name].append(dict(key=key,U=U,S=S,primary=.5*(U+S)))
             state['aggregate']={name:{field:sum(row[field] for row in rows)/60 for field in ['U','S','primary']} for name,rows in state['metrics'].items()}
-            baseline=config.get('baseline_mode','ZERO').lower();candidate=config.get('candidate_mode','ACTUAL').lower()
-            differences=[{field:state['aggregate'][baseline+'_seed'+str(seed)][field]-state['aggregate'][candidate+'_seed'+str(seed)][field] for field in ['U','S','primary']} for seed in config['seeds']]
+            if config.get('frozen_reference_metrics'):
+                frozen=json.loads(Path(config['frozen_reference_metrics']).read_text())['aggregate']
+                differences=[{field:frozen['actual_seed'+str(seed)][field]-state['aggregate']['fieldwise_seed'+str(seed)][field] for field in ['U','S','primary']} for seed in config['seeds']]
+            else:
+                baseline=config.get('baseline_mode','ZERO').lower();candidate=config.get('candidate_mode','ACTUAL').lower()
+                differences=[{field:state['aggregate'][baseline+'_seed'+str(seed)][field]-state['aggregate'][candidate+'_seed'+str(seed)][field] for field in ['U','S','primary']} for seed in config['seeds']]
             means={field:sum(row[field] for row in differences)/3 for field in ['U','S','primary']}
             gate=config.get('practical_benefit')
             state.update(paired_improvement_pp=means,paired_primary_seed_wins=sum(row['primary']>0 for row in differences),
                          practical_benefit_passed=means['primary']>=gate['mean_primary_reduction_pp'] and means['S']>=gate['mean_stress_reduction_pp'] and sum(row['primary']>0 for row in differences)>=gate['primary_seed_wins'] if gate else None,
                          status='completed',phase='terminal')
+            if config.get('compact_field_gate'):
+                mean={field:sum(row[field] for row in state['aggregate'].values())/len(state['aggregate']) for field in ['U','S','primary']}
+                gate=config['compact_field_gate']
+                state['compact_field_means']=mean
+                state['compact_field_gate_passed']=mean['U']<=gate['max_U_error'] and mean['S']<=gate['max_S_error']
     except Exception as error:
         state['possible_partial_optimizer_update']=state['optimizer_step_in_progress']
         state.update(status='failed',phase='failure',error=type(error).__name__+': '+str(error))

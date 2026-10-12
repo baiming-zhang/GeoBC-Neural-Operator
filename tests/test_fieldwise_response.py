@@ -2,9 +2,26 @@ import unittest
 from unittest.mock import Mock
 import torch
 from geobc.neural_response import LocatedFieldwiseNeuralResponse
+from geobc.fieldwise_neural_field import FieldwiseCovariateFNO
+from geobc.kinematic_neural_field import KinematicCovariateFNO
 
 
 class FieldwiseRouting(unittest.TestCase):
+    def test_shared_trunk_initialization_and_field_input_separation(self):
+        model=FieldwiseCovariateFNO(2026)
+        joint=KinematicCovariateFNO('ACTUAL',2026)
+        self.assertEqual(sum(p.numel() for p in model.parameters()),4554762)
+        for module in ['encoder','operator']:
+            self.assertTrue(all(torch.equal(v,getattr(joint,module).state_dict()[k]) for k,v in getattr(model,module).state_dict().items()))
+        cov=torch.ones(2,12,requires_grad=True)
+        case=dict(xyz=torch.ones(2,3),features=torch.ones(2,25),kinematic_inputs=cov,
+                  query_indices=torch.zeros(2,8,dtype=torch.int64),query_weights=torch.ones(2,8)/8)
+        value=model.query(case,0,2,torch.ones(1,32),torch.ones(1,16,2,2,2))
+        gu,=torch.autograd.grad(value[:,:3].sum(),cov,retain_graph=True)
+        gs,=torch.autograd.grad(value[:,3].sum(),cov)
+        self.assertTrue((gu[:,3:]==0).all());self.assertGreater(float(gu[:,:3].norm()),0)
+        self.assertTrue((gs[:,:3]==0).all());self.assertGreater(float(gs[:,3:].norm()),0)
+
     def test_channel_selection_and_coordinate_derivatives(self):
         api=LocatedFieldwiseNeuralResponse.__new__(LocatedFieldwiseNeuralResponse)
         api.scale=dict(mean=[0,0,0,0],std=[1,1,1,1],stress_scale=2.)
