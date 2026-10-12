@@ -1,0 +1,46 @@
+{
+  "observed_at_utc": "2026-10-12T11:08:51.738759+00:00",
+  "status": "running",
+  "phase": "174_138/coarse_canonical",
+  "elapsed_epoch_seconds": 345.524610042572,
+  "elapsed_monotonic_seconds": 333.900063265,
+  "actual_exec_session": 1346,
+  "exact_live": true,
+  "actual_snapshots": {
+    "guard_process": {
+      "pid": 421,
+      "ppid": 417,
+      "start_ticks": 3730,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.guard_geobc_physics_U_coverage_v107",
+        "--start",
+        "--plan",
+        "notes/geobc_physics_U_knownDEV_coverage_v107_plan.json"
+      ]
+    },
+    "child_process": {
+      "pid": 422,
+      "ppid": 421,
+      "start_ticks": 4062,
+      "argv": [
+        "/home/research/.venvs/geobc/bin/python",
+        "-u",
+        "-m",
+        "tools.run_geobc_physics_U_coverage_v107",
+        "--start",
+        "--plan",
+        "notes/geobc_physics_U_knownDEV_coverage_v107_plan.json"
+      ]
+    }
+  },
+  "boot_id": "b2f5b0e9-4e7c-4602-af34-fb91cd0e8e6a",
+  "committed_endpoints": 30,
+  "new_CADs_completed": 7,
+  "mean_new_source_coarse_group_seconds": 42.73044013414547,
+  "remaining_estimate_seconds": 427.30440134145465,
+  "GT_reads": 0,
+  "root_did_not_observe_final_allqualification": true
+}
