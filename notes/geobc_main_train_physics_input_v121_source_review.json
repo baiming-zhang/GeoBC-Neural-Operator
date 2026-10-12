@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "whole_source_reviewed": true,
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-10-12T17:02:07.931501+00:00",
+  "sole_AST_checks_per_new_revision": 1,
+  "source_identities": {
+    "geobc/kinematic_query_inputs_v121.py": {
+      "path": "geobc/kinematic_query_inputs_v121.py",
+      "bytes": 3591,
+      "mtime_ns": 1791823894173908100,
+      "sha256": "127fc2e7110e9022a57d037f3448ee7b8cc1a149319577faf7e4aceb63d1e677"
+    },
+    "tools/inspect_geobc_main_train_physics_sources_v121.py": {
+      "path": "tools/inspect_geobc_main_train_physics_sources_v121.py",
+      "bytes": 4036,
+      "mtime_ns": 1791823894294393400,
+      "sha256": "63e8a39897bac8783e8ed525a8862eb4a880162399b43dc84249899fceafae5a"
+    }
+  },
+  "metadata_inspector_execution_released": true,
+  "scientific_prototype_execution_released": false,
+  "actual_scientific_body_GPU_GT_reads": 0,
+  "review_points": [
+    "Inspector only fixed main TRAIN100/300 metadata and stat, old40 membership roots not filename-family inference, no raw source/archive/array/target bodies",
+    "Dataset scientific_group TRAIN governs merged role; existing new row permutation bound by stat only; old archive member existence/row binding explicitly unverified",
+    "No source availability implies physics qualification; prior input negatives forbid automatic replay, no subset or CAD replacement",
+    "Prototype predictor physical U3 plus full gradU9 volume average of original curved P2 nodal derivatives with actual J/rank/orientation/incident-node guards; no stress target/rule",
+    "Actual fullN math integration/independent derivative reference and GPU qualification not performed; scientific release false, scaler remains oldTRAIN40, no architecture locked"
+  ]
+}

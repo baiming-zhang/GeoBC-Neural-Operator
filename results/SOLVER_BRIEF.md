@@ -69,7 +69,9 @@ GPU物理张量树模型已完成（整阶段19.90秒／GPU学习9.52秒）：�
 
 v119实际连续XYZ／force6／四支撑12平移接口已完成：48新U、16原单元owner、2盒外拒绝先屏障，再8直接同场对照；4实际耦合点坐标／力N／矩Nmm／支撑mm梯度非零有限且同直接接口差0，chunk和值差0、输入与基解字节保持。外UTC22.502秒／mono18.158秒，既有基解加载与新几何全冷成本分开；原signedS仍open。 [连续多边界实际结果](geobc_located_all_support_U_response_v119/BRIEF.md)。
 
-下一宏观任务补齐四个真实RBE2支撑的转角：必须先从原source GRID取得真实reference XYZ，不能用成员中心或虚构输出节点；只新求旋转基解与独立混合，原力和支撑平移不重跑，声明小变形刚体旋转数值兼容／能量门。当前设计＋一个已审冻结SOURCE原型，import／constructor／科学数组／GPU0。 [真实支撑转角设计](../notes/geobc_all_support_rigid_motion_v120_design.json)。
+四个真实RBE2支撑的12转角方向已实际完成：原deck GRID真实参考XYZ／成员关系核验，两CAD24新旋转基解＋6独立mixed场；全30真自由残差≤9.940e−9，固定边界差0，紧凑全N混合差≤3.812e−8、能量差≤7.748e−11，小变形刚体旋转数值兼容门通过。外UTC506.395秒／mono462.097秒，不缩放时轴；无GT／旧平移和力场求解重播，原signedS仍open。 [真实支撑转角结果](geobc_all_support_rigid_motion_v120/BRIEF.md)。
+
+下一宏观任务回到联合U/S的输入信息：固定100 TRAIN／300原载荷的物理U＋完整∇U9来源，元数据清点实际1.425秒／100份源路径齐全；未读科学数组或标签／未解锁GPU物理或训练。旧预测P1应变与应力读出负结果保留关闭，新原型不生成VM／符号／应力真值，真实源／行绑定／全N资格仍待实施。 [主TRAIN物理输入设计](../notes/geobc_main_train_physics_input_v121_design.json)。
 
 固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 
