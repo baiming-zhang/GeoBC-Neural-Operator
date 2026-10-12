@@ -23,9 +23,13 @@ Hash应力只好0.62个百分点，联合误差好0.19个百分点，未达到�
 
 官方U-NO短筛选已完成：有效训练／读出63.42秒，九TRAIN场位移31.40%、应力56.21%，均劣于原FNO22.69%／41.69%，固定配置关闭。两次训练前接口失败均0标签／0更新，含修复等待的原任务总918.45秒；原1200秒总截止未重置。[结果](results/geobc_official_UNO_valid_skip_recovery_v91/BRIEF.md)。
 
-下一项**仅设计，求解器代码和训练尚未开始**：用已有GT-free有限元张量配合GPU树模型直接回归原signed应力，复用旧3TRAIN／2knownDEV／ver缓存，无新FEM求解或数据下载。它不是主100／20三载荷协议的公平架构排名，也不是可微连续hash场替代；用于检验物理信息与学习器的准确率／冷启动成本。[设计](notes/geobc_physical_tensor_GBDT_v92_design.json)。
+GPU物理张量树模型已完成（整阶段19.90秒／GPU学习9.52秒）：旧两例knownDEV的应力误差30.92%，物理特征MLP为31.76%，只改善0.84个百分点；热点53.80%→36.57%，仍未达到固定推进门，配置关闭。它只覆盖旧3TRAIN／2knownDEV／ver，不是主100／20三载荷协议的公平架构排名，也不是可微连续求解器；20秒不包括继承的物理输入冷启动成本。[结果](results/geobc_physical_tensor_GBDT_v92/BRIEF.md)。
 
-固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。仅证明导入和GPU编译支持，尚未验证实际GPU训练。
+两个此前未使用标签的预留CAD×三载荷检查已完成（45.82秒）：FNO位移18.65%／应力45.12%，FNO+Hash18.55%／44.77%，Transolver36.69%／61.24%。Hash整体优势仍小，热点33.52%→29.54%；默认FNO保持。全部18份预测先提交再共享读两CSV原标签，无新训练／scaler拟合。只有两CAD，不能确定总体赢家；它们现已揭盲，禁止据此调参。 [结果](results/geobc_reserve_holdout_v93/BRIEF.md)。
+
+下一项仅设计：检查EdgeConv式动态局部点云关系能否改善FNO的整体几何条件。固定旧九TRAIN场／900更新，算子和查询头初值一致，替换几何编码器；先检验完整节点梯度与输入接口，只有明显联合／应力收益才扩大100CAD。不是重跑规范化或Hash微调，源码／GPU均未实施。 [设计](notes/geobc_edgeconv_geometry_v94_design.json)。
+
+固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 
 ## 数据与复现边界
 
@@ -41,4 +45,4 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore`，未知内容拒绝覆盖。[私人GitHub](https://github.com/baiming-zhang/GeoBC-Neural-Operator)发布代码、配置、标量报告、图和检查点索引；原数据及项目训练检查点留本地。
 
-前一次私人提交 `41e177a` 已验证。本快照新增官方U-NO有效短筛选的真实负结果、两次零更新技术失败与恢复代码／图表／收据，以及仅设计的物理树模型和其依赖准备。树模型未训练，不把设计当结果。[发布状态](notes/github_publish_plan.json)。
+最新已验证私人提交 `05d0c9c`：官方U-NO真实短筛选负结果、两次零更新失败／恢复与CPU图表，以及仅设计的物理树模型和依赖准备已交付。发布76.38秒、60份变化文件，前中后private身份和exact commit/tree/blobs核实。GBDT仍未训练。[发布状态](notes/github_publish_plan.json)。

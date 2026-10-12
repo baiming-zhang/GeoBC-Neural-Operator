@@ -1,0 +1,211 @@
+{
+  "raw_sources": {
+    "50_380": {
+      "Field": {
+        "path": "data/raw_geobc_coverage/Field/50_380.csv",
+        "bytes": 66490593,
+        "mtime_ns": 1791604751957907600,
+        "sha256": "883f8c75d5b6a151a0d246fb51bd5cb3580190f59d5737361ec1327e7ff4e147"
+      },
+      "FieldMesh": {
+        "path": "data/raw_geobc_coverage/FieldMesh/50_380.h5",
+        "bytes": 39536136,
+        "mtime_ns": 1791604728072169400,
+        "sha256": "a9a9a63fba751fcd3d7eb39139044d87f68e3a9d86caaf70448c812bd0aa4e14"
+      },
+      "SolverDeck": {
+        "path": "data/raw_geobc_coverage/SolverDeck/50_380.fem",
+        "bytes": 30001544,
+        "mtime_ns": 1791604757998003800,
+        "sha256": "f2637d22095118577ac676d075cc864ce888637385623cae822ab81820ee2997"
+      }
+    },
+    "624_483": {
+      "Field": {
+        "path": "data/raw_geobc_coverage/Field/624_483.csv",
+        "bytes": 58484305,
+        "mtime_ns": 1791604645433312300,
+        "sha256": "5ec65d6d7364bbf82402299b5b22a2df107b87a9b206cad385862ea609319927"
+      },
+      "FieldMesh": {
+        "path": "data/raw_geobc_coverage/FieldMesh/624_483.h5",
+        "bytes": 34777240,
+        "mtime_ns": 1791604626405470100,
+        "sha256": "eeadc250db45e517dd3a0c17314e8134713d2e964a9ae845110da713fc742a3e"
+      },
+      "SolverDeck": {
+        "path": "data/raw_geobc_coverage/SolverDeck/624_483.fem",
+        "bytes": 26435584,
+        "mtime_ns": 1791604660417281500,
+        "sha256": "9003c889ea58abb17c3fecf5d31422f886471bee0937dcf0ea2f3c46725cfff1"
+      }
+    }
+  },
+  "groups": {
+    "train_new160": [],
+    "validation20": [
+      "50_380",
+      "624_483"
+    ]
+  },
+  "scaler": {
+    "mean": [
+      -0.006059544265096125,
+      -0.0005008273527146082,
+      0.015260029003479832,
+      0.09629744183585241
+    ],
+    "std": [
+      0.05393032209940291,
+      0.011291299669602316,
+      0.07619646768716026,
+      0.5232191238243877
+    ],
+    "stress_scale": 90.46589813232424,
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "input_recipe": {
+    "H5_members": [
+      "vertices",
+      "cells"
+    ],
+    "coordinate_columns": [
+      "nodeID",
+      "coord_x(mm)",
+      "coord_y(mm)",
+      "coord_z(mm)"
+    ],
+    "known_loads": [
+      "ver",
+      "hor",
+      "tor"
+    ],
+    "features": 25,
+    "GRID_H5_tolerance_mm": 0.0002,
+    "cloud_points": 1024,
+    "cloud_seed": 2026,
+    "grid_resolution": 64,
+    "grid_channels": 29,
+    "normalization": "original FP32 xyz_mm; (xyz_mm-bbox_min)/max_bbox_extent",
+    "cloud": "unique original quadratic-boundary FEM IDs; BLAKE2b seed2026:CAD without replacement; zero padding/bool mask",
+    "support_flags": "actual RBE2 CM on mapped members and actual SPC; no role-implied clamping",
+    "material": "explicit real MAT1 E/nu/rho; no defaults",
+    "reader_scope": {
+      "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+      "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+      "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+      "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+      "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+      "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+      "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+      "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+      "deck_coordinate_relative_tolerance": 1e-05,
+      "material_relative_tolerance": 1e-08,
+      "allowed_static_params": {
+        "POST": [
+          "-1",
+          "0",
+          "1",
+          "2"
+        ],
+        "AUTOSPC": [
+          "YES",
+          "NO"
+        ],
+        "GRDPNT": [
+          "0"
+        ],
+        "LGDISP": [
+          "0",
+          "NO"
+        ],
+        "INREL": [
+          "0"
+        ],
+        "CHECKEL": [
+          "NO"
+        ],
+        "RENUMOK": [
+          "YES"
+        ],
+        "PRINFACC": [
+          "1"
+        ],
+        "CONTFEL": [
+          "AUTO"
+        ]
+      },
+      "allowed_gapprm_names": [
+        "GAPCMPL"
+      ],
+      "ignored_output_cards": [
+        "ENDDATA",
+        "OUTPUT",
+        "OUTPUT2",
+        "DISPLACEMENT",
+        "GPSTRESS",
+        "STRESS",
+        "STRAIN",
+        "SPCFORCE",
+        "OLOAD",
+        "GPFORCE",
+        "ECHO",
+        "FORMAT",
+        "ELFORCE",
+        "ESE"
+      ],
+      "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+      "explicit_proprietary_control_exclusions": [
+        {
+          "output_only_claim": false,
+          "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+          "card": "DEBUG",
+          "original_effect": "unknown",
+          "value": "0.0",
+          "classification": "definition_unverified_explicitly_not_reproduced",
+          "inactive_claim": false,
+          "name": "LGSHPSNS"
+        }
+      ]
+    },
+    "load_transfer": {
+      "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+      "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+      "minimum_rank": 6,
+      "maximum_normal_condition": 1000000000000,
+      "relative_guard_tolerance": 1e-09,
+      "guards": [
+        "H B=I6",
+        "virtual work",
+        "net force",
+        "net moment about true reference"
+      ],
+      "fallback_or_pseudoinverse": false,
+      "OptiStruct_exact": false
+    },
+    "seed": 2026,
+    "scaler_fit": "none; exact original TRAIN40-only frozen scaler",
+    "DEV_input_targets": false,
+    "target_columns_presence_check": [
+      "ver_x_disp(mm)",
+      "ver_y_disp(mm)",
+      "ver_z_disp(mm)",
+      "ver_stress(MPa)",
+      "hor_x_disp(mm)",
+      "hor_y_disp(mm)",
+      "hor_z_disp(mm)",
+      "hor_stress(MPa)",
+      "tor_x_disp(mm)",
+      "tor_y_disp(mm)",
+      "tor_z_disp(mm)",
+      "tor_stress(MPa)"
+    ],
+    "numeric_targets_before_barrier": false
+  },
+  "scope": "reserved2 target-free input math; no numeric targets before frozen3 Cartesian prediction barrier"
+}

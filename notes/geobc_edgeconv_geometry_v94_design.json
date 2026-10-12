@@ -1,0 +1,136 @@
+{
+  "status": "design_only",
+  "created_at_utc": "2026-10-12T04:44:08.287829+00:00",
+  "scientific": {
+    "question": "Does learned dynamic local point-cloud connectivity improve global geometry conditioning beyond pointwise PointNet, with the same FNO/grid/query/loss? A bounded macro encoder test after canonical coordinates and local query descriptors failed, not Hash tweaking.",
+    "selected_TRAIN_keys": [
+      "229_200/ver",
+      "229_200/hor",
+      "229_200/tor",
+      "53_482/ver",
+      "53_482/hor",
+      "53_482/tor",
+      "56_293/ver",
+      "56_293/hor",
+      "56_293/tor"
+    ],
+    "dataset_identity": {
+      "path": "data/geobc_prospective_dataset_v1/manifest.json",
+      "bytes": 2006687,
+      "mtime_ns": 1791671623813764100,
+      "sha256": "68733fab6029ed0a182c09d73dcb61e06d1d7becfca9784498073a1c5dc19ddf"
+    },
+    "scaler": {
+      "mean": [
+        -0.006059544265096125,
+        -0.0005008273527146082,
+        0.015260029003479832,
+        0.09629744183585241
+      ],
+      "std": [
+        0.05393032209940291,
+        0.011291299669602316,
+        0.07619646768716026,
+        0.5232191238243877
+      ],
+      "stress_scale": 90.46589813232424,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "parent_reference_plan_identity": {
+      "path": "notes/geobc_decoder_packages_v77_plan.json",
+      "bytes": 29992,
+      "mtime_ns": 1791754286505720100,
+      "sha256": "59fb88586ae12d489d385d35b331068671c6751c15d8a7ed40341084de7e5e7c"
+    },
+    "reference_report_identity": {
+      "path": "results/geobc_decoder_packages_v77/manifest.json",
+      "bytes": 2505,
+      "mtime_ns": 1791754589584475300,
+      "sha256": "7fc59a136fd501ae7a4e25a9f8fda44995ae01ce12c85b3c533a57e12baec72c"
+    },
+    "latest_real_holdout_terminal_identity": {
+      "path": "notes/geobc_reserve_holdout_v93_actual_terminal_receipt.json",
+      "bytes": 1955,
+      "mtime_ns": 1791780058807233900,
+      "sha256": "93e9f297cdf61b8eeea8eabf6105f83242a4b5a00f80bdef497d97bac207f5b1"
+    },
+    "geometry_encoder": {
+      "method": "Custom EdgeConv-inspired geometry encoder; not unchanged official DGCNN classifier reproduction",
+      "input": "Original fixed1024 normalized boundary xyz/boolmask, no PCA/scale/coordinate or BC changes",
+      "graph": "k20 dynamic nearest neighbors per layer in learned point-feature space; GPU pairwise distance/topk, masked padding excluded",
+      "edge_features": "concat(center,neighbor-center)",
+      "point_blocks": [
+        [
+          "6",
+          64
+        ],
+        [
+          128,
+          64
+        ],
+        [
+          128,
+          128
+        ]
+      ],
+      "activation": "LeakyReLU0.2; no BatchNorm or dropout for batch1",
+      "point_merge": "concat64+64+128 -> Linear256to64",
+      "pool": "masked max and masked mean ->128",
+      "output": "Linear128to64/ReLU/Linear64to32/nonaffineLayerNorm/tanh; same32bounded descriptor dimension",
+      "primary_sources": [
+        "https://arxiv.org/abs/1801.07829",
+        "https://github.com/WangYueFt/dgcnn/blob/master/pytorch/model.py"
+      ],
+      "adaptation_limits": "Custom bounded32 descriptor and batch1 no-BN interface; capacity differs from PointNet, not a pure graph-only causal test"
+    },
+    "preserved": [
+      "Same plainFNO9 operator and native25 continuous queryMLP",
+      "Same operator/head initial state bytes at seed2026; encoder replaced only after constructor, independent RNGfork",
+      "Original signedU(mm)/S(MPa) joint physical loss and fixed oldTRAIN40 scaler",
+      "Original R64 grid/global BC/material/local inputs; no new sign rule or stressproxy target"
+    ],
+    "seed": 2026,
+    "updates": 900,
+    "case_passes": 100,
+    "TRAIN_case_denominator": 9,
+    "final_TRAIN_readouts": 9,
+    "physical_TRAIN_reads": 9,
+    "encoded_or_raw_GT_reads_allowed": 0,
+    "DEV_FINAL_reserved93_reads_allowed": 0,
+    "parent_checkpoint_reads_allowed": 0,
+    "qualification": "Actual maximum242936 fullN parameter groups encoder/operator/head and context/latent leaf gradients; model/Adam0/fourRNG stable, real64query gradient and chunk equivalence; PointNet reference operator/headbytes must match",
+    "gate": {
+      "primary_improvement_min": 0.03,
+      "S_improvement_min": 0.03,
+      "field_deterioration_max": 0.02,
+      "hotspot_deterioration_max": 0.02,
+      "full9_required": true
+    },
+    "budget": {
+      "train_seconds": 600,
+      "cache_seconds": 120,
+      "readout_seconds": 180,
+      "whole_seconds": 1200,
+      "memory_bytes": 30500000000,
+      "GPU_lock": "runs/geobc_exploration/.coordinator.lock",
+      "dual_clock": "earlier UTC/monotonic absolutedeadline; initialization/qualification/persistence/failure all counted"
+    },
+    "continuation": "FAIL closes fixed k20/3block encoder with no k/width/seed/DEV rescue. PASS permits separately frozen100CAD same10-exposure TRAIN comparison; no automatic20 or reuse of revealed holdouts.",
+    "limits": [
+      "Only9 TRAIN fields; fitting screen is not generalization or finalsolver selection",
+      "Dynamic graph point aggregation is not FE volume integration",
+      "Existing PNG/terminal results accepted; no duplication of old geometry/Hash/TS negatives"
+    ]
+  },
+  "scientific_digest": "b978c4b7fc1e9fd2106a3ef81d99073337c9766b4c660a7d79bd741e08135266",
+  "actual_source_implementation": 0,
+  "actual_arrays": 0,
+  "actual_PT": 0,
+  "actual_GT": 0,
+  "actual_GPU": 0
+}
