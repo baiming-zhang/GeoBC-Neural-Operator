@@ -4,9 +4,9 @@ Geometry, loads and boundary conditions for displacement and signed-stress predi
 
 The physical displacement route reached **0.01589% mean error** and **0.02621% worst error** across 20 known development CADs and three loads. The joint U/S neural baseline remains the smaller FNO; signed stress is the main unresolved accuracy bottleneck.
 
-The latest training-input run saved complete physical inputs for **95/100 CADs**. It reached its cumulative solve budget before completing the fixed set, so the next U/S training comparison remains pending.
+Physical U and full-gradient inputs are complete for **100/100 training CADs and 300 loads**. The final stage reused 95 qualified inputs and completed the remaining five in **114.51 s UTC / 104.26 s monotonic**. Development inputs are also complete for **20/20 CADs and 60 loads** (62.40 s UTC / 56.49 s monotonic). The next experiment compares ZERO and ACTUAL physical inputs with matched FNO models.
 
-A fixed comparison on the next unused training CAD reduced three-load solve cost from **56.60 s to 22.18 s** with a degree-32 Chebyshev coarse correction, including its construction/checks: **60.81% lower cost**. All six true residuals met 1e-8 and same-equation U differed by at most 1.23e-10. This supports testing the new method on the remaining inputs; the original budget-limited run remains recorded.
+A fixed comparison on the next unused training CAD reduced three-load solve cost from **56.60 s to 22.18 s** with a degree-32 Chebyshev coarse correction, including its construction/checks: **60.81% lower cost**. All six true residuals met 1e-8 and same-equation U differed by at most 1.23e-10. The changed method completed the remaining inputs; the original budget-limited run remains a separate cost.
 
 ## Code
 
@@ -25,10 +25,10 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 - [Support motion](results/support_motion/README.md)
 - [Continuous boundary response](results/continuous_boundary_response/README.md)
 - [Training sources](results/training_sources/README.md)
-- [Latest physical inputs](results/training_physical_inputs/README.md)
+- [Latest physical inputs](results/complete_training_inputs/README.md)
 - [Coarse preconditioner comparison](results/coarse_preconditioners/README.md)
 
 Install with `pip install -r requirements.txt` and `pip install -e .`. GPU physics uses FP64 CUDA. Raw data and generated arrays stay local.
 
-[Data protocol](docs/data.md) · [Physical model](docs/physics.md) · [Neural models](docs/neural_models.md)
+[Data protocol](docs/data.md) 路 [Physical model](docs/physics.md) 路 [Neural models](docs/neural_models.md)
 [Signed stress definitions](docs/stress_labels.md)

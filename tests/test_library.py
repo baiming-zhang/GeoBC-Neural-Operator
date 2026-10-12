@@ -6,10 +6,16 @@ from geobc.pcg import solve
 from geobc.neural_field import FNOField
 from geobc.kinematic_neural_field import KinematicCovariateFNO
 from geobc.scaler import FieldScaler
+from geobc.reference_geometry import shape_gradient
 import json
 import numpy as np
 
 class LibraryTests(unittest.TestCase):
+    def test_reference_derivative_interface(self):
+        derivative = shape_gradient(np.array([[.25, .25, .25, .25]]))
+        self.assertEqual(derivative.shape, (1, 10, 3))
+        np.testing.assert_allclose(derivative.sum(1), 0., atol=1e-14)
+
     def test_signed_output_roundtrip(self):
         root = Path(__file__).resolve().parents[1]
         scaler = FieldScaler(**json.loads((root/'configs/output_scaler.json').read_text()))
