@@ -57,7 +57,9 @@ GPU物理张量树模型已完成（整阶段19.90秒／GPU学习9.52秒）：�
 
 两份新物理几何完整部署与原规范U准确率已验收：50_380／624_483每CAD一次源／新K／粗预条件，18独立零初值数值场和24接口查询／8定位／2拒绝通过；源到六基解77.940／63.438秒，整阶段外UTC315.596／mono297.088秒，含98.621秒根审等待及额外独立混合验证。 [部署结果](results/geobc_physical_U_new_geometry_deployment_v111/BRIEF.md)。另独立CPU读出7.858秒，六场原signed U均值0.015735%、最差0.026198%，原节点／GRID完整对齐；S值选择0，不重跑物理或调参，两个reserve已揭盲不是新盲测。 [原U精度](results/geobc_physical_U_reserve_accuracy_v112/BRIEF.md)。
 
-下一步补齐真实RBE参考点的六维运动与能量接口：参考点不在实体单元内，用其实际weighted-LS成员定义返回mm位移／rad转角和Nmm能量，不用空间定位回退投影。固定两CAD新六DOF观测，对独立mixed解做同方程对照，仍GT0／KPCG0／Sopen。当前设计＋一个已审SOURCE原型，constructor／数组／GPU0。 [参考点接口设计](notes/geobc_reference_motion_response_v113_design.json)。
+参考点六维运动／能量已实际验证：12运动请求／72分量／12能量先屏障，后6独立mixed场对照，最大同方程运动相对差2.622e-10；原始互易性2.309e-10／8.720e-11，能量正定条件数13.204／19.275，4个六维力矩梯度通过，rawC未修正。恢复外UTC6.429秒／mono6.429秒，原失败9.737秒＋工程等待计入总UTC282.823秒，跨boot总mono未知null，原900秒截止未延长。源reference GRID没有H5输出行，derived IDs为空，预声明输出节点见证不可得，完整门仍FAIL／数值运动能量检查PASS，不生成替代节点或GT。 [实际报告](results/geobc_reference_motion_recovery_v114/BRIEF.md)。
+
+下一步实做参考点六维弹簧边界变化：固定两CAD、一个预声明正刚度配置，用真实修改后K的6个独立零初值PCG验证紧凑柔度更新，区别物理边界弹簧与数值Kshift；不重组旧K／读GT／调Hash。当前设计＋一个审阅冻结SOURCE原型，实际import／constructor／数组／GPU0。 [新边界条件设计](notes/geobc_reference_spring_BC_v115_design.json)。
 
 固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 
