@@ -1,0 +1,55 @@
+{
+  "observed_at_utc": "2026-10-12T17:26:27.686474+00:00",
+  "status": "running",
+  "phase": "291_417/targetfree_source",
+  "committed_CADs": 54,
+  "fixed_CAD_denominator": 100,
+  "elapsed_epoch_seconds": 316.53481340408325,
+  "elapsed_monotonic_seconds": 289.9526369770001,
+  "actual_now_campaign_epoch_seconds": 327.3434808254242,
+  "actual_exec_session": 73029,
+  "live": {
+    "guard_process": true,
+    "child_process": true
+  },
+  "guard_process": {
+    "pid": 3391,
+    "ppid": 3387,
+    "start_ticks": 689878,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.guard_geobc_main_train_sources_v122",
+      "--start",
+      "--plan",
+      "notes/geobc_main_train_source_qualification_v122_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 3392,
+    "ppid": 3391,
+    "start_ticks": 690576,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_main_train_sources_v122",
+      "--start",
+      "--plan",
+      "notes/geobc_main_train_source_qualification_v122_plan.json"
+    ]
+  },
+  "boot_id": "9bf6f4a7-df84-4bdb-b650-a9ad2a660037",
+  "source_reads": {
+    "legacy_cache_reads": 4,
+    "H5_input_reads": 50,
+    "GRID_archive_member_reads": 36,
+    "CSV_GRID_XYZ_reads": 14,
+    "deck_parses": 54
+  },
+  "GT_K_PCG_GPU_reads": 0,
+  "original_deadline_epoch": 1791827460.3430083,
+  "source_qualification_passed": null,
+  "no_all100_qualification_claim": true
+}

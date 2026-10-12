@@ -1,0 +1,2191 @@
+{
+  "status": "SOURCE_frozen_before_one_actual_CPU_source_attempt",
+  "scientific": {
+    "question": "Do all fixed mainTRAIN100 CADs support complete target-free geometry/material/constraints/canonicalLOAD inputs before expensive physical U/gradient production?",
+    "selection": {
+      "CADs": [
+        "101_428",
+        "101_479",
+        "101_56",
+        "101_78",
+        "101_86",
+        "102_240",
+        "102_79",
+        "107_113",
+        "107_147",
+        "107_150",
+        "107_186",
+        "107_233",
+        "107_240",
+        "107_248",
+        "107_291",
+        "107_320",
+        "107_342",
+        "107_459",
+        "10_30",
+        "10_421",
+        "10_460",
+        "10_492",
+        "10_58",
+        "10_80",
+        "113_129",
+        "113_170",
+        "113_390",
+        "113_86",
+        "113_95",
+        "114_28",
+        "114_456",
+        "114_525",
+        "114_91",
+        "116_102",
+        "116_113",
+        "116_30",
+        "116_348",
+        "119_221",
+        "119_322",
+        "119_559",
+        "229_200",
+        "230_12",
+        "230_483",
+        "248_319",
+        "248_625",
+        "257_485",
+        "25_296",
+        "25_395",
+        "266_15",
+        "268_129",
+        "275_289",
+        "280_202",
+        "284_186",
+        "290_422",
+        "291_417",
+        "291_511",
+        "295_394",
+        "316_479",
+        "322_280",
+        "323_59",
+        "345_238",
+        "34_78",
+        "361_198",
+        "388_513",
+        "38_249",
+        "394_19",
+        "406_171",
+        "415_511",
+        "432_214",
+        "432_533",
+        "433_497",
+        "440_206",
+        "475_209",
+        "489_611",
+        "506_170",
+        "507_217",
+        "507_624",
+        "50_295",
+        "510_575",
+        "518_209",
+        "524_483",
+        "537_142",
+        "53_482",
+        "548_225",
+        "560_91",
+        "56_293",
+        "56_95",
+        "587_248",
+        "592_61",
+        "610_21",
+        "616_538",
+        "62_202",
+        "62_394",
+        "630_205",
+        "633_187",
+        "66_524",
+        "80_483",
+        "81_417",
+        "86_489",
+        "8_497"
+      ],
+      "scientific_group": "TRAIN",
+      "canonical_loads": [
+        "ver",
+        "hor",
+        "tor"
+      ],
+      "fixed_CADs": 100,
+      "fixed_loads": 300,
+      "no_CAD_replacement": true
+    },
+    "parent_kinematic_design_identity": {
+      "path": "notes/geobc_main_train_physics_input_v121_design.json",
+      "bytes": 18727,
+      "mtime_ns": 1791824655805908100,
+      "sha256": "abc0e51be7f6e213c51fc159fc8c9b3c69a735f38653b058641dd8d6e2190afe"
+    },
+    "inventory_identity": {
+      "path": "notes/geobc_main_train_physics_input_v121_source_inventory.json",
+      "bytes": 172478,
+      "mtime_ns": 1791824535997799900,
+      "sha256": "9b94eb0374fe26153e22b226c9ad5dcf98831bc1ea07b5cf848bd21e2847d1ab"
+    },
+    "prior_terminal": {
+      "summary": {
+        "path": "runs/geobc_exploration/twoCAD_all_support_rigid_motion_v120/summary.json",
+        "bytes": 149436,
+        "mtime_ns": 1791822060110872100,
+        "sha256": "69d5c6f90d457542f1841c0098a3d8680e4459b9927f8629df2774754181ca14"
+      },
+      "status": {
+        "path": "runs/geobc_exploration/twoCAD_all_support_rigid_motion_v120/status.json",
+        "bytes": 149436,
+        "mtime_ns": 1791822060117872700,
+        "sha256": "69d5c6f90d457542f1841c0098a3d8680e4459b9927f8629df2774754181ca14"
+      },
+      "external": {
+        "path": "runs/geobc_exploration/twoCAD_all_support_rigid_motion_v120/external_terminal.json",
+        "bytes": 49071,
+        "mtime_ns": 1791822060418472300,
+        "sha256": "e76a7cc28fa1ea8418fdba1966fb0435054728c49a72e08ad5b769a29c4f896e"
+      }
+    },
+    "prior_report_identity": {
+      "path": "results/geobc_all_support_rigid_motion_v120/manifest.json",
+      "bytes": 1256,
+      "mtime_ns": 1791824527903990900,
+      "sha256": "0a4553a4a555262de77ef6ab8dea2fa94e69518483bed4da68d10dd835001999"
+    },
+    "physics_recipe": {
+      "device": "cuda:0",
+      "dtype": "float64",
+      "seed": 2026,
+      "units": "mm, N, MPa, displacement mm, strain dimensionless",
+      "continuum": "isotropic small-strain linear elasticity, full TET10 displacement and curved geometry",
+      "node_dofs": 3,
+      "cell_chunk": 8192,
+      "quadrature": "four symmetric (a,b,b,b) permutations; a=(5+3sqrt(5))/20, b=(5-sqrt(5))/20; each weight1/24",
+      "quadrature_points_per_cell": 4,
+      "integration_claim": "Explicit approximate curved-P2 quadrature; not exact integration or OptiStruct equivalence",
+      "geometry_guard": {
+        "finite": true,
+        "maximum_J_condition": 1000000000000,
+        "minimum_abs_detJ_over_length_cubed": 1e-14,
+        "orientation_consistent_per_cell_at_center_and_four_Q": true,
+        "geometry_repair": false
+      },
+      "reader_scope": {
+        "coordinates": "GRID CP=CD=0 after actual GRDSET expansion; explicit zero overrides default; nonzero systems unsupported",
+        "material": "All CTETRA mapped through PSOLID to one validated isotropic MAT1; E>0,-1<nu<0.5; explicitG consistency relative1e-8",
+        "constraints": "Initial specialization: every support RBE2 master constrained123456=0; CM includes123; member translations derived zero. Direct123 zero SPC/PS supported. No unrestrained master, nonzero prescribed motion or unsupported constraint algebra",
+        "reduction": "u=Tz with free-node identity blocks and exact derived-zero supported translations; no role-flag constraints",
+        "rbe3": "One loaded reference, translational member Ci=123, positive actual weights, no UM; published weighted-LS rigid-fit is an explicit new approximation",
+        "control_policy": "Parse all small/free-field cards. Record explicitly allowlisted output/static-irrelevant controls. Do not reproduce original numerical/integration/autoconstraint settings. Unknown active material/load/constraint/contact cards cause an explicit unsupported result",
+        "grid_ids": "Actual canonical GRID IDs map to original H5 rows; no ID-1 assumption or nearest-node remapping",
+        "ctetra_check": "Every cached cell covered by deck CTETRA/material, preserving full corner-midpoint edge associations",
+        "deck_coordinate_relative_tolerance": 1e-05,
+        "material_relative_tolerance": 1e-08,
+        "allowed_static_params": {
+          "POST": [
+            "-1",
+            "0",
+            "1",
+            "2"
+          ],
+          "AUTOSPC": [
+            "YES",
+            "NO"
+          ],
+          "GRDPNT": [
+            "0"
+          ],
+          "LGDISP": [
+            "0",
+            "NO"
+          ],
+          "INREL": [
+            "0"
+          ],
+          "CHECKEL": [
+            "NO"
+          ],
+          "RENUMOK": [
+            "YES"
+          ],
+          "PRINFACC": [
+            "1"
+          ],
+          "CONTFEL": [
+            "AUTO"
+          ]
+        },
+        "allowed_gapprm_names": [
+          "GAPCMPL"
+        ],
+        "ignored_output_cards": [
+          "ENDDATA",
+          "OUTPUT",
+          "OUTPUT2",
+          "DISPLACEMENT",
+          "GPSTRESS",
+          "STRESS",
+          "STRAIN",
+          "SPCFORCE",
+          "OLOAD",
+          "GPFORCE",
+          "ECHO",
+          "FORMAT",
+          "ELFORCE",
+          "ESE"
+        ],
+        "parameter_semantics": "POST/output record-only. AUTOSPC is not reproduced: no automatic constraints; unsupported free zero-energy DOFs rejected. CHECKEL NO recorded but own mathematical guards retained. RENUMOK YES recorded without input resequencing or geometry repair. PRINFACC 1 output only. CONTFEL AUTO and GAPCMPL NO excluded only under this no-contact/no-gap-element specialization; unknown active contact cards rejected. GAPCMPL NO does not disable contact. Unselected modal METHOD/EIGRL preserved but excluded; selected static METHOD rejected. Exact DEBUG LGSHPSNS 0.0 explicitly not reproduced with original effect unknown. No OptiStruct numerical/integration equivalence claim.",
+        "explicit_proprietary_control_exclusions": [
+          {
+            "output_only_claim": false,
+            "consequence": "This approximate standard curved-P2 model excludes this undocumented proprietary setting; possible model/label mismatch remains.",
+            "card": "DEBUG",
+            "original_effect": "unknown",
+            "value": "0.0",
+            "classification": "definition_unverified_explicitly_not_reproduced",
+            "inactive_claim": false,
+            "name": "LGSHPSNS"
+          }
+        ]
+      },
+      "load_transfer": {
+        "H": "B_i=[I,-cross(r_i/L)],r_i=X_member-X_ref,L=mean(norm(r_i))>0; H=(B^T W B)^-1 B^T W",
+        "scaled_dofs": "qbar=[t,Ltheta], gbar=[F,M/L], f=H^T gbar; actual ver LOAD expansion",
+        "minimum_rank": 6,
+        "maximum_normal_condition": 1000000000000,
+        "relative_guard_tolerance": 1e-09,
+        "guards": [
+          "H B=I6",
+          "virtual work",
+          "net force",
+          "net moment about true reference"
+        ],
+        "fallback_or_pseudoinverse": false,
+        "OptiStruct_exact": false
+      },
+      "input_operator": {
+        "maximum_combined_data_operator_wall_seconds": 300,
+        "maximum_guard_K_applications": 8,
+        "guard_vectors": "six normalized physical rigid columns and fixed seed2026 u/v; one full-CAD stage only",
+        "relative_algebra_guard_tolerance": 1e-09,
+        "guards": [
+          "six rigid null residuals",
+          "u^TKv=v^TKu",
+          "nonnegative two random energies",
+          "constraints eliminate rigid motion"
+        ],
+        "all_inputs_target_free": true,
+        "repeat_setup_or_guards_in_solve": false
+      },
+      "preconditioner": "Reduced nodal block Jacobi, exact3x3 diagonal blocks after identity free-node reduction; Cholesky, no shift or alternate method",
+      "solve": {
+        "method": "PCG",
+        "initial_guess": "zero",
+        "maximum_iterations": 10000,
+        "maximum_cumulative_solve_wall_seconds": 300,
+        "true_relative_residual_tolerance": 1e-08,
+        "true_residual_interval": 25,
+        "checkpoint_interval": 25,
+        "budget_includes": [
+          "K apply",
+          "preconditioner",
+          "reductions",
+          "true residual verification"
+        ],
+        "resume_budget_reset": false,
+        "breakdown": "nonfinite, pTAp<=0 or rTMinvr<=0; no preconditioner shift/solver/tolerance changes",
+        "finite_budget_endpoint": "Save finite full-node solution and separately mark convergence/budget limit; never call nonconvergence a precision success"
+      },
+      "post_solve": {
+        "all_original_nodes": true,
+        "prediction_and_equilibrium_before_labels": true,
+        "label_reads": 1,
+        "label_scope": "Only each listed CAD/ver displacement, after finite endpoint and equilibrium are persisted and remaining stage budget is positive",
+        "metrics": [
+          "allN displacement vector relativeL2",
+          "vector RMS mm",
+          "max nodal vector error mm",
+          "support/load-interface/interior fixed regions",
+          "true free residual",
+          "constraint reaction",
+          "global net force/moment balance"
+        ],
+        "stress_scalar_comparison": false,
+        "old_final_reads": 0,
+        "DEV_dia_reads": 0,
+        "sealed_new_test_reads": 0,
+        "training_updates": 0,
+        "scaler_fits": 0
+      },
+      "maximum_stage_wall_seconds": 900,
+      "initial_guess": "zero",
+      "stage_budget": {
+        "clock": "Cumulative actual wall across all five fixed cases, including source/cache IO, setup, eight guards, solve, verification, persistence, label read and metrics",
+        "journal_persistent": true,
+        "resume_budget_reset": false,
+        "per_case_solve_wall_seconds": 300,
+        "total_wall_seconds": 900,
+        "combined_input_operator_wall_seconds_per_case": 300,
+        "inner_deadlines_use_remaining_global_budget": true,
+        "at_expiry": "No new iterations or later CADs; persist current finite endpoint/equilibrium and explicitly record finalization overshoot",
+        "later_case_status": "stage_budget_exhausted_negative",
+        "later_case_attempted": false,
+        "before_GT_requires_remaining_seconds_gt_zero": true,
+        "expired_GT_policy": {
+          "metrics": null,
+          "displacement_reads": 0
+        }
+      }
+    },
+    "legacy_inputs": {
+      "101_428": {
+        "manifest_identity": {
+          "path": "data/geobc_elastic_crosscad5/101_428/input/manifest.json",
+          "bytes": 30690,
+          "mtime_ns": 1791580306880695400,
+          "sha256": "592764e00313aafd795d28ff183a6bdda94047433141ca66998c5abe112f4145"
+        },
+        "cache": {
+          "path": "data/geobc_elastic_crosscad5/101_428/input/input.npz",
+          "bytes": 34537404,
+          "mtime_ns": 1791580306768265900,
+          "sha256": "ae66e77d0ddd437ee3690c2dde3336953ea6cbd3e002eb0be7067f4ea415bee7",
+          "array_schema": {
+            "vertices_mm": {
+              "shape": [
+                270276,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "75866b719f9cd3f0d300d4c1bec2fb5b288d5b877cdd2884166cc5eaa74305f6"
+            },
+            "cells10": {
+              "shape": [
+                169852,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "c4e5f96cc88bf6d544b4f4123772827b137ac7ff12276ed315fdb04d77270e45"
+            },
+            "grid_node_ids": {
+              "shape": [
+                270276
+              ],
+              "dtype": "int64",
+              "sha256": "65f935b3245149b5098845c7a2ff0dc69dd7bc833d2668519deddfbd235228f2"
+            },
+            "free_node_ids": {
+              "shape": [
+                268516
+              ],
+              "dtype": "int64",
+              "sha256": "b41ed9f027b9baf301104b723fe224a599fb7e8914b4df89254dbb9a6cdd16f4"
+            },
+            "fixed_node_ids": {
+              "shape": [
+                1760
+              ],
+              "dtype": "int64",
+              "sha256": "a2bc284b45778d9550413591a21575d0a7dabba01691f3157d565f3843afcef2"
+            },
+            "force": {
+              "shape": [
+                270276,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "f4b9d10e3d0d844e9497356df039ec2e78026bac2ea84a09161717c876e14717"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                169852
+              ],
+              "dtype": "int64",
+              "sha256": "58f16a6d5e7b1e8827143e2a7375e40e3c062f204c6e63231d5907f5bbe8c288"
+            },
+            "derived_node_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_source_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_rowptr": {
+              "shape": [
+                1
+              ],
+              "dtype": "int64",
+              "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+            },
+            "derived_blocks": {
+              "shape": [
+                0,
+                3,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "rbe3_member_node_ids": {
+              "shape": [
+                817
+              ],
+              "dtype": "int64",
+              "sha256": "b7e76f118c238ab1a9f2ce1ecf5036ba8f371ed9b3dd8b92f3dd33ce184db191"
+            },
+            "rbe3_Hbar": {
+              "shape": [
+                6,
+                2451
+              ],
+              "dtype": "float64",
+              "sha256": "3666131e2a2238ee31479d5d67cdbe2ae832d489c0c6875045dd0d66f0f63e1d"
+            },
+            "rbe3_length_mm": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "14fa2e280b88567512c47767faa56f103ad9b66fbade8158891209b43fc0504a"
+            },
+            "reference_xyz_mm": {
+              "shape": [
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "3e6a28962d1cbcc56cecf0f1f6137f95f75baef28dcb4544a36b723dad710664"
+            },
+            "reference_load6": {
+              "shape": [
+                6
+              ],
+              "dtype": "float64",
+              "sha256": "b150fde4988f727cb5feb74253a0bc4fa0955523e6e20c2807c1bc376e2d3bc5"
+            },
+            "characteristic_length_mm": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "015039e5fa7d19030cca41d7925df318eba74e399fd60ee05e11bb1f68068cbc"
+            },
+            "region_support_0": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "9e045ef46125ffdf4aca1ee8ab725fced44900226b14ce75fa3543408b43459b"
+            },
+            "region_support_1": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "d995d93b4c1cd64f352c6a15de717d9bfa87104b5ae958377f70a77885d6e06a"
+            },
+            "region_support_2": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "78883c760e712cff3c80152e364ebc3ece090342766cbf9489ba4f862c2e5369"
+            },
+            "region_support_3": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "10bf600fb41eeb2ccadd4371411cd1d2310229c35eee7dcbca05ffadbd00bb4a"
+            },
+            "region_load": {
+              "shape": [
+                817
+              ],
+              "dtype": "int64",
+              "sha256": "5c6c07c36ef8b6c253abb24ae7cd534a837ca549c8855dbeb45a2be353bae753"
+            },
+            "region_interior": {
+              "shape": [
+                267699
+              ],
+              "dtype": "int64",
+              "sha256": "adfb30f778cb9996d32f11eeef21586e217e7a7a3fa754c9921e980445e45971"
+            }
+          }
+        },
+        "facts": {
+          "node_count": 270276,
+          "cell_count": 169852,
+          "used_cell_nodes": 270276,
+          "free_nodes": 268516,
+          "fixed_nodes": 1760,
+          "derived_nodes": 0,
+          "allN_partition_exact": true,
+          "deck_coordinate_max_error_over_length": 4.088095148307594e-08,
+          "ctetra_all_cells_material_edge_association": true,
+          "material": {
+            "MID": 926,
+            "E_MPa": 113800.0,
+            "nu": 0.342,
+            "G_MPa": 42399.40387481371,
+            "explicit_G_relative_error": 0.0,
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "constraints": {
+            "support_reference_GRID_IDs": [
+              271002,
+              271003,
+              271004,
+              271005
+            ],
+            "RBE2_count": 4,
+            "actual_card_CM": [
+              "123456",
+              "123456",
+              "123456",
+              "123456"
+            ],
+            "active_SPC_DOF_count": 24,
+            "direct_fixed_physical_nodes": 0,
+            "derived_output_only": true,
+            "role_flags_used": false
+          },
+          "load_guard": {
+            "reference_GRID_ID": 271001,
+            "member_count": 817,
+            "REFC": "123456",
+            "weight": 1.0,
+            "length_mm": 17.1324536450093,
+            "normal_rank": 6,
+            "normal_condition": 3.2366794473670804,
+            "HB_max_error": 2.220446049250313e-16,
+            "virtual_work_relative_error": 9.18533920170855e-19,
+            "force_relative_error": 1.6472813627528157e-18,
+            "moment_relative_error": 1.245634751725395e-16,
+            "reference_load6": [
+              0.0,
+              0.0,
+              35585.77,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "passed": true
+          },
+          "cards": {
+            "GAPPRM": 1,
+            "PARAM": 4,
+            "GRID": 270281,
+            "CTETRA": 169852,
+            "RBE2": 4,
+            "RBE3": 1,
+            "PSOLID": 1,
+            "MAT1": 1,
+            "FORCE": 3,
+            "MOMENT": 1,
+            "SPC": 4,
+            "EIGRL": 1,
+            "LOAD": 4,
+            "SPCADD": 4
+          },
+          "selected_controls": {
+            "LABEL": "Vertical",
+            "ANALYSIS": "STATICS",
+            "SPC": 935,
+            "LOAD": 933
+          },
+          "ignored_controls": [
+            {
+              "line": 12,
+              "card": "FORMAT",
+              "fields": [
+                "FORMAT       H3D"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 13,
+              "card": "DEBUG",
+              "fields": [
+                "LGSHPSNS",
+                "0.0"
+              ],
+              "reason": "definition_unverified_explicitly_not_reproduced",
+              "original_setting_effect": "unknown; not asserted inactive or output-only"
+            },
+            {
+              "line": 14,
+              "card": "ELFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 15,
+              "card": "ESE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 16,
+              "card": "GPSTRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 17,
+              "card": "SPCFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 18,
+              "card": "STRAIN",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 19,
+              "card": "STRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 60,
+              "card": "METHOD",
+              "fields": [
+                954
+              ],
+              "subcase": 5,
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            },
+            {
+              "line": 66,
+              "card": "GAPPRM",
+              "fields": [
+                "GAPCMPL",
+                "NO"
+              ],
+              "reason": "gap_contact_compliance_control_excluded_no_contact_cards_supported",
+              "does_not_disable_contact": true
+            },
+            {
+              "line": 67,
+              "card": "PARAM",
+              "fields": [
+                "CHECKEL",
+                "NO"
+              ],
+              "reason": "original_quality_check_control_not_reproduced_own_mathematical_guards_retained"
+            },
+            {
+              "line": 68,
+              "card": "PARAM",
+              "fields": [
+                "RENUMOK",
+                "YES"
+              ],
+              "reason": "original_reordering_not_reproduced_canonical_connectivity_unchanged"
+            },
+            {
+              "line": 69,
+              "card": "PARAM",
+              "fields": [
+                "PRINFACC",
+                "1"
+              ],
+              "reason": "inertia_relief_output_control_not_reproduced"
+            },
+            {
+              "line": 70,
+              "card": "PARAM",
+              "fields": [
+                "CONTFEL",
+                "AUTO"
+              ],
+              "reason": "contact_friendly_control_excluded_no_contact_cards_supported"
+            },
+            {
+              "line": 610770,
+              "card": "EIGRL",
+              "fields": [
+                "954",
+                "1.",
+                "",
+                "8",
+                "",
+                "",
+                "",
+                "MASS"
+              ],
+              "unselected_subcases": [
+                5
+              ],
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            }
+          ],
+          "GRDSET": {
+            "CP": "",
+            "CD": "",
+            "PS": "",
+            "SEID": ""
+          },
+          "PSOLID_original_controls_not_replicated": {
+            "926": {
+              "MID": 926,
+              "original_controls_not_replicated": []
+            }
+          },
+          "K_applications": 0,
+          "labels_read": 0,
+          "stress_reads": 0,
+          "GPU_calls": 0
+        },
+        "solve_summary_identity": {
+          "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_428_ver/summary.json",
+          "bytes": 51342,
+          "mtime_ns": 1791580411769662800,
+          "sha256": "9b26bf439d1eca8da6a8102e11ea63856994800408e99310b1c811233e489a94"
+        },
+        "inherited_solve_cost": {
+          "input_preparation_seconds": 4.953401412999995,
+          "operator_wall_seconds": 3.80182211799999,
+          "solve_setup_read_seconds": 0.6729553350000117,
+          "cumulative_solve_wall_seconds": 91.48044187600001,
+          "this_call_solve_wall_seconds": 91.48044187600001,
+          "this_call_K_apply_seconds": 29.43293803999981,
+          "preconditioner_seconds": 2.600378208001217,
+          "checkpoint_seconds": 9.256607916999968,
+          "endpoint_verification_seconds": 0.04879055899999685,
+          "GT_read_and_metrics_seconds": 0.06566975999999158,
+          "solve_K_count_this_call": 4402,
+          "solve_K_count_cumulative": 4402,
+          "verification_K_count": 1,
+          "budget_overshoot_seconds": 0.0,
+          "cold_case_accounted_wall_seconds": 101.023081061,
+          "cold_case_accounting_definition": "Recorded phase walls; shared stage metadata/recovery overhead is separately in total stage wall"
+        },
+        "numerical_history": "Accepted original zero PCG; no replay"
+      },
+      "101_479": {
+        "manifest_identity": {
+          "path": "data/geobc_elastic_input101479/manifest.json",
+          "bytes": 31655,
+          "mtime_ns": 1791578066180130200,
+          "sha256": "ed6ae551a417b28e5c1799915fc7f4a52fe7a23b75986607db7b873366559a14"
+        },
+        "cache": {
+          "path": "data/geobc_elastic_input101479/input.npz",
+          "bytes": 22873836,
+          "mtime_ns": 1791578066114259100,
+          "sha256": "5401ca5e37b853f56119a9be9b5c2ec6071e5d08b6d4104e168e95d664b90164",
+          "array_schema": {
+            "vertices_mm": {
+              "shape": [
+                179316,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "c7d073ef58cde200d590bc656bef8f5ac2a4f63c6b5832d0f96aae84e844f09a"
+            },
+            "cells10": {
+              "shape": [
+                111754,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "ef69762c30aea5d6341b6f25128e0b165a6ab9b2732f0d641db855ca3238a228"
+            },
+            "grid_node_ids": {
+              "shape": [
+                179316
+              ],
+              "dtype": "int64",
+              "sha256": "8726a62393bcd00a085faf83cd2d3c013a28c1b639df9bedcc28d8d48b3ac7af"
+            },
+            "free_node_ids": {
+              "shape": [
+                177556
+              ],
+              "dtype": "int64",
+              "sha256": "8a6826fc6a7f4355a8314045a026adab5635c5beb2a1973ee115d41dec16470f"
+            },
+            "fixed_node_ids": {
+              "shape": [
+                1760
+              ],
+              "dtype": "int64",
+              "sha256": "986ef5cabf306d65787b9a8f98109284767c18d7724206393cf9abfb8e143bf7"
+            },
+            "force": {
+              "shape": [
+                179316,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "7d36a10819c825f438d6f7d00a3093ce3ec6511d02f426f3aa4e663d1b1f365e"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                111754
+              ],
+              "dtype": "int64",
+              "sha256": "65ba4a89296e542c6e40e8e8de6328074dcbd18e07124930abb849976115eca4"
+            },
+            "derived_node_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_source_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_rowptr": {
+              "shape": [
+                1
+              ],
+              "dtype": "int64",
+              "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+            },
+            "derived_blocks": {
+              "shape": [
+                0,
+                3,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "rbe3_member_node_ids": {
+              "shape": [
+                805
+              ],
+              "dtype": "int64",
+              "sha256": "d6955190ece4deb2f3a78c637617ac3982f1d839f7c5b0be85a2ea4e2b3f1e33"
+            },
+            "rbe3_Hbar": {
+              "shape": [
+                6,
+                2415
+              ],
+              "dtype": "float64",
+              "sha256": "28cea61692c2a27e3bcd5051a00ecff3df27c416764cc2b09d963976a4d48fe5"
+            },
+            "rbe3_length_mm": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "b6bc75630fcd3b6daa7e6fcedabd76215bb23a0393f90448d07eec3ac984131d"
+            },
+            "reference_xyz_mm": {
+              "shape": [
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "3e6a28962d1cbcc56cecf0f1f6137f95f75baef28dcb4544a36b723dad710664"
+            },
+            "reference_load6": {
+              "shape": [
+                6
+              ],
+              "dtype": "float64",
+              "sha256": "b150fde4988f727cb5feb74253a0bc4fa0955523e6e20c2807c1bc376e2d3bc5"
+            },
+            "characteristic_length_mm": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "6e0128c33d68354a5dfa56af6daa5b607f9f1c436292cf7204093af18a15191f"
+            },
+            "region_support_0": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "9e6ff539fe4f0b052fe429e32c3e8d4e1ddb7c9a901df09213848490c0d91064"
+            },
+            "region_support_1": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "a123f6ba1f435b7021f0c878d2c6e785e6e42e7654bb49450409d8c90dff6923"
+            },
+            "region_support_2": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "6fe3d33b172e1cd85566a63171d0ca1f3dc8f62dd0adeb04446d4910cbac1607"
+            },
+            "region_support_3": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "5442ba13e14cb30b9dde5082524f54ddd92e11ef33c526ba396646b35edb1141"
+            },
+            "region_load": {
+              "shape": [
+                805
+              ],
+              "dtype": "int64",
+              "sha256": "8f9b2278bf3a548159a9ae70f11b6333f67a28bbc83e231c8aeeb0d84d87115c"
+            },
+            "region_interior": {
+              "shape": [
+                176751
+              ],
+              "dtype": "int64",
+              "sha256": "dd992787e5173ad179dd2495454c2c64e89945106db621270e97ac13a8abe4ee"
+            }
+          }
+        },
+        "facts": {
+          "node_count": 179316,
+          "cell_count": 111754,
+          "used_cell_nodes": 179316,
+          "free_nodes": 177556,
+          "fixed_nodes": 1760,
+          "derived_nodes": 0,
+          "allN_partition_exact": true,
+          "deck_coordinate_max_error_over_length": 4.1120609512253934e-08,
+          "ctetra_all_cells_material_edge_association": true,
+          "material": {
+            "MID": 926,
+            "E_MPa": 113800.0,
+            "nu": 0.342,
+            "G_MPa": 42399.40387481371,
+            "explicit_G_relative_error": 0.0,
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "constraints": {
+            "support_reference_GRID_IDs": [
+              180002,
+              180003,
+              180004,
+              180005
+            ],
+            "RBE2_count": 4,
+            "actual_card_CM": [
+              "123456",
+              "123456",
+              "123456",
+              "123456"
+            ],
+            "active_SPC_DOF_count": 24,
+            "direct_fixed_physical_nodes": 0,
+            "derived_output_only": true,
+            "role_flags_used": false
+          },
+          "load_guard": {
+            "reference_GRID_ID": 180001,
+            "member_count": 805,
+            "REFC": "123456",
+            "weight": 1.0,
+            "length_mm": 17.19090461453946,
+            "normal_rank": 6,
+            "normal_condition": 3.2579377776025265,
+            "HB_max_error": 2.636779683484747e-16,
+            "virtual_work_relative_error": 4.131723530128845e-18,
+            "force_relative_error": 2.0446255944956163e-16,
+            "moment_relative_error": 1.3213099003899195e-16,
+            "reference_load6": [
+              0.0,
+              0.0,
+              35585.77,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "passed": true
+          },
+          "cards": {
+            "GAPPRM": 1,
+            "PARAM": 4,
+            "GRID": 179321,
+            "CTETRA": 111754,
+            "RBE2": 4,
+            "RBE3": 1,
+            "PSOLID": 1,
+            "MAT1": 1,
+            "FORCE": 3,
+            "MOMENT": 1,
+            "SPC": 4,
+            "EIGRL": 1,
+            "LOAD": 4,
+            "SPCADD": 4
+          },
+          "selected_controls": {
+            "LABEL": "Vertical",
+            "ANALYSIS": "STATICS",
+            "SPC": 935,
+            "LOAD": 933
+          },
+          "ignored_controls": [
+            {
+              "line": 12,
+              "card": "FORMAT",
+              "fields": [
+                "FORMAT       H3D"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 13,
+              "card": "DEBUG",
+              "fields": [
+                "LGSHPSNS",
+                "0.0"
+              ],
+              "reason": "definition_unverified_explicitly_not_reproduced",
+              "original_setting_effect": "unknown; not asserted inactive or output-only"
+            },
+            {
+              "line": 14,
+              "card": "ELFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 15,
+              "card": "ESE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 16,
+              "card": "GPSTRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 17,
+              "card": "SPCFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 18,
+              "card": "STRAIN",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 19,
+              "card": "STRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 60,
+              "card": "METHOD",
+              "fields": [
+                954
+              ],
+              "subcase": 5,
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            },
+            {
+              "line": 66,
+              "card": "GAPPRM",
+              "fields": [
+                "GAPCMPL",
+                "NO"
+              ],
+              "reason": "gap_contact_compliance_control_excluded_no_contact_cards_supported",
+              "does_not_disable_contact": true
+            },
+            {
+              "line": 67,
+              "card": "PARAM",
+              "fields": [
+                "CHECKEL",
+                "NO"
+              ],
+              "reason": "original_quality_check_control_not_reproduced_own_mathematical_guards_retained"
+            },
+            {
+              "line": 68,
+              "card": "PARAM",
+              "fields": [
+                "RENUMOK",
+                "YES"
+              ],
+              "reason": "original_reordering_not_reproduced_canonical_connectivity_unchanged"
+            },
+            {
+              "line": 69,
+              "card": "PARAM",
+              "fields": [
+                "PRINFACC",
+                "1"
+              ],
+              "reason": "inertia_relief_output_control_not_reproduced"
+            },
+            {
+              "line": 70,
+              "card": "PARAM",
+              "fields": [
+                "CONTFEL",
+                "AUTO"
+              ],
+              "reason": "contact_friendly_control_excluded_no_contact_cards_supported"
+            },
+            {
+              "line": 403613,
+              "card": "EIGRL",
+              "fields": [
+                "954",
+                "1.",
+                "",
+                "8",
+                "",
+                "",
+                "",
+                "MASS"
+              ],
+              "unselected_subcases": [
+                5
+              ],
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            }
+          ],
+          "GRDSET": {
+            "CP": "",
+            "CD": "",
+            "PS": "",
+            "SEID": ""
+          },
+          "PSOLID_original_controls_not_replicated": {
+            "926": {
+              "MID": 926,
+              "original_controls_not_replicated": []
+            }
+          },
+          "K_applications": 0,
+          "labels_read": 0,
+          "stress_reads": 0,
+          "GPU_calls": 0
+        },
+        "solve_summary_identity": {
+          "path": "runs/geobc_exploration/elastic_convergence101479_ver/summary.json",
+          "bytes": 63200,
+          "mtime_ns": 1791578593319112300,
+          "sha256": "24770ffab158f5b5f1fb1abef8849e8641d39485c0019c8f2bd5ebe048304a54"
+        },
+        "inherited_solve_cost": {
+          "parent_cumulative_solve_wall_seconds": 27.976850677,
+          "cumulative_solve_wall_seconds": 57.01116477200001,
+          "continuation_cumulative_solve_wall_seconds": 29.034314095000006,
+          "this_call_solve_wall_seconds": 29.034314095000006,
+          "solve_setup_read_seconds": 1.8094866070000037,
+          "this_call_K_apply_seconds": 10.762089571999972,
+          "preconditioner_seconds": 0.9836316910001699,
+          "checkpoint_seconds": 3.492528231999998,
+          "endpoint_verification_seconds": 0.04439878699999156,
+          "solve_K_count_this_call": 2179,
+          "solve_K_count_cumulative": 4261,
+          "verification_K_count": 1,
+          "total_this_call_wall_seconds": 30.891240396999997,
+          "budget_overshoot_seconds": 0.0
+        },
+        "numerical_history": "Original zero PCG plus separately accepted residual-only continuation; no replay"
+      },
+      "101_56": {
+        "manifest_identity": {
+          "path": "data/geobc_elastic_crosscad5/101_56/input/manifest.json",
+          "bytes": 30664,
+          "mtime_ns": 1791580416497603200,
+          "sha256": "8a15a5662979b3c291b96bac7a2ddc316e5ea0bc51d1f372ed36a223d8bca6cf"
+        },
+        "cache": {
+          "path": "data/geobc_elastic_crosscad5/101_56/input/input.npz",
+          "bytes": 28338396,
+          "mtime_ns": 1791580416400665100,
+          "sha256": "b3e4d4c47f573d267ba8c46a0259ab5c307d326a7cd643e61f1f3327be26dae0",
+          "array_schema": {
+            "vertices_mm": {
+              "shape": [
+                221213,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "d3028c742caf61ce6957dbc03c1d05138667d1998404593f7588e50b0776cc99"
+            },
+            "cells10": {
+              "shape": [
+                139546,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "20a3d5fa85640874dd36b0e98a9516540c2144b357dbf02bad7041f421d1b2d7"
+            },
+            "grid_node_ids": {
+              "shape": [
+                221213
+              ],
+              "dtype": "int64",
+              "sha256": "b908e54d906255e2dcf5e737ce6a12ec9b89c32af6a40dd400c3ca089ddbcf94"
+            },
+            "free_node_ids": {
+              "shape": [
+                219453
+              ],
+              "dtype": "int64",
+              "sha256": "6b161e3ca13890289d6bcaa7ea15aae8770baf3dd10e085818aed7586cadce1d"
+            },
+            "fixed_node_ids": {
+              "shape": [
+                1760
+              ],
+              "dtype": "int64",
+              "sha256": "52b28a827a3343704e9ca92bf3cdc8ea5b3a2c80899de15d6d3b4de5db8cb507"
+            },
+            "force": {
+              "shape": [
+                221213,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "a05aa4ee87f0f6eb83ba6cf8fef34b7baba28cab381fc940ee2f45df3de28c56"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                139546
+              ],
+              "dtype": "int64",
+              "sha256": "bf4bfd79f43f7e2fa79ad5e5f18deaab80fadb0dfe6f6f4b545bef24e93ed444"
+            },
+            "derived_node_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_source_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_rowptr": {
+              "shape": [
+                1
+              ],
+              "dtype": "int64",
+              "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+            },
+            "derived_blocks": {
+              "shape": [
+                0,
+                3,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "rbe3_member_node_ids": {
+              "shape": [
+                820
+              ],
+              "dtype": "int64",
+              "sha256": "f512e06490fa633bbe7a24e31e752eca687189339cd8d36a546856200321bc54"
+            },
+            "rbe3_Hbar": {
+              "shape": [
+                6,
+                2460
+              ],
+              "dtype": "float64",
+              "sha256": "b0a3e4bb2c0d35a2976ee2e351f84dd132ac33773e587994e8b5288ec605c8f0"
+            },
+            "rbe3_length_mm": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "c9193c9149133e69324c60c92138f43efd6d21f000025cce2c9d4d638f8905cb"
+            },
+            "reference_xyz_mm": {
+              "shape": [
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "3e6a28962d1cbcc56cecf0f1f6137f95f75baef28dcb4544a36b723dad710664"
+            },
+            "reference_load6": {
+              "shape": [
+                6
+              ],
+              "dtype": "float64",
+              "sha256": "b150fde4988f727cb5feb74253a0bc4fa0955523e6e20c2807c1bc376e2d3bc5"
+            },
+            "characteristic_length_mm": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "fa0d9222423d1b84e6f50d9c9ac18c5ab1f16c495029130751366d27348bccb0"
+            },
+            "region_support_0": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "ae4197400e43398816539b94e705c2533a59040a6de06038c13791e0fd01cb7e"
+            },
+            "region_support_1": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "ed96a9a3fc53d1cdf77c78e375001871f2014c096f5b7f2fc7fd1964c0cc7c04"
+            },
+            "region_support_2": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "3d4380f4a7bb06d037adaa7ad4e4c69cef2b2c5a10fb8713f3318495977a4a7c"
+            },
+            "region_support_3": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "fb62aad75690b15a6690a6b5ca07b7eebb76b9c6750379de70646eab14186551"
+            },
+            "region_load": {
+              "shape": [
+                820
+              ],
+              "dtype": "int64",
+              "sha256": "c9dd26e762e6f219d346ce1c4e41b168f704e43c2aa7f0a66c06661e1409528f"
+            },
+            "region_interior": {
+              "shape": [
+                218633
+              ],
+              "dtype": "int64",
+              "sha256": "938d0521fde88f47886c927a5962b721e61e464f64b37638905791e999734a14"
+            }
+          }
+        },
+        "facts": {
+          "node_count": 221213,
+          "cell_count": 139546,
+          "used_cell_nodes": 221213,
+          "free_nodes": 219453,
+          "fixed_nodes": 1760,
+          "derived_nodes": 0,
+          "allN_partition_exact": true,
+          "deck_coordinate_max_error_over_length": 4.0917019652489846e-08,
+          "ctetra_all_cells_material_edge_association": true,
+          "material": {
+            "MID": 926,
+            "E_MPa": 113800.0,
+            "nu": 0.342,
+            "G_MPa": 42399.40387481371,
+            "explicit_G_relative_error": 0.0,
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "constraints": {
+            "support_reference_GRID_IDs": [
+              222002,
+              222003,
+              222004,
+              222005
+            ],
+            "RBE2_count": 4,
+            "actual_card_CM": [
+              "123456",
+              "123456",
+              "123456",
+              "123456"
+            ],
+            "active_SPC_DOF_count": 24,
+            "direct_fixed_physical_nodes": 0,
+            "derived_output_only": true,
+            "role_flags_used": false
+          },
+          "load_guard": {
+            "reference_GRID_ID": 222001,
+            "member_count": 820,
+            "REFC": "123456",
+            "weight": 1.0,
+            "length_mm": 17.105691283202383,
+            "normal_rank": 6,
+            "normal_condition": 3.2396142600160487,
+            "HB_max_error": 5.134781488891349e-16,
+            "virtual_work_relative_error": 2.456495564326087e-17,
+            "force_relative_error": 2.1058994694283157e-18,
+            "moment_relative_error": 4.501012631879533e-16,
+            "reference_load6": [
+              0.0,
+              0.0,
+              35585.77,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "passed": true
+          },
+          "cards": {
+            "GAPPRM": 1,
+            "PARAM": 4,
+            "GRID": 221218,
+            "CTETRA": 139546,
+            "RBE2": 4,
+            "RBE3": 1,
+            "PSOLID": 1,
+            "MAT1": 1,
+            "FORCE": 3,
+            "MOMENT": 1,
+            "SPC": 4,
+            "EIGRL": 1,
+            "LOAD": 4,
+            "SPCADD": 4
+          },
+          "selected_controls": {
+            "LABEL": "Vertical",
+            "ANALYSIS": "STATICS",
+            "SPC": 935,
+            "LOAD": 933
+          },
+          "ignored_controls": [
+            {
+              "line": 12,
+              "card": "FORMAT",
+              "fields": [
+                "FORMAT       H3D"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 13,
+              "card": "DEBUG",
+              "fields": [
+                "LGSHPSNS",
+                "0.0"
+              ],
+              "reason": "definition_unverified_explicitly_not_reproduced",
+              "original_setting_effect": "unknown; not asserted inactive or output-only"
+            },
+            {
+              "line": 14,
+              "card": "ELFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 15,
+              "card": "ESE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 16,
+              "card": "GPSTRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 17,
+              "card": "SPCFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 18,
+              "card": "STRAIN",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 19,
+              "card": "STRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 60,
+              "card": "METHOD",
+              "fields": [
+                954
+              ],
+              "subcase": 5,
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            },
+            {
+              "line": 66,
+              "card": "GAPPRM",
+              "fields": [
+                "GAPCMPL",
+                "NO"
+              ],
+              "reason": "gap_contact_compliance_control_excluded_no_contact_cards_supported",
+              "does_not_disable_contact": true
+            },
+            {
+              "line": 67,
+              "card": "PARAM",
+              "fields": [
+                "CHECKEL",
+                "NO"
+              ],
+              "reason": "original_quality_check_control_not_reproduced_own_mathematical_guards_retained"
+            },
+            {
+              "line": 68,
+              "card": "PARAM",
+              "fields": [
+                "RENUMOK",
+                "YES"
+              ],
+              "reason": "original_reordering_not_reproduced_canonical_connectivity_unchanged"
+            },
+            {
+              "line": 69,
+              "card": "PARAM",
+              "fields": [
+                "PRINFACC",
+                "1"
+              ],
+              "reason": "inertia_relief_output_control_not_reproduced"
+            },
+            {
+              "line": 70,
+              "card": "PARAM",
+              "fields": [
+                "CONTFEL",
+                "AUTO"
+              ],
+              "reason": "contact_friendly_control_excluded_no_contact_cards_supported"
+            },
+            {
+              "line": 501096,
+              "card": "EIGRL",
+              "fields": [
+                "954",
+                "1.",
+                "",
+                "8",
+                "",
+                "",
+                "",
+                "MASS"
+              ],
+              "unselected_subcases": [
+                5
+              ],
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            }
+          ],
+          "GRDSET": {
+            "CP": "",
+            "CD": "",
+            "PS": "",
+            "SEID": ""
+          },
+          "PSOLID_original_controls_not_replicated": {
+            "926": {
+              "MID": 926,
+              "original_controls_not_replicated": []
+            }
+          },
+          "K_applications": 0,
+          "labels_read": 0,
+          "stress_reads": 0,
+          "GPU_calls": 0
+        },
+        "solve_summary_identity": {
+          "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_56_ver/summary.json",
+          "bytes": 45260,
+          "mtime_ns": 1791580495993952400,
+          "sha256": "593d8a3131eda6014e176ca74e12b67828aa5e231bedcdff5a35da0f43dd007e"
+        },
+        "inherited_solve_cost": {
+          "input_preparation_seconds": 4.315922778000015,
+          "operator_wall_seconds": 1.8550168829999905,
+          "solve_setup_read_seconds": 0.45429683800000475,
+          "cumulative_solve_wall_seconds": 70.37234796299998,
+          "this_call_solve_wall_seconds": 70.37234796299998,
+          "this_call_K_apply_seconds": 20.41371103399905,
+          "preconditioner_seconds": 1.808742338999366,
+          "checkpoint_seconds": 6.660012802999432,
+          "endpoint_verification_seconds": 0.04469961600000261,
+          "GT_read_and_metrics_seconds": 0.06336632000000009,
+          "solve_K_count_this_call": 3629,
+          "solve_K_count_cumulative": 3629,
+          "verification_K_count": 1,
+          "budget_overshoot_seconds": 0.0,
+          "cold_case_accounted_wall_seconds": 77.105650398,
+          "cold_case_accounting_definition": "Recorded phase walls; shared stage metadata/recovery overhead is separately in total stage wall"
+        },
+        "numerical_history": "Accepted original zero PCG; no replay"
+      },
+      "101_78": {
+        "manifest_identity": {
+          "path": "data/geobc_elastic_crosscad5/101_78/input/manifest.json",
+          "bytes": 30667,
+          "mtime_ns": 1791580500085922500,
+          "sha256": "dc188bfaca90d155d2c38d947eb76aca9e98e866b33e251e03efa465ee066bf8"
+        },
+        "cache": {
+          "path": "data/geobc_elastic_crosscad5/101_78/input/input.npz",
+          "bytes": 24599396,
+          "mtime_ns": 1791580499987754200,
+          "sha256": "549abbd70392df7bedd3c83128f259176be2fb73eb468333fc7349b640d0d8d5",
+          "array_schema": {
+            "vertices_mm": {
+              "shape": [
+                192353,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "15c8dbb7af57380f096da1878412c924bf9e5dbf76ac2cd1041f661deb1fcafc"
+            },
+            "cells10": {
+              "shape": [
+                120639,
+                10
+              ],
+              "dtype": "int64",
+              "sha256": "dc614dce3463085a75d6c33c8a05d8154847c38a6cf7595478aee7eaee4f7a57"
+            },
+            "grid_node_ids": {
+              "shape": [
+                192353
+              ],
+              "dtype": "int64",
+              "sha256": "d40d02715d19f440fa2ddc8a2614153994f828fe846cbbf065e8e3f3e3967db6"
+            },
+            "free_node_ids": {
+              "shape": [
+                190593
+              ],
+              "dtype": "int64",
+              "sha256": "024df20c4e9be9533a33910d5cbc354e7c1615d679bc19bbcde2b00f1ee1e9fa"
+            },
+            "fixed_node_ids": {
+              "shape": [
+                1760
+              ],
+              "dtype": "int64",
+              "sha256": "8fdb005c9f217ff38281ed327550aba60fd954da3750fb7376331a47558447d9"
+            },
+            "force": {
+              "shape": [
+                192353,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "313c8029c69586765811505ad5e91f9746b432cf611be40406c29f6f6da81b8c"
+            },
+            "lame": {
+              "shape": [
+                2
+              ],
+              "dtype": "float64",
+              "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+            },
+            "ctetra_element_ids": {
+              "shape": [
+                120639
+              ],
+              "dtype": "int64",
+              "sha256": "38181ecb52b2ec6d278d7c1104c075eb9fe8c3c65b48086037b41ef73ae4d08b"
+            },
+            "derived_node_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_source_ids": {
+              "shape": [
+                0
+              ],
+              "dtype": "int64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "derived_rowptr": {
+              "shape": [
+                1
+              ],
+              "dtype": "int64",
+              "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+            },
+            "derived_blocks": {
+              "shape": [
+                0,
+                3,
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "rbe3_member_node_ids": {
+              "shape": [
+                838
+              ],
+              "dtype": "int64",
+              "sha256": "2b7170e89667c8ea212d22b0745a85eaef977229a0e75df197599a9f3250aa22"
+            },
+            "rbe3_Hbar": {
+              "shape": [
+                6,
+                2514
+              ],
+              "dtype": "float64",
+              "sha256": "f94b881ce3b6adf6e810a8808c44e8b5c6ecb2d877602cf967339ca596e451b4"
+            },
+            "rbe3_length_mm": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "17e460c5a79e1c09e22b53a0eafe2cdec40f32d6a57a709ad5926f2fafc23626"
+            },
+            "reference_xyz_mm": {
+              "shape": [
+                3
+              ],
+              "dtype": "float64",
+              "sha256": "3e6a28962d1cbcc56cecf0f1f6137f95f75baef28dcb4544a36b723dad710664"
+            },
+            "reference_load6": {
+              "shape": [
+                6
+              ],
+              "dtype": "float64",
+              "sha256": "b150fde4988f727cb5feb74253a0bc4fa0955523e6e20c2807c1bc376e2d3bc5"
+            },
+            "characteristic_length_mm": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "0d4ae7cadcace0eed070f1d8f7d015cb37d770700751a9163c5adf0dd7e1e3ac"
+            },
+            "region_support_0": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "791f0e9db4bc184c51d26359a027ab198c71459a9b727d17647c99b1f75f88d6"
+            },
+            "region_support_1": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "dce72617542b0f36772107ada1450d1a162e36d49fd28477674604792b9fc82f"
+            },
+            "region_support_2": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "2e8bd619cf7bede0400cc30379e40b34d42b4f44ee30ef27eda276f490e11a79"
+            },
+            "region_support_3": {
+              "shape": [
+                440
+              ],
+              "dtype": "int64",
+              "sha256": "37dab7fd319dc8cb89ea69bb69d7adf0ff50c972c2ca57b70bea971c354296bb"
+            },
+            "region_load": {
+              "shape": [
+                838
+              ],
+              "dtype": "int64",
+              "sha256": "b5a616c1c2e9fbdf680e8d1fe702e0fb7c5e83d1e6e0c96d76802fa6a21ccf0b"
+            },
+            "region_interior": {
+              "shape": [
+                189755
+              ],
+              "dtype": "int64",
+              "sha256": "c5e0359dcf4aa0cea3e914a06b6b7e1af30dab33f183da6176078d235dff1143"
+            }
+          }
+        },
+        "facts": {
+          "node_count": 192353,
+          "cell_count": 120639,
+          "used_cell_nodes": 192353,
+          "free_nodes": 190593,
+          "fixed_nodes": 1760,
+          "derived_nodes": 0,
+          "allN_partition_exact": true,
+          "deck_coordinate_max_error_over_length": 4.087499851410718e-08,
+          "ctetra_all_cells_material_edge_association": true,
+          "material": {
+            "MID": 926,
+            "E_MPa": 113800.0,
+            "nu": 0.342,
+            "G_MPa": 42399.40387481371,
+            "explicit_G_relative_error": 0.0,
+            "lambda_MPa": 91775.92484295122,
+            "mu_MPa": 42399.40387481371
+          },
+          "constraints": {
+            "support_reference_GRID_IDs": [
+              193002,
+              193003,
+              193004,
+              193005
+            ],
+            "RBE2_count": 4,
+            "actual_card_CM": [
+              "123456",
+              "123456",
+              "123456",
+              "123456"
+            ],
+            "active_SPC_DOF_count": 24,
+            "direct_fixed_physical_nodes": 0,
+            "derived_output_only": true,
+            "role_flags_used": false
+          },
+          "load_guard": {
+            "reference_GRID_ID": 193001,
+            "member_count": 838,
+            "REFC": "123456",
+            "weight": 1.0,
+            "length_mm": 17.09837773801231,
+            "normal_rank": 6,
+            "normal_condition": 3.230231984441403,
+            "HB_max_error": 4.440892098500626e-16,
+            "virtual_work_relative_error": 5.9624458661950956e-18,
+            "force_relative_error": 1.2267753566973698e-15,
+            "moment_relative_error": 9.323510350717186e-17,
+            "reference_load6": [
+              0.0,
+              0.0,
+              35585.77,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "passed": true
+          },
+          "cards": {
+            "GAPPRM": 1,
+            "PARAM": 4,
+            "GRID": 192358,
+            "CTETRA": 120639,
+            "RBE2": 4,
+            "RBE3": 1,
+            "PSOLID": 1,
+            "MAT1": 1,
+            "FORCE": 3,
+            "MOMENT": 1,
+            "SPC": 4,
+            "EIGRL": 1,
+            "LOAD": 4,
+            "SPCADD": 4
+          },
+          "selected_controls": {
+            "LABEL": "Vertical",
+            "ANALYSIS": "STATICS",
+            "SPC": 935,
+            "LOAD": 933
+          },
+          "ignored_controls": [
+            {
+              "line": 12,
+              "card": "FORMAT",
+              "fields": [
+                "FORMAT       H3D"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 13,
+              "card": "DEBUG",
+              "fields": [
+                "LGSHPSNS",
+                "0.0"
+              ],
+              "reason": "definition_unverified_explicitly_not_reproduced",
+              "original_setting_effect": "unknown; not asserted inactive or output-only"
+            },
+            {
+              "line": 14,
+              "card": "ELFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 15,
+              "card": "ESE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 16,
+              "card": "GPSTRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 17,
+              "card": "SPCFORCE",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 18,
+              "card": "STRAIN",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 19,
+              "card": "STRESS",
+              "fields": [
+                "ALL"
+              ],
+              "reason": "output_only"
+            },
+            {
+              "line": 60,
+              "card": "METHOD",
+              "fields": [
+                954
+              ],
+              "subcase": 5,
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            },
+            {
+              "line": 66,
+              "card": "GAPPRM",
+              "fields": [
+                "GAPCMPL",
+                "NO"
+              ],
+              "reason": "gap_contact_compliance_control_excluded_no_contact_cards_supported",
+              "does_not_disable_contact": true
+            },
+            {
+              "line": 67,
+              "card": "PARAM",
+              "fields": [
+                "CHECKEL",
+                "NO"
+              ],
+              "reason": "original_quality_check_control_not_reproduced_own_mathematical_guards_retained"
+            },
+            {
+              "line": 68,
+              "card": "PARAM",
+              "fields": [
+                "RENUMOK",
+                "YES"
+              ],
+              "reason": "original_reordering_not_reproduced_canonical_connectivity_unchanged"
+            },
+            {
+              "line": 69,
+              "card": "PARAM",
+              "fields": [
+                "PRINFACC",
+                "1"
+              ],
+              "reason": "inertia_relief_output_control_not_reproduced"
+            },
+            {
+              "line": 70,
+              "card": "PARAM",
+              "fields": [
+                "CONTFEL",
+                "AUTO"
+              ],
+              "reason": "contact_friendly_control_excluded_no_contact_cards_supported"
+            },
+            {
+              "line": 434424,
+              "card": "EIGRL",
+              "fields": [
+                "954",
+                "1.",
+                "",
+                "8",
+                "",
+                "",
+                "",
+                "MASS"
+              ],
+              "unselected_subcases": [
+                5
+              ],
+              "reason": "unselected_normal_modes_not_part_of_static_operator"
+            }
+          ],
+          "GRDSET": {
+            "CP": "",
+            "CD": "",
+            "PS": "",
+            "SEID": ""
+          },
+          "PSOLID_original_controls_not_replicated": {
+            "926": {
+              "MID": 926,
+              "original_controls_not_replicated": []
+            }
+          },
+          "K_applications": 0,
+          "labels_read": 0,
+          "stress_reads": 0,
+          "GPU_calls": 0
+        },
+        "solve_summary_identity": {
+          "path": "runs/geobc_exploration/elastic_crosscad5_ver/101_78_ver/summary.json",
+          "bytes": 47281,
+          "mtime_ns": 1791580758071427100,
+          "sha256": "9bb13704114b38fab5e8fefdaa66f676a50630c3e08c9d635f02660a095fd8ae"
+        },
+        "inherited_solve_cost": {
+          "input_preparation_seconds": 3.731842749000009,
+          "operator_wall_seconds": 1.8712215109999875,
+          "solve_setup_read_seconds": 2.121144616000045,
+          "cumulative_solve_wall_seconds": 74.694631286,
+          "this_call_solve_wall_seconds": 73.76124487300001,
+          "this_call_K_apply_seconds": 19.418848079999506,
+          "preconditioner_seconds": 1.7516684890006289,
+          "checkpoint_seconds": 6.637329718999936,
+          "endpoint_verification_seconds": 0.050300845999998955,
+          "GT_read_and_metrics_seconds": 0.059408749999988686,
+          "solve_K_count_this_call": 3841,
+          "solve_K_count_cumulative": 3885,
+          "verification_K_count": 1,
+          "budget_overshoot_seconds": 0.0,
+          "cold_case_accounted_wall_seconds": 82.52854975800003,
+          "cold_case_accounting_definition": "Recorded phase walls; shared stage metadata/recovery overhead is separately in total stage wall"
+        },
+        "numerical_history": "Accepted original zero PCG; no replay"
+      }
+    },
+    "source_reads": {
+      "new_H5_vertices_cells": 96,
+      "legacy_input_caches": 4,
+      "new_old40_GRID_archive_single_member": 36,
+      "new_TRAIN60_CSV_GRID_XYZ_only": 60,
+      "deck_hash_parse_header_eachCAD": 100,
+      "H5_nodal_targets": 0,
+      "CSV_U_S_numeric_columns": 0,
+      "K_operator_PCG_GPU_neural_PT_reads": 0,
+      "DEV_FINAL_GT_reads": 0
+    },
+    "rules": [
+      "Old40 source root by fixed split membership/new60 coverage root; fixed all100 no filename-family inference",
+      "Four accepted legacy source caches strictbytesmtimeSHA and each array schema/hash once; original rawH5/GRID/geometry build not replayed; immutable source stat and actual canonicalVER exact force witness bind reuse",
+      "96 new H5 vertices/cells actual shapes/length, old36archive onlygrid_node_ids; new60 exact existing permutation and CSV usecolsGRID+XYZ4/H5coords .0002mm, no targets/newalignment fit",
+      "Accepted target-free parser/actual CTETRA10/MAT1/RBE2/RBE3/zeroSPC specialization, all3 real source LOAD expanded/percase sameconstraints/netforce/moment/virtualwork each; unknown DEBUGPSOLID limits preserved",
+      "Own all100 canonical force/geometry caches saved once for next actualGPU stage; CPU input mathematics not GPU fallback or physical accuracy qualification",
+      "Sourceunsupported completefixed100/300 negative/missingnull no replacement/subset/threshold rescue; technicalfail keepscompletedsourcecaches/cost and demands independent root recovery no replay",
+      "Old200 missing223/540 download failure closed, noarchive retry; previous stress/strain negatives remain closed; numericalinput positive4 reuse not old solver re-execution"
+    ],
+    "budgets": {
+      "whole_seconds": 1800,
+      "perCAD_source_cache_seconds": 300,
+      "memory_bytes": 30500000000,
+      "GPU_lock": "runs/geobc_exploration/.coordinator.lock",
+      "CPU_only": true,
+      "earlier_UTC_mono_absolute": true,
+      "all_import_hash_IO_source_qualification_save_fail_exit": true
+    },
+    "gate": {
+      "complete100_source_CADs": true,
+      "complete300_canonical_RHS": true,
+      "actual_K_GPU_or_PCG_qualification": false,
+      "actual_kinematic_features_ready": false,
+      "no_GT_or_scientific_target_reads": true
+    },
+    "next": "Use actualsource terminal caches for separately frozen main300 physical U/fullgrad production; reuse four accepted legacyVER endpoints/operator math and preserve history, no rawsource/oldsuccessfulPCG replay",
+    "limits": [
+      "TRAIN input qualification only, no newGTaccuracy/finalblind/shape-familyproof/S semantics/engineering qualification",
+      "ApproxP2/fourQ/weightedLSRBE3/sourceDEBUGPSOLID unknown"
+    ]
+  },
+  "scientific_digest": "ff56dae8064e2bf9bce956ec0065771c40a6776ceab12b704417ce6f8ee7b3f2",
+  "created_at_utc": "2026-10-12T17:19:25.395396+00:00",
+  "actual_execution_released": false,
+  "estimated_seconds_unmeasured": "360-720"
+}

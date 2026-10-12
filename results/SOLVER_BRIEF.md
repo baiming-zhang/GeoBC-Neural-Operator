@@ -71,7 +71,9 @@ v119实际连续XYZ／force6／四支撑12平移接口已完成：48新U、16原
 
 四个真实RBE2支撑的12转角方向已实际完成：原deck GRID真实参考XYZ／成员关系核验，两CAD24新旋转基解＋6独立mixed场；全30真自由残差≤9.940e−9，固定边界差0，紧凑全N混合差≤3.812e−8、能量差≤7.748e−11，小变形刚体旋转数值兼容门通过。外UTC506.395秒／mono462.097秒，不缩放时轴；无GT／旧平移和力场求解重播，原signedS仍open。 [真实支撑转角结果](geobc_all_support_rigid_motion_v120/BRIEF.md)。
 
-下一宏观任务回到联合U/S的输入信息：固定100 TRAIN／300原载荷的物理U＋完整∇U9来源，元数据清点实际1.425秒／100份源路径齐全；未读科学数组或标签／未解锁GPU物理或训练。旧预测P1应变与应力读出负结果保留关闭，新原型不生成VM／符号／应力真值，真实源／行绑定／全N资格仍待实施。 [主TRAIN物理输入设计](../notes/geobc_main_train_physics_input_v121_design.json)。
+主100 TRAIN／300规范载荷的源资格已实际全部通过：96新H5仅vertices/cells、36旧GRID成员、60原CSV仅GRID/XYZ、4已验收源缓存复用；100份源／材料／零约束／真实LOAD输入完整，K／PCG／GPU／U/S标签读取0。外UTC597.893秒／mono547.660秒，完整CSV100／PNG已验收；源资格不等于物理场或S准确率。 [源资格结果](geobc_main_train_source_qualification_v122/BRIEF.md)。
+
+主TRAIN物理U＋完整∇U输入生产已实施并启动唯一GPU任务：4旧VER与K复用，3旧粗缓存复用，296新独立零初值解；仅122 own输入缓存，无原源／GT重读，旧TRAIN40输出scaler不改。首次真实270276全N双路K／M对标量资格通过，全部300场和100份梯度输入仍待终态；不预先解锁模型训练或宣布S解决。 [生产计划](../notes/geobc_main_train_kinematic_inputs_v123_plan.json)。
 
 固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 

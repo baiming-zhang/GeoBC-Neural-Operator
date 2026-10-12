@@ -1,0 +1,76 @@
+{
+  "observed_at_utc": "2026-10-12T17:43:26.611532+00:00",
+  "actual_exec_session": 41890,
+  "actual_exec_exit_code": null,
+  "guard_process": {
+    "pid": 3778,
+    "ppid": 3774,
+    "start_ticks": 808250,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.guard_geobc_main_train_kinematic_v123",
+      "--start",
+      "--plan",
+      "notes/geobc_main_train_kinematic_inputs_v123_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 3779,
+    "ppid": 3778,
+    "start_ticks": 809460,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_main_train_kinematic_v123",
+      "--start",
+      "--plan",
+      "notes/geobc_main_train_kinematic_inputs_v123_plan.json"
+    ]
+  },
+  "boot_id": "9bf6f4a7-df84-4bdb-b650-a9ad2a660037",
+  "live": {
+    "guard_process": true,
+    "child_process": true
+  },
+  "root_observed_launch_live": true,
+  "original_entry_epoch": 1791826953.3972435,
+  "original_entry_monotonic": 8082.536557758,
+  "original_deadline_epoch": 1791834153.3972435,
+  "original_deadline_monotonic": 15282.536557758,
+  "SCI": "afc7f7bc371106473def63939abe411df62239be5dc0721f943502ae25f0241a",
+  "phase": "101_428/canonical_zero_PCG",
+  "status": "running",
+  "committed_feature_CADs": 0,
+  "new_zero_endpoint_count": 0,
+  "reused_VER_endpoint_count": 1,
+  "elapsed_epoch_seconds": 40.773407220840454,
+  "elapsed_monotonic_seconds": 37.814330447999964,
+  "actual_qualifications": {
+    "101_428": {
+      "parallel_K_qualification": {
+        "passed": true,
+        "actual_allN": 270276,
+        "actual_lanes": 2,
+        "relative": [
+          1.3153211705141329e-16,
+          1.3167785266935835e-16
+        ]
+      },
+      "parallel_M_qualification": {
+        "passed": true,
+        "actual_freeN": 268516,
+        "actual_lanes": 2,
+        "relative": [
+          1.1539473831558492e-16,
+          1.1662315344869113e-16
+        ],
+        "fixed_inner_steps": 32
+      }
+    }
+  },
+  "GT_rawsources_PT_training_reads": 0,
+  "all100_qualifications_claimed": false
+}

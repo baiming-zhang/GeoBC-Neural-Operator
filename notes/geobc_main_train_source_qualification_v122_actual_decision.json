@@ -1,0 +1,62 @@
+{
+  "status": "actual_completed_full100_source_qualification_PASS",
+  "SCI": "ff56dae8064e2bf9bce956ec0065771c40a6776ceab12b704417ce6f8ee7b3f2",
+  "complete_fixed_source_gate_passed": true,
+  "fixed_CAD_denominator": 100,
+  "fixed_canonical_load_denominator": 300,
+  "actual_committed_CADs": 100,
+  "terminal_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/main_TRAIN100_targetfree_sources_v122/summary.json",
+      "bytes": 93503,
+      "mtime_ns": 1791826249370715000,
+      "sha256": "4895caed05366c0fd74acc008572925c366a203727e6d0f9d460bcf8a720162c"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/main_TRAIN100_targetfree_sources_v122/status.json",
+      "bytes": 93503,
+      "mtime_ns": 1791826249375714400,
+      "sha256": "4895caed05366c0fd74acc008572925c366a203727e6d0f9d460bcf8a720162c"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/main_TRAIN100_targetfree_sources_v122/external_terminal.json",
+      "bytes": 49909,
+      "mtime_ns": 1791826249581939100,
+      "sha256": "651cf62499734d53152c9aa54707e83c0185672c0f80d38cbe8faebd1dc501b0"
+    }
+  },
+  "whole_external_epoch_seconds": 597.8933682441711,
+  "whole_external_monotonic_seconds": 547.6598284219999,
+  "native_epoch_seconds": 587.7722959518433,
+  "native_monotonic_seconds": 540.4957295599997,
+  "actual_source_counts": {
+    "deck_hash_reads": 100,
+    "H5_hash_reads": 96,
+    "H5_input_reads": 96,
+    "GRID_archive_hash_reads": 36,
+    "GRID_archive_member_reads": 36,
+    "permutation_reads": 60,
+    "CSV_hash_reads": 60,
+    "CSV_header_reads": 60,
+    "CSV_GRID_XYZ_reads": 60,
+    "legacy_cache_reads": 4,
+    "deck_parses": 100,
+    "deck_header_reads": 100
+  },
+  "actual_K_PCG_GPU_qualification": false,
+  "main300_U_gradient_features_ready": false,
+  "neural_training_released": false,
+  "GT_reads": 0,
+  "raw_U_S_target_reads": 0,
+  "source_barrier_identity": {
+    "path": "runs/geobc_exploration/main_TRAIN100_targetfree_sources_v122/source_barrier.json",
+    "bytes": 91579,
+    "mtime_ns": 1791826249366713600,
+    "sha256": "e093bd74661ca6cb6d92ae10954575c1bdfd692f4c9b9503fb29fc72cf240aff"
+  },
+  "actual_CPU_export_count": 1,
+  "PNG_visually_accepted": true,
+  "interpretation": "Complete fixed100 source/GRID/material/zero supports/canonical3 LOAD inputs qualified; not physical field production, S accuracy or finalblind evidence",
+  "next": "Implement v123 actualGPU U/fullgradient input production from these immutable caches; no source/legacyKVER replay",
+  "actual_CPU_export_seconds": 1.7072913739993965
+}
