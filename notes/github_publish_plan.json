@@ -10,7 +10,7 @@
   "description": "Original DeepJEB reproduction and broad geometry/boundary-conditioned solver selection, with held-out CAD physical metrics and accuracy/cost comparisons.",
   "authorization": "User explicitly requested creating a private GitHub repository named from this chat title with hyphens and pushing organized code and results after all experiments finish.",
   "publication_gate": "All 30 slides suite experiments remain completed. GeoBC autonomous exploration snapshots are published with explicit stage and ongoing/completed status; no claim that exploratory work has finished. Repository remains private.",
-  "commit_message": "Close fixed sign magnitude recipe after matched TRAIN9 result",
+  "commit_message": "Record geometry negative and reference stress closure; design local spatial FNO",
   "research_authorization": "2026-10-09 user explicitly authorized autonomous sustained GeoBC exploration, evidence-driven next stages and a 30-minute watchdog; continue updating this project repository.",
   "results_manifest": "results/manifest.json",
   "results_export_command": "python tools/export_repo_results.py",
@@ -1516,7 +1516,29 @@
     "notes/github_gitdata_dd6b01d_local_snapshot_review.json",
     "notes/github_gitdata_dd6b01d_verified_receipt.json",
     "notes/github_gitdata_root_dd6b01d_before_signmag_actual.json",
-    "notes/github_publish_receipt_dd6b01d_before_signmag_actual.json"
+    "notes/github_publish_receipt_dd6b01d_before_signmag_actual.json",
+    "notes/github_publish_receipt_b2c7a0f_before_geometry_closure.json",
+    "notes/github_gitdata_root_b2c7a0f_before_geometry_closure.json",
+    "notes/github_gitdata_b2c7a0f_verified_receipt.json",
+    "notes/github_gitdata_b2c7a0f_actual_publication_root_review.json",
+    "notes/github_gitdata_b2c7a0f_local_snapshot_review.json",
+    "notes/geobc_local_spatial_operator_v88_design.json",
+    "notes/geobc_canonical_shape_encoding_v86_actual_decision.json",
+    "notes/geobc_canonical_shape_encoding_v86_actual_launch_receipt.json",
+    "notes/geobc_canonical_shape_encoding_v86_actual_terminal_receipt.json",
+    "notes/geobc_canonical_shape_encoding_v86_description_receipt.json",
+    "notes/geobc_canonical_shape_encoding_v86_exporter_root_review.json",
+    "notes/geobc_canonical_shape_encoding_v86_math_fixture_receipt.json",
+    "notes/geobc_canonical_shape_encoding_v86_plan.json",
+    "notes/geobc_canonical_shape_encoding_v86_root_review.json",
+    "notes/geobc_canonical_shape_encoding_v86_source_review.json",
+    "notes/geobc_reference_vm_closure_v87_actual_decision.json",
+    "notes/geobc_reference_vm_closure_v87_actual_terminal_receipt.json",
+    "notes/geobc_reference_vm_closure_v87_design.json",
+    "notes/geobc_reference_vm_closure_v87_exporter_root_review.json",
+    "notes/geobc_reference_vm_closure_v87_plan.json",
+    "notes/geobc_reference_vm_closure_v87_root_review.json",
+    "notes/geobc_reference_vm_closure_v87_source_review.json"
   ],
   "next_snapshot_wait_reason": "Wait for meaningful real training/DEV terminal or complete new pipeline; no metadata-only repush",
   "current_stage_publication_gate": "Actual70 all3 endpointcomplete/normalclosed originalclock/exactexits andtwoPNG visuallyverified; new72 running only; original30complete",
@@ -1537,27 +1559,27 @@
   "ongoing_stage": "v48/v49 completed andnegative GBC gates; originalTS5to10 convergence designonly",
   "latest_verified_publication": {
     "status": "actual_private_publication_verified",
-    "commit": "dd6b01d711167d88909c5a990e3913f43654c493",
-    "tree": "039f6099a0c4f6621fb2e43767a9e55822bbb6ec",
-    "base_commit": "9177c0eadfc795981f3a82b772ab87efeefd787e",
-    "remote_main": "dd6b01d711167d88909c5a990e3913f43654c493",
+    "commit": "b2c7a0fef3ba13a46731cdfc571d8a1f9a1a10a8",
+    "tree": "f5fe368273e313df77ee6f006772771680461711",
+    "base_commit": "dd6b01d711167d88909c5a990e3913f43654c493",
+    "remote_main": "b2c7a0fef3ba13a46731cdfc571d8a1f9a1a10a8",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "verified_at_utc": "2026-10-12T00:26:43.1107594Z",
+    "verified_at_utc": "2026-10-12T01:17:17.9821270Z",
     "actual_exec_exit_code": 0,
-    "actual_exec_session": 94554,
-    "elapsed_seconds": 44.8195733,
+    "actual_exec_session": 12396,
+    "elapsed_seconds": 50.1106695,
     "immutable_receipt": {
-      "path": "notes/github_gitdata_publication_dd6b01d711167d88909c5a990e3913f43654c493_signed_stress_diagnosis_actual_20261012_receipt.json",
-      "bytes": 26441,
-      "mtime_ns": 1791764803111910200,
-      "sha256": "94b11a8f7e0ee6d19b2c3767120087a6a85bf32cb831f3dc89d85080aa93b192"
+      "path": "notes/github_gitdata_publication_b2c7a0fef3ba13a46731cdfc571d8a1f9a1a10a8_signmag_train9_actual_20261012_receipt.json",
+      "bytes": 32004,
+      "mtime_ns": 1791767837982920900,
+      "sha256": "de4939d56c8b8558aefa7726626addba36f86dde070ded64849cefd7e4db0c79"
     },
     "exact_tree_verified": true,
     "exact_commit_verified": true,
-    "changed_blobs_verified": 27
+    "changed_blobs_verified": 35
   },
   "legacy_index_correction": {
     "observed_UTC": "2026-10-10T19:28:14.260839+00:00",
@@ -1567,7 +1589,7 @@
     "new_network_or_publication": false
   },
   "latest_verified_private_publication_UTC": "2026-10-11T22:59:36.7458661Z",
-  "latest_verified_commit": "dd6b01d711167d88909c5a990e3913f43654c493",
+  "latest_verified_commit": "b2c7a0fef3ba13a46731cdfc571d8a1f9a1a10a8",
   "current_research_stage": "v80 completed scientific negative; v81 paired independent seeds design only",
   "current_research_stage_UTC": "2026-10-11T20:21:20.748139+00:00",
   "next_publication_scope": "Next meaningful actual paired seed confirmation result; no metadata-only repeated snapshot",
@@ -1624,5 +1646,5 @@
     "exact_commit_verified": true,
     "changed_blobs_verified": 33
   },
-  "next_snapshot_status": "v85 actualcompleted/whole50.45s/gateFAIL/PNG accepted, v86 canonicalcloud DESIGNONLY"
+  "next_snapshot_status": "v85 actual and v86design privately verified; next actual meaningful experiment result before new snapshot"
 }

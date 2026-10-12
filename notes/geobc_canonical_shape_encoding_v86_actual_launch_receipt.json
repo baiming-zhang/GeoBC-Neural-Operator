@@ -1,0 +1,282 @@
+{
+  "status": "actual_running",
+  "observed_at_utc": "2026-10-12T01:30:06.729677+00:00",
+  "exec_session": 9857,
+  "SCI": "845714c47f4a57950aa1f413f3901d6fcc89d3aefad50b5b2ff8c3a70e87be17",
+  "guard": {
+    "pid": 398,
+    "ppid": 395,
+    "start_ticks": 782,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_canonical_shape_guard_v86",
+      "--start",
+      "--plan",
+      "notes/geobc_canonical_shape_encoding_v86_plan.json"
+    ]
+  },
+  "child": {
+    "pid": 400,
+    "ppid": 398,
+    "start_ticks": 966,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_canonical_shape_v86",
+      "--start",
+      "--plan",
+      "notes/geobc_canonical_shape_encoding_v86_plan.json"
+    ]
+  },
+  "boot_id": "1c3f937a-cb61-4c2b-b38d-11bcd4c24c89",
+  "exact_processes_live": [
+    true,
+    true
+  ],
+  "phase": "training",
+  "elapsed_epoch_seconds": 29.845184326171875,
+  "steps": {
+    "FNO9_CANONICAL_SHAPE_CLOUD": 567
+  },
+  "geometry_receipt": {
+    "CAD_transform_computations": 3,
+    "original_cloud_arrays_reopened": 0,
+    "frames": {
+      "229_200": {
+        "centroid": [
+          0.2966125146901959,
+          0.4959201448319277,
+          0.09902638437665257
+        ],
+        "rotation": [
+          [
+            0.07188940960387699,
+            -0.9632423567355496,
+            0.2588360001571453
+          ],
+          [
+            0.9973083236134327,
+            0.07317186186368452,
+            -0.004688953269875432
+          ],
+          [
+            -0.014422913650549596,
+            0.25847638348976015,
+            0.9659099019783798
+          ]
+        ],
+        "RMS_radius": 0.32165077389378344,
+        "eigenvalues": [
+          0.07540528491956766,
+          0.02166794647279016,
+          0.006385988954112036
+        ],
+        "eigenvalue_gaps": [
+          0.0537373384467775,
+          0.015281957518678125
+        ],
+        "degenerate_identity_fallback": false,
+        "sign_anchor_valid_indices": [
+          889,
+          21
+        ],
+        "valid_nodes": 1024,
+        "proper_orthogonal_frame": true,
+        "max_roundtrip_normalized_error": 1.963697299212086e-08,
+        "canonical_valid_RMS": 1.0,
+        "GT_BC_values_used": false,
+        "original_cloud_identity": {
+          "path": "data/geobc_prospective_CPU_inputs_v1/geometry/229_200/cloud.npy",
+          "bytes": 12416,
+          "mtime_ns": 1791670517975181100
+        },
+        "original_mask_identity": {
+          "path": "data/geobc_prospective_CPU_inputs_v1/geometry/229_200/mask.npy",
+          "bytes": 1152,
+          "mtime_ns": 1791670517982684100
+        },
+        "original_cloud_tensor_digest": "d4a28f2f67568c85c1f177c10ea7b103b7925b8b6e21b82ca0ef1daa844e825d",
+        "canonical_cloud_tensor_digest": "a3912f533b2d05f50d1e4ea4e14d7103e91d78af43f84851d79355c227c16ee7",
+        "shared_loads": [
+          "ver",
+          "hor",
+          "tor"
+        ]
+      },
+      "53_482": {
+        "centroid": [
+          0.26936816276406716,
+          0.5153502029138508,
+          0.08652432534849552
+        ],
+        "rotation": [
+          [
+            -0.12451426742522775,
+            -0.9560879454953178,
+            -0.26531497825434075
+          ],
+          [
+            -0.9921556809568143,
+            0.1229652750599628,
+            0.022508795493047237
+          ],
+          [
+            0.011104141240051268,
+            0.2660364290994189,
+            -0.9638990177603415
+          ]
+        ],
+        "RMS_radius": 0.30306895097885933,
+        "eigenvalues": [
+          0.06793132985841455,
+          0.018537256390515993,
+          0.005382202798495693
+        ],
+        "eigenvalue_gaps": [
+          0.04939407346789855,
+          0.0131550535920203
+        ],
+        "degenerate_identity_fallback": false,
+        "sign_anchor_valid_indices": [
+          540,
+          174
+        ],
+        "valid_nodes": 1024,
+        "proper_orthogonal_frame": true,
+        "max_roundtrip_normalized_error": 1.8117110311965945e-08,
+        "canonical_valid_RMS": 1.0,
+        "GT_BC_values_used": false,
+        "original_cloud_identity": {
+          "path": "data/geobc_prospective_CPU_inputs_v1/geometry/53_482/cloud.npy",
+          "bytes": 12416,
+          "mtime_ns": 1791670872803301600
+        },
+        "original_mask_identity": {
+          "path": "data/geobc_prospective_CPU_inputs_v1/geometry/53_482/mask.npy",
+          "bytes": 1152,
+          "mtime_ns": 1791670872811546600
+        },
+        "original_cloud_tensor_digest": "b0b20c4f92017a99659a2c4e449862e038a623d80ff04416da07d87ee4238648",
+        "canonical_cloud_tensor_digest": "4d4da8665fe544ae024f5db9e8264f0e5bb026190cbeb6aa481ce0fa7aa073c3",
+        "shared_loads": [
+          "ver",
+          "hor",
+          "tor"
+        ]
+      },
+      "56_293": {
+        "centroid": [
+          0.30152855659434863,
+          0.5061352987610803,
+          0.1005004725308325
+        ],
+        "rotation": [
+          [
+            -0.08231842443553643,
+            -0.943511823201156,
+            -0.32095033335094253
+          ],
+          [
+            -0.9964739283248463,
+            0.08316687744819881,
+            0.011089664754458961
+          ],
+          [
+            0.016229207229587206,
+            0.32073152320148773,
+            -0.9470310992029528
+          ]
+        ],
+        "RMS_radius": 0.31635944818933476,
+        "eigenvalues": [
+          0.07384059671207438,
+          0.01951119135611078,
+          0.0067315123904752834
+        ],
+        "eigenvalue_gaps": [
+          0.0543294053559636,
+          0.012779678965635498
+        ],
+        "degenerate_identity_fallback": false,
+        "sign_anchor_valid_indices": [
+          244,
+          547
+        ],
+        "valid_nodes": 1024,
+        "proper_orthogonal_frame": true,
+        "max_roundtrip_normalized_error": 1.918468783834726e-08,
+        "canonical_valid_RMS": 1.0,
+        "GT_BC_values_used": false,
+        "original_cloud_identity": {
+          "path": "data/geobc_prospective_CPU_inputs_v1/geometry/56_293/cloud.npy",
+          "bytes": 12416,
+          "mtime_ns": 1791670895335592800
+        },
+        "original_mask_identity": {
+          "path": "data/geobc_prospective_CPU_inputs_v1/geometry/56_293/mask.npy",
+          "bytes": 1152,
+          "mtime_ns": 1791670895342102000
+        },
+        "original_cloud_tensor_digest": "eafbeeb43881f3391d61a9c3a2c3b81a56fe8c62d85487c186c0cdc85a8ca722",
+        "canonical_cloud_tensor_digest": "957a0cf9642987f9912b942690a8d082111ef2e08a0a05b71732ee1071cc712b",
+        "shared_loads": [
+          "ver",
+          "hor",
+          "tor"
+        ]
+      }
+    },
+    "global_input_tensor_references_and_versions_unchanged": true,
+    "labels_not_accessed_or_transformed": true,
+    "no_learned_context_cached": true,
+    "coordinate_domain": "Geometry encoder cloud only; original global query/grid/BC retained"
+  },
+  "qualification": {
+    "FNO9_CANONICAL_SHAPE_CLOUD": {
+      "passed": true,
+      "largest_case": "229_200/ver",
+      "original_nodes": 242936,
+      "physical_loss": 0.9546979986718189,
+      "parameter_gradients": {
+        "encoder": {
+          "missing": [],
+          "finite": true,
+          "L2": 0.07455019868183582
+        },
+        "head": {
+          "missing": [],
+          "finite": true,
+          "L2": 0.2423812858546174
+        },
+        "operator": {
+          "missing": [],
+          "finite": true,
+          "L2": 0.007249477789607302
+        }
+      },
+      "shared_leaf_gradients": {
+        "context": 0.005400410853326321,
+        "latent": 0.00010777539137052372
+      },
+      "query_check": {
+        "passed": true,
+        "actual_case_key": "229_200/ver",
+        "actual_queries": 64,
+        "coordinate_gradient_L2": 0.017924636602401733,
+        "chunk_max_absolute_error": 2.2351741790771484e-08,
+        "declared_absolute_tolerance": 3e-05,
+        "native25_held_constant": true,
+        "independent_offnode_FEM_accuracy_proven": false,
+        "precision": "FP32"
+      },
+      "model_unchanged": true,
+      "Adam_unchanged": true,
+      "fourRNG_restored": true,
+      "epoch_seconds": 1.1139516830444336,
+      "monotonic_seconds": 1.1139523490000016
+    }
+  }
+}

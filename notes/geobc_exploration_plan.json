@@ -5700,7 +5700,7 @@
       ]
     }
   },
-  "updated_at_utc": "2026-10-11T20:21:20.730047+00:00",
+  "updated_at_utc": "2026-10-12T02:03:42.102259+00:00",
   "prospective_final_reservation": {
     "path": "notes/geobc_prospective_cad_split_v1.json",
     "scientific_digest": "7a4f5ab3a6fcb32e19897246eeceeb64d8e3a06eb1511003b86da470d6267dc9",
@@ -5763,7 +5763,7 @@
       "updated_UTC": "2026-10-10T22:55:18.984988+00:00"
     }
   },
-  "current_next_stage": "Allfinite30/40 TRAIN then separately frozenknownDEV120predictions beforeoneGT60 pass",
+  "current_next_stage": "Implement independent v88 zero-initialized local3D branch and fixed TRAIN9/900; no new DEV or Hash tuning.",
   "user_resource_budget": {
     "status": "user_confirmed_resource_limit",
     "user_statement": "预算是30.5GB",
@@ -6778,7 +6778,7 @@
     "DEV_external_seconds": 167.8709237575531,
     "decision": "TSheadwarm negative; FNO intact5to10 learns; frozen encoder/head latent mapping is next diagnostic"
   },
-  "current_stage": "FNO20to40 actual cache_setup, nativeTS70 completed no substantivegain",
+  "current_stage": "v86 negative closed; v87 reference magnitude diagnostic completed; v88 local-spatial operator design only",
   "node_latent_operator_diagnostic_SOURCE": {
     "proposal": "notes/geobc_node_latent_teacher_macro_proposal_v35.json",
     "source_ready": "notes/geobc_node_latent_teacher_v35_source_ready.json",
@@ -13072,9 +13072,26 @@
     "automatic_expand": false
   },
   "canonical_shape_encoding_v86": {
+    "status": "completed_negative_closed",
+    "plan": "notes/geobc_canonical_shape_encoding_v86_plan.json",
+    "actual_terminal": "notes/geobc_canonical_shape_encoding_v86_actual_terminal_receipt.json",
+    "actual_decision": "notes/geobc_canonical_shape_encoding_v86_actual_decision.json",
+    "actual_whole_seconds": 45.48426961898804,
+    "report": "results/geobc_canonical_shape_encoding_v86/BRIEF.md",
+    "automatic_expand": false
+  },
+  "reference_vm_closure_v87": {
+    "status": "completed_reference_diagnostic",
+    "plan": "notes/geobc_reference_vm_closure_v87_plan.json",
+    "actual_terminal": "notes/geobc_reference_vm_closure_v87_actual_terminal_receipt.json",
+    "actual_decision": "notes/geobc_reference_vm_closure_v87_actual_decision.json",
+    "actual_whole_seconds": 7.702566385269165,
+    "report": "results/geobc_reference_vm_closure_v87/BRIEF.md",
+    "automatic_expand": false
+  },
+  "local_spatial_operator_v88": {
     "status": "design_only",
-    "design": "notes/geobc_canonical_shape_encoding_v86_design.json",
-    "actual_SOURCE": 0,
-    "actual_GT_PT_arrays_GPU": 0
+    "design": "notes/geobc_local_spatial_operator_v88_design.json",
+    "actual_SOURCE_arrays_PT_GT_GPU": 0
   }
 }

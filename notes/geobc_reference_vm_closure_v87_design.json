@@ -1,0 +1,413 @@
+{
+  "status": "design_only",
+  "created_at_utc": "2026-10-12T01:54:18.410943+00:00",
+  "scientific": {
+    "question": "Can original exported nodal displacement remove the approximately 10% magnitude discrepancy of the fixed accepted constitutive recovery proxy? Separate displacement-solution error from stress-export/recovery mismatch before introducing physical scalar loss.",
+    "case_keys": [
+      "101_428/ver",
+      "101_56/ver",
+      "101_78/ver"
+    ],
+    "records": {
+      "101_428/ver": {
+        "nodes": 270276,
+        "cells": 169852,
+        "input_cache": {
+          "path": "data/geobc_elastic_crosscad5/101_428/input/input.npz",
+          "bytes": 34537404,
+          "mtime_ns": 1791580306768265900,
+          "sha256": "ae66e77d0ddd437ee3690c2dde3336953ea6cbd3e002eb0be7067f4ea415bee7"
+        },
+        "input_schema": {
+          "vertices_mm": {
+            "shape": [
+              270276,
+              3
+            ],
+            "dtype": "float64",
+            "sha256": "75866b719f9cd3f0d300d4c1bec2fb5b288d5b877cdd2884166cc5eaa74305f6"
+          },
+          "cells10": {
+            "shape": [
+              169852,
+              10
+            ],
+            "dtype": "int64",
+            "sha256": "c4e5f96cc88bf6d544b4f4123772827b137ac7ff12276ed315fdb04d77270e45"
+          },
+          "grid_node_ids": {
+            "shape": [
+              270276
+            ],
+            "dtype": "int64",
+            "sha256": "65f935b3245149b5098845c7a2ff0dc69dd7bc833d2668519deddfbd235228f2"
+          },
+          "lame": {
+            "shape": [
+              2
+            ],
+            "dtype": "float64",
+            "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+          }
+        },
+        "GT_U_archive": {
+          "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+          "bytes": 45320930,
+          "mtime_ns": 1791511980352062400,
+          "member": "displacement",
+          "expected_shape": [
+            270276,
+            3
+          ],
+          "units": "mm",
+          "member_read_before_all5_prediction_barrier": false
+        },
+        "operator_arrays": {
+          "gradients": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/physical_gradients.npy",
+            "bytes": 163058048,
+            "mtime_ns": 1791580310141977600,
+            "shape": [
+              169852,
+              4,
+              10,
+              3
+            ],
+            "dtype": "torch.float64"
+          },
+          "weights": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_428/operator/quadrature_weights.npy",
+            "bytes": 5435392,
+            "mtime_ns": 1791580310167315700,
+            "shape": [
+              169852,
+              4
+            ],
+            "dtype": "torch.float64"
+          }
+        },
+        "signed_stress": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_428_ver.npy",
+          "shape": [
+            270276
+          ],
+          "dtype": "float64",
+          "bytes": 2162336,
+          "mtime_ns": 1791584136282787900,
+          "values_sha256": "793da550e815bd0e27a06e65656dd1dd2267903744468d99e62148c2def3ee34"
+        },
+        "original_S_source_identity": {
+          "key": "101_428/ver",
+          "scope": "TRAIN",
+          "source": {
+            "path": "data/prepared_geobc_multiload/101_428_ver.npz",
+            "bytes": 45320930,
+            "mtime_ns": 1791511980352062400
+          },
+          "member": "stress"
+        },
+        "old_physical_q_scalar": {
+          "node_count": 270276,
+          "relativeL2": 0.1052273462071696,
+          "RMSE_MPa": 5.966594021525846,
+          "MAE_MPa": 2.1296548318985495,
+          "max_MPa": 314.03036704305816,
+          "hotspot_relativeL2": 0.16952257860354433,
+          "hotspot_MAE_MPa": 30.4026561209609,
+          "hotspot_max_MPa": 314.03036704305816,
+          "zero_reference": false,
+          "hotspot_zero_reference": false,
+          "hotspot_nodes": 2703,
+          "empty_scope": false,
+          "hotspot_ties": "descending abs cached original signed S, stable ascending original row",
+          "reference_energy_MPa2": 868966881.1195152,
+          "error_energy_MPa2": 9621891.606185239
+        }
+      },
+      "101_56/ver": {
+        "nodes": 221213,
+        "cells": 139546,
+        "input_cache": {
+          "path": "data/geobc_elastic_crosscad5/101_56/input/input.npz",
+          "bytes": 28338396,
+          "mtime_ns": 1791580416400665100,
+          "sha256": "b3e4d4c47f573d267ba8c46a0259ab5c307d326a7cd643e61f1f3327be26dae0"
+        },
+        "input_schema": {
+          "vertices_mm": {
+            "shape": [
+              221213,
+              3
+            ],
+            "dtype": "float64",
+            "sha256": "d3028c742caf61ce6957dbc03c1d05138667d1998404593f7588e50b0776cc99"
+          },
+          "cells10": {
+            "shape": [
+              139546,
+              10
+            ],
+            "dtype": "int64",
+            "sha256": "20a3d5fa85640874dd36b0e98a9516540c2144b357dbf02bad7041f421d1b2d7"
+          },
+          "grid_node_ids": {
+            "shape": [
+              221213
+            ],
+            "dtype": "int64",
+            "sha256": "b908e54d906255e2dcf5e737ce6a12ec9b89c32af6a40dd400c3ca089ddbcf94"
+          },
+          "lame": {
+            "shape": [
+              2
+            ],
+            "dtype": "float64",
+            "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+          }
+        },
+        "GT_U_archive": {
+          "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+          "bytes": 37050462,
+          "mtime_ns": 1791454716033307500,
+          "member": "displacement",
+          "expected_shape": [
+            221213,
+            3
+          ],
+          "units": "mm",
+          "member_read_before_all5_prediction_barrier": false
+        },
+        "operator_arrays": {
+          "gradients": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/physical_gradients.npy",
+            "bytes": 133964288,
+            "mtime_ns": 1791580417832566300,
+            "shape": [
+              139546,
+              4,
+              10,
+              3
+            ],
+            "dtype": "torch.float64"
+          },
+          "weights": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_56/operator/quadrature_weights.npy",
+            "bytes": 4465600,
+            "mtime_ns": 1791580417849652700,
+            "shape": [
+              139546,
+              4
+            ],
+            "dtype": "torch.float64"
+          }
+        },
+        "signed_stress": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_56_ver.npy",
+          "shape": [
+            221213
+          ],
+          "dtype": "float64",
+          "bytes": 1769832,
+          "mtime_ns": 1791584136324931800,
+          "values_sha256": "b5f7d89dfc7d63579bc9561b999a5be4b049992fb99e406845615e3113ed7b91"
+        },
+        "original_S_source_identity": {
+          "key": "101_56/ver",
+          "scope": "TRAIN",
+          "source": {
+            "path": "data/prepared_geobc_multiload/101_56_ver.npz",
+            "bytes": 37050462,
+            "mtime_ns": 1791454716033307500
+          },
+          "member": "stress"
+        },
+        "old_physical_q_scalar": {
+          "node_count": 221213,
+          "relativeL2": 0.1097015713640495,
+          "RMSE_MPa": 6.141612818006047,
+          "MAE_MPa": 1.9929905267685792,
+          "max_MPa": 292.2698231954025,
+          "hotspot_relativeL2": 0.1775632385568301,
+          "hotspot_MAE_MPa": 31.388466731589855,
+          "hotspot_max_MPa": 292.2698231954025,
+          "zero_reference": false,
+          "hotspot_zero_reference": false,
+          "hotspot_nodes": 2213,
+          "empty_scope": false,
+          "hotspot_ties": "descending abs cached original signed S, stable ascending original row",
+          "reference_energy_MPa2": 693345684.2700872,
+          "error_energy_MPa2": 8344023.403296797
+        }
+      },
+      "101_78/ver": {
+        "nodes": 192353,
+        "cells": 120639,
+        "input_cache": {
+          "path": "data/geobc_elastic_crosscad5/101_78/input/input.npz",
+          "bytes": 24599396,
+          "mtime_ns": 1791580499987754200,
+          "sha256": "549abbd70392df7bedd3c83128f259176be2fb73eb468333fc7349b640d0d8d5"
+        },
+        "input_schema": {
+          "vertices_mm": {
+            "shape": [
+              192353,
+              3
+            ],
+            "dtype": "float64",
+            "sha256": "15c8dbb7af57380f096da1878412c924bf9e5dbf76ac2cd1041f661deb1fcafc"
+          },
+          "cells10": {
+            "shape": [
+              120639,
+              10
+            ],
+            "dtype": "int64",
+            "sha256": "dc614dce3463085a75d6c33c8a05d8154847c38a6cf7595478aee7eaee4f7a57"
+          },
+          "grid_node_ids": {
+            "shape": [
+              192353
+            ],
+            "dtype": "int64",
+            "sha256": "d40d02715d19f440fa2ddc8a2614153994f828fe846cbbf065e8e3f3e3967db6"
+          },
+          "lame": {
+            "shape": [
+              2
+            ],
+            "dtype": "float64",
+            "sha256": "a8677d571018c9849bc6f4e25ce958f9bfc67e07761890051a7637ef6ecf0e0a"
+          }
+        },
+        "GT_U_archive": {
+          "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+          "bytes": 32255262,
+          "mtime_ns": 1791511981517772800,
+          "member": "displacement",
+          "expected_shape": [
+            192353,
+            3
+          ],
+          "units": "mm",
+          "member_read_before_all5_prediction_barrier": false
+        },
+        "operator_arrays": {
+          "gradients": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/physical_gradients.npy",
+            "bytes": 115813568,
+            "mtime_ns": 1791580501399479700,
+            "shape": [
+              120639,
+              4,
+              10,
+              3
+            ],
+            "dtype": "torch.float64"
+          },
+          "weights": {
+            "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/data/geobc_elastic_crosscad5/101_78/operator/quadrature_weights.npy",
+            "bytes": 3860576,
+            "mtime_ns": 1791580501422478900,
+            "shape": [
+              120639,
+              4
+            ],
+            "dtype": "torch.float64"
+          }
+        },
+        "signed_stress": {
+          "path": "/mnt/c/Users/ASUS/Desktop/GeoBC Neural Operator/runs/geobc_exploration/elastic_stress_readout5_ver/label_cache/101_78_ver.npy",
+          "shape": [
+            192353
+          ],
+          "dtype": "float64",
+          "bytes": 1538952,
+          "mtime_ns": 1791584136366097000,
+          "values_sha256": "abc7ee662a8a662299b2101a0bea396a5400f087a0a55c809d685427a2b21342"
+        },
+        "original_S_source_identity": {
+          "key": "101_78/ver",
+          "scope": "TRAIN",
+          "source": {
+            "path": "data/prepared_geobc_multiload/101_78_ver.npz",
+            "bytes": 32255262,
+            "mtime_ns": 1791511981517772800
+          },
+          "member": "stress"
+        },
+        "old_physical_q_scalar": {
+          "node_count": 192353,
+          "relativeL2": 0.10831899175031665,
+          "RMSE_MPa": 7.287308448969123,
+          "MAE_MPa": 2.39803532659203,
+          "max_MPa": 354.92499336101037,
+          "hotspot_relativeL2": 0.1802522663236082,
+          "hotspot_MAE_MPa": 36.64564701235255,
+          "hotspot_max_MPa": 354.92499336101037,
+          "zero_reference": false,
+          "hotspot_zero_reference": false,
+          "hotspot_nodes": 1924,
+          "empty_scope": false,
+          "hotspot_ties": "descending abs cached original signed S, stable ascending original row",
+          "reference_energy_MPa2": 870610801.0011296,
+          "error_energy_MPa2": 10214879.987783954
+        }
+      }
+    },
+    "reference_U_provenance": "Original aligned CSV nodal U mm, cast FP64; oracle/reference diagnostic, not model prediction or deployable solver.",
+    "recipe": "Same accepted fullTET10/fourQ physical gradients and material. G=sum(Ua gradNa), epsilon=(G+G^T)/2, sigma=2mu epsilon+lambda trace(epsilon)I. FourQ volume-weighted cellmean tensor; positive cellvolume/10 incident-node average; VM after tensor averaging. No nodal10 recovery alternatives, sign convention candidates, calibration or fitted map.",
+    "prerequisite": "True completed/negativeclosed v86; accepted existing physical fullTET10 input/operator provenance and original signed-S cache. Only previously known TRAIN3/ver, no DEV.",
+    "comparisons": "Frozen old physical-U magnitude metrics only, no old physical_U or sigma array reload. New reference q versus abs(original signed S), preserve source S unchanged. GT-U substitution does not establish source exporter convention or true tensor GT.",
+    "interpretation": {
+      "removes_magnitude_mismatch": {
+        "all_three_relativeL2_at_most": 0.05,
+        "all_three_hotspot_relativeL2_at_most": 0.1
+      },
+      "failure": "Do not impose this fixed VM(U) proxy as exact scalar target/loss. Close diagnostic; no recovery/sign-rule or material fit. Existing nearly exact physical U is independent.",
+      "pass_condition": "Supports a separate proposal only, no automatic expansion, final solver selection or signedS guarantee."
+    },
+    "commitment": "All3 finite immutable q arrays saved and file hashes checked before any cached S read; diagnostics use resident q only; one shared cachedS read each, no retrospective rule choice.",
+    "read_policy": {
+      "input_cache_attempts": 3,
+      "input_members_each": [
+        "vertices_mm",
+        "cells10",
+        "grid_node_ids",
+        "lame"
+      ],
+      "accepted_gradients": 3,
+      "accepted_weights": 3,
+      "GT_U_archives": 3,
+      "GT_U_archive_members": [
+        "sample_key",
+        "label_alignment",
+        "grid_node_ids",
+        "displacement"
+      ],
+      "cached_original_S": 3,
+      "new_DEV_FINAL_reads": 0,
+      "PT_raw_CSV_H5_reads": 0,
+      "old_physical_solution_reads": 0,
+      "own_q_file_hash_reads": 6,
+      "own_q_array_reloads": 0
+    },
+    "budget_all_setup_IO_CUDA_persistence_failure_exit": true,
+    "whole_campaign_budget_seconds": 180,
+    "memory_limit_bytes": 30500000000,
+    "GPU_lock": "runs/geobc_exploration/.coordinator.lock",
+    "training_updates": 0,
+    "DEV_FINAL_reads": 0,
+    "new_physical_solves": 0,
+    "sign_rule_search": false,
+    "fit_or_calibration": false,
+    "limitations": [
+      "Three old known TRAIN CAD and only ver, not architecture ranking/generalization test.",
+      "Material isotropic and volume recovery are chosen proxies; true H3D GPSTRESS sessions/averaging unknown.",
+      "Reference U inherits exported displacement precision; no original stress tensor or strain GT claim.",
+      "Magnitude closure cannot explain or replace original signed stress sign."
+    ]
+  },
+  "scientific_digest": "caf28f1053fb9ef05413d95363f699901068621abc770b2a9fbe01010d2e4e41",
+  "source_GPU_arrays_GT": 0
+}
