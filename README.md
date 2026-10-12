@@ -59,7 +59,9 @@ GPU物理张量树模型已完成（整阶段19.90秒／GPU学习9.52秒）：�
 
 参考点六维运动／能量已实际验证：12运动请求／72分量／12能量先屏障，后6独立mixed场对照，最大同方程运动相对差2.622e-10；原始互易性2.309e-10／8.720e-11，能量正定条件数13.204／19.275，4个六维力矩梯度通过，rawC未修正。恢复外UTC6.429秒／mono6.429秒，原失败9.737秒＋工程等待计入总UTC282.823秒，跨boot总mono未知null，原900秒截止未延长。源reference GRID没有H5输出行，derived IDs为空，预声明输出节点见证不可得，完整门仍FAIL／数值运动能量检查PASS，不生成替代节点或GT。 [实际报告](results/geobc_reference_motion_recovery_v114/BRIEF.md)。
 
-下一步实做参考点六维弹簧边界变化：固定两CAD、一个预声明正刚度配置，用真实修改后K的6个独立零初值PCG验证紧凑柔度更新，区别物理边界弹簧与数值Kshift；不重组旧K／读GT／调Hash。当前设计＋一个审阅冻结SOURCE原型，实际import／constructor／数组／GPU0。 [新边界条件设计](notes/geobc_reference_spring_BC_v115_design.json)。
+六维弹簧边界已实际完成：两CAD／6修改方程独立零初值解，全6真残差≤9.979e-9，紧凑位移对独立修改K全原节点最大相对差1.263e-9、参考运动7.436e-10，能量方程差1.705e-14。原fineK／rawC／basis字节保持，弹簧反力纳入平衡；原固定32预条件器未改，GT0。外UTC74.496秒／mono74.495秒，两个独立组三路PCG32.672／27.933秒，紧凑边界更新＋全N输出0.018081／0.002057秒（已有基解缓存，非新几何全冷／NN等预算排名）。 [实际弹簧边界结果](results/geobc_reference_spring_BC_v115/BRIEF.md)。
+
+下一步验证精确指定参考点平移／转角：真实约束零空间投影与geometry-only lift独立PCG，对照紧凑原始柔度的精确Dirichlet响应，不用大弹簧近似或基解warmstart；只改变声明的参考点运动边界，不造新GT／signedS。当前设计＋一个已审冻结SOURCE原型，实际import／constructor／科学数组／GPU0。 [精确运动边界设计](notes/geobc_reference_prescribed_motion_v116_design.json)。
 
 固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 

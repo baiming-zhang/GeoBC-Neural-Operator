@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "whole_source_reviewed": true,
+  "sole_AST_checks": 1,
+  "source_identity": {
+    "path": "geobc/reference_prescribed_motion_v116.py",
+    "bytes": 1837,
+    "mtime_ns": 1791814723935707300,
+    "sha256": "d55fc973f973b408b0b734803173d8c34ea9c63acc500917eb42918d3f587dde"
+  },
+  "design_SCI": "6cf71fd9777dc84108631b44acd16081bcc98b75120414a0ef590a9c50553d54",
+  "actual_execution_released": false,
+  "actual_import_constructor_arrays_GT_GPU": 0,
+  "review_points": [
+    "RawCn inverse imposes exact6motion,not springstrengthlimit/scan orsymprojectcompliance;unitsD fitlength physicalmm/rad andreactionN/Nmm",
+    "Appliedreference forces onlyaffectreaction whenallreference6motionfixed;effectiveforce definesbody response andenergy,reactionwork included",
+    "Newconstructor/API/sourceonly noactualsolve/importarrays qualification;independentgeometrylift nullspacePCG requirednotoldbasis warmstart",
+    "Fullsource reviewed/AST1/freeze;2revealedCAD/sourceapproximation/newGTfalse/signedSopen limits explicit"
+  ]
+}

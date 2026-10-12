@@ -1,0 +1,61 @@
+{
+  "observed_at_utc": "2026-10-12T14:12:50.065680+00:00",
+  "actual_exec_session": 23589,
+  "actual_live_observed": true,
+  "guard_process": {
+    "pid": 283,
+    "ppid": 282,
+    "start_ticks": 4343,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.guard_geobc_reference_spring_v115",
+      "--start",
+      "--plan",
+      "notes/geobc_reference_spring_BC_v115_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 365,
+    "ppid": 283,
+    "start_ticks": 4669,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.evaluate_geobc_reference_spring_v115",
+      "--start",
+      "--plan",
+      "notes/geobc_reference_spring_BC_v115_plan.json"
+    ]
+  },
+  "boot_id": "1665657d-6123-497a-88a4-263f5d327f22",
+  "SCI": "50065933c79cb52108e57a61bdfb9487aa81b2421ea4fcd2e127050233f43cde",
+  "phase": "50_380/independent_modified_zero_PCG",
+  "elapsed_epoch_seconds": 32.91128349304199,
+  "committed_finite_endpoints": 0,
+  "exact_identity_matched": true,
+  "source_pins_count": 371,
+  "actual_exec_exit_code": null,
+  "real_current_qualification": {
+    "50_380": {
+      "passed": true,
+      "actual_allN": 212721,
+      "actual_RHS_lanes": 3,
+      "scalar_parity_relative": [
+        1.3296487464941025e-16,
+        1.3258837313912768e-16,
+        1.3099208106200582e-16
+      ],
+      "modified_K_symmetry_relative": 5.398796327190056e-19,
+      "spring_positive_energies": [
+        381.65895111779184,
+        386.4882295155992
+      ],
+      "fixtures": 2,
+      "inherited_eight_fine_K_guards_repeated": 0,
+      "physical_spring_not_numerical_shift": true
+    }
+  }
+}
