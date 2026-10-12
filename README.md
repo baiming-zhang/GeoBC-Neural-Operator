@@ -31,7 +31,9 @@ GPU物理张量树模型已完成（整阶段19.90秒／GPU学习9.52秒）：�
 
 载荷幅值一致性检查已完成（51.25秒）：FNO／Hash／Transolver的平均位移齐次响应偏差为45.62%／38.17%／44.27%，三者未通过固定1%诊断门。完整81预测／54性质、真实力／材料／零SPC与同步grid缩放见证通过，GT／训练／scaler拟合0；这是相对各自幅值1预测的物理一致性偏差，不是GT误差，原source控制局限保留。 [结果](results/geobc_load_amplitude_homogeneity_v95/BRIEF.md)。
 
-下一步转为显式载荷线性位移接口：由同几何／零支撑下三个规范载荷的实际网络响应构成连续查询基，按力／力矩系数组合物理单位U，同时保留原网络signedS。可复用接口已有SOURCE原型，尚未实例化或验证；不伪造应力参考、不把数学一致性当准确率、只支持已验证三方向子空间。 [设计](notes/geobc_load_linear_adapter_v96_design.json)。
+显式载荷线性位移接口已实际验证（66.48秒）：三个冻结骨干共108份全节点预测，幅值／叠加一致性偏差降至浮点舍入量级，旧三TRAIN CAD的规范U预测和原encodedS保持，真实坐标／秩3载荷系数梯度通过。GT／训练0；这不是新载荷准确率改善。 [接口结果](results/geobc_load_linear_adapter_v96/BRIEF.md)。
+
+下一步固定原20个knownDEV CAD，检验规范载荷原GT精度保持与新混合载荷的条件线性派生U参考；540份预测先提交再共享GT60，原signedS不生成伪参考。设计已冻结，实际SOURCE／PT／GT／GPU尚0；来源适用性与原数值控制局限单列。 [设计](notes/geobc_load_linear_knownDEV_v97_design.json)。
 
 固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 
