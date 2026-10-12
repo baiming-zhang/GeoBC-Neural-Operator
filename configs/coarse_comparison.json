@@ -1,0 +1,20 @@
+{
+  "CAD": "80_483",
+  "scientific_group": "TRAIN",
+  "selection": "First fixed training CAD not started by the previous physical-input production run",
+  "expected_geometry": {"nodes": 170542, "cells": 105725, "characteristic_length_mm": 180.801025390625},
+  "canonical_loads": ["ver", "hor", "tor"],
+  "baseline": "32-step damped Jacobi coarse inverse",
+  "candidate": "Degree-32 Chebyshev inverse of the symmetrically diagonal-scaled coarse matrix",
+  "upper_bound": "Same coarse Gershgorin bound",
+  "lower_ratio": 0.03333333333333333,
+  "precision": "float64 CUDA",
+  "whole_seconds": 900,
+  "group_seconds": 300,
+  "combined_solve_seconds": 600,
+  "memory_bytes": 30500000000,
+  "residual_tolerance": 1e-8,
+  "same_solution_tolerance": 1e-5,
+  "required_cost_reduction": 0.25,
+  "GT_reads": 0
+}

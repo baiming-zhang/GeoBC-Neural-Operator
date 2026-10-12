@@ -166,3 +166,39 @@ class AdditiveCoarse:
         ledger.data['preconditioner_wall_seconds'] += time.monotonic() - began
         ledger.check_memory()
         return result
+
+
+def algebra_guards(torch, coarse, operator, inputs, ledger):
+    """Two real fixed random vectors once; necessary guards, not a spectrum proof."""
+    device, free = (inputs['cells10'].device, inputs['free_node_ids'])
+    generator = torch.Generator(device=device).manual_seed(2026)
+    witnesses = [torch.randn((len(free), 3), dtype=torch.float64, device=device, generator=generator) for _ in range(2)]
+    energies, discrepancy, fine_W = ([], [], [])
+    before = dict(ledger.data)
+    for value in witnesses:
+        ledger.check()
+        yc = coarse.restrict(value)
+        projected = coarse.prolong(yc)
+        full = torch.zeros_like(inputs['vertices_mm'])
+        full[free] = projected
+        ledger.data['fine_K_applications'] += 1
+        ledger.data['setup_K_applications'] += 1
+        exact = coarse.restrict(operator.apply(full)[free]).reshape(-1)
+        actual = coarse.coarse_apply(yc.reshape(-1))
+        denom = float(torch.linalg.vector_norm(exact))
+        error = float(torch.linalg.vector_norm(actual - exact) / denom) if denom > 0 else None
+        energy = float((yc.reshape(-1) * actual).sum())
+        negative(error is not None and math.isfinite(error) and (error <= 1e-09) and math.isfinite(energy) and (energy > 0), 'Real Galerkin action/positive coarse energy guard failed')
+        discrepancy.append(error)
+        energies.append(energy)
+        result = coarse.apply(value)
+        negative(torch.isfinite(result).all(), 'Nonfinite fixed additive-W guard result')
+        fine_W.append(result)
+        ledger.check()
+        ledger.account()
+    xy, yx = (float((witnesses[0] * fine_W[1]).sum()), float((witnesses[1] * fine_W[0]).sum()))
+    denom = float(torch.linalg.vector_norm(witnesses[0]) * torch.linalg.vector_norm(fine_W[1]) + torch.linalg.vector_norm(witnesses[1]) * torch.linalg.vector_norm(fine_W[0]))
+    symmetry = abs(xy - yx) / max(denom, 1e-300)
+    w_energy = [float((x * y).sum()) for x, y in zip(witnesses, fine_W)]
+    negative(math.isfinite(symmetry) and symmetry <= 1e-09 and all((math.isfinite(x) and x > 0 for x in w_energy)), 'Fixed additive-W symmetry/positive energy guard failed')
+    return {'passed': True, 'seed': 2026, 'vectors': 2, 'Galerkin_action_relative_errors': discrepancy, 'coarse_positive_energies': energies, 'fixed_W_positive_energies': w_energy, 'fixed_W_symmetry_relative': symmetry, 'new_fine_K_calls': 2, 'inherited_eight_fine_K_guards_repeated': 0, 'coarse_matvec_calls': ledger.data['coarse_matvec_calls'] - before.get('coarse_matvec_calls', 0), 'P_calls': ledger.data['P_calls'] - before.get('P_calls', 0), 'PT_calls': ledger.data['PT_calls'] - before.get('PT_calls', 0), 'claim': 'Necessary guards plus conditional Galerkin/fixed-polynomial SPD argument; not exhaustive spectrum/engineering proof'}

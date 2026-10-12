@@ -145,3 +145,49 @@ def _restore_full(torch, z, inputs):
         sources = inputs['derived_source_ids'][start:stop]
         result[nodes[index]] = torch.einsum('lij,lj->i', inputs['derived_blocks'][start:stop], result[sources])
     return result
+
+
+def _rigid_columns(torch, x, length):
+    centered = (x - x.mean(dim=0)) / length
+    eye = torch.eye(3, dtype=torch.float64, device=x.device)
+    return [eye[j].expand_as(x).clone() for j in range(3)] + [torch.cross(eye[j].expand_as(x), centered, dim=-1) for j in range(3)]
+
+def _algebra_guards(torch, operator, diagonal, inputs, plan, began, prior_seconds):
+    tolerance = plan['recipe']['input_operator']['relative_algebra_guard_tolerance']
+    vectors = _rigid_columns(torch, inputs['vertices_mm'], plan['expected_geometry']['characteristic_length_mm'])
+    rigid_records = []
+    for index, vector in enumerate(vectors):
+        applied = operator.apply(vector)
+        scale = torch.linalg.vector_norm(torch.einsum('nij,nj->ni', diagonal, vector))
+        if not torch.isfinite(applied).all() or not torch.isfinite(scale) or scale <= 0:
+            raise ScientificNegative('Invalid rigid-null scale/operator')
+        relative = float(torch.linalg.vector_norm(applied) / scale)
+        rigid_records.append({'column': index, 'relative_null': relative, 'denominator': float(scale), 'denominator_definition': 'norm(full nodal diagonal times rigid column)'})
+        if relative > tolerance:
+            raise ScientificNegative(f'Rigid-null relative guard failed at column{index}: {relative}')
+        _deadline(torch, began, prior_seconds)
+    constrained = torch.stack(vectors, dim=-1)[inputs['fixed_node_ids']].reshape(-1, 6)
+    singular = torch.linalg.svdvals(constrained)
+    rank_ratio = float(singular[-1] / singular[0]) if singular[0] > 0 else 0.0
+    if not math.isfinite(rank_ratio) or rank_ratio <= tolerance:
+        raise ScientificNegative('Actual fixed translations do not eliminate all six physical rigid motions')
+    generator = torch.Generator(device=inputs['vertices_mm'].device).manual_seed(2026)
+    u = torch.zeros_like(inputs['vertices_mm'])
+    v = torch.zeros_like(u)
+    free = inputs['free_node_ids']
+    u[free] = torch.randn((len(free), 3), dtype=torch.float64, device=u.device, generator=generator)
+    v[free] = torch.randn((len(free), 3), dtype=torch.float64, device=u.device, generator=generator)
+    Ku, Kv = (operator.apply(u), operator.apply(v))
+    denominator = torch.linalg.vector_norm(u) * torch.linalg.vector_norm(Kv) + torch.linalg.vector_norm(v) * torch.linalg.vector_norm(Ku)
+    energy_u, energy_v = ((u * Ku).sum(), (v * Kv).sum())
+    if not torch.isfinite(Ku).all() or not torch.isfinite(Kv).all() or (not torch.isfinite(denominator)) or (denominator <= 0) or (not torch.isfinite(energy_u)) or (not torch.isfinite(energy_v)):
+        raise ScientificNegative('Nonfinite random operator algebra')
+    symmetry = float(((u * Kv).sum() - (v * Ku).sum()).abs() / denominator)
+    eu = float(energy_u / (torch.linalg.vector_norm(u) * torch.linalg.vector_norm(Ku)))
+    ev = float(energy_v / (torch.linalg.vector_norm(v) * torch.linalg.vector_norm(Kv)))
+    if symmetry > tolerance or eu < -tolerance or ev < -tolerance or (energy_u <= 0) or (energy_v <= 0):
+        raise ScientificNegative('Reduced random symmetry/positive-energy guard failed')
+    if operator.calls != 8:
+        raise RuntimeError('Exactly eight full K applications are required for operator guards')
+    _deadline(torch, began, prior_seconds)
+    return {'passed': True, 'K_applications': 8, 'rigid_null': rigid_records, 'constraint_rigid_rank': 6, 'constraint_smallest_over_largest_singular_value': rank_ratio, 'symmetry_relative': symmetry, 'symmetry_denominator': float(denominator), 'random_normalized_energies': [eu, ev], 'seed': 2026, 'scope': 'Sampled full-operator/reduced random algebra; no proof of complete spectrum or engineering validity'}
