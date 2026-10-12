@@ -1,0 +1,260 @@
+{
+  "schema": "GeoBC_physical_U_response_package_v1",
+  "payload": {
+    "kind": "independent_approximate_P2_physical_U_force6",
+    "CAD": "131_351",
+    "basis_order": [
+      "ver",
+      "hor",
+      "tor",
+      "Fy",
+      "Mx",
+      "My"
+    ],
+    "geometry_identity": {
+      "path": "runs/geobc_exploration/twoCAD_paired_physics_v103/131_351/geometry_and_rhs_input.npz",
+      "bytes": 65209088,
+      "mtime_ns": 1791798977689901700,
+      "sha256": "575ff762d20e98908ea134860d8e7855391b55684d4e141d8f1d1fdb0acd089c"
+    },
+    "geometry_schema": {
+      "nodes": 239956,
+      "cells": 150574,
+      "characteristic_length_mm": 184.15313720703125
+    },
+    "basis_records": {
+      "ver": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/twoCAD_paired_physics_v103/131_351/block_canonical/ver/manifest.json",
+          "bytes": 891,
+          "mtime_ns": 1791799089575374800,
+          "sha256": "77e65c8743916d673576c2b687b06b8c1e421d0890827d95732f36f50aa1e3e4"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/twoCAD_paired_physics_v103/131_351/block_canonical/ver/physical_U_mm.npy",
+          "bytes": 5759072,
+          "mtime_ns": 1791799089545370100,
+          "shape": [
+            239956,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "6ccc2f810b4cf1e7992123e2dc145345bfb7bab3a98fa8f298e79766256218e6"
+        }
+      },
+      "hor": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/twoCAD_paired_physics_v103/131_351/block_canonical/hor/manifest.json",
+          "bytes": 891,
+          "mtime_ns": 1791799089639938300,
+          "sha256": "6f3abb659d5910ee2130925eb9ecc313b08f47835c8bef2273b30fa7264374d2"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/twoCAD_paired_physics_v103/131_351/block_canonical/hor/physical_U_mm.npy",
+          "bytes": 5759072,
+          "mtime_ns": 1791799089609938700,
+          "shape": [
+            239956,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "c13501ac2d34ff4b8d646df2b307e3e637505e6ba012109f8fe5d2379d2ef5d1"
+        }
+      },
+      "tor": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/twoCAD_paired_physics_v103/131_351/block_canonical/tor/manifest.json",
+          "bytes": 889,
+          "mtime_ns": 1791799089710994300,
+          "sha256": "e8d2f494cda6c5c851f28ad38f1e887aa051fd3c7e43b072fd8f90fecfdedb76"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/twoCAD_paired_physics_v103/131_351/block_canonical/tor/physical_U_mm.npy",
+          "bytes": 5759072,
+          "mtime_ns": 1791799089673962100,
+          "shape": [
+            239956,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "7f11c0434faf40ab95126e8df3b727ee7c321d20a6fe227d4d0985df22b0d79a"
+        }
+      },
+      "Fy": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/threeCAD_physics_U_fullrank6_v108/131_351/missing_basis/Fy/manifest.json",
+          "bytes": 896,
+          "mtime_ns": 1791804741736655000,
+          "sha256": "624925fec12be6594fafdc4160efb981ec2f9e6a199176775141a1c0a8514c7a"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/threeCAD_physics_U_fullrank6_v108/131_351/missing_basis/Fy/physical_U_mm.npy",
+          "bytes": 5759072,
+          "mtime_ns": 1791804741704122200,
+          "shape": [
+            239956,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "cec6c94130410c3a9e1be48bed9edd88675c917c8ba810569b140d4093c3cd12"
+        }
+      },
+      "Mx": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/threeCAD_physics_U_fullrank6_v108/131_351/missing_basis/Mx/manifest.json",
+          "bytes": 893,
+          "mtime_ns": 1791804741803154900,
+          "sha256": "48bf793703239ffbf4ee4b137b3e72ec88ab272eb6f53be6e231f33b0cf3fcb6"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/threeCAD_physics_U_fullrank6_v108/131_351/missing_basis/Mx/physical_U_mm.npy",
+          "bytes": 5759072,
+          "mtime_ns": 1791804741772152300,
+          "shape": [
+            239956,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "a0616f18bd2778ece5ed63f161e39d255f4081d00579df90ef13d1ad8956367e"
+        }
+      },
+      "My": {
+        "manifest_identity": {
+          "path": "runs/geobc_exploration/threeCAD_physics_U_fullrank6_v108/131_351/missing_basis/My/manifest.json",
+          "bytes": 895,
+          "mtime_ns": 1791804741873708400,
+          "sha256": "cb97c67fdd50cbf2f1228dad17e1511f7886d337b18adea6a0d9e422b814ec2e"
+        },
+        "physical_U": {
+          "path": "runs/geobc_exploration/threeCAD_physics_U_fullrank6_v108/131_351/missing_basis/My/physical_U_mm.npy",
+          "bytes": 5759072,
+          "mtime_ns": 1791804741841710200,
+          "shape": [
+            239956,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "7f7ab1393cd55a507880860076e72dbf316e7b1ca6d9ecdfead4f4d057eeb767"
+        }
+      }
+    },
+    "reference_load6_columns": [
+      [
+        0.0,
+        0.0,
+        35585.77,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -37809.9,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        564924.2
+      ],
+      [
+        0,
+        37809.9,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        564924.2,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        564924.2,
+        0
+      ]
+    ],
+    "scope": {
+      "REFC": "123456",
+      "reference_GRID_ID": 240001,
+      "material_constraints_fixed": true,
+      "physical_U_units": "mm",
+      "force_units": "N",
+      "moment_units": "Nmm"
+    },
+    "source_provenance": {
+      "source_transfer_facts": {
+        "reference_GRID_ID": 240001,
+        "member_count": 799,
+        "REFC": "123456",
+        "weight": 1.0,
+        "length_mm": 17.247212055005303,
+        "normal_rank": 6,
+        "normal_condition": 3.2857600228266435,
+        "HB_max_error": 2.220446049250313e-16,
+        "virtual_work_relative_error": 1.560051724876001e-17,
+        "force_relative_error": 2.7953865549744752e-18,
+        "moment_relative_error": 9.261576541213396e-18,
+        "reference_load6": [
+          0.0,
+          0.0,
+          35585.77,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      "accepted_prior_terminal": {
+        "summary": {
+          "path": "runs/geobc_exploration/threeCAD_located_force6_U_v109/summary.json",
+          "bytes": 12459,
+          "mtime_ns": 1791806194904760900,
+          "sha256": "0ec4f0d9225b15c349dafcf6c16bec7fb962c16ea89e84edcd36cec56613a099"
+        },
+        "status": {
+          "path": "runs/geobc_exploration/threeCAD_located_force6_U_v109/status.json",
+          "bytes": 12459,
+          "mtime_ns": 1791806194907271500,
+          "sha256": "0ec4f0d9225b15c349dafcf6c16bec7fb962c16ea89e84edcd36cec56613a099"
+        },
+        "external": {
+          "path": "runs/geobc_exploration/threeCAD_located_force6_U_v109/external_terminal.json",
+          "bytes": 41870,
+          "mtime_ns": 1791806195443410900,
+          "sha256": "5875d224002581f9eefa40b23bae252537ba4f98f7373b01a8bda557fae88d1d"
+        }
+      },
+      "design_SCI": "5cf38439ba6ca9be9c787fd3753899d3c3b478300fc2c059391e7331795eb12b",
+      "recipe": "curvedP2_fourQ_weightedLS_RBE3;originalDEBUG_PSOLID_unknown"
+    },
+    "inherited_cost": {
+      "original_basis": {
+        "source_K_seconds": 6.85783363500002,
+        "canonical_basis_group_seconds": 109.19009470939636,
+        "coarse_alternative_construct_plus_canonical_seconds": 38.10956025123596,
+        "whole_cold_deployment_components_unknown": true
+      },
+      "missing_basis_seconds": 37.537617683410645,
+      "independent_validation_seconds": 38.36316132545471,
+      "freshgeometry_fullcold_seconds": null
+    },
+    "new_OptiStruct_GT_accuracy": false,
+    "signedS_provided": false
+  },
+  "payload_digest": "3a86e72124d0c1f434add1afdaf593da1cf598a8cd6b97615f27bc4a7f753167"
+}
