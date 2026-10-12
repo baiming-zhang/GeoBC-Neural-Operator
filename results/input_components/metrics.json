@@ -1,0 +1,265 @@
+{
+  "mean_errors": {
+    "ZERO": {
+      "U": 21.74552047959914,
+      "S": 49.41933494611627,
+      "primary": 35.58242771285771
+    },
+    "ACTUAL": {
+      "U": 15.361334234417514,
+      "S": 35.998054163887325,
+      "primary": 25.67969419915242
+    },
+    "U_ONLY": {
+      "U": 11.716985549703535,
+      "S": 48.652494560547154,
+      "primary": 30.184740055125346
+    },
+    "GRAD_ONLY": {
+      "U": 17.057933118748412,
+      "S": 35.47139737975774,
+      "primary": 26.264665249253074
+    }
+  },
+  "within_one_pp_of_joint": {
+    "U_ONLY": {
+      "U": true,
+      "S": false
+    },
+    "GRAD_ONLY": {
+      "U": false,
+      "S": true
+    }
+  },
+  "stage_seconds": {
+    "UTC": 4293.8565492630005,
+    "monotonic": 3936.816352717
+  },
+  "arms": {
+    "u_only_seed2026": {
+      "seed": 2026,
+      "mode": "U_ONLY",
+      "parameters": 4528394,
+      "updates": 6000,
+      "status": "trained",
+      "qualification": {
+        "original_nodes": 325387,
+        "loss": 0.8717972067330326,
+        "leaf_gradients": {
+          "context": 0.010598008520901203,
+          "latent": 0.00020432344172149897
+        },
+        "parameter_gradients": {
+          "encoder": 0.13217254962940514,
+          "operator": 0.012560062596284222,
+          "head": 0.43865717582451386
+        },
+        "extra_column_gradient": 0.004786588251590729,
+        "maximum_development_nodes": 352321,
+        "coordinate_gradient": 0.01768631674349308,
+        "physical_input_gradient": 0.0236493069678545,
+        "query_chunk_difference": 7.107401245320943e-08,
+        "Adam_step_restored": true,
+        "seconds": 2.3608992570007103
+      },
+      "last_key": "440_206/tor",
+      "last_loss": 0.0963699472843392,
+      "training_seconds": {
+        "UTC": 923.0151271820068,
+        "monotonic": 846.194532395999
+      },
+      "prediction_seconds": {
+        "UTC": 8.246378183364868,
+        "monotonic": 8.246379120999336
+      }
+    },
+    "grad_only_seed2026": {
+      "seed": 2026,
+      "mode": "GRAD_ONLY",
+      "parameters": 4528394,
+      "updates": 6000,
+      "status": "trained",
+      "qualification": {
+        "original_nodes": 325387,
+        "loss": 0.8618881199477721,
+        "leaf_gradients": {
+          "context": 0.00992561411112547,
+          "latent": 0.00021245883544906974
+        },
+        "parameter_gradients": {
+          "encoder": 0.12349519878095254,
+          "operator": 0.01438053796778969,
+          "head": 0.5289988391222811
+        },
+        "extra_column_gradient": 0.12407473474740982,
+        "maximum_development_nodes": 352321,
+        "coordinate_gradient": 0.01819033920764923,
+        "physical_input_gradient": 0.04561153054237366,
+        "query_chunk_difference": 7.156049264267494e-08,
+        "Adam_step_restored": true,
+        "seconds": 0.21485775700057275
+      },
+      "last_key": "440_206/tor",
+      "last_loss": 0.07107404419954211,
+      "training_seconds": {
+        "UTC": 929.5250196456909,
+        "monotonic": 849.9152689919974
+      },
+      "prediction_seconds": {
+        "UTC": 8.427053689956665,
+        "monotonic": 8.427054258998396
+      }
+    },
+    "grad_only_seed2027": {
+      "seed": 2027,
+      "mode": "GRAD_ONLY",
+      "parameters": 4528394,
+      "updates": 6000,
+      "status": "trained",
+      "qualification": {
+        "original_nodes": 325387,
+        "loss": 0.8946967130227834,
+        "leaf_gradients": {
+          "context": 0.011595405638217926,
+          "latent": 0.0003078473964706063
+        },
+        "parameter_gradients": {
+          "encoder": 0.13542408193063346,
+          "operator": 0.019658022544601073,
+          "head": 0.6173225281561359
+        },
+        "extra_column_gradient": 0.159645214676857,
+        "maximum_development_nodes": 352321,
+        "coordinate_gradient": 0.012498806230723858,
+        "physical_input_gradient": 0.01996803469955921,
+        "query_chunk_difference": 6.197320345791013e-08,
+        "Adam_step_restored": true,
+        "seconds": 0.24976372718811035
+      },
+      "last_key": "107_233/ver",
+      "last_loss": 0.051106291217886096,
+      "training_seconds": {
+        "UTC": 933.4129321575165,
+        "monotonic": 856.5501319590003
+      },
+      "prediction_seconds": {
+        "UTC": 7.608001947402954,
+        "monotonic": 7.608002754001063
+      }
+    },
+    "u_only_seed2027": {
+      "seed": 2027,
+      "mode": "U_ONLY",
+      "parameters": 4528394,
+      "updates": 6000,
+      "status": "trained",
+      "qualification": {
+        "original_nodes": 325387,
+        "loss": 0.8876711090296958,
+        "leaf_gradients": {
+          "context": 0.010987476445734501,
+          "latent": 0.0003026469494216144
+        },
+        "parameter_gradients": {
+          "encoder": 0.1252184181514941,
+          "operator": 0.017830350849545585,
+          "head": 0.5204018312445151
+        },
+        "extra_column_gradient": 0.005799842532724142,
+        "maximum_development_nodes": 352321,
+        "coordinate_gradient": 0.012310069054365158,
+        "physical_input_gradient": 0.01896759308874607,
+        "query_chunk_difference": 4.970157263528563e-08,
+        "Adam_step_restored": true,
+        "seconds": 0.39172935485839844
+      },
+      "last_key": "107_233/ver",
+      "last_loss": 0.0716501727736774,
+      "training_seconds": {
+        "UTC": 503.72104024887085,
+        "monotonic": 462.51806412000224
+      },
+      "prediction_seconds": {
+        "UTC": 11.35326600074768,
+        "monotonic": 7.0103598780006
+      }
+    },
+    "u_only_seed2028": {
+      "seed": 2028,
+      "mode": "U_ONLY",
+      "parameters": 4528394,
+      "updates": 6000,
+      "status": "trained",
+      "qualification": {
+        "original_nodes": 325387,
+        "loss": 0.8788269216402513,
+        "leaf_gradients": {
+          "context": 0.008948037400841713,
+          "latent": 0.00022604275727644563
+        },
+        "parameter_gradients": {
+          "encoder": 0.07930968258699014,
+          "operator": 0.01290666740252059,
+          "head": 0.48069695790899863
+        },
+        "extra_column_gradient": 0.004628361202776432,
+        "maximum_development_nodes": 352321,
+        "coordinate_gradient": 0.021374063566327095,
+        "physical_input_gradient": 0.007026303093880415,
+        "query_chunk_difference": 5.430497296288195e-08,
+        "Adam_step_restored": true,
+        "seconds": 0.2840729189992999
+      },
+      "last_key": "266_15/tor",
+      "last_loss": 0.10646068245150218,
+      "training_seconds": {
+        "UTC": 393.4679789543152,
+        "monotonic": 360.9933532060022
+      },
+      "prediction_seconds": {
+        "UTC": 5.981237411499023,
+        "monotonic": 5.981237866999436
+      }
+    },
+    "grad_only_seed2028": {
+      "seed": 2028,
+      "mode": "GRAD_ONLY",
+      "parameters": 4528394,
+      "updates": 6000,
+      "status": "trained",
+      "qualification": {
+        "original_nodes": 325387,
+        "loss": 0.8865107296216577,
+        "leaf_gradients": {
+          "context": 0.010460694320499897,
+          "latent": 0.00022436610015574843
+        },
+        "parameter_gradients": {
+          "encoder": 0.09142343444828406,
+          "operator": 0.012019013168950361,
+          "head": 0.5390489955661086
+        },
+        "extra_column_gradient": 0.13529224693775177,
+        "maximum_development_nodes": 352321,
+        "coordinate_gradient": 0.027799492701888084,
+        "physical_input_gradient": 0.027391275390982628,
+        "query_chunk_difference": 6.114365191933757e-08,
+        "Adam_step_restored": true,
+        "seconds": 0.22799921035766602
+      },
+      "last_key": "266_15/tor",
+      "last_loss": 0.09110230325276537,
+      "training_seconds": {
+        "UTC": 395.21689915657043,
+        "monotonic": 361.3148395540011
+      },
+      "prediction_seconds": {
+        "UTC": 5.772462368011475,
+        "monotonic": 5.772462928998721
+      }
+    }
+  },
+  "new_prediction_rows": 360,
+  "shared_development_GT_reads": 60,
+  "reference_scope": "Frozen ZERO/ACTUAL scalar results; no endpoint replay"
+}

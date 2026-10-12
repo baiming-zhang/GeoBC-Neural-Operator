@@ -19,6 +19,7 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 
 ## Results
 
+- [Displacement and gradient contributions](results/input_components/README.md): U-only inputs reach 11.717% U error; gradient-only inputs reach 35.471% S error across the same three seeds and 20 development CADs.
 - [Physical-information learning](results/physical_information_learning/README.md)
 - [Continuous learned U/S response](results/continuous_neural_response/README.md)
 - [Neural baselines](results/neural_baselines/README.md)
