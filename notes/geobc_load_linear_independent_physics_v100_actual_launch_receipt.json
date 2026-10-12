@@ -1,0 +1,42 @@
+{
+  "observed_at_utc": "2026-10-12T08:37:24.007065+00:00",
+  "SCI": "fa5f6d8cc009590ac59c8905ca951475f4b04d6d8092e21c2a02f5bad8511266",
+  "exec_session": 26855,
+  "guard_process": {
+    "pid": 393,
+    "ppid": 392,
+    "start_ticks": 1257,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.guard_geobc_load_linear_physics_v100",
+      "--start",
+      "--plan",
+      "notes/geobc_load_linear_independent_physics_v100_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 394,
+    "ppid": 393,
+    "start_ticks": 1424,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_load_linear_physics_v100",
+      "--start",
+      "--plan",
+      "notes/geobc_load_linear_independent_physics_v100_plan.json"
+    ]
+  },
+  "boot_id": "10a95129-33f2-4426-8e4a-d88172f3c10a",
+  "root_observed_exact_live": {
+    "guard": true,
+    "child": true
+  },
+  "phase": "PCG_group0",
+  "elapsed_epoch_seconds": 69.59377241134644,
+  "GT_reads": 0,
+  "absolute_deadline_epoch": 1791795972.6367383
+}
