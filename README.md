@@ -27,7 +27,9 @@ GPU物理张量树模型已完成（整阶段19.90秒／GPU学习9.52秒）：�
 
 两个此前未使用标签的预留CAD×三载荷检查已完成（45.82秒）：FNO位移18.65%／应力45.12%，FNO+Hash18.55%／44.77%，Transolver36.69%／61.24%。Hash整体优势仍小，热点33.52%→29.54%；默认FNO保持。全部18份预测先提交再共享读两CSV原标签，无新训练／scaler拟合。只有两CAD，不能确定总体赢家；它们现已揭盲，禁止据此调参。 [结果](results/geobc_reserve_holdout_v93/BRIEF.md)。
 
-下一项仅设计：检查EdgeConv式动态局部点云关系能否改善FNO的整体几何条件。固定旧九TRAIN场／900更新，算子和查询头初值一致，替换几何编码器；先检验完整节点梯度与输入接口，只有明显联合／应力收益才扩大100CAD。不是重跑规范化或Hash微调，源码／GPU均未实施。 [设计](notes/geobc_edgeconv_geometry_v94_design.json)。
+动态图几何编码筛选已完成（68.87秒／学习58.37秒）：九TRAIN场应力41.69%→40.34%，位移22.69%→21.80%，联合只改善1.12个百分点，未达到固定3pp门；结构关闭，不扩大100CAD或扫参数。算子／查询头初始字节与真实242936全节点梯度资格已通过。 [结果](results/geobc_edgeconv_geometry_v94/BRIEF.md)。
+
+下一项仅设计：对三个冻结20遍模型改变载荷幅值0.5／1／1.5，检验位移对边界条件的齐次响应。只用旧九TRAIN场输入，先核真实静力／线弹性／零约束及力矩特征转换；81份预测、54项性质比较均不读标签，不把一致性当精度或伪造signed应力参考。 [设计](notes/geobc_load_amplitude_homogeneity_v95_design.json)。
 
 固定XGBoost3.0.5依赖已准备：首次下载95MB包后因351MB NCCL超时耗180秒；根据实际二进制依赖复用缓存离线安装2.57秒，无重复网络请求。当前已完成真实GPU全TRAIN首轮与400轮固定训练，首次失败与离线恢复成本仍保留。
 
@@ -45,4 +47,4 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore`，未知内容拒绝覆盖。[私人GitHub](https://github.com/baiming-zhang/GeoBC-Neural-Operator)发布代码、配置、标量报告、图和检查点索引；原数据及项目训练检查点留本地。
 
-私人仓库已交付官方U-NO短筛选、GPU物理张量树模型400轮实际结果，以及两个此前未使用标签的预留CAD上的冻结模型比较；完整报告、图表与失败历史均保留。动态图几何编码器目前仅设计，未实现或训练。每次发布均核实私人仓库身份、远端确切提交／树／变化文件；发布索引按下一次有意义实验快照更新。[发布状态](notes/github_publish_plan.json)。
+私人仓库按阶段交付代码、配置、真实实验报告、图表和失败历史；各阶段的实施状态见上文与独立报告。每次发布均核实私人仓库身份、远端确切提交／树／变化文件；发布索引按下一次有意义实验快照更新。[发布状态](notes/github_publish_plan.json)。

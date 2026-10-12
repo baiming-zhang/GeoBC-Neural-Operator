@@ -1,0 +1,313 @@
+{
+  "required_identity": {
+    "owner": "baiming-zhang",
+    "name": "GeoBC-Neural-Operator",
+    "user_id": 174442095,
+    "repository_id": 1410470321,
+    "private": true
+  },
+  "passed": true,
+  "whole_source_reviewed": true,
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-10-12T04:47:21.449087+00:00",
+  "decision": "one_bounded_exact_immutable_gitdata_API_publication_attempt",
+  "source_sha256": "f9ab1692564f03ef4f0419c7c7a01ca13f8223fe5ef313f3dc8b16ebc064bef9",
+  "target_commit": "6400839e576b88198df864c8ba0b849eb8fbe52f",
+  "base_commit": "05d0c9ccdd188e00e63823138023d2c2611b7da4",
+  "target_tree": "2cb6730f9f14fd79ef2fe0a30632ee9ccdebab3c",
+  "changed_file_count": 53,
+  "changed_file_identities": [
+    {
+      "path": "README.md",
+      "bytes": 5742,
+      "sha256": "aa2caf93c6f8f9c055cac9d1009c60a1955840d236cae470c4d3678632daec96"
+    },
+    {
+      "path": "geobc/physical_gbdt_contract_v92.py",
+      "bytes": 3932,
+      "sha256": "689616802624c380890502332efc22eb9469aad34c3cb0b0b7bd1b96d2210805"
+    },
+    {
+      "path": "geobc/reserve_holdout_contract_v93.py",
+      "bytes": 2780,
+      "sha256": "7e79c735a6f6659f31b82e1ae22bd5737cff859f7db489bdcf9c4a39245be0b9"
+    },
+    {
+      "path": "notes/geobc_edgeconv_geometry_v94_design.json",
+      "bytes": 5465,
+      "sha256": "aff5c21f4f53c5fdd7eb460b5036bb526b222d1ba97345491598a33845ac42f3"
+    },
+    {
+      "path": "notes/geobc_exploration_plan.json",
+      "bytes": 541434,
+      "sha256": "89a714ba9d7749076aacfa6c3b387e48534db4a5ad8f37b29679fcd810079f84"
+    },
+    {
+      "path": "notes/geobc_frozen_runtime_source_bytes.json",
+      "bytes": 134763,
+      "sha256": "b385868a1b4dfad18527c25722134443075a107e0cb80eba12464b799ccddb52"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_actual_decision.json",
+      "bytes": 948,
+      "sha256": "335ec132a64064bd20d3e106b9f9a8e68c7b569ee6c566d98900052db72b86a0"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_actual_launch_receipt.json",
+      "bytes": 1137,
+      "sha256": "d9364b9b493411636b4070fe0bfd88c48c3b507d142f1eca8542b4ba38896464"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_actual_terminal_receipt.json",
+      "bytes": 2162,
+      "sha256": "cf1cef101eaf322a0bae1e47d0ba0dcbae1c4e11b63351f7bd91b1afd42939fc"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_exporter_root_review.json",
+      "bytes": 664,
+      "sha256": "0207618a2c00fb6d093705541a0b9f25f1c75bfb949ea2e02b53afdbbeb22c00"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_first_real_GPU_round_receipt.json",
+      "bytes": 3035,
+      "sha256": "4088c677cb6a54e7e6f7279344c1ebcdb18ab26af78085301c0885d71878509c"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_plan.json",
+      "bytes": 163712,
+      "sha256": "3beaf97a1bd47454e446555a1b8b89f35b8f672916e0e4952f2af9c120cbbf25"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_resource_preparation_note.json",
+      "bytes": 472,
+      "sha256": "00c67a3020be59ad5f50b49632fd939d4dca8db5e21ab7544a01e7c049e96edc"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_root_review.json",
+      "bytes": 32866,
+      "sha256": "c3cd31fea7b0b8020447e4457ff428176af73a1637dda8dbde474aff267f918c"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_source_ready.json",
+      "bytes": 33016,
+      "sha256": "3960b3dec83b933031d951575e4c70f586201bef03aef1d33d5597d5cc5810c9"
+    },
+    {
+      "path": "notes/geobc_physical_tensor_GBDT_v92_source_review.json",
+      "bytes": 32965,
+      "sha256": "71eae2556b6afa5b383adba58ce0df3a844053fc06bc702932ce9869c42b4f73"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_actual_decision.json",
+      "bytes": 1250,
+      "sha256": "5bf001c7fd36ade8372af4a437d4c8ecc6fdfe46a82efbba47fcd191968911e0"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_actual_launch_receipt.json",
+      "bytes": 1064,
+      "sha256": "46f37eed386bc572eb2b1d23531e0fd78f1b24ed674db8f8526495355fdde637"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_actual_terminal_receipt.json",
+      "bytes": 1955,
+      "sha256": "93e9f297cdf61b8eeea8eabf6105f83242a4b5a00f80bdef497d97bac207f5b1"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_design.json",
+      "bytes": 10235,
+      "sha256": "2547f2ad1997700f44ef02f04f816a33ac4de0d1a13e3d3874e70c0c2d6c8eeb"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_exporter_root_review.json",
+      "bytes": 481,
+      "sha256": "44b7967fda18e82fba3201d388f8b90af088f488b0e66d7b801bcf2b3fc913b5"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_exposure_evidence.json",
+      "bytes": 1347,
+      "sha256": "ef01ca40988b6e678221b6cad514bedf8c438817c85a95c939fa915b60048261"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_input_contract.json",
+      "bytes": 7540,
+      "sha256": "bf451a633665be8d3bafd69ecccdb4796f198f1a3f8a0bb43edd6eaa26082363"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_plan.json",
+      "bytes": 42225,
+      "sha256": "60a76f4dbddc56923acd913bd119301da4fbfae8569c93d9e3dc572c1c6a9d91"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_root_review.json",
+      "bytes": 35703,
+      "sha256": "5b247df3f93b397c5feeb5d6e04debca3eb516547c99ad1f9ed9ab3660ac02cf"
+    },
+    {
+      "path": "notes/geobc_reserve_holdout_v93_source_review.json",
+      "bytes": 33551,
+      "sha256": "a53c0ff71d9790078cdd40bb036ed12bca33c478ccc79ccd9b8845fbde8b746e"
+    },
+    {
+      "path": "notes/github_gitdata_05d0c9c_actual_publication_root_review.json",
+      "bytes": 1655,
+      "sha256": "6629d76382c9e071b0cf22c7670799f1facf6a11373d1f6f35ce7197ed1319bf"
+    },
+    {
+      "path": "notes/github_gitdata_05d0c9c_local_snapshot_review.json",
+      "bytes": 17719,
+      "sha256": "38823047591c3d3726a289aefcc8059ef73d2207dfe706cff191e3a15686c3cf"
+    },
+    {
+      "path": "notes/github_gitdata_05d0c9c_verified_receipt.json",
+      "bytes": 958,
+      "sha256": "3057982086b6e525cc17bfb9da2ccfe016742809401d4da051244f3f30d0a158"
+    },
+    {
+      "path": "notes/github_gitdata_publication_root_review.json",
+      "bytes": 17719,
+      "sha256": "38823047591c3d3726a289aefcc8059ef73d2207dfe706cff191e3a15686c3cf"
+    },
+    {
+      "path": "notes/github_gitdata_root_05d0c9c_before_physics_tree_reserve_actual.json",
+      "bytes": 17719,
+      "sha256": "38823047591c3d3726a289aefcc8059ef73d2207dfe706cff191e3a15686c3cf"
+    },
+    {
+      "path": "notes/github_publish_plan.json",
+      "bytes": 103912,
+      "sha256": "e90e6d43e6dcb07d55513005a3233f20d1e7bc619506521284d2957c3f35fdd2"
+    },
+    {
+      "path": "notes/github_publish_receipt_05d0c9c_before_physics_tree_reserve_actual.json",
+      "bytes": 4835,
+      "sha256": "1edef87daaebaf787f603cd505905925af2fec4114ff71c0f1b2f5ae23737980"
+    },
+    {
+      "path": "results/SOLVER_BRIEF.md",
+      "bytes": 3751,
+      "sha256": "4f286d01e08a3c3a028a7eff4ef883b4d41c8e6ca7f4c087ab9da12a45b81111"
+    },
+    {
+      "path": "results/geobc_physical_tensor_GBDT_v92/BRIEF.md",
+      "bytes": 2379,
+      "sha256": "8b2f60d7bf83bbd4b0ad2459a2e1e09dc430c0e198bf679196db34eace877f1b"
+    },
+    {
+      "path": "results/geobc_physical_tensor_GBDT_v92/comparison.png",
+      "bytes": 79992,
+      "sha256": "d909e39ee00097b0f5c5d50f5f2a7c3f08ebdd333b4882a7953d01aba410b973"
+    },
+    {
+      "path": "results/geobc_physical_tensor_GBDT_v92/loss.json",
+      "bytes": 64407,
+      "sha256": "1086f9a3b95fbbce8e17995aa5097e7bf602d6b3720d889c278ede56eae05ef2"
+    },
+    {
+      "path": "results/geobc_physical_tensor_GBDT_v92/manifest.json",
+      "bytes": 1863,
+      "sha256": "5fbdccd2de7375eba4852d45be21004d41dbe9f9b6781299dffeef25c203c7bb"
+    },
+    {
+      "path": "results/geobc_physical_tensor_GBDT_v92/metrics.json",
+      "bytes": 71832,
+      "sha256": "ac9876b70970e608b543e4ef8ea813e51e6d28c4c838ecaceb81177f651157c0"
+    },
+    {
+      "path": "results/geobc_physical_tensor_GBDT_v92/per_case.csv",
+      "bytes": 812,
+      "sha256": "adec32e27479bdce2094942250ba9b85819f95472e2f75c2bc19146aa187d35e"
+    },
+    {
+      "path": "results/geobc_reserve_holdout_v93/BRIEF.md",
+      "bytes": 1007,
+      "sha256": "f0b5f430b86a82893dfc92b08439eb4188788504197990de3db10de30ac504ef"
+    },
+    {
+      "path": "results/geobc_reserve_holdout_v93/comparison.png",
+      "bytes": 60565,
+      "sha256": "b4e889288d2bc410595207ac20b0aa453ea12f9b48ba5a377c187bac5de5568f"
+    },
+    {
+      "path": "results/geobc_reserve_holdout_v93/manifest.json",
+      "bytes": 1683,
+      "sha256": "e84cb8a6f8fd75287d1a9ffa38daa213c6662225df799cc7efbaed76cb97bd01"
+    },
+    {
+      "path": "results/geobc_reserve_holdout_v93/metrics.json",
+      "bytes": 34703,
+      "sha256": "e24805828b78a0cf5e1537250847ead35b7f18f1b916b36813ed0ff4583e744e"
+    },
+    {
+      "path": "results/geobc_reserve_holdout_v93/per_case.csv",
+      "bytes": 3904,
+      "sha256": "4ebb39c6b9fea72b559ece63fea194e144ac5fa3705517acfa89169016cdce7e"
+    },
+    {
+      "path": "tools/evaluate_geobc_reserve_holdout_v93.py",
+      "bytes": 13313,
+      "sha256": "9489873852a8ede02b09b1c591504eafc40f27da3dc9bcda41663512d3b34d74"
+    },
+    {
+      "path": "tools/export_geobc_physical_GBDT_v92.py",
+      "bytes": 9234,
+      "sha256": "628082a7469e1f34560879516e7fe60c7eb664a4dcb479e463b60afdc228d8ef"
+    },
+    {
+      "path": "tools/export_geobc_reserve_holdout_v93.py",
+      "bytes": 5213,
+      "sha256": "64e3419f720f5e3b35485ad509318cff2dcf9a1a8c4dd7fd458710db8fa4f900"
+    },
+    {
+      "path": "tools/prepare_geobc_physical_GBDT_v92.py",
+      "bytes": 1315,
+      "sha256": "92e7b3ffa4c36659795d5a187e9e043e6fb7d981deb97ad5af3d78624feae959"
+    },
+    {
+      "path": "tools/prepare_geobc_reserve_holdout_v93.py",
+      "bytes": 7368,
+      "sha256": "53c2499c31b2eed4bdbcd7647ddb86a9f9a393b148a21b21d174554b93390916"
+    },
+    {
+      "path": "tools/run_geobc_physical_GBDT_guard_v92.py",
+      "bytes": 4854,
+      "sha256": "05847c6183122f27957c15a81e1178acc4dbe73abab7242dda088c002cb038e1"
+    },
+    {
+      "path": "tools/run_geobc_reserve_holdout_guard_v93.py",
+      "bytes": 4871,
+      "sha256": "7ff626177ea4f84e95e07fdd8be120fb4a5ee62f64b9b4084505b9a929d59fe5"
+    },
+    {
+      "path": "tools/train_geobc_physical_GBDT_v92.py",
+      "bytes": 16986,
+      "sha256": "ac86dab781bad0e1689152920cf65b2b1e65b7b0ed5481cb88b256c565a0bf54"
+    }
+  ],
+  "attempt_id": "physics_tree_reserve_actual_20261012",
+  "local_only_untracked_snapshot_receipt_expected": true,
+  "unchanged_official_upstream_assets": [
+    "third_party/neuraloperator/neuralop/data/datasets/data/burgers_test_16.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/burgers_train_16.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/darcy_test_16.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/darcy_test_32.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/darcy_train_16.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/mini_car.pt",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d2_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d3_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d4_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d5_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d6_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d7_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d8_c25.npz"
+  ],
+  "local_origin_main_stale_ancestor": "e40e38cd10aa375bab80637dc9248a40c75bce93",
+  "authoritative_remote_baseline": "Verified REST05d0c9c; helper will require actual current main==base before writing",
+  "review_notes": [
+    "Actual v92 GPU400 completed gate-negative and PNG accepted; legacy5 scope/coldcost limits retained",
+    "Actual v93 unused2 CAD all18 before2CSV, no training, all6 complete and PNG accepted; reserve now revealed, no tuning",
+    "v94 only frozen design with actualsource/GPU0, not implementation or winner",
+    "All new blobs equal project canonicalLF/exactPNG; JSON valid, CSV5/18 complete",
+    "No new project raw/checkpoints/arrays/tree models/dependency wheel/lib or credential values;13 original upstream assets unchanged",
+    "Successful05 archived; actual parent05 verified. First local origin==05 assertion failed because GitData publishing leaves tracking ref e40 stale; no API/GCM/remote mutation at failure, no fetch needed."
+  ]
+}

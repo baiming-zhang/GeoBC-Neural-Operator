@@ -6778,7 +6778,7 @@
     "DEV_external_seconds": 167.8709237575531,
     "decision": "TSheadwarm negative; FNO intact5to10 learns; frozen encoder/head latent mapping is next diagnostic"
   },
-  "current_stage": "v92_v93_completed_v94_design_only",
+  "current_stage": "v94_actual_completed_negative_v95_load_response_design_only",
   "node_latent_operator_diagnostic_SOURCE": {
     "proposal": "notes/geobc_node_latent_teacher_macro_proposal_v35.json",
     "source_ready": "notes/geobc_node_latent_teacher_v35_source_ready.json",
@@ -6980,27 +6980,27 @@
   },
   "latest_verified_private_publication": {
     "status": "actual_private_publication_verified",
-    "commit": "05d0c9ccdd188e00e63823138023d2c2611b7da4",
-    "tree": "314922b047e5ff38204b121a88ed1af8a4339612",
-    "base_commit": "41e177a8f60e598b915a1a10c2cb442d2ae52896",
-    "remote_main": "05d0c9ccdd188e00e63823138023d2c2611b7da4",
+    "commit": "4da68cabe286f65061191b6394f036c8e2f000b4",
+    "tree": "94a1eb981282939ac8cc7a8c54c4975ce77d1aff",
+    "base_commit": "6400839e576b88198df864c8ba0b849eb8fbe52f",
+    "remote_main": "4da68cabe286f65061191b6394f036c8e2f000b4",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "verified_at_utc": "2026-10-12T03:45:46.9414667Z",
+    "verified_at_utc": "2026-10-12T04:54:26.7956422Z",
     "actual_exec_exit_code": 0,
-    "actual_exec_session": 22688,
-    "elapsed_seconds": 76.3839969,
+    "actual_exec_session": 12626,
+    "elapsed_seconds": 12.3698107,
     "immutable_receipt": {
-      "path": "notes/github_gitdata_publication_05d0c9ccdd188e00e63823138023d2c2611b7da4_official_uno_actual_20261012_receipt.json",
-      "bytes": 49389,
-      "mtime_ns": 1791776746942936100,
-      "sha256": "74112be493a7994608b8de80f8b1fdf5b81fe8d5bc81194e953b0c584cf64290"
+      "path": "notes/github_gitdata_publication_4da68cabe286f65061191b6394f036c8e2f000b4_readme_result_scope_20261012_receipt.json",
+      "bytes": 8342,
+      "mtime_ns": 1791780866796767400,
+      "sha256": "5e07560e7b435516217214c5a034d09be0bbb6cc5521d80e1da3a37313f62bcd"
     },
     "exact_tree_verified": true,
     "exact_commit_verified": true,
-    "changed_blobs_verified": 60
+    "changed_blobs_verified": 1
   },
   "resolution_FNO_completed": {
     "status": "sameparams_R128_physical5_scientific_negative_no_grid_extension",
@@ -13171,10 +13171,24 @@
     "reuse_for_tuning": false
   },
   "edgeconv_geometry_v94": {
-    "status": "design_only",
+    "status": "completed_scientific_negative_closed",
     "design": "notes/geobc_edgeconv_geometry_v94_design.json",
     "SCI": "b978c4b7fc1e9fd2106a3ef81d99073337c9766b4c660a7d79bd741e08135266",
-    "actual_source": 0,
-    "actual_execution": 0
+    "actual_source": 5,
+    "actual_execution": 1,
+    "actual_GPU": 1,
+    "whole_epoch_seconds": 68.87383723258972,
+    "training_epoch_seconds": 58.37156653404236,
+    "gate_passed": false,
+    "report": "results/geobc_edgeconv_geometry_v94/BRIEF.md",
+    "PNG_accepted": true
+  },
+  "latest_verified_private_commit": "4da68cabe286f65061191b6394f036c8e2f000b4",
+  "load_amplitude_homogeneity_v95": {
+    "status": "design_only",
+    "design": "notes/geobc_load_amplitude_homogeneity_v95_design.json",
+    "SCI": "e0b88fd8b9abbf915599791d1919fcfce376b80574fe7cb4a9e13a52431ba2f4",
+    "actual_SOURCE": 0,
+    "actual_arrays_PT_GT_GPU": 0
   }
 }
