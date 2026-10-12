@@ -1,0 +1,42 @@
+{
+  "status": "observed_terminal_candidate",
+  "observed_at_utc": "2026-10-12T00:11:28.656380+00:00",
+  "exec_session": 36017,
+  "SCI": "eb07d21d9541a01201954f12a7e807a24eead5d048f9292c1e4b64de64dd8667",
+  "guard": {
+    "pid": 51017,
+    "ppid": 51014,
+    "start_ticks": 7690366,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_signed_stress_v84",
+      "--start",
+      "--plan",
+      "notes/geobc_signed_stress_bottleneck_v84_plan.json"
+    ]
+  },
+  "child": {
+    "pid": 51018,
+    "ppid": 51017,
+    "start_ticks": 7690534,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_signed_stress_v84",
+      "--child",
+      "--plan",
+      "notes/geobc_signed_stress_bottleneck_v84_plan.json"
+    ]
+  },
+  "boot_id": "43476dc7-6769-4377-a1fa-0ee4da89e52f",
+  "exact_processes_live": [
+    false,
+    false
+  ],
+  "elapsed_epoch_seconds": 55.252525806427,
+  "phase": "terminal",
+  "owned_GT_array_reads": 60
+}

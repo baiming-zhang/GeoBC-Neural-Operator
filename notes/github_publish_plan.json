@@ -10,7 +10,7 @@
   "description": "Original DeepJEB reproduction and broad geometry/boundary-conditioned solver selection, with held-out CAD physical metrics and accuracy/cost comparisons.",
   "authorization": "User explicitly requested creating a private GitHub repository named from this chat title with hyphens and pushing organized code and results after all experiments finish.",
   "publication_gate": "All 30 slides suite experiments remain completed. GeoBC autonomous exploration snapshots are published with explicit stage and ongoing/completed status; no claim that exploratory work has finished. Repository remains private.",
-  "commit_message": "Compare FNO decoder packages across three paired seeds on known CAD development fields",
+  "commit_message": "Diagnose signed stress error before finite joint sign and magnitude modelling",
   "research_authorization": "2026-10-09 user explicitly authorized autonomous sustained GeoBC exploration, evidence-driven next stages and a 30-minute watchdog; continue updating this project repository.",
   "results_manifest": "results/manifest.json",
   "results_export_command": "python tools/export_repo_results.py",
@@ -1487,7 +1487,20 @@
     "notes/github_publish_receipt_0277577_before_paired_seeds_actual.json",
     "notes/geobc_solver_seed_readout_v83_actual_terminal_receipt.json",
     "notes/geobc_solver_seed_readout_v83_actual_decision.json",
-    "notes/github_paired_seed_snapshot_default_preflight_failure.json"
+    "notes/github_paired_seed_snapshot_default_preflight_failure.json",
+    "notes/geobc_signed_stress_bottleneck_v84_actual_decision.json",
+    "notes/geobc_signed_stress_bottleneck_v84_actual_launch_receipt.json",
+    "notes/geobc_signed_stress_bottleneck_v84_actual_terminal_receipt.json",
+    "notes/geobc_signed_stress_bottleneck_v84_math_fixture_receipt.json",
+    "notes/geobc_signed_stress_bottleneck_v84_plan.json",
+    "notes/geobc_signed_stress_bottleneck_v84_root_review.json",
+    "notes/geobc_signed_stress_bottleneck_v84_source_review.json",
+    "notes/geobc_signed_stress_factorization_v85_design.json",
+    "notes/github_gitdata_9177c0e_actual_publication_root_review.json",
+    "notes/github_gitdata_9177c0e_local_snapshot_review.json",
+    "notes/github_gitdata_9177c0e_verified_receipt.json",
+    "notes/github_gitdata_root_9177c0e_before_stress_diagnostic_actual.json",
+    "notes/github_publish_receipt_9177c0e_before_stress_diagnostic_actual.json"
   ],
   "next_snapshot_wait_reason": "Wait for meaningful real training/DEV terminal or complete new pipeline; no metadata-only repush",
   "current_stage_publication_gate": "Actual70 all3 endpointcomplete/normalclosed originalclock/exactexits andtwoPNG visuallyverified; new72 running only; original30complete",
@@ -1508,27 +1521,27 @@
   "ongoing_stage": "v48/v49 completed andnegative GBC gates; originalTS5to10 convergence designonly",
   "latest_verified_publication": {
     "status": "actual_private_publication_verified",
-    "commit": "02775777aa3fa0fa075b5b452c9c4c73b2bb10f4",
-    "tree": "2fec6c9febbe581e4ad819d924d1e33854afe270",
-    "base_commit": "30ae94070299ff23662272450986436b74d459ba",
-    "remote_main": "02775777aa3fa0fa075b5b452c9c4c73b2bb10f4",
+    "commit": "9177c0eadfc795981f3a82b772ab87efeefd787e",
+    "tree": "bf2ac946fc82d4ddaf946abca4ce2ddd21425633",
+    "base_commit": "02775777aa3fa0fa075b5b452c9c4c73b2bb10f4",
+    "remote_main": "9177c0eadfc795981f3a82b772ab87efeefd787e",
     "repository": "baiming-zhang/GeoBC-Neural-Operator",
     "repository_id": 1410470321,
     "user_id": 174442095,
     "private": true,
-    "verified_at_utc": "2026-10-11T22:59:36.7458661Z",
+    "verified_at_utc": "2026-10-11T23:57:33.1337035Z",
     "actual_exec_exit_code": 0,
-    "actual_exec_session": 76614,
-    "elapsed_seconds": 52.6040761,
+    "actual_exec_session": 89132,
+    "elapsed_seconds": 88.8345302,
     "immutable_receipt": {
-      "path": "notes/github_gitdata_publication_02775777aa3fa0fa075b5b452c9c4c73b2bb10f4_native_ts100_actual_20261012_receipt.json",
-      "bytes": 30604,
-      "mtime_ns": 1791759576747224900,
-      "sha256": "6d256e02fb3dfc12fecb4032c3e0a5b52bda7fe3f4e370ec4acf2e2b11851e2e"
+      "path": "notes/github_gitdata_publication_9177c0eadfc795981f3a82b772ab87efeefd787e_paired_seed_actual_20261012_receipt.json",
+      "bytes": 52168,
+      "mtime_ns": 1791763053137568200,
+      "sha256": "4bb2a95b542676ad31da9e2a0438cf04c88043df272958d8dd9a5b8de837740b"
     },
     "exact_tree_verified": true,
     "exact_commit_verified": true,
-    "changed_blobs_verified": 33
+    "changed_blobs_verified": 64
   },
   "legacy_index_correction": {
     "observed_UTC": "2026-10-10T19:28:14.260839+00:00",
@@ -1538,7 +1551,7 @@
     "new_network_or_publication": false
   },
   "latest_verified_private_publication_UTC": "2026-10-11T22:59:36.7458661Z",
-  "latest_verified_commit": "02775777aa3fa0fa075b5b452c9c4c73b2bb10f4",
+  "latest_verified_commit": "9177c0eadfc795981f3a82b772ab87efeefd787e",
   "current_research_stage": "v80 completed scientific negative; v81 paired independent seeds design only",
   "current_research_stage_UTC": "2026-10-11T20:21:20.748139+00:00",
   "next_publication_scope": "Next meaningful actual paired seed confirmation result; no metadata-only repeated snapshot",
@@ -1595,5 +1608,5 @@
     "exact_commit_verified": true,
     "changed_blobs_verified": 33
   },
-  "next_snapshot_status": "v82 and v83 actual completed, reports and PNG visually accepted; v84 remains design-only; ready for isolated snapshot review"
+  "next_snapshot_status": "v84 actual completed/true external exit/52.38s/240 real metric and SSE checks/PNG accepted; v85 design-only"
 }

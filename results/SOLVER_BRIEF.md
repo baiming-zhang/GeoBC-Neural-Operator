@@ -16,3 +16,5 @@ Hash应力只改善0.62个百分点，位移差0.25个百分点，联合误差�
 [三seed完整误差范围与成本](geobc_solver_seed_readout_v83/BRIEF.md) · [训练拟合与曲线](geobc_solver_seeds_training_v82/BRIEF.md)。原版DeepJEB、GRID对齐CSV、signed U(mm)/S(MPa)、全原节点、CAD隔离、scaler仅旧TRAIN40。三seed共用同20CAD，不是180独立病例；knownDEV已迭代、来源受可用性影响，不是最终盲测。
 
 Slides约0.1%是单／双已知场拟合；共享50场平均15.11%。原配置与25特征schema缺失，不能声称精确数值复现。旧H5-only结果已撤回。
+
+最新52秒CPU诊断：两个新增seed中约16%–17%节点符号错误，平均每例约48%–50%的SSE是额外符号惩罚。真值符号oracle仍有34%–36%误差，空间幅值也未解决；真值幅值oracle未改善整体误差。它们不能部署或当solver精度。下一项仅设计为有限TRAIN9符号／幅值联合建模，原9场100遍基线只复用标量，不调Hash，不读DEV／FINAL救结果。[诊断](geobc_signed_stress_bottleneck_v84/BRIEF.md)。
