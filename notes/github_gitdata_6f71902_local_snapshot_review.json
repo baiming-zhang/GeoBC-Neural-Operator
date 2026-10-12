@@ -1,0 +1,214 @@
+{
+  "required_identity": {
+    "owner": "baiming-zhang",
+    "user_id": 174442095,
+    "repository_id": 1410470321,
+    "private": true
+  },
+  "unchanged_official_upstream_assets": [
+    "third_party/neuraloperator/neuralop/data/datasets/data/burgers_test_16.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/burgers_train_16.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/darcy_test_16.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/darcy_test_32.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/darcy_train_16.pt",
+    "third_party/neuraloperator/neuralop/data/datasets/data/mini_car.pt",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d2_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d3_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d4_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d5_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d6_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d7_c25.npz",
+    "third_party/neuraloperator/neuralop/layers/fcgram_matrices/FCGram_data_d8_c25.npz"
+  ],
+  "passed": true,
+  "whole_source_reviewed": true,
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-10-12T14:20:19.935863+00:00",
+  "decision": "one_bounded_exact_immutable_gitdata_API_publication_attempt",
+  "source_sha256": "f9ab1692564f03ef4f0419c7c7a01ca13f8223fe5ef313f3dc8b16ebc064bef9",
+  "target_commit": "6f7190266937d0cf3d23a06b9dd8fbeabf59599e",
+  "base_commit": "e7feffdd2bcddbdade3cf20edaec9b89326bc3a3",
+  "target_tree": "5a6577638fcd5f291c83ac2d01ed54f74527febc",
+  "changed_file_count": 33,
+  "changed_file_identities": [
+    {
+      "path": "README.md",
+      "bytes": 15218,
+      "sha256": "7554ce4e94eb9996860e10f85e2f58d4e12264ba84bd0610ac4ce8996a871860"
+    },
+    {
+      "path": "geobc/reference_prescribed_motion_v116.py",
+      "bytes": 1837,
+      "sha256": "d55fc973f973b408b0b734803173d8c34ea9c63acc500917eb42918d3f587dde"
+    },
+    {
+      "path": "geobc/reference_spring_contract_v115.py",
+      "bytes": 3359,
+      "sha256": "4d08686c23e97c7474068c42353ec884b3efa4dfb78371e1dc517d61402b39f0"
+    },
+    {
+      "path": "geobc/reference_spring_operator_v115.py",
+      "bytes": 2522,
+      "sha256": "4ceed0679ea837692264b30b7b01b541306779f7db78d27b4a1c3c78af438839"
+    },
+    {
+      "path": "notes/geobc_exploration_plan.json",
+      "bytes": 557719,
+      "sha256": "b082d8dce43cbfb07ab229f9c3fdc578dd7bc5138e1d9b6f2b71eb263d410e57"
+    },
+    {
+      "path": "notes/geobc_frozen_runtime_source_bytes.json",
+      "bytes": 169136,
+      "sha256": "976051daad244ce0644c11e08ee08228ab3ecfe8e69a109f429e4d3eb2e1d8fc"
+    },
+    {
+      "path": "notes/geobc_reference_prescribed_motion_v116_design.json",
+      "bytes": 72065,
+      "sha256": "7ddcc7f1137e7057c925ac686b8cd309f19f2c3ad45b112b7c22ba16a1eb1d47"
+    },
+    {
+      "path": "notes/geobc_reference_prescribed_motion_v116_prototype_root_review.json",
+      "bytes": 1041,
+      "sha256": "3d318867ecd238afde96664c4ff629637b35e43e6f9e7c3614bd73b8e699bfbf"
+    },
+    {
+      "path": "notes/geobc_reference_spring_BC_v115_actual_decision.json",
+      "bytes": 2375,
+      "sha256": "ccb1ac02b5aab9a6265732fcf1f40f768aa95740d4e36cca7f9df7d1b0cfe0e1"
+    },
+    {
+      "path": "notes/geobc_reference_spring_BC_v115_actual_launch_receipt.json",
+      "bytes": 1671,
+      "sha256": "298339920785ea206605b780c402433429efcf434309bbaf953976a6f987dbf3"
+    },
+    {
+      "path": "notes/geobc_reference_spring_BC_v115_actual_terminal_receipt.json",
+      "bytes": 47296,
+      "sha256": "a11ff1286f75d2cd5a701848573e12fe5f1cd5e7896ac980b4060478d6e1c2e9"
+    },
+    {
+      "path": "notes/geobc_reference_spring_BC_v115_exporter_root_review.json",
+      "bytes": 2056,
+      "sha256": "ca70fa133c2af34d5d20576a9da6c777545ecbdbcc4c1144e61f95a4fbd86224"
+    },
+    {
+      "path": "notes/geobc_reference_spring_BC_v115_plan.json",
+      "bytes": 115150,
+      "sha256": "5f67a19a25087d31165c7068c7dcc17c5fcb38eac46243d8a2e259e4adcd6e85"
+    },
+    {
+      "path": "notes/geobc_reference_spring_BC_v115_root_review.json",
+      "bytes": 45489,
+      "sha256": "685ecfaaa4dd06bcde296938e1e2c62b2d136076bf472ad8f00557ba5ede93d6"
+    },
+    {
+      "path": "notes/geobc_reference_spring_BC_v115_source_ready.json",
+      "bytes": 383,
+      "sha256": "c2dade77dfd2fd020881a807e2e03b3a1acf574089659bedd6b991962941bef3"
+    },
+    {
+      "path": "notes/geobc_reference_spring_BC_v115_source_review.json",
+      "bytes": 48710,
+      "sha256": "dbca7c2453b4cf55eaaab9e64aeb6aa4a980965eefc7ce631e916be3011e4eca"
+    },
+    {
+      "path": "notes/github_gitdata_e7feffd_actual_publication_root_review.json",
+      "bytes": 1525,
+      "sha256": "8fdd3944681886d03b24e7f1026bc990bce9efaa3575d2da49f524ebf82637be"
+    },
+    {
+      "path": "notes/github_gitdata_e7feffd_local_snapshot_review.json",
+      "bytes": 13364,
+      "sha256": "28fc35331dd7f9862b4e2e7fda531d719767b98d471f19cff7f85d0958837fd3"
+    },
+    {
+      "path": "notes/github_gitdata_e7feffd_verified_receipt.json",
+      "bytes": 999,
+      "sha256": "10d3686bbc25ad80a144e7cd1c06e60c2924bb9e445d1dd927dd10d8cc2e84bb"
+    },
+    {
+      "path": "notes/github_gitdata_publication_root_review.json",
+      "bytes": 13364,
+      "sha256": "28fc35331dd7f9862b4e2e7fda531d719767b98d471f19cff7f85d0958837fd3"
+    },
+    {
+      "path": "notes/github_gitdata_root_e7feffd_before_spring_BC_actual.json",
+      "bytes": 13364,
+      "sha256": "28fc35331dd7f9862b4e2e7fda531d719767b98d471f19cff7f85d0958837fd3"
+    },
+    {
+      "path": "notes/github_publish_plan.json",
+      "bytes": 123684,
+      "sha256": "dfc40af71273733c47763d6ba89e0ea323c0dcd4659ac1f8c0a6676153db07ac"
+    },
+    {
+      "path": "notes/github_publish_receipt_e7feffd_before_spring_BC_actual.json",
+      "bytes": 6626,
+      "sha256": "0dc04271b5088213e50efc4a4349df7ccceb5cb681afb0980a4ae32be5bbfdc9"
+    },
+    {
+      "path": "results/SOLVER_BRIEF.md",
+      "bytes": 13121,
+      "sha256": "d0ae92df89bd7314f7d54d87a6fa400626638f9934e1e5e13a03b7d45306e89f"
+    },
+    {
+      "path": "results/geobc_reference_spring_BC_v115/BRIEF.md",
+      "bytes": 2425,
+      "sha256": "a91f2e30f94b249e638ae396c5403464e1afb2e61da592332b72492d278e42e7"
+    },
+    {
+      "path": "results/geobc_reference_spring_BC_v115/comparison.png",
+      "bytes": 81376,
+      "sha256": "194fea3ac617ae875a0c0cc11e4d0da91caed33f8097ab437ad681ef121190e5"
+    },
+    {
+      "path": "results/geobc_reference_spring_BC_v115/endpoints.csv",
+      "bytes": 2683,
+      "sha256": "595c943c6e58e9378e150a682e5bb6279ce5da25d84f279bc2202dac798de24a"
+    },
+    {
+      "path": "results/geobc_reference_spring_BC_v115/manifest.json",
+      "bytes": 1191,
+      "sha256": "7d8b906de73d261b89ccb1170f00d83be66c34b375280f4a8b2beb29a8ea55bf"
+    },
+    {
+      "path": "results/geobc_reference_spring_BC_v115/metrics.json",
+      "bytes": 79368,
+      "sha256": "9a81c14f46f41bf5c9729c27e861a18b314ca799d72f5cec0a33e91501e4aa20"
+    },
+    {
+      "path": "tools/evaluate_geobc_reference_spring_v115.py",
+      "bytes": 16618,
+      "sha256": "f168fea623ca96ecef3cdc8f90e11f883cb4631850f470822d67de3f7b74246a"
+    },
+    {
+      "path": "tools/export_geobc_reference_spring_v115.py",
+      "bytes": 7877,
+      "sha256": "d0fce317fa93480e1e89bd1a066701c8c0ecaa696d04e8114542dc1977104d2b"
+    },
+    {
+      "path": "tools/guard_geobc_reference_spring_v115.py",
+      "bytes": 4883,
+      "sha256": "8ebdb684493e0f36ffecd1fe8021fa49a7d799651bc7538863e3e56d0946471c"
+    },
+    {
+      "path": "tools/prepare_geobc_reference_spring_v115.py",
+      "bytes": 1940,
+      "sha256": "c444bc04c82dc8329bf9b7d67b3626b5b024c583b5406f87f5aa989daa40242c"
+    }
+  ],
+  "attempt_id": "reference_spring_bc_actual_20261012",
+  "local_only_untracked_snapshot_receipt_expected": true,
+  "review_notes": [
+    "115five new runtime/meta/operator/guard/prepare SOURCE whole rootreview/AST1/freeze371pins unchanged prior springprototype;designSCI63f1 actualSCI500659 real114terminal/PNG/sourcecache/provenance bound",
+    "Actualsame2revealedCAD212721/187217N cachedNPZ2/operator6/coarse20/basis12 eachsinglehashload/no rawH5deckGRID Kdiagcoarseassembly old8fineguards neuralPT GTtraining FINAL replay",
+    "Groundedreference6spring physicalHbar.T SnHbar notnumericalKshift,SnI/meanCnDiag fixed/no sweep;rawC/oldfineK/basis unchanged/FP64/no projectionpseudo/tolrescue",
+    "WholeN3lane modifiedK vsscalar onceeach1.333e-16/twoenergy/symmetrynewguards;op.original modifiedscalar endpoints,true1e-8 sixindependentzeroPCG/eachalpha betaresidual/atomic25/terminalreserve charged",
+    "Full6finite/hash/bodyCartesian beforecompactfullNfieldcomparison;allmaxtrue9.97888e-9/Umax1.26283e-9/posemax7.43534e-10/energy1.70423e-14/compactenergy1.30759e-10 gatePASS;springreaction explicitlyincluded inbalance no originalGT/S claim",
+    "Actualexec23589exit0 guard283t4343 child365t4669 boot1665657d realrootobservedlive then exactexit/nativeexternalclosedinactivebudgettrue;wholeUTC74.496310/mono74.495363/native71.061432/71.060484 clockdifference retained",
+    "Independent3RHSgroup32.67210/27.93322s/compactresponseplusfullN .0180813/.0020574s cachedscope/inheritedsource6basis77.94/63.44 separate/engineeringfullcoldnull/notNNsamebudget ranking",
+    "One scalarCPUexport1.434372s CSV6/JSON/exactPNG visuallyaccepted/no scientificarray output publication;wholeimportIOPCGsavebarrierreferencesfail/exitcharged no budgetreset",
+    "116designONEnewSOURCE precise6referenceprescribedmotion rawCnsolve/physicalreaction+work,requires independentgeometrylift nullspacePCG later/no importconstructorarraysGTGPU yet/no large spring sweep",
+    "Prior e7canonicalroot preserved/allprivateverifiedreceipts/sourcebyteidentity/CADFAMILYandoriginalOptiStructlimits/Sopen honest;dynamicrealuniquechangedcount/LF JSONCSV+PNG/no newrawstatesarraysPTcredentials/13unchangedofficialassets/helperunchangedordinaryFF"
+  ]
+}
