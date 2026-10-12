@@ -50,7 +50,7 @@ def run(args):
         from geobc.physics_inputs import local_path
         from geobc.learning_data import LearningCache
         from geobc.kinematic_neural_field import KinematicCovariateFNO
-        from geobc.neural_response import LocatedNeuralResponse
+        from geobc.neural_response import LocatedNeuralResponse,LocatedFieldwiseNeuralResponse
         from geobc.query import shape
         scale=json.loads(Path('configs/output_scaler.json').read_text())
         torch.set_num_threads(4);torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
@@ -59,10 +59,17 @@ def run(args):
             torch.cuda.set_per_process_memory_fraction(config['memory_bytes']/torch.cuda.get_device_properties(0).total_memory)
             torch.cuda.reset_peak_memory_stats()
             tick=(time.time(),time.monotonic())
-            checkpoint=torch.load(local_path(catalog['checkpoint']),map_location='cpu',weights_only=False);state['checkpoint_reads']+=1
-            if checkpoint['arm']!='actual_seed2026' or checkpoint['cursor']!=6000:
-                raise ValueError('Expected preregistered first-seed endpoint')
-            model=KinematicCovariateFNO('ACTUAL',2026).cuda();model.load_state_dict(checkpoint['model']);model.eval();del checkpoint
+            routes=config.get('field_routes',{'joint':'ACTUAL'})
+            models={}
+            for field,mode in routes.items():
+                path=catalog['checkpoints'][field] if 'field_routes' in config else catalog['checkpoint']
+                checkpoint=torch.load(local_path(path),map_location='cpu',weights_only=False);state['checkpoint_reads']+=1
+                if checkpoint['arm']!=mode.lower()+'_seed2026' or checkpoint['cursor']!=6000:
+                    raise ValueError('Expected first-seed trained endpoint')
+                model=KinematicCovariateFNO(mode,2026).cuda();model.load_state_dict(checkpoint['model']);model.eval()
+                models[field]=model;del checkpoint
+            state['model_parameters']=sum(sum(p.numel() for p in model.parameters()) for model in models.values())
+            state['field_routes']=routes
             state['model_load_seconds']=max(time.time()-tick[0],time.monotonic()-tick[1])
             for cad in config['CADs']:
                 guard();state['phase']=cad+'/load';persist();tick=(time.time(),time.monotonic())
@@ -78,7 +85,8 @@ def run(args):
                 state['feature_reads']+=cache.feature_reads
                 cases={load:cache.cases[cad+'/'+load] for load in config['loads']}
                 B=torch.tensor([record['reference_load6'][load] for load in config['loads']],device='cuda',dtype=torch.float64).T
-                api=LocatedNeuralResponse(model,vertices,cells,cache.physical_covariates[cad],B,cases,scale,guard)
+                common=(vertices,cells,cache.physical_covariates[cad],B,cases,scale,guard)
+                api=LocatedFieldwiseNeuralResponse(models['U'],models['S'],*common) if 'field_routes' in config else LocatedNeuralResponse(models['joint'],*common)
                 cr=dict(nodes=n,cells=c,load_and_index_seconds=max(time.time()-tick[0],time.monotonic()-tick[1]),index=api.locator.metadata)
                 rows=torch.as_tensor(np.linspace(0,c-1,config['geometry_cell_rows'],dtype=np.int64),device='cuda')
                 bary=torch.tensor(config['interior_barycentric'],device='cuda',dtype=torch.float64)
@@ -104,7 +112,7 @@ def run(args):
                 # Prediction arrays exist before any held endpoint field is opened.
                 references.append(dict(CAD=cad,nodal_ids=nodal_ids.cpu().tolist(),paths=record['held_predictions']))
                 cr['continuous_checks']={}
-                explicit_rows=rows[:,None].expand(-1,2).reshape(-1)
+                explicit_rows=rows[:,None].expand(-1,len(bary)).reshape(-1)
                 for load in config['loads']:
                     with torch.no_grad():
                         owners=np.load(output/cad/(load+'_owners.npy'),allow_pickle=False)
@@ -129,17 +137,24 @@ def run(args):
                 guard();persist()
                 del api,cache,cases,vertices,cells,xyz,interior,nodal_ids,owned,before,point,located,direct,chunk,value,actual_grad,reference_grad
                 gc.collect();torch.cuda.empty_cache()
-            if state['predicted_rows']!=360 or state['outside_rejections']!=9:
+            if state['predicted_rows']!=config['interior_query_rows']+config['nodal_query_rows'] or state['outside_rejections']!=config['outside_decisions']:
                 raise ValueError('Complete continuous-query denominator differs')
             state['phase']='held_nodal_predictions';persist()
             for item in references:
                 cad=item['CAD'];cr=state['case_records'][cad];cr['nodal_checks']={}
                 for load in config['loads']:
-                    guard();held=np.load(local_path(item['paths'][load]),allow_pickle=False);state['reference_reads']+=1
-                    if held.dtype!=np.float64 or held.shape!=(cr['nodes'],4) or not np.isfinite(held).all(): raise ValueError('Held prediction schema differs')
-                    reference=torch.as_tensor(held[item['nodal_ids']],device='cuda')
+                    guard()
+                    held_paths=item['paths'][load]
+                    held_paths=held_paths if isinstance(held_paths,dict) else {'joint':held_paths}
+                    reference_parts={}
+                    for field,path in held_paths.items():
+                        held=np.load(local_path(path),allow_pickle=False);state['reference_reads']+=1
+                        if held.dtype!=np.float64 or held.shape!=(cr['nodes'],4) or not np.isfinite(held).all(): raise ValueError('Held prediction schema differs')
+                        selected=held[item['nodal_ids']]
+                        reference_parts[field]=torch.as_tensor(selected,device='cuda')
+                    reference=torch.cat((reference_parts['U'][:,:3],reference_parts['S'][:,3:4]),1) if 'field_routes' in config else reference_parts['joint']
                     own=np.load(output/cad/(load+'_physical4.npy'),allow_pickle=False)
-                    actual=torch.as_tensor(own[-8:],device='cuda')
+                    actual=torch.as_tensor(own[-config['nodal_witnesses_per_CAD']:],device='cuda')
                     cr['nodal_checks'][load]=dict(U=compare(actual[:,:3],reference[:,:3]),S=compare(actual[:,3],reference[:,3]))
             state.update(status='completed',phase='terminal',continuous_interface_passed=True)
     except Exception as error:

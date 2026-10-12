@@ -24,15 +24,20 @@ def export(run,output):
     with (output/'checks.csv').open('x',encoding='utf-8',newline='') as file:
         writer=csv.DictWriter(file,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
     metrics={key:state.get(key) for key in ['continuous_interface_passed','predicted_rows','outside_rejections','reference_reads','checkpoint_reads','source_reads','feature_reads','peak_allocated_bytes','peak_reserved_bytes','GT_reads','training_updates']}
-    metrics.update(stage_seconds=terminal['elapsed_seconds'],cases=state['case_records'])
+    metrics.update(stage_seconds=terminal['elapsed_seconds'],cases=state['case_records'],field_routes=state.get('field_routes',{'joint':'ACTUAL'}),model_parameters=state.get('model_parameters'))
     (output/'metrics.json').write_text(json.dumps(metrics,indent=2)+'\n',encoding='utf-8')
     passed=state.get('continuous_interface_passed',False)
-    (output/'README.md').write_text('# Continuous learned U/S response\n\n'
+    routed=state.get('field_routes',{}).get('U')=='U_ONLY'
+    nodal_rows=len(rows)*8
+    title='# Fieldwise continuous U/S response\n\n' if routed else '# Continuous learned U/S response\n\n'
+    route_text=('U comes from the U_ONLY model and S from the GRAD_ONLY model, sharing point location and input interpolation. Two networks contain 9,056,788 parameters in total. The routes were selected from development results; the first seed is used. ' if routed else 'The first preregistered seed is used. ')
+    (output/'README.md').write_text(title+
         f"Interface checks {'passed' if passed else 'did not pass'} on the fixed three CADs. "
-        f"{state['predicted_rows']} physical U/S query rows were saved, including 288 interior rows and 72 nodal witnesses. "
+        f"{state['predicted_rows']} physical U/S query rows were saved, including {state['predicted_rows']-nodal_rows} interior rows and {nodal_rows} nodal witnesses. "
         f"{state['outside_rejections']} outside-box requests were explicitly rejected.\n\n"
         'The API takes physical coordinates in mm and a registered canonical load. It locates the curved element, interpolates native condition features and the recovered physical covariates, and queries the trained FNO decoder. '
-        'The first preregistered seed is used. Coordinate gradients include the actual inverse and covariate interpolation. '
+        + route_text
+        + 'Coordinate gradients include the actual inverse and covariate interpolation. '
         'Checks compare the located API with the same model queried in explicit cells and with saved nodal predictions; no new off-node FEM accuracy is measured.\n\n'
         f"Actual cache/model/index/query/check/save cost: UTC {terminal['elapsed_seconds']['UTC']:.3f}s / monotonic {terminal['elapsed_seconds']['monotonic']:.3f}s. "
         'Physics preprocessing and neural training costs are inherited separately.\n',encoding='utf-8')

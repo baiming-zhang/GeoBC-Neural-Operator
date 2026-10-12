@@ -7,3 +7,5 @@ The next information experiment adds 12 physical covariates: three displacement 
 The located U/S API accepts physical XYZ(mm) and a registered canonical load. Its three-CAD check preserves nodal trained-model predictions within 6.2e-7 relative difference and keeps actual coordinate gradients. See results/continuous_neural_response/.
 
 The component experiment isolated U3 and gradient9 in two fresh models per seed, retaining the same capacity and 20-pass schedule. U-only inputs give 11.717% U / 48.652% S; gradient-only inputs give 17.058% U / 35.471% S. Displacement benefits most from U inputs, while stress retains the benefit from gradient inputs. See results/input_components/.
+
+`LocatedFieldwiseNeuralResponse` combines U from the first-seed U_ONLY network and S from the first-seed GRAD_ONLY network. It shares point location and physical-input interpolation; coordinates remain differentiable. Its 432-row interface test passed in 61.25 s, using two networks (9,056,788 parameters). See results/fieldwise_neural_response/.
