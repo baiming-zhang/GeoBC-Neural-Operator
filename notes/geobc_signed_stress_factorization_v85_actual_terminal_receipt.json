@@ -1,0 +1,78 @@
+{
+  "status": "actual_completed",
+  "observed_at_utc": "2026-10-12T01:00:59.561432+00:00",
+  "exec_session": 72835,
+  "actual_exec_exit_code": 0,
+  "SCI": "f1ebdb7d83b1563899032054c4125e23eed9426a3f3c8bf220d791cf0d8d40f0",
+  "terminal_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/FNO_signed_stress_factorization_TRAIN9_v85/summary.json",
+      "bytes": 31187,
+      "mtime_ns": 1791766130174539900,
+      "sha256": "d7d4fa4ec236cf3f7821c7f0f4ccf9275317e68bd1442fac705e0fb4e0093aa1"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/FNO_signed_stress_factorization_TRAIN9_v85/status.json",
+      "bytes": 31187,
+      "mtime_ns": 1791766130177541600,
+      "sha256": "d7d4fa4ec236cf3f7821c7f0f4ccf9275317e68bd1442fac705e0fb4e0093aa1"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/FNO_signed_stress_factorization_TRAIN9_v85/external_terminal.json",
+      "bytes": 30525,
+      "mtime_ns": 1791766130886147400,
+      "sha256": "47f15f360ea4f3511236f0975a51e9ddf2f115706b18a8a1e4be072ca50cebb6"
+    }
+  },
+  "actual_whole_epoch_seconds": 50.447338342666626,
+  "actual_whole_monotonic_seconds": 50.448433073000004,
+  "guard": {
+    "pid": 395,
+    "ppid": 392,
+    "start_ticks": 797,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_signed_stress_guard_v85",
+      "--start",
+      "--plan",
+      "notes/geobc_signed_stress_factorization_v85_plan.json"
+    ]
+  },
+  "child": {
+    "pid": 397,
+    "ppid": 395,
+    "start_ticks": 977,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_signed_stress_v85",
+      "--start",
+      "--plan",
+      "notes/geobc_signed_stress_factorization_v85_plan.json"
+    ]
+  },
+  "boot_id": "b32bb24c-2bb7-4a0f-ba84-d4b190c2be7c",
+  "exact_guard_child_exited": true,
+  "actual_gradient_and_canonical_initial_copy_PASS": true,
+  "TRAIN_gate": {
+    "passed": false,
+    "U_difference": 0.01270443952683184,
+    "S_difference": -0.043689608079444275,
+    "primary_difference": -0.015492584276306218,
+    "hotspot_difference": -0.014797470181904915,
+    "thresholds": {
+      "stress_absolute_improvement_min": 0.05,
+      "primary_absolute_improvement_min": 0.03,
+      "field_deterioration_max": 0.02,
+      "hotspot_deterioration_max": 0.02,
+      "fixed_denominator": 9
+    },
+    "fixed_denominator": 9,
+    "direction": "new representation/aux recipe minus preserved canonical plain77 scalar; not single-factor causal estimate",
+    "automatic_larger_experiment_released": false
+  },
+  "final_solver_selected": false
+}

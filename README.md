@@ -41,3 +41,7 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 私人仓库已核实更新到 `9177c0e`，包含四模型训练和三seed验证的实际结果、失败记录与图表；应力符号／幅值诊断仅设计，尚未执行。
 
 应力瓶颈CPU诊断已实际完成（52.38秒，240例与原指标匹配、精确SSE恒等式全部通过）：额外符号惩罚平均每例占约48%–50%，即使真值符号全对仍有34%–36%误差。真值条件oracle仅诊断，不能部署；下一有限TRAIN9符号／幅值联合建模尚仅设计。[诊断](results/geobc_signed_stress_bottleneck_v84/BRIEF.md)。
+
+私人仓库最新已核实为 `dd6b01d`，包含上述52秒应力诊断实际结果与图表，及下一符号／幅值短实验设计；新模型未训练。
+
+符号／幅值短验证已实际完成（50.45秒，900次更新／九TRAIN场）：signed应力41.69%→37.32%，位移22.69%→23.96%，热点40.06%→38.58%。联合改善1.55个百分点，未通过预声明门；关闭这一固定配置，不自动扩大或读DEV救结果。下一形状点云规范化仅设计，原全局BC／查询／grid／U与signedS标签保持。[短验证](results/geobc_signed_stress_factorization_v85/BRIEF.md)。

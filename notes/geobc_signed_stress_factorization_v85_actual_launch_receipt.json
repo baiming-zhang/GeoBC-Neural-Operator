@@ -1,0 +1,99 @@
+{
+  "status": "observed_terminal_candidate",
+  "observed_at_utc": "2026-10-12T00:49:47.795509+00:00",
+  "exec_session": 72835,
+  "SCI": "f1ebdb7d83b1563899032054c4125e23eed9426a3f3c8bf220d791cf0d8d40f0",
+  "guard": {
+    "pid": 395,
+    "ppid": 392,
+    "start_ticks": 797,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_signed_stress_guard_v85",
+      "--start",
+      "--plan",
+      "notes/geobc_signed_stress_factorization_v85_plan.json"
+    ]
+  },
+  "child": {
+    "pid": 397,
+    "ppid": 395,
+    "start_ticks": 977,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_signed_stress_v85",
+      "--start",
+      "--plan",
+      "notes/geobc_signed_stress_factorization_v85_plan.json"
+    ]
+  },
+  "boot_id": "b32bb24c-2bb7-4a0f-ba84-d4b190c2be7c",
+  "exact_processes_live": [
+    false,
+    false
+  ],
+  "phase": "terminal",
+  "elapsed_epoch_seconds": 47.94810342788696,
+  "steps": {
+    "FNO9_SIGN_MAGNITUDE_AUX": 900
+  },
+  "qualification": {
+    "FNO9_SIGN_MAGNITUDE_AUX": {
+      "passed": true,
+      "largest_case": "229_200/ver",
+      "original_nodes": 242936,
+      "total_objective": 1.026607595569708,
+      "loss_components": {
+        "physical_relative_squared": 0.956859384541503,
+        "energy_weighted_sign_BCE": 0.69748211028205,
+        "auxiliary_weight": 0.1,
+        "total_objective": 1.026607595569708
+      },
+      "parameter_gradients": {
+        "encoder": {
+          "missing": [],
+          "finite": true,
+          "L2": 0.07579489813396888
+        },
+        "head": {
+          "missing": [],
+          "finite": true,
+          "L2": 0.2561326937189572
+        },
+        "operator": {
+          "missing": [],
+          "finite": true,
+          "L2": 0.006846764812229239
+        }
+      },
+      "shared_leaf_gradients": {
+        "context": 0.005837639328092337,
+        "latent": 0.00015329640882555395
+      },
+      "stress_output_row_gradients": {
+        "magnitude": 0.00033238643663935363,
+        "sign": 0.03755771368741989
+      },
+      "query_check": {
+        "passed": true,
+        "actual_case_key": "229_200/ver",
+        "actual_queries": 64,
+        "coordinate_gradient_L2": 0.07357662171125412,
+        "chunk_max_absolute_error": 2.2351741790771484e-08,
+        "declared_absolute_tolerance": 3e-05,
+        "native25_held_constant": true,
+        "independent_offnode_FEM_accuracy_proven": false,
+        "precision": "FP32"
+      },
+      "model_unchanged": true,
+      "Adam_unchanged": true,
+      "fourRNG_restored": true,
+      "epoch_seconds": 1.1324691772460938,
+      "monotonic_seconds": 1.1324696199999984
+    }
+  }
+}
