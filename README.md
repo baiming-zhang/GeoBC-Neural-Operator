@@ -45,4 +45,4 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore`，未知内容拒绝覆盖。[私人GitHub](https://github.com/baiming-zhang/GeoBC-Neural-Operator)发布代码、配置、标量报告、图和检查点索引；原数据及项目训练检查点留本地。
 
-最新已验证私人提交 `05d0c9c`：官方U-NO真实短筛选负结果、两次零更新失败／恢复与CPU图表，以及仅设计的物理树模型和依赖准备已交付。发布76.38秒、60份变化文件，前中后private身份和exact commit/tree/blobs核实。GBDT仍未训练。[发布状态](notes/github_publish_plan.json)。
+私人仓库已交付官方U-NO短筛选、GPU物理张量树模型400轮实际结果，以及两个此前未使用标签的预留CAD上的冻结模型比较；完整报告、图表与失败历史均保留。动态图几何编码器目前仅设计，未实现或训练。每次发布均核实私人仓库身份、远端确切提交／树／变化文件；发布索引按下一次有意义实验快照更新。[发布状态](notes/github_publish_plan.json)。
