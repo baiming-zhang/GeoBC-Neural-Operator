@@ -1,0 +1,49 @@
+{
+  "status": "scientific_negative_closed",
+  "created_at_utc": "2026-10-12T02:27:12.436649+00:00",
+  "SCI": "096aa9c4f751b971876938aa8d93d68db6138ece96d07bde099be57483330595",
+  "terminal_binding": {
+    "summary": {
+      "path": "runs/geobc_exploration/FNO_local_spatial_TRAIN9_v88/summary.json",
+      "bytes": 31395,
+      "mtime_ns": 1791771564618710300,
+      "sha256": "f9f36d44cb71cfd5edf154ab625ea673dce9865e15240e5307d360435a84861e"
+    },
+    "status": {
+      "path": "runs/geobc_exploration/FNO_local_spatial_TRAIN9_v88/status.json",
+      "bytes": 31395,
+      "mtime_ns": 1791771564621710600,
+      "sha256": "f9f36d44cb71cfd5edf154ab625ea673dce9865e15240e5307d360435a84861e"
+    },
+    "external": {
+      "path": "runs/geobc_exploration/FNO_local_spatial_TRAIN9_v88/external_terminal.json",
+      "bytes": 27478,
+      "mtime_ns": 1791771565276912700,
+      "sha256": "d430f17fd04ad79c5b5c541391b4222c6c8254432b64881c7c01cbe0d4c8bbd7"
+    }
+  },
+  "TRAIN_gate": {
+    "passed": false,
+    "U_difference": -0.015609706429920933,
+    "S_difference": 0.003099526900958549,
+    "primary_difference": -0.006255089764481192,
+    "hotspot_difference": 0.003889231410919458,
+    "thresholds": {
+      "stress_absolute_improvement_min": 0.05,
+      "primary_absolute_improvement_min": 0.03,
+      "field_deterioration_max": 0.02,
+      "hotspot_deterioration_max": 0.02,
+      "fixed_denominator": 9
+    },
+    "fixed_denominator": 9,
+    "direction": "local spatial FNO operator minus preserved plain77 scalar; extra spatial propagation/capacity",
+    "automatic_larger_experiment_released": false
+  },
+  "PNG_visually_accepted": true,
+  "actual_export_count": 1,
+  "CPU_export_actual_seconds": 1.130286147,
+  "automatic_expand": false,
+  "DEV_FINAL_reads": 0,
+  "decision": "Close fixed four zero-initialized kernel3 spatial branches: U improves1.56pp but signedS deteriorates. No kernel/width/modes/seed/loss search or DEV rescue. Not all spatial or multiscale operator upper bound.",
+  "next_macro": "Screen pinned official U-NO multiresolution encoder-decoder as a different solver architecture, not more local-kernel tuning."
+}

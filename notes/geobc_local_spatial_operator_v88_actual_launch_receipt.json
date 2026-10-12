@@ -1,0 +1,44 @@
+{
+  "status": "actual_running",
+  "observed_at_utc": "2026-10-12T02:19:21.851932+00:00",
+  "exec_session": 63896,
+  "SCI": "096aa9c4f751b971876938aa8d93d68db6138ece96d07bde099be57483330595",
+  "guard_process": {
+    "pid": 274,
+    "ppid": 273,
+    "start_ticks": 7332,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.run_geobc_local_spatial_guard_v88",
+      "--start",
+      "--plan",
+      "notes/geobc_local_spatial_operator_v88_plan.json"
+    ]
+  },
+  "child_process": {
+    "pid": 367,
+    "ppid": 274,
+    "start_ticks": 7499,
+    "argv": [
+      "/home/research/.venvs/geobc/bin/python",
+      "-u",
+      "-m",
+      "tools.train_geobc_local_spatial_v88",
+      "--start",
+      "--plan",
+      "notes/geobc_local_spatial_operator_v88_plan.json"
+    ]
+  },
+  "boot_id": "c474896f-ab73-40cd-9a03-a3494e2e408a",
+  "exact_live": [
+    true,
+    true
+  ],
+  "phase": "training",
+  "elapsed_epoch_seconds": 36.32352566719055,
+  "steps": {
+    "FNO9_LOCAL3D_BRANCH": 684
+  }
+}

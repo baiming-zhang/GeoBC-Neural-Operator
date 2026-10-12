@@ -19,7 +19,9 @@ Hash应力只好0.62个百分点，联合误差好0.19个百分点，未达到�
 
 位移真值的物理闭合诊断已完成（7.70秒）：固定恢复公式的应力幅值误差仍10.78%，旧有限元位移为10.77%。这部分差异主要不是位移求解造成；不能把此proxy当原应力精确定义，也不能当49%神经模型误差的下限。原signed标签保持，不猜符号规则。[诊断](results/geobc_reference_vm_closure_v87/BRIEF.md)。
 
-下一项**仅设计，尚未实现或运行**：在FNO频域块内加入局部3D空间传播，先做原九TRAIN场／900次更新短对照，检验场表示结构，而非Hash、损失或训练时长微调。[设计](notes/geobc_local_spatial_operator_v88_design.json)。
+局部空间FNO对照已完成（47.10秒）：位移22.69%→21.13%，应力41.69%→42.00%，未通过门，固定分支关闭。[结果](results/geobc_local_spatial_operator_v88/BRIEF.md)。
+
+下一项**仅设计，尚未实现或运行**：用已在本地的官方U-NO实现，比较双尺度U形场算子与普通FNO。先九TRAIN场／900更新，保持原输入／查询头／物理标签；容量和复数谱参数的Adam实现差异如实记录。[设计](notes/geobc_official_UNO_v89_design.json)。
 
 ## 数据与复现边界
 
@@ -35,4 +37,4 @@ WSL `cold-surge-ubuntu-24.04`，Python `/home/research/.venvs/geobc/bin/python`�
 
 新克隆运行 `python tools/restore_geobc_source_line_endings.py --check`；仅行尾差异可用 `--restore`，未知内容拒绝覆盖。[私人GitHub](https://github.com/baiming-zhang/GeoBC-Neural-Operator)发布代码、配置、标量报告、图和检查点索引；原数据及项目训练检查点留本地。
 
-最新已验证私人提交 `b2c7a0f` 包含符号／幅值短验证及几何设计。本轮几何实际结果与物理诊断当前已验收，发布准备中；下一局部空间算子仍仅设计。[发布状态](notes/github_publish_plan.json)。
+前一次私人提交 `d9b31b1` 已验证。**本快照新增47.10秒局部空间算子的实际负结果、源码、图表和真实收据，并仅包含下一官方U-NO的设计。** 不把新算法设计当成已训练结果。[发布状态](notes/github_publish_plan.json)。
