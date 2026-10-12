@@ -1,0 +1,22 @@
+{
+  "question": "Does the learned compact model preserve its U/S predictions and coordinate gradients through the located API?",
+  "CADs": ["120_153", "131_345", "131_351"],
+  "input_mode": "FIELDWISE",
+  "checkpoint_seed": 2026,
+  "selection": "First registered shared-trunk seed; no best-seed selection",
+  "loads": ["ver", "hor", "tor"],
+  "geometry_cell_rows": 24,
+  "interior_barycentric": [[0.2, 0.25, 0.1, 0.45], [0.35, 0.15, 0.3, 0.2]],
+  "nodal_witnesses_per_CAD": 8,
+  "interior_query_rows": 432,
+  "nodal_query_rows": 72,
+  "outside_decisions": 9,
+  "coordinate_gradient_points": 18,
+  "same_model_relative_tolerance": 1e-5,
+  "zero_absolute_tolerance": 1e-6,
+  "whole_seconds": 900,
+  "memory_bytes": 30500000000,
+  "GT_reads": 0,
+  "training_updates": 0,
+  "reference_policy": "All 504 new query rows saved before reading nine first-seed nodal predictions from the shared-trunk learning experiment"
+}

@@ -50,6 +50,7 @@ def run(args):
         from geobc.physics_inputs import local_path
         from geobc.learning_data import LearningCache
         from geobc.kinematic_neural_field import KinematicCovariateFNO
+        from geobc.fieldwise_neural_field import FieldwiseCovariateFNO
         from geobc.neural_response import LocatedNeuralResponse,LocatedFieldwiseNeuralResponse
         from geobc.query import shape
         scale=json.loads(Path('configs/output_scaler.json').read_text())
@@ -59,14 +60,15 @@ def run(args):
             torch.cuda.set_per_process_memory_fraction(config['memory_bytes']/torch.cuda.get_device_properties(0).total_memory)
             torch.cuda.reset_peak_memory_stats()
             tick=(time.time(),time.monotonic())
-            routes=config.get('field_routes',{'joint':'ACTUAL'})
+            routes=config.get('field_routes',{'joint':config.get('input_mode','ACTUAL')})
             models={}
             for field,mode in routes.items():
                 path=catalog['checkpoints'][field] if 'field_routes' in config else catalog['checkpoint']
                 checkpoint=torch.load(local_path(path),map_location='cpu',weights_only=False);state['checkpoint_reads']+=1
                 if checkpoint['arm']!=mode.lower()+'_seed2026' or checkpoint['cursor']!=6000:
                     raise ValueError('Expected first-seed trained endpoint')
-                model=KinematicCovariateFNO(mode,2026).cuda();model.load_state_dict(checkpoint['model']);model.eval()
+                model=(FieldwiseCovariateFNO(2026) if mode=='FIELDWISE' else KinematicCovariateFNO(mode,2026)).cuda()
+                model.load_state_dict(checkpoint['model']);model.eval()
                 models[field]=model;del checkpoint
             state['model_parameters']=sum(sum(p.numel() for p in model.parameters()) for model in models.values())
             state['field_routes']=routes

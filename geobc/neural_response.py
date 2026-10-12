@@ -8,7 +8,7 @@ from .physical_loss import decode
 
 class LocatedNeuralResponse:
     def __init__(self,model,vertices,cells,covariates,reference_load6,cases,scale,guard):
-        if model.input_mode not in {'ACTUAL','U_ONLY','GRAD_ONLY'} or set(cases)!={'ver','hor','tor'}:
+        if model.input_mode not in {'ACTUAL','U_ONLY','GRAD_ONLY','FIELDWISE'} or set(cases)!={'ver','hor','tor'}:
             raise ValueError('Registered physical-input canonical cases required')
         self.model,self.cases,self.scale,self.guard=model,cases,scale,guard
         self.covariates=KinematicCovariateQuery(torch,vertices,cells,covariates,reference_load6,guard)

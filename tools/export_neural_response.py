@@ -28,9 +28,10 @@ def export(run,output):
     (output/'metrics.json').write_text(json.dumps(metrics,indent=2)+'\n',encoding='utf-8')
     passed=state.get('continuous_interface_passed',False)
     routed=state.get('field_routes',{}).get('U')=='U_ONLY'
+    compact=state.get('field_routes',{}).get('joint')=='FIELDWISE'
     nodal_rows=len(rows)*8
-    title='# Fieldwise continuous U/S response\n\n' if routed else '# Continuous learned U/S response\n\n'
-    route_text=('U comes from the U_ONLY model and S from the GRAD_ONLY model, sharing point location and input interpolation. Two networks contain 9,056,788 parameters in total. The routes were selected from development results; the first seed is used. ' if routed else 'The first preregistered seed is used. ')
+    title='# Compact continuous U/S response\n\n' if compact else '# Fieldwise continuous U/S response\n\n' if routed else '# Continuous learned U/S response\n\n'
+    route_text=('A single 4,554,762-parameter model shares its geometry/FNO trunk, with U3 inputs for the U head and gradient9 inputs for the S head. The first registered seed is used. ' if compact else 'U comes from the U_ONLY model and S from the GRAD_ONLY model, sharing point location and input interpolation. Two networks contain 9,056,788 parameters in total. The routes were selected from development results; the first seed is used. ' if routed else 'The first preregistered seed is used. ')
     (output/'README.md').write_text(title+
         f"Interface checks {'passed' if passed else 'did not pass'} on the fixed three CADs. "
         f"{state['predicted_rows']} physical U/S query rows were saved, including {state['predicted_rows']-nodal_rows} interior rows and {nodal_rows} nodal witnesses. "
