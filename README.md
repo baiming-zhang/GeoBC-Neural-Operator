@@ -25,6 +25,7 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 - [Shared-trunk field-specific learning](results/shared_trunk_field_learning/README.md)
 - [Compact continuous U/S response](results/compact_neural_response/README.md): 504 new query rows passed using the first registered shared-trunk seed.
 - [Final-set target-free sources](results/final_sources/README.md): all 20 fixed CADs have qualified geometry and three canonical loads; U/S labels remain unread.
+- [Final-set physical inputs](results/final_physical_inputs/README.md): all 20 CADs and 60 loads passed the full-node checks in 613.90 s UTC / 562.01 s monotonic, without reading target fields. The frozen ZERO and shared-trunk models will each be evaluated across three seeds; all 360 predictions must be saved before the shared final-label readout.
 - [Physical-information learning](results/physical_information_learning/README.md)
 - [Continuous learned U/S response](results/continuous_neural_response/README.md)
 - [Fieldwise continuous U/S response](results/fieldwise_neural_response/README.md): displacement-input U and gradient-input S share point location; all 432 new query rows passed.

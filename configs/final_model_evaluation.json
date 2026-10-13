@@ -1,0 +1,23 @@
+{
+  "question": "Evaluate the fixed compact model against its matched zero-physical-input control on reserved FINAL20",
+  "scientific_group": "FINAL",
+  "seeds": [2026, 2027, 2028],
+  "modes": ["ZERO", "FIELDWISE"],
+  "loads": ["ver", "hor", "tor"],
+  "CAD_denominator": 20,
+  "load_denominator": 60,
+  "prediction_denominator": 360,
+  "checkpoint_cursor": 6000,
+  "output_scaler": "original training40",
+  "decoder_chunk_nodes": 32768,
+  "memory_bytes": 30500000000,
+  "whole_seconds": 1800,
+  "readout_policy": "All six models save complete finite 60-case predictions before one shared original final field parse per CAD",
+  "GT_columns": ["ver_x_disp(mm)", "ver_y_disp(mm)", "ver_z_disp(mm)", "ver_stress(MPa)", "hor_x_disp(mm)", "hor_y_disp(mm)", "hor_z_disp(mm)", "hor_stress(MPa)", "tor_x_disp(mm)", "tor_y_disp(mm)", "tor_z_disp(mm)", "tor_stress(MPa)"],
+  "metrics": "Full-original-node relative U3 and signed S errors in percent; primary is their equal mean",
+  "selection_policy": "All three registered seeds; architecture and models selected before final labels; no final-set training, hyperparameter changes, case substitution or best-seed choice",
+  "parameters": {"ZERO": 4528394, "FIELDWISE": 4554762},
+  "practical_benefit": {"mean_primary_reduction_pp": 3, "mean_stress_reduction_pp": 3, "primary_seed_wins": 2},
+  "training_updates": 0,
+  "scaler_fits": 0
+}
