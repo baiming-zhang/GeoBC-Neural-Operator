@@ -1,0 +1,53 @@
+{
+  "CAD": "21_119",
+  "seed": 2026,
+  "loads": [
+    "ver",
+    "hor",
+    "tor"
+  ],
+  "nodes": 216493,
+  "cells": 135602,
+  "surface_subtriangles": 139408,
+  "models": [
+    "zero_seed2026",
+    "fieldwise_seed2026"
+  ],
+  "full_node_metrics": {
+    "ver": {
+      "zero_seed2026": {
+        "U_relative_percent": 14.672977068893664,
+        "S_relative_percent": 39.79501412699656
+      },
+      "fieldwise_seed2026": {
+        "U_relative_percent": 10.21565423808997,
+        "S_relative_percent": 29.71704622310915
+      }
+    },
+    "hor": {
+      "zero_seed2026": {
+        "U_relative_percent": 13.552610738126253,
+        "S_relative_percent": 46.25894945044453
+      },
+      "fieldwise_seed2026": {
+        "U_relative_percent": 7.400647264521671,
+        "S_relative_percent": 35.23668997373235
+      }
+    },
+    "tor": {
+      "zero_seed2026": {
+        "U_relative_percent": 15.655734740945674,
+        "S_relative_percent": 35.6136575277681
+      },
+      "fieldwise_seed2026": {
+        "U_relative_percent": 11.669434177239953,
+        "S_relative_percent": 29.209695229194317
+      }
+    }
+  },
+  "stress_label": "Original signed scalar S in MPa; no inferred VM sign rule",
+  "visualization": "Reference PPT three-column layout, turbo fields, magma error; linear field scales; errors normalized by all-node truth RMS, common display limit 50%",
+  "template_slide": "p9",
+  "template_presentation": "1g5S0QCZSDR_igYFWFe20SQ3nw2yvgYbXk_t4QSmKpBU",
+  "truth_use": "Read the revealed CAD fields for requested visualization after the completed final prediction barrier; no training or new inference"
+}

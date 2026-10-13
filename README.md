@@ -27,6 +27,7 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 
 ## Results
 
+- [Saved-model field maps](results/field_comparison/README.md): displacement, original signed stress and RMS-normalized spatial errors for ZERO and FIELDWISE, using the original presentation's layout and palette.
 - [Fixed final-set model evaluation](results/final_evaluation/README.md): checkpoint/cache/inference/save/readout cost 96.07 s UTC / 87.20 s monotonic. Physical inputs and training are charged separately.
 - [Prepared coordinate-response delivery](results/prepared_response_delivery/README.md): all 20 final CADs, 1,200 new interior responses and 60 outside refusals; one first-seed model load, 70.90 s UTC / 64.99 s monotonic, no GT or training.
 - [Displacement and gradient contributions](results/input_components/README.md): U-only inputs reach 11.717% U error; gradient-only inputs reach 35.471% S error across the same three seeds and 20 development CADs.
