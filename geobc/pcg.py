@@ -5,6 +5,7 @@ import torch
 def solve(apply, rhs, precondition, guard=lambda: None, checkpoint=None,
           tolerance=1e-8, maximum_iterations=10000, seconds=300):
     started = time.monotonic()
+    started_epoch = time.time()
     norm = torch.linalg.vector_norm(rhs, dim=(1, 2))
     if not bool((norm > 0).all()):
         raise ValueError('Each lane needs a nonzero reduced RHS')
@@ -28,7 +29,7 @@ def solve(apply, rhs, precondition, guard=lambda: None, checkpoint=None,
             raise ArithmeticError('PCG initial preconditioner breakdown')
         for step in range(1, maximum_iterations+1):
             guard()
-            if time.monotonic()-started >= seconds-10:
+            if max(time.time()-started_epoch,time.monotonic()-started) >= seconds-10:
                 break
             iterations[active] += 1
             Ap = apply(p)
@@ -64,4 +65,5 @@ def solve(apply, rhs, precondition, guard=lambda: None, checkpoint=None,
     finally:
         save()
     return x, {'iterations': iterations.cpu().tolist(), 'true_relative_residual': relative.cpu().tolist(),
-               'converged': bool((relative <= tolerance).all()), 'seconds': time.monotonic()-started, 'trace': trace}
+               'converged': bool((relative <= tolerance).all()), 'seconds': time.monotonic()-started,
+               'elapsed_seconds': {'UTC':time.time()-started_epoch,'monotonic':time.monotonic()-started}, 'trace': trace}

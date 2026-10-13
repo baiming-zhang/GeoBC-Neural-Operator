@@ -1,0 +1,17 @@
+{
+  "question": "Qualify all fixed final-set geometry and canonical-load sources before model predictions or label access",
+  "scientific_group": "FINAL",
+  "CAD_denominator": 20,
+  "load_denominator": 60,
+  "loads": ["ver", "hor", "tor"],
+  "input_numeric_columns": ["nodeID", "coord_x(mm)", "coord_y(mm)", "coord_z(mm)"],
+  "row_mapping": "Reuse the existing H5-to-CSV permutation; require 0.0002 mm alignment, no refit",
+  "physics_recipe": "configs/physics.json",
+  "source_seconds": 300,
+  "whole_seconds": 1800,
+  "GT_reads": 0,
+  "GPU_calls": 0,
+  "K_PCG_runs": 0,
+  "model_selection": "Shared-trunk field-specific model and frozen ZERO control, all three registered seeds; no final-set tuning",
+  "final_policy": "Only geometry and load inputs in this stage; all selected models must save complete predictions before a shared final label comparison"
+}
