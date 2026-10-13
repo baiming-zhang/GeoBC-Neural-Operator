@@ -2,7 +2,9 @@
 
 Geometry, loads and boundary conditions for displacement and signed-stress prediction on original DeepJEB.
 
-The compact hybrid model now shares one geometry/FNO trunk and uses field-specific input heads: **11.569% mean U error / 34.819% signed S error** across three seeds on the same 20 development CADs. Its 4,554,762 parameters retain the component models' accuracy within the predeclared 1-point margin, using about half the two-network route's parameters.
+The frozen compact hybrid model reaches **11.629% mean U error / 34.247% signed S error** across three seeds on the fixed 20 final CADs and three loads. Its matched zero-physical-input control reaches 21.255% / 47.003%; the mean joint score improves by 11.191 percentage points, with all three paired seed wins. All 360 full-node predictions were saved before one shared final-label readout. The predeclared practical-benefit criterion passed, without final-set tuning.
+
+The model shares one geometry/FNO trunk and uses field-specific input heads. Its 4,554,762 parameters retain the component models' development accuracy within the predeclared 1-point margin, using about half the two-network route's parameters. This is an identity-disjoint, availability-conditional evaluation within the official training pool; shape-family separation is not established. Signed stress remains substantially less accurate than displacement.
 
 The physical displacement route reached **0.01589% mean error** and **0.02621% worst error** across 20 known development CADs and three loads. The joint U/S neural baseline remains the smaller FNO; signed stress is the main unresolved accuracy bottleneck.
 
@@ -21,14 +23,13 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 
 ## Results
 
+- [Fixed final-set model evaluation](results/final_evaluation/README.md): checkpoint/cache/inference/save/readout cost 96.07 s UTC / 87.20 s monotonic. Physical inputs and training are charged separately.
 - [Displacement and gradient contributions](results/input_components/README.md): U-only inputs reach 11.717% U error; gradient-only inputs reach 35.471% S error across the same three seeds and 20 development CADs.
 - [Shared-trunk field-specific learning](results/shared_trunk_field_learning/README.md)
 - [Compact continuous U/S response](results/compact_neural_response/README.md): 504 new query rows passed using the first registered shared-trunk seed.
-- [Final-set target-free sources](results/final_sources/README.md): all 20 fixed CADs have qualified geometry and three canonical loads; U/S labels remain unread.
-- [Final-set physical inputs](results/final_physical_inputs/README.md): all 20 CADs and 60 loads passed the full-node checks in 613.90 s UTC / 562.01 s monotonic, without reading target fields. The frozen ZERO and shared-trunk models will each be evaluated across three seeds; all 360 predictions must be saved before the shared final-label readout.
+- [Final-set target-free sources](results/final_sources/README.md): all 20 fixed CADs have qualified geometry and three canonical loads, produced before the label readout.
+- [Final-set physical inputs](results/final_physical_inputs/README.md): all 20 CADs and 60 loads passed the full-node checks in 613.90 s UTC / 562.01 s monotonic, without reading target fields.
 - [Physical-information learning](results/physical_information_learning/README.md)
-- [Continuous learned U/S response](results/continuous_neural_response/README.md)
-- [Fieldwise continuous U/S response](results/fieldwise_neural_response/README.md): displacement-input U and gradient-input S share point location; all 432 new query rows passed.
 - [Neural baselines](results/neural_baselines/README.md)
 - [Development displacement accuracy](results/displacement_accuracy/README.md)
 - [Reserve displacement accuracy](results/reserve_displacement_accuracy/README.md)
