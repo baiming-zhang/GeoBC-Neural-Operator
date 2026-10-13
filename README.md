@@ -2,6 +2,8 @@
 
 Geometry, loads and boundary conditions for displacement and signed-stress prediction on original DeepJEB.
 
+The [paper evidence chain](docs/paper_logic.md) separates **historical backbone/package selection → matched physical-information gains → input-group ablation and compact Fieldwise design**, followed by frozen final evaluation. Historical Transolver results are preserved in [backbone_comparison](results/backbone_comparison/README.md), separately from the latest three-seed physically enhanced experiments. The [five original historical reports](results/research_history/README.md) are retained unchanged as the source layer.
+
 The frozen compact hybrid model reaches **11.629% mean U error / 34.247% signed S error** across three seeds on the fixed 20 final CADs and three loads. Its matched zero-physical-input control reaches 21.255% / 47.003%; the mean joint score improves by 11.191 percentage points, with all three paired seed wins. All 360 full-node predictions were saved before one shared final-label readout. The predeclared practical-benefit criterion passed, without final-set tuning.
 
 The model shares one geometry/FNO trunk and uses field-specific input heads. Its 4,554,762 parameters retain the component models' development accuracy within the predeclared 1-point margin, using about half the two-network route's parameters. This is an identity-disjoint, availability-conditional evaluation within the official training pool; shape-family separation is not established. Signed stress remains substantially less accurate than displacement.
@@ -27,6 +29,8 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 
 ## Results
 
+- [Historical backbone/package comparison](results/backbone_comparison/README.md): FNO, original Transolver, Transolver++, Transolver3 and MLP; separate experiment groups with split, capacity, precision and cost scope. Archival selection evidence, not the latest final-set ranking.
+- [Original research reports](results/research_history/README.md): 30 early experiments; geometry/BC/kinematics exploration; FNO/Transolver comparison; common-grid capacity control; physical-solver research history. Original versions are dated historical records.
 - [Saved-model field maps](results/field_comparison/README.md): displacement, original signed stress and RMS-normalized spatial errors for ZERO and FIELDWISE, using the original presentation's layout and palette.
 - [Fixed final-set model evaluation](results/final_evaluation/README.md): checkpoint/cache/inference/save/readout cost 96.07 s UTC / 87.20 s monotonic. Physical inputs and training are charged separately.
 - [Prepared coordinate-response delivery](results/prepared_response_delivery/README.md): all 20 final CADs, 1,200 new interior responses and 60 outside refusals; one first-seed model load, 70.90 s UTC / 64.99 s monotonic, no GT or training.

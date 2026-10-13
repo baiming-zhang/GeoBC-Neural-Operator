@@ -1,5 +1,7 @@
 # Shared-trunk field-specific learning
 
+The preceding [input-group ablation](../input_components/README.md) showed that U-only inputs benefited U most while gradient-only inputs retained the S benefit. This experiment tests a compact implementation of that field routing, not a new historical-backbone ranking. See the [paper evidence chain](../../docs/paper_logic.md).
+
 Three fresh seeds use one geometry/FNO trunk and separate U3-input and gradient9-input heads. Each seed sees the same 100 CADs, 300 load cases and 20 training passes. The original training40 output scaler remains fixed.
 
 | Model | Mean U error | Mean S error | Mean primary |

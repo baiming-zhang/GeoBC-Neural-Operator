@@ -1,5 +1,7 @@
 # Physical information in joint U/S learning
 
+This stage tests added predictor information after [backbone/package selection](../backbone_comparison/README.md). Its matched ZERO control uses the same enlarged decoder as ACTUAL; an older Transolver or smaller plain-FNO result cannot replace that control. See the [paper evidence chain](../../docs/paper_logic.md).
+
 Three matched seeds on 100 training CADs and 20 known development CADs. ACTUAL met the fixed practical-benefit criterion. Mean improvement over ZERO: U 6.384 pp, S 13.421 pp, primary 9.903 pp.
 
 Models share capacity, initialization, case order, 20 passes, loss and the original training40 output scaler. All 360 full-node development predictions were saved before the 60 shared original U/S targets were read. The development CADs are iterated rather than blind. Physics input production costs are reported separately.

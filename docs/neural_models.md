@@ -1,8 +1,8 @@
 # Neural models
 
-The default joint-field reference is a geometry-conditioned FNO with a pointwise decoder for three U components and the original signed S. The latest matched comparison is in results/neural_baselines/.
+The default joint-field reference is a geometry-conditioned FNO with a pointwise decoder for three U components and the original signed S. Historical backbone/package selection is in results/backbone_comparison/; the later three-seed plain-FNO versus Hash-decoder confirmation is in results/neural_baselines/. The historical TS comparisons are single-seed development or fitting diagnostics with their own input, capacity, precision and cost scopes. They do not establish a universal architecture ranking or a new FINAL comparison against the current enhanced model. See docs/paper_logic.md for the evidence chain.
 
-The next information experiment adds 12 physical covariates: three displacement components and nine volume-averaged displacement-gradient components multiplied by 1000. ZERO and ACTUAL inputs use the same enlarged decoder and initialization. The three-seed experiment improved mean U by 6.384 pp and signed S by 13.421 pp, with all three paired primary wins. The result is in results/physical_information_learning/.
+After backbone selection, the matched information experiment added 12 physical covariates: three displacement components and nine volume-averaged displacement-gradient components multiplied by 1000. ZERO and ACTUAL use the same enlarged decoder and initialization. The three-seed experiment improved mean U by 6.384 pp and signed S by 13.421 pp, with all three paired primary wins. See results/physical_information_learning/. Historical PHYSICAL experiment names describe physical-unit targets/loss, not these added covariates; the historical TS results are not a matched control for this new experiment.
 
 The located U/S API accepts physical XYZ(mm) and a registered canonical load, with explicit outside-domain rejection and coordinate gradients. Its current compact-model checks are in results/compact_neural_response/.
 
