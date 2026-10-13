@@ -12,3 +12,15 @@ Primary improves by 11.191 pp, with 3/3 paired seed wins. The predeclared practi
 The seeds share the same 20 CADs. This is an availability-conditional, identity-disjoint evaluation within the official training pool; separation by shape family is not established. Original signed S labels are used directly, without assuming an export sign rule.
 
 Actual checkpoint/cache/inference/save/readout cost: UTC 96.068s / monotonic 87.197s. Physical-input generation and model training are reported separately.
+
+## Load and CAD consistency
+
+Derived only from the saved scalar case errors; no field arrays or labels were reopened. Each load mean uses the same 20 CADs and three registered seeds.
+
+| Load | ZERO U / S | FIELDWISE U / S | Primary reduction |
+|---|---:|---:|---:|
+| ver | 21.447% / 49.603% | 10.490% / 34.350% | 13.106 pp |
+| hor | 20.010% / 50.331% | 8.815% / 36.540% | 12.493 pp |
+| tor | 22.306% / 41.074% | 15.584% / 31.850% | 7.973 pp |
+
+Averaging the three loads and seeds within each CAD, FIELDWISE improves U on 20/20 CADs, S on 20/20, and primary on 20/20. These are paired descriptive counts over 20 shared CADs, not 60 independent seed-CAD samples. No final-case or seed selection follows this analysis.

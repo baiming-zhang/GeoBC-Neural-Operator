@@ -20,10 +20,15 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 - `geobc/support_response.py`, `geobc/reference_response.py`: load and boundary response bases.
 - `geobc/kinematics.py`: physical U and full-gradient input recovery.
 - `geobc/kinematic_neural_field.py`: prepared ZERO/ACTUAL input comparison.
+- `geobc/fieldwise_neural_field.py`: compact shared-trunk U/S model.
+- `geobc/deployment.py`, `tools/query_response.py`: one-model prepared-cache XYZ request session and JSONL command.
+
+[Query usage](docs/response_usage.md) describes the private prepared catalog, physical units and explicit rejection behavior.
 
 ## Results
 
 - [Fixed final-set model evaluation](results/final_evaluation/README.md): checkpoint/cache/inference/save/readout cost 96.07 s UTC / 87.20 s monotonic. Physical inputs and training are charged separately.
+- [Prepared coordinate-response delivery](results/prepared_response_delivery/README.md): all 20 final CADs, 1,200 new interior responses and 60 outside refusals; one first-seed model load, 70.90 s UTC / 64.99 s monotonic, no GT or training.
 - [Displacement and gradient contributions](results/input_components/README.md): U-only inputs reach 11.717% U error; gradient-only inputs reach 35.471% S error across the same three seeds and 20 development CADs.
 - [Shared-trunk field-specific learning](results/shared_trunk_field_learning/README.md)
 - [Compact continuous U/S response](results/compact_neural_response/README.md): 504 new query rows passed using the first registered shared-trunk seed.
