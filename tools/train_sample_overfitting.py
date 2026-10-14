@@ -92,7 +92,9 @@ def run(args):
                         with (folder/'metrics.jsonl').open('a') as f:f.write(json.dumps(last)+'\n')
                         update(phase=name+'/training');return worst
                     try:
-                        model=make_model(method,config['seed']);arm['parameters']=sum(p.numel() for p in model.parameters())
+                        model=make_model(method,config['seed'],config.get('model_settings',{}).get(method));arm['parameters']=sum(p.numel() for p in model.parameters())
+                        if 'parameter_target' in config and abs(arm['parameters']/config['parameter_target']-1)>config['parameter_tolerance']:
+                            raise ValueError('Actual trainable parameter count outside matching tolerance')
                         arm['model_config']=getattr(model,'source_config',{})
                         random.seed(config['seed']);np.random.seed(config['seed'])
                         optimizer=torch.optim.Adam(model.parameters(),lr=config['learning_rate'],fused=True)
@@ -125,10 +127,14 @@ def run(args):
                             if config.get('continuation'):arm['added_updates']=step-arm['starting_step']
                             if step%10==0:update(phase=name+'/training')
                             if step%config['evaluate_every']==0:
-                                scheduler.step(evaluate());checkpoint('last.pt')
-                                if arm['goal_met']:break
-                        if not arm['goal_met'] and (last is None or last['step']!=step):evaluate()
-                        arm['stop_reason']='goal_met' if arm['goal_met'] else 'update_cap'
+                                metric=evaluate()
+                                if not config.get('fixed_learning_rate'):scheduler.step(metric)
+                                checkpoint('last.pt')
+                                if arm['goal_met'] and not config.get('fixed_endpoint'):break
+                        if (last is None or last['step']!=step):evaluate()
+                        if config.get('fixed_endpoint'):
+                            arm['endpoint']=last;arm['goal_met']=last['worst_field_percent']<config['target_relative_l2']*100
+                        arm['stop_reason']='fixed_update_endpoint' if config.get('fixed_endpoint') else ('goal_met' if arm['goal_met'] else 'update_cap')
                         arm['status']='completed'
                     except TimeoutError as exc:
                         if 'Whole-stage' in str(exc):raise

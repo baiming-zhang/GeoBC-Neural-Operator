@@ -1,0 +1,580 @@
+{
+  "config": {
+    "single": [
+      "506_533/ver"
+    ],
+    "five": [
+      "506_533/ver",
+      "506_25/tor",
+      "10_30/ver",
+      "10_421/hor",
+      "10_460/dia"
+    ],
+    "methods": [
+      "mlp",
+      "ngp4",
+      "hashgrid",
+      "tcnn_hash",
+      "fno",
+      "transolver",
+      "transolverpp",
+      "ts3"
+    ],
+    "seed": 2026,
+    "target_relative_l2": 0.01,
+    "max_updates_per_arm": 1000,
+    "arm_seconds": 1800,
+    "whole_seconds": 14400,
+    "memory_bytes": 30500000000,
+    "learning_rate": 0.001,
+    "minimum_learning_rate": 1e-05,
+    "lr_plateau_evaluations": 5,
+    "evaluate_every": 100,
+    "checkpoint_every": 100,
+    "precision": "FP32 model/targets; TF32 allowed; TCNN native FP16 with FP32 master parameters",
+    "selection": "Report exact update1000 endpoint, never best-step or early goal endpoint; best checkpoints retained only for recovery.",
+    "goal": "Every fitted case U-vector and original signed-S relative L2 strictly below 1%; no pooled-only pass",
+    "protocol": "one complete original-node case per optimizer update, cases cycled; no sample ID, physical input, residual teacher, target grid or heldout data",
+    "fixed_endpoint": true,
+    "fixed_learning_rate": true,
+    "parameter_target": 4600000,
+    "parameter_tolerance": 0.01,
+    "model_settings": {
+      "mlp": {
+        "hidden_dim": 1232
+      },
+      "ngp4": {
+        "hidden_dim": 2112
+      },
+      "hashgrid": {
+        "hidden_dim": 704,
+        "hash_grid": {
+          "log2_hashmap_size": 18
+        }
+      },
+      "tcnn_hash": {
+        "n_levels": 13,
+        "log2_hashmap_size": 18
+      },
+      "fno": {
+        "head_width": 320
+      },
+      "transolver": {
+        "n_hidden": 408
+      },
+      "transolverpp": {
+        "n_hidden": 288,
+        "n_layers": 13
+      },
+      "ts3": {
+        "n_hidden": 192,
+        "n_layers": 17
+      }
+    }
+  },
+  "terminal_seconds": {
+    "UTC": 3723.248704433441,
+    "monotonic": 3351.35302020199
+  },
+  "summary": [
+    {
+      "experiment": "single_mlp",
+      "method": "mlp",
+      "group": "single",
+      "parameters": 4597828,
+      "updates": 1000,
+      "U_percent": 2.0096183225895867,
+      "S_percent": 21.91731748724814,
+      "worst_field_percent": 21.91731748724814,
+      "goal_met": false,
+      "UTC_seconds": 75.19914603233337,
+      "monotonic_seconds": 67.97397827298846
+    },
+    {
+      "experiment": "single_ngp4",
+      "method": "ngp4",
+      "group": "single",
+      "parameters": 4617668,
+      "updates": 1000,
+      "U_percent": 1.5980077907515635,
+      "S_percent": 13.509332316303546,
+      "worst_field_percent": 13.509332316303546,
+      "goal_met": false,
+      "UTC_seconds": 83.65158653259277,
+      "monotonic_seconds": 72.81502012899728
+    },
+    {
+      "experiment": "single_hashgrid",
+      "method": "hashgrid",
+      "group": "single",
+      "parameters": 4597956,
+      "updates": 1000,
+      "U_percent": 0.6592130208349005,
+      "S_percent": 0.594127870387363,
+      "worst_field_percent": 0.6592130208349005,
+      "goal_met": true,
+      "UTC_seconds": 40.33449339866638,
+      "monotonic_seconds": 36.72426309398725
+    },
+    {
+      "experiment": "single_tcnn_hash",
+      "method": "tcnn_hash",
+      "group": "single",
+      "parameters": 4597120,
+      "updates": 1000,
+      "U_percent": 1.9335397179949365,
+      "S_percent": 1.5586314592789754,
+      "worst_field_percent": 1.9335397179949365,
+      "goal_met": false,
+      "UTC_seconds": 21.34380030632019,
+      "monotonic_seconds": 21.34380088598118
+    },
+    {
+      "experiment": "single_fno",
+      "method": "fno",
+      "group": "single",
+      "parameters": 4601327,
+      "updates": 1000,
+      "U_percent": 2.3476928094309613,
+      "S_percent": 14.030501827717952,
+      "worst_field_percent": 14.030501827717952,
+      "goal_met": false,
+      "UTC_seconds": 46.73495030403137,
+      "monotonic_seconds": 39.513458240020555
+    },
+    {
+      "experiment": "single_transolver",
+      "method": "transolver",
+      "group": "single",
+      "parameters": 4587195,
+      "updates": 1000,
+      "U_percent": 13.271728219597767,
+      "S_percent": 61.45596331533933,
+      "worst_field_percent": 61.45596331533933,
+      "goal_met": false,
+      "UTC_seconds": 211.62116408348083,
+      "monotonic_seconds": 189.9393334199849
+    },
+    {
+      "experiment": "single_transolverpp",
+      "method": "transolverpp",
+      "group": "single",
+      "parameters": 4610953,
+      "updates": 1000,
+      "U_percent": 16.85156093678521,
+      "S_percent": 68.85498903043053,
+      "worst_field_percent": 68.85498903043053,
+      "goal_met": false,
+      "UTC_seconds": 509.71500611305237,
+      "monotonic_seconds": 461.0731303229986
+    },
+    {
+      "experiment": "single_ts3",
+      "method": "ts3",
+      "group": "single",
+      "parameters": 4562572,
+      "updates": 1000,
+      "U_percent": 13.476330529428393,
+      "S_percent": 66.14942453973376,
+      "worst_field_percent": 66.14942453973376,
+      "goal_met": false,
+      "UTC_seconds": 643.2845668792725,
+      "monotonic_seconds": 578.2295243510162
+    },
+    {
+      "experiment": "five_mlp",
+      "method": "mlp",
+      "group": "five",
+      "parameters": 4597828,
+      "updates": 1000,
+      "U_percent": 12.63509058190586,
+      "S_percent": 55.28097383744266,
+      "worst_field_percent": 61.59033240489994,
+      "goal_met": false,
+      "UTC_seconds": 84.53319549560547,
+      "monotonic_seconds": 77.30915848899167
+    },
+    {
+      "experiment": "five_ngp4",
+      "method": "ngp4",
+      "group": "five",
+      "parameters": 4617668,
+      "updates": 1000,
+      "U_percent": 10.774501600921798,
+      "S_percent": 32.290655825271315,
+      "worst_field_percent": 39.53951462352361,
+      "goal_met": false,
+      "UTC_seconds": 95.34299826622009,
+      "monotonic_seconds": 82.81297815399012
+    },
+    {
+      "experiment": "five_hashgrid",
+      "method": "hashgrid",
+      "group": "five",
+      "parameters": 4597956,
+      "updates": 1000,
+      "U_percent": 5.720861654299441,
+      "S_percent": 2.755804220964189,
+      "worst_field_percent": 7.4902395492282645,
+      "goal_met": false,
+      "UTC_seconds": 44.69067144393921,
+      "monotonic_seconds": 41.09738472200115
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "method": "tcnn_hash",
+      "group": "five",
+      "parameters": 4597120,
+      "updates": 1000,
+      "U_percent": 16.510878684631738,
+      "S_percent": 7.280575239522935,
+      "worst_field_percent": 21.303517778570193,
+      "goal_met": false,
+      "UTC_seconds": 28.67287278175354,
+      "monotonic_seconds": 25.040167698985897
+    },
+    {
+      "experiment": "five_fno",
+      "method": "fno",
+      "group": "five",
+      "parameters": 4601327,
+      "updates": 1000,
+      "U_percent": 6.616610984323988,
+      "S_percent": 26.79578221658084,
+      "worst_field_percent": 33.91068616858805,
+      "goal_met": false,
+      "UTC_seconds": 47.53199362754822,
+      "monotonic_seconds": 43.91643903098884
+    },
+    {
+      "experiment": "five_transolver",
+      "method": "transolver",
+      "group": "five",
+      "parameters": 4587195,
+      "updates": 1000,
+      "U_percent": 86.74325845147057,
+      "S_percent": 93.45806038031145,
+      "worst_field_percent": 102.43369449683756,
+      "goal_met": false,
+      "UTC_seconds": 270.2433762550354,
+      "monotonic_seconds": 244.95616329202312
+    },
+    {
+      "experiment": "five_transolverpp",
+      "method": "transolverpp",
+      "group": "five",
+      "parameters": 4610953,
+      "updates": 1000,
+      "U_percent": 80.19160209481717,
+      "S_percent": 92.13354686867669,
+      "worst_field_percent": 104.79967838603308,
+      "goal_met": false,
+      "UTC_seconds": 671.8954539299011,
+      "monotonic_seconds": 603.2501466980029
+    },
+    {
+      "experiment": "five_ts3",
+      "method": "ts3",
+      "group": "five",
+      "parameters": 4562572,
+      "updates": 1000,
+      "U_percent": 59.769142345820924,
+      "S_percent": 90.09410387786741,
+      "worst_field_percent": 100.00060639702676,
+      "goal_met": false,
+      "UTC_seconds": 843.6936585903168,
+      "monotonic_seconds": 760.598313850991
+    }
+  ],
+  "per_case": [
+    {
+      "experiment": "single_mlp",
+      "sample": "506_533/ver",
+      "U_percent": 2.0096183225895867,
+      "S_percent": 21.91731748724814
+    },
+    {
+      "experiment": "single_ngp4",
+      "sample": "506_533/ver",
+      "U_percent": 1.5980077907515635,
+      "S_percent": 13.509332316303546
+    },
+    {
+      "experiment": "single_hashgrid",
+      "sample": "506_533/ver",
+      "U_percent": 0.6592130208349005,
+      "S_percent": 0.594127870387363
+    },
+    {
+      "experiment": "single_tcnn_hash",
+      "sample": "506_533/ver",
+      "U_percent": 1.9335397179949365,
+      "S_percent": 1.5586314592789754
+    },
+    {
+      "experiment": "single_fno",
+      "sample": "506_533/ver",
+      "U_percent": 2.3476928094309613,
+      "S_percent": 14.030501827717952
+    },
+    {
+      "experiment": "single_transolver",
+      "sample": "506_533/ver",
+      "U_percent": 13.271728219597767,
+      "S_percent": 61.45596331533933
+    },
+    {
+      "experiment": "single_transolverpp",
+      "sample": "506_533/ver",
+      "U_percent": 16.85156093678521,
+      "S_percent": 68.85498903043053
+    },
+    {
+      "experiment": "single_ts3",
+      "sample": "506_533/ver",
+      "U_percent": 13.476330529428393,
+      "S_percent": 66.14942453973376
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "506_533/ver",
+      "U_percent": 20.027316968599795,
+      "S_percent": 50.24932569342482
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "506_25/tor",
+      "U_percent": 11.880014183882546,
+      "S_percent": 61.59033240489994
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "10_30/ver",
+      "U_percent": 12.730067751684956,
+      "S_percent": 56.13028118946969
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "10_421/hor",
+      "U_percent": 8.39024325436471,
+      "S_percent": 61.4908976146367
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "10_460/dia",
+      "U_percent": 10.147810750997293,
+      "S_percent": 46.94403228478211
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "506_533/ver",
+      "U_percent": 16.778804637076643,
+      "S_percent": 29.303736089926687
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "506_25/tor",
+      "U_percent": 11.357164431736145,
+      "S_percent": 30.357197009036803
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "10_30/ver",
+      "U_percent": 11.03404475532744,
+      "S_percent": 31.73632275154672
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "10_421/hor",
+      "U_percent": 8.082310982991832,
+      "S_percent": 39.53951462352361
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "10_460/dia",
+      "U_percent": 6.620183197476941,
+      "S_percent": 30.516508652322777
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "506_533/ver",
+      "U_percent": 7.4902395492282645,
+      "S_percent": 3.164630106181205
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "506_25/tor",
+      "U_percent": 4.377340448100871,
+      "S_percent": 2.3265759157521906
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "10_30/ver",
+      "U_percent": 6.471293611531551,
+      "S_percent": 3.2646775616090675
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "10_421/hor",
+      "U_percent": 5.299668637809869,
+      "S_percent": 2.9054352368664356
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "10_460/dia",
+      "U_percent": 4.965766024826648,
+      "S_percent": 2.117702284412047
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "506_533/ver",
+      "U_percent": 21.303517778570193,
+      "S_percent": 9.804080565457493
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "506_25/tor",
+      "U_percent": 11.854225649181622,
+      "S_percent": 5.054421212889113
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "10_30/ver",
+      "U_percent": 19.466329622053397,
+      "S_percent": 9.426205390322325
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "10_421/hor",
+      "U_percent": 15.26342901629681,
+      "S_percent": 7.697209741921187
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "10_460/dia",
+      "U_percent": 14.666891357056667,
+      "S_percent": 4.420959287024559
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "506_533/ver",
+      "U_percent": 6.591868655957327,
+      "S_percent": 21.07952095772344
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "506_25/tor",
+      "U_percent": 8.405638638374002,
+      "S_percent": 29.320632445306252
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "10_30/ver",
+      "U_percent": 5.522309957569454,
+      "S_percent": 25.01551664684843
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "10_421/hor",
+      "U_percent": 6.617670425335136,
+      "S_percent": 33.91068616858805
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "10_460/dia",
+      "U_percent": 5.945567244384022,
+      "S_percent": 24.65255486443802
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "506_533/ver",
+      "U_percent": 90.57148501257815,
+      "S_percent": 94.28154712696788
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "506_25/tor",
+      "U_percent": 102.43369449683756,
+      "S_percent": 99.94440420460728
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "10_30/ver",
+      "U_percent": 86.64225942665598,
+      "S_percent": 91.7580628595991
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "10_421/hor",
+      "U_percent": 92.48486194304706,
+      "S_percent": 98.51013893836196
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "10_460/dia",
+      "U_percent": 61.583991378234096,
+      "S_percent": 82.79614877202101
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "506_533/ver",
+      "U_percent": 81.15468379959952,
+      "S_percent": 91.59474391312341
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "506_25/tor",
+      "U_percent": 104.79967838603308,
+      "S_percent": 100.30886385537862
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "10_30/ver",
+      "U_percent": 75.19134720214176,
+      "S_percent": 88.11264692706888
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "10_421/hor",
+      "U_percent": 94.24479265987804,
+      "S_percent": 99.37525761118567
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "10_460/dia",
+      "U_percent": 45.567508426433534,
+      "S_percent": 81.27622203662692
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "506_533/ver",
+      "U_percent": 40.81689885502659,
+      "S_percent": 88.3404104048225
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "506_25/tor",
+      "U_percent": 96.77102442954282,
+      "S_percent": 100.00060639702676
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "10_30/ver",
+      "U_percent": 38.02976262245483,
+      "S_percent": 84.39099175244745
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "10_421/hor",
+      "U_percent": 84.17568187679707,
+      "S_percent": 97.72135156594392
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "10_460/dia",
+      "U_percent": 39.052343945283305,
+      "S_percent": 80.01715926909644
+    }
+  ],
+  "scientific_array_reads_by_exporter": 0
+}

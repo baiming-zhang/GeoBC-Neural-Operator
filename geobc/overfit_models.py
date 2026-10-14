@@ -3,7 +3,7 @@ import torch
 from torch import nn
 from .fno import FNO3d, query_grid
 from .overfit_coordinate_fields import build_model, ModelConfig, HashGridConfig
-from .overfit_tcnn import TCNNField
+from .overfit_tcnn import TCNNField,TCNNFieldConfig
 from .overfit_transformers import build_transformer
 
 
@@ -26,27 +26,29 @@ def prepare_grid(case, resolution=64):
 
 class NativeNodeFNO(nn.Module):
     """R64 FNO latent plus native XYZ/BC query head; train loss is at FEM nodes."""
-    def __init__(self):
+    def __init__(self,head_width=128):
         super().__init__()
         self.operator=FNO3d(26,16,width=9,modes=12,layers=4,checkpoint_blocks=True)
-        self.head=nn.Sequential(nn.Linear(44,128),nn.GELU(),nn.Linear(128,128),nn.GELU(),nn.Linear(128,4))
+        self.head=nn.Sequential(nn.Linear(44,head_width),nn.GELU(),nn.Linear(head_width,head_width),nn.GELU(),nn.Linear(head_width,4))
 
     def query(self,case,rows,latent):
         local=query_grid(latent[0],case['query_indices'][rows],case['query_weights'][rows])
         return self.head(torch.cat((case['xyz'][rows],case['features'][rows],local),-1))
 
 
-def make_model(method,seed):
+def make_model(method,seed,settings=None):
+    settings=settings or {}
     torch.manual_seed(seed);torch.cuda.manual_seed_all(seed)
-    if method=='fno':return NativeNodeFNO().cuda()
+    if method=='fno':return NativeNodeFNO(**settings).cuda()
     if method in ('transolver','transolverpp','ts3'):
-        return build_transformer(method,device='cuda',checkpoint_blocks=True)
-    if method=='tcnn_hash':return TCNNField(4,'both',seed=seed)
+        return build_transformer(method,device='cuda',checkpoint_blocks=True,model_overrides=settings)
+    if method=='tcnn_hash':return TCNNField(config=TCNNFieldConfig(out_channels=4,input_mode='both',seed=seed,**settings))
     if method=='mlp':
-        config=ModelConfig(encoder='mlp',input_mode='both',hidden_dim=256,hidden_layers=4)
+        config=ModelConfig(encoder='mlp',input_mode='both',hidden_dim=settings.get('hidden_dim',256),hidden_layers=settings.get('hidden_layers',4))
     else:
-        grid=HashGridConfig(n_levels=4,log2_hashmap_size=14,per_level_scale=2) if method=='ngp4' else HashGridConfig()
-        config=ModelConfig(input_mode='both',hidden_dim=32 if method=='ngp4' else 64,hidden_layers=2,hash_grid=grid)
+        options={'n_levels':4,'log2_hashmap_size':14,'per_level_scale':2} if method=='ngp4' else {}
+        options.update(settings.get('hash_grid',{}));grid=HashGridConfig(**options)
+        config=ModelConfig(input_mode='both',hidden_dim=settings.get('hidden_dim',32 if method=='ngp4' else 64),hidden_layers=settings.get('hidden_layers',2),hash_grid=grid)
     model=build_model('torch',config,'cuda')
     model.mlp[-1]=nn.Linear(model.mlp[-1].in_features,4).cuda()
     return model

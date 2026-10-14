@@ -2,7 +2,7 @@
 
 Geometry, loads and boundary conditions for displacement and signed-stress prediction on original DeepJEB.
 
-Current focus: [one- and five-sample overfitting](results/sample_overfitting/README.md), with a strict per-case **U and signed S both below 1%** training-fit goal. Historical results and the new joint-field fitting protocol are kept separate; this does not extend the final-set evaluation.
+The latest [parameter-matched one- and five-sample fitting comparison](results/matched_capacity_overfitting/README.md) is complete: eight implementations each have about 4.6 million trainable parameters (±1%) and exactly 1,000 full original-node updates in each group. At the strict step-1,000 endpoint, only single-sample TorchHash meets **U and signed S both below 1%** (0.6592% / 0.5941%); no five-sample implementation passes every case and field. This is training-fit evidence, with one seed, different representations and precision, rather than a generalization or universal architecture ranking. Earlier [unequal-capacity fitting and extended Hash training](results/sample_overfitting/README.md) remain separate.
 
 The [paper evidence chain](docs/paper_logic.md) separates **historical backbone/package selection → matched physical-information gains → input-group ablation and compact Fieldwise design**, followed by frozen final evaluation. Historical Transolver results are preserved in [backbone_comparison](results/backbone_comparison/README.md), separately from the latest three-seed physically enhanced experiments. The [five original historical reports](results/research_history/README.md) are retained unchanged as the source layer.
 
@@ -31,6 +31,8 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 
 ## Results
 
+- [Matched capacity and exact 1,000-update fitting](results/matched_capacity_overfitting/README.md): 16 complete arms, 48 per-case rows, 3,723.25 s UTC / 3,351.35 s monotonic total training-stage cost; no held-out evaluation.
+- [Earlier sample fitting and Hash continuation](results/sample_overfitting/README.md): different capacities, variable update counts, best-checkpoint selection and separate continuation costs.
 - [Historical backbone/package comparison](results/backbone_comparison/README.md): FNO, original Transolver, Transolver++, Transolver3 and MLP; separate experiment groups with split, capacity, precision and cost scope. Archival selection evidence, not the latest final-set ranking.
 - [Original research reports](results/research_history/README.md): 30 early experiments; geometry/BC/kinematics exploration; FNO/Transolver comparison; common-grid capacity control; physical-solver research history. Original versions are dated historical records.
 - [Saved-model field maps](results/field_comparison/README.md): displacement, original signed stress and RMS-normalized spatial errors for ZERO and FIELDWISE, using the original presentation's layout and palette.
