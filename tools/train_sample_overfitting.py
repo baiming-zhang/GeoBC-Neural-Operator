@@ -52,7 +52,8 @@ def run(args):
                 case={'key':key,'xyz':torch.from_numpy(xyz).cuda(),'features':torch.from_numpy(features).cuda(),'physical':torch.from_numpy(y).cuda()}
                 case['inputs']=torch.cat((case['xyz'],case['features']),1)
                 prepare_grid(case);cache[key]=case;state['source_reads']+=1;update()
-            for group in ('single','five'):
+            groups=config.get('groups',['single','five'])
+            for group in groups:
                 cases=[cache[k] for k in config[group]]
                 all_y=torch.cat([c['physical'].double() for c in cases])
                 scale=torch.stack(((all_y[:,:3].square().sum(1).mean()).sqrt(),all_y[:,3].square().mean().sqrt())).float().clamp_min(1e-12)
@@ -96,7 +97,22 @@ def run(args):
                         random.seed(config['seed']);np.random.seed(config['seed'])
                         optimizer=torch.optim.Adam(model.parameters(),lr=config['learning_rate'],fused=True)
                         scheduler=torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,factor=.5,patience=config['lr_plateau_evaluations'],min_lr=config['minimum_learning_rate'])
-                        evaluate()
+                        if config.get('continuation'):
+                            saved=torch.load(sources['continuations'][name],map_location='cuda',weights_only=False)
+                            if saved['order']!=config[group] or saved['cursor']!=saved['step']%len(cases) or saved['arm'].get('optimizer_step_in_progress'):
+                                raise ValueError('Continuation requires complete optimizer cursor and same case order')
+                            if not torch.equal(saved['scale4'].cuda(),scale4):raise ValueError('Output scale changed')
+                            model.load_state_dict(saved['model'],strict=True);optimizer.load_state_dict(saved['optimizer']);scheduler.load_state_dict(saved['scheduler'])
+                            step=saved['step'];arm.update(updates=step,starting_step=step,added_updates=0,checkpoint_reads=1,
+                                inherited_seconds=saved['arm'].get('elapsed_seconds'),discarded_incomplete_backward=bool(saved['arm'].get('partial_backward')))
+                            reference=saved['arm']['best']
+                            random.setstate(saved['rng']['python']);np.random.set_state(saved['rng']['numpy']);torch.set_rng_state(saved['rng']['torch'].cpu());torch.cuda.set_rng_state_all([v.cpu() for v in saved['rng']['cuda']])
+                            del saved
+                            evaluate()
+                            if abs(last['worst_field_percent']-reference['worst_field_percent'])>1e-4:raise ValueError('Restored endpoint differs')
+                            arm['restored_endpoint_percent']=last['worst_field_percent'];arm['actual_model_Adam_scheduler_RNG_cursor_restore']=True
+                        else:
+                            evaluate()
                         for attempt in range(1,config['max_updates_per_arm']+1):
                             arm_guard();model.train();optimizer.zero_grad(set_to_none=True);arm['partial_backward']=True
                             loss=backward_case(method,model,cases[step%len(cases)],arm_guard)
@@ -106,6 +122,7 @@ def run(args):
                                 arm['actual_full_node_backward']=True
                             arm['optimizer_step_in_progress']=True
                             optimizer.step();step+=1;arm.update(updates=step,partial_backward=False,optimizer_step_in_progress=False,training_loss=loss)
+                            if config.get('continuation'):arm['added_updates']=step-arm['starting_step']
                             if step%10==0:update(phase=name+'/training')
                             if step%config['evaluate_every']==0:
                                 scheduler.step(evaluate());checkpoint('last.pt')
@@ -124,7 +141,7 @@ def run(args):
                         arm['elapsed_seconds']={'UTC':time.time()-start[0],'monotonic':time.monotonic()-start[1]}
                         write(folder/'summary.json',arm)
                         close_owned_process_group();del model,optimizer;gc.collect();torch.cuda.empty_cache();update()
-            state.update(status='completed',active=False,closed=True);state['all_arms_attempted']=len(state['arms'])==2*len(config['methods'])
+            state.update(status='completed',active=False,closed=True);state['all_arms_attempted']=len(state['arms'])==len(groups)*len(config['methods'])
             state['all_goal_met']=all(a['goal_met'] for a in state['arms'].values())
             update(phase='terminal');write(output/'summary.json',state)
         except BaseException as exc:

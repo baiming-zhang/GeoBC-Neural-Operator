@@ -1,0 +1,35 @@
+{
+  "single": [
+    "506_533/ver"
+  ],
+  "five": [
+    "506_533/ver",
+    "506_25/tor",
+    "10_30/ver",
+    "10_421/hor",
+    "10_460/dia"
+  ],
+  "methods": [
+    "hashgrid"
+  ],
+  "seed": 2026,
+  "target_relative_l2": 0.01,
+  "max_updates_per_arm": 20000,
+  "arm_seconds": 900,
+  "whole_seconds": 1200,
+  "memory_bytes": 30500000000,
+  "learning_rate": 0.001,
+  "minimum_learning_rate": 1e-05,
+  "lr_plateau_evaluations": 5,
+  "evaluate_every": 100,
+  "checkpoint_every": 100,
+  "precision": "FP32 model/targets; TF32 allowed; TCNN native FP16 with FP32 master parameters",
+  "selection": "one shared checkpoint minimizing worst full-node U/S relative L2 across all fitted cases",
+  "goal": "Every fitted case U-vector and original signed-S relative L2 strictly below 1%; no pooled-only pass",
+  "protocol": "one complete original-node case per optimizer update, cases cycled; no sample ID, physical input, residual teacher, target grid or heldout data",
+  "groups": [
+    "five"
+  ],
+  "continuation": true,
+  "purpose": "Planned extra fitting from the completed five-case Torch Hash endpoint, no architecture/loss/optimizer restart; initial 16-arm experiment remains closed and separately reported."
+}

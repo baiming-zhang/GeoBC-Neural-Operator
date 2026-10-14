@@ -1,0 +1,607 @@
+{
+  "kind": "training_sample_overfitting",
+  "all_goal_met": false,
+  "source_reads": 5,
+  "heldout_reads": 0,
+  "terminal_seconds": {
+    "UTC": 6595.039443969727,
+    "monotonic": 5933.737606181006
+  },
+  "aggregate": [
+    {
+      "experiment": "single_mlp",
+      "group": "single",
+      "method": "mlp",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 205828,
+      "updates": 20000,
+      "selected_step": 19800,
+      "mean_U_percent": 1.388068736949409,
+      "mean_S_percent": 15.510301537048646,
+      "worst_field_percent": 15.510301537048646,
+      "UTC_seconds": 257.0283923149109,
+      "monotonic_seconds": 231.7339002110093,
+      "stop_reason": "update_cap"
+    },
+    {
+      "experiment": "single_ngp4",
+      "group": "single",
+      "method": "ngp4",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 77028,
+      "updates": 20000,
+      "selected_step": 19600,
+      "mean_U_percent": 1.4259529228513934,
+      "mean_S_percent": 9.07977889808207,
+      "worst_field_percent": 9.07977889808207,
+      "UTC_seconds": 313.54029750823975,
+      "monotonic_seconds": 284.6335260680062,
+      "stop_reason": "update_cap"
+    },
+    {
+      "experiment": "single_hashgrid",
+      "group": "single",
+      "method": "hashgrid",
+      "status": "completed",
+      "goal_met": true,
+      "parameters": 7741252,
+      "updates": 600,
+      "selected_step": 600,
+      "mean_U_percent": 0.8697025339115171,
+      "mean_S_percent": 0.31450640626112814,
+      "worst_field_percent": 0.8697025339115171,
+      "UTC_seconds": 24.263708114624023,
+      "monotonic_seconds": 20.64909739799623,
+      "stop_reason": "goal_met"
+    },
+    {
+      "experiment": "single_tcnn_hash",
+      "group": "single",
+      "method": "tcnn_hash",
+      "status": "completed",
+      "goal_met": true,
+      "parameters": 7742848,
+      "updates": 500,
+      "selected_step": 500,
+      "mean_U_percent": 0.9738591942799559,
+      "mean_S_percent": 0.23492597559325654,
+      "worst_field_percent": 0.9738591942799559,
+      "UTC_seconds": 11.670943021774292,
+      "monotonic_seconds": 11.670943794000777,
+      "stop_reason": "goal_met"
+    },
+    {
+      "experiment": "single_fno",
+      "group": "single",
+      "method": "fno",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 4505711,
+      "updates": 15878,
+      "selected_step": 15400,
+      "mean_U_percent": 0.9650176020852356,
+      "mean_S_percent": 3.6510036939840096,
+      "worst_field_percent": 3.6510036939840096,
+      "UTC_seconds": 540.2571876049042,
+      "monotonic_seconds": 486.0698270599969,
+      "stop_reason": "fixed_arm_time_cap"
+    },
+    {
+      "experiment": "single_transolver",
+      "group": "single",
+      "method": "transolver",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 1818572,
+      "updates": 4281,
+      "selected_step": 4281,
+      "mean_U_percent": 1.9251747736720504,
+      "mean_S_percent": 10.86224180823094,
+      "worst_field_percent": 10.86224180823094,
+      "UTC_seconds": 540.4606816768646,
+      "monotonic_seconds": 486.4444858030038,
+      "stop_reason": "fixed_arm_time_cap"
+    },
+    {
+      "experiment": "single_transolverpp",
+      "group": "single",
+      "method": "transolverpp",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 4459668,
+      "updates": 976,
+      "selected_step": 976,
+      "mean_U_percent": 11.818178653831318,
+      "mean_S_percent": 57.73246642575626,
+      "worst_field_percent": 57.73246642575626,
+      "UTC_seconds": 541.3883185386658,
+      "monotonic_seconds": 487.3581778600055,
+      "stop_reason": "fixed_arm_time_cap"
+    },
+    {
+      "experiment": "single_ts3",
+      "group": "single",
+      "method": "ts3",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 7612036,
+      "updates": 907,
+      "selected_step": 907,
+      "mean_U_percent": 34.65042819367367,
+      "mean_S_percent": 85.97765348399096,
+      "worst_field_percent": 85.97765348399096,
+      "UTC_seconds": 541.6022913455963,
+      "monotonic_seconds": 487.4173076369916,
+      "stop_reason": "fixed_arm_time_cap"
+    },
+    {
+      "experiment": "five_mlp",
+      "group": "five",
+      "method": "mlp",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 205828,
+      "updates": 20000,
+      "selected_step": 19600,
+      "mean_U_percent": 6.321434794641481,
+      "mean_S_percent": 27.565866546348303,
+      "worst_field_percent": 32.36528858799802,
+      "UTC_seconds": 342.4910273551941,
+      "monotonic_seconds": 306.35632672499924,
+      "stop_reason": "update_cap"
+    },
+    {
+      "experiment": "five_ngp4",
+      "group": "five",
+      "method": "ngp4",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 77028,
+      "updates": 20000,
+      "selected_step": 20000,
+      "mean_U_percent": 12.546425077943585,
+      "mean_S_percent": 28.827747137937603,
+      "worst_field_percent": 32.876073909437615,
+      "UTC_seconds": 394.20431208610535,
+      "monotonic_seconds": 356.6404092779994,
+      "stop_reason": "update_cap"
+    },
+    {
+      "experiment": "five_hashgrid",
+      "group": "five",
+      "method": "hashgrid",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 7741252,
+      "updates": 13726,
+      "selected_step": 13726,
+      "mean_U_percent": 1.3279926647960774,
+      "mean_S_percent": 0.38011752302579727,
+      "worst_field_percent": 1.5817740492758154,
+      "UTC_seconds": 540.6386358737946,
+      "monotonic_seconds": 487.2570471289946,
+      "stop_reason": "fixed_arm_time_cap"
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "group": "five",
+      "method": "tcnn_hash",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 7742848,
+      "updates": 20000,
+      "selected_step": 19400,
+      "mean_U_percent": 1.3088289318318291,
+      "mean_S_percent": 0.6651847838066296,
+      "worst_field_percent": 1.6483466558452153,
+      "UTC_seconds": 375.59394931793213,
+      "monotonic_seconds": 335.8505661139934,
+      "stop_reason": "update_cap"
+    },
+    {
+      "experiment": "five_fno",
+      "group": "five",
+      "method": "fno",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 4505711,
+      "updates": 17510,
+      "selected_step": 17300,
+      "mean_U_percent": 2.07462768155539,
+      "mean_S_percent": 9.703209412731608,
+      "worst_field_percent": 11.737240695322082,
+      "UTC_seconds": 540.2371549606323,
+      "monotonic_seconds": 486.0502613990102,
+      "stop_reason": "fixed_arm_time_cap"
+    },
+    {
+      "experiment": "five_transolver",
+      "group": "five",
+      "method": "transolver",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 1818572,
+      "updates": 3542,
+      "selected_step": 3500,
+      "mean_U_percent": 11.239907553747083,
+      "mean_S_percent": 55.715314247977936,
+      "worst_field_percent": 67.3317992244796,
+      "UTC_seconds": 540.397176027298,
+      "monotonic_seconds": 486.32619706999685,
+      "stop_reason": "fixed_arm_time_cap"
+    },
+    {
+      "experiment": "five_transolverpp",
+      "group": "five",
+      "method": "transolverpp",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 4459668,
+      "updates": 800,
+      "selected_step": 400,
+      "mean_U_percent": 85.80731517059523,
+      "mean_S_percent": 94.42103617013004,
+      "worst_field_percent": 101.46684856010054,
+      "UTC_seconds": 541.5310502052307,
+      "monotonic_seconds": 487.331883249004,
+      "stop_reason": "fixed_arm_time_cap"
+    },
+    {
+      "experiment": "five_ts3",
+      "group": "five",
+      "method": "ts3",
+      "status": "completed",
+      "goal_met": false,
+      "parameters": 7612036,
+      "updates": 740,
+      "selected_step": 700,
+      "mean_U_percent": 89.8205191285986,
+      "mean_S_percent": 94.08640332584193,
+      "worst_field_percent": 100.9323294481119,
+      "UTC_seconds": 541.6888813972473,
+      "monotonic_seconds": 487.5115095880028,
+      "stop_reason": "fixed_arm_time_cap"
+    }
+  ],
+  "per_case": [
+    {
+      "experiment": "single_mlp",
+      "sample": "506_533/ver",
+      "U_percent": 1.388068736949409,
+      "S_percent": 15.510301537048646,
+      "selected_step": 19800
+    },
+    {
+      "experiment": "single_ngp4",
+      "sample": "506_533/ver",
+      "U_percent": 1.4259529228513934,
+      "S_percent": 9.07977889808207,
+      "selected_step": 19600
+    },
+    {
+      "experiment": "single_hashgrid",
+      "sample": "506_533/ver",
+      "U_percent": 0.8697025339115171,
+      "S_percent": 0.31450640626112814,
+      "selected_step": 600
+    },
+    {
+      "experiment": "single_tcnn_hash",
+      "sample": "506_533/ver",
+      "U_percent": 0.9738591942799559,
+      "S_percent": 0.23492597559325654,
+      "selected_step": 500
+    },
+    {
+      "experiment": "single_fno",
+      "sample": "506_533/ver",
+      "U_percent": 0.9650176020852356,
+      "S_percent": 3.6510036939840096,
+      "selected_step": 15400
+    },
+    {
+      "experiment": "single_transolver",
+      "sample": "506_533/ver",
+      "U_percent": 1.9251747736720504,
+      "S_percent": 10.86224180823094,
+      "selected_step": 4281
+    },
+    {
+      "experiment": "single_transolverpp",
+      "sample": "506_533/ver",
+      "U_percent": 11.818178653831318,
+      "S_percent": 57.73246642575626,
+      "selected_step": 976
+    },
+    {
+      "experiment": "single_ts3",
+      "sample": "506_533/ver",
+      "U_percent": 34.65042819367367,
+      "S_percent": 85.97765348399096,
+      "selected_step": 907
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "506_533/ver",
+      "U_percent": 13.930114734010385,
+      "S_percent": 26.74230169293241,
+      "selected_step": 19600
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "506_25/tor",
+      "U_percent": 3.151743184463932,
+      "S_percent": 26.169942105609042,
+      "selected_step": 19600
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "10_30/ver",
+      "U_percent": 9.292336896288608,
+      "S_percent": 30.574494714573998,
+      "selected_step": 19600
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "10_421/hor",
+      "U_percent": 2.710384714030259,
+      "S_percent": 32.36528858799802,
+      "selected_step": 19600
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "10_460/dia",
+      "U_percent": 2.522594444414219,
+      "S_percent": 21.97730563062804,
+      "selected_step": 19600
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "506_533/ver",
+      "U_percent": 16.300604843093744,
+      "S_percent": 28.077224343691956,
+      "selected_step": 20000
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "506_25/tor",
+      "U_percent": 12.5117963641529,
+      "S_percent": 27.622037931457765,
+      "selected_step": 20000
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "10_30/ver",
+      "U_percent": 13.426788927472572,
+      "S_percent": 29.89112789764787,
+      "selected_step": 20000
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "10_421/hor",
+      "U_percent": 9.673447384244035,
+      "S_percent": 32.876073909437615,
+      "selected_step": 20000
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "10_460/dia",
+      "U_percent": 10.81948787075468,
+      "S_percent": 25.672271607452803,
+      "selected_step": 20000
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "506_533/ver",
+      "U_percent": 1.531910962214125,
+      "S_percent": 0.5454413609342545,
+      "selected_step": 13726
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "506_25/tor",
+      "U_percent": 0.8868889708580064,
+      "S_percent": 0.2985491456327288,
+      "selected_step": 13726
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "10_30/ver",
+      "U_percent": 1.5817740492758154,
+      "S_percent": 0.3194344388351841,
+      "selected_step": 13726
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "10_421/hor",
+      "U_percent": 1.452448680870072,
+      "S_percent": 0.5634406852408957,
+      "selected_step": 13726
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "10_460/dia",
+      "U_percent": 1.1869406607623672,
+      "S_percent": 0.17372198448592352,
+      "selected_step": 13726
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "506_533/ver",
+      "U_percent": 1.6483466558452153,
+      "S_percent": 0.86255477472099,
+      "selected_step": 19400
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "506_25/tor",
+      "U_percent": 1.0109666708305567,
+      "S_percent": 0.6586799307794892,
+      "selected_step": 19400
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "10_30/ver",
+      "U_percent": 1.5903715024650145,
+      "S_percent": 0.566897088162862,
+      "selected_step": 19400
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "10_421/hor",
+      "U_percent": 1.1882630902675821,
+      "S_percent": 0.6666153389925703,
+      "selected_step": 19400
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "10_460/dia",
+      "U_percent": 1.1061967397507775,
+      "S_percent": 0.5711767863772366,
+      "selected_step": 19400
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "506_533/ver",
+      "U_percent": 1.8622864395311642,
+      "S_percent": 6.784746632675555,
+      "selected_step": 17300
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "506_25/tor",
+      "U_percent": 2.3154776277040394,
+      "S_percent": 10.155471149117748,
+      "selected_step": 17300
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "10_30/ver",
+      "U_percent": 1.9991445029431159,
+      "S_percent": 8.942814162406215,
+      "selected_step": 17300
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "10_421/hor",
+      "U_percent": 2.2529341494397763,
+      "S_percent": 11.737240695322082,
+      "selected_step": 17300
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "10_460/dia",
+      "U_percent": 1.9432956881588537,
+      "S_percent": 10.895774424136441,
+      "selected_step": 17300
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "506_533/ver",
+      "U_percent": 10.176181852695477,
+      "S_percent": 47.383134690589415,
+      "selected_step": 3500
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "506_25/tor",
+      "U_percent": 16.380531376311726,
+      "S_percent": 57.679131001534486,
+      "selected_step": 3500
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "10_30/ver",
+      "U_percent": 9.258608524120936,
+      "S_percent": 52.99549996225106,
+      "selected_step": 3500
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "10_421/hor",
+      "U_percent": 9.91350145405768,
+      "S_percent": 67.3317992244796,
+      "selected_step": 3500
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "10_460/dia",
+      "U_percent": 10.470714561549595,
+      "S_percent": 53.187006361035124,
+      "selected_step": 3500
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "506_533/ver",
+      "U_percent": 89.84730270322453,
+      "S_percent": 95.65727231549329,
+      "selected_step": 400
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "506_25/tor",
+      "U_percent": 101.46684856010054,
+      "S_percent": 100.26795963379267,
+      "selected_step": 400
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "10_30/ver",
+      "U_percent": 86.0018717336992,
+      "S_percent": 93.8032084260748,
+      "selected_step": 400
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "10_421/hor",
+      "U_percent": 86.96040843120237,
+      "S_percent": 97.71407914203976,
+      "selected_step": 400
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "10_460/dia",
+      "U_percent": 64.76014442474953,
+      "S_percent": 84.66266133324976,
+      "selected_step": 400
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "506_533/ver",
+      "U_percent": 96.85187111683668,
+      "S_percent": 95.46906056464462,
+      "selected_step": 700
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "506_25/tor",
+      "U_percent": 100.03757379016504,
+      "S_percent": 100.9323294481119,
+      "selected_step": 700
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "10_30/ver",
+      "U_percent": 94.72563669761844,
+      "S_percent": 93.50998424995728,
+      "selected_step": 700
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "10_421/hor",
+      "U_percent": 94.80743638196236,
+      "S_percent": 97.76139764620383,
+      "selected_step": 700
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "10_460/dia",
+      "U_percent": 62.68007765641051,
+      "S_percent": 82.75924472029199,
+      "selected_step": 700
+    }
+  ],
+  "goal": "Every case U3 and signed S strictly below 1% at one shared checkpoint"
+}
