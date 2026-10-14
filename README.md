@@ -6,6 +6,8 @@ The latest [U-only parameter-matched fitting comparison](results/matched_capacit
 
 The earlier [joint U/S matched comparison](results/matched_capacity_overfitting/README.md) and [unequal-capacity fitting with extended Hash training](results/sample_overfitting/README.md) remain separate. Removing S loss does not improve every fixed recipe; the U-only and joint runs also have different output heads and initialization.
 
+The [Transolver correctness and learning-rate diagnostic](results/transolver_fit_diagnostics/README.md) found identical native/adapter forward results, gradients and one-step Adam updates for all three fixed backbones. Original Transolver's 76.09% single-case error is close to the 76.15% best-constant baseline. Changing only its fixed learning rate from 1e-3 to 1e-4, with the same seed and 1,000 updates, reduces that error to 7.99%; it still misses 1%. The earlier fixed-recipe results do not establish that Transolver cannot fit the sample.
+
 The [paper evidence chain](docs/paper_logic.md) separates **historical backbone/package selection → matched physical-information gains → input-group ablation and compact Fieldwise design**, followed by frozen final evaluation. Historical Transolver results are preserved in [backbone_comparison](results/backbone_comparison/README.md), separately from the latest three-seed physically enhanced experiments. The [five original historical reports](results/research_history/README.md) are retained unchanged as the source layer.
 
 The frozen compact hybrid model reaches **11.629% mean U error / 34.247% signed S error** across three seeds on the fixed 20 final CADs and three loads. Its matched zero-physical-input control reaches 21.255% / 47.003%; the mean joint score improves by 11.191 percentage points, with all three paired seed wins. All 360 full-node predictions were saved before one shared final-label readout. The predeclared practical-benefit criterion passed, without final-set tuning.
@@ -33,6 +35,7 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 
 ## Results
 
+- [Transolver correctness and learning-rate diagnostic](results/transolver_fit_diagnostics/README.md): native/checkpoint parity, saved-model reproduction, constant-field collapse and a separate same-seed 1,000-step learning-rate control.
 - [U-only matched capacity and exact 1,000-update fitting](results/matched_capacity_u_overfitting/README.md): 16 complete arms, 48 per-case rows, U3 outputs/loss only, zero stress-label or held-out reads; complete endpoint predictions and checkpoints stay local.
 - [Matched capacity and exact 1,000-update fitting](results/matched_capacity_overfitting/README.md): 16 complete arms, 48 per-case rows, 3,723.25 s UTC / 3,351.35 s monotonic total training-stage cost; no held-out evaluation.
 - [Earlier sample fitting and Hash continuation](results/sample_overfitting/README.md): different capacities, variable update counts, best-checkpoint selection and separate continuation costs.

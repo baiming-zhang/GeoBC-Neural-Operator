@@ -1,0 +1,369 @@
+{
+  "parity": {
+    "transolver": {
+      "output_max_abs_difference": 0.0,
+      "gradient_relative_l2_difference": 0.0,
+      "one_Adam_update_max_abs_difference": 0.0,
+      "adapter_loss": 1.8795799016952515,
+      "native_loss": 1.8795799016952515,
+      "unused_parameters": [],
+      "active_parameter_count": 4586786,
+      "finite_gradients": true,
+      "passed": true
+    },
+    "transolverpp": {
+      "output_max_abs_difference": 0.0,
+      "gradient_relative_l2_difference": 0.0,
+      "one_Adam_update_max_abs_difference": 0.0,
+      "adapter_loss": 0.8502292633056641,
+      "native_loss": 0.8502292633056641,
+      "unused_parameters": [
+        "backbone.embedding.weight",
+        "backbone.embedding.bias"
+      ],
+      "active_parameter_count": 4609512,
+      "finite_gradients": true,
+      "passed": true
+    },
+    "ts3": {
+      "output_max_abs_difference": 0.0,
+      "gradient_relative_l2_difference": 0.0,
+      "one_Adam_update_max_abs_difference": 0.0,
+      "adapter_loss": 2.0944831371307373,
+      "native_loss": 2.0944831371307373,
+      "unused_parameters": [],
+      "active_parameter_count": 4562379,
+      "finite_gradients": true,
+      "passed": true
+    }
+  },
+  "saved_endpoints": {
+    "transolver": {
+      "step": 1000,
+      "saved_U_percent": 76.09226866430383,
+      "recomputed_U_percent": 76.09226866430383,
+      "prediction_spatial_variation_relative": 0.0405004620552063,
+      "scale_max_abs_difference": 0.0,
+      "optimizer_steps": [
+        1000
+      ],
+      "eval_stochastic": false
+    },
+    "transolverpp": {
+      "step": 1000,
+      "saved_U_percent": 31.705784063930103,
+      "recomputed_U_percent": 31.705669620413374,
+      "prediction_spatial_variation_relative": 0.7300792932510376,
+      "scale_max_abs_difference": 0.0,
+      "optimizer_steps": [
+        1000
+      ],
+      "eval_stochastic": true
+    },
+    "ts3": {
+      "step": 1000,
+      "saved_U_percent": 7.887274998639834,
+      "recomputed_U_percent": 7.887274998639834,
+      "prediction_spatial_variation_relative": 0.7600201964378357,
+      "scale_max_abs_difference": 0.0,
+      "optimizer_steps": [
+        1000
+      ],
+      "eval_stochastic": false
+    }
+  },
+  "real_probes": {
+    "adapter_lr001": {
+      "updates": 100,
+      "learning_rate": 0.001,
+      "checkpoint_blocks": true,
+      "curve": [
+        {
+          "step": 0,
+          "U_percent": 136.92822456359863
+        },
+        {
+          "step": 20,
+          "U_percent": 77.36085057258606
+        },
+        {
+          "step": 40,
+          "U_percent": 76.44377946853638
+        },
+        {
+          "step": 60,
+          "U_percent": 76.2555181980133
+        },
+        {
+          "step": 80,
+          "U_percent": 76.11788511276245
+        },
+        {
+          "step": 100,
+          "U_percent": 76.08211636543274
+        }
+      ]
+    },
+    "native_lr001": {
+      "updates": 100,
+      "learning_rate": 0.001,
+      "checkpoint_blocks": false,
+      "curve": [
+        {
+          "step": 0,
+          "U_percent": 136.92822456359863
+        },
+        {
+          "step": 20,
+          "U_percent": 77.36085057258606
+        },
+        {
+          "step": 40,
+          "U_percent": 76.44377946853638
+        },
+        {
+          "step": 60,
+          "U_percent": 76.2555181980133
+        },
+        {
+          "step": 80,
+          "U_percent": 76.11788511276245
+        },
+        {
+          "step": 100,
+          "U_percent": 76.08211636543274
+        }
+      ]
+    },
+    "adapter_lr0001": {
+      "updates": 100,
+      "learning_rate": 0.0001,
+      "checkpoint_blocks": true,
+      "curve": [
+        {
+          "step": 0,
+          "U_percent": 136.92822456359863
+        },
+        {
+          "step": 20,
+          "U_percent": 78.41722965240479
+        },
+        {
+          "step": 40,
+          "U_percent": 74.37015771865845
+        },
+        {
+          "step": 60,
+          "U_percent": 71.62266373634338
+        },
+        {
+          "step": 80,
+          "U_percent": 62.27494478225708
+        },
+        {
+          "step": 100,
+          "U_percent": 42.7180677652359
+        }
+      ]
+    }
+  },
+  "synthetic_probes": {
+    "transolver": {
+      "updates": 500,
+      "learning_rate": 0.0001,
+      "nodes": 513,
+      "target": "centered normalized XYZ, diagnostic only, not physical U accuracy",
+      "curve": [
+        {
+          "step": 0,
+          "synthetic_U_percent": 114.69920873641968
+        },
+        {
+          "step": 100,
+          "synthetic_U_percent": 30.228719115257263
+        },
+        {
+          "step": 200,
+          "synthetic_U_percent": 7.530145347118378
+        },
+        {
+          "step": 300,
+          "synthetic_U_percent": 5.322792008519173
+        },
+        {
+          "step": 400,
+          "synthetic_U_percent": 5.777033418416977
+        },
+        {
+          "step": 500,
+          "synthetic_U_percent": 4.3430570513010025
+        }
+      ]
+    },
+    "transolverpp": {
+      "updates": 500,
+      "learning_rate": 0.0001,
+      "nodes": 513,
+      "target": "centered normalized XYZ, diagnostic only, not physical U accuracy",
+      "curve": [
+        {
+          "step": 0,
+          "synthetic_U_percent": 128.756844997406
+        },
+        {
+          "step": 100,
+          "synthetic_U_percent": 23.19205403327942
+        },
+        {
+          "step": 200,
+          "synthetic_U_percent": 12.485018372535706
+        },
+        {
+          "step": 300,
+          "synthetic_U_percent": 4.560720920562744
+        },
+        {
+          "step": 400,
+          "synthetic_U_percent": 2.7032751590013504
+        },
+        {
+          "step": 500,
+          "synthetic_U_percent": 3.7947021424770355
+        }
+      ]
+    },
+    "ts3": {
+      "updates": 500,
+      "learning_rate": 0.0001,
+      "nodes": 513,
+      "target": "centered normalized XYZ, diagnostic only, not physical U accuracy",
+      "curve": [
+        {
+          "step": 0,
+          "synthetic_U_percent": 130.09363412857056
+        },
+        {
+          "step": 100,
+          "synthetic_U_percent": 16.554932296276093
+        },
+        {
+          "step": 200,
+          "synthetic_U_percent": 4.484622552990913
+        },
+        {
+          "step": 300,
+          "synthetic_U_percent": 2.3987095803022385
+        },
+        {
+          "step": 400,
+          "synthetic_U_percent": 2.0860085263848305
+        },
+        {
+          "step": 500,
+          "synthetic_U_percent": 3.492705523967743
+        }
+      ]
+    }
+  },
+  "source_reads": 1,
+  "stress_label_reads": 0,
+  "heldout_reads": 0,
+  "sample": {
+    "key": "506_533/ver",
+    "nodes": 120777,
+    "U_RMS_mm": 0.2949118912220001,
+    "constant_U_mean_error_percent": 76.15463241550061
+  },
+  "diagnostic_seconds_excluding_module_imports": {
+    "UTC": 174.89262795448303,
+    "monotonic": 160.112148515007
+  },
+  "learning_rate_control": {
+    "config": {
+      "single": [
+        "506_533/ver"
+      ],
+      "five": [
+        "506_533/ver"
+      ],
+      "methods": [
+        "transolver"
+      ],
+      "seed": 2026,
+      "target_relative_l2": 0.01,
+      "max_updates_per_arm": 1000,
+      "arm_seconds": 400,
+      "whole_seconds": 500,
+      "memory_bytes": 30500000000,
+      "learning_rate": 0.0001,
+      "minimum_learning_rate": 1e-05,
+      "lr_plateau_evaluations": 5,
+      "evaluate_every": 100,
+      "checkpoint_every": 100,
+      "precision": "FP32 model/targets; TF32 allowed; TCNN native FP16 with FP32 master parameters",
+      "selection": "Report exact update1000 U-only endpoint, never joint-model U metrics or best-step substitution; fresh seed2026 for every arm.",
+      "goal": "Every fitted case full-node signed U3 vector relative L2 strictly below 1%; no pooled-only pass",
+      "protocol": "one complete original-node case per optimizer update, cases cycled; U3 output and U-vector loss only; no stress label reads, sample ID, physical input, residual teacher, target grid or heldout data",
+      "fixed_endpoint": true,
+      "fixed_learning_rate": true,
+      "parameter_target": 4600000,
+      "parameter_tolerance": 0.01,
+      "model_settings": {
+        "mlp": {
+          "hidden_dim": 1232
+        },
+        "ngp4": {
+          "hidden_dim": 2112
+        },
+        "hashgrid": {
+          "hidden_dim": 704,
+          "hash_grid": {
+            "log2_hashmap_size": 18
+          }
+        },
+        "tcnn_hash": {
+          "n_levels": 13,
+          "log2_hashmap_size": 18
+        },
+        "fno": {
+          "head_width": 320
+        },
+        "transolver": {
+          "n_hidden": 408
+        },
+        "transolverpp": {
+          "n_hidden": 288,
+          "n_layers": 13
+        },
+        "ts3": {
+          "n_hidden": 192,
+          "n_layers": 17
+        }
+      },
+      "output_field": "u",
+      "groups": [
+        "single"
+      ],
+      "diagnostic_scope": "Fresh same-seed single-case Transolver U-only control; same model, raw inputs, U RMS, full-node relative squared loss and 1000 updates; learning rate only scientific change from original .001 arm. Cache scope restricted to single case for diagnostic IO. Not a replacement ranking."
+    },
+    "endpoint": {
+      "step": 1000,
+      "per_case": {
+        "506_533/ver": {
+          "U_percent": 7.990532721673298
+        }
+      },
+      "worst_field_percent": 7.990532721673298,
+      "mean_U_percent": 7.990532721673298
+    },
+    "updates": 1000,
+    "parameters": 4586786,
+    "elapsed_seconds": {
+      "UTC": 210.29119348526,
+      "monotonic": 192.5586347609933
+    },
+    "source_reads": 1,
+    "stress_label_reads": 0,
+    "heldout_reads": 0
+  }
+}
