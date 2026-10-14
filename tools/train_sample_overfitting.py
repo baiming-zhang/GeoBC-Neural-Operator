@@ -1,4 +1,4 @@
-"""One- and five-case overfitting, with a per-case two-field 1% goal."""
+"""One- and five-case U-only or joint U/S original-node fitting."""
 import time
 import argparse,json,os,random,gc,traceback
 from pathlib import Path
@@ -16,17 +16,32 @@ def write(path,data):
 
 def errors(truth,pred):
     truth=truth.double();pred=pred.double()
-    if truth.shape!=pred.shape or truth.ndim!=2 or truth.shape[1]!=4 or not torch.isfinite(pred).all():
+    if truth.shape!=pred.shape or truth.ndim!=2 or truth.shape[1] not in (3,4) or not torch.isfinite(truth).all() or not torch.isfinite(pred).all():
         raise ValueError('Invalid full-node prediction')
-    return {'U_percent':float(100*torch.linalg.vector_norm(truth[:,:3]-pred[:,:3])/torch.linalg.vector_norm(truth[:,:3]).clamp_min(1e-20)),
-            'S_percent':float(100*torch.linalg.vector_norm(truth[:,3]-pred[:,3])/torch.linalg.vector_norm(truth[:,3]).clamp_min(1e-20))}
+    result={'U_percent':float(100*torch.linalg.vector_norm(truth[:,:3]-pred[:,:3])/torch.linalg.vector_norm(truth[:,:3]).clamp_min(1e-20))}
+    if truth.shape[1]==4:result['S_percent']=float(100*torch.linalg.vector_norm(truth[:,3]-pred[:,3])/torch.linalg.vector_norm(truth[:,3]).clamp_min(1e-20))
+    return result
+
+
+def read_case_arrays(f,key,output_field):
+    """U-only deliberately never requests the stress member of an NPZ."""
+    if str(f['label_alignment'].item())!='official CSV GRID coordinates -> H5 vertices' or str(f['sample_key'].item())!=key:
+        raise ValueError('Unaligned original training-only fields')
+    xyz=np.array(f['xyz'],dtype=np.float32);features=np.array(f['features'],dtype=np.float32)
+    y=np.array(f['displacement'],dtype=np.float32)
+    if output_field=='us':y=np.column_stack((y,f['stress'])).astype(np.float32)
+    elif output_field!='u':raise ValueError('Unknown output field')
+    return xyz,features,y
 
 
 def run(args):
     config=json.loads(Path(args.config).read_text());sources=json.loads(Path(args.source).read_text())
+    output_field=config.get('output_field','us')
+    if output_field not in ('u','us'):raise ValueError('Unknown output field')
+    channels=3 if output_field=='u' else 4
     output=Path(args.output);clock=json.loads(os.environ['GEOBC_EXPERIMENT_CLOCK'])
     os.environ['GEOBC_TRANSFORMER_MANIFEST']=sources['transformer_manifest']
-    state={'status':'running','active':True,'closed':False,'phase':'loading','arms':{},'source_reads':0,'training_only':True,'heldout_reads':0}
+    state={'status':'running','active':True,'closed':False,'phase':'loading','arms':{},'source_reads':0,'training_only':True,'heldout_reads':0,'output_field':output_field,'stress_label_reads':0}
     def update(**kw):
         state.update(kw);state['elapsed_seconds']={'UTC':time.time()-clock['entry_epoch'],'monotonic':time.monotonic()-clock['entry_monotonic']}
         write(output/'status.json',state)
@@ -43,11 +58,9 @@ def run(args):
             for key in config['five']:
                 guard()
                 with np.load(sources['cases'][key],allow_pickle=False) as f:
-                    if str(f['label_alignment'].item())!='official CSV GRID coordinates -> H5 vertices' or str(f['sample_key'].item())!=key:
-                        raise ValueError('Unaligned original training-only fields')
-                    xyz=np.array(f['xyz'],dtype=np.float32);features=np.array(f['features'],dtype=np.float32)
-                    y=np.column_stack((f['displacement'],f['stress'])).astype(np.float32)
-                if xyz.shape!=(len(y),3) or features.shape!=(len(y),25) or y.shape[1]!=4 or not all(np.isfinite(a).all() for a in (xyz,features,y)) or xyz.min()<0 or xyz.max()>1:
+                    xyz,features,y=read_case_arrays(f,key,output_field)
+                    state['stress_label_reads']+=int(output_field=='us')
+                if xyz.shape!=(len(y),3) or features.shape!=(len(y),25) or y.shape!=(len(xyz),channels) or not all(np.isfinite(a).all() for a in (xyz,features,y)) or xyz.min()<0 or xyz.max()>1:
                     raise ValueError('Malformed overfitting case')
                 case={'key':key,'xyz':torch.from_numpy(xyz).cuda(),'features':torch.from_numpy(features).cuda(),'physical':torch.from_numpy(y).cuda()}
                 case['inputs']=torch.cat((case['xyz'],case['features']),1)
@@ -56,14 +69,17 @@ def run(args):
             for group in groups:
                 cases=[cache[k] for k in config[group]]
                 all_y=torch.cat([c['physical'].double() for c in cases])
-                scale=torch.stack(((all_y[:,:3].square().sum(1).mean()).sqrt(),all_y[:,3].square().mean().sqrt())).float().clamp_min(1e-12)
-                scale4=scale[[0,0,0,1]];del all_y
+                u_scale=all_y[:,:3].square().sum(1).mean().sqrt()
+                scale=torch.stack((u_scale,)) if channels==3 else torch.stack((u_scale,all_y[:,3].square().mean().sqrt()))
+                scale=scale.float().clamp_min(1e-12)
+                scale4=scale[[0,0,0]] if channels==3 else scale[[0,0,0,1]];del all_y
                 for c in cases:
                     c['target']=c['physical']/scale4
-                    c['energy']=torch.stack((c['target'][:,:3].square().sum(1).mean(),c['target'][:,3].square().mean())).clamp_min(1e-20)
+                    u_energy=c['target'][:,:3].square().sum(1).mean()
+                    c['energy']=(torch.stack((u_energy,)) if channels==3 else torch.stack((u_energy,c['target'][:,3].square().mean()))).clamp_min(1e-20)
                 for method in config['methods']:
                     guard();name=group+'_'+method;folder=output/name;folder.mkdir()
-                    arm={'status':'running','method':method,'group':group,'updates':0,'best':None,'best_step':None,'goal_met':False,'partial_backward':False,'cases':config[group]}
+                    arm={'status':'running','method':method,'group':group,'output_field':output_field,'output_channels':channels,'updates':0,'best':None,'best_step':None,'goal_met':False,'partial_backward':False,'cases':config[group]}
                     state['arms'][name]=arm;update(phase=name+'/initializing')
                     start=(time.time(),time.monotonic());model=None;optimizer=None;scheduler=None;step=0;last=None
                     def arm_guard():
@@ -80,9 +96,12 @@ def run(args):
                         for c in cases:
                             guard();pred=predict_case(method,model,c,guard)*scale4
                             predictions[c['key']]=pred;metrics[c['key']]=errors(c['physical'],pred)
-                        worst=max(v[f] for v in metrics.values() for f in ('U_percent','S_percent'))
-                        last={'step':step,'per_case':metrics,'worst_field_percent':worst,'mean_U_percent':float(np.mean([m['U_percent'] for m in metrics.values()])),
-                              'mean_S_percent':float(np.mean([m['S_percent'] for m in metrics.values()]))}
+                        worst=max(value for v in metrics.values() for value in v.values())
+                        last={'step':step,'per_case':metrics,'worst_field_percent':worst,'mean_U_percent':float(np.mean([m['U_percent'] for m in metrics.values()]))}
+                        if channels==4:last['mean_S_percent']=float(np.mean([m['S_percent'] for m in metrics.values()]))
+                        if config.get('fixed_endpoint') and step==config['max_updates_per_arm']:
+                            for c in cases:np.savez(folder/(c['key'].replace('/','_')+'_endpoint.npz'),prediction=predictions[c['key']].cpu().numpy(),sample_key=c['key'],step=step)
+                            arm['endpoint_predictions_saved']=len(cases)
                         arm['latest']=last
                         if arm['best'] is None or worst<arm['best']['worst_field_percent']:
                             arm['best']=last;arm['best_step']=step;checkpoint('best.pt')
@@ -92,7 +111,7 @@ def run(args):
                         with (folder/'metrics.jsonl').open('a') as f:f.write(json.dumps(last)+'\n')
                         update(phase=name+'/training');return worst
                     try:
-                        model=make_model(method,config['seed'],config.get('model_settings',{}).get(method));arm['parameters']=sum(p.numel() for p in model.parameters())
+                        model=make_model(method,config['seed'],config.get('model_settings',{}).get(method),out_channels=channels);arm['parameters']=sum(p.numel() for p in model.parameters() if p.requires_grad)
                         if 'parameter_target' in config and abs(arm['parameters']/config['parameter_target']-1)>config['parameter_tolerance']:
                             raise ValueError('Actual trainable parameter count outside matching tolerance')
                         arm['model_config']=getattr(model,'source_config',{})

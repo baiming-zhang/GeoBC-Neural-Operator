@@ -1,7 +1,8 @@
 import unittest
 import torch
+import numpy as np
 from geobc.overfit_models import relative_loss
-from tools.train_sample_overfitting import errors
+from tools.train_sample_overfitting import errors,read_case_arrays
 
 
 class OverfittingTests(unittest.TestCase):
@@ -26,6 +27,24 @@ class OverfittingTests(unittest.TestCase):
 
     def test_nonfinite_rejected(self):
         with self.assertRaises(ValueError):errors(torch.ones(3,4),torch.full((3,4),float('nan')))
+
+    def test_u_only_loss_and_chunked_gradient(self):
+        target=torch.tensor([[1.,-2.,3.],[-2.,4.,-6.]],dtype=torch.float64)
+        energy=target.square().sum(1).mean()[None]
+        pred=(target*.9).clone().requires_grad_()
+        whole=relative_loss(pred,target,energy,len(pred));whole.backward();gradient=pred.grad.clone();pred.grad=None
+        split=sum(relative_loss(pred[i:i+1],target[i:i+1],energy,len(pred)) for i in range(2));split.backward()
+        self.assertAlmostEqual(float(whole.detach()),.01,places=12)
+        self.assertTrue(torch.allclose(pred.grad,gradient,atol=1e-14,rtol=1e-14))
+        self.assertEqual(set(errors(target,pred)),{'U_percent'})
+        self.assertAlmostEqual(errors(target,pred)['U_percent'],10.,places=10)
+
+    def test_u_only_does_not_read_stress(self):
+        source={'label_alignment':np.array('official CSV GRID coordinates -> H5 vertices'),'sample_key':np.array('case/ver'),'xyz':np.zeros((2,3)),'features':np.zeros((2,25)),'displacement':np.ones((2,3))}
+        xyz,features,u=read_case_arrays(source,'case/ver','u')
+        self.assertEqual(u.shape,(2,3))
+        self.assertEqual(u.dtype,np.float32)
+        with self.assertRaises(KeyError):read_case_arrays(source,'case/ver','us')
 
 
 if __name__=='__main__':unittest.main()

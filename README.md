@@ -2,7 +2,9 @@
 
 Geometry, loads and boundary conditions for displacement and signed-stress prediction on original DeepJEB.
 
-The latest [parameter-matched one- and five-sample fitting comparison](results/matched_capacity_overfitting/README.md) is complete: eight implementations each have about 4.6 million trainable parameters (±1%) and exactly 1,000 full original-node updates in each group. At the strict step-1,000 endpoint, only single-sample TorchHash meets **U and signed S both below 1%** (0.6592% / 0.5941%); no five-sample implementation passes every case and field. This is training-fit evidence, with one seed, different representations and precision, rather than a generalization or universal architecture ranking. Earlier [unequal-capacity fitting and extended Hash training](results/sample_overfitting/README.md) remain separate.
+The latest [U-only parameter-matched fitting comparison](results/matched_capacity_u_overfitting/README.md) is complete: eight implementations each have about 4.6 million trainable parameters (±1%) and exactly 1,000 full original-node updates for both one- and five-sample groups. These are fresh three-output displacement models with U-vector loss only and no stress-label reads. At the strict step-1,000 endpoint, single-sample TCNN, FNO and TorchHash meet **U below 1%** (0.2588%, 0.3986%, 0.5638%); no five-sample implementation passes every case. Five-sample TorchHash reaches 3.2060% mean / 3.6931% worst U error. Complete training-stage cost is 3,275.65 s UTC / 3,006.64 s monotonic. This one-seed training-fit result does not establish generalization or a universal architecture ranking.
+
+The earlier [joint U/S matched comparison](results/matched_capacity_overfitting/README.md) and [unequal-capacity fitting with extended Hash training](results/sample_overfitting/README.md) remain separate. Removing S loss does not improve every fixed recipe; the U-only and joint runs also have different output heads and initialization.
 
 The [paper evidence chain](docs/paper_logic.md) separates **historical backbone/package selection → matched physical-information gains → input-group ablation and compact Fieldwise design**, followed by frozen final evaluation. Historical Transolver results are preserved in [backbone_comparison](results/backbone_comparison/README.md), separately from the latest three-seed physically enhanced experiments. The [five original historical reports](results/research_history/README.md) are retained unchanged as the source layer.
 
@@ -31,6 +33,7 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 
 ## Results
 
+- [U-only matched capacity and exact 1,000-update fitting](results/matched_capacity_u_overfitting/README.md): 16 complete arms, 48 per-case rows, U3 outputs/loss only, zero stress-label or held-out reads; complete endpoint predictions and checkpoints stay local.
 - [Matched capacity and exact 1,000-update fitting](results/matched_capacity_overfitting/README.md): 16 complete arms, 48 per-case rows, 3,723.25 s UTC / 3,351.35 s monotonic total training-stage cost; no held-out evaluation.
 - [Earlier sample fitting and Hash continuation](results/sample_overfitting/README.md): different capacities, variable update counts, best-checkpoint selection and separate continuation costs.
 - [Historical backbone/package comparison](results/backbone_comparison/README.md): FNO, original Transolver, Transolver++, Transolver3 and MLP; separate experiment groups with split, capacity, precision and cost scope. Archival selection evidence, not the latest final-set ranking.

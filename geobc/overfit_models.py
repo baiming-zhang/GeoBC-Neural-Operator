@@ -26,23 +26,24 @@ def prepare_grid(case, resolution=64):
 
 class NativeNodeFNO(nn.Module):
     """R64 FNO latent plus native XYZ/BC query head; train loss is at FEM nodes."""
-    def __init__(self,head_width=128):
+    def __init__(self,head_width=128,out_channels=4):
         super().__init__()
         self.operator=FNO3d(26,16,width=9,modes=12,layers=4,checkpoint_blocks=True)
-        self.head=nn.Sequential(nn.Linear(44,head_width),nn.GELU(),nn.Linear(head_width,head_width),nn.GELU(),nn.Linear(head_width,4))
+        self.head=nn.Sequential(nn.Linear(44,head_width),nn.GELU(),nn.Linear(head_width,head_width),nn.GELU(),nn.Linear(head_width,out_channels))
 
     def query(self,case,rows,latent):
         local=query_grid(latent[0],case['query_indices'][rows],case['query_weights'][rows])
         return self.head(torch.cat((case['xyz'][rows],case['features'][rows],local),-1))
 
 
-def make_model(method,seed,settings=None):
+def make_model(method,seed,settings=None,out_channels=4):
     settings=settings or {}
+    if out_channels not in (3,4):raise ValueError('Only U3 or joint U3/S outputs supported')
     torch.manual_seed(seed);torch.cuda.manual_seed_all(seed)
-    if method=='fno':return NativeNodeFNO(**settings).cuda()
+    if method=='fno':return NativeNodeFNO(out_channels=out_channels,**settings).cuda()
     if method in ('transolver','transolverpp','ts3'):
-        return build_transformer(method,device='cuda',checkpoint_blocks=True,model_overrides=settings)
-    if method=='tcnn_hash':return TCNNField(config=TCNNFieldConfig(out_channels=4,input_mode='both',seed=seed,**settings))
+        return build_transformer(method,output_dim=out_channels,device='cuda',checkpoint_blocks=True,model_overrides=settings)
+    if method=='tcnn_hash':return TCNNField(config=TCNNFieldConfig(out_channels=out_channels,input_mode='both',seed=seed,**settings))
     if method=='mlp':
         config=ModelConfig(encoder='mlp',input_mode='both',hidden_dim=settings.get('hidden_dim',256),hidden_layers=settings.get('hidden_layers',4))
     else:
@@ -50,13 +51,15 @@ def make_model(method,seed,settings=None):
         options.update(settings.get('hash_grid',{}));grid=HashGridConfig(**options)
         config=ModelConfig(input_mode='both',hidden_dim=settings.get('hidden_dim',32 if method=='ngp4' else 64),hidden_layers=settings.get('hidden_layers',2),hash_grid=grid)
     model=build_model('torch',config,'cuda')
-    model.mlp[-1]=nn.Linear(model.mlp[-1].in_features,4).cuda()
+    model.mlp[-1]=nn.Linear(model.mlp[-1].in_features,out_channels).cuda()
     return model
 
 
 def relative_loss(pred,target,energy,node_count):
-    """Half U-vector relative squared L2 plus half signed-S relative squared L2."""
+    """U-vector relative squared L2, or equal-weight joint U/S loss."""
+    if pred.shape!=target.shape or target.ndim!=2 or target.shape[1] not in (3,4):raise ValueError('Invalid field shape')
     diff=(pred-target).square()
+    if target.shape[1]==3:return diff.sum()/energy[0]/node_count
     return .5*(diff[:,:3].sum()/energy[0]+diff[:,3].sum()/energy[1])/node_count
 
 
