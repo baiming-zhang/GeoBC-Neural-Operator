@@ -36,11 +36,29 @@ class NativeNodeFNO(nn.Module):
         return self.head(torch.cat((case['xyz'][rows],case['features'][rows],local),-1))
 
 
+class NativeNodeTransolver(nn.Module):
+    """Official irregular-point TS producing latent16, plus an XYZ/BC query head."""
+    def __init__(self,head_width=376,n_hidden=400,out_channels=3):
+        super().__init__()
+        self.operator=build_transformer('transolver',output_dim=16,device='cuda',
+            checkpoint_blocks=True,model_overrides={'n_hidden':n_hidden})
+        self.head=nn.Sequential(nn.Linear(44,head_width),nn.GELU(),nn.Linear(head_width,head_width),nn.GELU(),nn.Linear(head_width,out_channels))
+        self.source_config={'backbone':self.operator.source_config,'latent_channels':16,
+            'query_head':[44,head_width,head_width,out_channels],
+            'input':'all original xyz+25 conditions; no voxelization',
+            'query':'original xyz+25 conditions+point latent16',
+            'label_input':False,'grid_interpolation':False}
+
+    def query(self,case,rows,latent):
+        return self.head(torch.cat((case['xyz'][rows],case['features'][rows],latent[0,rows]),-1))
+
+
 def make_model(method,seed,settings=None,out_channels=4):
     settings=settings or {}
     if out_channels not in (3,4):raise ValueError('Only U3 or joint U3/S outputs supported')
     torch.manual_seed(seed);torch.cuda.manual_seed_all(seed)
     if method=='fno':return NativeNodeFNO(out_channels=out_channels,**settings).cuda()
+    if method=='transolver_hybrid':return NativeNodeTransolver(out_channels=out_channels,**settings).cuda()
     if method in ('transolver','transolverpp','ts3'):
         return build_transformer(method,output_dim=out_channels,device='cuda',checkpoint_blocks=True,model_overrides=settings)
     if method=='tcnn_hash':return TCNNField(config=TCNNFieldConfig(out_channels=out_channels,input_mode='both',seed=seed,**settings))
@@ -70,11 +88,12 @@ def backward_case(method,model,case,guard,chunk_size=32768):
         loss=relative_loss(pred,case['target'],case['energy'],n)
         if not torch.isfinite(loss):raise FloatingPointError('Nonfinite contextual loss')
         loss.backward();return float(loss.detach())
-    latent=model.operator(case['grid']) if method=='fno' else None
+    latent=(model.operator(case['inputs'][None]) if method=='transolver_hybrid' else
+            model.operator(case['grid']) if method=='fno' else None)
     detached=latent.detach().requires_grad_(True) if latent is not None else None
     for start in range(0,n,chunk_size):
         guard();rows=slice(start,min(start+chunk_size,n))
-        pred=model.query(case,rows,detached) if method=='fno' else model(case['xyz'][rows],case['features'][rows])
+        pred=model.query(case,rows,detached) if latent is not None else model(case['xyz'][rows],case['features'][rows])
         loss=relative_loss(pred,case['target'][rows],case['energy'],n)
         if not torch.isfinite(loss):raise FloatingPointError('Nonfinite node loss')
         loss.backward();loss_value+=float(loss.detach())
@@ -86,9 +105,10 @@ def backward_case(method,model,case,guard,chunk_size=32768):
 def predict_case(method,model,case,guard,chunk_size=32768):
     if method in ('transolver','transolverpp','ts3'):
         return model(case['inputs'][None])[0].float()
-    latent=model.operator(case['grid']) if method=='fno' else None
+    latent=(model.operator(case['inputs'][None]) if method=='transolver_hybrid' else
+            model.operator(case['grid']) if method=='fno' else None)
     out=[]
     for start in range(0,len(case['xyz']),chunk_size):
         guard();rows=slice(start,min(start+chunk_size,len(case['xyz'])))
-        out.append(model.query(case,rows,latent) if method=='fno' else model(case['xyz'][rows],case['features'][rows]).float())
+        out.append(model.query(case,rows,latent) if latent is not None else model(case['xyz'][rows],case['features'][rows]).float())
     return torch.cat(out)

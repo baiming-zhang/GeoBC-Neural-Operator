@@ -1,5 +1,7 @@
 # TCNN原生FP32：1/5/50样本完整5000步
 
+最新索引：[TS两种混合消融后的30项报告](../transolver_hybrid_ablations/README.md)保留本报告端点，增加6项完整5000步TS混合结果；本报告作为历史阶段保留。
+
 用户要求TCNN改为FP32后，这三项均从seed2026重新初始化、完整训练5000次原节点更新，无早停。其余21项保留已交付的真实5000步标量。旧TCNN FP16结果保留在[历史报告](../fifty_u_overfitting/README.md)及[历史标量](historical_tcnn_fp16.csv)。
 
 TCNN本地源码以TCNN_HALF_PRECISION=0构建独立扩展，运行时核验native dtype=torch.float32及实际CutlassMLP后端。官方FullyFusedMLP路径采用FP16；FP32使用官方CutlassMLP，因此这不是单独改变输出cast。哈希编码/层宽深、约460万实际注册与活跃参数均保留。禁用PyTorch matmul/cuDNN TF32，并设置NVIDIA_TF32_OVERRIDE=0；无AMP。其他21项的历史FP32计算允许TF32，因此整张表不能称为所有方法完全相同数值精度的比较。

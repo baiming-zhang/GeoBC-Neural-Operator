@@ -133,7 +133,8 @@ def run(args):
                     raise ValueError('Malformed overfitting case')
                 case={'key':key,'xyz':torch.from_numpy(xyz).cuda(),'features':torch.from_numpy(features).cuda(),'physical':torch.from_numpy(y).cuda()}
                 case['inputs']=torch.cat((case['xyz'],case['features']),1)
-                prepare_grid(case);cache[key]=case;state['source_reads']+=1;update()
+                if 'fno' in config['methods'] or config.get('prepare_unused_fno_grid',True):prepare_grid(case)
+                cache[key]=case;state['source_reads']+=1;update()
             groups=config.get('groups',['single','five'])
             for group in groups:
                 cases=[cache[k] for k in config[group]]

@@ -1,5 +1,11 @@
 # GeoBC Neural Operator
 
+Latest: **two Transolver hybrid ablations are complete**, adding six actual update-5,000 endpoints and retaining the previous24, for **30 arms / 560 case errors**. Point TS + query has single/five-mean/fifty-mean U errors **2.9834% / 2.8212% / 28.8945%**; grid TS + query has **0.5358% / 3.7650% / 27.0709%**. Neither gives consistent gains over the original TS; FNO + query retains the lowest50-case mean, **9.9989%**. [Latest full accuracy/time/precision comparison](results/transolver_hybrid_ablations/README.md).
+
+Both new variants use approximately4.6M total registered/active parameters, the same Adam / OneCycle peak1e-3 / full5000 / clip1 / eval50 recipe, and FP32 with TF32 allowed. Their head width376 and backbone width400 differ from the retained FNO head320 and original TS width408 to match total capacity. Grid TS also receives deterministic grid coordinates. The combined new stage cost is **9,432.30s UTC / 8,879.25s monotonic**; source-case reads100, stress/held-out reads0, no early stopping, both guards closed successfully within budgets. These are fixed-seed TRAIN fits, not generalization or universal architecture rankings.
+
+Earlier completed comparisons follow; the linked30-arm report is the current main table.
+
 Latest precision correction: **TCNN now uses native FP32 CutlassMLP with TF32 disabled**, freshly completing all three single/five/fifty-case arms at update 5,000. U errors: **0.000232% single / 2.5335% five-case mean / 28.0900% fifty-case mean**. The other 21 completed endpoints are retained and allow TF32. The old FP16 TCNN results remain historical. [Latest24-arm comparison and precision/time details](results/tcnn_fp32_u_overfitting/README.md).
 
 Geometry, loads and boundary conditions for displacement and signed-stress prediction on original DeepJEB.
