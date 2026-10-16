@@ -1,6 +1,6 @@
 """One- and five-case U-only or joint U/S original-node fitting."""
 import time
-import argparse,json,os,random,gc,traceback
+import argparse,json,os,random,gc,traceback,math
 from pathlib import Path
 import numpy as np
 import torch
@@ -34,11 +34,25 @@ def read_case_arrays(f,key,output_field):
     return xyz,features,y
 
 
+def learning_rate_multiplier(config,completed_updates):
+    """LR for the next update: warmup peak, then cosine to the final-update floor."""
+    total=config['max_updates_per_arm'];warmup=config['lr_schedule']['warmup_updates']
+    base=config['learning_rate'];floor=config['minimum_learning_rate']
+    if total<2 or not 0<=warmup<total or not 0<floor<=base:raise ValueError('Invalid warmup/cosine settings')
+    k=min(max(completed_updates+1,1),total)
+    if warmup and k<=warmup:return k/warmup
+    progress=(k-warmup)/(total-warmup) if warmup else (k-1)/(total-1)
+    return floor/base+(1-floor/base)*.5*(1+math.cos(math.pi*progress))
+
+
 def run(args):
     config=json.loads(Path(args.config).read_text());sources=json.loads(Path(args.source).read_text())
     output_field=config.get('output_field','us')
     if output_field not in ('u','us'):raise ValueError('Unknown output field')
     channels=3 if output_field=='u' else 4
+    schedule=config.get('lr_schedule')
+    if schedule is not None and schedule.get('kind')!='warmup_cosine':raise ValueError('Unknown LR schedule')
+    if schedule is not None and config.get('fixed_learning_rate'):raise ValueError('Scheduled LR cannot also be fixed')
     output=Path(args.output);clock=json.loads(os.environ['GEOBC_EXPERIMENT_CLOCK'])
     os.environ['GEOBC_TRANSFORMER_MANIFEST']=sources['transformer_manifest']
     state={'status':'running','active':True,'closed':False,'phase':'loading','arms':{},'source_reads':0,'training_only':True,'heldout_reads':0,'output_field':output_field,'stress_label_reads':0}
@@ -117,7 +131,8 @@ def run(args):
                         arm['model_config']=getattr(model,'source_config',{})
                         random.seed(config['seed']);np.random.seed(config['seed'])
                         optimizer=torch.optim.Adam(model.parameters(),lr=config['learning_rate'],fused=True)
-                        scheduler=torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,factor=.5,patience=config['lr_plateau_evaluations'],min_lr=config['minimum_learning_rate'])
+                        scheduler=(torch.optim.lr_scheduler.LambdaLR(optimizer,lambda completed:learning_rate_multiplier(config,completed)) if schedule else
+                                   torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,factor=.5,patience=config['lr_plateau_evaluations'],min_lr=config['minimum_learning_rate']))
                         if config.get('continuation'):
                             saved=torch.load(sources['continuations'][name],map_location='cuda',weights_only=False)
                             if saved['order']!=config[group] or saved['cursor']!=saved['step']%len(cases) or saved['arm'].get('optimizer_step_in_progress'):
@@ -141,13 +156,21 @@ def run(args):
                                 gradients=[p.grad for p in model.parameters() if p.grad is not None]
                                 if not gradients or not all(torch.isfinite(g).all() for g in gradients):raise FloatingPointError('Invalid actual full-node gradients')
                                 arm['actual_full_node_backward']=True
+                                arm['active_parameters']=sum(p.numel() for p in model.parameters() if p.requires_grad and p.grad is not None)
+                                if 'parameter_target' in config and abs(arm['active_parameters']/config['parameter_target']-1)>config['parameter_tolerance']:raise ValueError('Active parameter count outside matching tolerance')
+                            if config.get('gradient_clip_norm'):
+                                norm=torch.nn.utils.clip_grad_norm_(model.parameters(),config['gradient_clip_norm'],error_if_nonfinite=True,foreach=True)
+                                arm['gradient_norm_before_clip']=float(norm)
+                                arm['gradient_clipped_updates']=arm.get('gradient_clipped_updates',0)+int(norm>config['gradient_clip_norm'])
+                            arm['learning_rate_last_update']=optimizer.param_groups[0]['lr']
                             arm['optimizer_step_in_progress']=True
                             optimizer.step();step+=1;arm.update(updates=step,partial_backward=False,optimizer_step_in_progress=False,training_loss=loss)
+                            if schedule:scheduler.step()
                             if config.get('continuation'):arm['added_updates']=step-arm['starting_step']
                             if step%10==0:update(phase=name+'/training')
                             if step%config['evaluate_every']==0:
                                 metric=evaluate()
-                                if not config.get('fixed_learning_rate'):scheduler.step(metric)
+                                if not schedule and not config.get('fixed_learning_rate'):scheduler.step(metric)
                                 checkpoint('last.pt')
                                 if arm['goal_met'] and not config.get('fixed_endpoint'):break
                         if (last is None or last['step']!=step):evaluate()

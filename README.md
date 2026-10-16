@@ -2,7 +2,9 @@
 
 Geometry, loads and boundary conditions for displacement and signed-stress prediction on original DeepJEB.
 
-The latest [U-only parameter-matched fitting comparison](results/matched_capacity_u_overfitting/README.md) is complete: eight implementations each have about 4.6 million trainable parameters (±1%) and exactly 1,000 full original-node updates for both one- and five-sample groups. These are fresh three-output displacement models with U-vector loss only and no stress-label reads. At the strict step-1,000 endpoint, single-sample TCNN, FNO and TorchHash meet **U below 1%** (0.2588%, 0.3986%, 0.5638%); no five-sample implementation passes every case. Five-sample TorchHash reaches 3.2060% mean / 3.6931% worst U error. Complete training-stage cost is 3,275.65 s UTC / 3,006.64 s monotonic. This one-seed training-fit result does not establish generalization or a universal architecture ranking.
+The [latest U-only overfitting results](results/stabilized_u_overfitting/README.md) now include all six requested Transolver-family reruns, each with about 4.6 million parameters (±1%), fresh seed 2026 and exactly 1,000 full original-node updates. Adam uses 50-update warmup to 1e-4, cosine decay to 1e-6 and gradient norm clipping at 1. New single-sample U errors are **2.3795% / 1.2334% / 1.7112%** for Transolver / Transolver++ / TS3. Their five-sample mean U errors are **13.0556% / 11.6977% / 13.0275%**, with worst-case errors 21.2482% / 16.7739% / 17.0505%. All six improve over the earlier fixed .001 recipe; none passes every case below 1%. This rerun stage costs 2,420.14 s UTC / 2,216.16 s monotonic, with zero stress-label or held-out reads.
+
+The [latest complete 16-arm index](results/stabilized_u_overfitting/latest_all_methods.csv) uses these new six endpoints and explicitly retains the other five methods from the [earlier fixed-recipe comparison](results/matched_capacity_u_overfitting/README.md). Single-sample TCNN, FNO and TorchHash remain below 1% (0.2588%, 0.3986%, 0.5638%); no five-sample implementation passes every case. Rows carry their protocol and result source, so this latest-results index is not an identical-hyperparameter ranking or a generalization claim.
 
 The earlier [joint U/S matched comparison](results/matched_capacity_overfitting/README.md) and [unequal-capacity fitting with extended Hash training](results/sample_overfitting/README.md) remain separate. Removing S loss does not improve every fixed recipe; the U-only and joint runs also have different output heads and initialization.
 
@@ -35,6 +37,7 @@ A fixed comparison on the next unused training CAD reduced three-load solve cost
 
 ## Results
 
+- [Latest U-only results with six Transolver-family reruns](results/stabilized_u_overfitting/README.md): 6 new strict endpoints, 18 new per-case rows and a complete 16-arm latest-results index with source provenance; warmup/cosine learning rate and gradient clipping, registered and active capacity checks.
 - [Transolver correctness and learning-rate diagnostic](results/transolver_fit_diagnostics/README.md): native/checkpoint parity, saved-model reproduction, constant-field collapse and a separate same-seed 1,000-step learning-rate control.
 - [U-only matched capacity and exact 1,000-update fitting](results/matched_capacity_u_overfitting/README.md): 16 complete arms, 48 per-case rows, U3 outputs/loss only, zero stress-label or held-out reads; complete endpoint predictions and checkpoints stay local.
 - [Matched capacity and exact 1,000-update fitting](results/matched_capacity_overfitting/README.md): 16 complete arms, 48 per-case rows, 3,723.25 s UTC / 3,351.35 s monotonic total training-stage cost; no held-out evaluation.

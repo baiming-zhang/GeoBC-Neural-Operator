@@ -1,0 +1,74 @@
+{
+  "single": [
+    "506_533/ver"
+  ],
+  "five": [
+    "506_533/ver",
+    "506_25/tor",
+    "10_30/ver",
+    "10_421/hor",
+    "10_460/dia"
+  ],
+  "methods": [
+    "transolver",
+    "transolverpp",
+    "ts3"
+  ],
+  "seed": 2026,
+  "target_relative_l2": 0.01,
+  "max_updates_per_arm": 1000,
+  "arm_seconds": 1800,
+  "whole_seconds": 14400,
+  "memory_bytes": 30500000000,
+  "learning_rate": 0.0001,
+  "minimum_learning_rate": 1e-06,
+  "lr_plateau_evaluations": 5,
+  "evaluate_every": 100,
+  "checkpoint_every": 100,
+  "precision": "FP32 model/targets; TF32 allowed; TCNN native FP16 with FP32 master parameters",
+  "selection": "Latest rerun exact update1000 endpoints, not best or old results; fresh seed2026; predetermined warmup/cosine+clip recipe, not a one-variable diagnostic.",
+  "goal": "Every fitted case full-node signed U3 vector relative L2 strictly below 1%; no pooled-only pass",
+  "protocol": "one complete original-node case per optimizer update, cases cycled; U3 output and U-vector loss only; no stress label reads, sample ID, physical input, residual teacher, target grid or heldout data",
+  "fixed_endpoint": true,
+  "fixed_learning_rate": false,
+  "parameter_target": 4600000,
+  "parameter_tolerance": 0.01,
+  "model_settings": {
+    "mlp": {
+      "hidden_dim": 1232
+    },
+    "ngp4": {
+      "hidden_dim": 2112
+    },
+    "hashgrid": {
+      "hidden_dim": 704,
+      "hash_grid": {
+        "log2_hashmap_size": 18
+      }
+    },
+    "tcnn_hash": {
+      "n_levels": 13,
+      "log2_hashmap_size": 18
+    },
+    "fno": {
+      "head_width": 320
+    },
+    "transolver": {
+      "n_hidden": 408
+    },
+    "transolverpp": {
+      "n_hidden": 288,
+      "n_layers": 13
+    },
+    "ts3": {
+      "n_hidden": 192,
+      "n_layers": 17
+    }
+  },
+  "output_field": "u",
+  "lr_schedule": {
+    "kind": "warmup_cosine",
+    "warmup_updates": 50
+  },
+  "gradient_clip_norm": 1.0
+}

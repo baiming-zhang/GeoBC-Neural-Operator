@@ -1,8 +1,8 @@
-import unittest
+import unittest,copy
 import torch
 import numpy as np
 from geobc.overfit_models import relative_loss
-from tools.train_sample_overfitting import errors,read_case_arrays
+from tools.train_sample_overfitting import errors,read_case_arrays,learning_rate_multiplier
 
 
 class OverfittingTests(unittest.TestCase):
@@ -36,8 +36,8 @@ class OverfittingTests(unittest.TestCase):
         split=sum(relative_loss(pred[i:i+1],target[i:i+1],energy,len(pred)) for i in range(2));split.backward()
         self.assertAlmostEqual(float(whole.detach()),.01,places=12)
         self.assertTrue(torch.allclose(pred.grad,gradient,atol=1e-14,rtol=1e-14))
-        self.assertEqual(set(errors(target,pred)),{'U_percent'})
-        self.assertAlmostEqual(errors(target,pred)['U_percent'],10.,places=10)
+        self.assertEqual(set(errors(target,pred.detach())),{'U_percent'})
+        self.assertAlmostEqual(errors(target,pred.detach())['U_percent'],10.,places=10)
 
     def test_u_only_does_not_read_stress(self):
         source={'label_alignment':np.array('official CSV GRID coordinates -> H5 vertices'),'sample_key':np.array('case/ver'),'xyz':np.zeros((2,3)),'features':np.zeros((2,25)),'displacement':np.ones((2,3))}
@@ -45,6 +45,24 @@ class OverfittingTests(unittest.TestCase):
         self.assertEqual(u.shape,(2,3))
         self.assertEqual(u.dtype,np.float32)
         with self.assertRaises(KeyError):read_case_arrays(source,'case/ver','us')
+
+    def test_warmup_cosine_optimizer_update_rates_and_restore(self):
+        c={'max_updates_per_arm':1000,'learning_rate':1e-4,'minimum_learning_rate':1e-6,'lr_schedule':{'warmup_updates':50}}
+        p=torch.nn.Parameter(torch.ones(1));opt=torch.optim.Adam([p],lr=c['learning_rate'])
+        sch=torch.optim.lr_scheduler.LambdaLR(opt,lambda completed:learning_rate_multiplier(c,completed))
+        rates=[];saved=None
+        for step in range(1000):
+            rates.append(opt.param_groups[0]['lr']);p.grad=torch.ones_like(p)
+            opt.step();sch.step()
+            if step==499:saved=copy.deepcopy((opt.state_dict(),sch.state_dict()))
+        self.assertAlmostEqual(rates[0],2e-6,places=14)
+        self.assertAlmostEqual(rates[49],1e-4,places=14)
+        self.assertAlmostEqual(rates[-1],1e-6,places=14)
+        self.assertTrue(all(a>=b for a,b in zip(rates[49:],rates[50:])))
+        opt.load_state_dict(saved[0]);sch.load_state_dict(saved[1])
+        self.assertAlmostEqual(opt.param_groups[0]['lr'],rates[500],places=14)
+        self.assertEqual(sch.last_epoch,500)
+        self.assertEqual(int(opt.state[p]['step']),500)
 
 
 if __name__=='__main__':unittest.main()

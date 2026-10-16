@@ -1,6 +1,6 @@
 # 单样本与五样本过拟合
 
-最新的[只学习U、参数量匹配、每项恰好1000步对照](../matched_capacity_u_overfitting/README.md)已完成；此前[U/S联合匹配对照](../matched_capacity_overfitting/README.md)独立保留。本页保留不同容量、可早停、最佳checkpoint和Hash追加训练结果，不混入最新主表。
+最新[U-only全部方法汇总](../stabilized_u_overfitting/README.md)已纳入Transolver系列单/五样本6项重做；[原统一fixed .001对照](../matched_capacity_u_overfitting/README.md)与[U/S联合匹配对照](../matched_capacity_overfitting/README.md)独立保留。本页保留不同容量、可早停、最佳checkpoint和Hash追加训练结果，不混入最新主表。
 
 本轮对照已完成：8种实现各做单/五样本联合拟合，另对五样本Torch Hash保留Adam状态续训。**单样本Torch/TCNN Hash及续训后的五样本Torch Hash达到每样本U/S均<1%**；不是所有方法达标。五样本达标checkpoint为32,100步，最差U0.9964%、最差S0.3855%，该模型原臂+追加stage成本合计1239.59秒UTC / 1116.90秒单调时钟。下方保留初始固定预算结果与追加结果，不能混为同预算排名。
 
