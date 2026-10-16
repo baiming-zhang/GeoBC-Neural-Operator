@@ -2,7 +2,7 @@ import unittest,copy
 import torch
 import numpy as np
 from geobc.overfit_models import relative_loss
-from tools.train_sample_overfitting import errors,read_case_arrays,learning_rate_multiplier
+from tools.train_sample_overfitting import errors,read_case_arrays,learning_rate_multiplier,make_scheduler,update_early_stopping
 
 
 class OverfittingTests(unittest.TestCase):
@@ -63,6 +63,42 @@ class OverfittingTests(unittest.TestCase):
         self.assertAlmostEqual(opt.param_groups[0]['lr'],rates[500],places=14)
         self.assertEqual(sch.last_epoch,500)
         self.assertEqual(int(opt.state[p]['step']),500)
+
+    def test_onecycle_actual_5000_updates_and_exact_resume(self):
+        config={'max_updates_per_arm':5000,'lr_schedule':{'kind':'onecycle','pct_start':.1,'div_factor':25.,'final_div_factor':1000.}}
+        for peak in (1e-3,):
+            p=torch.nn.Parameter(torch.ones(1));opt=torch.optim.Adam([p],lr=peak);sch=make_scheduler(opt,config)
+            rates=[];saved=None
+            for step in range(5000):
+                rates.append(opt.param_groups[0]['lr']);p.grad=p.detach().clone()
+                opt.step();sch.step()
+                if step==2499:saved=copy.deepcopy((p.detach(),opt.state_dict(),sch.state_dict()))
+            final=p.detach().clone()
+            self.assertAlmostEqual(rates[0],peak/25,places=14)
+            self.assertAlmostEqual(rates[499],peak,places=14)
+            self.assertAlmostEqual(rates[-1],peak/25000,places=14)
+            self.assertTrue(all(a<=b for a,b in zip(rates[:499],rates[1:500])))
+            self.assertTrue(all(a>=b for a,b in zip(rates[499:],rates[500:])))
+            self.assertEqual(opt.param_groups[0]['betas'],(.9,.999))
+            with torch.no_grad():p.copy_(saved[0])
+            opt.load_state_dict(saved[1]);sch.load_state_dict(saved[2])
+            for step in range(2500,5000):
+                self.assertEqual(opt.param_groups[0]['lr'],rates[step]);p.grad=p.detach().clone();opt.step();sch.step()
+            self.assertTrue(torch.equal(p.detach(),final))
+            self.assertEqual(int(opt.state[p]['step']),5000)
+
+    def test_early_stopping_patience_relative_improvement_and_restore(self):
+        settings={'min_updates':1500,'patience_updates':600,'min_relative_improvement':.001};state={}
+        self.assertFalse(update_early_stopping(state,settings,0,10.))
+        self.assertFalse(update_early_stopping(state,settings,900,9.))
+        self.assertFalse(update_early_stopping(state,settings,1450,8.995))
+        saved=copy.deepcopy(state)
+        self.assertTrue(update_early_stopping(state,settings,1500,8.995))
+        self.assertEqual(state['last_improvement_step'],900)
+        self.assertFalse(update_early_stopping(saved,settings,1500,8.98))
+        self.assertFalse(update_early_stopping(saved,settings,2050,8.98))
+        self.assertTrue(update_early_stopping(saved,settings,2100,8.98))
+        with self.assertRaises(FloatingPointError):update_early_stopping({},settings,1500,float('nan'))
 
 
 if __name__=='__main__':unittest.main()

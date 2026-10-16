@@ -1,6 +1,6 @@
 # Transolver拟合异常：接入正确性与学习率诊断
 
-后续已完成[Transolver系列单/五样本6项重做](../stabilized_u_overfitting/README.md)，原版单样本最新U为2.3795%。本页7.9905%是此前仅改变固定学习率的独立诊断端点，保留作单变量证据，不再作为最新训练结果。
+后续已完成[全部8方法统一OneCycle、完整5000步对照](../fullcycle_u_overfitting/README.md)，原版Transolver单样本最新U为0.3628%。[1000步系列调整](../stabilized_u_overfitting/README.md)作为中间阶段保留。本页7.9905%是此前仅改变固定学习率的独立诊断端点，保留作单变量证据，不作为最新训练结果。
 
 本报告检查此前U-only单样本Transolver的76.0923%异常结果。原16项固定1000步结果保留，不把本诊断的新配方替换到原主表。
 

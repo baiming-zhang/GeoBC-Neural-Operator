@@ -1,0 +1,94 @@
+{
+  "single": [
+    "506_533/ver"
+  ],
+  "five": [
+    "506_533/ver",
+    "506_25/tor",
+    "10_30/ver",
+    "10_421/hor",
+    "10_460/dia"
+  ],
+  "methods": [
+    "mlp",
+    "ngp4",
+    "hashgrid",
+    "tcnn_hash",
+    "fno",
+    "transolver",
+    "transolverpp",
+    "ts3"
+  ],
+  "seed": 2026,
+  "target_relative_l2": 0.01,
+  "max_updates_per_arm": 5000,
+  "arm_seconds": 5400,
+  "whole_seconds": 14400,
+  "memory_bytes": 30500000000,
+  "learning_rate": 0.001,
+  "minimum_learning_rate": 4e-08,
+  "lr_plateau_evaluations": 5,
+  "evaluate_every": 50,
+  "checkpoint_every": 50,
+  "precision": "FP32 model/targets; TF32 allowed; TCNN native FP16 with FP32 master parameters",
+  "selection": "Rerun every prior early-stopped arm fresh from seed2026, exactly5000 full-node updates, no early stop. Keep previously completed5000 endpoints unchanged. Report only exact5000 actual endpoints; never best substitutions.",
+  "goal": "Every fitted case full-node signed U3 vector relative L2 strictly below 1%; no pooled-only pass",
+  "protocol": "Same Adam, U-only data/loss, seed2026, capacity, case order, per-update OneCycle peak1e-3/5000, clip1 and eval50 as uniform_onecycle_u_overfitting; early stopping disabled. Selected arms are determined once from all closed prior early stops before launch; no PT warmstart. Shared five TRAIN caches each read once for this new stage; costs separate.",
+  "fixed_endpoint": true,
+  "fixed_learning_rate": false,
+  "parameter_target": 4600000,
+  "parameter_tolerance": 0.01,
+  "model_settings": {
+    "mlp": {
+      "hidden_dim": 1232
+    },
+    "ngp4": {
+      "hidden_dim": 2112
+    },
+    "hashgrid": {
+      "hidden_dim": 704,
+      "hash_grid": {
+        "log2_hashmap_size": 18
+      }
+    },
+    "tcnn_hash": {
+      "n_levels": 13,
+      "log2_hashmap_size": 18
+    },
+    "fno": {
+      "head_width": 320
+    },
+    "transolver": {
+      "n_hidden": 408
+    },
+    "transolverpp": {
+      "n_hidden": 288,
+      "n_layers": 13
+    },
+    "ts3": {
+      "n_hidden": 192,
+      "n_layers": 17
+    }
+  },
+  "output_field": "u",
+  "report_stop_endpoint": true,
+  "gradient_clip_norm": 1.0,
+  "lr_schedule": {
+    "kind": "onecycle",
+    "pct_start": 0.1,
+    "div_factor": 25.0,
+    "final_div_factor": 1000.0,
+    "cycle_momentum": false,
+    "anneal_strategy": "cos"
+  },
+  "uniform_training_parameters": true,
+  "report_directory": "results/fullcycle_u_overfitting",
+  "selected_arms": [
+    "single_hashgrid",
+    "single_tcnn_hash",
+    "five_mlp",
+    "five_ngp4"
+  ],
+  "require_selected_arms": true,
+  "rerun_source": "runs/uniform_onecycle_u_overfitting"
+}

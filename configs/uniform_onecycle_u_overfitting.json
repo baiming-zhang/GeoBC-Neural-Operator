@@ -1,0 +1,92 @@
+{
+  "single": [
+    "506_533/ver"
+  ],
+  "five": [
+    "506_533/ver",
+    "506_25/tor",
+    "10_30/ver",
+    "10_421/hor",
+    "10_460/dia"
+  ],
+  "methods": [
+    "mlp",
+    "ngp4",
+    "hashgrid",
+    "tcnn_hash",
+    "fno",
+    "transolver",
+    "transolverpp",
+    "ts3"
+  ],
+  "seed": 2026,
+  "target_relative_l2": 0.01,
+  "max_updates_per_arm": 5000,
+  "arm_seconds": 5400,
+  "whole_seconds": 32400,
+  "memory_bytes": 30500000000,
+  "learning_rate": 0.001,
+  "minimum_learning_rate": 4e-08,
+  "lr_plateau_evaluations": 5,
+  "evaluate_every": 50,
+  "checkpoint_every": 50,
+  "precision": "FP32 model/targets; TF32 allowed; TCNN native FP16 with FP32 master parameters",
+  "selection": "All16 fresh seed2026; common Adam/OneCycle peak1e-3, maximum5000 updates and identical TRAIN plateau early-stop rule. Primary result actual stop endpoint, never old or best substitution.",
+  "goal": "Every fitted case full-node signed U3 vector relative L2 strictly below 1%; no pooled-only pass",
+  "protocol": "Uniform training parameters for every method: Adam betas .9/.999 eps1e-8 weight_decay0; common per-update OneCycle schedule, clipping1, early-stop settings, max5000, full-node case order, U-only loss, evaluation every50; five TRAIN caches shared once, stress0heldout0; same approximately4.6M capacity architectures as previous U-only.",
+  "fixed_endpoint": false,
+  "fixed_learning_rate": false,
+  "parameter_target": 4600000,
+  "parameter_tolerance": 0.01,
+  "model_settings": {
+    "mlp": {
+      "hidden_dim": 1232
+    },
+    "ngp4": {
+      "hidden_dim": 2112
+    },
+    "hashgrid": {
+      "hidden_dim": 704,
+      "hash_grid": {
+        "log2_hashmap_size": 18
+      }
+    },
+    "tcnn_hash": {
+      "n_levels": 13,
+      "log2_hashmap_size": 18
+    },
+    "fno": {
+      "head_width": 320
+    },
+    "transolver": {
+      "n_hidden": 408
+    },
+    "transolverpp": {
+      "n_hidden": 288,
+      "n_layers": 13
+    },
+    "ts3": {
+      "n_hidden": 192,
+      "n_layers": 17
+    }
+  },
+  "output_field": "u",
+  "report_stop_endpoint": true,
+  "gradient_clip_norm": 1.0,
+  "lr_schedule": {
+    "kind": "onecycle",
+    "pct_start": 0.1,
+    "div_factor": 25.0,
+    "final_div_factor": 1000.0,
+    "cycle_momentum": false,
+    "anneal_strategy": "cos"
+  },
+  "early_stopping": {
+    "min_updates": 1500,
+    "patience_updates": 600,
+    "min_relative_improvement": 0.001,
+    "monitor": "worst_case_U_percent"
+  },
+  "uniform_training_parameters": true,
+  "report_directory": "results/uniform_onecycle_u_overfitting"
+}

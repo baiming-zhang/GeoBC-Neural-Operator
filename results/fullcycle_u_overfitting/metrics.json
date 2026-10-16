@@ -1,0 +1,821 @@
+{
+  "config": {
+    "single": [
+      "506_533/ver"
+    ],
+    "five": [
+      "506_533/ver",
+      "506_25/tor",
+      "10_30/ver",
+      "10_421/hor",
+      "10_460/dia"
+    ],
+    "methods": [
+      "mlp",
+      "ngp4",
+      "hashgrid",
+      "tcnn_hash",
+      "fno",
+      "transolver",
+      "transolverpp",
+      "ts3"
+    ],
+    "seed": 2026,
+    "target_relative_l2": 0.01,
+    "max_updates_per_arm": 5000,
+    "arm_seconds": 5400,
+    "whole_seconds": 14400,
+    "memory_bytes": 30500000000,
+    "learning_rate": 0.001,
+    "minimum_learning_rate": 4e-08,
+    "lr_plateau_evaluations": 5,
+    "evaluate_every": 50,
+    "checkpoint_every": 50,
+    "precision": "FP32 model/targets; TF32 allowed; TCNN native FP16 with FP32 master parameters",
+    "selection": "Rerun every prior early-stopped arm fresh from seed2026, exactly5000 full-node updates, no early stop. Keep previously completed5000 endpoints unchanged. Report only exact5000 actual endpoints; never best substitutions.",
+    "goal": "Every fitted case full-node signed U3 vector relative L2 strictly below 1%; no pooled-only pass",
+    "protocol": "Same Adam, U-only data/loss, seed2026, capacity, case order, per-update OneCycle peak1e-3/5000, clip1 and eval50 as uniform_onecycle_u_overfitting; early stopping disabled. Selected arms are determined once from all closed prior early stops before launch; no PT warmstart. Shared five TRAIN caches each read once for this new stage; costs separate.",
+    "fixed_endpoint": true,
+    "fixed_learning_rate": false,
+    "parameter_target": 4600000,
+    "parameter_tolerance": 0.01,
+    "model_settings": {
+      "mlp": {
+        "hidden_dim": 1232
+      },
+      "ngp4": {
+        "hidden_dim": 2112
+      },
+      "hashgrid": {
+        "hidden_dim": 704,
+        "hash_grid": {
+          "log2_hashmap_size": 18
+        }
+      },
+      "tcnn_hash": {
+        "n_levels": 13,
+        "log2_hashmap_size": 18
+      },
+      "fno": {
+        "head_width": 320
+      },
+      "transolver": {
+        "n_hidden": 408
+      },
+      "transolverpp": {
+        "n_hidden": 288,
+        "n_layers": 13
+      },
+      "ts3": {
+        "n_hidden": 192,
+        "n_layers": 17
+      }
+    },
+    "output_field": "u",
+    "report_stop_endpoint": true,
+    "gradient_clip_norm": 1.0,
+    "lr_schedule": {
+      "kind": "onecycle",
+      "pct_start": 0.1,
+      "div_factor": 25.0,
+      "final_div_factor": 1000.0,
+      "cycle_momentum": false,
+      "anneal_strategy": "cos"
+    },
+    "uniform_training_parameters": true,
+    "report_directory": "results/fullcycle_u_overfitting",
+    "selected_arms": [
+      "single_hashgrid",
+      "single_tcnn_hash",
+      "five_mlp",
+      "five_ngp4"
+    ],
+    "require_selected_arms": true,
+    "rerun_source": "runs/uniform_onecycle_u_overfitting"
+  },
+  "original_config": {
+    "single": [
+      "506_533/ver"
+    ],
+    "five": [
+      "506_533/ver",
+      "506_25/tor",
+      "10_30/ver",
+      "10_421/hor",
+      "10_460/dia"
+    ],
+    "methods": [
+      "mlp",
+      "ngp4",
+      "hashgrid",
+      "tcnn_hash",
+      "fno",
+      "transolver",
+      "transolverpp",
+      "ts3"
+    ],
+    "seed": 2026,
+    "target_relative_l2": 0.01,
+    "max_updates_per_arm": 5000,
+    "arm_seconds": 5400,
+    "whole_seconds": 32400,
+    "memory_bytes": 30500000000,
+    "learning_rate": 0.001,
+    "minimum_learning_rate": 4e-08,
+    "lr_plateau_evaluations": 5,
+    "evaluate_every": 50,
+    "checkpoint_every": 50,
+    "precision": "FP32 model/targets; TF32 allowed; TCNN native FP16 with FP32 master parameters",
+    "selection": "All16 fresh seed2026; common Adam/OneCycle peak1e-3, maximum5000 updates and identical TRAIN plateau early-stop rule. Primary result actual stop endpoint, never old or best substitution.",
+    "goal": "Every fitted case full-node signed U3 vector relative L2 strictly below 1%; no pooled-only pass",
+    "protocol": "Uniform training parameters for every method: Adam betas .9/.999 eps1e-8 weight_decay0; common per-update OneCycle schedule, clipping1, early-stop settings, max5000, full-node case order, U-only loss, evaluation every50; five TRAIN caches shared once, stress0heldout0; same approximately4.6M capacity architectures as previous U-only.",
+    "fixed_endpoint": false,
+    "fixed_learning_rate": false,
+    "parameter_target": 4600000,
+    "parameter_tolerance": 0.01,
+    "model_settings": {
+      "mlp": {
+        "hidden_dim": 1232
+      },
+      "ngp4": {
+        "hidden_dim": 2112
+      },
+      "hashgrid": {
+        "hidden_dim": 704,
+        "hash_grid": {
+          "log2_hashmap_size": 18
+        }
+      },
+      "tcnn_hash": {
+        "n_levels": 13,
+        "log2_hashmap_size": 18
+      },
+      "fno": {
+        "head_width": 320
+      },
+      "transolver": {
+        "n_hidden": 408
+      },
+      "transolverpp": {
+        "n_hidden": 288,
+        "n_layers": 13
+      },
+      "ts3": {
+        "n_hidden": 192,
+        "n_layers": 17
+      }
+    },
+    "output_field": "u",
+    "report_stop_endpoint": true,
+    "gradient_clip_norm": 1.0,
+    "lr_schedule": {
+      "kind": "onecycle",
+      "pct_start": 0.1,
+      "div_factor": 25.0,
+      "final_div_factor": 1000.0,
+      "cycle_momentum": false,
+      "anneal_strategy": "cos"
+    },
+    "early_stopping": {
+      "min_updates": 1500,
+      "patience_updates": 600,
+      "min_relative_improvement": 0.001,
+      "monitor": "worst_case_U_percent"
+    },
+    "uniform_training_parameters": true,
+    "report_directory": "results/uniform_onecycle_u_overfitting"
+  },
+  "summary": [
+    {
+      "experiment": "five_fno",
+      "method": "fno",
+      "group": "five",
+      "parameters": 4601006,
+      "active_parameters": 4601006,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 1.6939405538025856,
+      "worst_U_percent": 1.940469863322704,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 145.36707162857056,
+      "monotonic_seconds": 143.28341913299937,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "five_hashgrid",
+      "method": "hashgrid",
+      "group": "five",
+      "parameters": 4597251,
+      "active_parameters": 4597251,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 0.6830877149841277,
+      "worst_U_percent": 0.7505618704569597,
+      "all_cases_U_below_1_percent": true,
+      "UTC_seconds": 184.68255710601807,
+      "monotonic_seconds": 181.4903822870001,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "five_mlp",
+      "method": "mlp",
+      "group": "five",
+      "parameters": 4596595,
+      "active_parameters": 4596595,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 4.742835401781805,
+      "worst_U_percent": 11.332856873291645,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 341.5910539627075,
+      "monotonic_seconds": 330.143258438,
+      "source_run": "fullcycle_u_overfitting",
+      "fresh_rerun_of_early_stop": true
+    },
+    {
+      "experiment": "five_ngp4",
+      "method": "ngp4",
+      "group": "five",
+      "parameters": 4615555,
+      "active_parameters": 4615555,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 4.4984840288285985,
+      "worst_U_percent": 10.172866163638755,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 359.2540063858032,
+      "monotonic_seconds": 346.3684712009999,
+      "source_run": "fullcycle_u_overfitting",
+      "fresh_rerun_of_early_stop": true
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "method": "tcnn_hash",
+      "group": "five",
+      "parameters": 4597120,
+      "active_parameters": 4597120,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 2.4054393139060144,
+      "worst_U_percent": 2.9743779229146092,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 60.91987061500549,
+      "monotonic_seconds": 59.90050133299974,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "five_transolver",
+      "method": "transolver",
+      "group": "five",
+      "parameters": 4586786,
+      "active_parameters": 4586786,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 3.2076390912515174,
+      "worst_U_percent": 4.472225199315525,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 1118.0104041099548,
+      "monotonic_seconds": 1097.2438504499996,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "five_transolverpp",
+      "method": "transolverpp",
+      "group": "five",
+      "parameters": 4610664,
+      "active_parameters": 4609512,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 2.752913279077984,
+      "worst_U_percent": 3.426528060227108,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 2834.115603685379,
+      "monotonic_seconds": 2766.694223329,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "five_ts3",
+      "method": "ts3",
+      "group": "five",
+      "parameters": 4562379,
+      "active_parameters": 4562379,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 3.23962384723806,
+      "worst_U_percent": 4.419994619336607,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 3070.5835127830505,
+      "monotonic_seconds": 2990.222468955999,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "single_fno",
+      "method": "fno",
+      "group": "single",
+      "parameters": 4601006,
+      "active_parameters": 4601006,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 0.23050275000879406,
+      "worst_U_percent": 0.23050275000879406,
+      "all_cases_U_below_1_percent": true,
+      "UTC_seconds": 124.44856834411621,
+      "monotonic_seconds": 124.44856855199998,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "single_hashgrid",
+      "method": "hashgrid",
+      "group": "single",
+      "parameters": 4597251,
+      "active_parameters": 4597251,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 0.0023532482006456625,
+      "worst_U_percent": 0.0023532482006456625,
+      "all_cases_U_below_1_percent": true,
+      "UTC_seconds": 136.77483463287354,
+      "monotonic_seconds": 132.39510474500094,
+      "source_run": "fullcycle_u_overfitting",
+      "fresh_rerun_of_early_stop": true
+    },
+    {
+      "experiment": "single_mlp",
+      "method": "mlp",
+      "group": "single",
+      "parameters": 4596595,
+      "active_parameters": 4596595,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 0.20750047094125687,
+      "worst_U_percent": 0.20750047094125687,
+      "all_cases_U_below_1_percent": true,
+      "UTC_seconds": 258.4537019729614,
+      "monotonic_seconds": 254.97880519,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "single_ngp4",
+      "method": "ngp4",
+      "group": "single",
+      "parameters": 4615555,
+      "active_parameters": 4615555,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 0.20567565765329393,
+      "worst_U_percent": 0.20567565765329393,
+      "all_cases_U_below_1_percent": true,
+      "UTC_seconds": 267.2051091194153,
+      "monotonic_seconds": 267.205109985,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "single_tcnn_hash",
+      "method": "tcnn_hash",
+      "group": "single",
+      "parameters": 4597120,
+      "active_parameters": 4597120,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 0.16022265811106248,
+      "worst_U_percent": 0.16022265811106248,
+      "all_cases_U_below_1_percent": true,
+      "UTC_seconds": 45.77656006813049,
+      "monotonic_seconds": 44.65382574400064,
+      "source_run": "fullcycle_u_overfitting",
+      "fresh_rerun_of_early_stop": true
+    },
+    {
+      "experiment": "single_transolver",
+      "method": "transolver",
+      "group": "single",
+      "parameters": 4586786,
+      "active_parameters": 4586786,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 0.36283149736820863,
+      "worst_U_percent": 0.36283149736820863,
+      "all_cases_U_below_1_percent": true,
+      "UTC_seconds": 834.6654036045074,
+      "monotonic_seconds": 834.665404636,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "single_transolverpp",
+      "method": "transolverpp",
+      "group": "single",
+      "parameters": 4610664,
+      "active_parameters": 4609512,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 0.35491652193585965,
+      "worst_U_percent": 0.35491652193585965,
+      "all_cases_U_below_1_percent": true,
+      "UTC_seconds": 2013.1927409172058,
+      "monotonic_seconds": 2013.1927418030002,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "single_ts3",
+      "method": "ts3",
+      "group": "single",
+      "parameters": 4562379,
+      "active_parameters": 4562379,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 0.39705482263699143,
+      "worst_U_percent": 0.39705482263699143,
+      "all_cases_U_below_1_percent": true,
+      "UTC_seconds": 2280.6982967853546,
+      "monotonic_seconds": 2280.117086452,
+      "source_run": "uniform_onecycle_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    }
+  ],
+  "per_case": [
+    {
+      "experiment": "five_fno",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 1.940469863322704,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 1.7851442764224559,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 1.638360907521544,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 1.4936295142617333,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_fno",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 1.6120982074844912,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 0.702655360767602,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 0.5366459305515336,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 0.6856406410340706,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 0.7399347721104722,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_hashgrid",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 0.7505618704569597,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 11.332856873291645,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 0.9553347772834148,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 9.68087314267952,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 0.9148829430905737,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_mlp",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 0.8302292725638644,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 10.172866163638755,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 1.402760527047046,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 8.681950124584093,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 1.1079334395946374,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ngp4",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 1.1269098892784626,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 2.0027006506083325,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 2.5443249324610475,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 2.0081248931198727,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 2.497668170426209,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_tcnn_hash",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 2.9743779229146092,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 2.460271710452485,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 4.472225199315525,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 2.782055944446875,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 2.904024243686599,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolver",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 3.419618358356101,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 1.8754632777079807,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 3.426528060227108,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 2.3158142350479176,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 2.974089484723436,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_transolverpp",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 3.1726713376834805,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 2.4168621910955945,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 4.419994619336607,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 2.5712326903826668,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 2.8809451262385126,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "five_ts3",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 3.9090846091369236,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "single_fno",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 0.23050275000879406,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "single_hashgrid",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 0.0023532482006456625,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "single_mlp",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 0.20750047094125687,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "single_ngp4",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 0.20567565765329393,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "single_tcnn_hash",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 0.16022265811106248,
+      "source_run": "fullcycle_u_overfitting"
+    },
+    {
+      "experiment": "single_transolver",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 0.36283149736820863,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "single_transolverpp",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 0.35491652193585965,
+      "source_run": "uniform_onecycle_u_overfitting"
+    },
+    {
+      "experiment": "single_ts3",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 0.39705482263699143,
+      "source_run": "uniform_onecycle_u_overfitting"
+    }
+  ],
+  "stage_seconds": {
+    "original": {
+      "UTC": 13527.498094320297,
+      "monotonic": 13347.034119453
+    },
+    "rerun": {
+      "UTC": 885.4911315441132,
+      "monotonic": 855.6553349769983
+    },
+    "total": {
+      "UTC": 14412.98922586441,
+      "monotonic": 14202.689454429998
+    }
+  },
+  "source_reads_by_stage": [
+    5,
+    5
+  ],
+  "stress_label_reads": 0,
+  "heldout_reads": 0,
+  "scientific_array_reads_by_exporter": 0
+}

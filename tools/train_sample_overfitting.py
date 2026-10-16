@@ -45,14 +45,44 @@ def learning_rate_multiplier(config,completed_updates):
     return floor/base+(1-floor/base)*.5*(1+math.cos(math.pi*progress))
 
 
+def make_scheduler(optimizer,config):
+    schedule=config.get('lr_schedule')
+    if schedule and schedule['kind']=='onecycle':
+        return torch.optim.lr_scheduler.OneCycleLR(optimizer,max_lr=optimizer.param_groups[0]['lr'],
+            total_steps=config['max_updates_per_arm'],pct_start=schedule['pct_start'],
+            anneal_strategy='cos',cycle_momentum=False,div_factor=schedule['div_factor'],
+            final_div_factor=schedule['final_div_factor'],three_phase=False)
+    if schedule:return torch.optim.lr_scheduler.LambdaLR(optimizer,lambda completed:learning_rate_multiplier(config,completed))
+    return torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,factor=.5,patience=config['lr_plateau_evaluations'],min_lr=config['minimum_learning_rate'])
+
+
+def update_early_stopping(state,settings,step,metric):
+    """Training-only worst-case error; patience counts actual full-node updates."""
+    if not math.isfinite(metric):raise FloatingPointError('Nonfinite early-stopping metric')
+    if state.get('best_metric') is None or metric<state['best_metric']*(1-settings['min_relative_improvement']):
+        state.update(best_metric=metric,last_improvement_step=step)
+    state['checked_step']=step;state['updates_without_improvement']=step-state['last_improvement_step']
+    return step>=settings['min_updates'] and state['updates_without_improvement']>=settings['patience_updates']
+
+
 def run(args):
     config=json.loads(Path(args.config).read_text());sources=json.loads(Path(args.source).read_text())
     output_field=config.get('output_field','us')
     if output_field not in ('u','us'):raise ValueError('Unknown output field')
     channels=3 if output_field=='u' else 4
     schedule=config.get('lr_schedule')
-    if schedule is not None and schedule.get('kind')!='warmup_cosine':raise ValueError('Unknown LR schedule')
+    if schedule is not None and schedule.get('kind') not in ('warmup_cosine','onecycle'):raise ValueError('Unknown LR schedule')
     if schedule is not None and config.get('fixed_learning_rate'):raise ValueError('Scheduled LR cannot also be fixed')
+    if config.get('uniform_training_parameters') and any(value!=config['learning_rate'] for value in config.get('learning_rate_by_method',{}).values()):
+        raise ValueError('Uniform training forbids method-specific learning rates')
+    stopping=config.get('early_stopping')
+    if stopping and (not 0<=stopping['min_relative_improvement']<1 or not 0<stopping['patience_updates']<=config['max_updates_per_arm'] or not 0<stopping['min_updates']<=config['max_updates_per_arm']):raise ValueError('Invalid early stopping')
+    if stopping and config.get('fixed_endpoint'):raise ValueError('Early stopping cannot require a fixed endpoint')
+    selected=config.get('selected_arms')
+    if config.get('require_selected_arms') and not selected:raise ValueError('Explicit rerun arm selection required')
+    if selected is not None:
+        allowed={g+'_'+m for g in config.get('groups',['single','five']) for m in config['methods']}
+        if len(selected)!=len(set(selected)) or not set(selected)<=allowed:raise ValueError('Invalid rerun arm selection')
     output=Path(args.output);clock=json.loads(os.environ['GEOBC_EXPERIMENT_CLOCK'])
     os.environ['GEOBC_TRANSFORMER_MANIFEST']=sources['transformer_manifest']
     state={'status':'running','active':True,'closed':False,'phase':'loading','arms':{},'source_reads':0,'training_only':True,'heldout_reads':0,'output_field':output_field,'stress_label_reads':0}
@@ -92,26 +122,30 @@ def run(args):
                     u_energy=c['target'][:,:3].square().sum(1).mean()
                     c['energy']=(torch.stack((u_energy,)) if channels==3 else torch.stack((u_energy,c['target'][:,3].square().mean()))).clamp_min(1e-20)
                 for method in config['methods']:
+                    if selected is not None and group+'_'+method not in selected:continue
                     guard();name=group+'_'+method;folder=output/name;folder.mkdir()
                     arm={'status':'running','method':method,'group':group,'output_field':output_field,'output_channels':channels,'updates':0,'best':None,'best_step':None,'goal_met':False,'partial_backward':False,'cases':config[group]}
                     state['arms'][name]=arm;update(phase=name+'/initializing')
-                    start=(time.time(),time.monotonic());model=None;optimizer=None;scheduler=None;step=0;last=None
+                    start=(time.time(),time.monotonic());model=None;optimizer=None;scheduler=None;step=0;last=None;last_predictions=None
                     def arm_guard():
                         guard()
                         if max(time.time()-start[0],time.monotonic()-start[1])>=config['arm_seconds']-60:raise TimeoutError('Arm training interval closed; retain save/readout reserve')
                     def checkpoint(filename):
                         if model is None:return
                         payload={'model':model.state_dict(),'optimizer':optimizer.state_dict() if optimizer else None,'scheduler':scheduler.state_dict() if scheduler else None,'step':step,'order':config[group],'cursor':step%len(cases),'config':config,'scale4':scale4.cpu(),
-                                 'rng':{'torch':torch.get_rng_state(),'cuda':torch.cuda.get_rng_state_all(),'numpy':np.random.get_state(),'python':random.getstate()},'arm':arm.copy()}
+                                 'rng':{'torch':torch.get_rng_state(),'cuda':torch.cuda.get_rng_state_all(),'numpy':np.random.get_state(),'python':random.getstate()},'arm':arm.copy(),
+                                 'clock':clock,'elapsed_seconds':{'UTC':time.time()-start[0],'monotonic':time.monotonic()-start[1]}}
                         temp=folder/(filename+'.tmp');torch.save(payload,temp);temp.replace(folder/filename)
                     def evaluate():
-                        nonlocal last
+                        nonlocal last,last_predictions
                         model.eval();predictions={};metrics={}
                         for c in cases:
                             guard();pred=predict_case(method,model,c,guard)*scale4
                             predictions[c['key']]=pred;metrics[c['key']]=errors(c['physical'],pred)
                         worst=max(value for v in metrics.values() for value in v.values())
                         last={'step':step,'per_case':metrics,'worst_field_percent':worst,'mean_U_percent':float(np.mean([m['U_percent'] for m in metrics.values()]))}
+                        if schedule and schedule['kind']=='onecycle':last['learning_rate_last_update']=arm.get('learning_rate_last_update')
+                        last_predictions=predictions
                         if channels==4:last['mean_S_percent']=float(np.mean([m['S_percent'] for m in metrics.values()]))
                         if config.get('fixed_endpoint') and step==config['max_updates_per_arm']:
                             for c in cases:np.savez(folder/(c['key'].replace('/','_')+'_endpoint.npz'),prediction=predictions[c['key']].cpu().numpy(),sample_key=c['key'],step=step)
@@ -124,15 +158,22 @@ def run(args):
                         arm['goal_met']=arm['best']['worst_field_percent']<config['target_relative_l2']*100
                         with (folder/'metrics.jsonl').open('a') as f:f.write(json.dumps(last)+'\n')
                         update(phase=name+'/training');return worst
+                    def save_endpoint():
+                        if last is None or last['step']!=step:evaluate()
+                        for c in cases:np.savez(folder/(c['key'].replace('/','_')+'_endpoint.npz'),prediction=last_predictions[c['key']].cpu().numpy(),sample_key=c['key'],step=step)
+                        arm['endpoint_predictions_saved']=len(cases);arm['endpoint']=last
+                        arm['goal_met']=last['worst_field_percent']<config['target_relative_l2']*100
                     try:
                         model=make_model(method,config['seed'],config.get('model_settings',{}).get(method),out_channels=channels);arm['parameters']=sum(p.numel() for p in model.parameters() if p.requires_grad)
                         if 'parameter_target' in config and abs(arm['parameters']/config['parameter_target']-1)>config['parameter_tolerance']:
                             raise ValueError('Actual trainable parameter count outside matching tolerance')
                         arm['model_config']=getattr(model,'source_config',{})
                         random.seed(config['seed']);np.random.seed(config['seed'])
-                        optimizer=torch.optim.Adam(model.parameters(),lr=config['learning_rate'],fused=True)
-                        scheduler=(torch.optim.lr_scheduler.LambdaLR(optimizer,lambda completed:learning_rate_multiplier(config,completed)) if schedule else
-                                   torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,factor=.5,patience=config['lr_plateau_evaluations'],min_lr=config['minimum_learning_rate']))
+                        peak=config.get('learning_rate_by_method',{}).get(method,config['learning_rate'])
+                        arm['maximum_learning_rate']=peak
+                        optimizer=torch.optim.Adam(model.parameters(),lr=peak,fused=True)
+                        scheduler=make_scheduler(optimizer,config)
+                        if stopping:arm['early_stopping']={}
                         if config.get('continuation'):
                             saved=torch.load(sources['continuations'][name],map_location='cuda',weights_only=False)
                             if saved['order']!=config[group] or saved['cursor']!=saved['step']%len(cases) or saved['arm'].get('optimizer_step_in_progress'):
@@ -149,6 +190,7 @@ def run(args):
                             arm['restored_endpoint_percent']=last['worst_field_percent'];arm['actual_model_Adam_scheduler_RNG_cursor_restore']=True
                         else:
                             evaluate()
+                        if stopping:update_early_stopping(arm['early_stopping'],stopping,step,last['worst_field_percent'])
                         for attempt in range(1,config['max_updates_per_arm']+1):
                             arm_guard();model.train();optimizer.zero_grad(set_to_none=True);arm['partial_backward']=True
                             loss=backward_case(method,model,cases[step%len(cases)],arm_guard)
@@ -171,25 +213,30 @@ def run(args):
                             if step%config['evaluate_every']==0:
                                 metric=evaluate()
                                 if not schedule and not config.get('fixed_learning_rate'):scheduler.step(metric)
+                                stop_now=bool(stopping and update_early_stopping(arm['early_stopping'],stopping,step,metric))
                                 checkpoint('last.pt')
-                                if arm['goal_met'] and not config.get('fixed_endpoint'):break
+                                if stop_now:
+                                    arm['stop_reason']='early_stopping_plateau';break
+                                if not stopping and arm['goal_met'] and not config.get('fixed_endpoint'):break
                         if (last is None or last['step']!=step):evaluate()
                         if config.get('fixed_endpoint'):
                             arm['endpoint']=last;arm['goal_met']=last['worst_field_percent']<config['target_relative_l2']*100
-                        arm['stop_reason']='fixed_update_endpoint' if config.get('fixed_endpoint') else ('goal_met' if arm['goal_met'] else 'update_cap')
+                        if config.get('report_stop_endpoint'):save_endpoint()
+                        arm['stop_reason']=arm.get('stop_reason') or ('fixed_update_endpoint' if config.get('fixed_endpoint') else ('update_cap' if stopping else ('goal_met' if arm['goal_met'] else 'update_cap')))
                         arm['status']='completed'
                     except TimeoutError as exc:
                         if 'Whole-stage' in str(exc):raise
                         arm.update(status='completed',stop_reason='fixed_arm_time_cap',partial_backward=arm['partial_backward'])
                         if model is not None and (last is None or last['step']!=step):evaluate()
+                        if config.get('report_stop_endpoint') and model is not None:save_endpoint()
                     except Exception as exc:
                         arm.update(status='failed',error_type=type(exc).__name__,error=str(exc));traceback.print_exc()
                     finally:
                         checkpoint('last.pt')
                         arm['elapsed_seconds']={'UTC':time.time()-start[0],'monotonic':time.monotonic()-start[1]}
                         write(folder/'summary.json',arm)
-                        close_owned_process_group();del model,optimizer;gc.collect();torch.cuda.empty_cache();update()
-            state.update(status='completed',active=False,closed=True);state['all_arms_attempted']=len(state['arms'])==len(groups)*len(config['methods'])
+                        close_owned_process_group();last_predictions=None;del model,optimizer,scheduler;gc.collect();torch.cuda.empty_cache();update()
+            state.update(status='completed',active=False,closed=True);state['all_arms_attempted']=len(state['arms'])==(len(selected) if selected is not None else len(groups)*len(config['methods']))
             state['all_goal_met']=all(a['goal_met'] for a in state['arms'].values())
             update(phase='terminal');write(output/'summary.json',state)
         except BaseException as exc:
