@@ -1,4 +1,4 @@
-"""One- and five-case U-only or joint U/S original-node fitting."""
+"""Configured sample-group U-only or joint U/S original-node fitting."""
 import time
 import argparse,json,os,random,gc,traceback,math
 from pathlib import Path
@@ -32,6 +32,30 @@ def read_case_arrays(f,key,output_field):
     if output_field=='us':y=np.column_stack((y,f['stress'])).astype(np.float32)
     elif output_field!='u':raise ValueError('Unknown output field')
     return xyz,features,y
+
+
+def cache_case_keys(config):
+    groups=config.get('groups',['single','five'])
+    keys=[]
+    for group in groups:
+        if not config[group] or len(config[group])!=len(set(config[group])):raise ValueError('Empty or duplicate fitting cases')
+        for key in config[group]:
+            if key not in keys:keys.append(key)
+    return keys
+
+
+def read_training_source(source,key,output_field):
+    if isinstance(source,str):
+        with np.load(source,allow_pickle=False) as f:return read_case_arrays(f,key,output_field)
+    if output_field!='u' or source.get('scientific_group')!='TRAIN' or source.get('sample_key')!=key or source.get('label_alignment')!='official CSV GRID coordinates -> H5 vertices':
+        raise ValueError('Aligned TRAIN-only U source required')
+    xyz=np.array(np.load(source['xyz_path'],mmap_mode='r',allow_pickle=False),dtype=np.float32)
+    features=np.array(np.load(source['features_path'],mmap_mode='r',allow_pickle=False),dtype=np.float32)
+    # Existing aligned physical.npy is interleaved U3/S. Only the U view is
+    # evaluated or copied; the fourth column is never used as a numeric label.
+    physical=np.load(source['physical_path'],mmap_mode='r',allow_pickle=False)
+    if physical.ndim!=2 or physical.shape[1]!=4:raise ValueError('Expected aligned U3/S cache layout')
+    return xyz,features,np.array(physical[:,:3],dtype=np.float32)
 
 
 def learning_rate_multiplier(config,completed_updates):
@@ -99,11 +123,10 @@ def run(args):
     with GPUQueue(args.lock):
         try:
             cache={}
-            for key in config['five']:
+            for key in cache_case_keys(config):
                 guard()
-                with np.load(sources['cases'][key],allow_pickle=False) as f:
-                    xyz,features,y=read_case_arrays(f,key,output_field)
-                    state['stress_label_reads']+=int(output_field=='us')
+                xyz,features,y=read_training_source(sources['cases'][key],key,output_field)
+                state['stress_label_reads']+=int(output_field=='us')
                 if xyz.shape!=(len(y),3) or features.shape!=(len(y),25) or y.shape!=(len(xyz),channels) or not all(np.isfinite(a).all() for a in (xyz,features,y)) or xyz.min()<0 or xyz.max()>1:
                     raise ValueError('Malformed overfitting case')
                 case={'key':key,'xyz':torch.from_numpy(xyz).cuda(),'features':torch.from_numpy(features).cuda(),'physical':torch.from_numpy(y).cuda()}
@@ -152,15 +175,18 @@ def run(args):
                             arm['endpoint_predictions_saved']=len(cases)
                         arm['latest']=last
                         if arm['best'] is None or worst<arm['best']['worst_field_percent']:
-                            arm['best']=last;arm['best_step']=step;checkpoint('best.pt')
-                            for c in cases:
-                                np.savez(folder/(c['key'].replace('/','_')+'_best.npz'),prediction=predictions[c['key']].cpu().numpy(),sample_key=c['key'])
+                            arm['best']=last;arm['best_step']=step
+                            if config.get('save_best_checkpoint',True):checkpoint('best.pt')
+                            if config.get('save_best_predictions',True):
+                                for c in cases:
+                                    np.savez(folder/(c['key'].replace('/','_')+'_best.npz'),prediction=predictions[c['key']].cpu().numpy(),sample_key=c['key'])
                         arm['goal_met']=arm['best']['worst_field_percent']<config['target_relative_l2']*100
                         with (folder/'metrics.jsonl').open('a') as f:f.write(json.dumps(last)+'\n')
                         update(phase=name+'/training');return worst
                     def save_endpoint():
                         if last is None or last['step']!=step:evaluate()
-                        for c in cases:np.savez(folder/(c['key'].replace('/','_')+'_endpoint.npz'),prediction=last_predictions[c['key']].cpu().numpy(),sample_key=c['key'],step=step)
+                        if arm.get('endpoint_predictions_saved')!=len(cases):
+                            for c in cases:np.savez(folder/(c['key'].replace('/','_')+'_endpoint.npz'),prediction=last_predictions[c['key']].cpu().numpy(),sample_key=c['key'],step=step)
                         arm['endpoint_predictions_saved']=len(cases);arm['endpoint']=last
                         arm['goal_met']=last['worst_field_percent']<config['target_relative_l2']*100
                     try:
@@ -232,6 +258,7 @@ def run(args):
                     except Exception as exc:
                         arm.update(status='failed',error_type=type(exc).__name__,error=str(exc));traceback.print_exc()
                     finally:
+                        arm['case_updates']={c['key']:step//len(cases)+int(i<step%len(cases)) for i,c in enumerate(cases)}
                         checkpoint('last.pt')
                         arm['elapsed_seconds']={'UTC':time.time()-start[0],'monotonic':time.monotonic()-start[1]}
                         write(folder/'summary.json',arm)

@@ -1,0 +1,3187 @@
+{
+  "config": {
+    "single": [
+      "506_533/ver"
+    ],
+    "five": [
+      "506_533/ver",
+      "506_25/tor",
+      "10_30/ver",
+      "10_421/hor",
+      "10_460/dia"
+    ],
+    "methods": [
+      "mlp",
+      "ngp4",
+      "hashgrid",
+      "tcnn_hash",
+      "fno",
+      "transolver",
+      "transolverpp",
+      "ts3"
+    ],
+    "seed": 2026,
+    "target_relative_l2": 0.01,
+    "max_updates_per_arm": 5000,
+    "arm_seconds": 10800,
+    "whole_seconds": 28800,
+    "memory_bytes": 30500000000,
+    "learning_rate": 0.001,
+    "minimum_learning_rate": 4e-08,
+    "lr_plateau_evaluations": 5,
+    "evaluate_every": 50,
+    "checkpoint_every": 50,
+    "precision": "FP32 model/targets; TF32 allowed; TCNN native FP16 with FP32 master parameters",
+    "selection": "Nested50 distinct TRAIN CADs, one CAD/load each: original5, remaining TRAIN40 cases in prepared archive order, then sorted additionalTRAIN60 IDs with ver/hor/tor cycling. Frozen before labels are read; no performance selection.",
+    "goal": "Every fitted case U-vector relative L2 below1%; report actual5000 regardless of goal.",
+    "protocol": "Same architectures, seed2026, U3 loss/input schema, Adam and OneCycle peak.001/5000, clip1 and eval50 as completed single/five. Exactly5000 complete original-node case updates, each of50 cases100 visits. No early stopping/warmstart. Output RMS fit only these50. Cache each case once across all8 methods. Save final predictions and full last.pt, skip unused best binaries.",
+    "fixed_endpoint": true,
+    "fixed_learning_rate": false,
+    "parameter_target": 4600000,
+    "parameter_tolerance": 0.01,
+    "model_settings": {
+      "mlp": {
+        "hidden_dim": 1232
+      },
+      "ngp4": {
+        "hidden_dim": 2112
+      },
+      "hashgrid": {
+        "hidden_dim": 704,
+        "hash_grid": {
+          "log2_hashmap_size": 18
+        }
+      },
+      "tcnn_hash": {
+        "n_levels": 13,
+        "log2_hashmap_size": 18
+      },
+      "fno": {
+        "head_width": 320
+      },
+      "transolver": {
+        "n_hidden": 408
+      },
+      "transolverpp": {
+        "n_hidden": 288,
+        "n_layers": 13
+      },
+      "ts3": {
+        "n_hidden": 192,
+        "n_layers": 17
+      }
+    },
+    "output_field": "u",
+    "report_stop_endpoint": true,
+    "gradient_clip_norm": 1.0,
+    "lr_schedule": {
+      "kind": "onecycle",
+      "pct_start": 0.1,
+      "div_factor": 25.0,
+      "final_div_factor": 1000.0,
+      "cycle_momentum": false,
+      "anneal_strategy": "cos"
+    },
+    "uniform_training_parameters": true,
+    "report_directory": "results/fifty_u_overfitting",
+    "groups": [
+      "fifty"
+    ],
+    "fifty": [
+      "506_533/ver",
+      "506_25/tor",
+      "10_30/ver",
+      "10_421/hor",
+      "10_460/dia",
+      "10_492/tor",
+      "10_58/ver",
+      "10_80/hor",
+      "101_428/dia",
+      "101_479/tor",
+      "101_56/ver",
+      "101_78/hor",
+      "101_86/dia",
+      "102_240/tor",
+      "102_79/dia",
+      "107_113/tor",
+      "107_147/ver",
+      "107_150/hor",
+      "107_186/dia",
+      "107_233/tor",
+      "107_240/ver",
+      "107_248/hor",
+      "107_291/dia",
+      "107_320/tor",
+      "107_342/ver",
+      "107_459/hor",
+      "113_129/ver",
+      "113_170/hor",
+      "113_390/tor",
+      "113_86/hor",
+      "113_95/dia",
+      "114_28/ver",
+      "114_456/dia",
+      "114_525/tor",
+      "114_91/ver",
+      "116_102/hor",
+      "116_113/dia",
+      "116_30/tor",
+      "116_348/ver",
+      "119_221/tor",
+      "119_322/ver",
+      "119_559/hor",
+      "229_200/ver",
+      "230_12/hor",
+      "230_483/tor",
+      "248_319/ver",
+      "248_625/hor",
+      "257_485/tor",
+      "25_296/ver",
+      "25_395/hor"
+    ],
+    "save_best_checkpoint": false,
+    "save_best_predictions": false
+  },
+  "summary": [
+    {
+      "experiment": "fifty_mlp",
+      "method": "mlp",
+      "group": "fifty",
+      "parameters": 4596595,
+      "active_parameters": 4596595,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 29.533325484401175,
+      "worst_U_percent": 77.0689979527857,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 728.4840269088745,
+      "monotonic_seconds": 691.17514648,
+      "source_run": "fifty_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "method": "ngp4",
+      "group": "fifty",
+      "parameters": 4615555,
+      "active_parameters": 4615555,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 29.113553812086696,
+      "worst_U_percent": 73.15832902816975,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 765.4061367511749,
+      "monotonic_seconds": 749.6738876419995,
+      "source_run": "fifty_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "method": "hashgrid",
+      "group": "fifty",
+      "parameters": 4597251,
+      "active_parameters": 4597251,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 21.392934195206802,
+      "worst_U_percent": 47.52045311105237,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 334.8706238269806,
+      "monotonic_seconds": 328.92570414999955,
+      "source_run": "fifty_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "method": "tcnn_hash",
+      "group": "fifty",
+      "parameters": 4597120,
+      "active_parameters": 4597120,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 27.795251275614664,
+      "worst_U_percent": 63.54439734198901,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 128.9504542350769,
+      "monotonic_seconds": 127.56925691499964,
+      "source_run": "fifty_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "fifty_fno",
+      "method": "fno",
+      "group": "fifty",
+      "parameters": 4601006,
+      "active_parameters": 4601006,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 9.998939300069686,
+      "worst_U_percent": 17.079027572575473,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 290.3637659549713,
+      "monotonic_seconds": 290.36376670200025,
+      "source_run": "fifty_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "fifty_transolver",
+      "method": "transolver",
+      "group": "fifty",
+      "parameters": 4586786,
+      "active_parameters": 4586786,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 25.149965575788716,
+      "worst_U_percent": 61.4276942148085,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 2109.0119342803955,
+      "monotonic_seconds": 2109.0119343270007,
+      "source_run": "fifty_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "method": "transolverpp",
+      "group": "fifty",
+      "parameters": 4610664,
+      "active_parameters": 4609512,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 25.65593832262771,
+      "worst_U_percent": 62.05833150354097,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 5094.936681270599,
+      "monotonic_seconds": 4944.165452950002,
+      "source_run": "fifty_u_recovery",
+      "fresh_rerun_of_early_stop": false
+    },
+    {
+      "experiment": "fifty_ts3",
+      "method": "ts3",
+      "group": "fifty",
+      "parameters": 4562379,
+      "active_parameters": 4562379,
+      "updates": 5000,
+      "maximum_learning_rate": 0.001,
+      "learning_rate_last_update": 4e-08,
+      "U_percent": 24.928406720321995,
+      "worst_U_percent": 66.21282424705629,
+      "all_cases_U_below_1_percent": false,
+      "UTC_seconds": 5567.232020378113,
+      "monotonic_seconds": 5490.629381129,
+      "source_run": "fifty_u_overfitting",
+      "fresh_rerun_of_early_stop": false
+    }
+  ],
+  "per_case": [
+    {
+      "experiment": "fifty_mlp",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 44.295219668203075,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 65.92482519909522,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 29.31805354122811,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 18.0237364059539,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 8.374970493458617,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "10_492/tor",
+      "updates": 5000,
+      "U_percent": 15.650588506047727,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "10_58/ver",
+      "updates": 5000,
+      "U_percent": 34.41932612159618,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "10_80/hor",
+      "updates": 5000,
+      "U_percent": 59.99808171942618,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "101_428/dia",
+      "updates": 5000,
+      "U_percent": 19.25552372395556,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "101_479/tor",
+      "updates": 5000,
+      "U_percent": 61.3984462392098,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "101_56/ver",
+      "updates": 5000,
+      "U_percent": 77.0689979527857,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "101_78/hor",
+      "updates": 5000,
+      "U_percent": 20.033670311580593,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "101_86/dia",
+      "updates": 5000,
+      "U_percent": 27.599687178094413,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "102_240/tor",
+      "updates": 5000,
+      "U_percent": 35.204227621908046,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "102_79/dia",
+      "updates": 5000,
+      "U_percent": 34.06744817716878,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_113/tor",
+      "updates": 5000,
+      "U_percent": 25.633637435419562,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_147/ver",
+      "updates": 5000,
+      "U_percent": 8.639519296203595,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_150/hor",
+      "updates": 5000,
+      "U_percent": 51.68449363220558,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_186/dia",
+      "updates": 5000,
+      "U_percent": 26.976150008462806,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_233/tor",
+      "updates": 5000,
+      "U_percent": 28.72353588684964,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_240/ver",
+      "updates": 5000,
+      "U_percent": 12.29248615315345,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_248/hor",
+      "updates": 5000,
+      "U_percent": 15.840021264827227,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_291/dia",
+      "updates": 5000,
+      "U_percent": 13.985163646236334,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_320/tor",
+      "updates": 5000,
+      "U_percent": 22.742120212223593,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_342/ver",
+      "updates": 5000,
+      "U_percent": 31.478716441888732,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "107_459/hor",
+      "updates": 5000,
+      "U_percent": 15.308747586374114,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "113_129/ver",
+      "updates": 5000,
+      "U_percent": 14.40981016774327,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "113_170/hor",
+      "updates": 5000,
+      "U_percent": 21.461516050507168,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "113_390/tor",
+      "updates": 5000,
+      "U_percent": 17.977563356703858,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "113_86/hor",
+      "updates": 5000,
+      "U_percent": 47.69434284835481,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "113_95/dia",
+      "updates": 5000,
+      "U_percent": 34.519845746375005,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "114_28/ver",
+      "updates": 5000,
+      "U_percent": 9.956510431697868,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "114_456/dia",
+      "updates": 5000,
+      "U_percent": 46.09297137284537,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "114_525/tor",
+      "updates": 5000,
+      "U_percent": 16.434957914847303,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "114_91/ver",
+      "updates": 5000,
+      "U_percent": 18.281628676940752,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "116_102/hor",
+      "updates": 5000,
+      "U_percent": 44.366568227278044,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "116_113/dia",
+      "updates": 5000,
+      "U_percent": 34.03424615832453,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "116_30/tor",
+      "updates": 5000,
+      "U_percent": 40.616107041420086,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "116_348/ver",
+      "updates": 5000,
+      "U_percent": 28.52513088658732,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "119_221/tor",
+      "updates": 5000,
+      "U_percent": 17.561812581725597,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "119_322/ver",
+      "updates": 5000,
+      "U_percent": 8.910554876321658,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "119_559/hor",
+      "updates": 5000,
+      "U_percent": 29.051175675308198,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "229_200/ver",
+      "updates": 5000,
+      "U_percent": 40.952423635838855,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "230_12/hor",
+      "updates": 5000,
+      "U_percent": 18.503103533932254,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "230_483/tor",
+      "updates": 5000,
+      "U_percent": 13.54823434392882,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "248_319/ver",
+      "updates": 5000,
+      "U_percent": 53.28175955611979,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "248_625/hor",
+      "updates": 5000,
+      "U_percent": 33.11471900023647,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "257_485/tor",
+      "updates": 5000,
+      "U_percent": 23.54282961653549,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "25_296/ver",
+      "updates": 5000,
+      "U_percent": 36.47201036544995,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_mlp",
+      "sample": "25_395/hor",
+      "updates": 5000,
+      "U_percent": 23.419057731479636,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 43.110436384008935,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 64.99957589797938,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 28.334881920107712,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 16.291848917033555,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 8.68860850394253,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "10_492/tor",
+      "updates": 5000,
+      "U_percent": 15.340630890573827,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "10_58/ver",
+      "updates": 5000,
+      "U_percent": 33.36129726435084,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "10_80/hor",
+      "updates": 5000,
+      "U_percent": 58.23170736601573,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "101_428/dia",
+      "updates": 5000,
+      "U_percent": 19.54100226856534,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "101_479/tor",
+      "updates": 5000,
+      "U_percent": 61.28065140339922,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "101_56/ver",
+      "updates": 5000,
+      "U_percent": 73.15832902816975,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "101_78/hor",
+      "updates": 5000,
+      "U_percent": 19.27610365191,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "101_86/dia",
+      "updates": 5000,
+      "U_percent": 26.53892025630182,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "102_240/tor",
+      "updates": 5000,
+      "U_percent": 35.14154166499116,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "102_79/dia",
+      "updates": 5000,
+      "U_percent": 32.68808477080829,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_113/tor",
+      "updates": 5000,
+      "U_percent": 25.369117278308053,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_147/ver",
+      "updates": 5000,
+      "U_percent": 9.816246044590306,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_150/hor",
+      "updates": 5000,
+      "U_percent": 51.83474025693857,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_186/dia",
+      "updates": 5000,
+      "U_percent": 25.926675555439694,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_233/tor",
+      "updates": 5000,
+      "U_percent": 28.219166073166452,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_240/ver",
+      "updates": 5000,
+      "U_percent": 12.116115427516746,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_248/hor",
+      "updates": 5000,
+      "U_percent": 16.772568292121797,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_291/dia",
+      "updates": 5000,
+      "U_percent": 13.739442379658412,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_320/tor",
+      "updates": 5000,
+      "U_percent": 22.809131142370294,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_342/ver",
+      "updates": 5000,
+      "U_percent": 29.8350639156881,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "107_459/hor",
+      "updates": 5000,
+      "U_percent": 15.128942372109968,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "113_129/ver",
+      "updates": 5000,
+      "U_percent": 14.631568002403327,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "113_170/hor",
+      "updates": 5000,
+      "U_percent": 21.93239778878775,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "113_390/tor",
+      "updates": 5000,
+      "U_percent": 17.990729484176363,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "113_86/hor",
+      "updates": 5000,
+      "U_percent": 47.50472950210234,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "113_95/dia",
+      "updates": 5000,
+      "U_percent": 34.75044551288795,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "114_28/ver",
+      "updates": 5000,
+      "U_percent": 10.255273069541037,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "114_456/dia",
+      "updates": 5000,
+      "U_percent": 46.1460438510398,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "114_525/tor",
+      "updates": 5000,
+      "U_percent": 16.784235162902238,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "114_91/ver",
+      "updates": 5000,
+      "U_percent": 18.12475786007929,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "116_102/hor",
+      "updates": 5000,
+      "U_percent": 43.35247196968485,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "116_113/dia",
+      "updates": 5000,
+      "U_percent": 34.08104334786378,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "116_30/tor",
+      "updates": 5000,
+      "U_percent": 39.69466892554962,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "116_348/ver",
+      "updates": 5000,
+      "U_percent": 26.355016846075227,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "119_221/tor",
+      "updates": 5000,
+      "U_percent": 17.5935130025245,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "119_322/ver",
+      "updates": 5000,
+      "U_percent": 9.87191994353386,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "119_559/hor",
+      "updates": 5000,
+      "U_percent": 29.59562666496554,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "229_200/ver",
+      "updates": 5000,
+      "U_percent": 40.92446318712184,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "230_12/hor",
+      "updates": 5000,
+      "U_percent": 19.19272405953111,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "230_483/tor",
+      "updates": 5000,
+      "U_percent": 13.661797932830776,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "248_319/ver",
+      "updates": 5000,
+      "U_percent": 51.72060779380432,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "248_625/hor",
+      "updates": 5000,
+      "U_percent": 31.50416484600603,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "257_485/tor",
+      "updates": 5000,
+      "U_percent": 23.063934840091825,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "25_296/ver",
+      "updates": 5000,
+      "U_percent": 36.644464207883956,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ngp4",
+      "sample": "25_395/hor",
+      "updates": 5000,
+      "U_percent": 22.750263876880933,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 28.081269062218727,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 36.397137270387645,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 22.508520477694073,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 13.28858355751742,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 12.487380636261989,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "10_492/tor",
+      "updates": 5000,
+      "U_percent": 12.009435813233628,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "10_58/ver",
+      "updates": 5000,
+      "U_percent": 24.04813527982818,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "10_80/hor",
+      "updates": 5000,
+      "U_percent": 34.468975132762644,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "101_428/dia",
+      "updates": 5000,
+      "U_percent": 21.262470165354628,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "101_479/tor",
+      "updates": 5000,
+      "U_percent": 30.448192115832754,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "101_56/ver",
+      "updates": 5000,
+      "U_percent": 47.52045311105237,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "101_78/hor",
+      "updates": 5000,
+      "U_percent": 17.853699264884618,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "101_86/dia",
+      "updates": 5000,
+      "U_percent": 22.69540807430827,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "102_240/tor",
+      "updates": 5000,
+      "U_percent": 17.777381204588096,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "102_79/dia",
+      "updates": 5000,
+      "U_percent": 29.88604169816165,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_113/tor",
+      "updates": 5000,
+      "U_percent": 15.157080097734754,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_147/ver",
+      "updates": 5000,
+      "U_percent": 13.285977665077892,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_150/hor",
+      "updates": 5000,
+      "U_percent": 30.60445245872632,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_186/dia",
+      "updates": 5000,
+      "U_percent": 27.162138640769463,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_233/tor",
+      "updates": 5000,
+      "U_percent": 16.15856530605331,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_240/ver",
+      "updates": 5000,
+      "U_percent": 14.870248816510733,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_248/hor",
+      "updates": 5000,
+      "U_percent": 14.138047607812258,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_291/dia",
+      "updates": 5000,
+      "U_percent": 16.005592625142683,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_320/tor",
+      "updates": 5000,
+      "U_percent": 18.134526477112505,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_342/ver",
+      "updates": 5000,
+      "U_percent": 17.682832384536518,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "107_459/hor",
+      "updates": 5000,
+      "U_percent": 17.305912902950226,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "113_129/ver",
+      "updates": 5000,
+      "U_percent": 16.319150977960422,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "113_170/hor",
+      "updates": 5000,
+      "U_percent": 13.129066515047214,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "113_390/tor",
+      "updates": 5000,
+      "U_percent": 15.899694318644828,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "113_86/hor",
+      "updates": 5000,
+      "U_percent": 20.854180527201127,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "113_95/dia",
+      "updates": 5000,
+      "U_percent": 23.89840855659801,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "114_28/ver",
+      "updates": 5000,
+      "U_percent": 15.111729140478896,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "114_456/dia",
+      "updates": 5000,
+      "U_percent": 36.9782115809866,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "114_525/tor",
+      "updates": 5000,
+      "U_percent": 15.498519639503977,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "114_91/ver",
+      "updates": 5000,
+      "U_percent": 14.653487283159942,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "116_102/hor",
+      "updates": 5000,
+      "U_percent": 30.511683673246022,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "116_113/dia",
+      "updates": 5000,
+      "U_percent": 31.622928968115378,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "116_30/tor",
+      "updates": 5000,
+      "U_percent": 23.195610195562093,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "116_348/ver",
+      "updates": 5000,
+      "U_percent": 17.065298031862948,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "119_221/tor",
+      "updates": 5000,
+      "U_percent": 15.483387174664495,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "119_322/ver",
+      "updates": 5000,
+      "U_percent": 15.07566658406583,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "119_559/hor",
+      "updates": 5000,
+      "U_percent": 14.98182362866007,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "229_200/ver",
+      "updates": 5000,
+      "U_percent": 34.15539057145878,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "230_12/hor",
+      "updates": 5000,
+      "U_percent": 11.731169199581787,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "230_483/tor",
+      "updates": 5000,
+      "U_percent": 10.896834030128874,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "248_319/ver",
+      "updates": 5000,
+      "U_percent": 31.530941997810235,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "248_625/hor",
+      "updates": 5000,
+      "U_percent": 22.516631901726726,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "257_485/tor",
+      "updates": 5000,
+      "U_percent": 22.023940535651473,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "25_296/ver",
+      "updates": 5000,
+      "U_percent": 27.13671723540214,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_hashgrid",
+      "sample": "25_395/hor",
+      "updates": 5000,
+      "U_percent": 18.13777964630906,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 40.40640138950459,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 38.125225060196605,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 26.02596000063318,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 11.129615413218962,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 13.269336733637383,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "10_492/tor",
+      "updates": 5000,
+      "U_percent": 27.075272289016148,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "10_58/ver",
+      "updates": 5000,
+      "U_percent": 29.62470315386148,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "10_80/hor",
+      "updates": 5000,
+      "U_percent": 51.776970368002644,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "101_428/dia",
+      "updates": 5000,
+      "U_percent": 25.9875803762195,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "101_479/tor",
+      "updates": 5000,
+      "U_percent": 34.95598099577866,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "101_56/ver",
+      "updates": 5000,
+      "U_percent": 63.54439734198901,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "101_78/hor",
+      "updates": 5000,
+      "U_percent": 14.955781086852108,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "101_86/dia",
+      "updates": 5000,
+      "U_percent": 29.48773630809616,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "102_240/tor",
+      "updates": 5000,
+      "U_percent": 24.829760555098098,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "102_79/dia",
+      "updates": 5000,
+      "U_percent": 35.31363499715345,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_113/tor",
+      "updates": 5000,
+      "U_percent": 37.34240485901724,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_147/ver",
+      "updates": 5000,
+      "U_percent": 11.415679463186951,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_150/hor",
+      "updates": 5000,
+      "U_percent": 51.64549700715588,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_186/dia",
+      "updates": 5000,
+      "U_percent": 30.383677416844762,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_233/tor",
+      "updates": 5000,
+      "U_percent": 35.843569050385796,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_240/ver",
+      "updates": 5000,
+      "U_percent": 12.53640294928412,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_248/hor",
+      "updates": 5000,
+      "U_percent": 15.343240286533009,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_291/dia",
+      "updates": 5000,
+      "U_percent": 18.66846003739008,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_320/tor",
+      "updates": 5000,
+      "U_percent": 30.17309842533726,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_342/ver",
+      "updates": 5000,
+      "U_percent": 25.894448779129377,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "107_459/hor",
+      "updates": 5000,
+      "U_percent": 14.616323788189279,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "113_129/ver",
+      "updates": 5000,
+      "U_percent": 16.32108033470372,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "113_170/hor",
+      "updates": 5000,
+      "U_percent": 21.552461804934318,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "113_390/tor",
+      "updates": 5000,
+      "U_percent": 26.357754803517725,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "113_86/hor",
+      "updates": 5000,
+      "U_percent": 41.416810164010926,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "113_95/dia",
+      "updates": 5000,
+      "U_percent": 24.77717194697195,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "114_28/ver",
+      "updates": 5000,
+      "U_percent": 12.091526109189305,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "114_456/dia",
+      "updates": 5000,
+      "U_percent": 37.05382449578867,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "114_525/tor",
+      "updates": 5000,
+      "U_percent": 34.44884046891716,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "114_91/ver",
+      "updates": 5000,
+      "U_percent": 15.981571426071348,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "116_102/hor",
+      "updates": 5000,
+      "U_percent": 37.709042428308685,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "116_113/dia",
+      "updates": 5000,
+      "U_percent": 31.026393977207093,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "116_30/tor",
+      "updates": 5000,
+      "U_percent": 24.116020619645077,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "116_348/ver",
+      "updates": 5000,
+      "U_percent": 23.92705008359146,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "119_221/tor",
+      "updates": 5000,
+      "U_percent": 27.33585292528398,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "119_322/ver",
+      "updates": 5000,
+      "U_percent": 11.806233583009075,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "119_559/hor",
+      "updates": 5000,
+      "U_percent": 28.129912190013,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "229_200/ver",
+      "updates": 5000,
+      "U_percent": 39.47209302865602,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "230_12/hor",
+      "updates": 5000,
+      "U_percent": 16.841273634463242,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "230_483/tor",
+      "updates": 5000,
+      "U_percent": 23.6348825188812,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "248_319/ver",
+      "updates": 5000,
+      "U_percent": 42.434975073869715,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "248_625/hor",
+      "updates": 5000,
+      "U_percent": 25.125236061541376,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "257_485/tor",
+      "updates": 5000,
+      "U_percent": 27.33635714164613,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "25_296/ver",
+      "updates": 5000,
+      "U_percent": 33.96170297972251,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_tcnn_hash",
+      "sample": "25_395/hor",
+      "updates": 5000,
+      "U_percent": 16.533337849077693,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 7.409068225323211,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 16.215823247044927,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 6.648577812345002,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 9.341172004479004,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 8.544910247933602,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "10_492/tor",
+      "updates": 5000,
+      "U_percent": 11.218332706658153,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "10_58/ver",
+      "updates": 5000,
+      "U_percent": 12.861572510518922,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "10_80/hor",
+      "updates": 5000,
+      "U_percent": 14.090770798900929,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "101_428/dia",
+      "updates": 5000,
+      "U_percent": 12.85503391694538,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "101_479/tor",
+      "updates": 5000,
+      "U_percent": 11.125520159471572,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "101_56/ver",
+      "updates": 5000,
+      "U_percent": 7.637750521114216,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "101_78/hor",
+      "updates": 5000,
+      "U_percent": 7.888967792251195,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "101_86/dia",
+      "updates": 5000,
+      "U_percent": 7.605628421726122,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "102_240/tor",
+      "updates": 5000,
+      "U_percent": 12.222474425743894,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "102_79/dia",
+      "updates": 5000,
+      "U_percent": 8.056013060984794,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_113/tor",
+      "updates": 5000,
+      "U_percent": 13.766564050423504,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_147/ver",
+      "updates": 5000,
+      "U_percent": 9.455334242497756,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_150/hor",
+      "updates": 5000,
+      "U_percent": 10.159016386159626,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_186/dia",
+      "updates": 5000,
+      "U_percent": 7.971304447681815,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_233/tor",
+      "updates": 5000,
+      "U_percent": 14.114629544631862,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_240/ver",
+      "updates": 5000,
+      "U_percent": 8.609521505554927,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_248/hor",
+      "updates": 5000,
+      "U_percent": 9.431185799998154,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_291/dia",
+      "updates": 5000,
+      "U_percent": 10.25235578091633,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_320/tor",
+      "updates": 5000,
+      "U_percent": 17.079027572575473,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_342/ver",
+      "updates": 5000,
+      "U_percent": 7.260864729335778,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "107_459/hor",
+      "updates": 5000,
+      "U_percent": 7.679704349472651,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "113_129/ver",
+      "updates": 5000,
+      "U_percent": 10.229731581379463,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "113_170/hor",
+      "updates": 5000,
+      "U_percent": 8.8373738472627,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "113_390/tor",
+      "updates": 5000,
+      "U_percent": 11.665563809869026,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "113_86/hor",
+      "updates": 5000,
+      "U_percent": 8.602851098018848,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "113_95/dia",
+      "updates": 5000,
+      "U_percent": 9.134703092054066,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "114_28/ver",
+      "updates": 5000,
+      "U_percent": 7.997565536694774,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "114_456/dia",
+      "updates": 5000,
+      "U_percent": 7.849518850251057,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "114_525/tor",
+      "updates": 5000,
+      "U_percent": 12.1309618001667,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "114_91/ver",
+      "updates": 5000,
+      "U_percent": 6.715703423973023,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "116_102/hor",
+      "updates": 5000,
+      "U_percent": 12.095834011054503,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "116_113/dia",
+      "updates": 5000,
+      "U_percent": 7.128079780656098,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "116_30/tor",
+      "updates": 5000,
+      "U_percent": 11.696062581589741,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "116_348/ver",
+      "updates": 5000,
+      "U_percent": 8.272148609435638,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "119_221/tor",
+      "updates": 5000,
+      "U_percent": 12.320437902206539,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "119_322/ver",
+      "updates": 5000,
+      "U_percent": 7.088386900988478,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "119_559/hor",
+      "updates": 5000,
+      "U_percent": 9.081126297501836,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "229_200/ver",
+      "updates": 5000,
+      "U_percent": 12.307654740646502,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "230_12/hor",
+      "updates": 5000,
+      "U_percent": 7.959847011793468,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "230_483/tor",
+      "updates": 5000,
+      "U_percent": 10.25359340290027,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "248_319/ver",
+      "updates": 5000,
+      "U_percent": 9.77484712682081,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "248_625/hor",
+      "updates": 5000,
+      "U_percent": 8.44619279950793,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "257_485/tor",
+      "updates": 5000,
+      "U_percent": 12.845234101136151,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "25_296/ver",
+      "updates": 5000,
+      "U_percent": 8.304737706870153,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_fno",
+      "sample": "25_395/hor",
+      "updates": 5000,
+      "U_percent": 9.707684730017728,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 13.276241505854166,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 61.4276942148085,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 10.26625580181546,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 10.11228619456146,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 9.93829560749897,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "10_492/tor",
+      "updates": 5000,
+      "U_percent": 29.18926918225358,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "10_58/ver",
+      "updates": 5000,
+      "U_percent": 23.025837897537887,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "10_80/hor",
+      "updates": 5000,
+      "U_percent": 52.0062508152114,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "101_428/dia",
+      "updates": 5000,
+      "U_percent": 20.989911051062563,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "101_479/tor",
+      "updates": 5000,
+      "U_percent": 54.314170296984024,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "101_56/ver",
+      "updates": 5000,
+      "U_percent": 29.8404456780375,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "101_78/hor",
+      "updates": 5000,
+      "U_percent": 10.30487046103948,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "101_86/dia",
+      "updates": 5000,
+      "U_percent": 34.223040182250124,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "102_240/tor",
+      "updates": 5000,
+      "U_percent": 34.18036366450944,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "102_79/dia",
+      "updates": 5000,
+      "U_percent": 42.84337750400698,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_113/tor",
+      "updates": 5000,
+      "U_percent": 33.55357473688752,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_147/ver",
+      "updates": 5000,
+      "U_percent": 9.318917285265293,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_150/hor",
+      "updates": 5000,
+      "U_percent": 36.430064429083686,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_186/dia",
+      "updates": 5000,
+      "U_percent": 35.320534164945755,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_233/tor",
+      "updates": 5000,
+      "U_percent": 36.1812771019545,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_240/ver",
+      "updates": 5000,
+      "U_percent": 10.230068414591535,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_248/hor",
+      "updates": 5000,
+      "U_percent": 13.629100075065201,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_291/dia",
+      "updates": 5000,
+      "U_percent": 16.64798914857038,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_320/tor",
+      "updates": 5000,
+      "U_percent": 30.27384929204886,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_342/ver",
+      "updates": 5000,
+      "U_percent": 9.052160161250242,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "107_459/hor",
+      "updates": 5000,
+      "U_percent": 8.887393495705238,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "113_129/ver",
+      "updates": 5000,
+      "U_percent": 11.177771603313651,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "113_170/hor",
+      "updates": 5000,
+      "U_percent": 12.937846487000794,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "113_390/tor",
+      "updates": 5000,
+      "U_percent": 24.65916714260403,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "113_86/hor",
+      "updates": 5000,
+      "U_percent": 35.84665525976872,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "113_95/dia",
+      "updates": 5000,
+      "U_percent": 30.784989185501335,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "114_28/ver",
+      "updates": 5000,
+      "U_percent": 7.160889691529621,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "114_456/dia",
+      "updates": 5000,
+      "U_percent": 45.87512411428151,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "114_525/tor",
+      "updates": 5000,
+      "U_percent": 27.09286734933309,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "114_91/ver",
+      "updates": 5000,
+      "U_percent": 7.1728023583115545,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "116_102/hor",
+      "updates": 5000,
+      "U_percent": 36.17785141428371,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "116_113/dia",
+      "updates": 5000,
+      "U_percent": 34.407794330734944,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "116_30/tor",
+      "updates": 5000,
+      "U_percent": 34.987293235987906,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "116_348/ver",
+      "updates": 5000,
+      "U_percent": 16.318144306859093,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "119_221/tor",
+      "updates": 5000,
+      "U_percent": 26.0055727369509,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "119_322/ver",
+      "updates": 5000,
+      "U_percent": 16.418274128235826,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "119_559/hor",
+      "updates": 5000,
+      "U_percent": 28.751715658004933,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "229_200/ver",
+      "updates": 5000,
+      "U_percent": 25.22777178464665,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "230_12/hor",
+      "updates": 5000,
+      "U_percent": 17.839775158530067,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "230_483/tor",
+      "updates": 5000,
+      "U_percent": 26.932442481828698,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "248_319/ver",
+      "updates": 5000,
+      "U_percent": 31.154207921972137,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "248_625/hor",
+      "updates": 5000,
+      "U_percent": 29.34001327411797,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "257_485/tor",
+      "updates": 5000,
+      "U_percent": 28.769919197871534,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "25_296/ver",
+      "updates": 5000,
+      "U_percent": 10.036176955644528,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolver",
+      "sample": "25_395/hor",
+      "updates": 5000,
+      "U_percent": 16.959974649322753,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 17.156525473880368,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 62.05833150354097,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 11.8382549840753,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 10.036129337511275,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 8.742479914983335,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "10_492/tor",
+      "updates": 5000,
+      "U_percent": 29.669757210234522,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "10_58/ver",
+      "updates": 5000,
+      "U_percent": 23.940350339090724,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "10_80/hor",
+      "updates": 5000,
+      "U_percent": 48.64924056973366,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "101_428/dia",
+      "updates": 5000,
+      "U_percent": 21.932933840756206,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "101_479/tor",
+      "updates": 5000,
+      "U_percent": 46.790267720549224,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "101_56/ver",
+      "updates": 5000,
+      "U_percent": 46.99051486322771,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "101_78/hor",
+      "updates": 5000,
+      "U_percent": 10.959371312736904,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "101_86/dia",
+      "updates": 5000,
+      "U_percent": 39.92643247752214,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "102_240/tor",
+      "updates": 5000,
+      "U_percent": 32.00779395220891,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "102_79/dia",
+      "updates": 5000,
+      "U_percent": 47.1238309719145,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_113/tor",
+      "updates": 5000,
+      "U_percent": 32.70111780520811,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_147/ver",
+      "updates": 5000,
+      "U_percent": 13.83546013497095,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_150/hor",
+      "updates": 5000,
+      "U_percent": 27.842180701721805,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_186/dia",
+      "updates": 5000,
+      "U_percent": 38.81944681598052,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_233/tor",
+      "updates": 5000,
+      "U_percent": 33.95087166061456,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_240/ver",
+      "updates": 5000,
+      "U_percent": 15.235672003937731,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_248/hor",
+      "updates": 5000,
+      "U_percent": 22.962419721753278,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_291/dia",
+      "updates": 5000,
+      "U_percent": 18.194241493271193,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_320/tor",
+      "updates": 5000,
+      "U_percent": 28.409881456508135,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_342/ver",
+      "updates": 5000,
+      "U_percent": 11.33983446058073,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "107_459/hor",
+      "updates": 5000,
+      "U_percent": 10.230480353688858,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "113_129/ver",
+      "updates": 5000,
+      "U_percent": 11.707334665547705,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "113_170/hor",
+      "updates": 5000,
+      "U_percent": 17.75053456073631,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "113_390/tor",
+      "updates": 5000,
+      "U_percent": 25.1068077361963,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "113_86/hor",
+      "updates": 5000,
+      "U_percent": 28.31077042020947,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "113_95/dia",
+      "updates": 5000,
+      "U_percent": 29.60888338560885,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "114_28/ver",
+      "updates": 5000,
+      "U_percent": 8.912220373326788,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "114_456/dia",
+      "updates": 5000,
+      "U_percent": 44.895017965301975,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "114_525/tor",
+      "updates": 5000,
+      "U_percent": 26.813424967549892,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "114_91/ver",
+      "updates": 5000,
+      "U_percent": 11.006065468046055,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "116_102/hor",
+      "updates": 5000,
+      "U_percent": 32.67404294207685,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "116_113/dia",
+      "updates": 5000,
+      "U_percent": 31.95498307978217,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "116_30/tor",
+      "updates": 5000,
+      "U_percent": 36.50929759898211,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "116_348/ver",
+      "updates": 5000,
+      "U_percent": 26.83418543383359,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "119_221/tor",
+      "updates": 5000,
+      "U_percent": 24.310800663762695,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "119_322/ver",
+      "updates": 5000,
+      "U_percent": 19.06807842388391,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "119_559/hor",
+      "updates": 5000,
+      "U_percent": 20.201581630460108,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "229_200/ver",
+      "updates": 5000,
+      "U_percent": 35.722326093099,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "230_12/hor",
+      "updates": 5000,
+      "U_percent": 12.67486688047086,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "230_483/tor",
+      "updates": 5000,
+      "U_percent": 26.238865908289583,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "248_319/ver",
+      "updates": 5000,
+      "U_percent": 18.7503023403667,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "248_625/hor",
+      "updates": 5000,
+      "U_percent": 23.863922935245707,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "257_485/tor",
+      "updates": 5000,
+      "U_percent": 29.105760149017335,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "25_296/ver",
+      "updates": 5000,
+      "U_percent": 10.882994942476996,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_transolverpp",
+      "sample": "25_395/hor",
+      "updates": 5000,
+      "U_percent": 18.550026486912806,
+      "source_run": "fifty_u_recovery"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "506_533/ver",
+      "updates": 5000,
+      "U_percent": 14.665665158910924,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "506_25/tor",
+      "updates": 5000,
+      "U_percent": 66.21282424705629,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "10_30/ver",
+      "updates": 5000,
+      "U_percent": 10.123697111598908,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "10_421/hor",
+      "updates": 5000,
+      "U_percent": 10.858061736423915,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "10_460/dia",
+      "updates": 5000,
+      "U_percent": 10.431812554303297,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "10_492/tor",
+      "updates": 5000,
+      "U_percent": 25.999654774614672,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "10_58/ver",
+      "updates": 5000,
+      "U_percent": 23.696853468215032,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "10_80/hor",
+      "updates": 5000,
+      "U_percent": 45.14593057314256,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "101_428/dia",
+      "updates": 5000,
+      "U_percent": 22.02423351825235,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "101_479/tor",
+      "updates": 5000,
+      "U_percent": 58.70989225455888,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "101_56/ver",
+      "updates": 5000,
+      "U_percent": 45.65688154457352,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "101_78/hor",
+      "updates": 5000,
+      "U_percent": 12.336487857363544,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "101_86/dia",
+      "updates": 5000,
+      "U_percent": 36.3379216857136,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "102_240/tor",
+      "updates": 5000,
+      "U_percent": 35.614162779829286,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "102_79/dia",
+      "updates": 5000,
+      "U_percent": 43.553893370975246,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_113/tor",
+      "updates": 5000,
+      "U_percent": 33.60549020494729,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_147/ver",
+      "updates": 5000,
+      "U_percent": 19.193149766037628,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_150/hor",
+      "updates": 5000,
+      "U_percent": 23.208652188927807,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_186/dia",
+      "updates": 5000,
+      "U_percent": 36.78678887754409,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_233/tor",
+      "updates": 5000,
+      "U_percent": 36.66843396336712,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_240/ver",
+      "updates": 5000,
+      "U_percent": 14.82582728616382,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_248/hor",
+      "updates": 5000,
+      "U_percent": 16.493613125107654,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_291/dia",
+      "updates": 5000,
+      "U_percent": 16.968368366227978,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_320/tor",
+      "updates": 5000,
+      "U_percent": 28.875392240947825,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_342/ver",
+      "updates": 5000,
+      "U_percent": 11.31554632937788,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "107_459/hor",
+      "updates": 5000,
+      "U_percent": 11.614440377995603,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "113_129/ver",
+      "updates": 5000,
+      "U_percent": 12.259871628519134,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "113_170/hor",
+      "updates": 5000,
+      "U_percent": 11.621229300489794,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "113_390/tor",
+      "updates": 5000,
+      "U_percent": 24.995860643386337,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "113_86/hor",
+      "updates": 5000,
+      "U_percent": 20.612690052591486,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "113_95/dia",
+      "updates": 5000,
+      "U_percent": 32.61746893667936,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "114_28/ver",
+      "updates": 5000,
+      "U_percent": 8.972319070739637,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "114_456/dia",
+      "updates": 5000,
+      "U_percent": 47.05827751685117,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "114_525/tor",
+      "updates": 5000,
+      "U_percent": 26.35289088005293,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "114_91/ver",
+      "updates": 5000,
+      "U_percent": 8.652107357780793,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "116_102/hor",
+      "updates": 5000,
+      "U_percent": 30.192564373847798,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "116_113/dia",
+      "updates": 5000,
+      "U_percent": 33.371690410642884,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "116_30/tor",
+      "updates": 5000,
+      "U_percent": 41.64846674696077,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "116_348/ver",
+      "updates": 5000,
+      "U_percent": 17.261788220380158,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "119_221/tor",
+      "updates": 5000,
+      "U_percent": 23.95221555333193,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "119_322/ver",
+      "updates": 5000,
+      "U_percent": 18.73961459035922,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "119_559/hor",
+      "updates": 5000,
+      "U_percent": 11.878416124667787,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "229_200/ver",
+      "updates": 5000,
+      "U_percent": 21.467400828492778,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "230_12/hor",
+      "updates": 5000,
+      "U_percent": 8.615690917723969,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "230_483/tor",
+      "updates": 5000,
+      "U_percent": 24.830966052448247,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "248_319/ver",
+      "updates": 5000,
+      "U_percent": 35.69410126380456,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "248_625/hor",
+      "updates": 5000,
+      "U_percent": 21.76502429719859,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "257_485/tor",
+      "updates": 5000,
+      "U_percent": 28.964532782848966,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "25_296/ver",
+      "updates": 5000,
+      "U_percent": 9.486567541029956,
+      "source_run": "fifty_u_overfitting"
+    },
+    {
+      "experiment": "fifty_ts3",
+      "sample": "25_395/hor",
+      "updates": 5000,
+      "U_percent": 14.484905563094893,
+      "source_run": "fifty_u_overfitting"
+    }
+  ],
+  "stage_seconds": {
+    "UTC": 15030.73594212532,
+    "monotonic": 14742.995220432
+  },
+  "stage_costs": {
+    "original": {
+      "UTC": 9962.016974925995,
+      "monotonic": 9825.047086847
+    },
+    "recovery": {
+      "UTC": 5068.718967199326,
+      "monotonic": 4917.948133585
+    }
+  },
+  "recovery": {
+    "starting_step": 21,
+    "added_updates": 4979,
+    "prior_failed_arm_seconds": {
+      "UTC": 27.169150590896606,
+      "monotonic": 27.168756418000157
+    },
+    "queue_wait_seconds": 4115.1737360954285,
+    "queue_wait_overlaps_original": true,
+    "clock": {
+      "entry_epoch": 1792169141.175702,
+      "entry_monotonic": 12504.495848813,
+      "deadline_epoch": 1792174336.2274644,
+      "deadline_monotonic": 17776.150254263,
+      "boot_id": "72b5db53-8cd3-4108-a27c-f568cbecd80d",
+      "original_entry_epoch": 1792159179.1405225,
+      "original_entry_monotonic": 2679.430558047,
+      "original_deadline_epoch": 1792187979.1405225,
+      "original_deadline_monotonic": 31479.430558047,
+      "conservative_original_arm_start": {
+        "UTC": 1792163536.2274644,
+        "monotonic": 6976.150254263
+      },
+      "arm_allowance_seconds": 10800,
+      "deadline_policy": "minimum of unchanged whole-stage deadline and conservative original ++ arm-start lower bound +10800; includes intervening wait",
+      "guard_process": {
+        "pid": 3622,
+        "ppid": 3618,
+        "start_ticks": 846111,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-B",
+          "-u",
+          "-m",
+          "tools.queue_fifty_u_recovery",
+          "--source",
+          "../../notes/fifty_u_sources.json",
+          "--lock",
+          "../../runs/geobc_exploration/.coordinator.lock",
+          "--queue-state",
+          "../../notes/.tmp_fifty_u_recovery_queue.json"
+        ]
+      },
+      "queue_wait_seconds": 4115.1737360954285,
+      "child_process": {
+        "pid": 4489,
+        "ppid": 3622,
+        "start_ticks": 1250450,
+        "argv": [
+          "/home/research/.venvs/geobc/bin/python",
+          "-B",
+          "-u",
+          "-m",
+          "tools.recover_fifty_u_overfitting",
+          "--original",
+          "runs/fifty_u_overfitting",
+          "--config",
+          "configs/fifty_u_overfitting.json",
+          "--source",
+          "../../notes/fifty_u_sources.json",
+          "--output",
+          "runs/fifty_u_recovery",
+          "--lock",
+          "../../runs/geobc_exploration/.coordinator.lock"
+        ]
+      }
+    },
+    "data_residency": "CPU shared cache; exactly one full original-node case on GPU; no grid for ++; release allocator cache between cases"
+  },
+  "previous_stage_seconds": {
+    "original": {
+      "UTC": 13527.498094320297,
+      "monotonic": 13347.034119453
+    },
+    "rerun": {
+      "UTC": 885.4911315441132,
+      "monotonic": 855.6553349769983
+    },
+    "total": {
+      "UTC": 14412.98922586441,
+      "monotonic": 14202.689454429998
+    }
+  },
+  "source_reads": 100,
+  "stress_label_reads": 0,
+  "heldout_reads": 0,
+  "scientific_array_reads_by_exporter": 0,
+  "actual_export": 1
+}
