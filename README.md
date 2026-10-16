@@ -1,5 +1,7 @@
 # GeoBC Neural Operator
 
+Latest precision correction: **TCNN now uses native FP32 CutlassMLP with TF32 disabled**, freshly completing all three single/five/fifty-case arms at update 5,000. U errors: **0.000232% single / 2.5335% five-case mean / 28.0900% fifty-case mean**. The other 21 completed endpoints are retained and allow TF32. The old FP16 TCNN results remain historical. [Latest24-arm comparison and precision/time details](results/tcnn_fp32_u_overfitting/README.md).
+
 Geometry, loads and boundary conditions for displacement and signed-stress prediction on original DeepJEB.
 
 The [latest **1 / 5 / 50-case U-only comparison**](results/fifty_u_overfitting/README.md) is complete: **all 24 arms have exactly 5,000 full original-node updates**, common OneCycle peak **1e-3**, and approximately 4.6 million registered/active parameters (±1%). The [50 distinct TRAIN CADs](configs/fifty_u_samples.json), one load each, include the original five. Each receives 100 updates, versus 1,000 per case in the five-case group. FNO has the lowest 50-case mean/worst U error in this run, **9.9989% / 17.0790%**; the other means are 21.3929%–29.5333%. No 50-case endpoint is below 1% U error. These are fixed-seed fitting results, not generalization or architecture-limit claims.

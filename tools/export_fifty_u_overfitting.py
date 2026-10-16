@@ -50,7 +50,7 @@ def plot(rows,curves,out):
         ax.scatter(x,[float(r['worst_U_percent']) for r in selected],marker='_',s=90,color='#172638',label='Worst case U')
         ax.axhline(1,ls='--',color='#9b4b33',label='1% reference');ax.set_yscale('log');ax.set_ylim(low,high)
         ax.set_xticks(x,list(NAMES.values()),rotation=40,ha='right');ax.set_title(title+' / actual update 5000');ax.set_ylabel('Fitted-case U-vector relative L2 (%)')
-        ax.legend(frameon=False,fontsize=8,loc='upper left')
+        ax.legend(frameon=False,fontsize=8,loc='lower right')
     fig.savefig(out/'comparison.png',dpi=180);plt.close(fig)
     fig,axes=plt.subplots(1,3,figsize=(18,6),layout='constrained',sharey=True)
     for ax,g,title in zip(axes,groups,titles):

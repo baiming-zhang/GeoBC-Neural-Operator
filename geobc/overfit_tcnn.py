@@ -1,9 +1,9 @@
-"""Official tiny-cuda-nn hash-grid + FullyFusedMLP neural fields.
+"""Official tiny-cuda-nn hash-grid neural fields with explicit native precision.
 
 This is a separate implementation from the earlier torch-head baselines.
 The default architecture matches the slide's stated NGP dimensions. TCNN's
-network has no bias parameters and uses its native FP16 computations with
-FP32 master parameters; outputs are cast to float32 for external losses.
+network has no bias parameters. The historical default uses FP16 FullyFusedMLP
+with FP32 master parameters; native FP32 uses a separately compiled CutlassMLP.
 """
 
 from __future__ import annotations
@@ -32,8 +32,11 @@ class TCNNFieldConfig:
     hidden_dim: int = 64
     hidden_layers: int = 2
     seed: int = 1337
+    native_precision: Literal["fp16", "fp32"] = "fp16"
 
     def __post_init__(self) -> None:
+        if self.native_precision not in ("fp16", "fp32"):
+            raise ValueError("Native precision must be fp16 or fp32.")
         if self.input_mode not in ("xyz", "both"):
             raise ValueError("TCNN fields accept input_mode='xyz' or 'both'.")
         if self.out_channels < 1 or self.condition_dim < 0:
@@ -67,7 +70,7 @@ class TCNNFieldConfig:
         ]}
 
     def network_config(self) -> dict[str, Any]:
-        return {"otype": "FullyFusedMLP", "activation": "ReLU",
+        return {"otype": "CutlassMLP" if self.native_precision == "fp32" else "FullyFusedMLP", "activation": "ReLU",
                 "output_activation": "None", "n_neurons": self.hidden_dim,
                 "n_hidden_layers": self.hidden_layers}
 
@@ -76,7 +79,7 @@ class TCNNFieldConfig:
                 "encoding": self.encoding_config(), "network": self.network_config(),
                 "sample_id": False, "raw_xyz_after_encoding": False,
                 "bias_parameters": False, "jit_fusion": False,
-                "precision": "native TCNN FP16 computation, FP32 master parameters, float32 returned output",
+                "precision": f"native TCNN {self.native_precision.upper()} computation, FP32 master parameters, float32 returned output",
                 "alignment": "native TCNN channel/batch padding retained",
                 "layout": "xyz[N,3], features[N,condition_dim] -> prediction[N,out_channels]"}
 
@@ -108,10 +111,16 @@ class TCNNField(nn.Module):
                 n_output_dims=self.config.out_channels,
                 encoding_config=self.config.encoding_config(),
                 network_config=self.config.network_config(), seed=self.config.seed)
-            # Keep the classic FullyFusedMLP path; JIT changes are not part
-            # of the source slide's stated configuration.
+            # Use the declared native backend without introducing JIT fusion.
             self.native.jit_fusion = False
-        self.backend = "tcnn_fully_fused"
+        expected = torch.float32 if self.config.native_precision == "fp32" else torch.float16
+        # Master parameters alone are insufficient: the extension can cast them
+        # to half internally. Check the native module's actual compute dtype.
+        if self.native.dtype != expected:
+            raise RuntimeError(f"TCNN native dtype {self.native.dtype} does not match requested {expected}; use a matching compiled extension.")
+        self.backend = "tcnn_cutlass_fp32" if self.config.native_precision == "fp32" else "tcnn_fully_fused"
+        self.source_config = {**self.config.record(), "actual_native_dtype": str(self.native.dtype),
+                              "actual_native_hyperparams": self.native.native_tcnn_module.hyperparams()}
         self.to(device)
 
     def forward(self, xyz: Tensor, features: Tensor | None = None) -> Tensor:

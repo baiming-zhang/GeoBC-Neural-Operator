@@ -118,7 +118,9 @@ def run(args):
         free,total=torch.cuda.mem_get_info()
         if total-free>config['memory_bytes']:raise MemoryError('Declared GPU memory cap')
     torch.set_num_threads(4)
-    torch.backends.cuda.matmul.allow_tf32=True;torch.backends.cudnn.allow_tf32=True
+    allow_tf32=config.get('allow_tf32',True)
+    torch.backends.cuda.matmul.allow_tf32=allow_tf32;torch.backends.cudnn.allow_tf32=allow_tf32
+    state['precision_runtime']={'allow_tf32':allow_tf32,'NVIDIA_TF32_OVERRIDE':os.environ.get('NVIDIA_TF32_OVERRIDE')}
     torch.cuda.set_per_process_memory_fraction(config['memory_bytes']/torch.cuda.get_device_properties(0).total_memory)
     with GPUQueue(args.lock):
         try:

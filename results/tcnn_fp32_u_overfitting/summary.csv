@@ -1,0 +1,4 @@
+experiment,method,group,parameters,active_parameters,updates,maximum_learning_rate,learning_rate_last_update,U_percent,worst_U_percent,all_cases_U_below_1_percent,UTC_seconds,monotonic_seconds,source_run,fresh_rerun_of_early_stop,precision
+single_tcnn_hash,tcnn_hash,single,4597120,4597120,5000,0.001,4e-08,0.00023229308962319516,0.00023229308962319516,True,52.413671255111694,50.216156125000026,tcnn_fp32_u_overfitting,False,native FP32 / TF32 disabled / CutlassMLP
+five_tcnn_hash,tcnn_hash,five,4597120,4597120,5000,0.001,4e-08,2.5334766767605035,3.268366773940162,False,59.067283153533936,57.763320194000016,tcnn_fp32_u_overfitting,False,native FP32 / TF32 disabled / CutlassMLP
+fifty_tcnn_hash,tcnn_hash,fifty,4597120,4597120,5000,0.001,4e-08,28.09002136953709,64.67822581239186,False,80.9703311920166,76.94312510699996,tcnn_fp32_u_overfitting,False,native FP32 / TF32 disabled / CutlassMLP

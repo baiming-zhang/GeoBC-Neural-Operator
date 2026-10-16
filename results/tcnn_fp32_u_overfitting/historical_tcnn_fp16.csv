@@ -1,0 +1,4 @@
+experiment,method,group,parameters,active_parameters,updates,maximum_learning_rate,learning_rate_last_update,U_percent,worst_U_percent,all_cases_U_below_1_percent,UTC_seconds,monotonic_seconds,source_run,fresh_rerun_of_early_stop
+five_tcnn_hash,tcnn_hash,five,4597120,4597120,5000,0.001,4e-08,2.4054393139060144,2.9743779229146092,False,60.91987061500549,59.90050133299974,uniform_onecycle_u_overfitting,False
+single_tcnn_hash,tcnn_hash,single,4597120,4597120,5000,0.001,4e-08,0.16022265811106248,0.16022265811106248,True,45.77656006813049,44.65382574400064,fullcycle_u_overfitting,True
+fifty_tcnn_hash,tcnn_hash,fifty,4597120,4597120,5000,0.001,4e-08,27.795251275614664,63.54439734198901,False,128.9504542350769,127.56925691499964,fifty_u_overfitting,False
