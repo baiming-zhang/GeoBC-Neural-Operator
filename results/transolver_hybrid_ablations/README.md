@@ -1,5 +1,7 @@
 # Transolver查询头与网格化消融：1/5/50样本
 
+历史30项端点保留；[最新MeshGraphNet单/五样本与32项精度/耗时比较](../meshgraphnet_single_five_u_overfitting/README.md)。MGN50未训练。
+
 全部新增训练于北京时间2026-10-17T06:49:09.755071+08:00结束。两个原生阶段均exit0、closed/inactive、within_budget，精确guard/child均已退出。各1/5/50份端点预测和完整last.pt存在本地；导出仅读标量。
 
 保留已有24项真实5000步端点，新增两种TS混合实现共6项，各freshseed2026且实际5000步。仅TRAIN U3拟合，非泛化测试，不挑best/partial。

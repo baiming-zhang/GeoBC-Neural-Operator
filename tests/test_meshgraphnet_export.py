@@ -1,8 +1,18 @@
 import copy,json,tempfile,unittest
 from pathlib import Path
-from tools.export_meshgraphnet_single_five import assemble,validate_scope_stop
+from tools.export_meshgraphnet_single_five import assemble,validate_scope_stop,merge_recovery
 
 class MeshGraphExportTests(unittest.TestCase):
+ def test_recovery_requires_complete_continuation_evidence(self):
+  old={'arms':{'single_meshgraphnet':{'updates':5000},'five_meshgraphnet':{'updates':4}}}
+  arm=dict(updates=5000,recovered_from_actual_step=4,added_updates=4996,model_Adam_scheduler_fourRNG_cursor_restored=True,resumed_full_node_backward_finite=True)
+  recovered=dict(active=False,closed=True,status='completed',arms={'five_meshgraphnet':arm},source_reads=5,graph_reads=5,checkpoint_reads=1,stress_label_reads=0,heldout_reads=0,restored_without_readout_or_RNG_draw=True)
+  terminal=dict(active=False,closed=True,exit_code=0,within_budget=True,original_deadline_respected=True)
+  merged=merge_recovery(old,recovered,terminal);self.assertEqual(merged['arms']['five_meshgraphnet']['updates'],5000);self.assertEqual(old['arms']['five_meshgraphnet']['updates'],4)
+  bad=copy.deepcopy(recovered);bad['arms']['five_meshgraphnet']['added_updates']=4995
+  with self.assertRaisesRegex(ValueError,'step4'):merge_recovery(old,bad,terminal)
+  bad=copy.deepcopy(terminal);bad['exit_code']=1
+  with self.assertRaisesRegex(ValueError,'Successful closed'):merge_recovery(old,recovered,bad)
  def test_refuse_partial_and_unexpected_native_failure(self):
   c=json.loads(Path('configs/meshgraphnet_u_overfitting.json').read_text());s={'arms':{}}
   for g in ('single','five'):

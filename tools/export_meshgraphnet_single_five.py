@@ -1,5 +1,5 @@
 """Scalar-only MeshGraphNet single/five report; retain all30 earlier endpoints."""
-import argparse,json,math
+import argparse,copy,json,math
 from pathlib import Path
 from tools.export_fifty_u_overfitting import read_csv
 from tools.export_onecycle_u_overfitting import write_csv
@@ -52,18 +52,36 @@ def plot(rows,curves,out):
   ax.axhline(1,ls='--',color='#9b4b33');ax.set_yscale('log');ax.set_ylim(low,max(float(r['U_percent']) for r in curves)*1.15);ax.set_xlim(0,5000);ax.set_title(g,pad=45);ax.set_xlabel('Full original-case optimizer updates');ax.set_ylabel('Mean fitted-case U error (%)');ax.legend(ncol=3,frameon=False,fontsize=8,loc='lower center',bbox_to_anchor=(.5,1.01))
  fig.savefig(out/'learning_curves.png',dpi=180);plt.close(fig)
 
-def run(root,base):
- c=json.loads(Path('configs/meshgraphnet_u_overfitting.json').read_text());effective=json.loads(Path('configs/meshgraphnet_single_five_u_overfitting.json').read_text());s=json.loads((root/'summary.json').read_text());t=json.loads((root/'terminal.json').read_text());scope=json.loads((root/'fifty_meshgraphnet/USER_SCOPE_GATE.json').read_text());controlled=validate_scope_stop(s,t,scope,root,c)
+def merge_recovery(original,recovered,terminal):
+ if recovered['active'] or not recovered['closed'] or recovered['status']!='completed' or terminal['active'] or not terminal['closed'] or terminal['exit_code']!=0 or not terminal['within_budget'] or not terminal['original_deadline_respected']:raise ValueError('Successful closed recovery required')
+ if set(recovered['arms'])!={'five_meshgraphnet'} or recovered['source_reads']!=5 or recovered['graph_reads']!=5 or recovered['checkpoint_reads']!=1 or recovered['stress_label_reads'] or recovered['heldout_reads']:raise ValueError('Only five-case isolated recovery allowed')
+ arm=recovered['arms']['five_meshgraphnet']
+ if arm.get('recovered_from_actual_step')!=4 or arm.get('added_updates')!=4996 or not arm.get('model_Adam_scheduler_fourRNG_cursor_restored') or not arm.get('resumed_full_node_backward_finite') or not recovered.get('restored_without_readout_or_RNG_draw'):raise ValueError('Exact step4 continuation required')
+ merged=copy.deepcopy(original);merged['arms']['five_meshgraphnet']=copy.deepcopy(arm);return merged
+
+
+def run(root,base,recovery=None):
+ c=json.loads(Path('configs/meshgraphnet_u_overfitting.json').read_text());effective=json.loads(Path('configs/meshgraphnet_single_five_u_overfitting.json').read_text());s=json.loads((root/'summary.json').read_text());t=json.loads((root/'terminal.json').read_text());scope=json.loads((root/'fifty_meshgraphnet/USER_SCOPE_GATE.json').read_text());recovered=rt=None
+ original_summary=copy.deepcopy(s);original_terminal=copy.deepcopy(t)
+ if recovery:
+  from tools.run_meshgraphnet_recovery import validate_original
+  validate_original(s,t,(root/'process.log').read_text());recovered=json.loads((recovery/'summary.json').read_text());rt=json.loads((recovery/'terminal.json').read_text());s=merge_recovery(s,recovered,rt);controlled=True
+ else:controlled=validate_scope_stop(s,t,scope,root,c)
  for key in ('single','five','seed','max_updates_per_arm','learning_rate','minimum_learning_rate','lr_schedule','gradient_clip_norm','evaluate_every','model_settings','output_field','allow_tf32'):
   if c[key]!=effective[key]:raise ValueError('Selected arms must retain unchanged training recipe')
  if s['source_reads']!=50 or s['stress_label_reads'] or s['heldout_reads']:raise ValueError('Actual preloaded TRAIN source accounting required')
  graph=json.loads((root/'graph_cache.json').read_text())
  if graph['graph_reads']!=50 or graph['graph_target_reads']:raise ValueError('Topology cache accounting mismatch')
  rows,cases=assemble(s,c);old=read_csv(base/'all_methods.csv');oldcases=read_csv(base/'all_per_case.csv');curves=read_csv(base/'learning_curves.csv')
+ if recovery:
+  rows[1]['source_run']='meshgraphnet_u_recovery'
+  for item in cases:
+   if item['experiment']=='five_meshgraphnet':item['source_run']='meshgraphnet_u_recovery'
  for r in rows:
   pts=[json.loads(line) for line in (root/r['experiment']/'metrics.jsonl').read_text().splitlines()]
+  if recovery and r['group']=='five':pts=[m for m in pts if m['step']==0]+[json.loads(line) for line in (recovery/'metrics.jsonl').read_text().splitlines()]
   if [m['step'] for m in pts]!=list(range(0,5001,50)):raise ValueError('Complete eval50 curve required')
-  curves.extend(dict(experiment=r['experiment'],step=m['step'],U_percent=m['mean_U_percent'],worst_U_percent=m['worst_field_percent'],learning_rate_last_update=m.get('learning_rate_last_update'),source_run='meshgraphnet_u_overfitting') for m in pts)
+  curves.extend(dict(experiment=r['experiment'],step=m['step'],U_percent=m['mean_U_percent'],worst_U_percent=m['worst_field_percent'],learning_rate_last_update=m.get('learning_rate_last_update'),source_run=r['source_run'] if m['step'] else 'meshgraphnet_u_overfitting') for m in pts)
  allrows=old+rows;allcases=oldcases+cases
  if (len(allrows),len(allcases),len(curves))!=(32,566,3232):raise ValueError('Complete32/566/3232 scalar index required')
  out=Path(effective['report_directory']);out.mkdir(parents=True,exist_ok=True)
@@ -86,8 +104,14 @@ def run(root,base):
  lines+=['',f"本次原生阶段实际成本{t['elapsed_seconds']['UTC']:.2f}s UTC / {t['elapsed_seconds']['monotonic']:.2f}s单调时钟。用户在启动后收窄范围，原进程已共享加载50个TRAIN U案例和50个图缓存；这笔成本如实计入，只有单/五组被训练。图预处理另读50份H5的vertices/cells及已对齐XYZ，不读目标；耗时见configs/meshgraphnet_graphs.json。完整图合成数据预检只测显存/速度，0个目标标签、0个optimizer更新，不作为训练结果。",'',
  '范围控制说明：为不修改live配置、不重置已进行的单样本更新，预先创建第三项目录，阻止50项初始化。两项完整结果落盘后，原进程因这个预设目录FileExistsError退出1；这不是技术失败重播，也不能称原生exit0。报告保留真实terminal，包括由非零退出造成的within_budget=false，并单列原绝对截止时间遵守情况。两个选定训练项均完整5000，模型/Adam/scheduler/四RNG/order/cursor及6份端点预测本地保留，无50样本模型初始化。若任何选定项不足5000或出现其他失败，导出器会拒绝。','',
  '![当前单/五样本比较](comparison.png)','','![原始训练集误差曲线](learning_curves.png)','','[新增2项](summary.csv) · [新增6案例](per_case.csv) · [全部32项及耗时/精度](all_methods.csv) · [原30项](../transolver_hybrid_ablations/README.md)']
- (out/'README.md').write_text('\n'.join(lines)+'\n',encoding='utf-8');(out/'metrics.json').write_text(json.dumps(dict(actual_config=c,effective_config=effective,summary=rows,stage_seconds=t['elapsed_seconds'],native_terminal=t,controlled_user_scope_stop=controlled,original_time_deadlines_respected=t['original_deadline_respected'],source_reads=50,graph_reads=50,stress_label_reads=0,heldout_reads=0,fifty_model_initialized=False,actual_export=1,scientific_array_reads_by_exporter=0,preserved_old_arms=30),indent=2)+'\n')
+ stage_seconds=dict(t['elapsed_seconds'])
+ if recovery:
+  stage_seconds={k:t['elapsed_seconds'][k]+rt['elapsed_seconds'][k] for k in t['elapsed_seconds']}
+  lines+=['','## 五样本显存失败与精确恢复','',f"原单样本完整5000保留。五样本原阶段完成4次更新，第5步前向后、反向前触发声明显存上限；原scope目录随后阻止50项初始化。原exit1同时包含真实MemoryError，不能仅称范围受控停止。恢复仅读本次失败的last.pt一次，严格恢复模型、Adam、OneCycle、四RNG、输出尺度、案例顺序和cursor；丢弃未反向的前向图，从第5步继续4996次，未从零重跑。缓存改为CPU驻留，每次一完整原网格转GPU；架构、精度、全节点损失、评价频率均不变，无额外初始评价或RNG抽样。原arm/whole绝对截止不延长，等待和重启间隔不返还。额外5次TRAIN U读取和5次图读取，累计各55，stress/heldout为0。原阶段加恢复阶段实际成本{stage_seconds['UTC']:.2f}s UTC / {stage_seconds['monotonic']:.2f}s单调时钟；等待不重复计为执行成本。恢复原生exit0及其terminal另行完整保留。"]
+  # Remove an obsolete assertion that scope gating was the only original failure.
+  lines=[line.replace('两项完整结果落盘后，原进程因这个预设目录FileExistsError退出1；这不是技术失败重播，也不能称原生exit0。','原单样本完整、五样本显存失败后，原进程遇到这个预设目录，以FileExistsError退出1；五样本随后单独恢复完成，见下文。原进程不能称原生exit0。') for line in lines]
+ (out/'README.md').write_text('\n'.join(lines)+'\n',encoding='utf-8');(out/'metrics.json').write_text(json.dumps(dict(actual_config=c,effective_config=effective,summary=rows,stage_seconds=stage_seconds,native_terminal=original_terminal,original_failed_arm=original_summary['arms'].get('five_meshgraphnet') if recovery else None,recovery_terminal=rt,controlled_user_scope_stop=controlled,original_time_deadlines_respected=t['original_deadline_respected'] and (rt is None or rt['original_deadline_respected']),source_reads=55 if recovery else 50,graph_reads=55 if recovery else 50,stress_label_reads=0,heldout_reads=0,fifty_model_initialized=False,actual_export=1,scientific_array_reads_by_exporter=0,preserved_old_arms=30),indent=2)+'\n')
  print(json.dumps(dict(new_arms=2,all_arms=32,new_per_case=6,all_per_case=566,fifty_not_run=True,controlled_scope_stop=controlled)))
 
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--run',type=Path,default=Path('runs/meshgraphnet_u_overfitting'));p.add_argument('--base',type=Path,default=Path('results/transolver_hybrid_ablations'));a=p.parse_args();run(a.run,a.base)
+ p=argparse.ArgumentParser();p.add_argument('--run',type=Path,default=Path('runs/meshgraphnet_u_overfitting'));p.add_argument('--base',type=Path,default=Path('results/transolver_hybrid_ablations'));p.add_argument('--recovery-run',type=Path);a=p.parse_args();run(a.run,a.base,a.recovery_run)
